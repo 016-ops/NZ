@@ -1,0 +1,21 @@
+{
+  "profile_id": "cn-current",
+  "sample_root": "nz",
+  "target_selected_by_user": "2026-10-13",
+  "version_config_observed": "2020201024",
+  "retail_version": null,
+  "authenticity": "UNVERIFIED",
+  "protocol_status": "BLOCKED",
+  "native_host_status": "BLOCKED",
+  "currency_mappings": {},
+  "item_mappings": {},
+  "verified_maps": [],
+  "messages": [],
+  "capabilities": {
+    "retail_login": false,
+    "retail_first_character": false,
+    "retail_multiplayer": false,
+    "retail_inventory": false,
+    "retail_settlement": false
+  }
+}

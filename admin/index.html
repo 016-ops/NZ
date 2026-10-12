@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>NZ Revival 本地控制台</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header><span class="brand">NZ / REVIVAL</span><span id="profile">读取环境…</span><button id="logout" hidden>退出</button></header>
+<main>
+<h1>当前客户端开发控制台</h1>
+<p class="notice" id="notice">原客户端登录、地图战斗及资源同步尚未验证。本控制台显示本地服务数据。</p>
+<div id="auth" class="columns">
+<section><h2>登录</h2><form id="login"><label>身份<select name="kind"><option value="player">玩家</option><option value="admin">管理员</option></select></label><label>独立账号<input name="login" required autocomplete="username"></label><label>密码<input name="password" type="password" required autocomplete="current-password"></label><label>管理员动态验证码<input name="otp_code" inputmode="numeric" autocomplete="one-time-code" maxlength="6"></label><button>登录</button></form><p class="muted">管理员首次设置请使用 bootstrap-owner 命令。</p></section>
+<section><h2>受邀注册</h2><form id="register"><label>邀请令牌<input name="invitation" required autocomplete="off"></label><label>独立账号<input name="login" pattern="[A-Za-z0-9_.-]{3,32}" required></label><label>本地密码<input name="password" type="password" minlength="12" maxlength="128" required autocomplete="new-password"></label><button>提交审核</button></form><p class="muted">只使用本服务的独立凭据。注册后由管理员批准。</p></section>
+</div>
+<div id="workspace" hidden>
+<nav id="navigation"></nav>
+<section id="content"><h2 id="view-title">账号</h2><div id="actions"></div><div id="rows"></div></section>
+</div>
+<section id="feedback" aria-live="polite" hidden><h2>操作结果</h2><pre id="message"></pre></section>
+</main><footer>所有金额与目录均属于私人本地服务。TEST_PROFILE 为合成测试规则，未经原客户端验证。</footer>
+</body></html>

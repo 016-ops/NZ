@@ -1,0 +1,13 @@
+nz/
+upstream/
+repository/
+.venv/
+__pycache__/
+*.pyc
+runtime/
+evidence/private/
+*.db
+*.db-wal
+*.db-shm
+*.pem
+*.key

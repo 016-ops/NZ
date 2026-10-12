@@ -1,0 +1,11 @@
+{
+  "kind": "UPSTREAM_UNIT_TESTS_NOT_CN_LIVE",
+  "command": [
+    "tests.test_account_db",
+    "tests.test_ap_auth",
+    "tests.test_purchase_atomicity",
+    "tests.test_room_registry_consistency"
+  ],
+  "exit_code": 1,
+  "seconds": 1.078
+}

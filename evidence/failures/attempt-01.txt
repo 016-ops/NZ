@@ -1,0 +1,997 @@
+test_admin_mfa_required_and_cannot_replay (tests.test_control_plane.Accounts.test_admin_mfa_required_and_cannot_replay) ... ERROR
+test_character_and_assets_are_independent_and_initialize_once (tests.test_control_plane.Accounts.test_character_and_assets_are_independent_and_initialize_once) ... ERROR
+test_concurrent_invitation_use_is_atomic (tests.test_control_plane.Accounts.test_concurrent_invitation_use_is_atomic) ... ok
+test_disable_approve_does_not_bypass_disabled (tests.test_control_plane.Accounts.test_disable_approve_does_not_bypass_disabled) ... ERROR
+test_expired_and_revoked_invitations_are_rejected (tests.test_control_plane.Accounts.test_expired_and_revoked_invitations_are_rejected) ... ERROR
+test_local_nickname_validation_uniqueness_and_chinese (tests.test_control_plane.Accounts.test_local_nickname_validation_uniqueness_and_chinese) ... ERROR
+test_pending_and_wrong_password_do_not_authenticate (tests.test_control_plane.Accounts.test_pending_and_wrong_password_do_not_authenticate) ... ERROR
+test_permission_matrix_and_no_credentials_in_read_models (tests.test_control_plane.Accounts.test_permission_matrix_and_no_credentials_in_read_models) ... ERROR
+test_registration_replay_does_not_consume_invite_again (tests.test_control_plane.Accounts.test_registration_replay_does_not_consume_invite_again) ... ERROR
+test_reset_revokes_old_credentials_and_session (tests.test_control_plane.Accounts.test_reset_revokes_old_credentials_and_session) ... ERROR
+test_restart_preserves_mapping_character_ban_and_assets (tests.test_control_plane.Accounts.test_restart_preserves_mapping_character_ban_and_assets) ... ERROR
+test_session_replacement_and_expiry_remove_old_seat (tests.test_control_plane.Accounts.test_session_replacement_and_expiry_remove_old_seat) ... ERROR
+test_stacked_sanctions_and_expiry (tests.test_control_plane.Accounts.test_stacked_sanctions_and_expiry) ... ERROR
+test_atomic_audit_failure_and_immutable_ledger (tests.test_control_plane.Assets.test_atomic_audit_failure_and_immutable_ledger) ... ERROR
+test_batch_freezes_targets_partial_failure_and_replay (tests.test_control_plane.Assets.test_batch_freezes_targets_partial_failure_and_replay) ... ERROR
+test_compensation_success_and_no_double_reversal (tests.test_control_plane.Assets.test_compensation_success_and_no_double_reversal) ... ERROR
+test_concurrent_grants_and_purchase_preserve_balance (tests.test_control_plane.Assets.test_concurrent_grants_and_purchase_preserve_balance) ... ok
+test_consumption_equipment_expiry_and_limit (tests.test_control_plane.Assets.test_consumption_equipment_expiry_and_limit) ... ERROR
+test_large_owner_grants_require_fresh_mfa (tests.test_control_plane.Assets.test_large_owner_grants_require_fresh_mfa) ... ERROR
+test_outbox_retry_never_repeats_assets (tests.test_control_plane.Assets.test_outbox_retry_never_repeats_assets) ... ERROR
+test_post_commit_reply_loss_and_restart_replay (tests.test_control_plane.Assets.test_post_commit_reply_loss_and_restart_replay) ... ERROR
+test_preview_is_read_only_and_commit_revalidates (tests.test_control_plane.Assets.test_preview_is_read_only_and_commit_revalidates) ... ERROR
+test_purchase_failure_rolls_back_wallet_and_outbox (tests.test_control_plane.Assets.test_purchase_failure_rolls_back_wallet_and_outbox) ... ERROR
+test_replay_and_payload_conflict (tests.test_control_plane.Assets.test_replay_and_payload_conflict) ... ERROR
+test_spent_compensation_is_review_not_negative (tests.test_control_plane.Assets.test_spent_compensation_is_review_not_negative) ... ERROR
+test_unknown_negative_overflow_invalid_duration_and_cross_account (tests.test_control_plane.Assets.test_unknown_negative_overflow_invalid_duration_and_cross_account) ... ERROR
+test_backup_integrity_and_profile_isolation (tests.test_control_plane.Deployment.test_backup_integrity_and_profile_isolation) ... ERROR
+test_default_profile_refuses_guessed_resources_and_native_host (tests.test_control_plane.Deployment.test_default_profile_refuses_guessed_resources_and_native_host) ... ERROR
+test_allocation_timeout_and_twenty_cancel_cycles (tests.test_control_plane.Rooms.test_allocation_timeout_and_twenty_cancel_cycles) ... ERROR
+test_allocation_timeout_and_twenty_cancel_cycles (tests.test_control_plane.Rooms.test_allocation_timeout_and_twenty_cancel_cycles) ... ERROR
+test_ban_during_match_preserves_other_player_and_no_reward_for_revoked (tests.test_control_plane.Rooms.test_ban_during_match_preserves_other_player_and_no_reward_for_revoked) ... ERROR
+test_ban_during_match_preserves_other_player_and_no_reward_for_revoked (tests.test_control_plane.Rooms.test_ban_during_match_preserves_other_player_and_no_reward_for_revoked) ... ERROR
+test_concurrent_last_seat_and_one_room_per_player (tests.test_control_plane.Rooms.test_concurrent_last_seat_and_one_room_per_player) ... ok
+test_configuration_revision_readiness_and_start_freeze (tests.test_control_plane.Rooms.test_configuration_revision_readiness_and_start_freeze) ... ERROR
+test_configuration_revision_readiness_and_start_freeze (tests.test_control_plane.Rooms.test_configuration_revision_readiness_and_start_freeze) ... ERROR
+test_room_replays_and_host_transfer (tests.test_control_plane.Rooms.test_room_replays_and_host_transfer) ... ERROR
+test_stale_node_lease_and_epoch_rejected (tests.test_control_plane.Rooms.test_stale_node_lease_and_epoch_rejected) ... ERROR
+test_stale_node_lease_and_epoch_rejected (tests.test_control_plane.Rooms.test_stale_node_lease_and_epoch_rejected) ... ERROR
+test_trusted_synthetic_settlement_and_client_forgery (tests.test_control_plane.Rooms.test_trusted_synthetic_settlement_and_client_forgery) ... ERROR
+test_trusted_synthetic_settlement_and_client_forgery (tests.test_control_plane.Rooms.test_trusted_synthetic_settlement_and_client_forgery) ... ERROR
+test_two_rooms_are_isolated (tests.test_control_plane.Rooms.test_two_rooms_are_isolated) ... ERROR
+
+======================================================================
+ERROR: test_admin_mfa_required_and_cannot_replay (tests.test_control_plane.Accounts.test_admin_mfa_required_and_cannot_replay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpvslsl10p\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpvslsl10p\\state.db'
+
+======================================================================
+ERROR: test_character_and_assets_are_independent_and_initialize_once (tests.test_control_plane.Accounts.test_character_and_assets_are_independent_and_initialize_once)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpnesflod2\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpnesflod2\\state.db'
+
+======================================================================
+ERROR: test_disable_approve_does_not_bypass_disabled (tests.test_control_plane.Accounts.test_disable_approve_does_not_bypass_disabled)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpt649e58m\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpt649e58m\\state.db'
+
+======================================================================
+ERROR: test_expired_and_revoked_invitations_are_rejected (tests.test_control_plane.Accounts.test_expired_and_revoked_invitations_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpafmekc6n\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpafmekc6n\\state.db'
+
+======================================================================
+ERROR: test_local_nickname_validation_uniqueness_and_chinese (tests.test_control_plane.Accounts.test_local_nickname_validation_uniqueness_and_chinese)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp4pv4xru8\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp4pv4xru8\\state.db'
+
+======================================================================
+ERROR: test_pending_and_wrong_password_do_not_authenticate (tests.test_control_plane.Accounts.test_pending_and_wrong_password_do_not_authenticate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp13nsenh9\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp13nsenh9\\state.db'
+
+======================================================================
+ERROR: test_permission_matrix_and_no_credentials_in_read_models (tests.test_control_plane.Accounts.test_permission_matrix_and_no_credentials_in_read_models)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpw8_vwkia\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpw8_vwkia\\state.db'
+
+======================================================================
+ERROR: test_registration_replay_does_not_consume_invite_again (tests.test_control_plane.Accounts.test_registration_replay_does_not_consume_invite_again)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpfco6smhc\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpfco6smhc\\state.db'
+
+======================================================================
+ERROR: test_reset_revokes_old_credentials_and_session (tests.test_control_plane.Accounts.test_reset_revokes_old_credentials_and_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpfm9txpee\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpfm9txpee\\state.db'
+
+======================================================================
+ERROR: test_restart_preserves_mapping_character_ban_and_assets (tests.test_control_plane.Accounts.test_restart_preserves_mapping_character_ban_and_assets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmps0jto4nn\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmps0jto4nn\\state.db'
+
+======================================================================
+ERROR: test_session_replacement_and_expiry_remove_old_seat (tests.test_control_plane.Accounts.test_session_replacement_and_expiry_remove_old_seat)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpfyteru88\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpfyteru88\\state.db'
+
+======================================================================
+ERROR: test_stacked_sanctions_and_expiry (tests.test_control_plane.Accounts.test_stacked_sanctions_and_expiry)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpzxyl_zcf\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpzxyl_zcf\\state.db'
+
+======================================================================
+ERROR: test_atomic_audit_failure_and_immutable_ledger (tests.test_control_plane.Assets.test_atomic_audit_failure_and_immutable_ledger)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpikr1perg\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpikr1perg\\state.db'
+
+======================================================================
+ERROR: test_batch_freezes_targets_partial_failure_and_replay (tests.test_control_plane.Assets.test_batch_freezes_targets_partial_failure_and_replay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpkynb3iqh\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpkynb3iqh\\state.db'
+
+======================================================================
+ERROR: test_compensation_success_and_no_double_reversal (tests.test_control_plane.Assets.test_compensation_success_and_no_double_reversal)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp403zvtg0\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp403zvtg0\\state.db'
+
+======================================================================
+ERROR: test_consumption_equipment_expiry_and_limit (tests.test_control_plane.Assets.test_consumption_equipment_expiry_and_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp_mtd84bh\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp_mtd84bh\\state.db'
+
+======================================================================
+ERROR: test_large_owner_grants_require_fresh_mfa (tests.test_control_plane.Assets.test_large_owner_grants_require_fresh_mfa)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp4a1pti4g\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp4a1pti4g\\state.db'
+
+======================================================================
+ERROR: test_outbox_retry_never_repeats_assets (tests.test_control_plane.Assets.test_outbox_retry_never_repeats_assets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpivjguhee\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpivjguhee\\state.db'
+
+======================================================================
+ERROR: test_post_commit_reply_loss_and_restart_replay (tests.test_control_plane.Assets.test_post_commit_reply_loss_and_restart_replay)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp45ep4bdj\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp45ep4bdj\\state.db'
+
+======================================================================
+ERROR: test_preview_is_read_only_and_commit_revalidates (tests.test_control_plane.Assets.test_preview_is_read_only_and_commit_revalidates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp2wu3otbp\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp2wu3otbp\\state.db'
+
+======================================================================
+ERROR: test_purchase_failure_rolls_back_wallet_and_outbox (tests.test_control_plane.Assets.test_purchase_failure_rolls_back_wallet_and_outbox)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpvplbs0ou\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpvplbs0ou\\state.db'
+
+======================================================================
+ERROR: test_replay_and_payload_conflict (tests.test_control_plane.Assets.test_replay_and_payload_conflict)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpe19b8jmv\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpe19b8jmv\\state.db'
+
+======================================================================
+ERROR: test_spent_compensation_is_review_not_negative (tests.test_control_plane.Assets.test_spent_compensation_is_review_not_negative)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpgzgfk7g2\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpgzgfk7g2\\state.db'
+
+======================================================================
+ERROR: test_unknown_negative_overflow_invalid_duration_and_cross_account (tests.test_control_plane.Assets.test_unknown_negative_overflow_invalid_duration_and_cross_account)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmptiik5lg7\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmptiik5lg7\\state.db'
+
+======================================================================
+ERROR: test_backup_integrity_and_profile_isolation (tests.test_control_plane.Deployment.test_backup_integrity_and_profile_isolation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpzxan25g6\\backup.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpzxan25g6\\backup.db'
+
+======================================================================
+ERROR: test_default_profile_refuses_guessed_resources_and_native_host (tests.test_control_plane.Deployment.test_default_profile_refuses_guessed_resources_and_native_host)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp8oxup6r1\\current.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp8oxup6r1\\current.db'
+
+======================================================================
+ERROR: test_allocation_timeout_and_twenty_cancel_cycles (tests.test_control_plane.Rooms.test_allocation_timeout_and_twenty_cancel_cycles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 337, in test_allocation_timeout_and_twenty_cancel_cycles
+    self.command('room.start',{'room_id':room,'expected_revision':revision},ta)
+  File "<WORKSPACE>\tests\test_control_plane.py", line 31, in command
+    return self.s.command(token or self.owner, action, self.meta(**(data or {})))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\revival\service.py", line 230, in command
+    result = room_command(self, c, actor, action, data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\revival\rooms.py", line 109, in room_command
+    c.execute('INSERT INTO matches VALUES(?,?,?,?,?,?,?,?,?,?)',
+sqlite3.OperationalError: table matches has 9 columns but 10 values were supplied
+
+======================================================================
+ERROR: test_allocation_timeout_and_twenty_cancel_cycles (tests.test_control_plane.Rooms.test_allocation_timeout_and_twenty_cancel_cycles)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp7y2tlnt0\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp7y2tlnt0\\state.db'
+
+======================================================================
+ERROR: test_ban_during_match_preserves_other_player_and_no_reward_for_revoked (tests.test_control_plane.Rooms.test_ban_during_match_preserves_other_player_and_no_reward_for_revoked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 358, in test_ban_during_match_preserves_other_player_and_no_reward_for_revoked
+    (a,ta),(b,tb),room,match=self.match();node=test_host_ready(self.s,match['match_id'])
+                             ^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_control_plane.py", line 73, in match
+    match = self.command('room.start', {'room_id': room, 'expected_revision': revision}, ta)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_control_plane.py", line 31, in command
+    return self.s.command(token or self.owner, action, self.meta(**(data or {})))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\revival\service.py", line 230, in command
+    result = room_command(self, c, actor, action, data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\revival\rooms.py", line 109, in room_command
+    c.execute('INSERT INTO matches VALUES(?,?,?,?,?,?,?,?,?,?)',
+sqlite3.OperationalError: table matches has 9 columns but 10 values were supplied
+
+======================================================================
+ERROR: test_ban_during_match_preserves_other_player_and_no_reward_for_revoked (tests.test_control_plane.Rooms.test_ban_during_match_preserves_other_player_and_no_reward_for_revoked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpb4q4o9pk\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpb4q4o9pk\\state.db'
+
+======================================================================
+ERROR: test_configuration_revision_readiness_and_start_freeze (tests.test_control_plane.Rooms.test_configuration_revision_readiness_and_start_freeze)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 328, in test_configuration_revision_readiness_and_start_freeze
+    match=self.command('room.start',{'room_id':room,'expected_revision':revision},ta)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_control_plane.py", line 31, in command
+    return self.s.command(token or self.owner, action, self.meta(**(data or {})))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\revival\service.py", line 230, in command
+    result = room_command(self, c, actor, action, data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\revival\rooms.py", line 109, in room_command
+    c.execute('INSERT INTO matches VALUES(?,?,?,?,?,?,?,?,?,?)',
+sqlite3.OperationalError: table matches has 9 columns but 10 values were supplied
+
+======================================================================
+ERROR: test_configuration_revision_readiness_and_start_freeze (tests.test_control_plane.Rooms.test_configuration_revision_readiness_and_start_freeze)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpl4tqr3dg\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpl4tqr3dg\\state.db'
+
+======================================================================
+ERROR: test_room_replays_and_host_transfer (tests.test_control_plane.Rooms.test_room_replays_and_host_transfer)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpull54ec7\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpull54ec7\\state.db'
+
+======================================================================
+ERROR: test_stale_node_lease_and_epoch_rejected (tests.test_control_plane.Rooms.test_stale_node_lease_and_epoch_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 366, in test_stale_node_lease_and_epoch_rejected
+    (a,ta),(b,tb),room,match=self.match();node=test_host_ready(self.s,match['match_id'])
+                             ^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_control_plane.py", line 73, in match
+    match = self.command('room.start', {'room_id': room, 'expected_revision': revision}, ta)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_control_plane.py", line 31, in command
+    return self.s.command(token or self.owner, action, self.meta(**(data or {})))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\revival\service.py", line 230, in command
+    result = room_command(self, c, actor, action, data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\revival\rooms.py", line 109, in room_command
+    c.execute('INSERT INTO matches VALUES(?,?,?,?,?,?,?,?,?,?)',
+sqlite3.OperationalError: table matches has 9 columns but 10 values were supplied
+
+======================================================================
+ERROR: test_stale_node_lease_and_epoch_rejected (tests.test_control_plane.Rooms.test_stale_node_lease_and_epoch_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp3rl4img1\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmp3rl4img1\\state.db'
+
+======================================================================
+ERROR: test_trusted_synthetic_settlement_and_client_forgery (tests.test_control_plane.Rooms.test_trusted_synthetic_settlement_and_client_forgery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 347, in test_trusted_synthetic_settlement_and_client_forgery
+    (a,ta),(b,tb),room,match=self.match()
+                             ^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_control_plane.py", line 73, in match
+    match = self.command('room.start', {'room_id': room, 'expected_revision': revision}, ta)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\tests\test_control_plane.py", line 31, in command
+    return self.s.command(token or self.owner, action, self.meta(**(data or {})))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\revival\service.py", line 230, in command
+    result = room_command(self, c, actor, action, data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<WORKSPACE>\revival\rooms.py", line 109, in room_command
+    c.execute('INSERT INTO matches VALUES(?,?,?,?,?,?,?,?,?,?)',
+sqlite3.OperationalError: table matches has 9 columns but 10 values were supplied
+
+======================================================================
+ERROR: test_trusted_synthetic_settlement_and_client_forgery (tests.test_control_plane.Rooms.test_trusted_synthetic_settlement_and_client_forgery)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpcbaj5d55\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpcbaj5d55\\state.db'
+
+======================================================================
+ERROR: test_two_rooms_are_isolated (tests.test_control_plane.Rooms.test_two_rooms_are_isolated)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpwx0k3fk9\\state.db'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<WORKSPACE>\tests\test_control_plane.py", line 25, in tearDown
+    self.directory.cleanup()
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 954, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 934, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "<USERPROFILE>\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\tempfile.py", line 909, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无法访问。: '<USERPROFILE>\\AppData\\Local\\Temp\\tmpwx0k3fk9\\state.db'
+
+----------------------------------------------------------------------
+Ran 36 tests in 65.223s
+
+FAILED (errors=38)

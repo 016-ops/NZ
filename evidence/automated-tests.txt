@@ -1,0 +1,49 @@
+test_admin_mfa_required_and_cannot_replay (tests.test_control_plane.Accounts.test_admin_mfa_required_and_cannot_replay) ... ok
+test_character_and_assets_are_independent_and_initialize_once (tests.test_control_plane.Accounts.test_character_and_assets_are_independent_and_initialize_once) ... ok
+test_concurrent_invitation_use_is_atomic (tests.test_control_plane.Accounts.test_concurrent_invitation_use_is_atomic) ... ok
+test_disable_approve_does_not_bypass_disabled (tests.test_control_plane.Accounts.test_disable_approve_does_not_bypass_disabled) ... ok
+test_expired_and_revoked_invitations_are_rejected (tests.test_control_plane.Accounts.test_expired_and_revoked_invitations_are_rejected) ... ok
+test_local_nickname_validation_uniqueness_and_chinese (tests.test_control_plane.Accounts.test_local_nickname_validation_uniqueness_and_chinese) ... ok
+test_pending_and_wrong_password_do_not_authenticate (tests.test_control_plane.Accounts.test_pending_and_wrong_password_do_not_authenticate) ... ok
+test_permission_matrix_and_no_credentials_in_read_models (tests.test_control_plane.Accounts.test_permission_matrix_and_no_credentials_in_read_models) ... ok
+test_registration_replay_does_not_consume_invite_again (tests.test_control_plane.Accounts.test_registration_replay_does_not_consume_invite_again) ... ok
+test_reset_revokes_old_credentials_and_session (tests.test_control_plane.Accounts.test_reset_revokes_old_credentials_and_session) ... ok
+test_restart_preserves_mapping_character_ban_and_assets (tests.test_control_plane.Accounts.test_restart_preserves_mapping_character_ban_and_assets) ... ok
+test_session_replacement_and_expiry_remove_old_seat (tests.test_control_plane.Accounts.test_session_replacement_and_expiry_remove_old_seat) ... ok
+test_stacked_sanctions_and_expiry (tests.test_control_plane.Accounts.test_stacked_sanctions_and_expiry) ... ok
+test_atomic_audit_failure_and_immutable_ledger (tests.test_control_plane.Assets.test_atomic_audit_failure_and_immutable_ledger) ... ok
+test_batch_freezes_targets_partial_failure_and_replay (tests.test_control_plane.Assets.test_batch_freezes_targets_partial_failure_and_replay) ... ok
+test_compensation_success_and_no_double_reversal (tests.test_control_plane.Assets.test_compensation_success_and_no_double_reversal) ... ok
+test_concurrent_grants_and_purchase_preserve_balance (tests.test_control_plane.Assets.test_concurrent_grants_and_purchase_preserve_balance) ... ok
+test_consumption_equipment_expiry_and_limit (tests.test_control_plane.Assets.test_consumption_equipment_expiry_and_limit) ... ok
+test_large_owner_grants_require_fresh_mfa (tests.test_control_plane.Assets.test_large_owner_grants_require_fresh_mfa) ... ok
+test_outbox_retry_never_repeats_assets (tests.test_control_plane.Assets.test_outbox_retry_never_repeats_assets) ... ok
+test_post_commit_reply_loss_and_restart_replay (tests.test_control_plane.Assets.test_post_commit_reply_loss_and_restart_replay) ... ok
+test_preview_is_read_only_and_commit_revalidates (tests.test_control_plane.Assets.test_preview_is_read_only_and_commit_revalidates) ... ok
+test_purchase_failure_rolls_back_wallet_and_outbox (tests.test_control_plane.Assets.test_purchase_failure_rolls_back_wallet_and_outbox) ... ok
+test_replay_and_payload_conflict (tests.test_control_plane.Assets.test_replay_and_payload_conflict) ... ok
+test_spent_compensation_is_review_not_negative (tests.test_control_plane.Assets.test_spent_compensation_is_review_not_negative) ... ok
+test_unknown_negative_overflow_invalid_duration_and_cross_account (tests.test_control_plane.Assets.test_unknown_negative_overflow_invalid_duration_and_cross_account) ... ok
+test_backup_integrity_and_profile_isolation (tests.test_control_plane.Deployment.test_backup_integrity_and_profile_isolation) ... ok
+test_default_profile_refuses_guessed_resources_and_native_host (tests.test_control_plane.Deployment.test_default_profile_refuses_guessed_resources_and_native_host) ... ok
+test_allocation_timeout_and_twenty_cancel_cycles (tests.test_control_plane.Rooms.test_allocation_timeout_and_twenty_cancel_cycles) ... ok
+test_ban_during_match_preserves_other_player_and_no_reward_for_revoked (tests.test_control_plane.Rooms.test_ban_during_match_preserves_other_player_and_no_reward_for_revoked) ... ok
+test_concurrent_last_seat_and_one_room_per_player (tests.test_control_plane.Rooms.test_concurrent_last_seat_and_one_room_per_player) ... ok
+test_configuration_revision_readiness_and_start_freeze (tests.test_control_plane.Rooms.test_configuration_revision_readiness_and_start_freeze) ... ok
+test_room_replays_and_host_transfer (tests.test_control_plane.Rooms.test_room_replays_and_host_transfer) ... ok
+test_stale_node_lease_and_epoch_rejected (tests.test_control_plane.Rooms.test_stale_node_lease_and_epoch_rejected) ... ok
+test_trusted_synthetic_settlement_and_client_forgery (tests.test_control_plane.Rooms.test_trusted_synthetic_settlement_and_client_forgery) ... ok
+test_two_rooms_are_isolated (tests.test_control_plane.Rooms.test_two_rooms_are_isolated) ... ok
+test_bounded_rate_limiter (tests.test_http.HttpTests.test_bounded_rate_limiter) ... ok
+test_csrf_origin_dns_rebinding_and_bad_body (tests.test_http.HttpTests.test_csrf_origin_dns_rebinding_and_bad_body) ... ok
+test_health_security_headers_and_static_page (tests.test_http.HttpTests.test_health_security_headers_and_static_page) ... ok
+test_public_bind_and_untrusted_node_results_rejected (tests.test_http.HttpTests.test_public_bind_and_untrusted_node_results_rejected) ... ok
+test_real_http_auth_permissions_command_and_logout (tests.test_http.HttpTests.test_real_http_auth_permissions_command_and_logout) ... ok
+test_repeated_manifest_and_precise_change_detection (tests.test_inventory.InventoryTests.test_repeated_manifest_and_precise_change_detection) ... ok
+test_symbol_index_never_claims_wire_validation (tests.test_inventory.InventoryTests.test_symbol_index_never_claims_wire_validation) ... ok
+test_unsafe_output_empty_and_duplicate_manifests_are_rejected (tests.test_inventory.InventoryTests.test_unsafe_output_empty_and_duplicate_manifests_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 199.065s
+
+OK

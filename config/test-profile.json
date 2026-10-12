@@ -1,0 +1,18 @@
+{
+  "id": "test-only-v1",
+  "evidence": "TEST_PROFILE",
+  "currencies": {
+    "NZ": {"min": 0, "max": 1000000000},
+    "GP": {"min": 0, "max": 1000000000}
+  },
+  "items": {
+    "test-rifle": {"slot": "primary", "stack": 1, "exclusive": true, "consumable": false, "permanent": true, "duration_max": 2592000},
+    "test-token": {"slot": null, "stack": 100, "exclusive": false, "consumable": true, "permanent": true, "duration_max": 2592000}
+  },
+  "offers": {
+    "test-rifle-gp": {"item": "test-rifle", "currency": "GP", "price": 500, "quantity": 1}
+  },
+  "maps": {"test-arena": {"capacity": 4, "evidence": "TEST_PROFILE"}},
+  "reward": {"GP": 100},
+  "inventory_limit": 32
+}

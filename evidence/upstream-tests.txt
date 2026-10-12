@@ -1,0 +1,74 @@
+[DS-SPAWNER] reserved room=1 owner=10000 nickname='' slot=0 public=127.0.0.1:0 afdev=127.0.0.1:0 map='SV-Maya_3_Main' game='PVEGame.TGSVGame' mode=0x00002001 map_id=0x002f submode=0x00001001 flags=0x00003008; AFDEV=OFF bridge=OFF
+[DS-SPAWNER] room-player join room=1 uin=30000 room_players=[10000, 30000]
+[DS-SPAWNER] room-player join room=1 uin=20000 room_players=[10000, 20000, 30000]
+[DS-SPAWNER] room-player leave room=1 uin=10000 room_remaining=2 match_remaining=0 action=KEEP reason=player left room
+[DS-SPAWNER] room owner transferred room=1 10000 -> 30000
+[DS-SPAWNER] reserved room=1 owner=10000 nickname='' slot=0 public=127.0.0.1:0 afdev=127.0.0.1:0 map='SV-Maya_3_Main' game='PVEGame.TGSVGame' mode=0x00002001 map_id=0x002f submode=0x00001001 flags=0x00003008; AFDEV=OFF bridge=OFF
+[DS-SPAWNER] match-player begin room=1 starter=10000 new_round=True active=[10000]
+[DS-SPAWNER] match-player quit room=1 uin=10000 was_active=True remaining=0 players=[] reason=test return to room UI
+[DS-SPAWNER] round ended room=1 owner=10000 slot=0: test return to room UI; last match player left; lobby_players=[10000]
+[DS-SPAWNER] match-player begin room=1 starter=10000 new_round=True active=[10000]
+[DS-SPAWNER] reserved room=1 owner=10000 nickname='' slot=0 public=127.0.0.1:0 afdev=127.0.0.1:0 map='SV-Maya_3_Main' game='PVEGame.TGSVGame' mode=0x00002001 map_id=0x002f submode=0x00001001 flags=0x00003008; AFDEV=OFF bridge=OFF
+[DS-SPAWNER] room-player join room=1 uin=20000 room_players=[10000, 20000]
+[DS-DIAGNOSTICS] database write failed: unable to open database file
+[DS-SPAWNER] teardown room=1 slot=0 afdev_pid=0 loader_pid=0 bridge_pid=0
+[DS-SPAWNER] teardown complete room=1 slot=0 public_udp_0_free=True afdev_udp_0_free=True
+[DS-SPAWNER] state snapshot write failed: unable to open database file
+[DS-SPAWNER] state snapshot write failed: unable to open database file
+[DS-DIAGNOSTICS] database write failed: unable to open database file
+[DS-SPAWNER] state snapshot write failed: unable to open database file
+[DS-DIAGNOSTICS] database write failed: unable to open database file
+[DS-SPAWNER] teardown room=1 slot=0 afdev_pid=0 loader_pid=0 bridge_pid=0
+[DS-SPAWNER] teardown complete room=1 slot=0 public_udp_0_free=True afdev_udp_0_free=True
+[DS-SPAWNER] state snapshot write failed: unable to open database file
+[DS-SPAWNER] state snapshot write failed: unable to open database file
+
+test_create_verify_case_insensitive_and_duplicate (tests.test_account_db.AccountDbTests.test_create_verify_case_insensitive_and_duplicate) ... ok
+test_disabled_account_cannot_login (tests.test_account_db.AccountDbTests.test_disabled_account_cannot_login) ... ok
+test_sql_injection_style_username_is_rejected (tests.test_account_db.AccountDbTests.test_sql_injection_style_username_is_rejected) ... ok
+test_uins_increment_and_profile_rows_exist (tests.test_account_db.AccountDbTests.test_uins_increment_and_profile_rows_exist) ... ok
+test_disabled_account_cannot_authenticate (tests.test_ap_auth.APAuthTests.test_disabled_account_cannot_authenticate) ... ok
+test_failed_result_uses_nonzero_code_and_has_no_ticket (tests.test_ap_auth.APAuthTests.test_failed_result_uses_nonzero_code_and_has_no_ticket) ... ok
+test_malformed_or_missing_credential_is_rejected (tests.test_ap_auth.APAuthTests.test_malformed_or_missing_credential_is_rejected) ... ok
+test_old_account_schema_is_migrated_without_authenticating_old_rows (tests.test_ap_auth.APAuthTests.test_old_account_schema_is_migrated_without_authenticating_old_rows) ... ok
+test_successful_web_login_backfills_native_ap_verifier_for_old_rows (tests.test_ap_auth.APAuthTests.test_successful_web_login_backfills_native_ap_verifier_for_old_rows) ... ok
+test_unknown_account_is_rejected (tests.test_ap_auth.APAuthTests.test_unknown_account_is_rejected) ... ok
+test_valid_native_password_token_authenticates_registered_account (tests.test_ap_auth.APAuthTests.test_valid_native_password_token_authenticates_registered_account) ... ok
+test_wrong_password_token_is_rejected (tests.test_ap_auth.APAuthTests.test_wrong_password_token_is_rejected) ... ok
+test_rollback_and_no_double_spend (tests.test_purchase_atomicity.PurchaseAtomicityTests.test_rollback_and_no_double_spend) ... ok
+test_database_backing_is_shared_across_registry_instances (tests.test_room_registry_consistency.RoomRegistryConsistencyTests.test_database_backing_is_shared_across_registry_instances) ... ok
+test_database_transactions_prevent_one_player_joining_two_rooms (tests.test_room_registry_consistency.RoomRegistryConsistencyTests.test_database_transactions_prevent_one_player_joining_two_rooms) ... ok
+test_join_rollback_removes_new_member (tests.test_room_registry_consistency.RoomRegistryConsistencyTests.test_join_rollback_removes_new_member) ... ok
+test_only_owner_is_authorized_for_owner_actions (tests.test_room_registry_consistency.RoomRegistryConsistencyTests.test_only_owner_is_authorized_for_owner_actions) ... ok
+test_registry_chosen_owner_is_applied_to_spawner (tests.test_room_registry_consistency.RoomRegistryConsistencyTests.test_registry_chosen_owner_is_applied_to_spawner) ... ok
+test_round_reset_preserves_room_and_clears_ready_started_state (tests.test_room_registry_consistency.RoomRegistryConsistencyTests.test_round_reset_preserves_room_and_clears_ready_started_state) ... ok
+test_spawner_can_begin_new_round_without_relobby (tests.test_room_registry_consistency.RoomRegistryConsistencyTests.test_spawner_can_begin_new_round_without_relobby) ... ok
+test_spawner_refuses_to_guess_owner_transfer (tests.test_room_registry_consistency.RoomRegistryConsistencyTests.test_spawner_refuses_to_guess_owner_transfer) ... ok
+test_startup_can_clear_stale_persisted_live_rooms (tests.test_room_registry_consistency.RoomRegistryConsistencyTests.test_startup_can_clear_stale_persisted_live_rooms) ... ok
+test_a10a_has_reservation_rollback (tests.test_room_registry_consistency.ServerStaticSafetyTests.test_a10a_has_reservation_rollback) ... ERROR
+test_a117_acknowledges_leaver_and_labels_a119_as_test_notification (tests.test_room_registry_consistency.ServerStaticSafetyTests.test_a117_acknowledges_leaver_and_labels_a119_as_test_notification) ... ok
+test_a117_resets_surviving_room_for_next_round (tests.test_room_registry_consistency.ServerStaticSafetyTests.test_a117_resets_surviving_room_for_next_round) ... ok
+test_auth_hex_is_debug_only (tests.test_room_registry_consistency.ServerStaticSafetyTests.test_auth_hex_is_debug_only) ... ok
+test_owner_checks_guard_settings_and_start_paths (tests.test_room_registry_consistency.ServerStaticSafetyTests.test_owner_checks_guard_settings_and_start_paths) ... ok
+test_persistent_resume_replays_ident_and_login_response (tests.test_room_registry_consistency.ServerStaticSafetyTests.test_persistent_resume_replays_ident_and_login_response) ... ok
+test_return_to_room_ready_reconciles_stale_pve_handoff (tests.test_room_registry_consistency.ServerStaticSafetyTests.test_return_to_room_ready_reconciles_stale_pve_handoff) ... ok
+test_server_recovers_waiting_rooms_after_bind (tests.test_room_registry_consistency.ServerStaticSafetyTests.test_server_recovers_waiting_rooms_after_bind) ... ok
+test_a119_quitmatch_notification_clears_room_player_match_state (tests.test_room_registry_consistency.VerifiedLobbyPromotionTests.test_a119_quitmatch_notification_clears_room_player_match_state) ... ok
+test_pre_a10f_seat_refresh_order_is_locked (tests.test_room_registry_consistency.VerifiedLobbyPromotionTests.test_pre_a10f_seat_refresh_order_is_locked) ... ok
+test_promoted_lobby_protocol_markers_are_present (tests.test_room_registry_consistency.VerifiedLobbyPromotionTests.test_promoted_lobby_protocol_markers_are_present) ... ok
+test_ready_notification_transport_uses_cmd02_end_to_end (tests.test_room_registry_consistency.VerifiedLobbyPromotionTests.test_ready_notification_transport_uses_cmd02_end_to_end) ... ok
+test_sparse_with32_seat_move_is_accepted (tests.test_room_registry_consistency.VerifiedLobbyPromotionTests.test_sparse_with32_seat_move_is_accepted) ... ok
+
+======================================================================
+ERROR: test_a10a_has_reservation_rollback (tests.test_room_registry_consistency.ServerStaticSafetyTests.test_a10a_has_reservation_rollback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<USERPROFILE>\NZ\2020��ս\upstream\af-emulator\tests\test_room_registry_consistency.py", line 379, in test_a10a_has_reservation_rollback
+    next_handler = server.index('elif app["cmd"] == TGAME_ZN_REQ_ENTERMATCHROOM:', create)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: substring not found
+
+----------------------------------------------------------------------
+Ran 35 tests in 0.908s
+
+FAILED (errors=1)

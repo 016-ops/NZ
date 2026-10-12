@@ -1,0 +1,9 @@
+* text=auto
+*.py text eol=lf
+*.ps1 text eol=lf
+*.sql text eol=lf
+*.md text eol=lf
+*.md whitespace=-blank-at-eol
+*.json text eol=lf
+*.yml text eol=lf
+*.txt text eol=lf

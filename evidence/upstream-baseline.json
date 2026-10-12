@@ -1,0 +1,56 @@
+{
+  "url": "https://github.com/armangido/af-emulator",
+  "commit": "4bbabab50ac6bfdbcd1f8e88bc6ea804e5978495",
+  "license": "MIT",
+  "reviewed_files": [
+    {
+      "path": "LICENSE",
+      "git_blob_sha256": "a5df539f50929341055f74a4698b1f78a6348095226a74d54dd7bcd8e44d120b",
+      "unchanged": true
+    },
+    {
+      "path": "requirements.txt",
+      "git_blob_sha256": "92a6deb016f46628005427fccc44221005bef11f450e16f34172f9d261773093",
+      "unchanged": true
+    },
+    {
+      "path": "START_ASSAULT_FIRE.ps1",
+      "git_blob_sha256": "5ab27fedb5f55801e81a0f562546a71e68997f8d09e68f1c726807d8eb75450b",
+      "unchanged": true
+    },
+    {
+      "path": "server/account_db.py",
+      "git_blob_sha256": "3b0fa42416dbd07013560863407620587ed9889bcc7a12654eaa0b8a0fbbee6f",
+      "unchanged": true
+    },
+    {
+      "path": "server/assaultfire_ap_auth.py",
+      "git_blob_sha256": "a13023823a962dbd40d6089d9b2b752c38af61dbd2db35143ea329403a35b98a",
+      "unchanged": true
+    },
+    {
+      "path": "server/assaultfire_ds_spawner.py",
+      "git_blob_sha256": "cfa6bb1d04cee0276860375ffbf4b54d5d2b6d3530f8e59670897be5ac9c8cbc",
+      "unchanged": true
+    },
+    {
+      "path": "server/assaultfire_server_v143b.py",
+      "git_blob_sha256": "b5f18e68cdf23bfcda81a9f87f228e35c41be7657a40047924383edadfda0fba",
+      "unchanged": true
+    },
+    {
+      "path": "docs/STATUS.md",
+      "git_blob_sha256": "11d60aa1670e1c4ec9e99c1ff97d161a5de89a28927a1ffaa5d84d68e5141a1c",
+      "unchanged": true
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "git_blob_sha256": "314ef88b4b8c8e83ba7376970ee4a1b710631830d5a7ea8c4b926a0da2498a39",
+      "unchanged": true
+    }
+  ],
+  "retail_support": "PH 1.0.0.24 only",
+  "cn_current_compatibility": "UNVERIFIED",
+  "automatic_launcher": "NOT_EXECUTED",
+  "dependency_install": "NOT_EXECUTED"
+}
