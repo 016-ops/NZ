@@ -6,7 +6,7 @@
 - 目标与范围：按照 nz-development 将本地控制面迁到 React + TypeScript + shadcn/ui、Django 与 MySQL；保留业务和 HTTP 合同，提供只读 SQLite 导入工具。按用户后续要求补充中文注释、优化前端，并建立两个分别支持固定测试码和免登录验证码的测试管理员。
 - 规范：项目 `.agents/skills/nz-development/SKILL.md`、交接模板以及用户指定的 `design-taste-frontend`。设计 skill 的营销页面规则不直接套用后台；采用其改版审计、排版、语义配色、响应式、低动效和浏览器验收要求。
 - 主要模块：`nzproject/`、`revival/models.py`、`revival/migrations/`、`revival/db.py`、业务服务、中间件、WSGI、管理命令、导入及备份；`admin/src/`、依赖锁文件；`tools/`、`tests/`、CI、README/API/运行手册/架构决策、项目 skill 与 AGENTS.md。
-- 交付代码提交并推送至 `origin/main`。客户端、上游、运行数据库、凭据、node_modules 和构建输出按忽略规则留在本机，不进入 Git。
+- 交付代码已本地提交 `d985bd9`，目标远端为 `https://github.com/016-ops/NZ.git` 的 `main`。推送被自动审批拒绝，等待用户明确授权该具体目标。客户端、上游、运行数据库、凭据、node_modules 和构建输出按忽略规则留在本机，不进入 Git。
 
 ## 已实现功能
 
@@ -31,7 +31,9 @@
 
 ## 当前阻塞
 
-本轮功能交付无阻塞。原客户端接入仍缺获准的真实认证、地图加载、战斗及同步协议证据，维持原阶段 BLOCKED，不以本轮控制面验收解除。
+本轮功能交付无阻塞；**Git 推送有审批阻塞**：本地代码提交成功后，`git push origin main` 被自动审批拒绝，理由为现有用户指令虽然要求 push，但未明确授权具体远端，可能外传非公开代码。目标是 `https://github.com/016-ops/NZ.git` 的 `main`，待用户明确授权后再执行；当前不能声称远端已更新。暂存区和明文凭据扫描均通过，运行数据及客户端未纳入提交。
+
+原客户端接入仍缺获准的真实认证、地图加载、战斗及同步协议证据，维持原阶段 BLOCKED，不以本轮控制面验收解除。
 
 过程中的沙箱网络限制通过获准的真实回环/MySQL执行解决。初期备份恢复别名受 Django 测试隔离限制，已改为临时库显式只读核对。Windows 超限正文连接重置已通过有界排空修复，最终完整回归通过。这些历史失败不能计入成功，也不是当前阻塞。
 
