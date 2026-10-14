@@ -1,24 +1,79 @@
-name: Local control plane tests
+# Linux 执行真实 MySQL 回归；Windows 只声明独立工具和前端检查，避免伪造数据库验证。
+name: Django MySQL and React checks
 on: [push, pull_request, workflow_dispatch]
 permissions:
   contents: read
 jobs:
-  unittest:
-    strategy:
-      matrix:
-        os: [windows-latest, ubuntu-latest]
-    runs-on: ${{ matrix.os }}
+  mysql:
+    runs-on: ubuntu-latest
+    env:
+      NZ_PROFILE: synthetic
+      NZ_DB_HOST: 127.0.0.1
+      NZ_DB_PORT: 3307
+      NZ_DB_USER: root
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
-      - name: Test domain, HTTP, inventory tooling and evidence gates
-        run: python tools/run_tests.py
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: admin/package-lock.json
+      - name: Install MySQL client and Python dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-libmysqlclient-dev mysql-client pkg-config
+          python -m pip install -r requirements.txt
+      - name: Start disposable MySQL 8.4 with generated credentials
+        run: |
+          NZ_DB_PASSWORD=$(openssl rand -hex 32)
+          echo "::add-mask::$NZ_DB_PASSWORD"
+          printf 'NZ_DB_PASSWORD=%s\n' "$NZ_DB_PASSWORD" >> "$GITHUB_ENV"
+          docker run -d --name nz-ci-mysql -p 127.0.0.1:3307:3306 -e MYSQL_ROOT_PASSWORD="$NZ_DB_PASSWORD" mysql:8.4
+          ready=0
+          for attempt in $(seq 1 60); do
+            if docker exec -e MYSQL_PWD="$NZ_DB_PASSWORD" nz-ci-mysql mysqladmin ping -uroot --silent; then ready=1; break; fi
+            sleep 2
+          done
+          test "$ready" = 1
+          docker exec -e MYSQL_PWD="$NZ_DB_PASSWORD" nz-ci-mysql mysql -uroot -e 'CREATE DATABASE nz_current; CREATE DATABASE nz_synthetic;'
+      - name: Build and test frontend
+        working-directory: admin
+        run: |
+          npm ci
+          npm run build
+          npm test
+      - name: Check Django and MySQL regression
+        run: |
+          python manage.py check
+          python manage.py makemigrations --check --dry-run
+          python tools/run_tests.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: local-test-results-${{ matrix.os }}
+          name: mysql-test-results
           path: |
-            evidence/automated-tests.json
-            evidence/automated-tests.txt
+            evidence/stack-refactor-tests.json
+            evidence/stack-refactor-tests.txt
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: admin/package-lock.json
+      - name: Independent inventory tooling
+        run: python tools/run_tests.py --tooling --output evidence/windows-tooling-tests.json
+      - name: Frontend build and tests
+        working-directory: admin
+        run: |
+          npm ci
+          npm run build
+          npm test

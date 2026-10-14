@@ -1,9 +1,9 @@
 [project]
 name = "nz-revival-control-plane"
-version = "0.1.0"
+version = "0.2.0"
 description = "Local research control plane for the user-provided NZ client"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = ["Django==5.2.18", "mysqlclient==2.3.0", "waitress==3.0.2", "python-dotenv==1.2.4"]
 
 [tool.nz-revival]
 default-profile = "cn-current-unverified"

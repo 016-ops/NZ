@@ -1,3 +1,5 @@
+-- 仅用于生成只读 SQLite v1 导入源夹具；目标数据库测试必须实际运行 MySQL。
+-- 此文件保留旧字段与约束，不能用于启动当前 Django 控制面。
 PRAGMA foreign_keys=ON;
 CREATE TABLE IF NOT EXISTS schema_version(version INTEGER PRIMARY KEY CHECK(version=1));
 INSERT OR IGNORE INTO schema_version VALUES(1);

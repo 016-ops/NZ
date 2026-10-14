@@ -16,7 +16,7 @@
 | `POST /api/node/heartbeat` | match_id/epoch 续租 | 独立节点令牌 |
 | `POST /api/node/settlement` | match_id/epoch/outcome | 合成模式、独立节点令牌，冻结规则定奖励 |
 
-请求体最大 64 KiB，拒绝重复 JSON key、NaN、Transfer-Encoding 和跨 Origin/Host。最多 16 并发 HTTP 工作线程；登录/注册每 IP/路径 5 分钟 20 次，其他写入每分钟 120 次。这些是本地保护策略，未作容量保证。
+请求体最大 64 KiB，拒绝重复 JSON key、NaN、Transfer-Encoding 和跨 Origin/Host。Django 校验请求与授权，单进程 Waitress 使用 16 个 HTTP 工作线程；登录/注册每 IP/路径 5 分钟 20 次，其他写入每分钟 120 次。这些是本地保护策略，未作容量保证。页面入口保持 `/`，构建后的资源位于 `/assets/`；原 `/app.js`、`/style.css` 已由 Vite 哈希资源替代，业务路由保持不变。
 
 ## 读取视图
 
@@ -53,6 +53,10 @@ Owner 有全部权限；users 角色可邀请/审核/重置/制裁，不能发�
 货币变化为 `{type:"currency",code:"GP",delta:100}`，物品为 `{type:"item",item_key:"test-token",quantity:2,duration_seconds:3600}`；省略 duration_seconds 表示目录允许的永久实例。默认当前国服目录为空，只在 test-only-v1 模式可使用这些示例。
 
 大额发放（单次请求所有币种绝对增量之和 >10,000）、批量和补偿另带 `current_password`、新的 `otp_code`。资源管理员超限拒绝。不要把凭据写到命令行或公开示例；通过受保护的本地程序交互获取。同键成功重试不需要重新消费 MFA，但仍需有效会话和权限。
+
+2026-10-14 用户另行要求单个测试管理员使用永久固定测试验证码：只有配置明确匹配的账号 ID、合成数据库名且处于 TEST_PROFILE 时，其登录与再认证允许重复该六位码。其他账号、其他库及当前客户端模式保持正常 TOTP 防重放；密码和权限校验不变。会话仍为 900 秒。固定码仅保存摘要，凭据不进入本接口文档或公开证据。
+
+用户还要求另一个指定测试管理员登录时免动态验证码：例外同样绑定唯一账号 ID、合成数据库名和 TEST_PROFILE，仅用于登录；停用、密码、会话、安全版本及权限仍校验，高风险业务再认证不继承此例外。六位测试密码只由受控本地创建命令允许，普通 HTTP 注册/重置继续要求十二位以上。
 
 ## 状态与错误
 

@@ -11,3 +11,8 @@ evidence/private/
 *.db-shm
 *.pem
 *.key
+.env.local
+.env.local.*
+node_modules/
+admin/dist/
+.pytest_cache/

@@ -1,77 +1,97 @@
 # 本地启动与管理手册
 
-本轮交付仅在本机 Windows / Python 3.12.14 执行，真实游戏客户端、隔离快照、跨家庭网络和 Linux 实机未测试。
+当前架构为 React + TypeScript + shadcn/ui、Django 5.2、MySQL。真实游戏客户端接入仍未完成；本地业务验证不能代替原客户端兼容验收。
 
-## 1. 目录与环境
+## 环境与独立数据库
 
-- `revival/`：自有领域、数据库、HTTP 服务；没有导入上游模块或游戏 DLL。
-- `adapters/cn_current/`：原客户端证据门槛。未知协议默认拒绝。
-- `admin/`：实际管理页面与玩家测试页面，无构建依赖。
-- `config/cn-current.json`：当前样本研究状态；禁止直接把 capability 开关改成“已验收”。
-- `config/test-profile.json`：合成目录；修改规则必须改变版本并重新回归。
-- `runtime/current.db` 与 `runtime/test.db`：必须独立，服务在启动时核对 profile，不接受混用。
-- `evidence/private/`：本地指纹/索引，不进入 Git。
-
-自有服务不需要 pip install。此台机器可使用以下已实际验证的解释器，其他机器使用自己的 Python 3.12+：
+需要 Python 3.12–3.14、Node 22.12+ 和 MySQL 客户端/服务器。Windows 脚本默认使用本机 `MySQL Server 9.0/bin`，其他安装目录通过 `-MySQLBin` 指定。
 
 ```powershell
-$nzPython = 'C:\Users\ZJH\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe'
-& $nzPython tools/run_tests.py
+python -m venv .venv
+.venv/Scripts/python.exe -m pip install -r requirements.txt
+./tools/mysql-local.ps1 -Action Init
 ```
 
-## 2. 初始化 Owner 与启动
+初始化只创建 `runtime/mysql` 独立实例，监听 `127.0.0.1:3307`，不修改系统服务。数据目录已存在或 `.env.local` 已存在时拒绝覆盖。首次生成的数据库凭据保存在忽略的 `.env.local`；勿公开、提交或截图。独立本地实例关闭二进制日志，使限定库权限的用户可以创建保护触发器。
+
+环境变量：`NZ_DB_HOST`、`NZ_DB_PORT`、`NZ_DB_USER`、`NZ_DB_PASSWORD`、`NZ_DB_NAME`、`NZ_SYNTHETIC_DB_NAME`、`NZ_TEST_DB_NAME`、`NZ_SECRET_KEY`。本地实例停止管理另外使用 `NZ_MYSQL_ROOT_PASSWORD`。MySQL 工具不在 PATH 时设置 `NZ_MYSQL_BIN`。三种数据库名称必须不同。
+
+默认当前库 `nz_current`、合成库 `nz_synthetic`，自动化测试使用可销毁的 `nz_unittest`。`NZ_PROFILE=current|synthetic` 在 Django 初始化前决定库和规则；数据库内部 profile 再次校验，禁止混用。
 
 ```powershell
-python -m revival --db runtime/current.db bootstrap-owner owner
-python -m revival --db runtime/current.db serve --port 8765
+./tools/mysql-local.ps1 -Action Start
+./tools/mysql-local.ps1 -Action Status
+./tools/mysql-local.ps1 -Action Stop
 ```
 
-命令交互读取 12–128 字符独立密码，确认后输出一次 `otpauth` URI。将它存入个人验证器并妥善保护备份，勿公开或截入共享日志。第一次 bootstrap 之后不能再次覆盖 Owner。当前版本尚无 MFA 丢失恢复流程；需要恢复时保持服务关闭并单独评审，不直接关闭 MFA。
-
-访问 `http://127.0.0.1:8765`，选择管理员，用独立密码与当前动态码登录。页面令牌仅存在内存，刷新页面需要重新登录。TOTP 验证拒绝重复使用同一时间步，刚登录后若进行高风险 API 操作，需要下一枚新动态码。
-
-可以用 `tools/start-local.ps1 -PythonPath <解释器绝对路径>` 启动。此脚本保持前台日志，不修改 hosts、防火墙、客户端、驱动或官方服务配置。Ctrl+C 停止。
-
-## 3. 测试目录下体验业务闭环
+## 初始化 Owner 与启动
 
 ```powershell
-python -m revival --db runtime/test.db --test-profile bootstrap-owner owner
-python -m revival --db runtime/test.db --test-profile serve --port 8766
+.venv/Scripts/python.exe -m revival migrate
+.venv/Scripts/python.exe -m revival bootstrap-owner owner
+./tools/start-local.ps1
 ```
 
-页面持续标记 TEST_PROFILE。Owner 生成邀请、保存一次性令牌；另一个浏览器页面用受邀注册建立独立玩家；Owner 在用户管理批准；玩家登录并创建本地昵称。注册、审批、角色和钱包不会共用一个存档。
+Owner 初始化交互输入 12–128 字符独立密码，MFA URI 只显示一次，首次完成后拒绝覆盖。当前尚无 MFA 丢失恢复流程。
 
-Owner 到资源中心选择目标，填写测试币种 `GP` 或 `NZ` 和增量，先预览后确认。`test-token` 是可消耗测试物品；`test-rifle` 是独占主武器。玩家购买测试步枪的服务端价格为 500 测试 GP。它们没有已确认的游戏内 ID。
+启动脚本启动独立数据库、安装锁定前端依赖、构建、应用迁移，再启动维护进程和前台 WSGI 服务。已有构建可使用 `-SkipBuild`；Ctrl+C 停服务并清理本次维护进程，MySQL 可显式 Stop。服务默认 `http://127.0.0.1:8765`，只允许回环监听。
 
-大额发放、批量、补偿使用 API 的 MFA 再认证字段，详见 `docs/API.md`；第一版页面仅开放普通单人预览/发放，未开放全部高风险表单。测试房间可验证创建/席位/准备/取消/迁移，申请开始只分配 STARTING，30 秒没有节点就超时；不会加载真实地图。
+手动启动时，分别运行 `manage.py serve` 与 `manage.py maintain`；维护每 5 秒清理过期会话和租约，不依赖有人访问页面。`maintain --once` 适合一次性检查。
 
-## 4. 制裁与审计
+## 合成业务闭环与前端开发
 
-用户管理支持临时/永久封禁、停用、激活、重置和踢会话。撤销制裁须输入指定 sanction_id；仍有其他有效封禁时不能重连。禁言/特定模式封禁/原客户端踢人尚未接入。
+用户明确要求的测试管理员可在合成模式执行 `manage.py create_test_admin <账号>` 创建；命令生成强密码及可重复的六位固定测试码，凭据只写 `runtime/test-admin.json`，固定码摘要与账号 ID/数据库名写忽略的 `.env.local`。服务重启后加载。此例外只对指定 TEST_PROFILE 账号生效，其他管理员和当前客户端模式仍要求正常 TOTP；密码、停用、安全版本、会话期限和权限检查继续执行。拒绝覆盖既有配置。本文不记录任何测试凭据。
 
-所有命令要求 request_id、idempotency_key 和原因。后台角色权限在服务端检查。查询不返回密码哈希、MFA 密钥和可复用 token。高风险成功变更与审计同事务；审计写入故障会回滚资产。
-
-## 5. outbox 与合成 host
-
-没有当前客户端 transport，因此资产/安全事件保持 PENDING。这是如实显示的未同步状态，不能手工把它改成真实游戏同步成功。`deliver_outbox(service, sender)` 要求 sender 按事件键幂等并明确返回 True，成功后才标 DELIVERED；失败只重试通知。
-
-`test_host_ready` 仅供 Python 自动化 harness，未暴露 HTTP 管理入口。合成节点获得独立凭据并绑定 epoch/lease，玩家拿不到这些凭据。测试结算不证明真实通关、碰撞或掉率。
-
-## 6. 备份与恢复
+另一个用户指定的免登录验证码账号通过 `manage.py create_demo_admin <账号>` 创建，密码交互输入，也支持 `--password-stdin`；只允许合成模式，凭据存 `runtime/demo-admin.json`，仅账号 ID/库名写环境配置。`NZ_PASSWORD_ONLY_TEST_ADMIN_ID`、`NZ_PASSWORD_ONLY_TEST_ADMIN_DATABASE` 控制单账号例外。该账号登录可以留空验证码，高风险操作仍按原再认证规则执行。固定码账号与免码账号可以并存，各自的配置不相互覆盖。
 
 ```powershell
-python -m revival --db runtime/current.db backup runtime/backups/current-new-001.db
-python -m revival --db runtime/current.db check
+.venv/Scripts/python.exe -m revival --test-profile migrate
+.venv/Scripts/python.exe -m revival --test-profile bootstrap-owner owner
+./tools/start-local.ps1 -TestProfile -Port 8766
 ```
 
-备份用 SQLite backup API，不直接复制正在写入的数据库，目标必须是新文件并检查 integrity。回滚时先停止服务，保留当前写入与审计，针对备份在**新的数据库路径**进行核对。不要覆盖运行数据库，也不恢复旧制裁/会话来消除安全版本。当前版本没有一键恢复到生产的命令，完整恢复演练待隔离环境。
+页面持续显示 TEST_PROFILE。管理员创建邀请，玩家受邀注册，管理员批准，玩家登录创建角色；资源中心先预览再确认发放 GP/NZ、test-token 或 test-rifle。购买步枪由服务端扣 500 测试 GP；房间仅验证席位、准备与分配状态，未接入真实地图实例。
 
-## 7. 复现上游研究
+账号与角色、币种钱包、库存实例保持独立。用户管理支持制裁、停用、激活、重置和会话撤销；多个封禁叠加检查。高风险发放、批量和补偿继续使用原 API 的密码/MFA 再认证字段，页面保留普通单人操作范围。
+
+前端开发：在 `admin` 执行 `npm ci`、`npm run dev`，默认通过本地代理访问 8765；合成服务 8766 时设置 `NZ_API_TARGET=http://127.0.0.1:8766`。浏览器会话仅存内存，刷新需重新登录。失败重试沿用幂等键和冻结请求体，成功后清空重试槽。
+
+## SQLite 显式迁移
+
+先关闭旧服务写入；保留源文件及 WAL，不删除或手工搬移文件。目标需执行 Django migrations，且业务表为空。迁移不会自动寻找旧文件。
 
 ```powershell
-./tools/fetch-upstream.ps1
-python tools/verify_upstream.py
-python tools/run_tests.py --upstream --output evidence/upstream-tests.json
+.venv/Scripts/python.exe -m revival import-sqlite <旧库绝对路径> --dry-run
+.venv/Scripts/python.exe -m revival import-sqlite <旧库绝对路径>
 ```
 
-脚本只获取固定源码。不要执行上游一键启动器，也不以 PH 补丁地址/消息号替换当前国服。抽选上游测试中 1 个静态源码文本检查失败已保留；重跑结果可能新增研究事实，应单独记录，不能改成当前客户端通过。
+合成旧库给命令添加 `--test-profile`。源 SQLite 仅以只读连接打开，核对 schema v1、完整性、外键、字段和 profile；完整导入位于一个 MySQL 事务内，并逐行对账。失败回滚；重复导入及非空目标拒绝。原账号 ID、game_id、密码/MFA、安全版本、期限、会话、审计、资产流水和幂等结果保留，内部新增主键不参与业务对账。
+
+`--db` 不再接受 SQLite 路径，会明确报错并提示环境配置与显式导入方式。
+
+## 备份、检查和回退
+
+```powershell
+.venv/Scripts/python.exe -m revival backup runtime/backups/current-new-001.sql
+.venv/Scripts/python.exe -m revival check
+```
+
+备份锁定业务写入，使用 `mysqldump --single-transaction` 导出到新文件，在随机 `nz_backup_*` 临时库实际恢复并逐表对账，最后移除临时库。执行账号需要相应数据库创建/删除及触发器权限；已有目标拒绝覆盖。备份包含敏感账号资料，仅保存在受保护的忽略目录。校验失败不会报告成功。
+
+不提供覆盖运行库的自动恢复命令。回退前先停写并保留 MySQL 最新数据、审计和 outbox；迁移后已有新写入时，不能直接回到旧 SQLite 快照，必须先对账，避免丢失流水或复活撤销会话。
+
+没有真实客户端 transport，outbox 保持 PENDING。sender 按 event_key 幂等且明确返回 True 才会标记送达；重试通知不会重复发资产。合成节点注入仅存在 Python harness，HTTP 不开放管理注入入口。
+
+## 验证
+
+```powershell
+.venv/Scripts/python.exe manage.py check
+.venv/Scripts/python.exe manage.py makemigrations --check --dry-run
+.venv/Scripts/python.exe tools/run_tests.py
+cd admin
+npm run typecheck
+npm run build
+npm test
+```
+
+测试结果写入 `evidence/stack-refactor-tests.json` 和文本日志；数据库测试实际使用 MySQL，SQLite 仅用于导入源夹具。CI 的 Ubuntu 使用 MySQL 8.4，Windows 执行独立工具与前端检查；是否实际运行以 Actions 结果为准。

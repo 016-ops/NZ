@@ -1,0 +1,132 @@
+test_admin_mfa_required_and_cannot_replay (tests.test_control_plane.Accounts.test_admin_mfa_required_and_cannot_replay)
+验证场景：普通管理员必须提交 MFA，已使用时间步拒绝重放。 ... ok
+test_character_and_assets_are_independent_and_initialize_once (tests.test_control_plane.Accounts.test_character_and_assets_are_independent_and_initialize_once)
+验证场景：账号与角色分开初始化，重复初始化不能重置资产。 ... ok
+test_concurrent_invitation_use_is_atomic (tests.test_control_plane.Accounts.test_concurrent_invitation_use_is_atomic)
+验证场景：并发消费最后一个邀请名额，只允许一个账号成功。 ... ok
+test_disable_approve_does_not_bypass_disabled (tests.test_control_plane.Accounts.test_disable_approve_does_not_bypass_disabled)
+验证场景：审批操作不能绕过已停用状态。 ... ok
+test_expired_and_revoked_invitations_are_rejected (tests.test_control_plane.Accounts.test_expired_and_revoked_invitations_are_rejected)
+验证场景：过期及已撤销邀请均拒绝注册。 ... ok
+test_local_nickname_validation_uniqueness_and_chinese (tests.test_control_plane.Accounts.test_local_nickname_validation_uniqueness_and_chinese)
+验证场景：中文昵称合法，非法字符及重复昵称被拒绝。 ... ok
+test_pending_and_wrong_password_do_not_authenticate (tests.test_control_plane.Accounts.test_pending_and_wrong_password_do_not_authenticate)
+验证场景：待审批账号和错误密码均不能产生有效会话。 ... ok
+test_permission_matrix_and_no_credentials_in_read_models (tests.test_control_plane.Accounts.test_permission_matrix_and_no_credentials_in_read_models)
+验证场景：角色权限按矩阵拒绝越权，读模型不暴露凭据。 ... ok
+test_registration_replay_does_not_consume_invite_again (tests.test_control_plane.Accounts.test_registration_replay_does_not_consume_invite_again)
+验证场景：重复注册幂等请求返回原账号，不再次消耗邀请。 ... ok
+test_reset_revokes_old_credentials_and_session (tests.test_control_plane.Accounts.test_reset_revokes_old_credentials_and_session)
+验证场景：重置密码撤销旧凭据和旧会话。 ... ok
+test_restart_preserves_mapping_character_ban_and_assets (tests.test_control_plane.Accounts.test_restart_preserves_mapping_character_ban_and_assets)
+验证场景：重建业务服务后账号映射、角色、制裁及资产保持一致。 ... ok
+test_session_replacement_and_expiry_remove_old_seat (tests.test_control_plane.Accounts.test_session_replacement_and_expiry_remove_old_seat)
+验证场景：会话替换和到期后旧会话不能继续保留有效席位。 ... ok
+test_stacked_sanctions_and_expiry (tests.test_control_plane.Accounts.test_stacked_sanctions_and_expiry)
+验证场景：叠加制裁独立生效，全部到期后才恢复资格。 ... ok
+test_atomic_audit_failure_and_immutable_ledger (tests.test_control_plane.Assets.test_atomic_audit_failure_and_immutable_ledger)
+验证场景：审计失败回滚业务，数据库拒绝改写或删除历史流水。 ... ok
+test_batch_freezes_targets_partial_failure_and_replay (tests.test_control_plane.Assets.test_batch_freezes_targets_partial_failure_and_replay)
+验证场景：批量冻结目标，子项失败独立回滚，重放不重复成功子项。 ... ok
+test_compensation_success_and_no_double_reversal (tests.test_control_plane.Assets.test_compensation_success_and_no_double_reversal)
+验证场景：补偿追加关联流水，重复请求不会双重撤销。 ... ok
+test_concurrent_grants_and_purchase_preserve_balance (tests.test_control_plane.Assets.test_concurrent_grants_and_purchase_preserve_balance)
+验证场景：并发发放和购买保持余额与流水一致。 ... ok
+test_consumption_equipment_expiry_and_limit (tests.test_control_plane.Assets.test_consumption_equipment_expiry_and_limit)
+验证场景：消费数量、装备到期和库存上限依规则执行。 ... ok
+test_large_owner_grants_require_fresh_mfa (tests.test_control_plane.Assets.test_large_owner_grants_require_fresh_mfa)
+验证场景：大额 Owner 发放必须重新验证新鲜 MFA。 ... ok
+test_outbox_retry_never_repeats_assets (tests.test_control_plane.Assets.test_outbox_retry_never_repeats_assets)
+验证场景：通知重试只发送事件，不重复执行资产变更。 ... ok
+test_post_commit_reply_loss_and_restart_replay (tests.test_control_plane.Assets.test_post_commit_reply_loss_and_restart_replay)
+验证场景：提交后响应丢失，重启重试返回原结果而不重复发放。 ... ok
+test_preview_is_read_only_and_commit_revalidates (tests.test_control_plane.Assets.test_preview_is_read_only_and_commit_revalidates)
+验证场景：预览无持久化写入，确认提交重新校验当前状态。 ... ok
+test_purchase_failure_rolls_back_wallet_and_outbox (tests.test_control_plane.Assets.test_purchase_failure_rolls_back_wallet_and_outbox)
+验证场景：购买失败后钱包、流水和 outbox 全部回滚。 ... ok
+test_replay_and_payload_conflict (tests.test_control_plane.Assets.test_replay_and_payload_conflict)
+验证场景：相同幂等键和内容返回原结果，内容改变时报冲突。 ... ok
+test_spent_compensation_is_review_not_negative (tests.test_control_plane.Assets.test_spent_compensation_is_review_not_negative)
+验证场景：已消费资产的补偿转人工审核，不能造成负余额。 ... ok
+test_unknown_negative_overflow_invalid_duration_and_cross_account (tests.test_control_plane.Assets.test_unknown_negative_overflow_invalid_duration_and_cross_account)
+验证场景：未知资产、负余额、溢出、非法期限和跨账号装备均拒绝。 ... ok
+test_backup_integrity_and_profile_isolation (tests.test_control_plane.Deployment.test_backup_integrity_and_profile_isolation)
+验证场景：实际备份恢复一致，数据库不能跨 profile 复用。 ... ok
+test_default_profile_refuses_guessed_resources_and_native_host (tests.test_control_plane.Deployment.test_default_profile_refuses_guessed_resources_and_native_host)
+验证场景：默认 profile 拒绝未经验证资源与原生节点运行。 ... ok
+test_allocation_timeout_and_twenty_cancel_cycles (tests.test_control_plane.Rooms.test_allocation_timeout_and_twenty_cancel_cycles)
+验证场景：节点分配超时释放状态，多轮取消不残留席位和租约。 ... ok
+test_ban_during_match_preserves_other_player_and_no_reward_for_revoked (tests.test_control_plane.Rooms.test_ban_during_match_preserves_other_player_and_no_reward_for_revoked)
+验证场景：对局中封禁只撤销目标资格，其他玩家继续且目标不得奖励。 ... ok
+test_concurrent_last_seat_and_one_room_per_player (tests.test_control_plane.Rooms.test_concurrent_last_seat_and_one_room_per_player)
+验证场景：并发争抢最后席位只成功一次，玩家不能同时加入两房。 ... ok
+test_configuration_revision_readiness_and_start_freeze (tests.test_control_plane.Rooms.test_configuration_revision_readiness_and_start_freeze)
+验证场景：配置修订清除准备状态，开始时核对版本并冻结快照。 ... ok
+test_room_replays_and_host_transfer (tests.test_control_plane.Rooms.test_room_replays_and_host_transfer)
+验证场景：房间命令可幂等重放，房主退出按规则移交。 ... ok
+test_stale_node_lease_and_epoch_rejected (tests.test_control_plane.Rooms.test_stale_node_lease_and_epoch_rejected)
+验证场景：旧节点租约和 epoch 不得续租或提交结算。 ... ok
+test_trusted_synthetic_settlement_and_client_forgery (tests.test_control_plane.Rooms.test_trusted_synthetic_settlement_and_client_forgery)
+验证场景：仅可信合成节点可以结算，客户端伪造结果被拒绝。 ... ok
+test_two_rooms_are_isolated (tests.test_control_plane.Rooms.test_two_rooms_are_isolated)
+验证场景：两间房间的准备、启动、结算和资产互相隔离。 ... ok
+test_current_profile_and_wrong_code_are_rejected (tests.test_fixed_test_mfa.FixedTestMfaTests.test_current_profile_and_wrong_code_are_rejected)
+当前客户端模式完全关闭此例外；错误固定码仍需要有效且未消费的正常 TOTP。 ... ok
+test_different_admin_and_database_never_bypass_mfa (tests.test_fixed_test_mfa.FixedTestMfaTests.test_different_admin_and_database_never_bypass_mfa)
+三重限定必须同时成立；其他管理员及换库后的相同 ID 都不能使用固定码。 ... ok
+test_high_risk_synthetic_confirmation_can_reuse_fixed_code (tests.test_fixed_test_mfa.FixedTestMfaTests.test_high_risk_synthetic_confirmation_can_reuse_fixed_code)
+这个账号的合成高风险确认也支持固定码，但仍要求当前密码、授权、目录及完整事务。 ... ok
+test_normal_mfa_still_rejects_replay_when_unconfigured (tests.test_fixed_test_mfa.FixedTestMfaTests.test_normal_mfa_still_rejects_replay_when_unconfigured)
+关闭固定码配置后，同一真实动态时间步仍不能重复使用。 ... ok
+test_reusable_code_keeps_password_and_active_checks (tests.test_fixed_test_mfa.FixedTestMfaTests.test_reusable_code_keeps_password_and_active_checks)
+相同固定码跨多次登录可用，但错误密码和停用状态不能借此放行。 ... ok
+test_bounded_rate_limiter (tests.test_http.HttpTests.test_bounded_rate_limiter)
+验证场景：限流窗口拒绝超额请求，客户端桶数量始终有界。 ... ok
+test_csrf_origin_dns_rebinding_and_bad_body (tests.test_http.HttpTests.test_csrf_origin_dns_rebinding_and_bad_body)
+验证场景：跨 Origin、错误 Host、重复 JSON 字段、非有限数字和超限体被拒绝。 ... ok
+test_health_security_headers_and_static_page (tests.test_http.HttpTests.test_health_security_headers_and_static_page)
+验证场景：健康接口及前端静态页真实可访问，响应携带安全头。 ... ok
+test_public_bind_and_untrusted_node_results_rejected (tests.test_http.HttpTests.test_public_bind_and_untrusted_node_results_rejected)
+验证场景：公共监听地址及非可信节点结算均被拒绝。 ... ok
+test_real_http_auth_permissions_command_and_logout (tests.test_http.HttpTests.test_real_http_auth_permissions_command_and_logout)
+验证场景：真实 HTTP 下玩家不能越权发放资产，退出后会话失效。 ... ok
+test_transfer_encoding_is_rejected_before_wsgi_and_size_boundary_is_exact (tests.test_http.HttpTests.test_transfer_encoding_is_rejected_before_wsgi_and_size_boundary_is_exact)
+实际发出分块传输，防止 Waitress 解码并删除头后绕过中间件；64 KiB 边界保持一致。 ... ok
+test_case_sensitive_and_chinese_nickname_constraints (tests.test_migration.MigrationTests.test_case_sensitive_and_chinese_nickname_constraints)
+验证场景：MySQL 二进制排序保留昵称大小写和中文唯一语义。 ... ok
+test_concurrent_same_key_commits_only_once (tests.test_migration.MigrationTests.test_concurrent_same_key_commits_only_once)
+验证场景：并发相同幂等键只提交一次，返回同一业务结果。 ... ok
+test_dry_run_and_duplicate_import_are_safe (tests.test_migration.MigrationTests.test_dry_run_and_duplicate_import_are_safe)
+验证场景：dry-run 无写入，完成后的重复导入被拒绝。 ... ok
+test_import_preserves_identity_unicode_assets_and_replays (tests.test_migration.MigrationTests.test_import_preserves_identity_unicode_assets_and_replays)
+验证场景：迁移后保留账号 ID、中文角色、安全状态、账本和幂等重放。 ... ok
+test_mid_import_failure_rolls_back_all_business_rows (tests.test_migration.MigrationTests.test_mid_import_failure_rolls_back_all_business_rows)
+验证场景：导入中途异常回滚所有已插入业务表。 ... ok
+test_nonempty_target_and_wrong_profile_are_rejected (tests.test_migration.MigrationTests.test_nonempty_target_and_wrong_profile_are_rejected)
+验证场景：目标非空或 profile 不符时拒绝导入且不改变目标。 ... ok
+test_source_orphan_foreign_key_is_rejected (tests.test_migration.MigrationTests.test_source_orphan_foreign_key_is_rejected)
+旧 SQLite 的连接可能未开启外键，导入必须主动检查，不能把孤儿记录带入 MySQL。 ... ok
+test_source_schema_and_foreign_keys_are_checked (tests.test_migration.MigrationTests.test_source_schema_and_foreign_keys_are_checked)
+验证场景：未知源版本、列结构不符和孤立外键均拒绝导入。 ... ok
+test_unsupported_legacy_version_is_rejected (tests.test_migration.MigrationTests.test_unsupported_legacy_version_is_rejected)
+未知旧库版本必须拒绝，不能猜测字段映射或绕过本次 v1 导入合同。 ... ok
+test_configuration_install_failure_rolls_back_account_and_private_files (tests.test_password_only_admin.PasswordOnlyAdminTests.test_configuration_install_failure_rolls_back_account_and_private_files)
+文件安装失败必须回滚账号与审计，同时保留原环境配置，不留下孤立测试账号。 ... ok
+test_creation_writes_private_configuration_and_refuses_overwrite (tests.test_password_only_admin.PasswordOnlyAdminTests.test_creation_writes_private_configuration_and_refuses_overwrite)
+创建命令只写私有目录，账号哈希入库；重复执行不覆盖已配置账号。 ... ok
+test_high_risk_confirmation_still_requires_mfa (tests.test_password_only_admin.PasswordOnlyAdminTests.test_high_risk_confirmation_still_requires_mfa)
+用户授权的是登录免验证码，大额操作不能自动继承免 MFA 例外。 ... ok
+test_password_only_login_checks_password_and_active_state (tests.test_password_only_admin.PasswordOnlyAdminTests.test_password_only_login_checks_password_and_active_state)
+配置账号可省略验证码重复登录，错误密码或停用仍拒绝。 ... ok
+test_scope_cannot_cover_other_admin_database_or_current_profile (tests.test_password_only_admin.PasswordOnlyAdminTests.test_scope_cannot_cover_other_admin_database_or_current_profile)
+账号、数据库和 profile 全部匹配才放行，不接受客户端传入开关。 ... ok
+test_short_password_exception_is_not_registration_policy (tests.test_password_only_admin.PasswordOnlyAdminTests.test_short_password_exception_is_not_registration_policy)
+六位密码仅供受控测试账号创建，普通注册及密码哈希默认仍要求十二位。 ... ok
+test_repeated_manifest_and_precise_change_detection (tests.test_inventory.InventoryTests.test_repeated_manifest_and_precise_change_detection) ... ok
+test_symbol_index_never_claims_wire_validation (tests.test_inventory.InventoryTests.test_symbol_index_never_claims_wire_validation) ... ok
+test_unsafe_output_empty_and_duplicate_manifests_are_rejected (tests.test_inventory.InventoryTests.test_unsafe_output_empty_and_duplicate_manifests_are_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 65 tests in 237.011s
+
+OK

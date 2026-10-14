@@ -1,16 +1,21 @@
-"""Unified wallet/inventory ledger with outbox, shopping, and synthetic settlement."""
+"""统一钱包、库存与不可改写流水；购物、补偿、合成结算及 outbox 共用事务。"""
+from django.db.models import F, Q
 import json
 
 from .service import Fault, canonical, identifier, integer, text_field
 from .security import token_hash
 
 
+# 提交必须携带当前目录版本；预览以后目录变化时拒绝提交，防止以旧价格或旧资源规则写入。
 def require_catalog(service, data):
+    """提交必须携带当前目录版本；预览以后目录变化时拒绝提交，防止以旧价格或旧资源规则写入。"""
     if data.get('catalog_version') != service.catalog['id']:
         raise Fault('CATALOG_CONFLICT', 'Catalog version must match the current service', 409)
 
 
+# 只接受已验证币种与非零整数增量；上下界来自 profile 目录，不猜测真实客户端币种。
 def currency_value(service, code, delta):
+    """只接受已验证币种与非零整数增量；上下界来自 profile 目录，不猜测真实客户端币种。"""
     definition = service.catalog['currencies'].get(code)
     if definition is None:
         raise Fault('UNVERIFIED_RESOURCE', 'Unknown or unverified currency')
@@ -20,9 +25,11 @@ def currency_value(service, code, delta):
     return definition
 
 
+# 统一资产入口：逐项验证余额、库存容量、期限与归属，写版本化余额/实例及不可改写流水，最后追加 outbox；任一项失败由外层回滚全部改动。
 def mutate(service, c, actor, account_id, changes, reason, source, linked=None):
+    """统一资产入口：逐项验证余额、库存容量、期限与归属，写版本化余额/实例及不可改写流水，最后追加 outbox；任一项失败由外层回滚全部改动。"""
     service._account(c, account_id)
-    if not c.execute('SELECT 1 FROM characters WHERE account_id=?', (account_id,)).fetchone():
+    if not c.select('characters', Q(account_id=account_id)).fetchone():
         raise Fault('CHARACTER', 'Target has no local character', 409)
     if not isinstance(changes, list) or not 1 <= len(changes) <= 20:
         raise Fault('INVALID', 'Provide 1 to 20 asset changes')
@@ -31,8 +38,7 @@ def mutate(service, c, actor, account_id, changes, reason, source, linked=None):
                                                 and type(x.get('delta')) is int) > 10000:
         raise Fault('LIMIT', 'Resource administrator per-operation currency limit is 10000', 403)
     operation_id = identifier()
-    c.execute('INSERT INTO asset_operations VALUES(?,?,?,?,?,?,?,?)',
-              (operation_id, account_id, actor['id'], source, reason, service.clock(), 'COMMITTED', linked))
+    c.insert('asset_operations', {'id': operation_id, 'account_id': account_id, 'actor': actor['id'], 'source': source, 'reason': reason, 'created_at': service.clock(), 'status': 'COMMITTED', 'linked_operation': linked})
     for index, change in enumerate(changes):
         kind = change.get('type') if isinstance(change, dict) else None
         instance_id = None
@@ -42,15 +48,15 @@ def mutate(service, c, actor, account_id, changes, reason, source, linked=None):
             definition = currency_value(service, code, delta)
             if actor.get('role') == 'resources' and abs(delta) > 10000:
                 raise Fault('LIMIT', 'Resource administrator per-change limit is 10000', 403)
-            wallet = c.execute('SELECT * FROM wallets WHERE account_id=? AND currency=?', (account_id, code)).fetchone()
+            wallet = c.select('wallets', (Q(account_id=account_id) & Q(currency=code))).fetchone()
             before = wallet['balance'] if wallet else 0
             after = before + delta
             if not definition['min'] <= after <= definition['max']:
                 raise Fault('BALANCE', 'Insufficient funds or currency range exceeded', 409)
             if wallet:
-                c.execute('UPDATE wallets SET balance=?,version=version+1 WHERE account_id=? AND currency=?', (after, account_id, code))
+                c.update('wallets', (Q(account_id=account_id) & Q(currency=code)), {'balance': after, 'version': F('version') + 1})
             else:
-                c.execute('INSERT INTO wallets(account_id,currency,balance,version) VALUES(?,?,?,1)', (account_id, code, after))
+                c.insert('wallets', {'account_id': account_id, 'currency': code, 'balance': after, 'version': 1})
             resource = code
             detail = {'version_before': wallet['version'] if wallet else 0, 'version_after': wallet['version'] + 1 if wallet else 1}
         elif kind == 'item':
@@ -67,27 +73,26 @@ def mutate(service, c, actor, account_id, changes, reason, source, linked=None):
             else:
                 integer(duration, 1, definition['duration_max'], 'duration_seconds')
                 expires = service.clock() + duration
-            owned = c.execute('SELECT * FROM inventory WHERE account_id=? AND item_key=? '
-                              'AND (expires_at IS NULL OR expires_at>?) ORDER BY id LIMIT 1', (account_id, key, service.clock())).fetchone()
+            owned = c.select('inventory', ((Q(account_id=account_id) & Q(item_key=key)) & (Q(expires_at__isnull=True) | Q(expires_at__gt=service.clock()))), order=('id',), limit=1).fetchone()
             if owned and definition['exclusive']:
                 raise Fault('EXCLUSIVE', 'An active exclusive instance already exists', 409)
-            stack = c.execute('SELECT * FROM inventory WHERE account_id=? AND item_key=? AND expires_at IS ? ORDER BY id LIMIT 1', (account_id, key, expires)).fetchone() if not definition['exclusive'] else None
+            stack = c.select('inventory', ((Q(account_id=account_id) & Q(item_key=key)) & Q(expires_at=expires)), order=('id',), limit=1).fetchone() if not definition['exclusive'] else None
             if stack:
                 before, instance_id = stack['quantity'], stack['id']
                 after = before + delta
                 if after > definition['stack']:
                     raise Fault('INVENTORY_FULL', 'Stack limit exceeded', 409)
-                c.execute('UPDATE inventory SET quantity=?,version=version+1 WHERE id=?', (after, instance_id))
+                c.update('inventory', Q(id=instance_id), {'quantity': after, 'version': F('version') + 1})
             else:
-                if c.execute('SELECT COUNT(*) FROM inventory WHERE account_id=?', (account_id,)).fetchone()[0] >= service.catalog['inventory_limit']:
+                if c.count('inventory', Q(account_id=account_id)).fetchone()[0] >= service.catalog['inventory_limit']:
                     raise Fault('INVENTORY_FULL', 'No capacity; request rejected without asset changes', 409)
                 instance_id, before, after = identifier(), 0, delta
-                c.execute('INSERT INTO inventory(id,account_id,item_key,quantity,expires_at) VALUES(?,?,?,?,?)', (instance_id, account_id, key, delta, expires))
+                c.insert('inventory', {'id': instance_id, 'account_id': account_id, 'item_key': key, 'quantity': delta, 'expires_at': expires})
             resource = key
             detail = {'expires_at': expires, 'permanent': expires is None, 'bound': True, 'catalog_version': service.catalog['id']}
         elif kind == 'consume':
             instance_id = change.get('instance_id')
-            item = c.execute('SELECT * FROM inventory WHERE id=? AND account_id=?', (instance_id, account_id)).fetchone()
+            item = c.select('inventory', (Q(id=instance_id) & Q(account_id=account_id))).fetchone()
             if not item or (item['expires_at'] is not None and item['expires_at'] <= service.clock()):
                 raise Fault('INVENTORY', 'Active owned instance required', 409)
             definition = service.catalog['items'].get(item['item_key'])
@@ -96,21 +101,22 @@ def mutate(service, c, actor, account_id, changes, reason, source, linked=None):
             delta = -integer(change.get('quantity'), 1, item['quantity'], 'quantity')
             before, after, resource = item['quantity'], item['quantity'] + delta, item['item_key']
             if after:
-                c.execute('UPDATE inventory SET quantity=?,version=version+1 WHERE id=?', (after, instance_id))
+                c.update('inventory', Q(id=instance_id), {'quantity': after, 'version': F('version') + 1})
             else:
-                c.execute('DELETE FROM equipment WHERE inventory_id=?', (instance_id,))
-                c.execute('DELETE FROM inventory WHERE id=?', (instance_id,))
+                c.delete('equipment', Q(inventory_id=instance_id))
+                c.delete('inventory', Q(id=instance_id))
             detail = {'expires_at': item['expires_at'], 'bound': bool(item['bound']), 'version_before': item['version']}
         else:
             raise Fault('INVALID', 'Unsupported asset change')
-        c.execute('INSERT INTO asset_entries VALUES(?,?,?,?,?,?,?,?)',
-                  (operation_id, index, kind, resource, instance_id, delta, before, after))
-        c.execute('INSERT INTO asset_entry_details VALUES(?,?,?)', (operation_id, index, canonical(detail)))
+        c.insert('asset_entries', {'operation_id': operation_id, 'entry_no': index, 'kind': kind, 'resource': resource, 'instance_id': instance_id, 'delta': delta, 'before_value': before, 'after_value': after})
+        c.insert('asset_entry_details', {'operation_id': operation_id, 'entry_no': index, 'detail': canonical(detail)})
     service._outbox(c, 'assets:' + operation_id, 'assets.changed', account_id, {'operation_id': operation_id, 'account_id': account_id})
     return {'operation_id': operation_id, 'status': 'COMMITTED', 'sync_status': 'PENDING', 'evidence': service.catalog['evidence']}
 
 
+# 按发放、批量、补偿、购买、消耗和装备分派；批量每个目标有独立保存点，冻结目标列表且成功子项不再次发放。
 def asset_command(service, c, actor, action, data):
+    """按发放、批量、补偿、购买、消耗和装备分派；批量每个目标有独立保存点，冻结目标列表且成功子项不再次发放。"""
     require_catalog(service, data)
     if action == 'asset.grant':
         if not isinstance(data.get('changes'), list) or any(not isinstance(x, dict) or x.get('type') not in ('currency', 'item') for x in data['changes']):
@@ -123,30 +129,30 @@ def asset_command(service, c, actor, action, data):
         batch_id = identifier()
         results = []
         for i, target in enumerate(targets):
-            c.execute(f'SAVEPOINT target_{i}')
+            c.savepoint(f'target_{i}')
             try:
                 result = mutate(service, c, actor, target, data.get('changes'), data['reason'], 'BATCH:' + batch_id)
                 results.append(dict(result, account_id=target))
             except Fault as error:
-                c.execute(f'ROLLBACK TO target_{i}')
+                c.rollback(f'target_{i}')
                 results.append({'account_id': target, 'status': 'REJECTED', 'error': error.code})
             finally:
-                c.execute(f'RELEASE target_{i}')
+                c.release(f'target_{i}')
         return {'batch_id': batch_id, 'frozen_targets': targets, 'results': results,
                 'retry_policy': 'Resubmit only rejected target IDs using a new key; same key returns the original batch'}
     if action == 'asset.compensate':
-        original = c.execute('SELECT * FROM asset_operations WHERE id=?', (data.get('operation_id'),)).fetchone()
+        original = c.select('asset_operations', Q(id=data.get('operation_id'))).fetchone()
         if not original or original['source'] not in ('ADMIN',) or original['status'] != 'COMMITTED':
             raise Fault('COMPENSATION', 'Only committed individual grants can be reversed automatically', 409)
-        if c.execute('SELECT 1 FROM asset_operations WHERE linked_operation=?', (original['id'],)).fetchone():
+        if c.select('asset_operations', Q(linked_operation_id=original['id'])).fetchone():
             raise Fault('CONFLICT', 'Operation already has a compensation or review record', 409)
         changes, totals = [], {}
-        for entry in c.execute('SELECT * FROM asset_entries WHERE operation_id=? ORDER BY entry_no', (original['id'],)):
+        for entry in c.select('asset_entries', Q(operation_id=original['id']), order=('entry_no',)):
             if entry['kind'] != 'currency' or entry['delta'] <= 0:
                 return manual_review(service, c, actor, original, data['reason'], 'Item provenance or non-positive grants require review')
             totals[entry['resource']] = totals.get(entry['resource'], 0) + entry['delta']
         for code, amount in totals.items():
-            wallet = c.execute('SELECT balance FROM wallets WHERE account_id=? AND currency=?', (original['account_id'], code)).fetchone()
+            wallet = c.select('wallets', (Q(account_id=original['account_id']) & Q(currency=code)), columns=['balance']).fetchone()
             if not wallet or wallet['balance'] < amount:
                 return manual_review(service, c, actor, original, data['reason'], 'Grant has been spent; cannot create a negative balance')
             changes.append({'type': 'currency', 'code': code, 'delta': -amount})
@@ -162,42 +168,46 @@ def asset_command(service, c, actor, action, data):
     if action == 'inventory.consume':
         return mutate(service, c, actor, actor['id'], [{'type': 'consume', 'instance_id': data.get('instance_id'), 'quantity': data.get('quantity')}], data['reason'], 'CONSUME')
     if action == 'inventory.equip':
-        item = c.execute('SELECT * FROM inventory WHERE id=? AND account_id=?', (data.get('instance_id'), actor['id'])).fetchone()
+        item = c.select('inventory', (Q(id=data.get('instance_id')) & Q(account_id=actor['id']))).fetchone()
         if not item or (item['expires_at'] is not None and item['expires_at'] <= service.clock()):
             raise Fault('INVENTORY', 'Active owned instance required', 409)
         definition = service.catalog['items'].get(item['item_key'])
         if not definition or not definition.get('slot') or data.get('slot') != definition['slot']:
             raise Fault('INVALID', 'Invalid equipment slot')
-        c.execute('INSERT INTO equipment VALUES(?,?,?) ON CONFLICT(account_id,slot) DO UPDATE SET inventory_id=excluded.inventory_id', (actor['id'], definition['slot'], item['id']))
+        c.equip(actor['id'], definition['slot'], item['id'])
         return {'instance_id': item['id'], 'slot': definition['slot'], 'retail_sync': 'UNIMPLEMENTED', 'match_policy': 'NEXT_MATCH_SNAPSHOT'}
     raise Fault('NOT_FOUND', 'Unknown asset action', 404)
 
 
+# 补偿无法自动证明安全时只追加人工复核操作，不制造负余额、不删除历史流水，也不假装已经追回资产。
 def manual_review(service, c, actor, original, reason, explanation):
+    """补偿无法自动证明安全时只追加人工复核操作，不制造负余额、不删除历史流水，也不假装已经追回资产。"""
     operation_id = identifier()
-    c.execute('INSERT INTO asset_operations VALUES(?,?,?,?,?,?,?,?)',
-              (operation_id, original['account_id'], actor['id'], 'COMPENSATION', reason, service.clock(), 'MANUAL_REVIEW', original['id']))
+    c.insert('asset_operations', {'id': operation_id, 'account_id': original['account_id'], 'actor': actor['id'], 'source': 'COMPENSATION', 'reason': reason, 'created_at': service.clock(), 'status': 'MANUAL_REVIEW', 'linked_operation': original['id']})
     return {'operation_id': operation_id, 'status': 'MANUAL_REVIEW', 'explanation': explanation}
 
 
+# 调用真实发放校验并读取前后状态，然后无条件回滚保存点；预览不扣款、不占库存，提交时仍重新校验。
 def preview(service, token, data):
-    """Run the actual validation/transaction code in a savepoint, then undo it."""
+    """在保存点执行实际资产校验及写入路径后全部回滚，返回前后状态供确认；预览不能提交流水或 outbox。"""
     with service.db.transaction() as c:
         actor = service._actor(c, token, 'asset.preview')
         require_catalog(service, data)
         before = service._user_view(c, data.get('target_account_id'))
-        c.execute('SAVEPOINT preview')
+        c.savepoint('preview')
         try:
             mutate(service, c, actor, data.get('target_account_id'), data.get('changes'), 'preview', 'PREVIEW')
             after = service._user_view(c, data.get('target_account_id'))
             return {'before': before, 'after': after, 'catalog_version': service.catalog['id'], 'evidence': service.catalog['evidence'],
                     'policy': 'Incremental operation revalidates at commit; absolute balance writes are disabled'}
         finally:
-            c.execute('ROLLBACK TO preview')
-            c.execute('RELEASE preview')
+            c.rollback('preview')
+            c.release('preview')
 
 
+# 仅接收受信合成节点的 outcome，奖励取自开始时冻结规则；按节点身份、租约、epoch 和玩家安全版本核验，重复结果只读取原结算。
 def settle(service, node_token, data):
+    """仅接收受信合成节点的 outcome，奖励取自开始时冻结规则；按节点身份、租约、epoch 和玩家安全版本核验，重复结果只读取原结算。"""
     from .rooms import node_identity
     if not service.test_profile:
         raise Fault('COMPATIBILITY_BLOCKED', 'No trusted native result source exists for the current client', 409)
@@ -208,7 +218,7 @@ def settle(service, node_token, data):
     digest = token_hash(canonical(data))
     with service.db.transaction() as c:
         match = node_identity(service, c, node_token, match_id, epoch)
-        previous = c.execute('SELECT * FROM settlements WHERE match_id=?', (match_id,)).fetchone()
+        previous = c.select('settlements', Q(match_id=match_id)).fetchone()
         if previous:
             if previous['payload_hash'] != digest:
                 raise Fault('SETTLEMENT_CONFLICT', 'Match already settled with different outcome', 409)
@@ -217,7 +227,7 @@ def settle(service, node_token, data):
             raise Fault('MATCH_STATE', 'Only an active instance may settle', 409)
         snapshot = json.loads(match['snapshot'])
         rewards = []
-        for player in c.execute('SELECT * FROM match_players WHERE match_id=?', (match_id,)):
+        for player in c.select('match_players', Q(match_id=match_id)):
             account = service._account(c, player['account_id'])
             allowed = bool(player['eligible']) and player['security_version'] == account['security_version'] and account['status'] == 'ACTIVE'
             if allowed:
@@ -231,18 +241,19 @@ def settle(service, node_token, data):
                                 'Synthetic authoritative outcome', 'MATCH:' + match_id)
                 rewards.append(dict(reward, account_id=player['account_id']))
         result = {'match_id': match_id, 'outcome': outcome, 'rewards': rewards, 'evidence': 'TEST_PROFILE', 'real_clear_verified': False}
-        c.execute('INSERT INTO settlements VALUES(?,?,?)', (match_id, digest, canonical(result)))
-        c.execute("UPDATE matches SET state='STOPPED' WHERE id=?", (match_id,))
-        c.execute("UPDATE rooms SET state='OPEN',match_id=NULL,revision=revision+1 WHERE id=? AND state!='CLOSED'", (match['room_id'],))
-        c.execute('UPDATE room_members SET ready=0 WHERE room_id=?', (match['room_id'],))
+        c.insert('settlements', {'match_id': match_id, 'payload_hash': digest, 'result': canonical(result)})
+        c.update('matches', Q(id=match_id), {'state': 'STOPPED'})
+        c.update('rooms', (Q(id=match['room_id']) & ~Q(state='CLOSED')), {'state': 'OPEN', 'match_id': None, 'revision': F('revision') + 1})
+        c.update('room_members', Q(room_id=match['room_id']), {'ready': 0})
         service._audit(c, match['instance_id'], 'match.settle', match_id, identifier(), 'Synthetic host event', result)
         return result
 
 
+# 事务外调用 sender，只有显式 True 才确认送达；失败只更新重试时间，永远不重新执行资产事务，接收端必须按 event_key 去重。
 def deliver_outbox(service, sender, limit=50):
-    """Sender must implement idempotent delivery by event key. Failure never repeats assets."""
+    """在事务外调用 sender，以 event_key 去重；仅显式确认后标记送达，失败安排重试且不重复执行资产变更。"""
     with service.db.transaction() as c:
-        rows = [dict(r) for r in c.execute("SELECT * FROM outbox WHERE status!='DELIVERED' AND next_retry<=? ORDER BY id LIMIT ?", (service.clock(), integer(limit, 1, 100, 'limit')))]
+        rows = [dict(r) for r in c.select('outbox', (~Q(status='DELIVERED') & Q(next_retry__lte=service.clock())), order=('id',), limit=integer(limit, 1, 100, 'limit'))]
     results = []
     for event in rows:
         try:
@@ -250,13 +261,12 @@ def deliver_outbox(service, sender, limit=50):
             if acknowledged is not True:
                 raise RuntimeError('Transport did not acknowledge the event')
         except Exception:
-            # No arbitrary exception text from a transport goes into credential-bearing logs.
+            # 发送器异常可能含凭据，仅持久化固定错误码，不能记录任意异常正文。
             with service.db.transaction() as c:
-                c.execute("UPDATE outbox SET attempts=attempts+1,next_retry=?,last_error='DELIVERY_NOT_ACKNOWLEDGED' WHERE id=? AND status!='DELIVERED'",
-                          (service.clock() + min(300, 2 ** min(8, event['attempts'] + 1)), event['id']))
+                c.update('outbox', (Q(id=event['id']) & ~Q(status='DELIVERED')), {'attempts': F('attempts') + 1, 'next_retry': service.clock() + min(300, 2 ** min(8, event['attempts'] + 1)), 'last_error': 'DELIVERY_NOT_ACKNOWLEDGED'})
             results.append({'id': event['id'], 'delivered': False})
         else:
             with service.db.transaction() as c:
-                c.execute("UPDATE outbox SET status='DELIVERED',attempts=attempts+1,delivered_at=?,last_error=NULL WHERE id=? AND status!='DELIVERED'", (service.clock(), event['id']))
+                c.update('outbox', (Q(id=event['id']) & ~Q(status='DELIVERED')), {'status': 'DELIVERED', 'attempts': F('attempts') + 1, 'delivered_at': service.clock(), 'last_error': None})
             results.append({'id': event['id'], 'delivered': True})
     return results

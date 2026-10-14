@@ -1,2 +1,7 @@
-# The independent control plane uses Python 3.12+ standard library only.
-# Upstream requirements remain isolated in upstream/af-emulator/requirements.txt.
+Django==5.2.18
+asgiref==3.12.1
+mysqlclient==2.3.0
+python-dotenv==1.2.4
+sqlparse==0.6.0
+tzdata==2026.5
+waitress==3.0.2

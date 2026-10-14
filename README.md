@@ -15,16 +15,21 @@
 | M2 | [账号与管理后台](docs/delivery/M2.md) | 本地账号、角色、权限、制裁和管理页面已实现；游戏首登未接入 |
 | M3 | [房间与实例契约](docs/delivery/M3.md) | 本地房间状态、分配/租约/清理和测试节点契约；真实战斗未实现 |
 | M4 | [资产与合成结算](docs/delivery/M4.md) | 测试目录下事务/幂等/账本/装备/购买/结算已实现；真实目录/协议未接入 |
+| 技术栈迁移 | [Django/MySQL/React 与 UI 交接](docs/delivery/2026-10-14-stack-refactor.md) | 本机 65 项回归通过，独立 MySQL、只读导入、测试管理员与新版工作台已实现 |
 
-[启动与管理手册](docs/LOCAL_RUNBOOK.md) · [实际接口](docs/API.md) · [架构决策](docs/DECISIONS.md) · [自动化证据](evidence/automated-tests.json)
+[启动与管理手册](docs/LOCAL_RUNBOOK.md) · [实际接口](docs/API.md) · [架构决策](docs/DECISIONS.md) · [本轮 MySQL 自动化证据](evidence/stack-refactor-tests.json)
 
 ## 本地启动
 
-需要 Python 3.12+，自有服务无第三方 Python 依赖。在仓库根目录执行：
+当前技术栈为 React + TypeScript + shadcn/ui、Django 5.2 和 MySQL。需要 Python 3.12–3.14、Node 22.12+ 及 MySQL。Windows 本地独立实例默认使用已有 MySQL 9.0 程序，不修改系统服务。在仓库根目录执行：
 
 ```powershell
-python -m revival --db runtime/current.db bootstrap-owner owner
-python -m revival --db runtime/current.db serve
+python -m venv .venv
+.venv/Scripts/python.exe -m pip install -r requirements.txt
+./tools/mysql-local.ps1 -Action Init
+.venv/Scripts/python.exe -m revival migrate
+.venv/Scripts/python.exe -m revival bootstrap-owner owner
+./tools/start-local.ps1
 ```
 
 初始化时交互输入独立密码，把只显示一次的 MFA URI 加入验证器。密码和 MFA 资料不要放入命令行参数、Issue 或提交记录。访问 [本地控制台](http://127.0.0.1:8765)，选择管理员身份，以密码和动态验证码登录。
@@ -32,21 +37,25 @@ python -m revival --db runtime/current.db serve
 测试业务闭环使用另一个数据库：
 
 ```powershell
-python -m revival --db runtime/test.db --test-profile bootstrap-owner owner
-python -m revival --db runtime/test.db --test-profile serve --port 8766
+.venv/Scripts/python.exe -m revival --test-profile migrate
+.venv/Scripts/python.exe -m revival --test-profile bootstrap-owner owner
+./tools/start-local.ps1 -TestProfile -Port 8766
 ```
 
-服务只允许监听回环地址。数据库、MFA 资料和备份由当前操作系统用户保护。本轮没有对公网部署、Linux 实机、容量或原客户端兼容作出通过结论。
+服务只允许监听回环地址。数据库与凭据位于忽略的 `runtime/mysql` 和 `.env.local`，通过环境变量配置。当前库、合成库、可销毁测试库分离；旧 `--db` 文件参数明确拒绝。SQLite v1 可通过 `import-sqlite <源路径> --dry-run` 和显式导入命令迁移到空 MySQL 业务库，原文件保留。详见启动手册。本轮没有对公网部署、Linux 实机、容量或原客户端兼容作出通过结论。
 
 ## 验证
 
 ```powershell
-python tools/run_tests.py
-node --check admin/app.js
-python -m revival --db runtime/current.db check
+.venv/Scripts/python.exe tools/run_tests.py
+.venv/Scripts/python.exe -m revival check
+cd admin
+npm run typecheck
+npm run build
+npm test
 ```
 
-测试使用临时数据库，包含真实 HTTP 请求、并发邀请/座位/资产操作、事务回滚、权限拒绝、过期/重启、合成节点结算、防重复到账、备份完整性。CI 配置提供 Windows/Linux 回归；其是否实际执行以 GitHub Actions 结果为准。
+业务测试使用真实 MySQL 测试库，包含 HTTP 请求、并发邀请/座位/资产、事务回滚、权限拒绝、过期/重启、合成结算、防重复到账、备份恢复和 SQLite 导入对账。前端测试验证幂等重试。CI 的 Ubuntu 使用 MySQL 8.4，Windows 执行独立工具与前端构建；是否实际运行以 GitHub Actions 结果为准。
 
 ## 样本与上游
 

@@ -1,0 +1,25 @@
+{
+  "url": "http://127.0.0.1:8766/",
+  "lighthouse_version": "12.8.2",
+  "fetch_time": "2026-10-14T10:37:40.603Z",
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "scores": {
+    "performance": 100,
+    "accessibility": 100,
+    "best-practices": 100
+  },
+  "metrics": {
+    "first-contentful-paint": 400.52059999999994,
+    "largest-contentful-paint": 520.2809,
+    "total-blocking-time": 22,
+    "cumulative-layout-shift": 2.255859375e-05,
+    "speed-index": 400.52059999999994
+  },
+  "scope": "Public login page, desktop Chrome; authenticated flows tested separately in real browser. Synthetic control plane only.",
+  "remaining_findings": [
+    "Unused JavaScript can be split further; browser back-forward cache unavailable."
+  ]
+}
