@@ -22,6 +22,7 @@ def main():
     parser=argparse.ArgumentParser()
     parser.add_argument('--output',default='evidence/automated-tests.json')
     parser.add_argument('--upstream',action='store_true')
+    parser.add_argument('--pattern',default='test*.py',help='Local unittest discovery pattern')
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
     output=root/args.output;output.parent.mkdir(parents=True,exist_ok=True)
@@ -36,7 +37,7 @@ def main():
         report={'kind':'UPSTREAM_UNIT_TESTS_NOT_CN_LIVE','command':tests,'exit_code':result.returncode,'seconds':round(time.monotonic()-start,3)}
     else:
         sys.path.insert(0,str(root))
-        suite=unittest.defaultTestLoader.discover(str(root/'tests'),top_level_dir=str(root))
+        suite=unittest.defaultTestLoader.discover(str(root/'tests'),pattern=args.pattern,top_level_dir=str(root))
         stream=io.StringIO();start=time.monotonic()
         result=unittest.TextTestRunner(stream=stream,verbosity=2,resultclass=Result).run(suite)
         output.with_suffix('.txt').write_text(stream.getvalue(),encoding='utf-8')

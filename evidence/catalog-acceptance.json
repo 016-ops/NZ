@@ -1,0 +1,73 @@
+{
+  "kind": "CLIENT_CATALOG_STATIC_AND_SOURCE_ACCEPTANCE",
+  "snapshot_id": "2dfdbe7934b8af22fa7b731e2788cf2949f736d69edc155e5da1afd561bf8107",
+  "files": 17730,
+  "parsed_text_sources_checked_live": 250,
+  "original_line_fidelity_errors": [],
+  "prior_client_baseline_difference": {
+    "added": 0,
+    "removed": 0,
+    "changed": 0
+  },
+  "max_sql_statement_bytes": 2434735,
+  "sql_under_4_mib": true,
+  "counts": {
+    "source_files": 17730,
+    "raw_records": 157056,
+    "entities": 18150,
+    "entity_evidence": 20825,
+    "items": 4323,
+    "weapons": 2429,
+    "modes": 219,
+    "maps": 3949,
+    "features": 6000,
+    "gameplay_rules": 104952,
+    "currencies": 4,
+    "shop": 1442,
+    "shop_options": 2143,
+    "shop_items": 1916,
+    "relations": 19628,
+    "issues": 15625,
+    "external_sources": 5,
+    "external_annotations": 58
+  },
+  "entity_categories": {
+    "currency": 4,
+    "feature": 4042,
+    "item": 4323,
+    "localized_section": 1855,
+    "map": 248,
+    "map_resource": 3701,
+    "mode": 112,
+    "shop": 1442,
+    "weapon_class": 2423
+  },
+  "issues": {
+    "TEXT_TERMINAL_NUL_PADDING": 1,
+    "ZERO_FILLED": 7719,
+    "DECODE_FAILED": 6,
+    "BINARY_DEFINITION_UNDECODED": 13,
+    "PACKAGE_UNDECODED": 7295,
+    "LEGACY_WESTERN_ENCODING": 1,
+    "UNPARSED_CONFIG": 335,
+    "SHOP_SUITE_ARRAY_LENGTH": 21,
+    "MAP_RESOURCE_NOT_FOUND": 49,
+    "UNRESOLVED_REFERENCE": 185
+  },
+  "client_files_unchanged_two_hash_passes": true,
+  "mysql_import": "NOT_VERIFIED_NO_CONNECTION",
+  "retail_runtime_validation": "NOT_PERFORMED",
+  "json_md_sql_verification": {
+    "passed": true,
+    "checks": [
+      "SQL_JSON_ALL_FIELDS",
+      "MD_JSON_ALL_FIELDS",
+      "COUNTS",
+      "PRIMARY_KEYS",
+      "FOREIGN_REFERENCES",
+      "DELIVERY_SHA256"
+    ],
+    "problems": [],
+    "mysql_import": "NOT_VERIFIED"
+  }
+}

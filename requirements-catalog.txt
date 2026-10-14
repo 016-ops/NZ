@@ -1,0 +1,2 @@
+# Isolated extraction dependency; not required by the existing control plane.
+cryptography==50.0.2

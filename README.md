@@ -18,6 +18,10 @@
 
 [启动与管理手册](docs/LOCAL_RUNBOOK.md) · [实际接口](docs/API.md) · [架构决策](docs/DECISIONS.md) · [自动化证据](evidence/automated-tests.json)
 
+## 当前客户端资产目录
+
+玩法、模式、地图、物品、武器、功能和商城的只读提取工具，以及 JSON、Markdown 和独立 MySQL 目录 SQL，见 [资产目录交付说明](docs/CLIENT_CATALOG.md)。完整产物在工作区 `evidence/private/client-catalog/`，包含来源、原始字段和缺口。实际 MySQL 导入与游戏内运行尚未验证；本次不迁移现有 SQLite 后台。
+
 ## 本地启动
 
 需要 Python 3.12+，自有服务无第三方 Python 依赖。在仓库根目录执行：
