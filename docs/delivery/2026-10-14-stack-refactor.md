@@ -75,3 +75,4 @@
 - **当前阻塞**：审批已解除；直连 GitHub 443 超时，通过本机现有 Clash 的回环代理连通。代理仅按 Git 命令指定，TLS 校验保留，没有修改系统或仓库代理配置。远端非快进拒绝已通过正常合并处理，不使用强推。
 - **验证**：最终合并后完整回归 74 项全部通过，0 失败/错误/跳过，MySQL 9.0.1，358.664 秒；证据在 `evidence/stack-refactor-merge-tests.json/.txt`。独立工具 12 项通过，兼容 `--pattern` 的目录专项 9 项通过，对应 `evidence/stack-refactor-merge-tooling-tests.*` 和 `evidence/stack-refactor-merge-pattern-tests.*`。Python 依赖检查、Django 配置和迁移一致性检查通过；合并暂存区无冲突标记、空白错误、客户端/数据库文件或已知明文凭据。
 - **接手与回退**：运行完整测试需要安装主 `requirements.txt` 和独立 `requirements-catalog.txt`，业务测试仍用可销毁 MySQL 测试库。合并没有新增业务 migrations；若需代码回退，保留远端目录提交和已提交业务数据，按正常 Git 反向提交处理，不重写远端历史。
+- **推送结果**：2026-10-15 已正常推送合并提交 `29e0289f3854aaea15599b0add779edc788257bc` 至 `origin/main`。随后 `git ls-remote origin refs/heads/main` 与本地 HEAD 完全一致，工作区干净；本地重构提交 `d985bd9` 和远端目录提交 `c3bf828` 均保留在祖先历史中。本条结果记录另行文档提交随 main 推送，不改业务代码。
