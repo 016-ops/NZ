@@ -1,0 +1,28 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 8,
+  "passed": [
+    "tests.test_email_verification.EmailVerification.test_attempts_expiry_purpose_address_and_resend_persist",
+    "tests.test_email_verification.EmailVerification.test_concurrent_reset_consumes_once_and_audit_rollback",
+    "tests.test_email_verification.EmailVerification.test_delivery_failure_quota_and_no_plaintext_persistence",
+    "tests.test_email_verification.EmailVerification.test_existing_binding_verify_and_email_replacement_invalidate_old_reset",
+    "tests.test_email_verification.EmailVerification.test_recovery_does_not_activate_disabled_account_and_unknown_has_same_response",
+    "tests.test_email_verification.EmailVerification.test_registration_requires_code_replays_and_preserves_approval"
+  ],
+  "failures": [
+    {
+      "test": "tests.test_email_verification.EmailVerification.test_http_boundary_rejects_legacy_bypass_and_missing_provider",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_email_verification.py\", line 154, in test_http_boundary_rejects_legacy_bypass_and_missing_provider\n    self.assertEqual(response.status_code,403)\nAssertionError: 409 != 403\n"
+    }
+  ],
+  "errors": [
+    {
+      "test": "tests.test_email_verification.EmailVerification.test_reset_revokes_web_and_game_preserves_character_assets",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_email_verification.py\", line 80, in test_reset_revokes_web_and_game_preserves_character_assets\n    self.grant(account['account_id'], [{'type':'currency','code':'GP','delta':7}])\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_control_plane.py\", line 84, in grant\n    return self.s.command(self.owner, 'asset.grant', data)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 363, in command\n    result = asset_command(self, c, actor, action, data)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\assets.py\", line 123, in asset_command\n    raise Fault('INVALID', 'Grants only accept currency/item changes')\nrevival.service.Fault: Grants only accept currency/item changes\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 75.688
+}

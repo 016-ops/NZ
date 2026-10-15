@@ -1,0 +1,36 @@
+{
+  "kind": "ROOM_SERVER_MANAGEMENT_CONNECTIVITY_AFTER_USER_OPENED_RDP",
+  "ssh_port_used": 22,
+  "ports": [
+    {
+      "port": 22,
+      "tcp_connected": false,
+      "error_type": "ConnectionRefusedError",
+      "errno": 10061,
+      "winerror": 10061
+    },
+    {
+      "port": 3389,
+      "tcp_connected": true
+    },
+    {
+      "port": 5985,
+      "tcp_connected": false,
+      "error_type": "TimeoutError",
+      "errno": null,
+      "winerror": null
+    },
+    {
+      "port": 5986,
+      "tcp_connected": false,
+      "error_type": "TimeoutError",
+      "errno": null,
+      "winerror": null
+    }
+  ],
+  "credentials_sent": false,
+  "protocol_authenticated": false,
+  "server_mutations": 0,
+  "rdp_ui_used": false,
+  "boundary": "TCP connection only; does not establish OS, service identity, credential validity or deployment readiness."
+}

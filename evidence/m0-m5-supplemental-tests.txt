@@ -1,0 +1,13 @@
+test_native_contract_routes_and_acknowledgement_scope (tests.test_node_http.NodeHttpTests.test_native_contract_routes_and_acknowledgement_scope)
+节点可重放就绪/事件并确认自己的通知；玩家不能替代节点提交或确认。 ... ok
+test_worker_audit_failure_rolls_back_and_restart_resumes_once (tests.test_operations.OperationsTests.test_worker_audit_failure_rolls_back_and_restart_resumes_once)
+子项审计失败必须同时回滚资产和任务结果，重启后可以安全继续该子项。 ... ok
+test_disconnect_during_boss_keeps_other_player_and_no_reward_for_leaver (tests.test_pve.PveTests.test_disconnect_during_boss_keeps_other_player_and_no_reward_for_leaver)
+Boss 战中一人掉线不会终止另一人对局，退出者不获得最终奖励。 ... ok
+test_ten_synthetic_rounds_have_new_entities_events_and_unique_settlements (tests.test_pve.PveTests.test_ten_synthetic_rounds_have_new_entities_events_and_unique_settlements)
+同一对账号连续十局，上一局状态不进入新局；这是合成回归，不是实机十局。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 38.363s
+
+OK

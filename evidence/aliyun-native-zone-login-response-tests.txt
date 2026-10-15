@@ -1,0 +1,37 @@
+test_compatibility_is_detached_and_does_not_claim_wallet_or_lobby (tests.test_native_zone.NativeZoneLoginResponseTests.test_compatibility_is_detached_and_does_not_claim_wallet_or_lobby)
+修改展示说明不改变下一次编码；成功分支证据不扩张成角色、钱包和大厅验收。 ... ok
+test_fixed_response_matches_current_native_golden (tests.test_native_zone.NativeZoneLoginResponseTests.test_fixed_response_matches_current_native_golden)
+当前DLL对完整host和独立body互证，零FreeProps数组被省略后应精确为41B而非最大结构长度。 ... ok
+test_response_requires_the_explicit_exact_research_profile (tests.test_native_zone.NativeZoneLoginResponseTests.test_response_requires_the_explicit_exact_research_profile)
+生产或其他研究profile不能隐式启用该固定响应，调用方也不能传入任意业务字段。 ... ok
+test_captured_login_request_matches_current_dll_roundtrip_digest (tests.test_native_zone.NativeZoneLoginTests.test_captured_login_request_matches_current_dll_roundtrip_digest)
+26B真实DEV身份登录请求经当前DLL往返一致；所有非身份字段与观察值一致。 ... ok
+test_login_body_must_be_exactly_eighteen_bytes (tests.test_native_zone.NativeZoneLoginTests.test_login_body_must_be_exactly_eighteen_bytes)
+即使通用头声明自洽，正文只接受18字节；不容忍截断、扩展或重复消息。 ... ok
+test_login_parser_does_not_fabricate_identity_or_success (tests.test_native_zone.NativeZoneLoginTests.test_login_parser_does_not_fabricate_identity_or_success)
+请求中没有邮箱、密码或Uin；解析结果不能带认证成功、建角完成或大厅完成的推断。 ... ok
+test_login_rejects_other_commands_types_and_protocol_headers (tests.test_native_zone.NativeZoneLoginTests.test_login_rejects_other_commands_types_and_protocol_headers)
+拒绝通知、响应和未知消息，避免只凭18字节长度将其他命令解为登录。 ... ok
+test_numeric_boundaries_remain_raw_without_sentinel_or_platform_inference (tests.test_native_zone.NativeZoneLoginTests.test_numeric_boundaries_remain_raw_without_sentinel_or_platform_inference)
+不把FFFFFFFF改写为-1，也不将未知平台过滤为授权选择；每个字段按已证宽度完整保留。 ... ok
+test_bad_types_truncated_frames_extra_and_joined_packets_are_rejected (tests.test_native_zone.NativeZoneTests.test_bad_types_truncated_frames_extra_and_joined_packets_are_rejected)
+只接收一个完整bytes包；截断、拼接、尾随以及隐式类型转换全部拒绝。 ... ok
+test_header_capture_has_an_exact_total_limit (tests.test_native_zone.NativeZoneTests.test_header_capture_has_an_exact_total_limit)
+独立头摘要允许有限未知包体，边界等于64KiB可记录，超过一字节即拒绝。 ... ok
+test_key_count_must_explain_every_body_byte (tests.test_native_zone.NativeZoneTests.test_key_count_must_explain_every_body_byte)
+头部长度合法也不能掩盖密钥数组的缺失或尾随字节，不按实际余长修正不可信计数。 ... ok
+test_magic_endian_and_declared_header_lengths_are_strict (tests.test_native_zone.NativeZoneTests.test_magic_endian_and_declared_header_lengths_are_strict)
+不同协议或端序不能兼容猜测，声明头长必须8且体长须等于完整剩余字节。 ... ok
+test_observed_notification_matches_current_native_roundtrip_digest (tests.test_native_zone.NativeZoneTests.test_observed_notification_matches_current_native_roundtrip_digest)
+boot19第二连接实包经当前 DLL probe11严格往返，独立11B夹具须匹配其公开摘要。 ... ok
+test_outputs_and_errors_never_contain_key_material (tests.test_native_zone.NativeZoneTests.test_outputs_and_errors_never_contain_key_material)
+通知可能含敏感网吧密钥；公开结果只允许头、profile、固定消息名及长度，异常不带输入。 ... ok
+test_unknown_commands_are_header_observations_not_validated_bodies (tests.test_native_zone.NativeZoneTests.test_unknown_commands_are_header_observations_not_validated_bodies)
+通用头只服务有限抓包记录；未知命令、登录和响应均不能通过NetBarKey业务解析。 ... ok
+test_zero_binary_and_maximum_key_arrays_use_metadata_capacity (tests.test_native_zone.NativeZoneTests.test_zero_binary_and_maximum_key_arrays_use_metadata_capacity)
+计数0、内含NUL和512字节最大值按数组解析，避免把抓包的1字节或C字符串当通用约束。 ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.001s
+
+OK

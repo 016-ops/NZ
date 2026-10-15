@@ -1,0 +1,244 @@
+{
+  "kind": "CURRENT_TENPROXY_GETLOGININFO_STATIC_CONTRACT",
+  "sha256": "788bea4e34d6aaea8187df482ea2c859f7a6c8802b226b1ab7c2d9a6a10bc047",
+  "image_base": "0x10000000",
+  "read_only": true,
+  "client_file_writes": 0,
+  "native_execution_during_review": false,
+  "entry": {
+    "Invoke_export_rva": "0x13BB",
+    "Invoke_body_rva": "0x1D00",
+    "factory_command": "0x566",
+    "constructor_rva": "0x54B0",
+    "primary_vtable_rva": "0x1E5D0",
+    "GetLoginInfo_stub_rva": "0x1311",
+    "GetLoginInfo_body_rva": "0x6450"
+  },
+  "top_level_output_fields": [
+    {
+      "tag": 1,
+      "layout": "DWORD",
+      "output_offset": "0x4",
+      "tag_push_rva": "0x6532"
+    },
+    {
+      "tag": 2,
+      "layout": "DWORD",
+      "output_offset": "0x10",
+      "tag_push_rva": "0x654F"
+    },
+    {
+      "tag": 5,
+      "layout": "bytes<=16",
+      "output_offset": "0x14",
+      "tag_push_rva": "0x6595"
+    },
+    {
+      "tag": 3,
+      "layout": "bytes<=1",
+      "output_offset": "0x40",
+      "tag_push_rva": "0x65D4"
+    },
+    {
+      "tag": 4,
+      "layout": "bytes<=128",
+      "output_offset": "0x41",
+      "tag_push_rva": "0x6613"
+    },
+    {
+      "tag": 6,
+      "layout": "DWORD",
+      "output_offset": "0x1C4",
+      "tag_push_rva": "0x664A"
+    },
+    {
+      "tag": 7,
+      "layout": "bytes<=512",
+      "output_offset": "0x1C8",
+      "tag_push_rva": "0x668B"
+    },
+    {
+      "tag": 14,
+      "layout": "UTF16<=0x410 bytes",
+      "output_offset": "0x3C8",
+      "tag_push_rva": "0x66CD"
+    },
+    {
+      "tag": 15,
+      "layout": "UTF16<=0x410 bytes",
+      "output_offset": "0x7D8",
+      "tag_push_rva": "0x670F"
+    },
+    {
+      "tag": 16,
+      "layout": "UTF16<=0x28 bytes",
+      "output_offset": "0xBE8",
+      "tag_push_rva": "0x6751"
+    },
+    {
+      "tag": 17,
+      "layout": "DWORD",
+      "output_offset": "0x1270",
+      "tag_push_rva": "0x6788"
+    },
+    {
+      "tag": 18,
+      "layout": "DWORD minus one",
+      "output_offset": "0x1274",
+      "tag_push_rva": "0x67C0"
+    },
+    {
+      "tag": 19,
+      "layout": "UTF16<=0x208 bytes",
+      "output_offset": "0x1278",
+      "tag_push_rva": "0x6811"
+    }
+  ],
+  "server_record_output_fields": [
+    {
+      "tag20_subfield": 2,
+      "layout": "UTF16<=0x80 bytes",
+      "record0_output_offset": "0x1480",
+      "tag_push_rva": "0x68CE"
+    },
+    {
+      "tag20_subfield": 4,
+      "layout": "UTF16<=0x80 bytes",
+      "record0_output_offset": "0x1500",
+      "tag_push_rva": "0x692A"
+    },
+    {
+      "tag20_subfield": 3,
+      "layout": "DWORD",
+      "record0_output_offset": "0x1580",
+      "tag_push_rva": "0x697B"
+    },
+    {
+      "tag20_subfield": 5,
+      "layout": "DWORD",
+      "record0_output_offset": "0x1584",
+      "tag_push_rva": "0x69CC"
+    },
+    {
+      "tag20_subfield": 6,
+      "layout": "DWORD",
+      "record0_output_offset": "0x1588",
+      "tag_push_rva": "0x6A1D"
+    },
+    {
+      "tag20_subfield": 7,
+      "layout": "DWORD",
+      "record0_output_offset": "0x158C",
+      "tag_push_rva": "0x6A6E"
+    },
+    {
+      "tag20_subfield": 8,
+      "layout": "bytes<=0x100",
+      "record0_output_offset": "0x1590",
+      "tag_push_rva": "0x6ACA"
+    }
+  ],
+  "server_loop": {
+    "count_tag": 17,
+    "maximum_copied_records": 128,
+    "record_stride": "0x210",
+    "selected_tag": 18,
+    "selected_index_transform": "tag18 - 1",
+    "selection_transform_rva": "0x67E7",
+    "count_clamp_rva": "0x6858",
+    "subfield1_read_by_GetLoginInfo": false
+  },
+  "initialization": {
+    "entry_rva": "0x58F0",
+    "minimum_version": 32,
+    "minimum_check_rva": "0x5BF7",
+    "additional_read_tags": [
+      26,
+      27
+    ],
+    "tag26_layout": "one-byte length",
+    "tag27_layout": "bytes with read bound0x70",
+    "research_values": "zero length and empty byte string; valid shape, business necessity unknown"
+  },
+  "validation_limit": {
+    "scalar_getter_rva": "0x75E0",
+    "scalar_length_check_rva": "0x7641",
+    "description": "DWORD getter accepts a four-byte payload and copies its value; it does not check a business enum or whether a zero is usable. GetLoginInfo accumulates getter success and returns it at0x6B70."
+  },
+  "comparison_to_current_research_mapping": {
+    "all_statically_read_top_level_fields_present": true,
+    "all_statically_read_server_fields_present": true,
+    "selected_tag1_maps_to_output_index0": true,
+    "no_proven_missing_required_getter_field": true,
+    "meaningful_scalar_validation_missing": true,
+    "getter_success_is_not_game_or_server_acceptance": true
+  },
+  "unverified_boundaries": [
+    "Game-side business semantics for tag2 research value1 and tag6 value0.",
+    "Business use and required contents of empty tags7,14,15,16,26,27.",
+    "Game-side semantics of server subfield3 value1, subfields6/7 value0 and empty subfield8.",
+    "Which additional proxy interfaces the actual TGame calls after GetLoginInfo; this review only covers that method and its initializer.",
+    "Whether actual TGame reads the same selected server record that passed the isolated component test.",
+    "Actual directory/role protocol framing, message identifiers and responses; no local request has been observed."
+  ],
+  "next_evidence_needed": "Read-only observation of the actual current game call/connection path or a current-build verified server record contract. Do not guess missing fields or reuse PH values/addresses.",
+  "selected_instructions": {
+    "scalar_check": [
+      "00007639 mov       eax, dword ptr [ebp - 0x14]",
+      "0000763c mov       ecx, dword ptr [eax]",
+      "0000763e mov       dword ptr [ebp - 0x18], ecx",
+      "00007641 cmp       dword ptr [ebp - 0x18], 4",
+      "00007645 jne       0x1000765d",
+      "00007647 mov       dword ptr [ebp - 8], 1",
+      "0000764e mov       edx, dword ptr [ebp - 0x14]",
+      "00007651 add       edx, dword ptr [ebp - 0x18]",
+      "00007654 mov       eax, dword ptr [ebp + 0xc]",
+      "00007657 mov       ecx, dword ptr [edx]",
+      "00007659 mov       dword ptr [eax], ecx"
+    ],
+    "selected_index": [
+      "000067e7 mov       ecx, dword ptr [ebp - 0x40]",
+      "000067ea sub       ecx, 1",
+      "000067ed mov       edx, dword ptr [ebp + 8]",
+      "000067f0 mov       dword ptr [edx + 0x1274], ecx"
+    ],
+    "server_count_clamp": [
+      "00006855 mov       ecx, dword ptr [ebp + 8]",
+      "00006858 cmp       dword ptr [ecx + 0x1270], 0x80",
+      "00006862 jae       0x10006875",
+      "00006864 mov       edx, dword ptr [ebp + 8]",
+      "00006867 mov       eax, dword ptr [edx + 0x1270]",
+      "0000686d mov       dword ptr [ebp - 0x84], eax",
+      "00006873 jmp       0x1000687f",
+      "00006875 mov       dword ptr [ebp - 0x84], 0x80"
+    ],
+    "return_contract": [
+      "00006b5b mov       ecx, dword ptr [ebp - 0x34]",
+      "00006b5e mov       dword ptr [ebp - 0x4c], ecx",
+      "00006b61 mov       dword ptr [ebp - 4], 0xffffffff",
+      "00006b68 lea       ecx, [ebp - 0x20]",
+      "00006b6b call      0x10001271",
+      "00006b70 mov       eax, dword ptr [ebp - 0x4c]",
+      "00006b73 mov       ecx, dword ptr [ebp - 0xc]",
+      "00006b76 mov       dword ptr fs:[0], ecx",
+      "00006b7d pop       edi",
+      "00006b7e pop       esi",
+      "00006b7f pop       ebx",
+      "00006b80 mov       esp, ebp",
+      "00006b82 pop       ebp"
+    ]
+  },
+  "later_consumer_evidence": {
+    "report": "evidence/aliyun-native-login-consumption-static.json",
+    "scope": "Run12 resolves game-side meaning for a subset of the originally shape-only DLL contract. Historical getter observations remain valid but did not verify business semantics.",
+    "confirmed_semantics": {
+      "tag1": "ServiceId",
+      "tag2": "Uin",
+      "tag3": "game-signature length",
+      "tag20_subfield2": "first server connection host",
+      "tag20_subfield3": "first server connection port, low16 bits"
+    },
+    "original_research_v1_semantics_incorrect": true,
+    "server_subfield8_is_length_zero_check": false
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 16,
+  "passed": [
+    "tests.test_native_zone.NativeZoneLoginResponseTests.test_compatibility_is_detached_and_does_not_claim_wallet_or_lobby",
+    "tests.test_native_zone.NativeZoneLoginResponseTests.test_fixed_response_matches_current_native_golden",
+    "tests.test_native_zone.NativeZoneLoginResponseTests.test_response_requires_the_explicit_exact_research_profile",
+    "tests.test_native_zone.NativeZoneLoginTests.test_captured_login_request_matches_current_dll_roundtrip_digest",
+    "tests.test_native_zone.NativeZoneLoginTests.test_login_body_must_be_exactly_eighteen_bytes",
+    "tests.test_native_zone.NativeZoneLoginTests.test_login_parser_does_not_fabricate_identity_or_success",
+    "tests.test_native_zone.NativeZoneLoginTests.test_login_rejects_other_commands_types_and_protocol_headers",
+    "tests.test_native_zone.NativeZoneLoginTests.test_numeric_boundaries_remain_raw_without_sentinel_or_platform_inference",
+    "tests.test_native_zone.NativeZoneTests.test_bad_types_truncated_frames_extra_and_joined_packets_are_rejected",
+    "tests.test_native_zone.NativeZoneTests.test_header_capture_has_an_exact_total_limit",
+    "tests.test_native_zone.NativeZoneTests.test_key_count_must_explain_every_body_byte",
+    "tests.test_native_zone.NativeZoneTests.test_magic_endian_and_declared_header_lengths_are_strict",
+    "tests.test_native_zone.NativeZoneTests.test_observed_notification_matches_current_native_roundtrip_digest",
+    "tests.test_native_zone.NativeZoneTests.test_outputs_and_errors_never_contain_key_material",
+    "tests.test_native_zone.NativeZoneTests.test_unknown_commands_are_header_observations_not_validated_bodies",
+    "tests.test_native_zone.NativeZoneTests.test_zero_binary_and_maximum_key_arrays_use_metadata_capacity"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.0
+}

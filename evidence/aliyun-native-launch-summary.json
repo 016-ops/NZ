@@ -1,0 +1,2264 @@
+{
+  "kind": "NATIVE_STARTUP_DIAGNOSTIC_NOT_LOBBY_ACCEPTANCE",
+  "native_launch_ready": false,
+  "role_verified": false,
+  "lobby_verified": false,
+  "first_native_request_observed": true,
+  "transport_handshake_verified": true,
+  "transport_handshake_scope": "INITIAL_OWNED_SESSION_AUTH_CHALLENGE_KEYCHANGE_APPLICATION_ONLY",
+  "reconnect_verified": false,
+  "native_transport_challenge_verified": true,
+  "initial_keychange_application_verified": true,
+  "verified_email_identity_reached_native_application": true,
+  "single_geo_directory_consumed": true,
+  "zone_connection_authenticated": true,
+  "zone_login_request_observed": true,
+  "research_zone_login_response_consumed": true,
+  "multiplayer_verified": false,
+  "real_emails_sent_in_these_probes": 0,
+  "original_key_file_checks": [
+    {
+      "path": "Binaries/Win32/TGameBase.dll",
+      "matches_original_baseline": true
+    },
+    {
+      "path": "Binaries/Win32/TGame.exe",
+      "matches_original_baseline": true
+    },
+    {
+      "path": "Binaries/Win32/GameLoader.exe",
+      "matches_original_baseline": true
+    },
+    {
+      "path": "Binaries/Win32/WebBrowserControl.dll",
+      "matches_original_baseline": true
+    }
+  ],
+  "latest_workcopy_configuration_checks": [
+    {
+      "path": "TGame/Config/DefaultTGNet.ini",
+      "matches_pre_probe_snapshot": true,
+      "restore_status": "RESTORED"
+    },
+    {
+      "path": "TCLS/config/dirserver.xml",
+      "matches_pre_probe_snapshot": true,
+      "restore_status": "RESTORED"
+    },
+    {
+      "path": "TCLS/config/VersionServerConfig.xml",
+      "matches_pre_probe_snapshot": true,
+      "restore_status": "RESTORED"
+    }
+  ],
+  "original_entire_tree_rehashed_this_batch": false,
+  "runs": [
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 4,
+      "observation_limit_seconds": 180,
+      "ipc_profile": "nz-email-ipc-loopback-research-v1",
+      "execution_context": "restricted_tool_environment",
+      "verified_dev_email_identity": true,
+      "graphics_preflight_verified": null,
+      "loopback_request_count": 0,
+      "loopback_packet_count": 0,
+      "loopback_requests": [],
+      "transport_research_profile": null,
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [],
+      "login_state_comparisons": [],
+      "game_network_research_profile": null,
+      "tcp_sample_count": 0,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 0,
+      "all_sampled_threads_resumed": null
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 5,
+      "observation_limit_seconds": 90,
+      "ipc_profile": "nz-email-ipc-loopback-research-v1",
+      "execution_context": "restricted_tool_environment",
+      "verified_dev_email_identity": true,
+      "graphics_preflight_verified": null,
+      "loopback_request_count": 0,
+      "loopback_packet_count": 0,
+      "loopback_requests": [],
+      "transport_research_profile": null,
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [],
+      "login_state_comparisons": [],
+      "game_network_research_profile": null,
+      "tcp_sample_count": 0,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 0,
+      "all_sampled_threads_resumed": null
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 6,
+      "observation_limit_seconds": 45,
+      "ipc_profile": "nz-email-ipc-loopback-research-v1",
+      "execution_context": "restricted_tool_environment",
+      "verified_dev_email_identity": true,
+      "graphics_preflight_verified": null,
+      "loopback_request_count": 0,
+      "loopback_packet_count": 0,
+      "loopback_requests": [],
+      "transport_research_profile": null,
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [],
+      "login_state_comparisons": [],
+      "game_network_research_profile": null,
+      "tcp_sample_count": 0,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 12,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 7,
+      "observation_limit_seconds": 40,
+      "ipc_profile": "nz-email-ipc-loopback-research-v1",
+      "execution_context": "restricted_tool_environment",
+      "verified_dev_email_identity": true,
+      "graphics_preflight_verified": null,
+      "loopback_request_count": 0,
+      "loopback_packet_count": 0,
+      "loopback_requests": [],
+      "transport_research_profile": null,
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [],
+      "login_state_comparisons": [],
+      "game_network_research_profile": null,
+      "tcp_sample_count": 0,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 12,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 8,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v1",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": true,
+      "graphics_preflight_verified": null,
+      "loopback_request_count": 0,
+      "loopback_packet_count": 0,
+      "loopback_requests": [],
+      "transport_research_profile": null,
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [],
+      "login_state_comparisons": [],
+      "game_network_research_profile": null,
+      "tcp_sample_count": 0,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 9,
+      "observation_limit_seconds": 180,
+      "ipc_profile": "nz-email-ipc-loopback-research-v1",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": false,
+      "graphics_preflight_verified": null,
+      "loopback_request_count": 0,
+      "loopback_packet_count": 0,
+      "loopback_requests": [],
+      "transport_research_profile": null,
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [],
+      "login_state_comparisons": [],
+      "game_network_research_profile": null,
+      "tcp_sample_count": 0,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 10,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v1",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": false,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 0,
+      "loopback_packet_count": 0,
+      "loopback_requests": [],
+      "transport_research_profile": null,
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [],
+      "login_state_comparisons": [],
+      "game_network_research_profile": null,
+      "tcp_sample_count": 0,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 11,
+      "observation_limit_seconds": 90,
+      "ipc_profile": "nz-email-ipc-loopback-research-v1",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": false,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 0,
+      "loopback_packet_count": 0,
+      "loopback_requests": [],
+      "transport_research_profile": null,
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [],
+      "login_state_comparisons": [],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 0,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 12,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v1",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": false,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 0,
+      "loopback_packet_count": 0,
+      "loopback_requests": [],
+      "transport_research_profile": null,
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [],
+      "login_state_comparisons": [],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 13,
+      "observation_limit_seconds": 90,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": false,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 1,
+      "loopback_packet_count": 1,
+      "loopback_requests": [
+        {
+          "bytes": 60,
+          "sha256": "10f207e546215bf6e1df120327888806591b0ddd7557a1e9ceda53075bc7ddb4"
+        }
+      ],
+      "transport_research_profile": null,
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [],
+      "login_state_comparisons": [],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 45,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 14,
+      "observation_limit_seconds": 90,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": false,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 1,
+      "loopback_packet_count": 2,
+      "loopback_requests": [
+        {
+          "bytes": 60,
+          "sha256": "10f207e546215bf6e1df120327888806591b0ddd7557a1e9ceda53075bc7ddb4",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "46c89393c4eeb78d9a06d9168da178a647342069ffaca3103eb074cb21244164",
+          "direction": "probe_to_client"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v1",
+      "native_transport_challenge_verified": false,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": false,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": null,
+          "error_type": "TransportError",
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 45,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 15,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": false,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 2,
+      "loopback_packet_count": 3,
+      "loopback_requests": [
+        {
+          "bytes": 60,
+          "sha256": "10f207e546215bf6e1df120327888806591b0ddd7557a1e9ceda53075bc7ddb4",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "f01dd45728452fc7425079a4af30de93baa180220984e8607fdbee41dfb16274",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "a434523ed89be95fbcd93522e747905fa71484bd941901a376c593dbd02ba6c5",
+          "direction": "client_to_probe"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": false,
+      "transport_capture_stopped": null,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": "challenge_checked",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 16,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": false,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 3,
+      "loopback_packet_count": 5,
+      "loopback_requests": [
+        {
+          "bytes": 60,
+          "sha256": "10f207e546215bf6e1df120327888806591b0ddd7557a1e9ceda53075bc7ddb4",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "bb40891790c37b495691b8b05509e4f0f3d71b584cf5b9def1f0d9aef8b1af86",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "306ff131e075c514ff01b96637a0fa2ecc23a87bc0c45bb665ba8761fa409b71",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "be8e592770f2c5f6cb973531d91f6361d60c953ff1c78231aa87cb1410156cd1",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "b3dcbc71b83995df9db8b8f1842a9ef500df1642a775c5aa8e6d77c407c15e04",
+          "direction": "client_to_probe"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": true,
+      "transport_capture_stopped": true,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 9,
+          "application_sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+          "application_header": null,
+          "stage": "application_captured",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 17,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": true,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 3,
+      "loopback_packet_count": 5,
+      "loopback_requests": [
+        {
+          "bytes": 72,
+          "sha256": "6aa02044dce80751d9e3a90436396c11977eb718420eb2189a69a1ed95c8d70a",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "99cf7f12e9817c9c5f9265e8b7f89109325ec640f197c112a45a72165bc75dd1",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "6c438738aa0ca7aaa616c63c80608c49dc7c1c93a6583ee6b6497cd0812ea080",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "bb06e8d0f089f52e8990115b2f9720b69ac0d06f1e8ff13b9ad93c3ba868af7e",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "b7468056d8121557e74075485892f94c3ddae1cb2951351e36963d3f8aced9b7",
+          "direction": "client_to_probe"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": true,
+      "transport_capture_stopped": true,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 9,
+          "application_sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+          "application_header": null,
+          "stage": "application_captured",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 18,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": false,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 4,
+      "loopback_packet_count": 7,
+      "loopback_requests": [
+        {
+          "bytes": 60,
+          "sha256": "10f207e546215bf6e1df120327888806591b0ddd7557a1e9ceda53075bc7ddb4",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "9b7fe837bf30acf5f9d3b88e1f9105a37250839b8add643e9de5df5bbb48823e",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "dddffcde8e54d2876e14081172ec424091e5c7efc57a593f6f0945f0b112b9f0",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "caac2a3f5e05a1735b8506ad39da192dae6919731f6d79a390f4c69637a3ceb8",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "001cad8233be819c5080110f270d19a721cad9bf0732b99c73e37bdb73ad1a19",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 76,
+          "sha256": "11edc090f8d2c65b743149a36064b8ff164f2470bb9bd81f20f5b57d1c642f77",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 76,
+          "sha256": "19f2661525809a217b2afa751fda855ff2f12b426f6652e222377e0df20d590a",
+          "direction": "client_to_probe"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": true,
+      "transport_capture_stopped": true,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 9,
+          "application_sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+          "application_header": null,
+          "stage": "next_geo_request_captured",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": true,
+          "geo_ping_response_advanced_to_zone_list": true,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 19,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": false,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 7,
+      "loopback_packet_count": 13,
+      "loopback_requests": [
+        {
+          "bytes": 60,
+          "sha256": "10f207e546215bf6e1df120327888806591b0ddd7557a1e9ceda53075bc7ddb4",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "4641c39444c322fe8deff3223a931bfd0323bb0a7948dc1f69cc24fc44f35cab",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "0219a5d296d1958fcd68e9c93e078d6b8801fbd06fbae9474049c105d8ac623f",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "7788285cb7fb6b645aca5472c586b0994663dd76e4f38d40e057a3740df7967c",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "f498332d9578e66eb599a2dc25bc2396bb05cf758d0f3472290ffdb19e14e7c6",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 76,
+          "sha256": "eb981189dbb5f4f687b2d6779487de5309531347af35249b3716833232c89f2f",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 76,
+          "sha256": "af6aac0110caebace76f8f0d50074d61598f45ab201d2a50b0c6dfede8e2e74a",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 92,
+          "sha256": "2e4638b67c53e2e7ac0671dca8cce378b137b9f08ebf9c786136027929f912fb",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 60,
+          "sha256": "10f207e546215bf6e1df120327888806591b0ddd7557a1e9ceda53075bc7ddb4",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "d272872e4dbdfc6d763efd07bdb5a7535a5c3d7ab22d77d6aaab201d911da948",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "92122b7a6baaa94bbe8b216abb9e590ef7491eb9c5344fa3d53d0316ffb1a129",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "43345818debe8937dd35ac52db3f65d707bdf01e02d46d0cb8f53276f1c5b1a5",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "8a8d0538993ff3c716e927aec84cfc76ccde12a8b49e0a066d3f3d4dff17300d",
+          "direction": "client_to_probe"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": true,
+      "transport_capture_stopped": true,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 9,
+          "application_sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+          "application_header": {
+            "magic": 33282,
+            "command": 4097,
+            "head_length": 8,
+            "body_length": 1
+          },
+          "stage": "zone_directory_sent",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": true,
+          "geo_ping_response_advanced_to_zone_list": true,
+          "geo_zone_request_verified": true,
+          "geo_zone_response_sent": true,
+          "next_tcp_connection_observed": true,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 11,
+          "application_sha256": "411481f88d63ea7ac96ed7db0d264d023d53243acd31f01e0149fb6af7b469ca",
+          "application_header": {
+            "magic": 12867,
+            "command": 4688,
+            "head_length": 8,
+            "body_length": 3
+          },
+          "stage": "application_captured",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 45,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 20,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": true,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 8,
+      "loopback_packet_count": 14,
+      "loopback_requests": [
+        {
+          "bytes": 72,
+          "sha256": "5b0314b6952a26a6aa8122adf08274ed63467556fa198f9541e98da8212882b6",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "5e75f7ef33af26d5a225e69875e1a605b740b078ff58012b4ee53b95162a8c50",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "49353b4d616d8d8cd452bf1908573f8ff8a02503e8778e584ee55fdd5b40ac17",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "1f3ca806e805a6a89e644422deeaf9f9b91a65f5f29a562b737da710472bed95",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "7a635b2f057f6fdf627637c10a2f5a50a14b58a61966dfe7feb4b5342a84941b",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 76,
+          "sha256": "b990708918c9f1dadc38ca641df94ca42e6e6c9a09c405b5cd39e1fd1e58e067",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 76,
+          "sha256": "9924eb8e45fbde96fca3134fadfa438b1da239a8d26e4d420f1bbf128410cacd",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 92,
+          "sha256": "6a2f9c0c48f72f2ee56edb894ef9b5937be258d4429d74bea76b949891ca46d7",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 72,
+          "sha256": "5b0314b6952a26a6aa8122adf08274ed63467556fa198f9541e98da8212882b6",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "16b45342d8bf01a4017cb81575e806a89afe2df1be88bdc80d1521a8c15f4384",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "d4c33f79145cc5026f12b6d7907738644b5003cee8c3831ded47b3a0cab67faf",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "bbab3152c05b2700a0c4b8de7f9b0b0597c8dd965eeee247daf1b5af635d1b8f",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "e0d70e2e6dacbdc1fe768d1a482ef05d64b2de60988e4827836b79b5da976a81",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 60,
+          "sha256": "b5c799b2b98cb576583ed8774d49bb6c7a2d7fff6595cad29f118fedc13f3157",
+          "direction": "client_to_probe"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": true,
+      "transport_capture_stopped": true,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 9,
+          "application_sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+          "application_header": {
+            "magic": 33282,
+            "command": 4097,
+            "head_length": 8,
+            "body_length": 1
+          },
+          "stage": "zone_directory_sent",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": true,
+          "geo_ping_response_advanced_to_zone_list": true,
+          "geo_zone_request_verified": true,
+          "geo_zone_response_sent": true,
+          "next_tcp_connection_observed": true,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 11,
+          "application_sha256": "411481f88d63ea7ac96ed7db0d264d023d53243acd31f01e0149fb6af7b469ca",
+          "application_header": {
+            "magic": 12867,
+            "command": 4688,
+            "head_length": 8,
+            "body_length": 3
+          },
+          "stage": "await_zone_application_sequence",
+          "error_type": "TimeoutError",
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": [
+            {
+              "bytes": 26,
+              "sha256": "4c00864169617cf28adfedffc566c8e6867471d1836e6546a44548679b106a38",
+              "header": {
+                "magic": 12867,
+                "command": 40960,
+                "head_length": 8,
+                "body_length": 18
+              }
+            }
+          ],
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 21,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": true,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 8,
+      "loopback_packet_count": 14,
+      "loopback_requests": [
+        {
+          "bytes": 72,
+          "sha256": "bf52dba75988ec89f86860f47ee11e233b875738a5f2e7b5e262a40bec831958",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "f1ba2707c07d56697e37c89c36febe2d64027bfbb269b62c5de6413ab1a81d26",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "62054c6c8edf8745719e90212b04bac29912d5e2da754f087ee6b6ea79771797",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "c3641215175f8b2ac4082b8e99d92c97761e5bf262ddf0851ebf681e3eda705c",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "8bbcaf803c1f22b692f96471e22b2b73b1552b90f3e7317cd6dd2bd69d3cbc65",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 76,
+          "sha256": "5dae8aaf643b9779cceba84966110a3809ff5718b9447d2bdc39f82970dd8123",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 76,
+          "sha256": "2d65e6745ad723764df061716f97c1f7cb718a3a37a74493c1be9be4e5335e13",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 92,
+          "sha256": "a39248baeb9358361af7bfd7c3a0797812272e8f3c6af05aeed41f6d3c51953e",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 72,
+          "sha256": "bf52dba75988ec89f86860f47ee11e233b875738a5f2e7b5e262a40bec831958",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "bca2d476c4edd0fa8d9303f9e008a152191eaad36c598b5bdacf3d2f74bd0db9",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "b9b8eb79947d03a47deb522f617bc3561cfab95e5de429f8d4588642b0a58152",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "de78f14e86ba326d6f19a2e9466e2088d94642a1fdd9d872947683aef43377a9",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "1c64bd2a750dcf9185898c40754096eb546bb50ca6d9f8a8221e70d728834180",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 60,
+          "sha256": "42dfab91447bdbe89c2f59b1ee96403ce171dd51c6ef303340168fc5aae0dd0e",
+          "direction": "client_to_probe"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": true,
+      "transport_capture_stopped": true,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 9,
+          "application_sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+          "application_header": {
+            "magic": 33282,
+            "command": 4097,
+            "head_length": 8,
+            "body_length": 1
+          },
+          "stage": "zone_directory_sent",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": true,
+          "geo_ping_response_advanced_to_zone_list": true,
+          "geo_zone_request_verified": true,
+          "geo_zone_response_sent": true,
+          "next_tcp_connection_observed": true,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 11,
+          "application_sha256": "411481f88d63ea7ac96ed7db0d264d023d53243acd31f01e0149fb6af7b469ca",
+          "application_header": {
+            "magic": 12867,
+            "command": 4688,
+            "head_length": 8,
+            "body_length": 3
+          },
+          "stage": "await_zone_application_sequence",
+          "error_type": "TimeoutError",
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": [
+            {
+              "bytes": 26,
+              "sha256": "4c00864169617cf28adfedffc566c8e6867471d1836e6546a44548679b106a38",
+              "header": {
+                "magic": 12867,
+                "command": 40960,
+                "head_length": 8,
+                "body_length": 18
+              }
+            }
+          ],
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 22,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": true,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 15,
+      "loopback_packet_count": 31,
+      "loopback_requests": [
+        {
+          "bytes": 72,
+          "sha256": "f1268de15df39031f05630d41ab9cb0917ea3343e1b01055d921f85aa3488f2e",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "89c0121e3b4cee594e365eaf82710a32e803f578ca6907d4555d129c388a7322",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "3351ab195264d069cf1cf2feb0fd167f07329e09fac12dd42fa61ce8228be3e9",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "a14a8e86186ddc567fb082902e69f6b16fd91a26c31d11f76f491464e80e493d",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "280326c5eced814cc570fd1104564b3d175024a1633c405eb8c7a62f6f076fe5",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 76,
+          "sha256": "46d9c3a0632626a0e6ef7aa55f30185d5568da00820229b6999422d7921239dc",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 76,
+          "sha256": "76029b2737852433fc49b0f14cf713923ac267034ffef32f1aff92e969ad7b43",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 92,
+          "sha256": "fbc2221c1155939f536e9e3cab8b39c41d05a70760f979ff0f7b027948bf59ef",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 72,
+          "sha256": "f1268de15df39031f05630d41ab9cb0917ea3343e1b01055d921f85aa3488f2e",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "b1140bc9202d3b2dc8b3cad00adcd6f7978887752b686a9ff7e30213cd04e476",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "7b0c4c1b733dab9b62ba05dcb6daef395cb9e8ec930066d8ebc53dd81a1269da",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "1d136e6c043b40504966cee1f279f2a5bad13d0d7e0830a05b89077c54abee0f",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "c8af89dc6781b50602a708c596166d1a46e634241ae8e5bb87c6163512cd3197",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 60,
+          "sha256": "8c83ca58fc395c48721e6c0b4bff8ed04d81f1787f80971eeda4bb1a5996918d",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 60,
+          "sha256": "5ab66b0b28f870f39d2780cb737a07db9b2f28897881b65f316beb93c525abf0",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "7bc86912e1560edaa00c785695b453ab2d426306e58e6ba4ffeb794c9d746b1b",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 44,
+          "sha256": "e054058be158eb6946cf7fe5ef13b0b9d3737a994c2f753907e689c3d5bf8960",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 156,
+          "sha256": "5ce577e6059f36a9ddcc23731e536c774350172f7205f7651f336bb59b96ba74",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 140,
+          "sha256": "bd8a3fd326c85540c98eb6bc96b38f0ba34698d4a64e86793ea45f21134f15c7",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 204,
+          "sha256": "4f0a37b647b7baea8eaab3bf7935a8a8f7762ee6b2b43745f498e8963534d5a5",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 236,
+          "sha256": "37eea727f3aed0fe80c95fd6da8c6e154a9453df9525f0254b790c24af479b2d",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 108,
+          "sha256": "89215d7cfa89231019b91c60af3c24153047f8726c6c1b2502bf889497dc28f6",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 12,
+          "sha256": "fa003049555bbaf7a1463f6d7b562b81ffe781c60d805ba4a0bc0964cb6702b0",
+          "direction": "client_to_probe_rejected_prefix"
+        },
+        {
+          "bytes": 12,
+          "sha256": "fa003049555bbaf7a1463f6d7b562b81ffe781c60d805ba4a0bc0964cb6702b0",
+          "direction": "client_to_probe_rejected_prefix"
+        },
+        {
+          "bytes": 12,
+          "sha256": "fa003049555bbaf7a1463f6d7b562b81ffe781c60d805ba4a0bc0964cb6702b0",
+          "direction": "client_to_probe_rejected_prefix"
+        },
+        {
+          "bytes": 12,
+          "sha256": "fa003049555bbaf7a1463f6d7b562b81ffe781c60d805ba4a0bc0964cb6702b0",
+          "direction": "client_to_probe_rejected_prefix"
+        },
+        {
+          "bytes": 12,
+          "sha256": "fa003049555bbaf7a1463f6d7b562b81ffe781c60d805ba4a0bc0964cb6702b0",
+          "direction": "client_to_probe_rejected_prefix"
+        },
+        {
+          "bytes": 12,
+          "sha256": "fa003049555bbaf7a1463f6d7b562b81ffe781c60d805ba4a0bc0964cb6702b0",
+          "direction": "client_to_probe_rejected_prefix"
+        },
+        {
+          "bytes": 12,
+          "sha256": "fa003049555bbaf7a1463f6d7b562b81ffe781c60d805ba4a0bc0964cb6702b0",
+          "direction": "client_to_probe_rejected_prefix"
+        },
+        {
+          "bytes": 12,
+          "sha256": "fa003049555bbaf7a1463f6d7b562b81ffe781c60d805ba4a0bc0964cb6702b0",
+          "direction": "client_to_probe_rejected_prefix"
+        },
+        {
+          "bytes": 12,
+          "sha256": "fa003049555bbaf7a1463f6d7b562b81ffe781c60d805ba4a0bc0964cb6702b0",
+          "direction": "client_to_probe_rejected_prefix"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": true,
+      "transport_capture_stopped": true,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 9,
+          "application_sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+          "application_header": {
+            "magic": 33282,
+            "command": 4097,
+            "head_length": 8,
+            "body_length": 1
+          },
+          "stage": "zone_directory_sent",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": true,
+          "geo_ping_response_advanced_to_zone_list": true,
+          "geo_zone_request_verified": true,
+          "geo_zone_response_sent": true,
+          "next_tcp_connection_observed": true,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 11,
+          "application_sha256": "411481f88d63ea7ac96ed7db0d264d023d53243acd31f01e0149fb6af7b469ca",
+          "application_header": {
+            "magic": 12867,
+            "command": 4688,
+            "head_length": 8,
+            "body_length": 3
+          },
+          "stage": "zone_application_sequence_captured",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": [
+            {
+              "bytes": 26,
+              "sha256": "4c00864169617cf28adfedffc566c8e6867471d1836e6546a44548679b106a38",
+              "header": {
+                "magic": 12867,
+                "command": 40960,
+                "head_length": 8,
+                "body_length": 18
+              },
+              "structure": {
+                "zone_profile": "nz-current-zone-login-request-v1",
+                "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+                "magic": 12867,
+                "command": 40960,
+                "head_length": 8,
+                "body_length": 18,
+                "body_validation": "VALIDATED_STRUCTURE_ONLY",
+                "message": "C2ZN_ReqLogin",
+                "sub_channel_id": 4294967295,
+                "preference_crc_value": 0,
+                "system_setting_crc_value": 704643316,
+                "current_zone_host_ip_wire_bytes": "0100007f",
+                "current_zone_host_ip_dword": 16777343,
+                "login_platform": 0
+              }
+            },
+            {
+              "bytes": 8,
+              "sha256": "5a238cd4b51f13f21306b4c45b14bbdb33d1b40440ec0e64f354870eb0826e67",
+              "header": {
+                "magic": 12867,
+                "command": 41476,
+                "head_length": 8,
+                "body_length": 0
+              }
+            },
+            {
+              "bytes": 12,
+              "sha256": "e99e616e5a007a0cc49d8dcb9fe570488efa7513b924794d55db0c0f11d1c4bd",
+              "header": {
+                "magic": 12867,
+                "command": 65285,
+                "head_length": 8,
+                "body_length": 4
+              }
+            },
+            {
+              "bytes": 128,
+              "sha256": "ca17783674f641af48af78b07a246138d06ce5d0dc90898288d2d067557874d1",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 120
+              }
+            },
+            {
+              "bytes": 110,
+              "sha256": "af105582839067ac1aada96e39cb072c3becf9d4eba6d312e19b2f4fde6188f0",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 102
+              }
+            },
+            {
+              "bytes": 182,
+              "sha256": "d8d8a3d35e05be5293ddb014454f969ecd15ae314fbbfd2fb8eced1a41e1facb",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 174
+              }
+            },
+            {
+              "bytes": 204,
+              "sha256": "b6a9f95dbf683fd236a262813c70970a28a6e9dadb03f52927dcbd712a1ec6d6",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 196
+              }
+            },
+            {
+              "bytes": 74,
+              "sha256": "8c8c9d54d6bc665839b98da2e10bc483facbfab37a16b47124c34e70850b97c5",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 66
+              }
+            }
+          ],
+          "zone_sequence_stop_reason": "FRAME_LIMIT",
+          "zone_login_response_sent": true,
+          "zone_login_response_profile": "cn2020-zone-login-success-research-v1",
+          "zone_login_response_bytes": 41,
+          "zone_login_response_sha256": "71c6d9b507ea51733717213d306cc2d587960275fae747474683b89515aafc2c",
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": false,
+          "challenge_verified": false,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": "await_auth",
+          "error_type": "TransportError",
+          "error_code": "UNSUPPORTED_COMMAND",
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": false,
+          "challenge_verified": false,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": "await_auth",
+          "error_type": "TransportError",
+          "error_code": "UNSUPPORTED_COMMAND",
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": false,
+          "challenge_verified": false,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": "await_auth",
+          "error_type": "TransportError",
+          "error_code": "UNSUPPORTED_COMMAND",
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": false,
+          "challenge_verified": false,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": "await_auth",
+          "error_type": "TransportError",
+          "error_code": "UNSUPPORTED_COMMAND",
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": false,
+          "challenge_verified": false,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": "await_auth",
+          "error_type": "TransportError",
+          "error_code": "UNSUPPORTED_COMMAND",
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": false,
+          "challenge_verified": false,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": "await_auth",
+          "error_type": "TransportError",
+          "error_code": "UNSUPPORTED_COMMAND",
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": false,
+          "challenge_verified": false,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": "await_auth",
+          "error_type": "TransportError",
+          "error_code": "UNSUPPORTED_COMMAND",
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": false,
+          "challenge_verified": false,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": "await_auth",
+          "error_type": "TransportError",
+          "error_code": "UNSUPPORTED_COMMAND",
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": false,
+          "challenge_verified": false,
+          "key_change_sent": null,
+          "new_key_application_received": null,
+          "application_bytes": null,
+          "application_sha256": null,
+          "application_header": null,
+          "stage": "await_auth",
+          "error_type": "TransportError",
+          "error_code": "UNSUPPORTED_COMMAND",
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 23,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": true,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 15,
+      "loopback_packet_count": 22,
+      "loopback_requests": [
+        {
+          "bytes": 72,
+          "sha256": "0e33aafbb162dd00eee77d4c2d6c4438c0bc94c138a1ccde81a64f3d175d6636",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "f40ae8155aa0982dd5cd1056f6dff39571d07e351dafd81a0141da61a3db2893",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "17a68f4030fc28eac9200342e74fabdee94771a7b1118670857719094ec3a90b",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "3964de0f387d7fde35aa5584609054b30abe7a58ecb519e8a8946e626c38f829",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "4f557ffe0ee8f2e8dcd30f06ae355f0b08f426bd80bc66b16b76c1e1c38d3a1c",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 76,
+          "sha256": "c28a4ca41052eb588131542e9b9f548d9cc35d66ed09d166744ebb930c4772e3",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 76,
+          "sha256": "bb67cb88081ed9ebb0b49d30928e935600c958164618122f223c95a2ef4b120b",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 92,
+          "sha256": "763be67cc68d0bd047f07f1e27064dc5f7165f7e842d6d41b027583d66fe487c",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 72,
+          "sha256": "0e33aafbb162dd00eee77d4c2d6c4438c0bc94c138a1ccde81a64f3d175d6636",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "d451d90478fa2f1943062d5fe0a30e9c9edfe2b9080901f1b83abe9c987399ac",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "cfcb9d6ce2b27d39a12740abf51a3372aea7ceb5d56851887fbd025fde0451e1",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "86b5e9847cb674241b3aaf80f9c15cd59d414965a68001f8e10f8e9253456c6d",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "ca1c81939491d35488c5d80653161101801a930102f3a2b8a8e5e1dd8cd231f1",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 60,
+          "sha256": "0a8558fee451157edb616f47cf2b3a649b97cfe0a955e2fe52c6100869267123",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 60,
+          "sha256": "5f92c330ecbe6152c107db886a67451e422e361c36a6bb4820cd5072016e05aa",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "2bbf8b2cfe2e914ddb9d436414680392d4537240e36b66865d7e0af447781db5",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 44,
+          "sha256": "7302776a84a3149ab94d3d3a0be2bf73997acb45b9c657274fa97d6989593a4a",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 156,
+          "sha256": "5d4d5165f38cff380e4ad5c940e8749e2712b1dd26e264433eb8c712fd777b0f",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 140,
+          "sha256": "34790848c7ed4ee6d68b6609d487a433ee73f2ac5164d54b7fb654a4f74c977a",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 172,
+          "sha256": "9ed63daad72ad9b2e637d8d2e0a9e7b5068e2bb8d86d0063ecb6fc8f27421292",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 236,
+          "sha256": "48589aa3f661786785bca426caae3629790afbefd480d6e32c41f9f459e9defb",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 108,
+          "sha256": "302fa2cd0c2c2949966f9661c17a9f30c91c86c92e90a0ac58ab1acdbdaa8f75",
+          "direction": "client_to_probe"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": true,
+      "transport_capture_stopped": true,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 9,
+          "application_sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+          "application_header": {
+            "magic": 33282,
+            "command": 4097,
+            "head_length": 8,
+            "body_length": 1
+          },
+          "stage": "zone_directory_sent",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": true,
+          "geo_ping_response_advanced_to_zone_list": true,
+          "geo_zone_request_verified": true,
+          "geo_zone_response_sent": true,
+          "next_tcp_connection_observed": true,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 11,
+          "application_sha256": "411481f88d63ea7ac96ed7db0d264d023d53243acd31f01e0149fb6af7b469ca",
+          "application_header": {
+            "magic": 12867,
+            "command": 4688,
+            "head_length": 8,
+            "body_length": 3
+          },
+          "stage": "zone_application_sequence_captured",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": [
+            {
+              "bytes": 26,
+              "sha256": "4c00864169617cf28adfedffc566c8e6867471d1836e6546a44548679b106a38",
+              "header": {
+                "magic": 12867,
+                "command": 40960,
+                "head_length": 8,
+                "body_length": 18
+              },
+              "structure": {
+                "zone_profile": "nz-current-zone-login-request-v1",
+                "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+                "magic": 12867,
+                "command": 40960,
+                "head_length": 8,
+                "body_length": 18,
+                "body_validation": "VALIDATED_STRUCTURE_ONLY",
+                "message": "C2ZN_ReqLogin",
+                "sub_channel_id": 4294967295,
+                "preference_crc_value": 0,
+                "system_setting_crc_value": 704643316,
+                "current_zone_host_ip_wire_bytes": "0100007f",
+                "current_zone_host_ip_dword": 16777343,
+                "login_platform": 0
+              }
+            },
+            {
+              "bytes": 8,
+              "sha256": "5a238cd4b51f13f21306b4c45b14bbdb33d1b40440ec0e64f354870eb0826e67",
+              "header": {
+                "magic": 12867,
+                "command": 41476,
+                "head_length": 8,
+                "body_length": 0
+              }
+            },
+            {
+              "bytes": 12,
+              "sha256": "e99e616e5a007a0cc49d8dcb9fe570488efa7513b924794d55db0c0f11d1c4bd",
+              "header": {
+                "magic": 12867,
+                "command": 65285,
+                "head_length": 8,
+                "body_length": 4
+              }
+            },
+            {
+              "bytes": 128,
+              "sha256": "2d52efdc39f6e186991574fb988ba46aa46e186d2e7fe1402eb9cb5835e3d11b",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 120
+              }
+            },
+            {
+              "bytes": 110,
+              "sha256": "af105582839067ac1aada96e39cb072c3becf9d4eba6d312e19b2f4fde6188f0",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 102
+              }
+            },
+            {
+              "bytes": 150,
+              "sha256": "c3f0c6fb7a76cba66099e6fc37ce9b5153a8f3377512d45400f976d33d38a950",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 142
+              }
+            },
+            {
+              "bytes": 204,
+              "sha256": "b6a9f95dbf683fd236a262813c70970a28a6e9dadb03f52927dcbd712a1ec6d6",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 196
+              }
+            },
+            {
+              "bytes": 74,
+              "sha256": "edead06cbe14d7189c19edf9b78fb8fc73ea0741ba03d2d449afd000c01edc41",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 66
+              }
+            }
+          ],
+          "zone_sequence_stop_reason": "FRAME_LIMIT",
+          "zone_login_response_sent": true,
+          "zone_login_response_profile": "cn2020-zone-login-success-research-v1",
+          "zone_login_response_bytes": 41,
+          "zone_login_response_sha256": "71c6d9b507ea51733717213d306cc2d587960275fae747474683b89515aafc2c",
+          "connection_held_after_capture": true
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    }
+  ],
+  "restricted_graphics_gate": {
+    "blocker": "D3D9_UNAVAILABLE_IN_LAUNCH_CONTEXT",
+    "game_process_started": false,
+    "cleanup_verified": true,
+    "configuration_restored": true
+  },
+  "confirmed": [
+    "Current GameLoader copies 0x80000 bytes of the PID mapping; capacity was corrected in the owned bootstrap.",
+    "Restricted execution context failed x86 D3D9 capability lookup; same machine normal user context returned Shader 3.0.",
+    "Boot10 passed the new graphics gate and reached the same engine main-loop sample as boot08/09.",
+    "The sampled Sleep callee implements maximum tick-rate frame pacing, not a login-complete flag wait at that location.",
+    "Boot12 game code confirmed that v1 incorrectly assigned account ID to ServiceId and primary endpoint to other server fields.",
+    "Research v2 assigns tag2=local game ID, tag1=research ServiceId1, server sub2=primary host and sub3=primary port.",
+    "Boot13 v2 produced the first60-byte native request at the owned loopback listener; no protocol response was sent.",
+    "Boot14 validated AUTH and sent SYN, then recorded only TransportError without the consumed header or error code. This alone does not establish client rejection.",
+    "Boot14 compared fixed account/service/host/port fields against this owned probe and all matched; no credential bytes were read.",
+    "Boot15 verified native AUTH60 -> SYN45 -> asynchronous SYNACK61 including encrypted sequence padding; role and lobby remained unverified.",
+    "Boot16 accepted the research key-change response and emitted a 9-byte GEO PingList request under the new key.",
+    "Boot17 repeated AUTH, challenge, key-change and GEO request with the real verified DEV email identity; no additional email was sent.",
+    "Boot18 consumed a native-serializer-verified PingList response and emitted the 40-byte ZoneList request.",
+    "Boot19 consumed a single loopback ZoneList response, opened the second TCP connection, passed independent authentication and emitted a current 11-byte NetBarKey notification.",
+    "Boot20 repeated the full directory and second-connection flow with the verified DEV email identity, then captured the 26-byte current A000 login request after NetBarKey; no Zone login response was sent.",
+    "Boot21 repeated the same login request and sampled only the fixed current response-consumer code ranges. The no-response observation window expired without additional data, not proof of client rejection.",
+    "Boot22 sent the native-verified research A001 response with Result8100 and captured A204 then FF05, confirming execution of the current success-initialization branch. PlayerInfo, role and lobby remained unverified.",
+    "Boot22 closed its connection at the eight-frame capture limit; subsequent unsupported reconnect frames are a probe/reconnect limitation, not rejection of the prior login response.",
+    "Boot23 repeated A001 consumption with the verified email identity and held the authenticated connection until bounded probe cleanup; only two connections and no unsupported reconnect errors were observed.",
+    "Persistent configuration guard restored all three variants after each guarded probe and verified original hashes."
+  ],
+  "user_observation": "Loading picture appeared; did not reach lobby.",
+  "not_established": [
+    "Native reconnect identification, complete role/zone/lobby application request-response and a persistent playable session.",
+    "Original production semantics of research directory ranking, channel, load and server fields.",
+    "Continuous rendered frames, native map loading, gameplay, trusted settlement or multiplayer.",
+    "All native process network egress confined to loopback; prior snapshot showed external port 80 connections without payload attribution."
+  ],
+  "evidence": [
+    "aliyun-native-loader-static.json",
+    "aliyun-native-loop-static.json",
+    "aliyun-native-frame-pacing-static.json",
+    "aliyun-native-getlogininfo-contract.json",
+    "aliyun-native-d3d-caps-sandbox.json",
+    "aliyun-native-d3d-caps-unsandboxed.json",
+    "aliyun-native-current-config.json",
+    "aliyun-native-login-consumption-static.json",
+    "aliyun-native-v2-default-ipc.json",
+    "native-config-guard-fault-tests.json",
+    "aliyun-native-tdr-offline.json",
+    "aliyun-current-zone-login-contract.json"
+  ],
+  "next_step": "Verify the observed current Zone application sequence and response consumers, then implement character and lobby exchanges against the independent identity."
+}

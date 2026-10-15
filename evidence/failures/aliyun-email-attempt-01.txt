@@ -1,0 +1,47 @@
+test_attempts_expiry_purpose_address_and_resend_persist (tests.test_email_verification.EmailVerification.test_attempts_expiry_purpose_address_and_resend_persist)
+错误次数重建服务后仍保留；目的和地址隔离；重发旧码及过期码均失效。 ... ok
+test_concurrent_reset_consumes_once_and_audit_rollback (tests.test_email_verification.EmailVerification.test_concurrent_reset_consumes_once_and_audit_rollback)
+并发恢复只成功一次；审计失败不能留密码/消费半事务，失败后原码仍能重试。 ... ok
+test_delivery_failure_quota_and_no_plaintext_persistence (tests.test_email_verification.EmailVerification.test_delivery_failure_quota_and_no_plaintext_persistence)
+失败也占冷却额度；服务商异常不入库，重启不能绕过额度，验证码正文不持久化。 ... ok
+test_existing_binding_verify_and_email_replacement_invalidate_old_reset (tests.test_email_verification.EmailVerification.test_existing_binding_verify_and_email_replacement_invalidate_old_reset)
+迁移前邮箱可以补验；管理员换绑提升安全版本，旧邮箱码不能重置新身份。 ... ok
+test_http_boundary_rejects_legacy_bypass_and_missing_provider (tests.test_email_verification.EmailVerification.test_http_boundary_rejects_legacy_bypass_and_missing_provider)
+公共旧注册接口不能绕过邮箱；发信服务缺失必须明确失败，不能假称已发送。 ... FAIL
+test_recovery_does_not_activate_disabled_account_and_unknown_has_same_response (tests.test_email_verification.EmailVerification.test_recovery_does_not_activate_disabled_account_and_unknown_has_same_response)
+恢复不解除停用；未知邮箱同样投递但无可恢复账号，响应结构不泄露存在性。 ... ok
+test_registration_requires_code_replays_and_preserves_approval (tests.test_email_verification.EmailVerification.test_registration_requires_code_replays_and_preserves_approval)
+无验证禁止注册，成功只消费一次码/邀请；同键可重放，批准前不得登录。 ... ok
+test_reset_revokes_web_and_game_preserves_character_assets (tests.test_email_verification.EmailVerification.test_reset_revokes_web_and_game_preserves_character_assets)
+恢复密码同事务撤销旧 Web/游戏授权，角色映射与账本不变，重登使用新密码。 ... ERROR
+
+======================================================================
+ERROR: test_reset_revokes_web_and_game_preserves_character_assets (tests.test_email_verification.EmailVerification.test_reset_revokes_web_and_game_preserves_character_assets)
+恢复密码同事务撤销旧 Web/游戏授权，角色映射与账本不变，重登使用新密码。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_verification.py", line 80, in test_reset_revokes_web_and_game_preserves_character_assets
+    self.grant(account['account_id'], [{'type':'currency','code':'GP','delta':7}])
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_control_plane.py", line 84, in grant
+    return self.s.command(self.owner, 'asset.grant', data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\service.py", line 363, in command
+    result = asset_command(self, c, actor, action, data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\assets.py", line 123, in asset_command
+    raise Fault('INVALID', 'Grants only accept currency/item changes')
+revival.service.Fault: Grants only accept currency/item changes
+
+======================================================================
+FAIL: test_http_boundary_rejects_legacy_bypass_and_missing_provider (tests.test_email_verification.EmailVerification.test_http_boundary_rejects_legacy_bypass_and_missing_provider)
+公共旧注册接口不能绕过邮箱；发信服务缺失必须明确失败，不能假称已发送。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_verification.py", line 154, in test_http_boundary_rejects_legacy_bypass_and_missing_provider
+    self.assertEqual(response.status_code,403)
+AssertionError: 409 != 403
+
+----------------------------------------------------------------------
+Ran 8 tests in 75.473s
+
+FAILED (failures=1, errors=1)

@@ -1,0 +1,528 @@
+{
+  "kind": "CURRENT_GEO_NATIVE_TDR_OFFLINE_VALIDATION",
+  "scope": "Dedicated x86 process; fixed current DLL and GEO metadata; no game, UI, vendor credentials, process memory keys or network Init. Only captured independent research PingListREQ and explicit synthetic PingListRES.",
+  "component": {
+    "path": "runtime/native-recovery/coherent-2020/nz/Binaries/Win32/ProtocalHandler.dll",
+    "sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228"
+  },
+  "metadata": {
+    "path": "runtime/native-recovery/coherent-2020/nz/TGame/TDR/proto_c2geo.tdr",
+    "sha256": "6d75e846532bb506a858323b8a1c91fa67d3ed0c8766f1d1682f9a8d8afbc8e1",
+    "allowed_schemas": [
+      "C2GEOPkg",
+      "GEO2C_ResPingList",
+      "GEO2C_ResZoneList"
+    ]
+  },
+  "abi": {
+    "factory_export": "Invoke",
+    "factory_command": "0x58C",
+    "primary_vtable_rva": "0xD9810",
+    "load_memory": {
+      "slot": "0x50",
+      "rva": "0x29530"
+    },
+    "release_metadata": {
+      "slot": "0x54",
+      "rva": "0x29670"
+    },
+    "find_metadata": {
+      "slot": "0x58",
+      "rva": "0x29560"
+    },
+    "pack": {
+      "slot": "0x5C",
+      "rva": "0x294C0",
+      "implementation": "0x6AAC0"
+    },
+    "unpack": {
+      "slot": "0x60",
+      "rva": "0x294E0",
+      "implementation": "0x6BB40"
+    },
+    "error_text": {
+      "slot": "0x64",
+      "rva": "0x29500",
+      "implementation": "0x6AA80",
+      "signature": "One stack argument; ret4; pointer result. Never call as converter."
+    },
+    "buffer": "Two DWORDs: pointer and capacity/input length. Native updates size to actual written/consumed size. Converter args: this,meta,out_buffer,in_buffer,version=0. Both successful converters return zero.",
+    "return_evidence": [
+      "Pack status initial0 at6AAD7, error writes only0x820104xx, finalreturn6BAF4; out size6BAF1 and input consumed6BA83.",
+      "Unpack status initial0 at6BB57, finalreturn6D03F; out size6CFC4 and input consumed6D03C."
+    ],
+    "corrections": [
+      "Earlier analysis mislabeled pack+60/unpack+64. Actual pack+5C/unpack+60 confirmed from full vtable and runtime slot addresses.",
+      "TGame RVA14A5694 calls +60 and therefore UNPACKS, not packs.",
+      "Protocol receive RVA27B00 is primary slot+28, not earlier oral +30; slot+30 is29230."
+    ]
+  },
+  "retained_failed_attempts": [
+    {
+      "attempts": "01-03",
+      "category": "tool bootstrap",
+      "finding": "PowerShell5 UTF8 without BOM swallowed param; no native validation result."
+    },
+    {
+      "attempt": "04",
+      "category": "tool bootstrap",
+      "finding": "Get-FileHash unavailable in x86 environment; replaced with .NET SHA256."
+    },
+    {
+      "attempts": "05-07",
+      "category": "tool ABI error",
+      "finding": "Mistaken converter slot+64 returned error-string pointer0x10106F04 (no error), leaving output zero. Exact request roundtrip failed. These are tool failures, not client failures; evidence retained privately."
+    }
+  ],
+  "successful_attempts": {
+    "08": "Current captured9B request exact native unpack/pack passed.",
+    "09": "Request repeat plus empty and one-entry response body/full-package native pack/unpack/repack passed.",
+    "10": "Captured boot18 ZoneListREQ40B exact native roundtrip; fixed single-zone response native pack/unpack/repack passed, alongside prior Ping regression."
+  },
+  "checks": [
+    {
+      "step": "vtable_slot",
+      "slot": "0x50",
+      "function_rva": "0x29530"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x54",
+      "function_rva": "0x29670"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x58",
+      "function_rva": "0x29560"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x5C",
+      "function_rva": "0x294C0"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x60",
+      "function_rva": "0x294E0"
+    },
+    {
+      "step": "load_metadata",
+      "return_code": 0,
+      "canaries": true
+    },
+    {
+      "step": "captured_request_unpack",
+      "return_code": 0,
+      "input_length_before": 9,
+      "output_capacity": 26906,
+      "output_length": 26906,
+      "input_length_after": 9,
+      "canaries": true
+    },
+    {
+      "step": "captured_request_pack",
+      "return_code": 0,
+      "input_length_before": 26906,
+      "output_capacity": 32768,
+      "output_length": 9,
+      "input_length_after": 26906,
+      "canaries": true
+    },
+    {
+      "step": "empty_body_pack",
+      "return_code": 0,
+      "input_length_before": 26898,
+      "output_capacity": 32768,
+      "output_length": 18,
+      "input_length_after": 26898,
+      "canaries": true
+    },
+    {
+      "step": "empty_response_pack",
+      "return_code": 0,
+      "input_length_before": 26906,
+      "output_capacity": 32768,
+      "output_length": 26,
+      "input_length_after": 26906,
+      "canaries": true
+    },
+    {
+      "step": "empty_response_unpack",
+      "return_code": 0,
+      "input_length_before": 26,
+      "output_capacity": 26906,
+      "output_length": 26906,
+      "input_length_after": 26,
+      "canaries": true
+    },
+    {
+      "step": "empty_response_repack",
+      "return_code": 0,
+      "input_length_before": 26906,
+      "output_capacity": 32768,
+      "output_length": 26,
+      "input_length_after": 26906,
+      "canaries": true
+    },
+    {
+      "step": "loopback_body_pack",
+      "return_code": 0,
+      "input_length_before": 26898,
+      "output_capacity": 32768,
+      "output_length": 44,
+      "input_length_after": 26898,
+      "canaries": true
+    },
+    {
+      "step": "loopback_response_pack",
+      "return_code": 0,
+      "input_length_before": 26906,
+      "output_capacity": 32768,
+      "output_length": 52,
+      "input_length_after": 26906,
+      "canaries": true
+    },
+    {
+      "step": "loopback_response_unpack",
+      "return_code": 0,
+      "input_length_before": 52,
+      "output_capacity": 26906,
+      "output_length": 26906,
+      "input_length_after": 52,
+      "canaries": true
+    },
+    {
+      "step": "loopback_response_repack",
+      "return_code": 0,
+      "input_length_before": 26906,
+      "output_capacity": 32768,
+      "output_length": 52,
+      "input_length_after": 26906,
+      "canaries": true
+    }
+  ],
+  "request": {
+    "bytes": 9,
+    "sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+    "host_bytes": 26906,
+    "host_header": {
+      "magic": "0x8202",
+      "cmd": "0x1001",
+      "head_len": 8,
+      "body_len": 1
+    },
+    "is_force_login": 0,
+    "exact_roundtrip": true
+  },
+  "research_profile": {
+    "status": "Explicit synthetic compatibility probe; no production values claimed.",
+    "result": "0x8B00",
+    "server_count": 1,
+    "group": 0,
+    "ipv4_host_memory_bytes": "7f000001",
+    "ipv4_host_dword": "0x0100007F",
+    "ipv4_wire_bytes": "0100007f",
+    "domain": "127.0.0.1",
+    "ping_ms": 0,
+    "max_delay_ms": 1000,
+    "rank": 0,
+    "next_query_gap": 0,
+    "close_connection": 0
+  },
+  "wire_layout": [
+    {
+      "offset": 0,
+      "field": "Magic",
+      "bytes": 2,
+      "encoding": "BE16 0x8202"
+    },
+    {
+      "offset": 2,
+      "field": "Cmd",
+      "bytes": 2,
+      "encoding": "BE16 0x2001"
+    },
+    {
+      "offset": 4,
+      "field": "HeadLen",
+      "bytes": 2,
+      "encoding": "BE16 8"
+    },
+    {
+      "offset": 6,
+      "field": "BodyLen",
+      "bytes": 2,
+      "encoding": "BE16 44; computed by independently packing GEO2C_ResPingList"
+    },
+    {
+      "offset": 8,
+      "field": "Result",
+      "bytes": 2,
+      "encoding": "BE16 0x8B00"
+    },
+    {
+      "offset": 10,
+      "field": "ServerCount",
+      "bytes": 2,
+      "encoding": "BE16 1"
+    },
+    {
+      "offset": 12,
+      "field": "ServerArray[0].Group",
+      "bytes": 4,
+      "encoding": "BE32 0"
+    },
+    {
+      "offset": 16,
+      "field": "ServerArray[0].Ipv4",
+      "bytes": 4,
+      "encoding": "BE32 of native DWORD; see address interpretation boundary"
+    },
+    {
+      "offset": 20,
+      "field": "Domain.length",
+      "bytes": 4,
+      "encoding": "BE32 10 including trailing NUL"
+    },
+    {
+      "offset": 24,
+      "field": "Domain.text",
+      "bytes": 10,
+      "encoding": "ASCII 127.0.0.1 plus NUL"
+    },
+    {
+      "offset": 34,
+      "field": "PingInMs",
+      "bytes": 4,
+      "encoding": "BE32 0"
+    },
+    {
+      "offset": 38,
+      "field": "MaxDelayInMs",
+      "bytes": 4,
+      "encoding": "BE32 1000"
+    },
+    {
+      "offset": 42,
+      "field": "RankInfo.Rank",
+      "bytes": 4,
+      "encoding": "BE32 0"
+    },
+    {
+      "offset": 46,
+      "field": "RankInfo.NextQueryGap",
+      "bytes": 4,
+      "encoding": "BE32 0"
+    },
+    {
+      "offset": 50,
+      "field": "RankInfo.CloseConn",
+      "bytes": 2,
+      "encoding": "BE16 0"
+    }
+  ],
+  "responses": {
+    "empty_response": {
+      "bytes": 26,
+      "body_length": 18,
+      "sha256": "d5e19b7ea66b3355a453046236dc223363ef4ea269e90c55bbed5b9389948b1e",
+      "roundtrip_equal": true,
+      "decoded_host_equal": true,
+      "header_lengths_equal": true,
+      "standalone_body_equal": true,
+      "file": "ping-response-empty.bin"
+    },
+    "loopback_response": {
+      "bytes": 52,
+      "body_length": 44,
+      "sha256": "b67c020800b28039cd7ef19d31f7fa71a003e4f6ae16c6085b46ccf7944da8c2",
+      "roundtrip_equal": true,
+      "decoded_host_equal": true,
+      "header_lengths_equal": true,
+      "standalone_body_equal": true,
+      "file": "ping-response-loopback.bin"
+    }
+  },
+  "safety_and_acceptance": {
+    "x86": true,
+    "native_status_codes_all_zero": true,
+    "all_canaries_unchanged": true,
+    "job_cleanup_verified": true,
+    "timeout": false,
+    "game_started": false,
+    "network_init_called": false,
+    "full_host_bytes_equal": true,
+    "body_independent_pack_equals_framed_body": true,
+    "header_lengths_match_wire": true
+  },
+  "boundaries": [
+    "PingListRES game consumption is now confirmed by boot18 follow-up ZoneListREQ. ZoneListRES remains offline-only until parent-controlled runtime probe.",
+    "IPv4 numeric host/wire transformation is proven; which address source is preferred remains unresolved. Client returned the same Ip/Domain tuple with PingInMs1.",
+    "Endpoint counts, online/rank/timing and MainChannelId values are explicit research choices, not recovered production policy.",
+    "No Zone authentication, role creation, lobby or gameplay acceptance is claimed."
+  ],
+  "zone_request": {
+    "bytes": 40,
+    "sha256": "4e9b0f9151539016d31e14d3b0957340f1e2ecd60cb5708530a0ab8165ad44a3",
+    "roundtrip_equal": true
+  },
+  "zone_response": {
+    "bytes": 70,
+    "body_length": 62,
+    "sha256": "520b80a6dcf77b4ab830dee4f7b11b5defdaa226c28735db3c7cbf591d0905d8",
+    "roundtrip_equal": true,
+    "decoded_host_equal": true,
+    "header_lengths_equal": true,
+    "standalone_body_equal": true,
+    "file": "zone-response-loopback.bin",
+    "research_profile": {
+      "result": "0x8B00",
+      "zone_count": 1,
+      "ipv4_host_memory_bytes": "7f000001",
+      "ipv4_wire_bytes": "0100007f",
+      "domain": "127.0.0.1",
+      "port": 45678,
+      "online_num": 1,
+      "ping_ms": 1,
+      "main_channel_id": 1,
+      "load_exts": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "decision_method": 1,
+      "decision_macro": "EGEODecisionMethod_Sequential"
+    },
+    "wire_layout": [
+      {
+        "offset": 0,
+        "field": "Magic/Cmd/HeadLen/BodyLen",
+        "bytes": 8,
+        "encoding": "BE16 0x8202,0x2000,8,62"
+      },
+      {
+        "offset": 8,
+        "field": "Result/ZoneCount",
+        "bytes": 4,
+        "encoding": "BE16 0x8B00,1"
+      },
+      {
+        "offset": 12,
+        "field": "Ipv4",
+        "bytes": 4,
+        "encoding": "0100007f, same numeric representation returned by boot18 client"
+      },
+      {
+        "offset": 16,
+        "field": "Domain.length",
+        "bytes": 4,
+        "encoding": "BE32 10 including NUL"
+      },
+      {
+        "offset": 20,
+        "field": "Domain.text",
+        "bytes": 10,
+        "encoding": "127.0.0.1 plus NUL"
+      },
+      {
+        "offset": 30,
+        "field": "Port",
+        "bytes": 2,
+        "encoding": "BE16 45678"
+      },
+      {
+        "offset": 32,
+        "field": "OnlineNum",
+        "bytes": 4,
+        "encoding": "BE32 1"
+      },
+      {
+        "offset": 36,
+        "field": "PingInMs",
+        "bytes": 4,
+        "encoding": "BE32 1"
+      },
+      {
+        "offset": 40,
+        "field": "MainChannelId",
+        "bytes": 4,
+        "encoding": "BE32 1"
+      },
+      {
+        "offset": 44,
+        "field": "LoadExts",
+        "bytes": 24,
+        "encoding": "six BE32 zero"
+      },
+      {
+        "offset": 68,
+        "field": "DecisionMethod",
+        "bytes": 2,
+        "encoding": "BE16 1"
+      }
+    ]
+  },
+  "zone_checks": [
+    {
+      "step": "zone_request_unpack",
+      "return_code": 0,
+      "input_length_before": 40,
+      "output_capacity": 26906,
+      "output_length": 26906,
+      "input_length_after": 40,
+      "canaries": true
+    },
+    {
+      "step": "zone_request_repack",
+      "return_code": 0,
+      "input_length_before": 26906,
+      "output_capacity": 32768,
+      "output_length": 40,
+      "input_length_after": 26906,
+      "canaries": true
+    },
+    {
+      "step": "zone_body_pack",
+      "return_code": 0,
+      "input_length_before": 2726,
+      "output_capacity": 32768,
+      "output_length": 62,
+      "input_length_after": 2726,
+      "canaries": true
+    },
+    {
+      "step": "zone_response_pack",
+      "return_code": 0,
+      "input_length_before": 26906,
+      "output_capacity": 32768,
+      "output_length": 70,
+      "input_length_after": 26906,
+      "canaries": true
+    },
+    {
+      "step": "zone_response_unpack",
+      "return_code": 0,
+      "input_length_before": 70,
+      "output_capacity": 26906,
+      "output_length": 26906,
+      "input_length_after": 70,
+      "canaries": true
+    },
+    {
+      "step": "zone_response_repack",
+      "return_code": 0,
+      "input_length_before": 26906,
+      "output_capacity": 32768,
+      "output_length": 70,
+      "input_length_after": 26906,
+      "canaries": true
+    }
+  ],
+  "later_runtime_evidence": {
+    "boot18": "Parent-controlled client consumed fixed PingListRES over transport Cmd0/EncHeadLen0 and returned current ZoneListREQ40B with same endpoint data and PingInMs1. This is application consumption evidence, not Zone login acceptance.",
+    "reference": "evidence/aliyun-native-launch-summary.json"
+  }
+}

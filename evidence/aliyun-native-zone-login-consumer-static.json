@@ -1,0 +1,166 @@
+{
+  "kind": "CURRENT_ZONE_LOGIN_CONSUMER_STATIC_TARGETS",
+  "component": "TGame.exe",
+  "component_sha256": "b81bb4e1256ad1fca1ecbbf93b35979d96c36ca16f8bbfc8d126e9a452df51f8",
+  "scope": "Read-only current executable literals and already captured owned-process code; no process launch, network, UI or client changes.",
+  "targets": [
+    {
+      "rva": "0x1f0b328",
+      "encoding": "UTF-16LE",
+      "text": "UTGOnlineClient::HandleMessage_Response_Login, iAreaId = %d",
+      "on_disk_absolute_pointer_references": 0
+    },
+    {
+      "rva": "0x1f0b870",
+      "encoding": "UTF-16LE",
+      "text": "maxtang UTONlineClient::HandleMessage_Response_Login: Msg.wResult= %d",
+      "on_disk_absolute_pointer_references": 0
+    },
+    {
+      "rva": "0x1f0b918",
+      "encoding": "UTF-16LE",
+      "text": "<<<<symigao>>>>Error: Recieve an unkown error code when login",
+      "on_disk_absolute_pointer_references": 0
+    },
+    {
+      "rva": "0x1f0b4a0",
+      "encoding": "UTF-16LE",
+      "text": "[jerryttang login] UTGOnlineClient::HandleMessage_Response_Login,MainChannelID = %d,SubChannelID = %d, OpenActionRecord = %d, ServerTime = %llu, LoginTime = %d-%d-%d %d:%d:%d, LoginAreaId = %d",
+      "on_disk_absolute_pointer_references": 0
+    }
+  ],
+  "metadata_reference": "evidence/aliyun-current-zone-login-contract.json",
+  "selection_reason": "Result log and unknown-error branch are closest current-build evidence to the A001 consumer decision; channel/serverTime log provides subsequent field-consumption anchor.",
+  "boundary": "No absolute pointer references to these literals exist in the on-disk image; current executable code is protected. Literal existence does not prove the Result branch or its runtime execution.",
+  "minimum_next_probe": "On next already-authorized owned-process run, use existing bounded executable-page PUSH-reference search for the first three literal RVAs; save 256 bytes surrounding each candidate. Fixed consumer function RVAs can then be derived from actual instructions, not PH addresses.",
+  "unverified": [
+    "Whether real A001 consumption with the explicit research profile proceeds to subsequent account/role/lobby messages.",
+    "Full first-account401/40B delegate behavior, additional required state and region/newbie rules.",
+    "Production channel assignment rules and nonzero server-time epoch/timezone contract."
+  ],
+  "boot19_geo_receive_wrapper": {
+    "rva": "0x14BB4D0",
+    "bytes": 384,
+    "sha256": "2ebd23d584b5b8b20d5513bd447a57c8a4234ae8a233dfad7c67c10ec4f4c7ca",
+    "evidence": [
+      "14BB4D0 checks current global object atRVA2258B74 is nonzero;14BB4DE requires readybit atthis+88.",
+      "14BB4E9 calls this vtable+168 to obtain the argument passed into tail-call14BAE80 at14BB4FB.",
+      "Current corrected Geo table pairs command getter14A1C20 at+16C and this receive wrapper at+18C; this agrees with Geo RecvPackage sampling fromboot17."
+    ],
+    "next_optional_fixed_sample": {
+      "rva": "0x14BAE80",
+      "bytes": 512
+    },
+    "boundary": "Concrete forwarding is proven. Full TGTenio receive implementation and periodic tick caller are not yet sampled; boot18 application follow-up already demonstrates successful delivery."
+  },
+  "boot20_login_consumer": {
+    "entry_rva": "0x155F2D0",
+    "source": "Current owned boot20 code reference samples",
+    "matched_current_metadata": "ZN2C_ResLogin",
+    "field_evidence": [
+      {
+        "instruction_rva": "0x155F316",
+        "read": "DWORD [EBP+0x461D]",
+        "field": "AreaId",
+        "current_metadata_host_offset": 17949
+      },
+      {
+        "instruction_rva": "0x155F39C",
+        "read": "DWORD [EBP+0xA] and [EBP+0xE]",
+        "field": "ServerTime",
+        "current_metadata_host_offset": 10
+      },
+      {
+        "instruction_rva": "0x155F828",
+        "read": "WORD [EBP]",
+        "field": "Result",
+        "current_metadata_host_offset": 0
+      }
+    ],
+    "result_tail_evidence": [
+      "Current sampled code compares AX to0x401 at155F780 and0x40B at155F78E, branching to155F851.",
+      "Comparisons0x154 and0x155 at155F79C/155F7A6 lead to the logged error-report path155F7C8.",
+      "Other values reaching this tail log current unknown-error literal at155F7B0; earlier comparisons are not sampled yet."
+    ],
+    "samples": [
+      {
+        "rva": "0x155F2C2",
+        "bytes": 256,
+        "sha256": "39fcd14080f984da1365bc9fdab121bff9c6123046915844950ff0019b9b25b9"
+      },
+      {
+        "rva": "0x155F750",
+        "bytes": 256,
+        "sha256": "d7d4c180ac791f2397a28f9eee41bdc31c8b022956e6f14ab825e4a75c420a84"
+      },
+      {
+        "rva": "0x155F775",
+        "bytes": 256,
+        "sha256": "393c522c2af7fc7a33cf360e1b82425027215a4845ae43ee006f9ea74d28359d"
+      }
+    ],
+    "next_fixed_samples": [
+      {
+        "rva": "0x155F39C",
+        "bytes": 1280
+      },
+      {
+        "rva": "0x155F851",
+        "bytes": 1184
+      }
+    ],
+    "boundary": "This locates the exact current consumer and field offsets, but does not yet establish which of0x1A0/0x1A7/0x8100 enters successful or first-account behavior. No response should be chosen from the incomplete branch."
+  },
+  "boot20_receive_chain": {
+    "rva": "0x14BAE80",
+    "bytes": 512,
+    "sha256": "834d341115f6304f1add64727c0f17045da5dd73050ed1a662143055cbcad335",
+    "evidence": [
+      "14BAEF1 loads current ProtocolHandler vtable+28; call14BAEF9 receives bytes.",
+      "On positive receive length,14BAF59 loads current vtable+60;14BAF5D calls native unpack using the loaded metadata and output/input buffers.",
+      "Only error path14BAFA4 loads vtable+64 and14BAFAB calls it with one error code to obtain error text."
+    ],
+    "implication": "Independent actual TGame code confirms the corrected offline ABI: receive+28, unpack+60, error-text+64."
+  },
+  "boot21_result_branch": {
+    "samples": [
+      {
+        "rva": "0x155F39C",
+        "bytes": 1280,
+        "sha256": "139e95e860888dbb4d0203d1e5e9841fdf8ab9ee1d09c129c37244acdc9d0f93"
+      },
+      {
+        "rva": "0x155F851",
+        "bytes": 1184,
+        "sha256": "0f917fdf1319f6120d1ac2e8024fb1ef38c7d1fde65c6a95bd61d274acd0c7aa"
+      }
+    ],
+    "normal_success": {
+      "value": "0x8100",
+      "evidence": "155F535 loads U16[EBP];155F539 loads0x8100;155F53E compares and155F541 jumps to error alternatives unless equal.",
+      "effects": [
+        "155F547 consumes IsNewbie atbody+461C;155F626 consumes GoldPoint atbody+16 (clamps negative-signed values to7FFFFFFF).",
+        "155F659 reads MainChannelId atbody+2 and155F677 reads SubChannelId atbody+6; copies tothis+2DC/+2E0 without proving valid channel catalog.",
+        "155F6DA sets this+288 to1, then ifthis+1F0 exists constructs0x3243/0xFF05 and sends via vtable+150 at155F774."
+      ]
+    },
+    "not_valid_normal_success": [
+      "0x1A0",
+      "0x1A7"
+    ],
+    "not_valid_reason": "Neither value matches8100,401,40B,154,155. Both therefore reach current unknown-error logger155F7B0, despite similarly named metadata macros.",
+    "other_result_paths": {
+      "0x401_and_0x40B": "Enter155F851; initialize local object, copy zero-or-more FreeProps (countbody+1A, stride46), call delegate storage atthis+468 with Result at155FC83..155FCCD. Full UI meaning and account creation sequence not established.",
+      "0x154_and_0x155": "Explicit error presentation path155F7C8."
+    },
+    "server_time": {
+      "host_offset": 10,
+      "width": 8,
+      "zero_behavior": "155F39C/39F load twoDWORDs;155F3A6 OR;155F3A8 jumps to155F489 when zero, skipping calendar conversion.",
+      "nonzero_behavior": "Calls indirect IAT VA1E3E690 at155F3C0 with64-bit input pointer and output storage; subsequent fields include year+1900 and month+1. Exact imported name/timezone not yet resolved.",
+      "research_choice": "Zero explicitly avoids relying on unverified epoch/timezone interpretation."
+    },
+    "subchannel_boundary": "Actual request FFFFFFFF is not interpreted or echoed. Research response assigns SubChannel1 explicitly; native success path copies it without validating catalog semantics.",
+    "runtime_boundary": "These are actual current code bytes, not observation that the server sent A001 or that the success branch executed."
+  }
+}

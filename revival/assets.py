@@ -123,6 +123,9 @@ def asset_command(service, c, actor, action, data):
             raise Fault('INVALID', 'Grants only accept currency/item changes')
         return mutate(service, c, actor, data.get('target_account_id'), data.get('changes'), data['reason'], 'ADMIN')
     if action == 'asset.batch':
+        # 兼容旧同步批次，但禁止通过发放接口调用 consume 等其他资产动作。
+        from .batching import validate
+        validate(data)
         targets = data.get('target_account_ids')
         if not isinstance(targets, list) or not 1 <= len(targets) <= 20 or len(set(targets)) != len(targets):
             raise Fault('INVALID', 'Freeze 1 to 20 unique targets')
@@ -226,6 +229,11 @@ def settle(service, node_token, data):
         if match['state'] != 'ACTIVE':
             raise Fault('MATCH_STATE', 'Only an active instance may settle', 409)
         snapshot = json.loads(match['snapshot'])
+        if snapshot.get('pve_rules'):
+            run = c.select('pve_runs', Q(match_id=match_id)).fetchone()
+            phase = json.loads(run['state'])['phase'] if run else None
+            if phase != ('VICTORY' if outcome == 'VICTORY' else 'DEFEAT'):
+                raise Fault('RESULT_SOURCE', 'PvE results must follow the persisted authoritative rule state', 409)
         rewards = []
         for player in c.select('match_players', Q(match_id=match_id)):
             account = service._account(c, player['account_id'])
@@ -253,7 +261,9 @@ def settle(service, node_token, data):
 def deliver_outbox(service, sender, limit=50):
     """在事务外调用 sender，以 event_key 去重；仅显式确认后标记送达，失败安排重试且不重复执行资产变更。"""
     with service.db.transaction() as c:
-        rows = [dict(r) for r in c.select('outbox', (~Q(status='DELIVERED') & Q(next_retry__lte=service.clock())), order=('id',), limit=integer(limit, 1, 100, 'limit'))]
+        # 需要逐实例确认的通知不能由通用 sender 的一个布尔值提前标记全局送达。
+        pending = c.table('node_deliveries').filter(status='PENDING').values('event_id')
+        rows = [dict(r) for r in c.select('outbox', (~Q(status='DELIVERED') & Q(next_retry__lte=service.clock()) & ~Q(id__in=pending)), order=('id',), limit=integer(limit, 1, 100, 'limit'))]
     results = []
     for event in rows:
         try:

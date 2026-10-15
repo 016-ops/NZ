@@ -1,0 +1,7 @@
+test_two_live_pve_rooms_keep_entities_tokens_progress_and_rewards_separate (tests.test_pve.PveTests.test_two_live_pve_rooms_keep_entities_tokens_progress_and_rewards_separate)
+两份活跃合成 PvE 同时存在；节点不能跨局写入，首房结算不改次房状态或余额。 ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 40.058s
+
+OK

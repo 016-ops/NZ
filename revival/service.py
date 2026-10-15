@@ -16,7 +16,7 @@ import uuid
 from pathlib import Path
 
 from .db import Database
-from .security import new_token, normalize_login, password_hash, token_hash, verify_otp, verify_password
+from .security import email_registration_proof, new_token, normalize_email, normalize_login, password_hash, token_hash, verify_otp, verify_password
 
 
 class Fault(Exception):
@@ -63,11 +63,16 @@ PERMISSIONS = {
 }
 
 COMMANDS = {
+    'admin.create': '*', 'admin.update': '*', 'admin.password.reset': '*',
+    'admin.mfa.reset': '*', 'admin.recovery.rotate': '*',
+    'asset.batch.preview': '*', 'asset.batch.enqueue': '*', 'asset.batch.retry': '*', 'asset.review.resolve': '*',
+    'node.enroll': '*', 'pve.revive': 'player',
     'invite.create': 'invite.create', 'invite.revoke': 'invite.create',
     'user.approve': 'user.approve', 'user.disable': 'user.approve', 'user.activate': 'user.approve',
-    'user.reset': 'user.reset', 'session.revoke': 'session.revoke',
+    'user.reset': 'user.reset', 'user.email.set': 'user.reset', 'session.revoke': 'session.revoke',
     'sanction.create': 'sanction.create', 'sanction.revoke': 'sanction.create',
     'character.create': 'player', 'room.create': 'player', 'room.join': 'player',
+    'room.invite': 'player',
     'room.leave': 'player', 'room.ready': 'player', 'room.configure': 'player', 'room.start': 'player',
     'room.cancel': 'player', 'asset.grant': 'asset.grant', 'asset.compensate': '*',
     'asset.batch': '*', 'shop.purchase': 'player', 'inventory.consume': 'player',
@@ -101,7 +106,7 @@ class Service:
             return False
         return bool(expected) and hmac.compare_digest(token_hash(code), expected)
 
-    def __init__(self, database='default', *, test_profile=False, clock=None):
+    def __init__(self, database='default', *, test_profile=False, clock=None, test_pve=False):
         """初始化当前对象依赖和状态；参数仅保存在对象中，具体持久化由显式事务入口处理。"""
         self.db = Database(database)
         self.clock = clock or (lambda: int(time.time()))
@@ -110,6 +115,12 @@ class Service:
             'id': 'cn-current-unverified', 'evidence': 'UNKNOWN', 'currencies': {}, 'items': {},
             'offers': {}, 'maps': {}, 'inventory_limit': 0,
         }
+        from django.conf import settings
+        if test_pve or getattr(settings, 'NZ_PVE_TEST_PROFILE', False):
+            if not test_profile:
+                raise Fault('PROFILE_CONFLICT', 'PvE test rules require a separate synthetic environment', 409)
+            from .catalogs import pve_catalog
+            self.catalog = pve_catalog(self.catalog)
         with self.db.transaction() as c:
             previous = c.select('deployment_metadata', Q(key='profile'), columns=['value']).fetchone()
             if previous and previous['value'] != self.catalog['id']:
@@ -130,8 +141,10 @@ class Service:
             if role != 'owner':
                 raise Fault('FORBIDDEN', 'Initial administrator must be Owner', 403)
             c.insert('admins', {'id': admin_id, 'login': normalize_login(login), 'password_hash': hashed, 'otp_secret': secret, 'role': role})
+            from .administration import recovery_codes
+            codes = recovery_codes(c, admin_id)
             self._audit(c, admin_id, 'admin.bootstrap', admin_id, 'local-bootstrap', 'initial Owner', {})
-        return {'admin_id': admin_id, 'otp_secret': secret}
+        return {'admin_id': admin_id, 'otp_secret': secret, 'recovery_codes': codes}
 
     # 校验独立密码；管理员额外校验未消费的 TOTP 时间步，玩家校验批准状态与有效制裁。会话撤销、席位释放、新会话和审计必须一起提交。
     def login(self, login, password, *, kind='player', otp_code=None):
@@ -139,12 +152,20 @@ class Service:
         if kind not in ('player', 'admin'):
             raise Fault('INVALID', 'Unknown login kind')
         try:
-            normalized = normalize_login(login)
+            email_login = kind == 'player' and isinstance(login, str) and '@' in login
+            normalized = normalize_email(login) if email_login else normalize_login(login)
         except ValueError:
             raise Fault('AUTH', 'Invalid credentials', 401)
         with self.db.transaction() as c:
             table = 'admins' if kind == 'admin' else 'accounts'
-            row = c.select(table, Q(login=normalized)).fetchone()
+            if email_login:
+                identity = c.select('player_emails', Q(email=normalized)).fetchone()
+                row = c.select('accounts', Q(id=identity['account_id'])).fetchone() if identity else None
+            else:
+                row = c.select(table, Q(login=normalized)).fetchone()
+                # 邮箱迁移后不再接受隐藏的旧用户名作为第二个登录入口；旧未迁移账号保持兼容。
+                if kind == 'player' and row and c.select('player_emails', Q(account_id=row['id'])).fetchone():
+                    row = None
             # Slow verification even for an unknown username.
             encoded = row['password_hash'] if row else DUMMY_PASSWORD_HASH
             if not verify_password(password, encoded) or row is None:
@@ -172,12 +193,41 @@ class Service:
         """邀请次数检查、玩家映射分配、账号创建与幂等结果共用部署锁。先检查同键结果，确保响应丢失重试不会再次消耗邀请。"""
         request_id, key, reason = self._metadata(data)
         try:
-            login = normalize_login(data.get('login'))
+            email = normalize_email(data['email']) if 'email' in data else None
+            if email is not None and 'login' in data:
+                raise ValueError('邮箱注册不能同时指定旧登录名')
+            # 保留历史邮箱注册幂等 scope/摘要的稳定标识；新账号的实际隐藏登录名另行随机分配。
+            # 不能把此标识继续写入 accounts.login，否则换绑后的旧邮箱会被永久占用。
+            login = 'm_' + token_hash(email)[:30] if email is not None else normalize_login(data.get('login'))
             hashed = password_hash(data.get('password'))
         except ValueError as e:
             raise Fault('INVALID', str(e))
         invitation = text_field(data.get('invitation'), 'invitation', 128)
-        summary = {'login': login, 'password_digest': token_hash(data['password']), 'invite_hash': token_hash(invitation)}
+        # 邮箱新路径使用服务端 HMAC；旧注册摘要保留原格式以保证历史幂等重放，不影响既有账号。
+        password_proof = email_registration_proof(data['password']) if email is not None else token_hash(data['password'])
+        summary = {'login': login, 'password_digest': password_proof, 'invite_hash': token_hash(invitation)}
+        if email is not None:
+            summary['email'] = email
+        from django.conf import settings
+        verification = email is not None and settings.NZ_EMAIL_VERIFICATION_REQUIRED
+        if verification:
+            from .email_verification import check_code
+            summary['challenge_id'] = text_field(data.get('challenge_id'), 'challenge_id', 32)
+            # 已成功的同键请求可恢复原结果；验证码明文不进入幂等摘要或审计。
+            with self.db.transaction() as c:
+                previous = self._prior(c, 'register:' + login, key, summary)
+                if previous is not None:
+                    return previous
+            try:
+                check_code(self, data, email, 'register')
+            except Fault:
+                # 首次查询之后，另一同键请求可能已提交并消费验证码；先恢复其结果再决定拒绝。
+                # 查不到已提交结果时仍抛出原验证码错误，不能借幂等重试绕过所有权校验。
+                with self.db.transaction() as c:
+                    previous = self._prior(c, 'register:' + login, key, summary)
+                    if previous is not None:
+                        return previous
+                raise
         with self.db.transaction() as c:
             scope = 'register:' + login
             previous = self._prior(c, scope, key, summary)
@@ -186,15 +236,33 @@ class Service:
             invite = c.select('invitations', Q(token_hash=token_hash(invitation))).fetchone()
             if not invite or invite['revoked'] or invite['expires_at'] <= self.clock() or invite['uses'] >= invite['max_uses']:
                 raise Fault('INVITATION', 'Invitation is invalid, expired, revoked, or exhausted', 403)
+            if verification:
+                from .email_verification import consume
+                consume(self, c, data, email, 'register')
             account_id = identifier()
             game_id = c.maximum('accounts', 'game_id', fallback=10000, increment=1).fetchone()[0]
             integer(game_id, 1, 2147483647, 'local game mapping')
+            account_login = login
+            if email is not None:
+                # 120 位随机名不依赖邮箱或玩家公开 ID；部署锁内查重，兼容旧用户名和旧邮箱隐藏名。
+                # 碰撞只重新取名，不改写历史账号；连续碰撞则回滚验证码消费和本次注册。
+                for _ in range(5):
+                    account_login = 'm_' + secrets.token_hex(15)
+                    if not c.select('accounts', Q(login=account_login)).fetchone():
+                        break
+                else:
+                    raise Fault('REGISTRATION_UNAVAILABLE', '暂时无法分配账号标识，请稍后重试', 503)
             try:
-                c.insert('accounts', {'id': account_id, 'game_id': game_id, 'login': login, 'password_hash': hashed, 'status': 'PENDING_REVIEW', 'created_at': self.clock()})
+                c.insert('accounts', {'id': account_id, 'game_id': game_id, 'login': account_login, 'password_hash': hashed, 'status': 'PENDING_REVIEW', 'created_at': self.clock()})
+                if email is not None:
+                    c.insert('player_emails', {'account_id': account_id, 'email': email, 'created_at': self.clock(),
+                                             'verified_at': self.clock() if verification else None})
             except IntegrityError:
                 raise Fault('CONFLICT', 'Login is already registered', 409)
             c.update('invitations', Q(id=invite['id']), {'uses': F('uses') + 1})
             result = {'account_id': account_id, 'status': 'PENDING_REVIEW', 'game_id': game_id, 'mapping_evidence': 'LOCAL_EQUIVALENT'}
+            if email is not None:
+                result.update(email=email, email_verified=verification, identity_provider='nz-email-v1')
             self._audit(c, account_id, 'account.register', account_id, request_id, reason, {'invitation_id': invite['id']})
             self._remember(c, scope, key, summary, result)
             return result
@@ -260,9 +328,15 @@ class Service:
         c.insert('requests', {'scope': scope, 'key': key, 'payload_hash': token_hash(canonical(data)), 'result': canonical(result)})
 
     # 把待同步事件加入当前业务事务，event_key 唯一；真实客户端未确认之前保持 PENDING，不把本地提交当作同步成功。
-    def _outbox(self, c, key, event_type, account_id, payload):
+    def _outbox(self, c, key, event_type, account_id, payload, match_ids=None):
         """把待同步事件加入当前业务事务，event_key 唯一；真实客户端未确认之前保持 PENDING，不把本地提交当作同步成功。"""
         c.insert('outbox', {'event_key': key, 'type': event_type, 'account_id': account_id, 'payload': canonical(payload)})
+        if match_ids is None:
+            match_ids = list(c.table('match_players').filter(account_id=account_id, eligible=1, match__state='ACTIVE').values_list('match_id', flat=True))
+        if match_ids:
+            event = c.select('outbox', Q(event_key=key)).fetchone()
+            for match_id in match_ids:
+                c.insert('node_deliveries', {'event_id': event['id'], 'match_id': match_id})
 
     # 先认证授权，再读取幂等结果；高风险命令消耗新的 MFA 时间步，随后分派账号、房间或资产业务，最终一起写审计和幂等结果。
     def command(self, token, action, data):
@@ -273,6 +347,9 @@ class Service:
         summary = {k: v for k, v in data.items() if k not in ('request_id', 'idempotency_key')}
         # Passwords are never persisted in an idempotency result or audit.
         summary = dict(summary, action=action)
+        if action == 'user.email.set':
+            # 再认证材料不是业务目标：不让持久化摘要形成可离线猜测的管理员密码校验器。
+            summary = {k: v for k, v in summary.items() if k not in ('current_password', 'otp_code')}
         with self.db.transaction() as c:
             actor = self._actor(c, token, COMMANDS[action])
             scope = actor['kind'] + ':' + actor['id']
@@ -280,13 +357,25 @@ class Service:
             if previous is not None:
                 return previous
             changes = data.get('changes') if isinstance(data.get('changes'), list) else []
-            high_risk = action in ('asset.batch', 'asset.compensate') or (
+            high_risk = action.startswith('admin.') or action in ('user.email.set', 'node.enroll', 'asset.batch', 'asset.compensate', 'asset.batch.enqueue', 'asset.batch.retry', 'asset.review.resolve') or (
                 action == 'asset.grant' and sum(abs(x['delta']) for x in changes
                                               if isinstance(x, dict) and x.get('type') == 'currency'
                                               and type(x.get('delta')) is int) > 10000)
             if high_risk and actor['kind'] == 'admin' and actor['role'] == 'owner':
                 self._step_up(c, actor, data)
-            if action.startswith('room.'):
+            if action.startswith('admin.'):
+                from .administration import admin_command
+                result = admin_command(self, c, actor, action, data)
+            elif action == 'node.enroll':
+                from .nodes import enroll
+                result = enroll(self, c, actor, data)
+            elif action == 'pve.revive':
+                from .pve import request_revive
+                result = request_revive(self, c, actor, data)
+            elif action in ('asset.batch.preview', 'asset.batch.enqueue', 'asset.batch.retry', 'asset.review.resolve'):
+                from .batching import batch_command
+                result = batch_command(self, c, actor, action, data)
+            elif action.startswith('room.'):
                 from .rooms import room_command
                 result = room_command(self, c, actor, action, data)
             elif action.startswith(('asset.', 'shop.', 'inventory.')):
@@ -295,7 +384,7 @@ class Service:
             else:
                 result = self._account_command(c, actor, action, data)
             target = data.get('target_account_id', actor['id'])
-            safe_detail = {k: v for k, v in result.items() if k not in ('invitation_token', 'node_token')}
+            safe_detail = {k: v for k, v in result.items() if k not in ('invitation_token', 'node_token', 'otp_secret', 'recovery_codes')}
             self._audit(c, actor['id'], action, target, request_id, reason, safe_detail)
             self._remember(c, scope, key, summary, safe_detail)
             return result
@@ -329,10 +418,12 @@ class Service:
     # 提升安全版本、撤销全部玩家会话、释放房间并取消当前局奖励资格；安全 outbox 与这些状态变化必须一起提交。
     def _revoke(self, c, account_id, key):
         """提升安全版本、撤销全部玩家会话、释放房间并取消当前局奖励资格；安全 outbox 与这些状态变化必须一起提交。"""
+        match_ids = list(c.table('match_players').filter(account_id=account_id, eligible=1, match__state='ACTIVE').values_list('match_id', flat=True))
         c.update('accounts', Q(id=account_id), {'security_version': F('security_version') + 1})
         c.update('sessions', (Q(subject_id=account_id) & Q(kind='player')), {'revoked': 1})
         self._detach(c, account_id)
-        self._outbox(c, key, 'security.revoked', account_id, {'account_id': account_id})
+        version = self._account(c, account_id)['security_version']
+        self._outbox(c, key, 'security.revoked', account_id, {'account_id': account_id, 'security_version': version}, match_ids)
 
     # 只操作本地房间与奖励资格；节点真实下线仍需 transport 确认，不能将此数据库操作解释为原客户端已断开。
     def _detach(self, c, account_id):
@@ -399,6 +490,22 @@ class Service:
             c.update('accounts', Q(id=account_id), {'password_hash': hashed})
             self._revoke(c, account_id, 'reset:' + identifier())
             return {'account_id': account_id, 'sessions_revoked': True}
+        if action == 'user.email.set':
+            try:
+                email = normalize_email(data.get('email'))
+            except ValueError as error:
+                raise Fault('INVALID', str(error))
+            old = c.select('player_emails', Q(account_id=account_id)).fetchone()
+            if not old or old['email'] != email:
+                try:
+                    if old:
+                        c.update('player_emails', Q(account_id=account_id), {'email': email, 'verified_at': None})
+                    else:
+                        c.insert('player_emails', {'account_id': account_id, 'email': email, 'created_at': self.clock()})
+                except IntegrityError:
+                    raise Fault('CONFLICT', '该邮箱已被其他玩家使用', 409)
+            self._revoke(c, account_id, 'email:' + identifier())
+            return {'account_id': account_id, 'email': email, 'email_verified': False, 'sessions_revoked': True}
         if action == 'session.revoke':
             self._revoke(c, account_id, 'kick:' + identifier())
             return {'account_id': account_id, 'local_sessions_revoked': True, 'retail_node_delivery': 'UNIMPLEMENTED'}
@@ -416,6 +523,33 @@ class Service:
     def query(self, token, view, **filters):
         """按视图执行服务端权限检查和有界分页；只暴露旧接口允许的逻辑列，资源/用户管理员只读自己的审计记录。"""
         with self.db.transaction() as c:
+            if view in ('pve', 'pve-runs'):
+                actor = self._actor(c, token)
+                if actor['kind'] == 'admin' and actor['role'] not in ('owner', 'auditor'):
+                    raise Fault('FORBIDDEN', 'PvE diagnostics require Owner or auditor', 403)
+                condition = Q(match_id=filters.get('match_id')) if view == 'pve' else Q()
+                if actor['kind'] == 'player':
+                    ids = c.table('match_players').filter(account_id=actor['id']).values('match_id')
+                    condition &= Q(match_id__in=ids)
+                rows = c.select('pve_runs', condition, limit=50)
+                return [dict(match_id=row['match_id'], rules_id=json.loads(row['rules'])['id'], state=json.loads(row['state']), evidence='TEST_PROFILE', retail_verified=False) for row in rows]
+            if view in ('batches', 'reviews'):
+                actor = self._actor(c, token, 'asset.read')
+                if actor['role'] not in ('owner', 'auditor'):
+                    raise Fault('FORBIDDEN', 'Batch and review reads require Owner or auditor', 403)
+                limit = integer(filters.get('limit', 50), 1, 100, 'limit')
+                offset = integer(filters.get('offset', 0), 0, 1000000, 'offset')
+                if view == 'batches':
+                    from .batching import batches_view
+                    return batches_view(c, limit, offset)
+                rows = []
+                for operation in c.select('asset_operations', Q(status='MANUAL_REVIEW'), order=('-created_at', 'id'), limit=limit, offset=offset):
+                    operation['decision'] = c.select('review_decisions', Q(operation_id=operation['id'])).fetchone()
+                    rows.append(dict(operation))
+                return rows
+            if view == 'admins':
+                self._actor(c, token, '*')
+                return [dict(row) for row in c.select('admins', columns=['id', 'login', 'role', 'active', 'security_version'], order=('login',))]
             if view == 'me':
                 actor = self._actor(c, token)
                 if actor['kind'] == 'admin':
@@ -425,18 +559,21 @@ class Service:
                 self._actor(c, token)
                 if view == 'catalog':
                     return self.catalog
-                return [dict(r) for r in c.select('rooms', ~Q(state='CLOSED'), order=('id',), limit=100)]
+                from .room_access import list_rooms
+                return list_rooms(self, c, filters)
             permission = 'asset.read' if view in ('assets', 'operations', 'outbox') else 'audit.read' if view == 'audit' else 'user.read'
             actor = self._actor(c, token, permission)
             limit = integer(filters.get('limit', 50), 1, 100, 'limit')
             offset = integer(filters.get('offset', 0), 0, 1000000, 'offset')
             if view == 'users':
                 search = filters.get('search', '')
-                if not isinstance(search, str) or len(search) > 100:
+                if not isinstance(search, str) or len(search) > 254:
                     raise Fault('INVALID', 'Invalid search')
                 # Literal substring search rather than user-controlled SQL wildcard matching.
-                rows = c.select('accounts', Q(login__contains=search.lower()), columns=['id', 'game_id', 'login', 'status', 'created_at', 'last_login'], order=('created_at', 'id'), limit=limit, offset=offset)
-                return [dict(r) for r in rows]
+                email_ids = c.table('player_emails').filter(email__contains=search.lower()).values('account_id')
+                rows = c.select('accounts', Q(login__contains=search.lower()) | Q(id__in=email_ids), columns=['id', 'game_id', 'login', 'status', 'created_at', 'last_login'], order=('created_at', 'id'), limit=limit, offset=offset)
+                identities = {row['account_id']: row['email'] for row in c.select('player_emails', Q(account_id__in=[r['id'] for r in rows]))}
+                return [dict(r, email=identities.get(r['id'])) for r in rows]
             if view in ('user', 'assets'):
                 return self._user_view(c, filters.get('account_id'))
             if view == 'audit':
@@ -469,6 +606,9 @@ class Service:
         """组合脱敏账号、角色、钱包、库存、装备、制裁及席位；密码哈希、MFA 密钥与会话令牌不得进入读取模型。"""
         row = self._account(c, account_id)
         result = {key: row[key] for key in ('id', 'login', 'game_id', 'status', 'created_at', 'last_login')}
+        identity = c.select('player_emails', Q(account_id=account_id)).fetchone()
+        result['email'] = identity['email'] if identity else None
+        result['email_verified'] = bool(identity and identity['verified_at'] is not None)
         result['character'] = dict(character) if (character := c.select('characters', Q(account_id=account_id)).fetchone()) else None
         result['wallets'] = [dict(r) for r in c.select('wallets', Q(account_id=account_id), columns=['currency', 'balance', 'version'])]
         result['inventory'] = [dict(r) for r in c.select('inventory', Q(account_id=account_id))]

@@ -1,0 +1,383 @@
+{
+  "kind": "CURRENT_RECOVERED_SAMPLE_STATIC_CONFIG_NOT_RUNTIME_NETWORK_EVIDENCE",
+  "date": "2026-10-15",
+  "workspace": "runtime/native-recovery/coherent-2020/nz",
+  "original_client_modified": false,
+  "game_executed_by_this_check": false,
+  "archive_manifest": {
+    "path": "runtime/native-recovery/coherent-2020/archive-manifest.json",
+    "files": 8982,
+    "sha256": "3ead163a832764a8d0f085c3fd52da0c46fd6f9ffcaa2ece53b05cb51d086e9c"
+  },
+  "network_config": {
+    "path": "TGame/Config/DefaultTGNet.ini",
+    "bytes": 532,
+    "sha256": "cd9db2c5ac64273ec2ebba1eeab4d7a7eca28be46fb9c04e576e07b005db0373",
+    "matches_archive_sha256": true,
+    "decode": {
+      "encoding": "utf-8-sig",
+      "encrypted": true,
+      "padding_bytes": 10,
+      "padding_sha256": "01d448afd928065458cf670b60f5a594d735af0172c8d67f22a81680132681ca",
+      "terminal_nul_bytes": 0,
+      "encoding_fallback": false,
+      "decoded_bytes": 2039,
+      "decoded_sha256": "d7d464fa6f333944f85280f3b52f0361442ebb801701eadadf8a583b9491657a"
+    },
+    "sections": {
+      "UTGame.TGClientGeoNetHandler": [
+        {
+          "decoded_line": 7,
+          "key": "ProtoTDRPathName",
+          "value": "../../TGame/TDR/proto_c2geo.tdr"
+        },
+        {
+          "decoded_line": 8,
+          "key": "ProtoMetaName",
+          "value": "C2GEOPkg"
+        },
+        {
+          "decoded_line": 9,
+          "key": "RecvBufferSize",
+          "value": "204800"
+        },
+        {
+          "decoded_line": 10,
+          "key": "SendBufferSize",
+          "value": "204800"
+        },
+        {
+          "decoded_line": 11,
+          "key": "DefaultRecvTimeout",
+          "value": "10"
+        },
+        {
+          "decoded_line": 12,
+          "key": "DefaultSendTimeout",
+          "value": "50"
+        },
+        {
+          "decoded_line": 13,
+          "key": "DefaultConnectTimeout",
+          "value": "5000"
+        },
+        {
+          "decoded_line": 14,
+          "key": "ServerKey",
+          "value": "<REDACTED_STATIC_CONFIG_VALUE>"
+        },
+        {
+          "decoded_line": 15,
+          "key": "AuthType",
+          "value": "3"
+        },
+        {
+          "decoded_line": 16,
+          "key": "MaxPacketLength",
+          "value": "10240"
+        },
+        {
+          "decoded_line": 17,
+          "key": "Host",
+          "value": "172.25.34.161"
+        },
+        {
+          "decoded_line": 18,
+          "key": "Port",
+          "value": "65006"
+        },
+        {
+          "decoded_line": 19,
+          "key": "HeartbeatInterval",
+          "value": "3.0"
+        },
+        {
+          "decoded_line": 20,
+          "key": "UseMutiThreadPing",
+          "value": "true"
+        }
+      ],
+      "UTGame.TGClientZoneNetHandler": [
+        {
+          "decoded_line": 23,
+          "key": "ProtoTDRPathName",
+          "value": "../../TGame/TDR/proto_c2zn.tdr"
+        },
+        {
+          "decoded_line": 24,
+          "key": "ProtoMetaName",
+          "value": "C2ZNPkg"
+        },
+        {
+          "decoded_line": 25,
+          "key": "RecvBufferSize",
+          "value": "204800"
+        },
+        {
+          "decoded_line": 26,
+          "key": "SendBufferSize",
+          "value": "204800"
+        },
+        {
+          "decoded_line": 27,
+          "key": "DefaultRecvTimeout",
+          "value": "10"
+        },
+        {
+          "decoded_line": 28,
+          "key": "DefaultSendTimeout",
+          "value": "50"
+        },
+        {
+          "decoded_line": 29,
+          "key": "DefaultConnectTimeout",
+          "value": "5000"
+        },
+        {
+          "decoded_line": 30,
+          "key": "ServerKey",
+          "value": "<REDACTED_STATIC_CONFIG_VALUE>"
+        },
+        {
+          "decoded_line": 31,
+          "key": "AuthType",
+          "value": "3"
+        },
+        {
+          "decoded_line": 32,
+          "key": "MaxPacketLength",
+          "value": "1024000"
+        },
+        {
+          "decoded_line": 33,
+          "key": "Host",
+          "value": "10.123.102.101"
+        },
+        {
+          "decoded_line": 34,
+          "key": "Port",
+          "value": "65000"
+        },
+        {
+          "decoded_line": 35,
+          "key": "HeartbeatInterval",
+          "value": "30.0"
+        },
+        {
+          "decoded_line": 36,
+          "key": "HeartbeatIntervalFromServer",
+          "value": "30.0"
+        },
+        {
+          "decoded_line": 37,
+          "key": "MaxRelayCount",
+          "value": "30"
+        },
+        {
+          "decoded_line": 38,
+          "key": "ShunNetIniFile",
+          "value": "../../TGame/ShunNet.ini"
+        }
+      ]
+    },
+    "cleartext_byte_format": {
+      "encoding": "utf-8 without BOM",
+      "exact_roundtrip_to_decoded_sha256": true,
+      "crlf_count": 88,
+      "lf_count": 88,
+      "trailing_newline": true
+    }
+  },
+  "entry_config": [
+    {
+      "path": "TGame/Config/DefaultEngine.ini",
+      "decoded_lines": [
+        7,
+        8,
+        9
+      ],
+      "facts": {
+        "Map": "UTFrontEnd.udk",
+        "LocalMap": "UTFrontEnd.udk",
+        "TransitionMap": "EnvyEntry.udk"
+      }
+    },
+    {
+      "path": "TGame/Config/DefaultEngine.ini",
+      "decoded_lines": [
+        330,
+        362,
+        385,
+        386
+      ],
+      "facts": {
+        "DefaultOnlineSubsystemName": "OnlineSubsystemPC.OnlineSubsystemPC",
+        "GameEngine": "UTGame.TGEngine",
+        "bFirstLoginGeoServer": "True",
+        "bStartWithCross": "True"
+      }
+    },
+    {
+      "path": "TGame/Config/DefaultGame.ini",
+      "decoded_lines": [
+        594,
+        846
+      ],
+      "facts": {
+        "GameMapSettings_MapId_0": "UTFrontEnd",
+        "LoadingTexSettings_MapId_0": "TG_InGameHud.Misc.LoadingBG_Default"
+      }
+    },
+    {
+      "path": "TGame/Config/DefaultUI.ini",
+      "decoded_lines": [
+        1188,
+        1189
+      ],
+      "facts": {
+        "section": "TGameGfxUI.GfxMovie_LoginLobby",
+        "AutoEnterWorld": "false"
+      }
+    }
+  ],
+  "frontend_mini_manifest_resources": [
+    {
+      "path": "TGame/CookedPC/Maps/UTFrontEnd.udk",
+      "config_decoded_line": 582,
+      "exists": true,
+      "archive_manifest_present": true,
+      "bytes": 1535715,
+      "sha256": "2905387447d91c2ab99f92ba7c9f2161e49e03d7f787be5de358535a13cc4cdf",
+      "matches_archive_sha256": true
+    },
+    {
+      "path": "TGame/CookedPC/Maps/UTFrontEnd_Objects.udk",
+      "config_decoded_line": 583,
+      "exists": false,
+      "archive_manifest_present": false,
+      "bytes": null,
+      "sha256": null,
+      "matches_archive_sha256": null
+    },
+    {
+      "path": "TGame/CookedPC/Maps/UTFrontEnd_Light.udk",
+      "config_decoded_line": 584,
+      "exists": false,
+      "archive_manifest_present": false,
+      "bytes": null,
+      "sha256": null,
+      "matches_archive_sha256": null
+    },
+    {
+      "path": "TGame/CookedPC/Maps/UTFrontEnd_PlayerPreview/UTFront_PlayerPreview.udk",
+      "config_decoded_line": 585,
+      "exists": false,
+      "archive_manifest_present": false,
+      "bytes": null,
+      "sha256": null,
+      "matches_archive_sha256": null
+    },
+    {
+      "path": "TGame/CookedPC/Maps/UTFrontEnd_PlayerPreview/UTFrontEnd_PlayerCommon.udk",
+      "config_decoded_line": 586,
+      "exists": false,
+      "archive_manifest_present": false,
+      "bytes": null,
+      "sha256": null,
+      "matches_archive_sha256": null
+    },
+    {
+      "path": "TGame/CookedPC/UI/Maps/HUD_Map_Capital_20.upk",
+      "config_decoded_line": 587,
+      "exists": true,
+      "archive_manifest_present": true,
+      "bytes": 791853,
+      "sha256": "1ff0362aba880158666b20deadc93557fc5bf5dc72d0e81906cd2852459fe86a",
+      "matches_archive_sha256": true
+    },
+    {
+      "path": "TGame/CookedPC/UI/Maps/HUD_Map_Canyon.upk",
+      "config_decoded_line": 588,
+      "exists": true,
+      "archive_manifest_present": true,
+      "bytes": 485345,
+      "sha256": "1d458814f88da8c01165be3f1751b1d68756b55f4a3094288e6d48208d74383e",
+      "matches_archive_sha256": true
+    },
+    {
+      "path": "TGame/CookedPC/UI/Maps/HUD_Map_Seashore.upk",
+      "config_decoded_line": 589,
+      "exists": true,
+      "archive_manifest_present": true,
+      "bytes": 513803,
+      "sha256": "584948c0bf65d0a8217be62eb2149051ba77f3f5b6b6d8b51afa4839fa69be4b",
+      "matches_archive_sha256": true
+    }
+  ],
+  "other_absent_paths": [
+    {
+      "path": "TGame/CookedPC/Maps/EnvyEntry.udk",
+      "exists": false,
+      "archive_manifest_present": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/EnvyEntry.upk",
+      "exists": false,
+      "archive_manifest_present": false
+    },
+    {
+      "path": "TGame/CookedPC/Startup_CHT_LOC_CHT.upk",
+      "exists": false,
+      "archive_manifest_present": false
+    }
+  ],
+  "overrides": {
+    "workspace_filename_matches": [
+      "TGame/Config/DefaultTGNet.ini"
+    ],
+    "TGNet_ini_found": false,
+    "coalesced_named_file_found": false,
+    "per_user_config_or_embedded_package_overrides": "UNVERIFIED"
+  },
+  "server_selection_flags": {
+    "config_files_decoded": 168,
+    "ServerID_or_JoinServer_config_keys_found": false,
+    "JoinServer_exact_TGame_exe_literal_found": false,
+    "observed_compiled_literals": [
+      {
+        "file": "Binaries/Win32/TGame.exe",
+        "file_offset": "0xd91964",
+        "encoding": "utf-16-le",
+        "literal": "open UTFrontEnd"
+      },
+      {
+        "file": "Binaries/Win32/TGame.exe",
+        "file_offset": "0xd92bb0",
+        "encoding": "ascii",
+        "literal": "SuccessfulServerID"
+      }
+    ],
+    "command_line_meaning": "UNVERIFIED_NO_NEW_FLAG_RECOMMENDED"
+  },
+  "undecodable_config_files": [
+    {
+      "path": "TGame/Config/DefaultEditorKeyBindings.ini",
+      "decoder_error": "zlib incorrect data check"
+    },
+    {
+      "path": "TGame/Config/DefaultLightmass.ini",
+      "decoder_error": "zlib incorrect data check"
+    },
+    {
+      "path": "TGame/Config/DefaultPVPGame.ini",
+      "decoder_error": "zlib unknown compression method"
+    }
+  ],
+  "limits": [
+    "All reported line numbers refer to decoded text, not encrypted file byte lines.",
+    "Network host/port values are static defaults; whether this run reads them or applies other overrides is not proven.",
+    "Missing mini-client list resources are also absent from the verified archive manifest, not shown to be runtime load failures; packages may contain merged resources or the list may be stale.",
+    "Original external client-catalog is a different sample: its UTFrontEnd is 52845 bytes; recovered current file is 1535715 bytes. Do not transfer its ZERO_FILLED statuses into this recovered build.",
+    "No client files, registry, processes, credentials or cloud settings were modified by this read-only investigation."
+  ]
+}

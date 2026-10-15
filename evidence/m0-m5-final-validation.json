@@ -1,0 +1,13 @@
+{
+  "kind": "FINAL_CONTROL_PLANE_VALIDATION_NOT_NATIVE_ACCEPTANCE",
+  "user_mysql_version": "8.0.30-txsql",
+  "distinct_user_mysql_tests_passed": 102,
+  "test_reports_successful": true,
+  "frontend_typecheck_build_passed": true,
+  "frontend_vitest_passed": 2,
+  "dev_verification_passed": true,
+  "private_credential_match_paths": [],
+  "public_files_scanned": 226,
+  "single_client_game_passed": false,
+  "dual_client_game_passed": false
+}

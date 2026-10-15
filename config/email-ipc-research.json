@@ -1,0 +1,90 @@
+{
+  "id": "nz-email-ipc-research-v2",
+  "supersedes": "nz-email-ipc-research-v1 (getter shape passed, game-side identity and primary endpoint semantics were incorrect)",
+  "protocol": "nz-email-v1",
+  "proxy_sha256": "788bea4e34d6aaea8187df482ea2c859f7a6c8802b226b1ab7c2d9a6a10bc047",
+  "purpose": "CURRENT_PROXY_IPC_SELF_TEST_ONLY",
+  "native_game_launch_enabled": false,
+  "observed_layout": {
+    "minimum_version": 32,
+    "offset_bytes": 4,
+    "value_length_bytes": 4,
+    "string_encoding": "utf-16-le"
+  },
+  "optional_loopback_profile": {
+    "id": "nz-email-ipc-loopback-research-v2",
+    "purpose": "CURRENT_CLIENT_FIRST_REQUEST_CAPTURE_ONLY",
+    "mapping_capacity_bytes": 524288,
+    "host": "127.0.0.1",
+    "port": "Explicit ephemeral listener port only, range 1024-65535",
+    "server_count": 1,
+    "verified": "Boot22 used the owned DEV email identity through both GEO exchanges and the second authenticated connection. The client consumed the current A001 research login response and emitted A204 and FF05. PlayerInfo, role and lobby acceptance remain unverified.",
+    "native_game_launch_enabled": false
+  },
+  "optional_game_network_profile": {
+    "id": "nz-current-geozone-loopback-research-v1",
+    "purpose": "CURRENT_CONFIG_CONSUMPTION_AND_FIRST_REQUEST_RESEARCH_ONLY",
+    "file": "TGame/Config/DefaultTGNet.ini",
+    "required_sha256": "cd9db2c5ac64273ec2ebba1eeab4d7a7eca28be46fb9c04e576e07b005db0373",
+    "changed_fields": [
+      "UTGame.TGClientGeoNetHandler.Host",
+      "UTGame.TGClientGeoNetHandler.Port",
+      "UTGame.TGClientZoneNetHandler.Host",
+      "UTGame.TGClientZoneNetHandler.Port"
+    ],
+    "host": "127.0.0.1",
+    "port": "Owned ephemeral capture listener only",
+    "authentication_and_tdr_fields": "Preserved; values are not published or treated as independent authentication support",
+    "restore": "Original bytes restored after the bounded probe if the variant hash still matches",
+    "native_game_launch_enabled": false
+  },
+  "optional_transport_profile": {
+    "id": "nz-current-auth-challenge-research-v2",
+    "handler_sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228",
+    "purpose": "AUTH_AND_SYN_SYNACK_RESEARCH_ONLY",
+    "basis": "Current ProtocalHandler code and metadata: aliyun-native-first-auth-static.json and aliyun-native-post-syn-static.json; boot15 verified the 61-byte asynchronous SYNACK",
+    "identity_check": "Must equal the independently issued or explicitly synthetic identity and token supplied to this owned probe",
+    "scope": "Loopback only; verified AUTH and challenge; optional separately versioned key-change capture mode. No character/lobby response.",
+    "native_game_launch_enabled": false,
+    "runtime_challenge_verified": true,
+    "complete_native_login_verified": false
+  },
+  "compatibility_differences": [
+    "Tag2 identity slot carries a local game_id, never a QQ account or shared fixed identity",
+    "Login key slot carries an independently issued short-lived game token, never Tencent credentials",
+    "Tag5 bootstrap AES key is SHA256 of a versioned namespace and the independent token, truncated to 16 bytes; earlier tool names called this a session identifier",
+    "Tag1 ServiceId value 1 and all unknown scalar defaults are research values, not verified original game rules",
+    "Server sub2/sub3 now hold the primary loopback host/port proven by current game code; sub4/sub5 remain loopback research values with unverified business semantics",
+    "Default server records remain empty; the separately versioned loopback research profile adds one local capture listener",
+    "Current GEO PingList, one loopback ZoneList and the explicitly versioned A001 research response are consumed by the client; player data, role, asset and lobby integration remain incomplete",
+    "No QQ signature or official launcher authentication material is generated"
+  ],
+  "optional_zone_login_reply_profile": {
+    "id": "cn2020-zone-login-success-research-v1",
+    "scope": "Fixed 41-byte current A001 response after verified DEV email authentication and strict A000 parsing; no account mutation or asset projection",
+    "runtime_verified": "Boot22 observed A204 and FF05 after the response, matching the current consumer success-initialization branch",
+    "native_game_launch_enabled": false,
+    "role_verified": false,
+    "lobby_verified": false
+  },
+  "optional_geo_reply_profile": {
+    "ping": "nz-current-geo-ping-loopback-research-v1",
+    "zone": "nz-current-geo-zone-loopback-research-v1",
+    "downlink": "nz-current-application-downlink-research-v1",
+    "scope": "Exactly one owned loopback server; native serializer byte-for-byte validation and client consumption verified in boot18-20",
+    "compatibility": "Research ranking, channel, load, latency and decision values are documented separately; original business rules unverified",
+    "native_game_launch_enabled": false
+  },
+  "optional_application_capture_profile": {
+    "id": "nz-current-keychange-application-research-v1",
+    "scope": "After validated AUTH and random challenge, send a fresh independently generated research key and privately capture one native application request. No business response.",
+    "handler_sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228",
+    "current_geo_tdr_sha256": "6d75e846532bb506a858323b8a1c91fa67d3ed0c8766f1d1682f9a8d8afbc8e1",
+    "runtime_verified": "Boot16 research and boot17 verified DEV email identities reached the current GEO PingList request",
+    "key_change_type": {
+      "value": 0,
+      "status": "RESEARCH_VALUE_CURRENT_PARSER_IGNORES_PRODUCTION_MEANING_UNKNOWN"
+    },
+    "native_game_launch_enabled": false
+  }
+}

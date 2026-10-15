@@ -1,0 +1,31 @@
+test_current_observed_ping_request_matches_published_digest (tests.test_native_geo.NativeGeoTests.test_current_observed_ping_request_matches_published_digest)
+固定 9 字节夹具匹配两次当前实机首包公开摘要，解析结果只包含已证请求字段。 ... ok
+test_declared_lengths_must_match_observed_header_and_body (tests.test_native_geo.NativeGeoTests.test_declared_lengths_must_match_observed_header_and_body)
+即使实收9字节，声明长度不符也必须拒绝，不按总长度相同或剩余字节猜结构。 ... ok
+test_force_login_byte_is_preserved_without_boolean_or_authorization_inference (tests.test_native_geo.NativeGeoTests.test_force_login_byte_is_preserved_without_boolean_or_authorization_inference)
+已证单字节语法的边界值原样保留；没有把未知非零值变为强制登录许可的分支。 ... ok
+test_public_compatibility_values_cannot_change_future_encoding (tests.test_native_geo.NativeGeoTests.test_public_compatibility_values_cannot_change_future_encoding)
+外部展示层修改兼容说明不会改变下一次目录响应或伪造运行验收状态，固定端点始终为本机。 ... ok
+test_research_response_matches_current_native_dll_golden (tests.test_native_geo.NativeGeoTests.test_research_response_matches_current_native_dll_golden)
+独立当前 DLL 的 pack/unpack 样本固定 52 字节；捕获字符串、IPv4与 RankInfo 跨版本差异。 ... ok
+test_research_response_requires_explicit_exact_profile (tests.test_native_geo.NativeGeoTests.test_research_response_requires_explicit_exact_profile)
+研究响应不能默认启用或冒充已验证生产协议；未知 profile 和非字符串全部固定错误拒绝。 ... ok
+test_truncated_extra_and_wrong_input_types_are_rejected (tests.test_native_geo.NativeGeoTests.test_truncated_extra_and_wrong_input_types_are_rejected)
+必须是单个完整 bytes 请求；截断、尾随数据、拼接帧或其他类型都不能部分解析。 ... ok
+test_unknown_magic_commands_and_little_endian_are_rejected (tests.test_native_geo.NativeGeoTests.test_unknown_magic_commands_and_little_endian_are_rejected)
+拒绝不同协议、响应、ZoneList及小端变体；仅承认当前已证的大端 PingREQ。 ... ok
+test_current_zone_request_matches_independent_observed_digest (tests.test_native_geo.NativeGeoZoneRequestTests.test_current_zone_request_matches_independent_observed_digest)
+第18次客户端消费 PingRES 后发出40字节 ZoneREQ；独立摘要验证字段与计时测量未被改写。 ... ok
+test_zero_multiple_and_maximum_metadata_counts_are_not_fixed_to_capture_length (tests.test_native_geo.NativeGeoZoneRequestTests.test_zero_multiple_and_maximum_metadata_counts_are_not_fixed_to_capture_length)
+合法0/2/192条及每条最大128字节Domain均可解析；数值只保留，不推断授权或容量配置。 ... ok
+test_zone_domain_rejects_unproven_lengths_termination_and_encoding (tests.test_native_geo.NativeGeoZoneRequestTests.test_zone_domain_rejects_unproven_lengths_termination_and_encoding)
+Domain长度须含唯一末尾NUL且不超过metadata容量；拒绝未知编码和控制符，不宽松截断。 ... ok
+test_zone_request_rejects_count_that_disagrees_with_serialized_entries (tests.test_native_geo.NativeGeoZoneRequestTests.test_zone_request_rejects_count_that_disagrees_with_serialized_entries)
+数组计数不足会留下尾随数据，计数过大则无法完整读取；不扫描猜测真实条目数。 ... ok
+test_zone_request_rejects_wrong_type_headers_truncation_and_trailing_bytes (tests.test_native_geo.NativeGeoZoneRequestTests.test_zone_request_rejects_wrong_type_headers_truncation_and_trailing_bytes)
+声明长度、命令、实收长度和消费终点必须一致；截断任意位置不能冒充完整请求。 ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.003s
+
+OK

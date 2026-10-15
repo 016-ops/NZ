@@ -1,0 +1,195 @@
+{
+  "kind": "NATIVE_ARCHIVE_RECOVERY_NOT_LOBBY_ACCEPTANCE",
+  "archive": {
+    "archive_sha256": "a7a25276d4afcf9361cb80d02f8f63b1866f1db4439223c726ff51a799eeeb03",
+    "archive_bytes": 18336656429,
+    "files": 8982,
+    "bytes": 30299626336,
+    "manifest_sha256": "3ead163a832764a8d0f085c3fd52da0c46fd6f9ffcaa2ece53b05cb51d086e9c"
+  },
+  "archive_win64_present": false,
+  "current_archive_member_size_or_missing_or_zero_differences": 6002,
+  "differences_are_not_all_proven_corrupt": true,
+  "restored_files": [
+    {
+      "path": "Binaries/Win32/TGameBase.dll",
+      "before_bytes": 34440256,
+      "before_sha256": "6d891fad86a0f86ab171a8e6cb661205352a3cb463a796463b5a7391b0354ce7",
+      "after_bytes": 35847832,
+      "after_sha256": "79894ee3b24ad12610c23a385f66820ec4bc6ab9049c57ff5867bcdf1462b6ca"
+    },
+    {
+      "path": "Binaries/Win32/TGame.exe",
+      "before_bytes": 18161216,
+      "before_sha256": "dec50155fa028832760dcde17e2a4341a65b78fc2e1432f75860aae8648f9407",
+      "after_bytes": 17959576,
+      "after_sha256": "b81bb4e1256ad1fca1ecbbf93b35979d96c36ca16f8bbfc8d126e9a452df51f8"
+    },
+    {
+      "path": "Binaries/Win32/GameLoader.exe",
+      "before_bytes": 4495936,
+      "before_sha256": "25e3a5d1e480d0bb2402d530c35b50bafe3f481e502e96fdf82f5e53770afb1e",
+      "after_bytes": 5574736,
+      "after_sha256": "c86c1f63ff24f33da42e7ef358150f0abef68954d2b137df3b5b4c958edd10d1"
+    },
+    {
+      "path": "Binaries/Win32/WebBrowserControl.dll",
+      "before_bytes": 322048,
+      "before_sha256": "24c3f6f9c78ba25d523a5d324fb80ba144e5bdb1fbb77c5fb27acf7b90890231",
+      "after_bytes": 2573672,
+      "after_sha256": "c9b0be5a33043007207ec37f65e29857637ffc7aa98f8b620bf723272d187d32"
+    }
+  ],
+  "original_four_files_still_match_before_hashes": true,
+  "original_write_operations_in_recovery": 0,
+  "signatures": [
+    {
+      "File": "TCLS/Client.exe",
+      "Status": "HashMismatch"
+    },
+    {
+      "File": "TCLS/TCLSClient.dll",
+      "Status": "Valid"
+    },
+    {
+      "File": "TCLS/SSOPlatform.dll",
+      "Status": "Valid"
+    },
+    {
+      "File": "TCLS/SSOCommon.dll",
+      "Status": "Valid"
+    },
+    {
+      "File": "Binaries/Win32/GameLoader.exe",
+      "Status": "Valid"
+    },
+    {
+      "File": "Binaries/Win32/TGame.exe",
+      "Status": "Valid"
+    },
+    {
+      "File": "Binaries/Win32/TGameBase.dll",
+      "Status": "Valid"
+    },
+    {
+      "File": "Binaries/Win32/WebBrowserControl.dll",
+      "Status": "Valid"
+    }
+  ],
+  "runs": [
+    {
+      "id": "coherent-2020-visible-01",
+      "seconds": 300.14,
+      "execution_context": "RUN_AS_INVOKER",
+      "root_exit_before_cleanup": 0,
+      "timed_out": true,
+      "cleanup_verified": true,
+      "changed_files": [
+        "Binaries\\Win32\\ACE-DRV32.dll",
+        "Binaries\\Win32\\tcj.dll.bh",
+        "Binaries\\Win32\\TenSLX2.dat",
+        "TCLS\\plugins\\TPDownLoad.xml",
+        "TCLS\\plugins\\TPLocalDataDir\\TPData"
+      ],
+      "map_loaded_verified": false,
+      "network_ready_verified": false,
+      "retail_ready": false,
+      "observed_process_count": 6
+    },
+    {
+      "id": "coherent-2020-client-01",
+      "seconds": 25.515,
+      "mode": "client",
+      "argv0": "ABSOLUTE_EXECUTABLE_PATH",
+      "execution_context": "RUN_AS_INVOKER",
+      "root_exit_before_cleanup": 0,
+      "timed_out": false,
+      "cleanup_verified": true,
+      "changed_files": [
+        "Binaries\\Win32\\ACE-DRV32.dll",
+        "Binaries\\Win32\\tcj.dll.bh",
+        "TCLS\\plugins\\TPDownLoad.xml"
+      ],
+      "map_loaded_verified": false,
+      "network_ready_verified": false,
+      "retail_ready": false,
+      "observed_process_count": 5
+    },
+    {
+      "id": "coherent-2020-client-exits-01",
+      "seconds": 60.063,
+      "mode": "client",
+      "argv0": "ABSOLUTE_EXECUTABLE_PATH",
+      "execution_context": "RUN_AS_INVOKER",
+      "root_exit_before_cleanup": 0,
+      "timed_out": true,
+      "cleanup_verified": true,
+      "observed_exit_codes": {
+        "13368": {
+          "decimal": 0,
+          "hex": "0x00000000"
+        },
+        "31428": {
+          "decimal": 3,
+          "hex": "0x00000003"
+        },
+        "13912": {
+          "decimal": 2,
+          "hex": "0x00000002"
+        },
+        "14468": {
+          "decimal": 2457,
+          "hex": "0x00000999"
+        },
+        "15944": {
+          "decimal": 3758096385,
+          "hex": "0xE0000001"
+        }
+      },
+      "exit_query_errors": {},
+      "changed_files": [
+        "Binaries\\Win32\\ACE-DRV32.dll",
+        "Binaries\\Win32\\tcj.dll.bh",
+        "Binaries\\Win32\\TenproxyLog\\20261015_122710.log",
+        "TCLS\\plugins\\TPDownLoad.xml"
+      ],
+      "map_loaded_verified": false,
+      "network_ready_verified": false,
+      "retail_ready": false,
+      "observed_process_count": 5
+    }
+  ],
+  "user_observation": "SPLASH_OR_PROGRESS_NO_ACCOUNT_FIELDS_NO_LOBBY",
+  "proxy_log": {
+    "encoding": "gb18030",
+    "run": "coherent-2020-client-exits-01",
+    "shared_memory_open_and_map_succeeded": true,
+    "errors": [
+      "TCLS版本0不兼容Proxy32",
+      "[CTclsProxy::GetLoginInfo]GetLoginInfo Fail"
+    ],
+    "logged_process_id": 14468,
+    "logged_process_observed_exit_code": "0x00000999",
+    "exit_code_semantics": "VENDOR_EXIT_CODE_NOT_DECODED_AS_WIN32_OR_NTSTATUS"
+  },
+  "execution_manifest": {
+    "TGame.exe": "requireAdministrator",
+    "TCLS/Client.exe": "requireAdministrator",
+    "GameLoader.exe": "asInvoker"
+  },
+  "launcher": {
+    "sha256": "37baa8b4c908b98bcf12fb44fdaef688096f2e645ee5ef81c4f50ac8e0f0b264",
+    "same_bytes_in_original_and_archive": true,
+    "authenticode": "HashMismatch",
+    "executed_in_this_batch": false
+  },
+  "remaining": [
+    "NORMAL_ELEVATED_CONTEXT_NOT_VERIFIED",
+    "TCLS_LAUNCHER_SIGNATURE_MISMATCH",
+    "NATIVE_AUTH_DIRECTORY_ROLE_LOBBY_NOT_IMPLEMENTED",
+    "NATIVE_MAP_SPAWN_NETWORK_NOT_VERIFIED",
+    "WIN64_ENTRY_NOT_RECOVERED",
+    "DUAL_CLIENT_ACCEPTANCE_NOT_RUN"
+  ],
+  "tooling_report": "evidence/native-repair-tooling-tests.json"
+}

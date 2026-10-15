@@ -35,7 +35,7 @@ with connection.cursor() as c:
         c.execute("ALTER USER 'root'@'localhost' IDENTIFIED BY %s", (owner_password,))
         c.execute("CREATE USER 'nz_local'@'127.0.0.1' IDENTIFIED BY %s", (app_password,))
         c.execute("GRANT ALL PRIVILEGES ON `nz\\_%`.* TO 'nz_local'@'127.0.0.1'")
-        for name in ('nz_current','nz_synthetic'):
+        for name in ('nz_current','nz_synthetic','nz_pve_synthetic'):
             c.execute(f'CREATE DATABASE `{name}` CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_bin')
         print('Project MySQL initialized; credentials saved privately in .env.local.')
     elif args.action == 'stop':

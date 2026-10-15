@@ -1,0 +1,185 @@
+{
+  "kind": "CURRENT_BUILD_FRAME_PACING_STATIC_CONFIRMATION",
+  "source": "Owned boot10 executable-code captures plus unchanged TGame.exe numeric constants; no UI reads or client edits",
+  "game_sha256": "b81bb4e1256ad1fca1ecbbf93b35979d96c36ca16f8bbfc8d126e9a452df51f8",
+  "actual_game_image_base": "0x400000",
+  "captures": [
+    {
+      "rva": "0xfb2600",
+      "bytes": 1536,
+      "sha256": "f89fb6f14f8ef1a6912489499f09f3bb7fccba3ad8d252609c76a92fa0a65098"
+    },
+    {
+      "rva": "0x12d180",
+      "bytes": 128,
+      "sha256": "3f4fcd5ab3c439be23882b61cc9ab8d63fea00f7775a6314409a567e7e30ede6"
+    }
+  ],
+  "previous_evidence": "evidence/aliyun-native-loop-static.json",
+  "confirmed": [
+    {
+      "rva": "0xFB2750",
+      "fact": "Calls a virtual method at engine-object vtable offset0x154 with elapsed time and flag1; receives a floating-point rate."
+    },
+    {
+      "rva": "0xFB277C",
+      "fact": "Computes remaining=max(0,1.0/rate-elapsed) when returned rate is positive."
+    },
+    {
+      "rva": "0xFB27C9",
+      "fact": "If remaining exceeds0.005seconds, sleeps for remaining-0.003seconds via RVA0x12D180."
+    },
+    {
+      "rva": "0xFB2810",
+      "fact": "Fine wait updates current counter-derived time, sleeps with0seconds, and loops only while elapsed is less than remaining."
+    },
+    {
+      "rva": "0xFB2882",
+      "fact": "Updates global delta time and previous-time state before returning to the engine main loop."
+    },
+    {
+      "rva": "0x12D180",
+      "fact": "Converts floating-point seconds to integer milliseconds by multiplying1000, then calls the system sleep import slot; sampled return RVA0x12D1B2 is immediately after this call."
+    }
+  ],
+  "numeric_constants_from_unchanged_game_file": {
+    "0x1a4aa2c": {
+      "format": "float32",
+      "value": 1.0
+    },
+    "0x1a50010": {
+      "format": "float64",
+      "value": 1000.0
+    },
+    "0x1a4f5e8": {
+      "format": "float32",
+      "value": 0.0
+    },
+    "0x1a5c994": {
+      "format": "float32",
+      "value": 0.004999999888241291
+    },
+    "0x1bcd114": {
+      "format": "float32",
+      "value": 0.003000000026077032
+    }
+  },
+  "conclusion": "The observed call is frame-time/rate pacing logic. Its wait loop depends on elapsed time versus a computed frame interval, not a login-complete flag.",
+  "inference_boundary": "Semantic role as a frame pacing routine follows the current-build arithmetic/control flow. No exact C++ symbol name or identity of the clock import was recovered.",
+  "not_established": [
+    "Actual runtime rate and duration supplied for the sampled sleep; only code bytes and system stack were captured.",
+    "Successful rendered frames, completed loading, role selection or lobby protocol exchange.",
+    "What other subsystem prevents the observed loading screen from reaching the lobby."
+  ],
+  "next_verifiable_lead": "Shift investigation from this sleep routine to the actual current-game GetLoginInfo consumption and selected endpoint. Compare only noncredential fields/connection transitions or existing native logs; do not patch out frame pacing, synthesize success flags, or guess PH protocol IDs.",
+  "instructions": {
+    "frame_pacing": [
+      "00fb2750 mov ecx, dword ptr [0x25ddea4]",
+      "00fb2756 mov eax, dword ptr [ecx]",
+      "00fb2758 mov edx, dword ptr [eax + 0x154]",
+      "00fb275e push ebx",
+      "00fb275f push ecx",
+      "00fb2760 fstp dword ptr [esp]",
+      "00fb2763 call edx",
+      "00fb2765 xorps xmm1, xmm1",
+      "00fb2768 fst dword ptr [esp + 0x20]",
+      "00fb276c fldz ",
+      "00fb276e movss dword ptr [esp + 0x18], xmm1",
+      "00fb2774 fxch st(1)",
+      "00fb2776 fcompi st(1)",
+      "00fb2778 fstp st(0)",
+      "00fb277a jbe 0x13b27a3",
+      "00fb277c movss xmm0, dword ptr [0x1e4aa2c]",
+      "00fb2784 divss xmm0, dword ptr [esp + 0x20]",
+      "00fb278a subss xmm0, dword ptr [esp + 0x10]",
+      "00fb2790 comiss xmm0, xmm1",
+      "00fb2793 jb 0x13b279d",
+      "00fb2795 movss dword ptr [esp + 0x18], xmm0",
+      "00fb279b jmp 0x13b27a3",
+      "00fb279d movss dword ptr [esp + 0x18], xmm1",
+      "00fb27a3 add dword ptr [0x25593b8], ebx",
+      "00fb27a9 lea eax, [esp + 0x28]",
+      "00fb27ad push eax",
+      "00fb27ae adc dword ptr [0x25593bc], edi",
+      "00fb27b4 call esi",
+      "00fb27b6 movss xmm0, dword ptr [esp + 0x18]",
+      "00fb27bc comiss xmm0, dword ptr [0x1e4f5e8]",
+      "00fb27c3 jbe 0x13b285b",
+      "00fb27c9 comiss xmm0, dword ptr [0x1e5c994]",
+      "00fb27d0 jbe 0x13b27e8",
+      "00fb27d2 subss xmm0, dword ptr [0x1fcd114]",
+      "00fb27da push ecx",
+      "00fb27db movss dword ptr [esp], xmm0",
+      "00fb27e0 call 0x52d180",
+      "00fb27e5 add esp, 4",
+      "00fb27e8 fld qword ptr [0x2559340]",
+      "00fb27ee fld st(0)",
+      "00fb27f0 fst qword ptr [esp + 0x10]",
+      "00fb27f4 fld dword ptr [esp + 0x18]",
+      "00fb27f8 fst qword ptr [esp + 0x18]",
+      "00fb27fc fxch st(2)",
+      "00fb27fe fsubrp st(1)",
+      "00fb2800 fxch st(1)",
+      "00fb2802 fcompi st(1)",
+      "00fb2804 fstp st(0)",
+      "00fb2806 jbe 0x13b285b",
+      "00fb2808 jmp 0x13b2810",
+      "00fb280a lea ebx, [ebx]",
+      "00fb2810 add dword ptr [0x25593b8], ebx",
+      "00fb2816 lea ecx, [esp + 0x20]",
+      "00fb281a push ecx",
+      "00fb281b adc dword ptr [0x25593bc], edi",
+      "00fb2821 call esi",
+      "00fb2823 fild qword ptr [esp + 0x20]",
+      "00fb2827 push ecx",
+      "00fb2828 fmul qword ptr [0x2549a90]",
+      "00fb282e fadd qword ptr [0x1e4f440]",
+      "00fb2834 fstp qword ptr [0x2559340]",
+      "00fb283a fldz ",
+      "00fb283c fstp dword ptr [esp]",
+      "00fb283f call 0x52d180",
+      "00fb2844 fld qword ptr [0x2559340]",
+      "00fb284a fsub qword ptr [esp + 0x14]",
+      "00fb284e add esp, 4",
+      "00fb2851 fld qword ptr [esp + 0x18]",
+      "00fb2855 fcompi st(1)",
+      "00fb2857 fstp st(0)",
+      "00fb2859 ja 0x13b2810",
+      "00fb285b add dword ptr [0x25593b8], ebx",
+      "00fb2861 lea edx, [esp + 0x20]",
+      "00fb2865 push edx",
+      "00fb2866 adc dword ptr [0x25593bc], edi",
+      "00fb286c call esi",
+      "00fb286e fld qword ptr [0x2559340]",
+      "00fb2874 fld qword ptr [0x263a490]",
+      "00fb287a mov eax, dword ptr [esp + 0x20]",
+      "00fb287e sub eax, dword ptr [esp + 0x28]",
+      "00fb2882 fsubr st(1)",
+      "00fb2884 mov ecx, dword ptr [0x25ddea4]",
+      "00fb288a add dword ptr [0x25d2a80], eax",
+      "00fb2890 fstp qword ptr [0x25096d8]",
+      "00fb2896 push ecx",
+      "00fb2897 fstp qword ptr [0x263a490]",
+      "00fb289d call 0x5b7880",
+      "00fb28a2 add esp, 4",
+      "00fb28a5 test eax, eax"
+    ],
+    "seconds_to_milliseconds": [
+      "0012d180 sub esp, 8",
+      "0012d183 fld dword ptr [esp + 0xc]",
+      "0012d187 fmul qword ptr [0x1e50010]",
+      "0012d18d fnstcw word ptr [esp + 0xc]",
+      "0012d191 movzx eax, word ptr [esp + 0xc]",
+      "0012d196 or eax, 0xc00",
+      "0012d19b mov dword ptr [esp], eax",
+      "0012d19e fldcw word ptr [esp]",
+      "0012d1a1 fistp qword ptr [esp]",
+      "0012d1a4 mov eax, dword ptr [esp]",
+      "0012d1a7 push eax",
+      "0012d1a8 fldcw word ptr [esp + 0x10]",
+      "0012d1ac call dword ptr [0x1e3e1f8]",
+      "0012d1b2 add esp, 8",
+      "0012d1b5 ret "
+    ]
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "kind": "SINGLE_ROOM_WORKSPACE_PREPARATION",
+  "host_key_pinned": true,
+  "passed": true,
+  "exit_code": 0,
+  "result": {
+    "kind": "SINGLE_ROOM_WORKSPACE_STAGED_ONLY",
+    "root": "C:\\NZResearch",
+    "files": [
+      {
+        "name": ".nz-research-owned.json",
+        "bytes": 166,
+        "sha256": "2492b35f900f5d5f90b78fd8788bdb989add9beaffc63b8df41ce8d2bb101213",
+        "readback_matches": true
+      },
+      {
+        "name": "README.md",
+        "bytes": 1117,
+        "sha256": "15fbdb2bba9a92c6e0ae806459190f43660ea80d612192c0df9bdce6ad3b513f",
+        "readback_matches": true
+      },
+      {
+        "name": "INSTALL_PLAN.json",
+        "bytes": 2098,
+        "sha256": "da78ad7a2f383576b47b539240105c15553a3c7df72a817a7b17048eb0ecb874",
+        "readback_matches": true
+      },
+      {
+        "name": "preflight.ps1",
+        "bytes": 2836,
+        "sha256": "2f44b4bed9d57b793c5f6a09b9cdf4cefcf55165968bd389a43d6dddbd16b9d3",
+        "readback_matches": true
+      }
+    ],
+    "directories_created": 5,
+    "runtime_installed": false,
+    "client_uploaded": false,
+    "services_created": 0,
+    "services_restarted": 0,
+    "firewall_changes": 0,
+    "credentials_uploaded": false,
+    "native_node_ready": false,
+    "preflight": {
+      "kind": "ROOM_WORKSPACE_PREFLIGHT_ONLY",
+      "native_instance_started": false,
+      "native_node_ready": false,
+      "service_changes": 0,
+      "firewall_changes": 0,
+      "credentials_read": false,
+      "root": "C:\\NZResearch",
+      "directories": {
+        "incoming": {
+          "exists": true,
+          "reparse_point": false
+        },
+        "releases": {
+          "exists": true,
+          "reparse_point": false
+        },
+        "runtime": {
+          "exists": true,
+          "reparse_point": false
+        },
+        "evidence": {
+          "exists": true,
+          "reparse_point": false
+        },
+        "client-workspaces": {
+          "exists": true,
+          "reparse_point": false
+        }
+      },
+      "os_version": "10.0.26100",
+      "os_build": "26100",
+      "operating_system_64bit": true,
+      "process_64bit": true,
+      "memory_total_bytes": 4294422528,
+      "memory_free_bytes": 1467498496,
+      "disk_free_bytes": 25513656320,
+      "python_command_present": true,
+      "python_windows_app_alias": true
+    }
+  }
+}

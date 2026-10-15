@@ -1,0 +1,206 @@
+{
+  "kind": "CURRENT_NATIVE_POST_SYN_STATIC_CONTRACT",
+  "component": "ProtocalHandler.dll",
+  "component_sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228",
+  "analysis_scope": "Read-only current workcopy PE instructions and embedded TDR descriptors; no execution, packet sending, process key scan, UI inspection or client writes.",
+  "runtime_status": "Initial static report retained. Later parent-controlled boot15 confirmed SYN/SYNACK, boot16 confirmed key change and current GEO PingListREQ, boot17 repeated with a real DEV email identity; see aliyun-native-launch-summary.json. This file does not claim further game login or lobby success.",
+  "async_synack_correction": {
+    "importance": "The active asynchronous SYN handler adds an encrypted sequence body, unlike the compact lower-level SYNACK builder. A verifier requiring every SYNACK BodyLen=0 rejects a valid current asynchronous packet.",
+    "path_rvas": [
+      "0x28FC0",
+      "0x29024",
+      "0x32AB0",
+      "0x32B07",
+      "0x639D0"
+    ],
+    "head": {
+      "cmd": 9,
+      "enc_head_len": 4,
+      "head_len": 45,
+      "body_len": 16,
+      "total_bytes": 61,
+      "extension": "U8 encrypted challenge length 32, followed by the copied 32-byte SYN challenge ciphertext."
+    },
+    "body": "AES3 encryption under the current bootstrap key of a four-byte big-endian sequence. AES3 padding produces 16 ciphertext bytes: sequence[4] + random[6] + tsf4g[5] + 0x0C.",
+    "sequence": "RVA0x659E0 initializes transport+0x8C from the current CRT random generator, then increments it. Do not require zero or one.",
+    "evidence": [
+      "0x29002..0x29012 copies received decoded head and changes Cmd to 9; 0x2901F/0x29021 pass empty application body.",
+      "0x63AF9 calls IAT0xD8514, imported WS2_32 ordinal8 (htonl, verified against local x86 system DLL); 0x63AFF writes sequence.",
+      "0x63B0D sets EncHeadLen=4; 0x63BC3 sets plaintext length to application length+4; 0x63BE2 invokes current encryption dispatcher0x634F0.",
+      "0x63C52 writes encrypted BodyLen; 0x63C5C sends serialized head length plus cipher length."
+    ],
+    "compact_builder": "RVA0x658E0 also exists and builds the compact header-only SYNACK. It must not be mistaken for the active asynchronous 0x28FC0 path."
+  },
+  "current_metadata": {
+    "metalib_rva": "0xFD498",
+    "pointer_base_rva": "0xFD5AC",
+    "macros": [
+      {
+        "name": "TPDU_CMD_NONE",
+        "value": 0,
+        "entry_rva": "0xFD79C"
+      },
+      {
+        "name": "TPDU_CMD_CHGSKEY",
+        "value": 1,
+        "entry_rva": "0xFD7AC"
+      },
+      {
+        "name": "TPDU_CMD_IDENT",
+        "value": 4,
+        "entry_rva": "0xFD7DC"
+      }
+    ],
+    "TPDUExtChgSkey": {
+      "descriptor_rva": "0x1000CC",
+      "fields": [
+        {
+          "name": "Type",
+          "offset": 0,
+          "width": 2,
+          "descriptor_rva": "0x100184"
+        },
+        {
+          "name": "Len",
+          "offset": 2,
+          "width": 2,
+          "descriptor_rva": "0x100238"
+        },
+        {
+          "name": "EncryptSkey",
+          "offset": 4,
+          "element_width": 1,
+          "max_count": 128,
+          "length_field": "Len",
+          "descriptor_rva": "0x1002EC"
+        }
+      ]
+    },
+    "TPDUExtIdent": {
+      "descriptor_rva": "0x100FA4",
+      "fields": [
+        {
+          "name": "Len",
+          "offset": 0,
+          "width": 4,
+          "descriptor_rva": "0x10105C"
+        },
+        {
+          "name": "EncryptIdent",
+          "offset": 4,
+          "element_width": 1,
+          "max_count": 64,
+          "length_field": "Len",
+          "descriptor_rva": "0x101110"
+        }
+      ]
+    },
+    "TPDUIdentInfo": {
+      "descriptor_rva": "0x100D84",
+      "plaintext_bytes": 20,
+      "fields": [
+        {
+          "name": "Pos",
+          "offset": 0,
+          "width": 4,
+          "descriptor_rva": "0x100E3C"
+        },
+        {
+          "name": "Ident",
+          "offset": 4,
+          "element_width": 1,
+          "fixed_count": 16,
+          "descriptor_rva": "0x100EF0"
+        }
+      ]
+    }
+  },
+  "ident_contract": {
+    "parser_rva": "0x64B70",
+    "evidence": [
+      "0x64C05 requires Cmd4; 0x64C5D reads decoded head+0xC U32 cipher length; 0x64C68 uses head+0x10 cipher.",
+      "0x64C76 decrypts through0x63700 using the currently installed transport key; 0x64CFA TDR-decodes20-byte TPDUIdentInfo.",
+      "0x63310 stores Pos at transport+0x60 and Ident16 at+0x64; storage alone does not mark initial authentication ready."
+    ],
+    "initial_state": "Initial AUTH zeroes handler+0x1C8 (0x268B2,0x269E8) and sets state3 (0x269D1). IDENT branch0x28638/0x28649 requires state3 and nonzero1C8 to mark connection ready. Initial IDENT instead returns2; caller0x2CD45 skips upper notification on2.",
+    "reconnect_path": "Separate entry0x26E60 accepts prior identification data, copies it at0x26FDA and sets1C8=1 at0x26FEF. Thus the IDENT-only success path is distinct from initial login.",
+    "lower_level_confirmation": "Generic initial handshake loop0x65643 parses IDENT and resumes receiving; CHGSKEY0x656DB is the successful return path. Separate0x65740 is an IDENT-only routine."
+  },
+  "change_key_contract": {
+    "parser_rva": "0x64D70",
+    "evidence": [
+      "0x64E05 requires Cmd1; 0x64E2E sign-extends 16-bit decoded length at head+0xE; 0x64E3A cipher starts at head+0x10.",
+      "0x64E48 decrypts through0x63700 using the old/current bootstrap key; Type at head+0xC is not read by this parser.",
+      "0x64E9C..0x64EB8 copies exactly the first16 decrypted bytes to the caller output; use exactly16 valid plaintext bytes, without relying on missing length checks.",
+      "0x28735 parses into handler+0x188; 0x287AC installs the new key through0x32900 and0x64180 using existing mode; 0x287B8 marks connection+0x38C ready.",
+      "Upper callback0x28020 sees successful Cmd1 at0x282E5, runs0x291A0, and calls the registered interface vtable+4 at0x28312. Error path calls vtable+8 at0x282DD."
+    ],
+    "initial_ident_required_by_this_branch": false,
+    "initial_ident_note": "No IDENT/Pos precondition occurs in the proven successful CHGSKEY branch. Omitting IDENT does not establish reconnect identity and is not a statement that reconnect or game login works.",
+    "research_candidate": {
+      "status": "Proven parser-compatible research candidate; not sent or runtime-accepted by this static analysis.",
+      "head": "55 0E 01 00, BE32 HeadLen48, BE32 BodyLen0",
+      "extension": "BE16 Type0, BE16 Len32, ciphertext32",
+      "plaintext": "Exactly16 server-generated random session-key bytes, owned solely by the local research session.",
+      "encryption": "Current AES3 with old bootstrap key and IV00..0F; custom padding16 results in32 bytes. Switch local receive decryption to the new key only for frames after this change-key response.",
+      "type_boundary": "Type0 is explicitly a local research choice. The current parser ignores Type; production Type meaning is unknown."
+    }
+  },
+  "application_outbound_framing": {
+    "scope": "Current generic send routine0x639D0, not an assertion that any game application message was received.",
+    "cmd0": "0x634D0 creates a default Cmd0 head. Serialized head length is12 with no command extension. Generic sender sets EncHeadLen4 and encrypts BE32 sequence plus serialized application bytes as body.",
+    "lengths": "HeadLen is the unencrypted serialized TPDU head length. BodyLen is the complete ciphertext length, including encryption of the four-byte sequence and padding; total frame bytes=HeadLen+BodyLen.",
+    "decrypt_order": "Use the newly installed key after successful CHGSKEY. AES3-decrypt frame[HeadLen:HeadLen+BodyLen], validate trailer/padding, require at least EncHeadLen bytes, and remove exactly the proven four-byte sequence prefix before treating remainder as application bytes.",
+    "boundaries": "Do not guess application message IDs, TDR schemas, account fields, Geo/Zone exchange or success replies from this envelope alone. Outbound application payload may include independent identity material and remains private."
+  },
+  "unverified": [
+    "Production Type meaning, IDENT allocation policy and reconnect behavior.",
+    "Zone authentication, character creation, lobby and subsequent modes."
+  ],
+  "later_runtime_evidence": "evidence/aliyun-native-launch-summary.json (boot15, boot16, boot17)",
+  "application_inbound_framing": {
+    "scope": "Current DLL static evidence; no server packet sent by this analysis.",
+    "active_path": "Worker RVA0x2CAC4 calls0x64990 then0x64750.",
+    "body": "0x64750 uses BE HeadLen and BodyLen to find complete body.0x648BF calls0x63700 to decrypt;0x64913 returns full plaintext length. This path does not read EncHeadLen at header+3 or strip a four-byte sequence.",
+    "cmd0_research_frame": "Base head12; Cmd0; EncHeadLen0; AES3(complete GEO bytes). Unlike client outbound traffic, do not prepend a sequence on server plaintext.",
+    "queue": "Cmd0 default result0 from0x28470 does not post the same upper ready notification as Cmd2. Plaintext is nevertheless queued at0x2E18C..0x2E1A8 through0x2B000. Client polling must be proven independently.",
+    "cmd2_boundary": "Cmd2 branch0x285B1 returns1 to request upper notification. Upper handler0x28020 at0x28186 calls callback vtable0 after consuming queue extension DWORDs at decoded head+C/+10/+14. Do not send a naked Cmd2 frame to imitate ordinary data.",
+    "receive_abi": {
+      "primary_vtable_rva": "0xD9810",
+      "slot": "0x28",
+      "rva": "0x27B00",
+      "inner_vtable_rva": "0xD9A1C",
+      "inner_slot": "0x28",
+      "inner_rva": "0x2EAE0",
+      "queue_read_rva": "0x2EBB0"
+    },
+    "tgame_samples_boot17": [
+      "Geo OnConnectionInitialized entry0x14ACA80: success sets this+88 flag1 and calls0x14A1180 at0x14ACAD9.",
+      "Geo RecvPackage entry0x14BAAF0: calls object vtable+18C at0x14BAB3A; positive result calls object+16C then dispatch0x15F7AA0. Periodic caller still requires a further sample.",
+      "Generic RecvPackage entry0x14AB540 similarly calls object+18C and dispatches positive result."
+    ],
+    "correction": "Earlier oral primary Receive slot+30 was wrong; whole-table verification confirms+28. Current function RVA27B00 is unchanged.",
+    "runtime_update": "Parent boot18 observed current ZoneListREQ40B after normal Cmd0/EncHeadLen0 PingListRES; this confirms actual game delivery and application processing, despite unproven generic periodic caller.",
+    "tgame_samples_boot18": [
+      {
+        "rva": "0x14A1180",
+        "length": 256,
+        "sha256": "a2bdbb31cc4f087284064d89ddedfc73d6c75394e88e25741db68cf9f14a336c",
+        "finding": "Builds current Magic8202/Cmd1001; IsForceLogin from bool arg; sends via object vtable+150 at14A11E1. Confirms connection-ready callback leads to PingListREQ."
+      },
+      {
+        "rva": "0x14A1C20",
+        "length": 96,
+        "sha256": "aa989895282948052096bfe641414a8744eae4ecce088945d47719cd7b467207",
+        "finding": "Returns U16(packet+2), a command getter. Earlier tentative raw receive interpretation was rejected by actual sample."
+      },
+      {
+        "rva": "0x14A60A0",
+        "length": 384,
+        "sha256": "49e06a0aa8e1d41471dca8ee9295ab110c768009eb9c0f18090fb0fbfcfb909a",
+        "finding": "Checks event byte5 and scans a Ping-related array. Not evidence of periodic tick polling."
+      }
+    ],
+    "next_bounded_sample": "If a later owned-process run occurs, RVA14BB4D0 length0x180 is a candidate receive wrapper derived from corrected Geo command-getter table location. Not necessary to launch separately because boot18 already proves actual Cmd0 data consumption."
+  }
+}

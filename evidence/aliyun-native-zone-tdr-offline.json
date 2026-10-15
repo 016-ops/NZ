@@ -1,0 +1,124 @@
+{
+  "kind": "CURRENT_ZONE_NATIVE_TDR_OFFLINE_VALIDATION",
+  "scope": "Bounded x86 offline protocol component only. No game launch, network Init, UI access, vendor credentials or process-memory key extraction. No response constructed.",
+  "tool": "tools/native_tdr_probe.py --verify-zone-notification",
+  "dll_sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228",
+  "metadata": {
+    "path": "TGame/TDR/proto_c2zn.tdr",
+    "bytes": 3024238,
+    "sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+    "schema": "C2ZNPkg",
+    "host_size": 1025331
+  },
+  "request": {
+    "source": "Owned research boot19 second local connection, application-01.bin",
+    "bytes": 11,
+    "sha256": "411481f88d63ea7ac96ed7db0d264d023d53243acd31f01e0149fb6af7b469ca",
+    "header": {
+      "magic": "0x3243",
+      "cmd": "0x1250",
+      "head_len": 8,
+      "body_len": 3
+    },
+    "metadata_name": "C2ZN_NtfNetBarKey",
+    "key_length": 1,
+    "key_data_published": false,
+    "login_request": false
+  },
+  "abi_reference": "evidence/aliyun-native-tdr-offline.json",
+  "checks": [
+    {
+      "step": "vtable_slot",
+      "slot": "0x50",
+      "function_rva": "0x29530"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x54",
+      "function_rva": "0x29670"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x58",
+      "function_rva": "0x29560"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x5C",
+      "function_rva": "0x294C0"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x60",
+      "function_rva": "0x294E0"
+    },
+    {
+      "step": "load_metadata",
+      "return_code": 0,
+      "canaries": true
+    },
+    {
+      "step": "captured_request_unpack",
+      "return_code": 0,
+      "input_length_before": 11,
+      "output_capacity": 1025331,
+      "output_length": 1025331,
+      "input_length_after": 11,
+      "canaries": true
+    },
+    {
+      "step": "captured_request_pack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 11,
+      "input_length_after": 1025331,
+      "canaries": true
+    }
+  ],
+  "result": {
+    "passed": true,
+    "exact_roundtrip": true,
+    "timeout": false,
+    "job_cleanup_verified": true,
+    "all_canaries_unchanged": true,
+    "native_return_codes_all_zero": true,
+    "raw_payload_published": false,
+    "response_constructed": false
+  },
+  "bounds": {
+    "single_guard_buffer_max_bytes": 4194304,
+    "guard_pages": 2,
+    "adjacent_canary_bytes_per_side": 32,
+    "process_timeout_seconds": 30,
+    "arbitrary_dll_option": false,
+    "arbitrary_tdr_option": false,
+    "arbitrary_schema_option": false,
+    "zone_notification_and_geo_responses_mutually_exclusive": true,
+    "output_private_only": true
+  },
+  "regression": {
+    "run": "native-tdr-probe-12",
+    "passed": true,
+    "ping_request_exact_roundtrip": true,
+    "ping_response_sha256": "b67c020800b28039cd7ef19d31f7fa71a003e4f6ae16c6085b46ccf7944da8c2",
+    "geo_zone_request_exact_roundtrip": true,
+    "geo_zone_response_sha256": "520b80a6dcf77b4ab830dee4f7b11b5defdaa226c28735db3c7cbf591d0905d8",
+    "job_cleanup_verified": true
+  },
+  "entrypoint_tests": {
+    "command": ".venv/Scripts/python.exe -m unittest tests.test_native_tdr_probe -v",
+    "passed": 3,
+    "coverage": [
+      "Reject notification mode combined with either GEO response option before process creation.",
+      "Reject output outside evidence/private before process creation.",
+      "Reject arbitrary DLL option before process creation."
+    ]
+  },
+  "boundaries": [
+    "The second connection first application message is proven NtfNetBarKey, not ReqLogin.",
+    "No matching response is inferred from this notification; parent must continue bounded reception for subsequent current messages.",
+    "Zone login response status selection, account creation, character and lobby remain unverified."
+  ],
+  "metadata_reference": "evidence/aliyun-current-zone-login-contract.json"
+}

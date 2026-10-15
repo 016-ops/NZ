@@ -1,0 +1,9 @@
+{
+  "kind": "OWNED_IPV4_TCP_PROBE_SMOKE",
+  "actual_owned_descendant_connection_observed": true,
+  "state_and_port_verified": true,
+  "unowned_connections_excluded": true,
+  "payload_capture": false,
+  "process_cleanup_verified": true,
+  "initial_smoke_assertion_issue": "Venv launcher root PID differed from socket-owning descendant; corrected test to use actual Job PID set."
+}

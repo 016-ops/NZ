@@ -1,0 +1,16 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 4,
+  "passed": [
+    "tests.test_email_verification.AliyunTransport.test_rejects_unknown_endpoint_and_plaintext",
+    "tests.test_email_verification.AliyunTransport.test_tls_single_recipient_and_failure_redaction",
+    "tests.test_email_verification.EmailVerification.test_concurrent_send_reserves_only_one_quota_slot",
+    "tests.test_email_verification.EmailVerification.test_backup_with_boolean_game_session_roundtrips"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 31.812
+}

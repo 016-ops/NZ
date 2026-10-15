@@ -1,0 +1,9 @@
+{
+  "kind": "DEV_CONTROL_PLANE_DEPLOYMENT_NOT_GAME_NODE",
+  "release_id": "20261015T033015-409cbc699d98",
+  "archive_sha256": "409cbc699d980c06e79fc349c80e0fda6fd06093be1a9e00f41ac291e318be8b",
+  "archive_files": 61,
+  "installer_exit_code": 0,
+  "access": "SSH_TUNNEL_LOOPBACK_ONLY",
+  "retail_verified": false
+}

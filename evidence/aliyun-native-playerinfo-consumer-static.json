@@ -1,0 +1,298 @@
+{
+  "kind": "CURRENT_PLAYERINFO_CONSUMER_STATIC_PREPARATION",
+  "component_sha256": "b81bb4e1256ad1fca1ecbbf93b35979d96c36ca16f8bbfc8d126e9a452df51f8",
+  "scope": "Current file metadata/literals and already owned bounded code only; no new process, network reply, security-module payload analysis or client mutation.",
+  "targets": [
+    {
+      "rva": "0x1f0ce08",
+      "encoding": "UTF-16LE",
+      "text": "[jerryttang task] HandleMessage_Notification_PlayerInfo: ShootAwardIndexForLotteryPool = %d, %d, %d",
+      "on_disk_absolute_pointer_refs": 0
+    },
+    {
+      "rva": "0x1f0d118",
+      "encoding": "UTF-16LE",
+      "text": "[vivinliu]....UTGOnlineClient::HandleMessage_Notification_PlayerInfo KunTaoLevel = %d, CurrentRolePropId = %llu，Src.ullCurRoleGID = %llu, bSuperBlueDiamod = %d",
+      "on_disk_absolute_pointer_refs": 0
+    },
+    {
+      "rva": "0x1f0d258",
+      "encoding": "UTF-16LE",
+      "text": "[vivinliu]....UTGOnlineClient::HandleMessage_Notification_PlayerInfo TeamID = %llu",
+      "on_disk_absolute_pointer_refs": 0
+    }
+  ],
+  "metadata": {
+    "command": "0xA005",
+    "schema": "ZN2C_NtfPlayerInfo",
+    "host_bytes": 1412,
+    "fields": "Result U16 at0; nestedPlayerInfo at2",
+    "player_info_host_bytes": 1410,
+    "player_info_fields": 78,
+    "selected_declared_fields": [
+      {
+        "name": "Uin",
+        "host_offset_in_PlayerInfo": 0,
+        "host_element_bytes": 8,
+        "type_code": 12,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "VerifyKey",
+        "host_offset_in_PlayerInfo": 8,
+        "host_element_bytes": 4,
+        "type_code": 8,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "NickName",
+        "host_offset_in_PlayerInfo": 12,
+        "host_element_bytes": 1,
+        "type_code": 21,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "TGamePoint",
+        "host_offset_in_PlayerInfo": 44,
+        "host_element_bytes": 4,
+        "type_code": 7,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "GoldPoint",
+        "host_offset_in_PlayerInfo": 48,
+        "host_element_bytes": 4,
+        "type_code": 7,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "Experience",
+        "host_offset_in_PlayerInfo": 66,
+        "host_element_bytes": 4,
+        "type_code": 7,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "CurRoleGID",
+        "host_offset_in_PlayerInfo": 94,
+        "host_element_bytes": 8,
+        "type_code": 12,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "RoleType",
+        "host_offset_in_PlayerInfo": 102,
+        "host_element_bytes": 8,
+        "type_code": 12,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "FreezeEndDate",
+        "host_offset_in_PlayerInfo": 136,
+        "host_element_bytes": 8,
+        "type_code": 15,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "BannedEndDate",
+        "host_offset_in_PlayerInfo": 144,
+        "host_element_bytes": 8,
+        "type_code": 15,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "Level",
+        "host_offset_in_PlayerInfo": 160,
+        "host_element_bytes": 4,
+        "type_code": 8,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "CommonFlag",
+        "host_offset_in_PlayerInfo": 210,
+        "host_element_bytes": 4,
+        "type_code": 8,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "CommonFlag2",
+        "host_offset_in_PlayerInfo": 344,
+        "host_element_bytes": 4,
+        "type_code": 8,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "CommonFlag3",
+        "host_offset_in_PlayerInfo": 374,
+        "host_element_bytes": 4,
+        "type_code": 8,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "PlayerGeniusFlag",
+        "host_offset_in_PlayerInfo": 382,
+        "host_element_bytes": 1024,
+        "type_code": 1,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      },
+      {
+        "name": "CreditScore",
+        "host_offset_in_PlayerInfo": 1406,
+        "host_element_bytes": 4,
+        "type_code": 8,
+        "semantic_required": null,
+        "semantic_status": "DECLARED_ONLY; current consumer still needs evidence"
+      }
+    ],
+    "reference": "evidence/aliyun-current-zone-login-contract.json"
+  },
+  "known_post_login_state": [
+    "Current8100 normal path initializes objectthis+280 if needed, calls155E540, copies channels, sets byte this+288=1 and sends current FF05.",
+    "Current401/40B alternate path eventually invokes delegate atthis+468; the normal8100 branch does not directly invoke that tail delegate.",
+    "This difference alone does not prove normal login waits for A005 or PlayerProps; subsequent consumer and callback conditions must be sampled."
+  ],
+  "runtime_parent_update": {
+    "boot22": "Parent reports current A001 was consumed and followed by A204,FF05,then bounded FF02 notifications. The probe closed after8 application packets; laterIDENT unsupported is reconnect capability boundary, not evidence of login rejection.",
+    "raw_security_payload_published": false,
+    "raw_security_payload_analyzed": false,
+    "security_responses_constructed": false
+  },
+  "next_bounded_targets": {
+    "literal_refs": [
+      "0x1f0ce08",
+      "0x1f0d118",
+      "0x1f0d258"
+    ],
+    "optional_already_known_helper": {
+      "rva": "0x155E540",
+      "bytes": 512,
+      "reason": "Called by both normal8100 and alternate401/40B paths; local state meaning unproven."
+    }
+  },
+  "unverified": [
+    "Current required PlayerInfo values and validity checks; declaration is not proof that zero values are acceptable.",
+    "Which PlayerInfo/Props/RoleType/Preference state gates AccountLogin delegate and lobby entry.",
+    "Role resource definition/catalog mapping and actual role inventory reference consistency.",
+    "All security module protocol remains unchanged; no bypass, fabricated attestation or guessed acknowledgment."
+  ],
+  "define_info_response_targets": {
+    "request_observed": "0xA204 empty body",
+    "response_metadata": "0xA205 ResultU16 + PlayerDefineInfo(DataLenU32 + Data<=3200); supplied by independent current metadata analysis",
+    "targets": [
+      {
+        "rva": "0x1f3d630",
+        "text": "[jerryttang definedata] HandleMessage_Response_GetPlayerInfoAll error = %d",
+        "encoding": "UTF-16LE",
+        "on_disk_absolute_pointer_refs": 0
+      },
+      {
+        "rva": "0x1f3d800",
+        "text": "[jerryttang definedata] HandleMessage_Response_GetPlayerInfoAll New Version Process",
+        "encoding": "UTF-16LE",
+        "on_disk_absolute_pointer_refs": 0
+      },
+      {
+        "rva": "0x1f3d910",
+        "text": "[jerryttang definedata] HandleMessage_Response_GetPlayerInfoAll Old Version Process",
+        "encoding": "UTF-16LE",
+        "on_disk_absolute_pointer_refs": 0
+      }
+    ],
+    "reason": "Locate error/status choice and new/old inner-data version branches. Nearby getter diagnostics identify RandomMapArr,AutoRepairInfo,PopCommunityInfo,AvatarRoomPlayerCollectionInfo,UnLockGrowInfo.",
+    "boundary": "GetPlayerInfoAll is the current literal name; code field offsets must establish its A205 association. Empty Data is not asserted valid and no response is constructed."
+  },
+  "boot23_define_info_consumer": {
+    "entry_rva": "0x15A3690",
+    "samples": [
+      {
+        "rva": "0x15A3672",
+        "bytes": 256,
+        "sha256": "ab5c841dc9c08e26e9eb5d3f79e80a312604456c7621af96fd9c172361af5d27"
+      },
+      {
+        "rva": "0x15A3810",
+        "bytes": 256,
+        "sha256": "f1370a8e8a6b149ecadb64ce053761de611fc4f21b764f76ff69ba3ba5aedbc8"
+      },
+      {
+        "rva": "0x15A387A",
+        "bytes": 256,
+        "sha256": "36224cabffcd0fb05716031f45ca1feb607cf108f9ee292e004c6bd5450692c7"
+      }
+    ],
+    "field_match": "EBX points to current ZN2C_ResGetPlayerDefineInfo: Result U16+0, DataLen U32+2, Data+6.",
+    "status_and_empty_path": [
+      "15A36FC compares Result with8100; failure goes15A390C.",
+      "15A3705 reads DataLen;15A3710 jumps to15A390C when zero. No Data read occurs on this path.",
+      "15A390C..15A3927 dispatches completion through delegate storage this+280 with original Result."
+    ],
+    "nonempty_boundary": "Nonempty Data enters internal format/version logic; 15A3752 reads embedded DWORD, compares this+19C; new/old handling logs at15A3870/15A38DA. No nonempty format contract or serializer is claimed.",
+    "allowed_research_candidate": "Result8100/DataLen0 is an explicitly empty customization completion, not full player/role data and not proof of lobby entry."
+  },
+  "boot23_player_info_fields": {
+    "source": "Current PlayerInfo diagnostic references; full entry and completion not yet sampled.",
+    "samples": [
+      {
+        "rva": "0x14F51D2",
+        "bytes": 256,
+        "sha256": "78d9e67166a1675ef8cbf49d926545eaae9b60ced6eaadb068775f760640351f"
+      },
+      {
+        "rva": "0x14F570C",
+        "bytes": 256,
+        "sha256": "469d4a5150761050db7f43118a63f300a7f4d6590b77d4418cf62fa20ac47d70"
+      },
+      {
+        "rva": "0x14F5729",
+        "bytes": 256,
+        "sha256": "ac4d91c1d599440a7721f7738b9b1ab40b067e539748da33905e5fe31b1ab99e"
+      }
+    ],
+    "field_match": [
+      "EDI+60/+64 at14F5723/14F572D match current nested CurRoleGID94 plus outer Result2.",
+      "EDI+162 at14F575A matches KunTaoEvolutionLevel352 plus outer Result2.",
+      "EDI+70/+74 at14F577B/14F577E match ClanID110 plus outer Result2; log calls it TeamID, so do not relabel business schema from the log."
+    ],
+    "entry_candidate": {
+      "rva": "0x14F42C0",
+      "pointer_record_rva": "0x1F2ADD4",
+      "reason": "Current non-executable read-only section contains this function pointer; nearest earlier candidate before observed PlayerInfo body. Function identity still requires entry sample."
+    },
+    "next_fixed_samples": [
+      {
+        "rva": "0x14F42C0",
+        "bytes": 1024
+      },
+      {
+        "rva": "0x14F58BD",
+        "bytes": 2304
+      }
+    ],
+    "boundary": "Reading/logging role IDs does not prove valid defaults or zero admissibility; required states and final delegate remain unknown."
+  },
+  "boot23_login_state_helper": {
+    "rva": "0x155E540",
+    "bytes": 512,
+    "sha256": "e72e7f204ae10353c99c34d7ab47615e7974c8bf756a52bd883ae1c7963f0974",
+    "evidence": [
+      "Updates network-handler this+1F0 object+9C bits at155E59C/155E5A9.",
+      "Current constants passed at155E5B0/155E5B5 resolve to read mode r,ccs=UTF-8 and ShutdownAbnormal.txt; subsequent calls parse local text."
+    ],
+    "boundary": "Sample does not show A005 readiness gating; do not infer a lobby wait from this helper."
+  }
+}

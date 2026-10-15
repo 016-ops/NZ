@@ -1,0 +1,31 @@
+test_email_endpoint_rejects_username_bypass_and_preserves_native_boundary (tests.test_email_login.EmailHttpTests.test_email_endpoint_rejects_username_bypass_and_preserves_native_boundary)
+专用邮箱入口不能退回用户名/QQ 凭据，状态接口明确原生桥尚未实现。 ... ok
+test_real_http_email_approval_handoff_and_logout (tests.test_email_login.EmailHttpTests.test_real_http_email_approval_handoff_and_logout)
+通过真实 HTTP 完成邮箱注册、审批后登录、单次兑换、身份读取和注销撤销。 ... ok
+test_ban_relogin_and_game_expiry_are_rechecked (tests.test_email_login.EmailTests.test_ban_relogin_and_game_expiry_are_rechecked)
+封禁、安全版本、重登撤销和游戏会话期限都必须在每次授权重新检查。 ... ok
+test_binding_conflict_permission_and_audit_failure_roll_back (tests.test_email_login.EmailTests.test_binding_conflict_permission_and_audit_failure_roll_back)
+邮箱不能抢占其他玩家身份，玩家不能绑定他人邮箱，审计失败不能留下半次迁移。 ... ok
+test_concurrent_case_variants_create_one_account_and_one_invitation_use (tests.test_email_login.EmailTests.test_concurrent_case_variants_create_one_account_and_one_invitation_use)
+独立 MySQL 连接并发注册大小写不同邮箱，唯一约束和事务只允许一个成功。 ... ok
+test_concurrent_redemption_and_restart_never_replay_secret (tests.test_email_login.EmailTests.test_concurrent_redemption_and_restart_never_replay_secret)
+并发兑换仅一人取得新凭据，重建服务仍识别已消费；数据库不保存明文秘密。 ... ok
+test_email_normalization_boundaries_and_aliases (tests.test_email_login.EmailTests.test_email_normalization_boundaries_and_aliases)
+邮箱大小写统一，但加号/点别名不合并；拒绝注入、超长本地名及非 ASCII 本地部分。 ... ok
+test_email_retry_digest_is_not_a_fast_database_only_password_verifier (tests.test_email_login.EmailTests.test_email_retry_digest_is_not_a_fast_database_only_password_verifier)
+注册幂等仍可重放，但新邮箱记录不能沿用可通过数据库已知字段快速猜测密码的摘要。 ... ok
+test_legacy_binding_preserves_game_id_assets_and_revokes_old_alias_and_session (tests.test_email_login.EmailTests.test_legacy_binding_preserves_game_id_assets_and_revokes_old_alias_and_session)
+旧账号改邮箱沿用账号/角色/资产；旧会话与旧用户名不能继续认证。 ... ok
+test_long_email_registration_replay_pending_and_persistence (tests.test_email_login.EmailTests.test_long_email_registration_replay_pending_and_persistence)
+长于旧用户名的邮箱可持久化，重放不重复消费邀请，审批前仍拒绝登录。 ... ok
+test_redemption_and_issue_audit_failures_are_atomic (tests.test_email_login.EmailTests.test_redemption_and_issue_audit_failures_are_atomic)
+审计写失败回滚票据消费、会话和旧票据撤销；恢复后原票据仍能成功兑换。 ... ok
+test_ticket_expiry_replacement_game_session_revocation_and_client_binding (tests.test_email_login.EmailTests.test_ticket_expiry_replacement_game_session_revocation_and_client_binding)
+替换和过期票据拒绝；新游戏会话撤销旧会话，注销源会话立即使交接失效。 ... ok
+test_ticket_proof_protocol_and_privilege_separation (tests.test_email_login.EmailTests.test_ticket_proof_protocol_and_privilege_separation)
+正确邮箱会话可交接本地身份；错误证明/版本及跨权限使用全部拒绝。 ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 125.424s
+
+OK

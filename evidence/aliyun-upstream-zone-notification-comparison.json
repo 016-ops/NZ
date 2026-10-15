@@ -1,0 +1,227 @@
+{
+  "kind": "UPSTREAM_ZONE_SEQUENCE_REFERENCE_NOT_CURRENT_ACCEPTANCE",
+  "upstream_commit": "4bbabab50ac6bfdbcd1f8e88bc6ea804e5978495",
+  "upstream_profile": "PH 1.0.0.24",
+  "source_sha256": "33ade1b4f44e692bb301a54232cb513af3b07d1b89ec09547a2c0f6daa830743",
+  "function_references": [
+    {
+      "name": "_v48_parse_zn_login",
+      "path": "upstream/af-emulator/server/assaultfire_server_v143b.py",
+      "line": 3782,
+      "end_line": 3790
+    },
+    {
+      "name": "_v48_build_zn_login_response",
+      "path": "upstream/af-emulator/server/assaultfire_server_v143b.py",
+      "line": 3793,
+      "end_line": 3813
+    },
+    {
+      "name": "_v109_pack_prop_info",
+      "path": "upstream/af-emulator/server/assaultfire_server_v143b.py",
+      "line": 4005,
+      "end_line": 4028
+    },
+    {
+      "name": "_v140_login_prop_groups",
+      "path": "upstream/af-emulator/server/assaultfire_server_v143b.py",
+      "line": 5816,
+      "end_line": 5846
+    },
+    {
+      "name": "_v127_build_playerprops_chunk",
+      "path": "upstream/af-emulator/server/assaultfire_server_v143b.py",
+      "line": 5981,
+      "end_line": 5995
+    },
+    {
+      "name": "_v48_player_info",
+      "path": "upstream/af-emulator/server/assaultfire_server_v143b.py",
+      "line": 7150,
+      "end_line": 7191
+    },
+    {
+      "name": "_v48_build_playerinfo",
+      "path": "upstream/af-emulator/server/assaultfire_server_v143b.py",
+      "line": 7194,
+      "end_line": 7201
+    },
+    {
+      "name": "_v48_build_zonehints",
+      "path": "upstream/af-emulator/server/assaultfire_server_v143b.py",
+      "line": 7251,
+      "end_line": 7254
+    }
+  ],
+  "dispatch_reference": {
+    "path": "upstream/af-emulator/server/assaultfire_server_v143b.py",
+    "line": 10580,
+    "end_line": 10864
+  },
+  "normal_sequence_in_upstream": [
+    "A001 normal response",
+    "wait for client FF05 readiness",
+    "A005 PlayerInfo with CurRoleGID=0",
+    "A006 property chunks at most 5 each",
+    "A005 PlayerInfo after properties with current role GID",
+    "wallet and experience sync",
+    "persisted moneyflow replay",
+    "ZoneHints",
+    "optional remembered room replay"
+  ],
+  "first_nickname_in_upstream": "When nickname is NULL, upstream sends experimental 0x0401 and withholds A005/A006; this is not current-client proof.",
+  "current_metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+  "current_structure_field_names": {
+    "C2ZN_ReqLogin": [
+      "SubChannelId",
+      "PreferenceCrcValue",
+      "SystemSettingCrcValue",
+      "CurrentZoneHostIp",
+      "LoginPlatform"
+    ],
+    "ZN2C_ResLogin": [
+      "Result",
+      "MainChannelId",
+      "SubChannelId",
+      "ServerTime",
+      "TGamePoint",
+      "GoldPoint",
+      "FreePropCount",
+      "FreeProps",
+      "IsNewbie",
+      "AreaId"
+    ],
+    "PlayerInfo": [
+      "Uin",
+      "VerifyKey",
+      "NickName",
+      "TGamePoint",
+      "GoldPoint",
+      "MonthPoint",
+      "HappyPoint",
+      "LastAddHappyPointTime",
+      "TodayAddCount",
+      "Experience",
+      "EvolutionPoint",
+      "EvolutionGameTime",
+      "LastLoginTime",
+      "CreateTime",
+      "CurRoleGID",
+      "RoleType",
+      "ClanID",
+      "CardId",
+      "AchScore",
+      "SkillScore",
+      "ZombieSkillScore",
+      "PrivacyFlags",
+      "FreezeEndDate",
+      "BannedEndDate",
+      "TotalOnlineTime",
+      "LevelUpTime",
+      "Level",
+      "TalentLevel",
+      "QuitClanDate",
+      "AchAwardFlags",
+      "LastLogoutTime",
+      "PMProtectScore",
+      "VoteStaus",
+      "LoginDayCtn",
+      "CommonFlag",
+      "FreezeReason",
+      "BannedReason",
+      "LoginDayCtnInBar",
+      "ActiveDaysPerMonth",
+      "LastClearMPTime",
+      "SVRewardCard",
+      "IFRewardCard",
+      "LDRewardCard",
+      "ATDRewardCard",
+      "LastClearCardTime",
+      "ActvStatID",
+      "ActvStatFlag",
+      "NewTipsCount",
+      "BackTipsCount",
+      "TipsTime",
+      "OfflineStolenSnsCard",
+      "SnsCardStartTime",
+      "MonthLimitCommodityInfoClearTime",
+      "DailyNoticeData",
+      "LotteryShotCount",
+      "StarPoint",
+      "StarAward",
+      "LastClearStarTime",
+      "SpcChestDrawTimes",
+      "LoginDaysMonth",
+      "LoginDaysLastMonth",
+      "MechaPoint",
+      "VipPVEPoint",
+      "VipPVEEndTime",
+      "VipPVPPoint",
+      "VipPVPEndTime",
+      "CommonFlag2",
+      "ChatRoomRegion",
+      "CreditStar",
+      "KunTaoEvolutionLevel",
+      "NewSkillScore",
+      "BraveSignetEndTime",
+      "GongMingFlag",
+      "CancellationFlag",
+      "CommonFlag3",
+      "DepositExpansionCapacity",
+      "PlayerGeniusFlag",
+      "CreditScore"
+    ],
+    "PropInfo": [
+      "Uin",
+      "GID",
+      "ItemId",
+      "ResFlag",
+      "StackNum",
+      "ObtainTime",
+      "Validity",
+      "Durability",
+      "DurabilityMax",
+      "OwnerGID",
+      "Location",
+      "AvailbilityHour",
+      "UseHour",
+      "GainType"
+    ],
+    "ZN2C_NtfPlayerInfo": [
+      "Result",
+      "PlayerInfo"
+    ],
+    "ZN2C_NtfPlayerProps": [
+      "Result",
+      "IsLastPkg",
+      "PropCount",
+      "Props"
+    ]
+  },
+  "material_differences": [
+    "PH login reader only consumes the first 12 body bytes; current request has 18 bytes including CurrentZoneHostIp and LoginPlatform.",
+    "PH empty-free-prop login response ends after FreePropCount (28-byte body); current adds IsNewbie and AreaId after the counted free props (33-byte empty body candidate).",
+    "Current PlayerInfo has EvolutionPoint and EvolutionGameTime immediately after Experience; PH serializer places two datetimes there. Copying that serializer shifts subsequent fields.",
+    "Current PlayerInfo has 78 fields including PlayerGeniusFlagDb with 1024 bytes of nested flags and CreditScore. PH shorter serializer cannot represent this structure.",
+    "Current NtfPlayerProps metadata independently confirms max 5 PropInfo per notification and a 14-field, 70-byte fixed PropInfo layout. Similar names do not validate PH item IDs, GID hierarchy, locations, permanent durations or defaults."
+  ],
+  "unverified_current_sequence": [
+    "FF05 readiness meaning and whether it gates profile delivery",
+    "A005/A006 ordering and necessity of second PlayerInfo",
+    "role self-heal and A008 follow-up",
+    "ZoneHints, wallet, EXP and moneyflow necessity",
+    "first-account UI route and result code",
+    "native resource definitions for selected role and default inventory"
+  ],
+  "suggested_next_steps": [
+    "Verify current A001 native serialization and consumer branch first.",
+    "Capture subsequent owned-client request and current consumer state before publishing profile notifications.",
+    "Use current TDR and current DLL to build independent A005/A006 golden vectors.",
+    "Map only verified business identity and resource definitions; keep unknown values in explicit versioned research profile.",
+    "Test each notification transition and request response; do not define a minimal required set from PH history alone."
+  ],
+  "upstream_code_executed": false,
+  "client_file_writes": 0,
+  "business_catalog_changes": 0,
+  "minimum_required_notification_set_verified": false
+}

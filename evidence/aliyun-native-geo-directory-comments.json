@@ -1,0 +1,10 @@
+{
+  "kind": "GEO_DIRECTORY_CHINESE_DOCSTRING_SCOPE",
+  "files": [
+    "adapters/cn_current/geo.py",
+    "tests/test_native_geo.py"
+  ],
+  "objects": 32,
+  "missing": [],
+  "whole_project_claim": false
+}

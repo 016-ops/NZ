@@ -1,0 +1,328 @@
+{
+  "kind": "WINDOWS_SINGLE_ROOM_SERVER_READ_ONLY_INSPECTION",
+  "date": "2026-10-15",
+  "server_mutations": 0,
+  "services_restarted": 0,
+  "credentials_published": false,
+  "process_command_lines_read": false,
+  "user_documents_read": false,
+  "connection_verified": true,
+  "inspection_succeeded": true,
+  "requested_topology": {
+    "selectable_zone_entries": 1,
+    "room_nodes": 1,
+    "multiple_isolated_rooms_per_node_retained": true
+  },
+  "ssh_host_key_sha256": "e3EH0Jc732u/P89cm/KftUbk5ICUHfwt/Bvh3RXzUwY",
+  "host_key_trust": "PINNED_PREVIOUS_LOCAL_RECORD",
+  "inspection_exit_code": 0,
+  "inspection": {
+    "system": "Windows",
+    "os": {
+      "caption": "Microsoft Windows Server 2025 Datacenter",
+      "version": "10.0.26100",
+      "build": "26100",
+      "architecture": "64 位"
+    },
+    "memory_bytes": {
+      "total": 4294422528,
+      "free": 1688567808
+    },
+    "cpu": [
+      {
+        "name": "AMD EPYC 7K62 48-Core Processor",
+        "architecture_code": 9,
+        "address_width": 64,
+        "cores": 4,
+        "logical_processors": 4
+      }
+    ],
+    "disks": [
+      {
+        "drive": "C:",
+        "size_bytes": 42842714112,
+        "free_bytes": 25471766528
+      }
+    ],
+    "powershell_version": "5.1.26100.32860",
+    "session_is_administrator": true,
+    "relevant_processes": [
+      "sshd"
+    ],
+    "relevant_services": [
+      {
+        "name": "GameInputSvc",
+        "status": "Stopped",
+        "start_type": "Manual"
+      },
+      {
+        "name": "sshd",
+        "status": "Running",
+        "start_type": "Automatic"
+      },
+      {
+        "name": "TermService",
+        "status": "Running",
+        "start_type": "Manual"
+      },
+      {
+        "name": "WinRM",
+        "status": "Running",
+        "start_type": "Automatic"
+      }
+    ],
+    "listener_errors": [],
+    "listeners": [
+      {
+        "protocol": "tcp",
+        "port": 49682,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49672,
+        "binding_scope": "wildcard",
+        "process": "services"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49667,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49666,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49665,
+        "binding_scope": "wildcard",
+        "process": "wininit"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49664,
+        "binding_scope": "wildcard",
+        "process": "lsass"
+      },
+      {
+        "protocol": "tcp",
+        "port": 47001,
+        "binding_scope": "wildcard",
+        "process": "System"
+      },
+      {
+        "protocol": "tcp",
+        "port": 5985,
+        "binding_scope": "wildcard",
+        "process": "System"
+      },
+      {
+        "protocol": "tcp",
+        "port": 3389,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "tcp",
+        "port": 445,
+        "binding_scope": "wildcard",
+        "process": "System"
+      },
+      {
+        "protocol": "tcp",
+        "port": 135,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "tcp",
+        "port": 22,
+        "binding_scope": "wildcard",
+        "process": "sshd"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49682,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49672,
+        "binding_scope": "wildcard",
+        "process": "services"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49667,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49666,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49665,
+        "binding_scope": "wildcard",
+        "process": "wininit"
+      },
+      {
+        "protocol": "tcp",
+        "port": 49664,
+        "binding_scope": "wildcard",
+        "process": "lsass"
+      },
+      {
+        "protocol": "tcp",
+        "port": 3389,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "tcp",
+        "port": 139,
+        "binding_scope": "bound_interface",
+        "process": "System"
+      },
+      {
+        "protocol": "tcp",
+        "port": 135,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "tcp",
+        "port": 22,
+        "binding_scope": "wildcard",
+        "process": "sshd"
+      },
+      {
+        "protocol": "udp",
+        "port": 58132,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 56474,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 5355,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 5353,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 4500,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 3389,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 500,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 123,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 50995,
+        "binding_scope": "loopback",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 5355,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 5353,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 4500,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 3389,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 500,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      },
+      {
+        "protocol": "udp",
+        "port": 138,
+        "binding_scope": "bound_interface",
+        "process": "System"
+      },
+      {
+        "protocol": "udp",
+        "port": 137,
+        "binding_scope": "bound_interface",
+        "process": "System"
+      },
+      {
+        "protocol": "udp",
+        "port": 123,
+        "binding_scope": "wildcard",
+        "process": "svchost"
+      }
+    ],
+    "tools": {
+      "python": true,
+      "python3": true,
+      "py": false,
+      "git": false,
+      "node": false,
+      "dotnet": false,
+      "sshd": true
+    },
+    "project_candidates": {
+      "C:\\NZ": false,
+      "C:\\nz-revival": false,
+      "C:\\ProgramData\\nz-revival": false,
+      "D:\\NZ": false,
+      "D:\\nz-revival": false
+    }
+  }
+}

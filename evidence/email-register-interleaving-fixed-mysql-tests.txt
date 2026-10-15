@@ -1,0 +1,19 @@
+test_concurrent_registration_replay_allocates_one_random_identity (tests.test_email_alias.EmailAliasTests.test_concurrent_registration_replay_allocates_one_random_identity)
+同一验证码与幂等键并发提交只分配一个随机隐藏名，不多建账号或消费邀请。 ... ok
+test_random_alias_retries_collision_and_public_login_still_requires_email (tests.test_email_alias.EmailAliasTests.test_random_alias_retries_collision_and_public_login_still_requires_email)
+随机名碰到旧用户名时重新取名，公开登录不能凭隐藏名绕过邮箱身份。 ... ok
+test_registration_replay_when_peer_commits_before_code_precheck (tests.test_email_alias.EmailAliasTests.test_registration_replay_when_peer_commits_before_code_precheck)
+固定交错：重试先读到无幂等结果，另一请求提交后再预检已消费码，仍须返回原成功结果。 ... ok
+test_released_legacy_email_can_register_without_rewriting_old_account (tests.test_email_alias.EmailAliasTests.test_released_legacy_email_can_register_without_rewriting_old_account)
+旧哈希隐藏名保留时，换绑后的旧邮箱仍可注册；历史重放、角色、资产和旧身份保持隔离。 ... ok
+test_registration_requires_code_replays_and_preserves_approval (tests.test_email_verification.EmailVerification.test_registration_requires_code_replays_and_preserves_approval)
+无验证禁止注册，成功只消费一次码/邀请；同键可重放，批准前不得登录。 ... ok
+test_attempts_expiry_purpose_address_and_resend_persist (tests.test_email_verification.EmailVerification.test_attempts_expiry_purpose_address_and_resend_persist)
+错误次数重建服务后仍保留；目的和地址隔离；重发旧码及过期码均失效。 ... ok
+test_concurrent_case_variants_create_one_account_and_one_invitation_use (tests.test_email_login.EmailTests.test_concurrent_case_variants_create_one_account_and_one_invitation_use)
+独立 MySQL 连接并发注册大小写不同邮箱，唯一约束和事务只允许一个成功。 ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 82.291s
+
+OK

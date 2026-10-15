@@ -1,0 +1,25 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 13,
+  "passed": [
+    "tests.test_email_login.EmailHttpTests.test_email_endpoint_rejects_username_bypass_and_preserves_native_boundary",
+    "tests.test_email_login.EmailHttpTests.test_real_http_email_approval_handoff_and_logout",
+    "tests.test_email_login.EmailTests.test_ban_relogin_and_game_expiry_are_rechecked",
+    "tests.test_email_login.EmailTests.test_binding_conflict_permission_and_audit_failure_roll_back",
+    "tests.test_email_login.EmailTests.test_concurrent_case_variants_create_one_account_and_one_invitation_use",
+    "tests.test_email_login.EmailTests.test_concurrent_redemption_and_restart_never_replay_secret",
+    "tests.test_email_login.EmailTests.test_email_normalization_boundaries_and_aliases",
+    "tests.test_email_login.EmailTests.test_email_retry_digest_is_not_a_fast_database_only_password_verifier",
+    "tests.test_email_login.EmailTests.test_legacy_binding_preserves_game_id_assets_and_revokes_old_alias_and_session",
+    "tests.test_email_login.EmailTests.test_long_email_registration_replay_pending_and_persistence",
+    "tests.test_email_login.EmailTests.test_redemption_and_issue_audit_failures_are_atomic",
+    "tests.test_email_login.EmailTests.test_ticket_expiry_replacement_game_session_revocation_and_client_binding",
+    "tests.test_email_login.EmailTests.test_ticket_proof_protocol_and_privilege_separation"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 125.641
+}

@@ -1,0 +1,13 @@
+test_rejects_unknown_endpoint_and_plaintext (tests.test_email_verification.AliyunTransport.test_rejects_unknown_endpoint_and_plaintext)
+错误区域或明文端口在任何认证材料发出前被拒绝。 ... ok
+test_tls_single_recipient_and_failure_redaction (tests.test_email_verification.AliyunTransport.test_tls_single_recipient_and_failure_redaction)
+生产路径显式启用主机名和证书验证，连接异常只返回固定码，不含邮件或密码。 ... ok
+test_concurrent_send_reserves_only_one_quota_slot (tests.test_email_verification.EmailVerification.test_concurrent_send_reserves_only_one_quota_slot)
+两个工作线程同时发码只有一个获准投递，持久冷却不依赖单进程内存。 ... ok
+test_backup_with_boolean_game_session_roundtrips (tests.test_email_verification.EmailVerification.test_backup_with_boolean_game_session_roundtrips)
+有真实布尔列值的启动票据及游戏会话必须能在临时 MySQL 库恢复并逐表一致。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 31.621s
+
+OK

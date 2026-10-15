@@ -1,0 +1,2 @@
+# 原归档恢复仅使用固定版本的 RAR 头解析器；实际解包由 Windows 自带 bsdtar 完成。
+rarfile==4.2

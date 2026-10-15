@@ -1,0 +1,29 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 17,
+  "passed": [
+    "tests.test_native_geo.NativeGeoTests.test_current_observed_ping_request_matches_published_digest",
+    "tests.test_native_geo.NativeGeoTests.test_declared_lengths_must_match_observed_header_and_body",
+    "tests.test_native_geo.NativeGeoTests.test_force_login_byte_is_preserved_without_boolean_or_authorization_inference",
+    "tests.test_native_geo.NativeGeoTests.test_public_compatibility_values_cannot_change_future_encoding",
+    "tests.test_native_geo.NativeGeoTests.test_research_response_matches_current_native_dll_golden",
+    "tests.test_native_geo.NativeGeoTests.test_research_response_requires_explicit_exact_profile",
+    "tests.test_native_geo.NativeGeoTests.test_truncated_extra_and_wrong_input_types_are_rejected",
+    "tests.test_native_geo.NativeGeoTests.test_unknown_magic_commands_and_little_endian_are_rejected",
+    "tests.test_native_geo.NativeGeoZoneRequestTests.test_current_zone_request_matches_independent_observed_digest",
+    "tests.test_native_geo.NativeGeoZoneRequestTests.test_zero_multiple_and_maximum_metadata_counts_are_not_fixed_to_capture_length",
+    "tests.test_native_geo.NativeGeoZoneRequestTests.test_zone_domain_rejects_unproven_lengths_termination_and_encoding",
+    "tests.test_native_geo.NativeGeoZoneRequestTests.test_zone_request_rejects_count_that_disagrees_with_serialized_entries",
+    "tests.test_native_geo.NativeGeoZoneRequestTests.test_zone_request_rejects_wrong_type_headers_truncation_and_trailing_bytes",
+    "tests.test_native_geo.NativeGeoZoneResponseTests.test_zone_compatibility_is_detached_and_does_not_claim_room_readiness",
+    "tests.test_native_geo.NativeGeoZoneResponseTests.test_zone_response_can_only_change_verified_port_field",
+    "tests.test_native_geo.NativeGeoZoneResponseTests.test_zone_response_matches_independent_current_native_golden",
+    "tests.test_native_geo.NativeGeoZoneResponseTests.test_zone_response_rejects_implicit_profiles_and_invalid_port_types_or_ranges"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.0
+}

@@ -28,9 +28,13 @@ skip-log-bin
 log-error=$($instanceRoot.Replace('\','/'))/mysql-error.log
 pid-file=$($instanceRoot.Replace('\','/'))/mysql.pid
 "@ | Set-Content -LiteralPath $configPath -Encoding utf8NoBOM
-    & $serverExe "--defaults-file=$configPath" --initialize-insecure
+    # Windows 版 MySQL 的选项文件路径按系统 ANSI 代码页读取；UTF-8 中文目录会被误解码。
+    # 只转换刚创建的私有配置，不改变系统区域设置；无法表示路径时明确失败。
+    & $pythonExe -c "import pathlib,sys; p=pathlib.Path(sys.argv[1]); p.write_bytes(p.read_text(encoding='utf-8').encode('mbcs'))" $configPath
+    if ($LASTEXITCODE -ne 0) { throw 'MySQL path cannot be represented in the Windows system code page.' }
+    & $pythonExe (Join-Path $PSScriptRoot 'mysql_process.py') init $serverExe $instanceRoot
     if ($LASTEXITCODE -ne 0) { throw 'MySQL initialization failed; inspect runtime/mysql/mysql-error.log.' }
-    Start-Process -FilePath $serverExe -ArgumentList @("--defaults-file=`"$configPath`"") -WindowStyle Hidden
+    & $pythonExe (Join-Path $PSScriptRoot 'mysql_process.py') start $serverExe $instanceRoot
     & $pythonExe (Join-Path $PSScriptRoot 'mysql_credentials.py') init --port $Port
     if ($LASTEXITCODE -ne 0) { throw 'Credential initialization failed; do not use the instance until credentials are configured.' }
 } elseif ($Action -eq 'Start') {
@@ -39,7 +43,7 @@ pid-file=$($instanceRoot.Replace('\','/'))/mysql.pid
         & $pythonExe (Join-Path $PSScriptRoot 'mysql_credentials.py') status
         if ($LASTEXITCODE -eq 0) { exit 0 }
     }
-    Start-Process -FilePath $serverExe -ArgumentList @("--defaults-file=`"$configPath`"") -WindowStyle Hidden
+    & $pythonExe (Join-Path $PSScriptRoot 'mysql_process.py') start $serverExe $instanceRoot
     & $pythonExe (Join-Path $PSScriptRoot 'mysql_credentials.py') wait
     if ($LASTEXITCODE -ne 0) { throw 'MySQL start failed.' }
 } else {

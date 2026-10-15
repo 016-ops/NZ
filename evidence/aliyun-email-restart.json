@@ -1,0 +1,6 @@
+{
+  "restart_login": true,
+  "same_game_id": true,
+  "same_character": true,
+  "verified_after_restart": true
+}

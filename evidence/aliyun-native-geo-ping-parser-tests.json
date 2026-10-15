@@ -1,0 +1,18 @@
+{
+  "kind": "CURRENT_GEO_PING_REQUEST_PARSER_TOOLING_NOT_RESPONSE_ACCEPTANCE",
+  "tests": 5,
+  "passed": [
+    "tests.test_native_geo.NativeGeoTests.test_current_observed_ping_request_matches_published_digest",
+    "tests.test_native_geo.NativeGeoTests.test_declared_lengths_must_match_observed_header_and_body",
+    "tests.test_native_geo.NativeGeoTests.test_force_login_byte_is_preserved_without_boolean_or_authorization_inference",
+    "tests.test_native_geo.NativeGeoTests.test_truncated_extra_and_wrong_input_types_are_rejected",
+    "tests.test_native_geo.NativeGeoTests.test_unknown_magic_commands_and_little_endian_are_rejected"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.0,
+  "native_game_started": false,
+  "responses_sent": 0
+}

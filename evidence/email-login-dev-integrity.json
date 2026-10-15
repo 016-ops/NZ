@@ -1,0 +1,26 @@
+{
+  "kind": "DEV_EMAIL_POST_MIGRATION_INTEGRITY",
+  "passed": true,
+  "checks": [
+    {
+      "integrity": "ok",
+      "schema": 1,
+      "mysql_version": "8.0.30-txsql",
+      "immutable_triggers": 6,
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    {
+      "integrity": "ok",
+      "schema": 1,
+      "mysql_version": "8.0.30-txsql",
+      "immutable_triggers": 6,
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  ],
+  "listeners": [
+    "LISTEN 0      1024       127.0.0.1:18767      0.0.0.0:*          ",
+    "LISTEN 0      1024       127.0.0.1:18765      0.0.0.0:*          "
+  ]
+}

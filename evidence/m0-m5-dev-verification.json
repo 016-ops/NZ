@@ -1,0 +1,54 @@
+{
+  "kind": "ACTUAL_DEV_LINUX_CONTROL_PLANE_AND_SSH_TUNNEL",
+  "passed": true,
+  "profiles": [
+    {
+      "profile": "cn-current-unverified",
+      "port": 18765,
+      "frontend_assets_checked": 3,
+      "owner_login": true,
+      "anonymous_denied": true,
+      "foreign_origin_denied": true,
+      "authenticated_views": 6,
+      "service_restart_persistence_verified": true,
+      "probe_invitation_revoked": true
+    },
+    {
+      "profile": "test-pve-v1",
+      "port": 18767,
+      "frontend_assets_checked": 3,
+      "owner_login": true,
+      "anonymous_denied": true,
+      "foreign_origin_denied": true,
+      "authenticated_views": 6,
+      "service_restart_persistence_verified": true,
+      "probe_invitation_revoked": true
+    }
+  ],
+  "mysql_checks": [
+    {
+      "integrity": "ok",
+      "schema": 1,
+      "mysql_version": "8.0.30-txsql",
+      "immutable_triggers": 6,
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    {
+      "integrity": "ok",
+      "schema": 1,
+      "mysql_version": "8.0.30-txsql",
+      "immutable_triggers": 6,
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  ],
+  "runtime_and_listeners": [
+    "Python 3.12.12",
+    "fb85a13414b028c49ba18bbd523c2d055a30b56b18b92ce454ea2c51edc656c4  /opt/nz-revival/shared/python-build/Python-3.12.12.tar.xz",
+    "LISTEN 0      1024       127.0.0.1:18767      0.0.0.0:*          ",
+    "LISTEN 0      1024       127.0.0.1:18765      0.0.0.0:*          "
+  ],
+  "retail_game_verified": false,
+  "multiplayer_verified": false
+}

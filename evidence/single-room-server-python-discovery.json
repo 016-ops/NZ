@@ -1,0 +1,20 @@
+{
+  "kind": "ROOM_SERVER_PYTHON_COMMAND_DISCOVERY_ONLY",
+  "exit_code": 0,
+  "python_executed": false,
+  "server_mutations": 0,
+  "commands": [
+    {
+      "name": "python",
+      "command_present": true,
+      "windows_app_alias": true,
+      "file_version": null
+    },
+    {
+      "name": "python3",
+      "command_present": true,
+      "windows_app_alias": true,
+      "file_version": null
+    }
+  ]
+}

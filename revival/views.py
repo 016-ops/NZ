@@ -34,8 +34,13 @@ def endpoint(request, view=None):
             if path == '/health':
                 return response({'status': 'ok', 'profile': service.catalog['id'], 'retail_compatible': False})
             if path == '/api/status':
+                from .launcher import capabilities
                 return response({'profile': service.catalog['id'], 'evidence': service.catalog['evidence'],
-                    'retail': {'login': 'BLOCKED', 'native_host': 'BLOCKED', 'inventory_sync': 'BLOCKED'}, 'test_profile': service.test_profile})
+                    'retail': {'login': 'BLOCKED', 'native_host': 'BLOCKED', 'inventory_sync': 'BLOCKED'}, 'test_profile': service.test_profile,
+                    'independent_login': capabilities()})
+            if path == '/api/launcher/status':
+                from .launcher import capabilities
+                return response(capabilities())
             if view is not None:
                 filters = {k: v for k, v in request.GET.items()}
                 for name in ('limit', 'offset'):
@@ -48,7 +53,33 @@ def endpoint(request, view=None):
             if path == '/api/login':
                 result = service.login(data.get('login'), data.get('password'), kind=data.get('kind', 'player'), otp_code=data.get('otp_code'))
             elif path == '/api/register':
+                if settings.NZ_EMAIL_VERIFICATION_REQUIRED and ('email' not in data or 'login' in data):
+                    raise Fault('EMAIL_REQUIRED', '新用户必须通过验证码注册邮箱账号', 403)
                 result = service.register(data)
+            elif path == '/api/player/login':
+                from .security import normalize_email
+                try:
+                    email = normalize_email(data.get('email'))
+                except ValueError:
+                    raise Fault('AUTH', 'Invalid credentials', 401)
+                result = service.login(email, data.get('password'), kind='player')
+            elif path == '/api/player/register':
+                if 'email' not in data or 'login' in data:
+                    raise Fault('INVALID', '邮箱注册必须提供 email，不能指定旧登录名')
+                result = service.register(data)
+            elif path in ('/api/player/email-code', '/api/player/password-reset', '/api/player/email-verify'):
+                from .email_verification import request_code, recover
+                result = (request_code(service, data, request.META.get('REMOTE_ADDR', 'unknown'))
+                          if path == '/api/player/email-code' else
+                          recover(service, data, verify_only=path == '/api/player/email-verify'))
+            elif path in ('/api/launcher/tickets', '/api/launcher/redeem', '/api/game/session'):
+                from .launcher import issue, redeem, identity
+                if path == '/api/launcher/tickets':
+                    result = issue(service, token(request), data)
+                elif path == '/api/launcher/redeem':
+                    result = redeem(service, data)
+                else:
+                    result = identity(service, token(request), data)
             elif path == '/api/command':
                 maintain(service)
                 result = service.command(token(request), data.get('action'), data)
@@ -56,6 +87,11 @@ def endpoint(request, view=None):
                 result = preview(service, token(request), data)
             elif path == '/api/node/heartbeat':
                 result = heartbeat(service, token(request), data.get('match_id'), data.get('epoch'))
+            elif path in ('/api/node/ready', '/api/node/events', '/api/node/pending', '/api/node/ack'):
+                from .nodes import ready, pending, acknowledge
+                from .pve import events
+                handler = {'/api/node/ready': ready, '/api/node/events': events, '/api/node/pending': pending, '/api/node/ack': acknowledge}[path]
+                result = handler(service, token(request), data)
             elif path == '/api/node/settlement':
                 result = settle(service, token(request), data)
             elif path == '/api/logout':

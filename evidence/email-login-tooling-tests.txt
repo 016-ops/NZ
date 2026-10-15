@@ -1,0 +1,39 @@
+test_repeated_manifest_and_precise_change_detection (tests.test_inventory.InventoryTests.test_repeated_manifest_and_precise_change_detection) ... ok
+test_symbol_index_never_claims_wire_validation (tests.test_inventory.InventoryTests.test_symbol_index_never_claims_wire_validation) ... ok
+test_unsafe_output_empty_and_duplicate_manifests_are_rejected (tests.test_inventory.InventoryTests.test_unsafe_output_empty_and_duplicate_manifests_are_rejected) ... ok
+test_added_and_modified_client_files_are_detected (tests.test_client_catalog.ClientCatalogTests.test_added_and_modified_client_files_are_detected) ... ok
+test_decoder_preserves_chinese_and_rejects_corruption (tests.test_client_catalog.ClientCatalogTests.test_decoder_preserves_chinese_and_rejects_corruption) ... ok
+test_export_fidelity_and_unresolved_references (tests.test_client_catalog.ClientCatalogTests.test_export_fidelity_and_unresolved_references) ... ok
+test_ini_keeps_operators_comments_multiline_and_unknown_lines (tests.test_client_catalog.ClientCatalogTests.test_ini_keeps_operators_comments_multiline_and_unknown_lines) ... ok
+test_inline_comments_keep_values_and_semicolons_in_strings (tests.test_client_catalog.ClientCatalogTests.test_inline_comments_keep_values_and_semicolons_in_strings) ... ok
+test_map_reference_is_not_a_new_map_definition (tests.test_client_catalog.ClientCatalogTests.test_map_reference_is_not_a_new_map_definition) ... ok
+test_nested_arrays_repeated_fields_and_strings (tests.test_client_catalog.ClientCatalogTests.test_nested_arrays_repeated_fields_and_strings) ... ok
+test_optional_empty_suite_array_is_not_price_period_error (tests.test_client_catalog.ClientCatalogTests.test_optional_empty_suite_array_is_not_price_period_error) ... ok
+test_rebuild_refuses_tampered_capture (tests.test_client_catalog.ClientCatalogTests.test_rebuild_refuses_tampered_capture) ... ok
+test_copy_restore_and_bad_source_preserve_original_and_good_target (tests.test_workspace.WorkspaceTests.test_copy_restore_and_bad_source_preserve_original_and_good_target)
+副本修改后从摘要基线恢复；来源失配时保留目标及原件失败证据。 ... ok
+test_matrix_retains_unknown_maps_and_never_enables_static_candidates (tests.test_workspace.WorkspaceTests.test_matrix_retains_unknown_maps_and_never_enables_static_candidates)
+主图存在只提供静态线索，未知图和难度继续进入分母且不能启用。 ... ok
+test_traversal_and_hardlinks_are_rejected (tests.test_workspace.WorkspaceTests.test_traversal_and_hardlinks_are_rejected)
+目录穿越和外部硬链接不能成为已验证工作副本，避免副本写入波及原件。 ... ok
+test_architecture_conflict_zero_image_and_unbounded_headers (tests.test_native_images.ImageTests.test_architecture_conflict_zero_image_and_unbounded_headers)
+不能把不匹配的 PE32+、全零文件或越界节表显示为可运行 x86。 ... ok
+test_archive_paths_and_crc_reject_corruption_and_escape (tests.test_native_images.ImageTests.test_archive_paths_and_crc_reject_corruption_and_escape)
+归档只接纳独立 nz 树和普通文件，解包后同大小内容损坏也必须由 CRC 检出。 ... ok
+test_job_keeps_and_cleans_child_after_root_exits (tests.test_native_images.ImageTests.test_job_keeps_and_cleans_child_after_root_exits)
+真实父进程退出 0 后子进程仍在 Job 内，到期统一结束，不误判原生实例已退出。 ... ok
+test_missing_disk_section_is_rejected_but_virtual_zero_fill_is_allowed (tests.test_native_images.ImageTests.test_missing_disk_section_is_rejected_but_virtual_zero_fill_is_allowed)
+合法 BSS 变大不要求文件增长，原始磁盘数据越界则必须报告缺失字节。 ... ok
+test_recovery_receipt_detects_changed_target_and_backup (tests.test_native_images.ImageTests.test_recovery_receipt_detects_changed_target_and_backup)
+恢复凭据只允许固定入口文件，修改目标或备份后不能再获准启动。 ... ok
+test_http_redirect_is_not_followed_and_error_message_does_not_echo_password (tests.test_email_tools.EmailToolTests.test_http_redirect_is_not_followed_and_error_message_does_not_echo_password)
+真实 HTTP 返回跳转时不转发登录正文，服务端错误 message 也不能回显密码到 CLI。 ... ok
+test_ipc_fields_are_bounded_and_do_not_include_network_server_records (tests.test_email_tools.EmailToolTests.test_ipc_fields_are_bounded_and_do_not_include_network_server_records)
+编码的本地 ID/令牌和偏移均受界限约束；研究格式的服务器列表始终为空。 ... ok
+test_remote_urls_credentials_paths_and_implicit_ports_are_rejected (tests.test_email_tools.EmailToolTests.test_remote_urls_credentials_paths_and_implicit_ports_are_rejected)
+启动器只使用明确端口的本机/SSH 隧道，不接受外部 URL、URL 密码或路径。 ... ok
+
+----------------------------------------------------------------------
+Ran 23 tests in 1.422s
+
+OK

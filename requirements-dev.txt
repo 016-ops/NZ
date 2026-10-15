@@ -1,0 +1,6 @@
+# 部署端工具独立依赖，不进入 Django 运行依赖；版本固定供本机 SSH/SFTP 使用。
+paramiko==4.0.0
+bcrypt==5.0.0
+invoke==3.0.3
+PyNaCl==1.6.2
+cryptography==50.0.2

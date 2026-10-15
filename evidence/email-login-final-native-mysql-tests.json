@@ -1,0 +1,13 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 1,
+  "passed": [
+    "tests.test_email_native.EmailNativeTests.test_two_email_accounts_reach_native_proxy_without_shared_identity_or_qq"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 18.375
+}

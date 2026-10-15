@@ -1,0 +1,16 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 1,
+  "passed": [],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_email_alias.EmailAliasTests.test_registration_replay_when_peer_commits_before_code_precheck",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_email_alias.py\", line 141, in test_registration_replay_when_peer_commits_before_code_precheck\n    self.assertEqual(retry.result(timeout=40), expected)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\concurrent\\futures\\_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\concurrent\\futures\\_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\concurrent\\futures\\thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\support.py\", line 14, in run\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 221, in register\n    check_code(self, data, email, 'register')\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py\", line 1139, in __call__\n    return self._mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py\", line 1143, in _mock_call\n    return self._execute_mock_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\unittest\\mock.py\", line 1204, in _execute_mock_call\n    result = effect(*args, **kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_email_alias.py\", line 125, in guarded_check\n    return check_code(service, payload, email, purpose)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\email_verification.py\", line 55, in check_code\n    raise failure\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\email_verification.py\", line 46, in check_code\n    consume(service, c, data, email, purpose)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\email_verification.py\", line 29, in consume\n    raise Fault('EMAIL_CODE', '验证码无效、已用或过期，请重新申请', 403)\nrevival.service.Fault: 验证码无效、已用或过期，请重新申请\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 7.125
+}

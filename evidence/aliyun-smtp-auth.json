@@ -1,0 +1,7 @@
+{
+  "provider": "aliyun-smtp",
+  "region": "cn-hangzhou",
+  "tls": "TLSv1.3",
+  "authenticated": true,
+  "email_sent": false
+}

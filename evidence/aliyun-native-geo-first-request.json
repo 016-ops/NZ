@@ -1,0 +1,49 @@
+{
+  "kind": "ACTUAL_NATIVE_GEO_REQUEST_WITH_CURRENT_METADATA",
+  "schema_evidence": "aliyun-current-geo-zone-metadata.json",
+  "proto_c2geo_sha256": "6d75e846532bb506a858323b8a1c91fa67d3ed0c8766f1d1682f9a8d8afbc8e1",
+  "runs": [
+    {
+      "run": 16,
+      "verified_dev_email_identity": false,
+      "bytes": 9,
+      "sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+      "current_geo_structure": {
+        "geo_profile": "nz-current-geo-ping-request-v1",
+        "message": "C2GEO_ReqPingList",
+        "magic": 33282,
+        "command": 4097,
+        "head_length": 8,
+        "body_length": 1,
+        "is_force_login": 0
+      },
+      "auth_and_challenge_verified": true,
+      "new_key_application_received": true,
+      "configuration_restored": true,
+      "cleanup_verified": true
+    },
+    {
+      "run": 17,
+      "verified_dev_email_identity": true,
+      "bytes": 9,
+      "sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+      "current_geo_structure": {
+        "geo_profile": "nz-current-geo-ping-request-v1",
+        "message": "C2GEO_ReqPingList",
+        "magic": 33282,
+        "command": 4097,
+        "head_length": 8,
+        "body_length": 1,
+        "is_force_login": 0
+      },
+      "auth_and_challenge_verified": true,
+      "new_key_application_received": true,
+      "configuration_restored": true,
+      "cleanup_verified": true
+    }
+  ],
+  "business_response_sent": false,
+  "role_verified": false,
+  "lobby_verified": false,
+  "raw_auth_or_identity_published": false
+}

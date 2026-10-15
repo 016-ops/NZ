@@ -1,0 +1,13 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 1,
+  "passed": [
+    "tests.test_pve.PveTests.test_repeated_moves_cannot_reuse_the_same_server_time_budget"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 17.828
+}

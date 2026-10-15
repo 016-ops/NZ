@@ -1,0 +1,1052 @@
+{
+  "kind": "CURRENT_ROOM_COMPONENT_INVENTORY_NOT_DEPLOYMENT_MANIFEST",
+  "source": "runtime/native-recovery/coherent-2020/archive-manifest.json",
+  "archive_entries": 8982,
+  "archive_total_bytes": 30299626336,
+  "directory_totals": [
+    {
+      "path": "Binaries/Win32/",
+      "files": 198,
+      "bytes": 481355699
+    },
+    {
+      "path": "Binaries/Win64/",
+      "files": 0,
+      "bytes": 0
+    },
+    {
+      "path": "TGame/Config/",
+      "files": 172,
+      "bytes": 1384040
+    },
+    {
+      "path": "TGame/TDR/",
+      "files": 7,
+      "bytes": 6385954
+    },
+    {
+      "path": "TGame/CookedPC/",
+      "files": 7165,
+      "bytes": 29107004373
+    }
+  ],
+  "selected_resources": [
+    {
+      "path": "Binaries/Win32/Cross/ProtocalHandler.dll",
+      "bytes": 1240744,
+      "sha256": "6a35a42d94ffe7fd5a57b4d41c3ada9b35f431d82928b88e84990932c9c9949d",
+      "current_hash_matches_manifest": true,
+      "all_zero": false,
+      "pe_machine": "0x14c"
+    },
+    {
+      "path": "Binaries/Win32/GameLoader.exe",
+      "bytes": 5574736,
+      "sha256": "c86c1f63ff24f33da42e7ef358150f0abef68954d2b137df3b5b4c958edd10d1",
+      "current_hash_matches_manifest": true,
+      "all_zero": false,
+      "pe_machine": "0x14c"
+    },
+    {
+      "path": "Binaries/Win32/ProtocalHandler.dll",
+      "bytes": 1224777,
+      "sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228",
+      "current_hash_matches_manifest": true,
+      "all_zero": false,
+      "pe_machine": "0x14c"
+    },
+    {
+      "path": "Binaries/Win32/TenProxy.dll",
+      "bytes": 157176,
+      "sha256": "788bea4e34d6aaea8187df482ea2c859f7a6c8802b226b1ab7c2d9a6a10bc047",
+      "current_hash_matches_manifest": true,
+      "all_zero": false,
+      "pe_machine": "0x14c"
+    },
+    {
+      "path": "Binaries/Win32/TGame.exe",
+      "bytes": 17959576,
+      "sha256": "b81bb4e1256ad1fca1ecbbf93b35979d96c36ca16f8bbfc8d126e9a452df51f8",
+      "current_hash_matches_manifest": true,
+      "all_zero": false,
+      "pe_machine": "0x14c"
+    },
+    {
+      "path": "Binaries/Win32/TGameBase.dll",
+      "bytes": 35847832,
+      "sha256": "79894ee3b24ad12610c23a385f66820ec4bc6ab9049c57ff5867bcdf1462b6ca",
+      "current_hash_matches_manifest": true,
+      "all_zero": false,
+      "pe_machine": "0x14c"
+    },
+    {
+      "path": "TCLS/Tenio/ProtocalHandler.dll",
+      "bytes": 1547832,
+      "sha256": "3bb53132f047310eceaf2e4359b7692df9ef3a01906df961ed5e237147480ae9",
+      "current_hash_matches_manifest": true,
+      "all_zero": false,
+      "pe_machine": "0x14c"
+    },
+    {
+      "path": "TGame/Config/DefaultEngineG4WLiveDedicatedServer.ini",
+      "bytes": 388,
+      "sha256": "a3a994fc3bce2053dcd6c5a5f649a2ee1f7e0015f012c4b166b8ac56cfa4cc27",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/AmusivePVPGame.u",
+      "bytes": 93780,
+      "sha256": "ad1e03ac6b64da646cc8943bfc1d2cd338b376964a3cd3a88e158be1e5c0d350",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/ATDGame.u",
+      "bytes": 5816009,
+      "sha256": "2415be8948ef9b345377cabce0baec6974eb6226bac9110c5747c93b2493b65e",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/ATDGameContent.u",
+      "bytes": 218193,
+      "sha256": "98abc5921b5ca3b9efc2e622babcad5f68ea96d8321741e70aa8f592aea84573",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/ATDGameIntegContent.u",
+      "bytes": 119847,
+      "sha256": "d17fca3b08887720ce6ea4bcf464669f8262ca2f4126609ad83a87ff7f8094cb",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Core.u",
+      "bytes": 101800,
+      "sha256": "08a03a737f35102d9969ce6cb743e436bdbc651f816b838986384f38964ca771",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/CTMGameContent.u",
+      "bytes": 33459,
+      "sha256": "454aa2e3b21b3c90386533d1795cd3c5a342b48b8ce1625006f4726e97105e30",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Engine.u",
+      "bytes": 3951457,
+      "sha256": "d740e4391f4454648e2ea3e6e898241ac1c3634b41d2221268afae9932cc6b15",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/GameFramework.u",
+      "bytes": 323197,
+      "sha256": "7f6cb54749703b04f5d0d709b4233c6a39d688e2a71765fc11e8425f24a5bfe5",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/GFxUI.u",
+      "bytes": 59197,
+      "sha256": "c504b2d907398ddc66bb8f24084c1c20285a08d1258a6cddb1d28a931cf0e50d",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/GFxUIEditor.u",
+      "bytes": 4030,
+      "sha256": "991f31d5f28ce038bb3775c7f3e7495e5b4185bbfc6df11068bfe7603bffab4f",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/IFGameContent.u",
+      "bytes": 242336,
+      "sha256": "96ad9850fcf4383977455af1e2d5a7539395903646a6a63628f8f5b8b2110d48",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/IpDrv.u",
+      "bytes": 109675,
+      "sha256": "40220f283c6dac8ef81351f7cecc743e321a2b8a02129ef2b10454a25ef8571a",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/LDGame.u",
+      "bytes": 847685,
+      "sha256": "052ce71b0ad5fe53ae53333572fb3f9417b25f5478728cace8a3e9618d353c11",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/MechaGame.u",
+      "bytes": 993623,
+      "sha256": "fe8d354754ad2dd8f76f277ed232324c0e4cd04e26f5be7580246b8dc5d8abec",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/MechaGameContent.u",
+      "bytes": 259656,
+      "sha256": "34c3be6231a94bf85f140085d780234a5bf95f71ed32bad125b242067a9e0be1",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/MHMGameContent.u",
+      "bytes": 126473,
+      "sha256": "e70fc03264559c80a1f0316949c3a72a14f5d4fe0606c7077771bcb8bc4b3597",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/OnlineSubsystemPC.u",
+      "bytes": 44726,
+      "sha256": "84a000b57a1d6aedc2f0e0705c306751a3f5761a50a4df66ad7e400a77238ff7",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/PVEGame.u",
+      "bytes": 16752271,
+      "sha256": "f01e97250aa6ff000a98b58cfd1dd0d8ce87bb0b719f33f08c7f9b0ddfde921c",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/PVEGameContent.u",
+      "bytes": 3911548,
+      "sha256": "abf7ffd8f7ad47f4708290010eb76aaefff7a50da2d5655a8f77e33013a3da62",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/PZGame.u",
+      "bytes": 4145370,
+      "sha256": "b355d88350d458ead75a1c3e85ffadbe0e1d72eb61ffb89854cd4bdd3f143f90",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/RadiantUI.u",
+      "bytes": 4685,
+      "sha256": "0c1c1e7afac224604145573ad4ad305a0ae3ea12a31d3ad77916ff19129ef415",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/SVGameContent.u",
+      "bytes": 141264,
+      "sha256": "528c2cefd35270bc0ec953008b41bb5b223753e66a313db077909912ecd992fd",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD10Game.u",
+      "bytes": 3159248,
+      "sha256": "775da3c044fa61b86cfbb9e5ea5414e43ed0a8dbc2346ec4a751d75a07d6ed40",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD11Game.u",
+      "bytes": 1423546,
+      "sha256": "20cf684a4c6baa30e8443b4ec4d213062e664e210f67269a3d13c5df4392930c",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD12Game.u",
+      "bytes": 2548640,
+      "sha256": "00ca3904882bc43b268048f84978f1b8f5f4bde85700a4e853621134246775cd",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD13Game.u",
+      "bytes": 2880977,
+      "sha256": "4792c1bd44bd8fec3bce30131a2cee6c10817583173d91b9fe46545b57a210e8",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD14Game.u",
+      "bytes": 3917984,
+      "sha256": "9b90763453118f4858009e01730faa7475b1bc9055aed190302cdcc48c1a6900",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD15Game.u",
+      "bytes": 1929839,
+      "sha256": "5ebcf7b3a084040d6c5505b7fc019609f4e0ca47675f8487bf952a845c4cc22d",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD16Game.u",
+      "bytes": 2865020,
+      "sha256": "68bc40df27f6f3430ec5d26109de9aa5413e7fddb0ea0747ab3e0f8fce111738",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD17Game.u",
+      "bytes": 2848767,
+      "sha256": "bb6fe7bb599788b4427b541ded1f74a44b8ce1bba37c497afcd6d3ce04138b61",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD18Game.u",
+      "bytes": 4359988,
+      "sha256": "754005469a1f61ea0ddf3abf34fb3c44ecaff907102ee2bc0977b27272e00acd",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD19Game.u",
+      "bytes": 3302077,
+      "sha256": "39824ef102da7c4d67ec441a0467fd8068bd61c81740f0e9646202336e640999",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD2Game.u",
+      "bytes": 2483562,
+      "sha256": "b1e70825191dacc735a4d2ec6d8a6c2f2034f88457b0fe83696fa91be93182a4",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD3Game.u",
+      "bytes": 2384469,
+      "sha256": "eac199045f380cdc4195228f1eaa83264c51828378adf1034886fe775036af80",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD4Game.u",
+      "bytes": 3372776,
+      "sha256": "d0037adee7683b72fd31f8f9ce4a5bfe6ea123ffd92154d10267df3af3700d63",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD5Game.u",
+      "bytes": 2897842,
+      "sha256": "a1d2c3ffa0e04740fcc2dc1308b366db3c13d7dbd33e3ae70bca260f0cc4ad8c",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD6Game.u",
+      "bytes": 3027545,
+      "sha256": "2834b7fe2e6454591f9d56773b6ccf789722ccd57317ec638ebcd2328d946a55",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD7Game.u",
+      "bytes": 2805792,
+      "sha256": "69f9021a45de901cb5595588c35f00f154fb4479ebe3e512ff62a2e27317b551",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD8Game.u",
+      "bytes": 2932678,
+      "sha256": "ee1da0876870309e603d91b65d63444329b13042abcc7047e3c8659eede97b1d",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGAD9Game.u",
+      "bytes": 2812744,
+      "sha256": "3bf54fa7714389e3d2070eb855d8005b57843900cb022ffe511d86f908864b38",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGADBase.u",
+      "bytes": 5650819,
+      "sha256": "2c60116b91a6f95127e274f6a5e1dcb3c888ff8ae6d807cbd8e63969fe16106e",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGADGame.u",
+      "bytes": 2894556,
+      "sha256": "7d88f0f54d00e4a6acca9c407c18bbe58ad8ccd9ee43c5ca224b0117ea15ae9d",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGameGfxUI.u",
+      "bytes": 5511730,
+      "sha256": "cd213dcd3157bb879dcd10a7aecf490151a87bbaa6c711cbdfc3f8d04fafea6f",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGameGfxUI_New.u",
+      "bytes": 6563752,
+      "sha256": "7c615bcd742bbda102971eb53291b1265b9314c1f8e63bf3f24054d3407ef6d5",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD10Game.u",
+      "bytes": 948449,
+      "sha256": "23d172f99d361e0a361dc33a404f829c3701b3fef576dd8a542b3e52642d3c89",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD11Game.u",
+      "bytes": 291511,
+      "sha256": "940730c7ef72cee76533a236e57a1e9fbc12aa527fd851b7c43a6fdbe2af074c",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD12Game.u",
+      "bytes": 356801,
+      "sha256": "35309863829d52d3b132b4db090d8eb4d6f791eb48cc5c6dff836ab2fce307fe",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD13Game.u",
+      "bytes": 463307,
+      "sha256": "0121a097d09cedf11efe453268fecdb3b78cd384e966b889cf1c9a489f357a14",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD14Game.u",
+      "bytes": 587716,
+      "sha256": "a638e865f5f333a93b819aee8599f1a4ced205be7bd1e7b126370596e9d87580",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD15Game.u",
+      "bytes": 350102,
+      "sha256": "ae88253092c1d0dbd425e8e76be2813091278a93f452567ca4346e408e4946c3",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD1Game.u",
+      "bytes": 293752,
+      "sha256": "d1ffe94d5eeae798aba460ba9bda6ab6cb65a0656a1e61243b7b86d9587f6d9d",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD2Game.u",
+      "bytes": 890105,
+      "sha256": "14eca82bc3e7998bd5169d483961d36bd749c0dca62b67749c8ce6429e48c667",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD3Game.u",
+      "bytes": 210645,
+      "sha256": "d0661494088cb97910b0a51134048aa96c688635d4a30dd375d07199ea86bb70",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD4Game.u",
+      "bytes": 1746266,
+      "sha256": "63dc660c021146918be781cc1844ae190e32e077fab7c48db106a3add393b901",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD5Game.u",
+      "bytes": 494057,
+      "sha256": "a2bdfe299d6b5de1bdd31be2fbc9b6c9979db98fe0322927e245be03d80e42d9",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD6Game.u",
+      "bytes": 422349,
+      "sha256": "99b7fa7b0f8235e914c181e7796e13008f8be7a00c3f205ba97e0ac9fdadd782",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD7Game.u",
+      "bytes": 115042,
+      "sha256": "ba26b0e3049588db98367e7938afcd869542194376148444a02761c0e20e548c",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD8Game.u",
+      "bytes": 82655,
+      "sha256": "fd587cdf7e87ca5df0b98ffd64b91da0a0db9ed27d56f9e992518fa30b47fe24",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATD9Game.u",
+      "bytes": 285969,
+      "sha256": "b4bcb9c1d004c92da29670e52bd1e6ee1466fd72e8f67a5547f2871855d5c78d",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATDBase.u",
+      "bytes": 5934934,
+      "sha256": "bb2514e4c56fc8f0236b9df55889c0357c5f58ade00abcec4897bcc09ec771a9",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGATDBaseOldBoss.u",
+      "bytes": 770172,
+      "sha256": "572bab7676bd0f9554197703b29628abb996a8d55f6c0533bd57f64da09de09a",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGBattleRoyaleGame.u",
+      "bytes": 1317087,
+      "sha256": "5d5c944b237a3863e3127cb41f89d7e2a31780bb2de2ec3c2e6da89159569856",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGBio2Game.u",
+      "bytes": 776862,
+      "sha256": "775033f920e18e320f01f870ec3ddb9b14c1e5fc8c48be569fc6d438d63951c4",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGBio3Game.u",
+      "bytes": 1564029,
+      "sha256": "bd544057da7bf5581e050ad5b3016818fa68d89b003fd0a7f0a6fd107f9cf7bd",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGBioGame.u",
+      "bytes": 793345,
+      "sha256": "de5d884d61a718ac0fdba4e1627e5026ff32962642daa558f783e7f73b911448",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGBioGameContent.u",
+      "bytes": 366438,
+      "sha256": "ccbb8966c1771adda533ebaa16d18a152837c2e768e30be6c6eaa771cbb1247a",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGBP2Game.u",
+      "bytes": 3127131,
+      "sha256": "876a0516209048cca42b2144125a8fded57009a5a2ffbba393368e4901f0a849",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGBPBase.u",
+      "bytes": 831631,
+      "sha256": "c0573a6bef06b15aaeca6d5f287ec2f56cba7406556410289f35ed93c44ed653",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGBPGame.u",
+      "bytes": 2751844,
+      "sha256": "2fbd64b33f1db37fd431861ff80d992d65a033cfa3a9b204e0c84594fc49e532",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGCart2Game.u",
+      "bytes": 488493,
+      "sha256": "22d773c670f8b64106a46f32db3af2708339a12c16989d577cab25df9cc42fa0",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGCartGame.u",
+      "bytes": 491165,
+      "sha256": "2ebbe9f9d31f94a912a64be8187a32fbb6e31251c6f404931d9095ab011285da",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGCartHero.u",
+      "bytes": 120957,
+      "sha256": "d964a44e09fe0218121558043fac01bebb96f93d58f621ed7faecca44c1f8b97",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGCAT2Game.u",
+      "bytes": 623631,
+      "sha256": "dcddb5c61aa5e31ca5ab900db007ef1648e4aa139ebc6cad338481673e3992a1",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGCATGame.u",
+      "bytes": 1304573,
+      "sha256": "61191309d6f1a828a9d201666e92a14a500ced1aa748dd953ddc1fa845ca36e7",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGCCMGame.u",
+      "bytes": 2299270,
+      "sha256": "7fb83bccbfd0aa2bdcc750158e00cfee91073de446bc0f90902ac1a2e9f88c97",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGFullModeGame.u",
+      "bytes": 34312,
+      "sha256": "a6f0c92f5f3df398edd2dac424d8ce51d783f66162e68f0a53b218f09460397e",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGGameAssist.u",
+      "bytes": 763975,
+      "sha256": "e92d15426c2810c0ad82e5c4be5af360285e321fc49f83d5da6cf2cbe1baf08d",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGGameAssistContent.u",
+      "bytes": 227691,
+      "sha256": "d1f158604bab7276c22634129b3f21e221a21e94e19f17f02b12f626c2cfdada",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGGearGame.u",
+      "bytes": 85799,
+      "sha256": "a98e67f30d6a2b88d556876de37bea254c93ce18e994f4ed36bc76c515e4c8c5",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGHeroBase.u",
+      "bytes": 1828065,
+      "sha256": "272de79038809e58b1e10353bba53cbedab8a365ba30025a830915083e131421",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGIFGame.u",
+      "bytes": 2751730,
+      "sha256": "02ac1bc0b3f9384c51a39d2fd15c3d023134e47f397b08a6911ea227407d8969",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGKZBase.u",
+      "bytes": 5802663,
+      "sha256": "380a5e5dc98359070d4bd93d814c2d5b21176dccf9176483b563081174294bb3",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGKZGame.u",
+      "bytes": 851919,
+      "sha256": "95b14d2b92bfff0f7239bb4c8eb7b4459474b8a6d357dd24cb3203a54904dec7",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGMecha.u",
+      "bytes": 1028083,
+      "sha256": "7f5727456c226ab19e257f48ead8b331e9c7aace229345af932c938064ca401a",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGMechaNative.u",
+      "bytes": 3447926,
+      "sha256": "aae234658cff05487c7b4ff58c7fb83ac063b59ebc255f97dcc32c2e5c321fac",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGMMCity.u",
+      "bytes": 294242,
+      "sha256": "bae80320cc1d817a4caddb61df2d67d47698680dc5b3ddca25ccd0131549bfa2",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGPEPGameNative.u",
+      "bytes": 4445501,
+      "sha256": "f7b4ee9b0322b383e1f74ed37580a02ba3210159326faed728794a545ae0814b",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGPEPTGame.u",
+      "bytes": 235832,
+      "sha256": "f1972fd7755d3c61a90523b24c4f95092990bf2fccd03ea44379b5dfdca96719",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGRadiantUI.u",
+      "bytes": 9280,
+      "sha256": "34c71bf5b60f859a8913fb7741a97859e16caabaaca0068e5fbc498304e0f2a0",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGROTBase.u",
+      "bytes": 2152060,
+      "sha256": "b1900ac7bb12ad906e8a939e092e14f3ec2cf9287ecce80cac98cf2e6ab9e54c",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGROTGame.u",
+      "bytes": 271264,
+      "sha256": "e4cf824a988637aebb964cb1f4d26e84dab755dd69a86b9c03598b99f9669e70",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGROTPersonalGame.u",
+      "bytes": 694315,
+      "sha256": "e392a2cc8f7051ca837daca017a909ad0d23290eeb17750ba46298b7657fcf44",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGSportGame.u",
+      "bytes": 1170097,
+      "sha256": "6054379449e322e09c35c95f857e5949dc1abc15926268229f9b376b6909a3b4",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGSuperBombMatch.u",
+      "bytes": 428682,
+      "sha256": "ab1f9f053979f6c9ad5ca1b777e0738de97768367494601b2f51853802e099ae",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGSV4Game.u",
+      "bytes": 1668400,
+      "sha256": "e4ae1df8976b2273938b994da17031ebb28badcdc4041da3db8b26827422a62e",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGSVGame.u",
+      "bytes": 770900,
+      "sha256": "07f0a9258e32fcf8529e0b01eab34b90be49c250f2344814f79431e218c5d009",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGTankGame.u",
+      "bytes": 382905,
+      "sha256": "76dd85ad66b1c1fe6bf15643c74009d011caf0b0d44d44284ef445c6abddc1cd",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGTankGameContent.u",
+      "bytes": 158119,
+      "sha256": "b3869b284ff08bc97a6b7a8c08e152595c297bdf16ab96e180df37b8dcf7d959",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGTBGame.u",
+      "bytes": 891837,
+      "sha256": "d2827d52cfcd6482e9e3144831f7518c887a72469bc41641eda7be22b112abb9",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGTFGame.u",
+      "bytes": 829865,
+      "sha256": "b5e3d97785a1245a8230dd81ea8bf480aaa5f8c8e7ede548542259b094fc5f9d",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGTrap.u",
+      "bytes": 6238849,
+      "sha256": "decdaed6dcb1a2b4d5b827ce4df5b5a21e6f2dcaa373bf588c0cdab470f41b97",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGTWMGame.u",
+      "bytes": 1387614,
+      "sha256": "011fd5d7ba2a72244ef6c76674a42c789ce854d04cc67662b7661ae02546e5ff",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGWB1Game.u",
+      "bytes": 4867447,
+      "sha256": "1dd97a6000224ff5e923b667aed79e787ace8853be714004876474adca42b2c2",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/TGWeapon.u",
+      "bytes": 4153262,
+      "sha256": "ac6d3c34caa28c8bf11df06c03b5c8dba69ae49d1c3e8c0fffbb6b4ec46eca26",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/UDKBase.u",
+      "bytes": 254624,
+      "sha256": "1aeb7815115b228ad199f753f6c846624c6782a3e3e191ae50f6db608d16b18c",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/UnrealEd.u",
+      "bytes": 182582,
+      "sha256": "26ea853bf6698f805c786c78ee8caa3c4cc59c765dc29663eb4f7ec920e7e02f",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/UTEditor.u",
+      "bytes": 2367,
+      "sha256": "81d1faaca265b0e2836081a7fb5610487f03b4a67937317ea59f9a7d3ee23159",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/UTGame.u",
+      "bytes": 29694029,
+      "sha256": "77b80ac0bc199fa6bfb0d3a2d63f938a90bb75153878b887200c363b6931ba56",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/UTGameContent.u",
+      "bytes": 12293156,
+      "sha256": "942959aa6de2c71324d262e2f544b3600c9b834982cdde655ae18e78d3268e6f",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/UTGameContent_SF.u",
+      "bytes": 144461860,
+      "sha256": "fdffae0e6d357619015dec15427cc153355693b0c3edec9b8ea4966fad4f7433",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/TDR/proto_ds2dsm.tdr",
+      "bytes": 50132,
+      "sha256": "506b3365bbffde4f59edb84991538cd107ffd3c87fecbe6cd64274f828658471",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/TDR/proto_zn2ds.tdr",
+      "bytes": 45908,
+      "sha256": "ca5265726751e3474d6e895287add740b8647d063cfc58223e1fd39a9abd9594",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Environments/Maya_3/Maya_3_Ground.upk",
+      "bytes": 2029522,
+      "sha256": "ebbdf0b510b765b1615fa2305622235c24c99e8a71b968d3552745ff213f414d",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Environments/Maya_3/Maya_3_Sky.upk",
+      "bytes": 1748,
+      "sha256": "982d269f64217d006401ec86521e3958a1f2f6de1db824410b5aa8fcdb298071",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/Maya_3_Background.udk",
+      "bytes": 1587897,
+      "sha256": "4fbf74158f99679c77fe37644d43f7e72cbe1901c8bfff23429d96ec4d2b80cf",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/Maya_3_BlockingVolume.udk",
+      "bytes": 62710,
+      "sha256": "e81e8bdfe39d25bdcf6591545f12f80637dc375991e52e545020d8a1c02b95eb",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/Maya_3_Blockingvolume1.udk",
+      "bytes": 337044,
+      "sha256": "4880b06b80cdb69843382ae42ea3ac2109cdad2acb4fa99ebdfd98bcfd27f06e",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/Maya_3_ExcludeFromNavMesh.udk",
+      "bytes": 88288,
+      "sha256": "a402c6dccd6551c3e47f999ef3370edf938e69672363edab5c33da876b5af75b",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/Maya_3_Lighting.udk",
+      "bytes": 194261,
+      "sha256": "1ca835f0a39cf416c44220f09603989edfdd013257466b9d9d70fa5b3d3770af",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/Maya_3_NavArt.udk",
+      "bytes": 764123,
+      "sha256": "54f65cc6c9501ce7758f4a18082d113adb9aba552882cb178239aa4a1eac34b3",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/Maya_3_Objects.udk",
+      "bytes": 9147348,
+      "sha256": "036d03ed8a5a2e2cf741802f9ef31e6e73e300cacf9dd5438d65232fc41ec807",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/Maya_3_Scripting.udk",
+      "bytes": 24081205,
+      "sha256": "419ebb4bd4c10210858b7c078d457117a99ad56afc067eb5a642daeec8880bac",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/Maya_3_Sound.udk",
+      "bytes": 598637,
+      "sha256": "d84d5c5faf97dadf06e2502972e806c1046dc6be6778b1b330d6833adbff9868",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/Maya_3_VFX.udk",
+      "bytes": 66762,
+      "sha256": "b0aab2ea9188d355026a9210d63b9d0a980b8c044722c372c663ec140833768f",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    },
+    {
+      "path": "TGame/CookedPC/Maps/Maya_3/SV-Maya_3_Main.udk",
+      "bytes": 163105,
+      "sha256": "50557de8c89e63dd3d8ba285f2037c141b6856a93f113a4cb7b6f9dfb955a04a",
+      "current_hash_matches_manifest": true,
+      "all_zero": false
+    }
+  ],
+  "server_named_executables": [],
+  "startup_scripts": [
+    "components/boostup/QMTrayPlugin/QMAutoTaskPlugin/AutoTaskConfig.bat"
+  ],
+  "decoded_configuration_evidence": [
+    {
+      "path": "TGame/Config/DefaultEngineG4WLiveDedicatedServer.ini",
+      "decoded": true,
+      "decoded_sha256": "25e12561b1a76b221ce4ffe1ea3c439664f2e017474d55f10359cb13afc7734d",
+      "selected_lines": [
+        "BasedOn=..\\TGame\\Config\\DefaultEngine.ini",
+        "DefaultOnlineSubsystemName=OnlineSubsystemLive.OnlineSubsystemLive"
+      ]
+    },
+    {
+      "path": "TGame/Config/DefaultEngine.ini",
+      "decoded": true,
+      "decoded_sha256": "82a7774676468c9a53c265acf319115f738483ccb71f967b480c3bb5e968ed19",
+      "selected_lines": [
+        "BasedOn=..\\Engine\\Config\\BaseEngine.ini",
+        "DefaultOnlineSubsystemName=OnlineSubsystemPC.OnlineSubsystemPC"
+      ]
+    },
+    {
+      "path": "TGame/Config/DefaultGame.ini",
+      "decoded": true,
+      "decoded_sha256": "27d8796131350cee24b80a3e5a0a801650ca4f8b4f6d3a1e1b69a3487408713a",
+      "selected_lines": [
+        "BasedOn=..\\TGame\\Config\\DefaultGameUDK.ini",
+        "DefaultServerGame=UTGame.UTDeathmatch",
+        "MapId=47; MapName=SV-Maya_3_Main (display name omitted)"
+      ]
+    }
+  ],
+  "repository_boundaries": [
+    {
+      "path": "revival/nodes.py",
+      "finding": "Current-client enroll/ready/authenticated node paths reject with COMPATIBILITY_BLOCKED; implementations require test_profile."
+    },
+    {
+      "path": "revival/rooms.py",
+      "finding": "test_host_ready requires test_profile; no verified native process launcher."
+    },
+    {
+      "path": "tools/deploy_dev.py + tools/dev_install.sh",
+      "finding": "Linux Django control-plane deployment, not Windows native room installation."
+    },
+    {
+      "path": "tools/native_email_boot.py",
+      "finding": "Bounded owned-client startup/transport research, not a dedicated room daemon."
+    }
+  ],
+  "upstream_reference": {
+    "repository": "armangido/af-emulator",
+    "commit": "4bbabab50ac6bfdbcd1f8e88bc6ea804e5978495",
+    "profile": "PH 1.0.0.24",
+    "paths": [
+      "server/assaultfire_ds_spawner.py",
+      "tools/server_spawner/AFDevLoader_v48_spawner_multi_instance.py",
+      "tools/bridge/af_ds_udp_bridge_v9_multi_peer_latch.py",
+      "docs/PVE_RUNTIME.md"
+    ],
+    "reusable_design": [
+      "reserve before spawn",
+      "per-room lifecycle",
+      "first valid UDP gate",
+      "native readiness evidence",
+      "last-player cleanup"
+    ],
+    "current_compatible_binary_patch_or_wire_contract_verified": false
+  },
+  "confirmed_current_dedicated_server_entry": false,
+  "absence_of_embedded_server_mode_proven": false,
+  "minimum_dependency_closure_verified": false,
+  "native_map_loaded": false,
+  "remote_native_runtime_installed": false,
+  "client_or_large_resource_uploads": 0,
+  "original_client_writes": 0,
+  "interpretation": "Names, metadata, generic engine configuration and client packages are inventory evidence only. Full archive is not a proven minimal room package. Establish current native entry, selected-map closure, authenticated readiness and memory/disk budget before deployment."
+}

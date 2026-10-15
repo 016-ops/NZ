@@ -62,7 +62,7 @@ export function ActionButton({ children, action, report, confirm }: { children: 
 
 /** 业务列名称集中定义；只改变展示文字，HTTP 字段、表单名称和权限语义保持不变。 */
 const fieldLabels: Record<string, string> = {
-  login:'账号', game_id:'游戏映射', status:'状态', created_at:'创建时间', last_login:'最近登录',
+  email:'邮箱', email_verified:'邮箱已验证', login:'账号', game_id:'游戏映射', status:'状态', created_at:'创建时间', last_login:'最近登录',
   character:'角色', nickname:'昵称', init_state:'初始化状态', profile:'环境', wallets:'钱包',
   currency:'币种', balance:'余额', inventory:'库存', equipment:'装备', sanctions:'制裁', room:'当前房间',
   slot:'槽位', item_key:'物品', quantity:'数量', expires_at:'有效期', bound:'绑定状态',

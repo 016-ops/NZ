@@ -1,0 +1,15 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 3,
+  "passed": [
+    "tests.test_email_tools.EmailToolTests.test_http_redirect_is_not_followed_and_error_message_does_not_echo_password",
+    "tests.test_email_tools.EmailToolTests.test_ipc_fields_are_bounded_and_do_not_include_network_server_records",
+    "tests.test_email_tools.EmailToolTests.test_remote_urls_credentials_paths_and_implicit_ports_are_rejected"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.516
+}

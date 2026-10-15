@@ -1,0 +1,296 @@
+{
+  "kind": "CURRENT_NATIVE_FIRST_TPDU_AUTH_STATIC_ANALYSIS",
+  "component": "ProtocalHandler.dll",
+  "component_sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228",
+  "first_packet": {
+    "run": 13,
+    "bytes": 60,
+    "sha256": "10f207e546215bf6e1df120327888806591b0ddd7557a1e9ceda53075bc7ddb4",
+    "raw_payload_published": false,
+    "source": "Owned loopback research launch; independent test identity, no vendor credentials."
+  },
+  "analysis_actions": {
+    "native_execution": false,
+    "network_send": false,
+    "client_file_writes": 0,
+    "process_key_scan": false
+  },
+  "current_embedded_metadata": {
+    "metalib_rva": "0xFD498",
+    "relative_pointer_base_rva": "0xFD5AC",
+    "macro_entries": [
+      {
+        "name": "TPDU_MAGIC",
+        "value": 85,
+        "entry_rva": "0xFD77C"
+      },
+      {
+        "name": "TPDU_VERSION",
+        "value": 14,
+        "entry_rva": "0xFD78C"
+      },
+      {
+        "name": "TPDU_CMD_AUTH",
+        "value": 3,
+        "entry_rva": "0xFD7CC"
+      },
+      {
+        "name": "TPDU_CMD_SYN",
+        "value": 8,
+        "entry_rva": "0xFD81C"
+      },
+      {
+        "name": "TPDU_CMD_SYNACK",
+        "value": 9,
+        "entry_rva": "0xFD82C"
+      },
+      {
+        "name": "TCONN_SEC_AES",
+        "value": 3,
+        "entry_rva": "0xFD5DC"
+      },
+      {
+        "name": "TCONN_SEC_AUTH_QQUNIFIED",
+        "value": 3,
+        "entry_rva": "0xFD62C"
+      }
+    ],
+    "TPDUBase_descriptor_rva": "0x1030D8",
+    "TPDUExtAuthInfo_descriptor_rva": "0x1009FC",
+    "TQQUnifiedAuthInfo_descriptor_rva": "0xFFB24",
+    "TPDUSynInfo_descriptor_rva": "0x10176C",
+    "note": "These names, values, widths and offsets were checked in this exact DLL; upstream PH structure conventions only assisted discovery and were not treated as current evidence."
+  },
+  "verified_packet_layout": [
+    {
+      "offset": 0,
+      "width": 1,
+      "name": "Magic",
+      "value": 85
+    },
+    {
+      "offset": 1,
+      "width": 1,
+      "name": "Version",
+      "value": 14
+    },
+    {
+      "offset": 2,
+      "width": 1,
+      "name": "Cmd",
+      "value": 3,
+      "meaning": "TPDU_CMD_AUTH"
+    },
+    {
+      "offset": 3,
+      "width": 1,
+      "name": "EncHeadLen",
+      "value": 0
+    },
+    {
+      "offset": 4,
+      "width": 4,
+      "byte_order": "big",
+      "name": "HeadLen",
+      "value": 60
+    },
+    {
+      "offset": 8,
+      "width": 4,
+      "byte_order": "big",
+      "name": "BodyLen",
+      "value": 0
+    },
+    {
+      "offset": 12,
+      "width": 4,
+      "byte_order": "big",
+      "name": "EncMethod",
+      "value": 3,
+      "meaning": "TCONN_SEC_AES"
+    },
+    {
+      "offset": 16,
+      "width": 4,
+      "byte_order": "big",
+      "name": "ServiceID",
+      "value": 0,
+      "business_value_verified": false
+    },
+    {
+      "offset": 20,
+      "width": 4,
+      "byte_order": "big",
+      "name": "AuthType",
+      "value": 3,
+      "meaning": "TCONN_SEC_AUTH_QQUNIFIED"
+    },
+    {
+      "offset": 24,
+      "width": 4,
+      "byte_order": "big",
+      "name": "Uin",
+      "expected_research_identity_matches": true
+    },
+    {
+      "offset": 28,
+      "width": 1,
+      "name": "Len",
+      "value": 31
+    },
+    {
+      "offset": 29,
+      "width": "Len",
+      "name": "SigInfo",
+      "length_matches_remainder": true,
+      "contents": "REDACTED"
+    }
+  ],
+  "packet_interpretation": "This is the current transport authentication request. HeadLen60 includes the variable authentication extension; BodyLen0 means it contains no application TDR message yet. The AuthType3 layout uses a one-byte signature length, unlike the upstream PH AuthType4 parser.",
+  "bootstrap_key_chain": [
+    {
+      "component": "TenProxy.dll",
+      "rva": "0x6591",
+      "fact": "Tag5 writes16 bytes to GetLoginInfo output+0x14."
+    },
+    {
+      "component": "TGame.exe",
+      "rva": "0x14A52F9",
+      "fact": "CreateInitConnection receives the login-information pointer output+0xC."
+    },
+    {
+      "component": "ProtocalHandler.dll",
+      "rva": "0x261BE",
+      "fact": "Copies0x6F DWORDs from that pointer into handler+0x1E0; therefore tag5 is at handler+0x1E8."
+    },
+    {
+      "component": "ProtocalHandler.dll",
+      "rva": "0x2698D",
+      "fact": "Passes handler+0x1E8 plus handler+0x1D0 encryption mode into0x32900, immediately before AUTH send."
+    },
+    {
+      "component": "ProtocalHandler.dll",
+      "rva": "0x3294C",
+      "fact": "Forwards transport handle, key pointer and mode to0x64180."
+    },
+    {
+      "component": "ProtocalHandler.dll",
+      "rva": "0x64196",
+      "fact": "Mode3 switch selects0x641C3, copies16 key bytes and calls0x7AE10 with key size128 at0x641F7."
+    },
+    {
+      "component": "ProtocalHandler.dll",
+      "rva": "0x7AE48",
+      "fact": "Builds encrypt and decrypt round schedules from that supplied key; no memory-key discovery or vendor material is needed for this owned research session."
+    }
+  ],
+  "syn_consumer": {
+    "command_check_rva": "0x64F4E",
+    "required_command": 8,
+    "cipher_length": "one byte at decoded TPDUHead+0xC, read at0x64F7A",
+    "cipher_start": "TPDUHead+0xD, set at0x64F83",
+    "decrypt_call_rva": "0x64F91",
+    "mode3_dispatch_rva": "0x6392F",
+    "mode3_decrypt_rva": "0x7AD10",
+    "plaintext": "TPDUSynInfo.randstr is a fixed16-byte array in current metadata.",
+    "parsed_challenge_storage_rva": "0x65060",
+    "parsed_challenge_storage": "transport+0x74",
+    "synack_builder_rva": "0x658E0",
+    "synack_command_write_rva": "0x6590C",
+    "dispatcher_evidence": "0x655F6 checks command8;0x65600 parses SYN;0x65616 builds SYNACK;0x65631 sends it.",
+    "handler_path_evidence": "The higher-level handler at0x28FC0 also calls the SYN parser, then sets command9 at0x2900B and sends through0x32AB0."
+  },
+  "mode3_cipher_contract": {
+    "algorithm": "AES-128 CBC with custom trailing padding",
+    "encrypt_rva": "0x7AB50",
+    "decrypt_rva": "0x7AD10",
+    "cbc_rva": "0x7A980",
+    "fixed_iv_rva": "0xDA0CC",
+    "fixed_iv_hex": "000102030405060708090a0b0c0d0e0f",
+    "padding": "Let r=plaintext_length mod16. PadLen=(16 if r<=10 else32)-r. Append PadLen-6 random bytes, then ASCII tsf4g, then the one-byte PadLen.",
+    "trailer_checked_at": "0x7AD8E..0x7ADAC",
+    "pad_length_checked_at": "0x7ADAE..0x7ADE4",
+    "challenge_case": "For a16-byte challenge, append10 random bytes, tsf4g and byte0x10; encrypt32 bytes."
+  },
+  "minimal_candidate_response": {
+    "status": "SUPPORTED_BY_CURRENT_STATIC_CONTRACT_NOT_YET_WIRE_VERIFIED",
+    "scope": "Only an owned loopback research connection whose AUTH identity and independent token have been validated by the test server.",
+    "layout": "Magic0x55 | Version0x0E | Cmd8 | EncHeadLen0 | BE32 HeadLen45 | BE32 BodyLen0 | U8 CipherLen32 |32-byte cipher",
+    "challenge": "Fresh unpredictable16-byte challenge, encrypted using the already-owned IPC tag5 key and the verified mode3 format.",
+    "acceptance": "Receive current cmd9, verify framing, decrypt with the same owned key, and require exactly the original16 challenge bytes. A timeout or mismatch is failure evidence.",
+    "stop_boundary": "This probe must stop before CHGSKEY, IDENT and application replies until those current-build contracts are verified."
+  },
+  "unverified": [
+    "No response was sent during this analysis; client acceptance of the candidate must be checked on the original research launch scenario.",
+    "ServiceID0 is an explicit research value and is not established as a production-compatible service number.",
+    "Transport challenge completion is separate from authentication authorization, key rotation, directory messages, character creation and lobby state.",
+    "Current command values come from this DLL metadata and dispatcher, not from PH addresses or guessed opcode reuse."
+  ],
+  "syn_extension_metadata": [
+    {
+      "name": "TPDUExtSyn",
+      "descriptor_rva": "0x1018d8",
+      "fields": [
+        {
+          "name": "Len",
+          "width": 1,
+          "max_count": 1,
+          "output_offset": "0x0",
+          "field_descriptor_rva": "0x101990",
+          "referenced_length_relative": "0x4498"
+        },
+        {
+          "name": "EncryptSynInfo",
+          "width": 1,
+          "max_count": 128,
+          "output_offset": "0x1",
+          "field_descriptor_rva": "0x101a44",
+          "referenced_length_relative": "0x43e4"
+        }
+      ]
+    },
+    {
+      "name": "TPDUExtSynAck",
+      "descriptor_rva": "0x101af8",
+      "fields": [
+        {
+          "name": "Len",
+          "width": 1,
+          "max_count": 1,
+          "output_offset": "0x0",
+          "field_descriptor_rva": "0x101bb0",
+          "referenced_length_relative": "0x46b8"
+        },
+        {
+          "name": "EncryptSynInfo",
+          "width": 1,
+          "max_count": 128,
+          "output_offset": "0x1",
+          "field_descriptor_rva": "0x101c64",
+          "referenced_length_relative": "0x4604"
+        }
+      ]
+    }
+  ],
+  "header_semantic_confirmation": {
+    "new_TPDUBase_size": 12,
+    "field_offsets": {
+      "Magic": 0,
+      "Version": 1,
+      "Cmd": 2,
+      "EncHeadLen": 3,
+      "HeadLen": 4,
+      "BodyLen": 8
+    },
+    "syn_extension_size_for32byte_cipher": 33,
+    "HeadLen": 45,
+    "BodyLen": 0,
+    "EncHeadLen": 0,
+    "rationale": "Current TDR descriptors define one-byte ciphertext count followed by that many bytes. SYN challenge ciphertext resides in the header extension, not application body. EncHeadLen describes extension bytes encrypted together with a body on the upstream path; this downlink SYN carries its separately encrypted challenge and no body."
+  },
+  "later_async_synack_correction": {
+    "report": "evidence/aliyun-native-post-syn-static.json",
+    "reason": "The active 0x28FC0->0x32AB0->0x639D0 asynchronous sender adds EncHeadLen4 and an AES3 encrypted four-byte sequence body. Expected SYNACK may be61 bytes: HeadLen45, BodyLen16. Compact lower-level0x658E0 is not the active asynchronous send path.",
+    "acceptance": "Static distinction only; raw-frame runtime verification pending."
+  }
+}

@@ -50,7 +50,9 @@ def main():
         runner=None;old_config=None;mysql_version=None
         # 盘点和只读目录使用临时夹具，不需要业务库；保留远端 --pattern 专项测试入口。
         # 默认完整回归仍由 Django 初始化真实 MySQL，不能用独立工具结果代替数据库验收。
-        independent_modules=['tests.test_inventory','tests.test_client_catalog']
+        independent_modules=['tests.test_inventory','tests.test_client_catalog','tests.test_workspace','tests.test_native_images',
+                             'tests.test_email_tools','tests.test_native_config_guard','tests.test_native_transport','tests.test_native_geo',
+                             'tests.test_native_zone','tests.test_native_tdr_probe']
         selected=[name for name in independent_modules if fnmatch.fnmatch(name.rsplit('.',1)[-1]+'.py',args.pattern)]
         business_matches=[path for path in (root/'tests').glob(args.pattern)
                           if 'tests.'+path.stem not in independent_modules]

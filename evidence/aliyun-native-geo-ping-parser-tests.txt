@@ -1,0 +1,15 @@
+test_current_observed_ping_request_matches_published_digest (tests.test_native_geo.NativeGeoTests.test_current_observed_ping_request_matches_published_digest)
+固定 9 字节夹具匹配两次当前实机首包公开摘要，解析结果只包含已证请求字段。 ... ok
+test_declared_lengths_must_match_observed_header_and_body (tests.test_native_geo.NativeGeoTests.test_declared_lengths_must_match_observed_header_and_body)
+即使实收9字节，声明长度不符也必须拒绝，不按总长度相同或剩余字节猜结构。 ... ok
+test_force_login_byte_is_preserved_without_boolean_or_authorization_inference (tests.test_native_geo.NativeGeoTests.test_force_login_byte_is_preserved_without_boolean_or_authorization_inference)
+已证单字节语法的边界值原样保留；没有把未知非零值变为强制登录许可的分支。 ... ok
+test_truncated_extra_and_wrong_input_types_are_rejected (tests.test_native_geo.NativeGeoTests.test_truncated_extra_and_wrong_input_types_are_rejected)
+必须是单个完整 bytes 请求；截断、尾随数据、拼接帧或其他类型都不能部分解析。 ... ok
+test_unknown_magic_commands_and_little_endian_are_rejected (tests.test_native_geo.NativeGeoTests.test_unknown_magic_commands_and_little_endian_are_rejected)
+拒绝不同协议、响应、ZoneList及小端变体；仅承认当前已证的大端 PingREQ。 ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.000s
+
+OK

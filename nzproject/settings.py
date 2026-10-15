@@ -5,7 +5,23 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parents[1]
-load_dotenv(BASE_DIR / '.env.local', override=False)
+environment_file = Path(os.environ.get('NZ_ENV_FILE', '.env.local'))
+if not environment_file.is_absolute():
+    environment_file = BASE_DIR / environment_file
+if os.environ.get('NZ_ENV_FILE') and not environment_file.is_file():
+    raise ValueError('The explicitly selected NZ_ENV_FILE does not exist')
+load_dotenv(environment_file, override=False)
+# 发信凭据单独保存，服务器部署时同样位于只允许服务组读取的 shared 中。
+mail_file = Path(os.environ.get('NZ_MAIL_ENV_FILE', BASE_DIR / 'runtime/aliyun-mail.env'))
+load_dotenv(mail_file, override=False)
+NZ_EMAIL_VERIFICATION_REQUIRED = os.environ.get('NZ_EMAIL_VERIFICATION_REQUIRED', '1') == '1'
+NZ_MAIL_PROVIDER = os.environ.get('NZ_MAIL_PROVIDER', '')
+NZ_MAIL_HOST = os.environ.get('NZ_MAIL_HOST', '')
+NZ_MAIL_PORT = int(os.environ.get('NZ_MAIL_PORT', '465'))
+NZ_MAIL_FROM = os.environ.get('NZ_MAIL_FROM', '')
+NZ_MAIL_USERNAME = os.environ.get('NZ_MAIL_USERNAME', '')
+NZ_MAIL_PASSWORD = os.environ.get('NZ_MAIL_PASSWORD', '')
+NZ_MAIL_SENDER_NAME = os.environ.get('NZ_MAIL_SENDER_NAME', 'NZ Revival')
 SECRET_KEY = os.environ.get('NZ_SECRET_KEY', 'local-control-plane-no-cookie-sessions')
 DEBUG = False
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '[::1]', 'testserver']
@@ -18,12 +34,16 @@ if NZ_PROFILE not in ('current', 'synthetic'):
     raise ValueError('NZ_PROFILE must be current or synthetic')
 current_name = os.environ.get('NZ_DB_NAME', 'nz_current')
 synthetic_name = os.environ.get('NZ_SYNTHETIC_DB_NAME', 'nz_synthetic')
+NZ_PVE_TEST_PROFILE = os.environ.get('NZ_PVE_TEST_PROFILE') == '1'
+pve_name = os.environ.get('NZ_PVE_DB_NAME', 'nz_pve_synthetic')
+if NZ_PVE_TEST_PROFILE and NZ_PROFILE != 'synthetic':
+    raise ValueError('PvE test rules require synthetic profile')
 test_name = os.environ.get('NZ_TEST_DB_NAME', 'nz_unittest')
-if len({current_name, synthetic_name, test_name}) != 3:
+if len({current_name, synthetic_name, pve_name, test_name}) != 4:
     raise ValueError('Current, synthetic and test databases must be distinct')
 DATABASES = {'default': {
     'ENGINE': 'django.db.backends.mysql',
-    'NAME': synthetic_name if NZ_PROFILE == 'synthetic' else current_name,
+    'NAME': (pve_name if NZ_PVE_TEST_PROFILE else synthetic_name) if NZ_PROFILE == 'synthetic' else current_name,
     'HOST': os.environ.get('NZ_DB_HOST', '127.0.0.1'),
     'PORT': os.environ.get('NZ_DB_PORT', '3307'),
     'USER': os.environ.get('NZ_DB_USER', 'nz_local'),

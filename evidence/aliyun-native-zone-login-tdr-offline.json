@@ -1,0 +1,83 @@
+{
+  "kind": "CURRENT_ZONE_LOGIN_NATIVE_TDR_OFFLINE_VERIFIED",
+  "date": "2026-10-15",
+  "dll_sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228",
+  "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+  "input": {
+    "message": "C2ZN_ReqLogin",
+    "source_private": "evidence/private/email-native-boot-20/application-01-sequence-01.bin",
+    "bytes": 26,
+    "sha256": "4c00864169617cf28adfedffc566c8e6867471d1836e6546a44548679b106a38",
+    "native_report_private": "evidence/private/native-tdr-zone-login-01/report.json",
+    "native_request_roundtrip_equal": true,
+    "native_schema": "C2ZNPkg",
+    "native_host_capacity": 1025331,
+    "job_cleanup_verified": true,
+    "body_published": false
+  },
+  "native_dll_executed": true,
+  "network_init_called": false,
+  "game_started_by_probe": false,
+  "response_constructed": false,
+  "passed": true,
+  "cleanup_verified": true,
+  "field_layout_verification": {
+    "name": "C2ZN_ReqLogin",
+    "command": "0xA000",
+    "body_length": 18,
+    "field_count": 5,
+    "dword_and_u16_layout_verified": true,
+    "identity_fields_published": false,
+    "response_constructed": false
+  },
+  "checks": [
+    {
+      "step": "vtable_slot",
+      "slot": "0x50",
+      "function_rva": "0x29530"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x54",
+      "function_rva": "0x29670"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x58",
+      "function_rva": "0x29560"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x5C",
+      "function_rva": "0x294C0"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x60",
+      "function_rva": "0x294E0"
+    },
+    {
+      "step": "load_metadata",
+      "return_code": 0,
+      "canaries": true
+    },
+    {
+      "step": "captured_request_unpack",
+      "return_code": 0,
+      "input_length_before": 26,
+      "output_capacity": 1025331,
+      "output_length": 1025331,
+      "input_length_after": 26,
+      "canaries": true
+    },
+    {
+      "step": "captured_request_pack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 26,
+      "input_length_after": 1025331,
+      "canaries": true
+    }
+  ]
+}

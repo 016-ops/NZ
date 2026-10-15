@@ -1,0 +1,1580 @@
+{
+  "kind": "CURRENT_ZONE_STATIC_SCHEMA_AND_OBSERVED_REQUEST_ROUNDTRIPS",
+  "date": "2026-10-15",
+  "client_file_writes": 0,
+  "this_inspection_executes_dll": false,
+  "credentials_read": false,
+  "parser_source_sha256": "fd2c04aca25da3caa6f5fdf2321f98866b98b9b9ac60df83749c5c7211b19a82",
+  "file": {
+    "path": "TGame/TDR/proto_c2zn.tdr",
+    "bytes": 3024238,
+    "sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+    "archive_manifest_matches": true,
+    "source_unchanged_after_inspection": true,
+    "header_magic": "0xb02d6",
+    "header_slot1": 32,
+    "macro_count": 6117,
+    "meta_count": 1904,
+    "name_table_relative_offset": "0x1b9d0",
+    "all_named_headers_cross_checked": true,
+    "selected_macros": [
+      {
+        "name": "PROTO_MAGIC_C2ZN",
+        "value": 12867,
+        "hex": "0x3243",
+        "record_file_offset": "0x131b4",
+        "index": 4874
+      },
+      {
+        "name": "ID_C2ZN_REQ_LOGIN",
+        "value": 40960,
+        "hex": "0xa000",
+        "record_file_offset": "0x131d4",
+        "index": 4876
+      },
+      {
+        "name": "ID_ZN2C_RES_LOGIN",
+        "value": 40961,
+        "hex": "0xa001",
+        "record_file_offset": "0x131e4",
+        "index": 4877
+      },
+      {
+        "name": "ID_ZN2C_NTF_ANTIBOTMSG",
+        "value": 65281,
+        "hex": "0xff01",
+        "record_file_offset": "0x15a64",
+        "index": 5525
+      },
+      {
+        "name": "ID_C2ZN_NTF_ANTIBOTMSG",
+        "value": 65282,
+        "hex": "0xff02",
+        "record_file_offset": "0x15a74",
+        "index": 5526
+      },
+      {
+        "name": "ID_C2ZN_NTF_ANTIBOTCLIVER",
+        "value": 65285,
+        "hex": "0xff05",
+        "record_file_offset": "0x15aa4",
+        "index": 5529
+      },
+      {
+        "name": "ID_C2ZN_NTF_NETBARKEY",
+        "value": 4688,
+        "hex": "0x1250",
+        "record_file_offset": "0x16904",
+        "index": 5759
+      }
+    ],
+    "structures": [
+      {
+        "name": "C2ZNPkgHead",
+        "header_file_offset": "0x20c454",
+        "name_table_file_offset": "0x1bd64",
+        "header_record_size_slots_5_41": [
+          904,
+          904
+        ],
+        "header_size_slots_6_7": [
+          8,
+          8
+        ],
+        "total_field_count": 4,
+        "exported_field_count": 4,
+        "fields": [
+          {
+            "name": "Magic",
+            "descriptor_file_offset": "0x20c50c",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Cmd",
+            "descriptor_file_offset": "0x20c5c0",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "HeadLen",
+            "descriptor_file_offset": "0x20c674",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "BodyLen",
+            "descriptor_file_offset": "0x20c728",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              6,
+              6
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZNPkgBody",
+        "header_file_offset": "0x20c7dc",
+        "name_table_file_offset": "0x1bd5c",
+        "header_record_size_slots_5_41": [
+          211684,
+          211684
+        ],
+        "header_size_slots_6_7": [
+          1024703,
+          1025323
+        ],
+        "total_field_count": 1175,
+        "exported_field_count": 6,
+        "fields": [
+          {
+            "name": "NtfNetBarKey",
+            "descriptor_file_offset": "0x20feb8",
+            "type_code": 1,
+            "size_slots_4_5": [
+              514,
+              514
+            ],
+            "element_size_slots_6_7": [
+              514,
+              514
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_NtfNetBarKey",
+            "reference_field": null,
+            "selector": 4688,
+            "selector_macro": {
+              "name": "ID_C2ZN_NTF_NETBARKEY",
+              "value": 4688,
+              "hex": "0x1250",
+              "record_file_offset": "0x16904",
+              "index": 5759
+            }
+          },
+          {
+            "name": "ReqLogin",
+            "descriptor_file_offset": "0x21ef30",
+            "type_code": 1,
+            "size_slots_4_5": [
+              18,
+              18
+            ],
+            "element_size_slots_6_7": [
+              18,
+              18
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_ReqLogin",
+            "reference_field": null,
+            "selector": 40960,
+            "selector_macro": {
+              "name": "ID_C2ZN_REQ_LOGIN",
+              "value": 40960,
+              "hex": "0xa000",
+              "record_file_offset": "0x131d4",
+              "index": 4876
+            }
+          },
+          {
+            "name": "ResLogin",
+            "descriptor_file_offset": "0x21efe4",
+            "type_code": 1,
+            "size_slots_4_5": [
+              17953,
+              17953
+            ],
+            "element_size_slots_6_7": [
+              17953,
+              17953
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_ResLogin",
+            "reference_field": null,
+            "selector": 40961,
+            "selector_macro": {
+              "name": "ID_ZN2C_RES_LOGIN",
+              "value": 40961,
+              "hex": "0xa001",
+              "record_file_offset": "0x131e4",
+              "index": 4877
+            }
+          },
+          {
+            "name": "NtfAntibotMsg2C",
+            "descriptor_file_offset": "0x23f564",
+            "type_code": 1,
+            "size_slots_4_5": [
+              32786,
+              32786
+            ],
+            "element_size_slots_6_7": [
+              32786,
+              32786
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_NtfAntibotMsg",
+            "reference_field": null,
+            "selector": 65281,
+            "selector_macro": {
+              "name": "ID_ZN2C_NTF_ANTIBOTMSG",
+              "value": 65281,
+              "hex": "0xff01",
+              "record_file_offset": "0x15a64",
+              "index": 5525
+            }
+          },
+          {
+            "name": "NtfAntibotMsg2S",
+            "descriptor_file_offset": "0x23f618",
+            "type_code": 1,
+            "size_slots_4_5": [
+              32786,
+              32786
+            ],
+            "element_size_slots_6_7": [
+              32786,
+              32786
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_NtfAntibotMsg",
+            "reference_field": null,
+            "selector": 65282,
+            "selector_macro": {
+              "name": "ID_C2ZN_NTF_ANTIBOTMSG",
+              "value": 65282,
+              "hex": "0xff02",
+              "record_file_offset": "0x15a74",
+              "index": 5526
+            }
+          },
+          {
+            "name": "NtfAntibotCliVer",
+            "descriptor_file_offset": "0x23f834",
+            "type_code": 1,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_NtfAntibotCliVer",
+            "reference_field": null,
+            "selector": 65285,
+            "selector_macro": {
+              "name": "ID_C2ZN_NTF_ANTIBOTCLIVER",
+              "value": 65285,
+              "hex": "0xff05",
+              "record_file_offset": "0x15aa4",
+              "index": 5529
+            }
+          }
+        ]
+      },
+      {
+        "name": "C2ZNPkg",
+        "header_file_offset": "0x2402c0",
+        "name_table_file_offset": "0x1bd54",
+        "header_record_size_slots_5_41": [
+          544,
+          544
+        ],
+        "header_size_slots_6_7": [
+          1024711,
+          1025331
+        ],
+        "total_field_count": 2,
+        "exported_field_count": 2,
+        "fields": [
+          {
+            "name": "Head",
+            "descriptor_file_offset": "0x240378",
+            "type_code": 1,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZNPkgHead",
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Body",
+            "descriptor_file_offset": "0x24042c",
+            "type_code": 0,
+            "size_slots_4_5": [
+              1025323,
+              1024703
+            ],
+            "element_size_slots_6_7": [
+              1025323,
+              1024703
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": "C2ZNPkgBody",
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_NtfNetBarKey",
+        "header_file_offset": "0x1f6eac",
+        "name_table_file_offset": "0x1be54",
+        "header_record_size_slots_5_41": [
+          544,
+          544
+        ],
+        "header_size_slots_6_7": [
+          514,
+          514
+        ],
+        "total_field_count": 2,
+        "exported_field_count": 2,
+        "fields": [
+          {
+            "name": "KeyLen",
+            "descriptor_file_offset": "0x1f6f64",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": "KeyData",
+            "selector": null
+          },
+          {
+            "name": "KeyData",
+            "descriptor_file_offset": "0x1f7018",
+            "type_code": 2,
+            "size_slots_4_5": [
+              512,
+              512
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 512,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": "KeyLen",
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "MAX_NETBAYKEY_LEN",
+              "value": 512,
+              "hex": "0x200",
+              "record_file_offset": "0xa214",
+              "index": 2576
+            }
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_ReqLogin",
+        "header_file_offset": "0x1de674",
+        "name_table_file_offset": "0x1c5fc",
+        "header_record_size_slots_5_41": [
+          1084,
+          1084
+        ],
+        "header_size_slots_6_7": [
+          18,
+          18
+        ],
+        "total_field_count": 5,
+        "exported_field_count": 5,
+        "fields": [
+          {
+            "name": "SubChannelId",
+            "descriptor_file_offset": "0x1de72c",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "PreferenceCrcValue",
+            "descriptor_file_offset": "0x1de7e0",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "SystemSettingCrcValue",
+            "descriptor_file_offset": "0x1de894",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CurrentZoneHostIp",
+            "descriptor_file_offset": "0x1de948",
+            "type_code": 19,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              12,
+              12
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LoginPlatform",
+            "descriptor_file_offset": "0x1de9fc",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              16,
+              16
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_ResLogin",
+        "header_file_offset": "0x1deab0",
+        "name_table_file_offset": "0x1eebc",
+        "header_record_size_slots_5_41": [
+          1984,
+          1984
+        ],
+        "header_size_slots_6_7": [
+          17953,
+          17953
+        ],
+        "total_field_count": 10,
+        "exported_field_count": 10,
+        "fields": [
+          {
+            "name": "Result",
+            "descriptor_file_offset": "0x1deb68",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "MainChannelId",
+            "descriptor_file_offset": "0x1dec1c",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "SubChannelId",
+            "descriptor_file_offset": "0x1decd0",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              6,
+              6
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ServerTime",
+            "descriptor_file_offset": "0x1ded84",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              10,
+              10
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "TGamePoint",
+            "descriptor_file_offset": "0x1dee38",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              18,
+              18
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "GoldPoint",
+            "descriptor_file_offset": "0x1deeec",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              22,
+              22
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "FreePropCount",
+            "descriptor_file_offset": "0x1defa0",
+            "type_code": 5,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              26,
+              26
+            ],
+            "nested_meta": null,
+            "reference_field": "FreeProps",
+            "selector": null
+          },
+          {
+            "name": "FreeProps",
+            "descriptor_file_offset": "0x1df054",
+            "type_code": 1,
+            "size_slots_4_5": [
+              17920,
+              17920
+            ],
+            "element_size_slots_6_7": [
+              70,
+              70
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 256,
+            "offset_slots_10_11": [
+              28,
+              28
+            ],
+            "nested_meta": "PropInfo",
+            "reference_field": "FreePropCount",
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "MAX_PROP_NUM_PER_PLAYER",
+              "value": 256,
+              "hex": "0x100",
+              "record_file_offset": "0x93c4",
+              "index": 2347
+            }
+          },
+          {
+            "name": "IsNewbie",
+            "descriptor_file_offset": "0x1df108",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              17948,
+              17948
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "AreaId",
+            "descriptor_file_offset": "0x1df1bc",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              17949,
+              17949
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "PropInfo",
+        "header_file_offset": "0x2aa7c",
+        "name_table_file_offset": "0x1dda4",
+        "header_record_size_slots_5_41": [
+          2704,
+          2704
+        ],
+        "header_size_slots_6_7": [
+          70,
+          70
+        ],
+        "total_field_count": 14,
+        "exported_field_count": 14,
+        "fields": [
+          {
+            "name": "Uin",
+            "descriptor_file_offset": "0x2ab34",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "GID",
+            "descriptor_file_offset": "0x2abe8",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ItemId",
+            "descriptor_file_offset": "0x2ac9c",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              16,
+              16
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ResFlag",
+            "descriptor_file_offset": "0x2ad50",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              20,
+              20
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "StackNum",
+            "descriptor_file_offset": "0x2ae04",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              28,
+              28
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ObtainTime",
+            "descriptor_file_offset": "0x2aeb8",
+            "type_code": 11,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              32,
+              32
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Validity",
+            "descriptor_file_offset": "0x2af6c",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              40,
+              40
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Durability",
+            "descriptor_file_offset": "0x2b020",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              44,
+              44
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "DurabilityMax",
+            "descriptor_file_offset": "0x2b0d4",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              48,
+              48
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "OwnerGID",
+            "descriptor_file_offset": "0x2b188",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              52,
+              52
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Location",
+            "descriptor_file_offset": "0x2b23c",
+            "type_code": 2,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              60,
+              60
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "AvailbilityHour",
+            "descriptor_file_offset": "0x2b2f0",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              61,
+              61
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "UseHour",
+            "descriptor_file_offset": "0x2b3a4",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              65,
+              65
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "GainType",
+            "descriptor_file_offset": "0x2b458",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              69,
+              69
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_NtfAntibotCliVer",
+        "header_file_offset": "0x181294",
+        "name_table_file_offset": "0x1bda4",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          4,
+          4
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "CliVer",
+            "descriptor_file_offset": "0x18134c",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_NtfAntibotMsg",
+        "header_file_offset": "0x1808b4",
+        "name_table_file_offset": "0x1e284",
+        "header_record_size_slots_5_41": [
+          1264,
+          1264
+        ],
+        "header_size_slots_6_7": [
+          32786,
+          32786
+        ],
+        "total_field_count": 6,
+        "exported_field_count": 6,
+        "fields": [
+          {
+            "name": "Type",
+            "descriptor_file_offset": "0x18096c",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "GameId",
+            "descriptor_file_offset": "0x180a20",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "RoomId",
+            "descriptor_file_offset": "0x180ad4",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Uid",
+            "descriptor_file_offset": "0x180b88",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              12,
+              12
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "BufferLen",
+            "descriptor_file_offset": "0x180c3c",
+            "type_code": 5,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              16,
+              16
+            ],
+            "nested_meta": null,
+            "reference_field": "Buffer",
+            "selector": null
+          },
+          {
+            "name": "Buffer",
+            "descriptor_file_offset": "0x180cf0",
+            "type_code": 3,
+            "size_slots_4_5": [
+              32768,
+              32768
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 32768,
+            "offset_slots_10_11": [
+              18,
+              18
+            ],
+            "nested_meta": null,
+            "reference_field": "BufferLen",
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_NtfAntibotMsg",
+        "header_file_offset": "0x180da4",
+        "name_table_file_offset": "0x1bdac",
+        "header_record_size_slots_5_41": [
+          1264,
+          1264
+        ],
+        "header_size_slots_6_7": [
+          32786,
+          32786
+        ],
+        "total_field_count": 6,
+        "exported_field_count": 6,
+        "fields": [
+          {
+            "name": "Type",
+            "descriptor_file_offset": "0x180e5c",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "GameId",
+            "descriptor_file_offset": "0x180f10",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "RoomId",
+            "descriptor_file_offset": "0x180fc4",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Uid",
+            "descriptor_file_offset": "0x181078",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              12,
+              12
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "BufferLen",
+            "descriptor_file_offset": "0x18112c",
+            "type_code": 5,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              16,
+              16
+            ],
+            "nested_meta": null,
+            "reference_field": "Buffer",
+            "selector": null
+          },
+          {
+            "name": "Buffer",
+            "descriptor_file_offset": "0x1811e0",
+            "type_code": 3,
+            "size_slots_4_5": [
+              32768,
+              32768
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 32768,
+            "offset_slots_10_11": [
+              18,
+              18
+            ],
+            "nested_meta": null,
+            "reference_field": "BufferLen",
+            "selector": null
+          }
+        ]
+      }
+    ]
+  },
+  "observed_requests": [
+    {
+      "message": "C2ZN_NtfNetBarKey",
+      "source_private": "evidence/private/email-native-boot-19/application-01.bin",
+      "bytes": 11,
+      "sha256": "411481f88d63ea7ac96ed7db0d264d023d53243acd31f01e0149fb6af7b469ca",
+      "native_report_private": "evidence/private/native-tdr-probe-11/report.json",
+      "native_request_roundtrip_equal": true,
+      "native_schema": "C2ZNPkg",
+      "native_host_capacity": 1025331,
+      "job_cleanup_verified": true,
+      "body_published": false
+    },
+    {
+      "message": "C2ZN_ReqLogin",
+      "source_private": "evidence/private/email-native-boot-20/application-01-sequence-01.bin",
+      "bytes": 26,
+      "sha256": "4c00864169617cf28adfedffc566c8e6867471d1836e6546a44548679b106a38",
+      "native_report_private": "evidence/private/native-tdr-zone-login-01/report.json",
+      "native_request_roundtrip_equal": true,
+      "native_schema": "C2ZNPkg",
+      "native_host_capacity": 1025331,
+      "job_cleanup_verified": true,
+      "body_published": false
+    }
+  ],
+  "ff05": {
+    "message": "C2ZN_NtfAntibotCliVer",
+    "command": 65285,
+    "fields": [
+      "CliVer"
+    ],
+    "body_layout_bytes": 4,
+    "matching_named_response_found": false,
+    "associated_notifications": [
+      "ZN2C_NtfAntibotMsg:0xFF01",
+      "C2ZN_NtfAntibotMsg:0xFF02"
+    ],
+    "response_constructed": false,
+    "observed_in_this_report": false
+  },
+  "limits": [
+    "The original static-only evidence remains historical and unchanged.",
+    "Observed NetBarKey and ReqLogin have current DLL exact roundtrips; FF05 is metadata only here.",
+    "No result code, nickname, character, wallet or asset state is inferred from these requests.",
+    "No matching named response for a notification does not prove no downstream messages are needed.",
+    "Static FF01/FF02 layouts do not authorize fabricating anti-bot replies."
+  ]
+}

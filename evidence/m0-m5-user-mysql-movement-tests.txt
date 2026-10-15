@@ -1,0 +1,7 @@
+test_repeated_moves_cannot_reuse_the_same_server_time_budget (tests.test_pve.PveTests.test_repeated_moves_cannot_reuse_the_same_server_time_budget)
+同一时刻换事件 ID 不能多领位移额度；拒绝事件不占用下一个连续序号。 ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 17.619s
+
+OK

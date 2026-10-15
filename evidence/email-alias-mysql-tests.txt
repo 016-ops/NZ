@@ -1,0 +1,11 @@
+test_concurrent_registration_replay_allocates_one_random_identity (tests.test_email_alias.EmailAliasTests.test_concurrent_registration_replay_allocates_one_random_identity)
+同一验证码与幂等键并发提交只分配一个随机隐藏名，不多建账号或消费邀请。 ... ok
+test_random_alias_retries_collision_and_public_login_still_requires_email (tests.test_email_alias.EmailAliasTests.test_random_alias_retries_collision_and_public_login_still_requires_email)
+随机名碰到旧用户名时重新取名，公开登录不能凭隐藏名绕过邮箱身份。 ... ok
+test_released_legacy_email_can_register_without_rewriting_old_account (tests.test_email_alias.EmailAliasTests.test_released_legacy_email_can_register_without_rewriting_old_account)
+旧哈希隐藏名保留时，换绑后的旧邮箱仍可注册；历史重放、角色、资产和旧身份保持隔离。 ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 36.970s
+
+OK

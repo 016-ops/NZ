@@ -1,0 +1,20 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 8,
+  "passed": [
+    "tests.test_email_verification.EmailVerification.test_attempts_expiry_purpose_address_and_resend_persist",
+    "tests.test_email_verification.EmailVerification.test_concurrent_reset_consumes_once_and_audit_rollback",
+    "tests.test_email_verification.EmailVerification.test_delivery_failure_quota_and_no_plaintext_persistence",
+    "tests.test_email_verification.EmailVerification.test_existing_binding_verify_and_email_replacement_invalidate_old_reset",
+    "tests.test_email_verification.EmailVerification.test_http_boundary_rejects_legacy_bypass_and_missing_provider",
+    "tests.test_email_verification.EmailVerification.test_recovery_does_not_activate_disabled_account_and_unknown_has_same_response",
+    "tests.test_email_verification.EmailVerification.test_registration_requires_code_replays_and_preserves_approval",
+    "tests.test_email_verification.EmailVerification.test_reset_revokes_web_and_game_preserves_character_assets"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 85.578
+}

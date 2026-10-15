@@ -1,0 +1,76 @@
+{
+  "kind": "MYSQL_HTTP_EMAIL_TO_NATIVE_IPC_NOT_GAME_ACCEPTANCE",
+  "accounts": [
+    {
+      "protocol": "nz-email-v1",
+      "email_login": true,
+      "single_use_handoff": true,
+      "account_id": "2a14cbca3d544b2cb5ac28fc463c07bb",
+      "game_id": 10001,
+      "profile": "test-only-v1",
+      "native_launch_ready": false,
+      "game_process_started": false,
+      "qq_credentials_used": false,
+      "native_ipc_self_test": {
+        "kind": "NATIVE_EMAIL_IPC_SELF_TEST",
+        "proxy_sha256": "788bea4e34d6aaea8187df482ea2c859f7a6c8802b226b1ab7c2d9a6a10bc047",
+        "ipc_profile": "nz-email-ipc-research-v1",
+        "exit_code": 0,
+        "observations": [
+          {
+            "FactoryCreated": true,
+            "LoginInfoAccepted": true,
+            "LocalGameId": 10001,
+            "LocalTokenMatches": true,
+            "LocalSessionIdMatches": true,
+            "OutputGuardIntact": true,
+            "ServerRecordVerified": true
+          }
+        ],
+        "prefix_candidate": "TCLS_SHAREDMEMEMORY",
+        "process_tree_cleanup": true,
+        "ipc_read_verified": true,
+        "native_launch_ready": false,
+        "game_process_started": false,
+        "qq_credentials_used": false
+      }
+    },
+    {
+      "protocol": "nz-email-v1",
+      "email_login": true,
+      "single_use_handoff": true,
+      "account_id": "fce2f032ec0c4ca982068d1cfa5ca89c",
+      "game_id": 10002,
+      "profile": "test-only-v1",
+      "native_launch_ready": false,
+      "game_process_started": false,
+      "qq_credentials_used": false,
+      "native_ipc_self_test": {
+        "kind": "NATIVE_EMAIL_IPC_SELF_TEST",
+        "proxy_sha256": "788bea4e34d6aaea8187df482ea2c859f7a6c8802b226b1ab7c2d9a6a10bc047",
+        "ipc_profile": "nz-email-ipc-research-v1",
+        "exit_code": 0,
+        "observations": [
+          {
+            "FactoryCreated": true,
+            "LoginInfoAccepted": true,
+            "LocalGameId": 10002,
+            "LocalTokenMatches": true,
+            "LocalSessionIdMatches": true,
+            "OutputGuardIntact": true,
+            "ServerRecordVerified": true
+          }
+        ],
+        "prefix_candidate": "TCLS_SHAREDMEMEMORY",
+        "process_tree_cleanup": true,
+        "ipc_read_verified": true,
+        "native_launch_ready": false,
+        "game_process_started": false,
+        "qq_credentials_used": false
+      }
+    }
+  ],
+  "native_game_started": false,
+  "lobby_verified": false,
+  "dual_client_verified": false
+}

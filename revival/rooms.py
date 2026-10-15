@@ -27,6 +27,7 @@ def leave_room(service, c, account_id, room_id):
 def room_command(service, c, actor, action, data):
     """保持建房、占席、准备、配置、取消及开始的状态机；开始前核对 revision 和全部成员资格，再冻结目录、玩家安全版本与有效装备。"""
     account_id = actor['id']
+    from . import room_access
     if not c.select('characters', Q(account_id=account_id)).fetchone():
         raise Fault('CHARACTER', 'Initialize a local character first', 409)
     room_id = data.get('room_id')
@@ -39,12 +40,15 @@ def room_command(service, c, actor, action, data):
             raise Fault('COMPATIBILITY_BLOCKED', 'No verified current-client map/seat rules', 409)
         room_id = identifier()
         c.insert('rooms', {'id': room_id, 'owner': account_id, 'map_key': map_key, 'capacity': definition['capacity'], 'state': 'OPEN'})
+        room_access.configure(c, room_id, definition, data)
         c.insert('room_members', {'account_id': account_id, 'room_id': room_id, 'slot': 0, 'ready': 0, 'joined_at': service.clock()})
         return {'room_id': room_id, 'revision': 1, 'state': 'OPEN', 'evidence': service.catalog['evidence']}
     room = c.select('rooms', Q(id=room_id)).fetchone()
     if room is None or room['state'] == 'CLOSED':
         raise Fault('NOT_FOUND', 'Room is closed or missing', 404)
     member = c.select('room_members', Q(account_id=account_id)).fetchone()
+    if action == 'room.invite':
+        return room_access.invite(service, c, actor, room, data)
     if action == 'room.join':
         if member:
             if member['room_id'] == room_id:
@@ -52,6 +56,7 @@ def room_command(service, c, actor, action, data):
             raise Fault('ALREADY_IN_ROOM', 'Leave the current room first', 409)
         if room['state'] != 'OPEN':
             raise Fault('ROOM_STATE', 'Room is not open', 409)
+        room_access.check_join(service, c, room_id, account_id, data)
         slots = {r['slot'] for r in c.select('room_members', Q(room_id=room_id), columns=['slot'])}
         free = [slot for slot in range(room['capacity']) if slot not in slots]
         if not free:
@@ -92,6 +97,7 @@ def room_command(service, c, actor, action, data):
         seats = c.maximum('room_members', 'slot', Q(room_id=room_id)).fetchone()[0]
         if seats is not None and seats >= definition['capacity']:
             raise Fault('ROOM_FULL', 'New map cannot hold current seats', 409)
+        room_access.configure(c, room_id, definition, data)
         c.update('rooms', Q(id=room_id), {'map_key': map_key, 'capacity': definition['capacity'], 'revision': F('revision') + 1})
         c.update('room_members', Q(room_id=room_id), {'ready': 0})
         return {'room_id': room_id, 'revision': room['revision'] + 1}
@@ -99,6 +105,9 @@ def room_command(service, c, actor, action, data):
         members = list(c.select('room_members', Q(room_id=room_id), order=('slot',)))
         if not members or any(not p['ready'] for p in members):
             raise Fault('NOT_READY', 'All members must be ready', 409)
+        definition = service.catalog['maps'][room['map_key']]
+        if len(members) < definition.get('min_players', 1):
+            raise Fault('PLAYER_COUNT', 'More players are required by the active map rules', 409)
         players = []
         for member in members:
             account = service._account(c, member['account_id'])
@@ -108,6 +117,9 @@ def room_command(service, c, actor, action, data):
         match_id, instance_id, epoch = identifier(), identifier(), identifier()
         snapshot = {'catalog': service.catalog['id'], 'map_key': room['map_key'], 'revision': room['revision'],
                     'players': players, 'reward': service.catalog.get('reward', {}), 'evidence': service.catalog['evidence']}
+        access = room_access.settings(c, room_id)
+        snapshot.update({key: access[key] for key in ('channel', 'difficulty')})
+        snapshot['pve_rules'] = definition.get('pve_rules')
         c.insert('matches', {'id': match_id, 'room_id': room_id, 'instance_id': instance_id, 'epoch': epoch, 'state': 'STARTING', 'snapshot': canonical(snapshot), 'node_token_hash': '', 'created_at': service.clock(), 'lease_until': service.clock() + 30})
         for player in players:
             c.insert('match_players', {'match_id': match_id, 'account_id': player['account_id'], 'security_version': player['security_version']})

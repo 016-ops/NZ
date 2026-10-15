@@ -56,6 +56,56 @@ class Invitation(models.Model):
         db_table = 'invitations'
         constraints = [models.UniqueConstraint(fields=['token_hash'], name='uq_invitations_0'), models.CheckConstraint(condition=Q(max_uses__gt=0) & Q(uses__gte=0) & Q(uses__lte=F('max_uses')), name='ck_invitations')]
 
+
+class PlayerEmail(models.Model):
+    """玩家的独立邮箱标识；与旧账号一对一，保留既有 game_id、资产及历史登录名。"""
+    account = models.OneToOneField(Account, on_delete=models.DO_NOTHING, primary_key=True)
+    email = models.CharField(max_length=254, unique=True, db_collation='utf8mb4_0900_bin')
+    created_at = models.BigIntegerField()
+    verified_at = models.BigIntegerField(null=True)
+
+    class Meta:
+        """规范邮箱由业务层小写；唯一约束保护并发注册，不让两个账号共享邮箱。"""
+        db_table = 'player_emails'
+
+
+class LaunchTicket(models.Model):
+    """独立启动协议的短期一次性凭据；绑定邮箱账号、原会话、客户端及启动器持有证明。"""
+    digest = models.CharField(max_length=64, primary_key=True, db_collation='utf8mb4_0900_bin')
+    id = models.CharField(max_length=32, unique=True, db_collation='utf8mb4_0900_bin')
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    session = models.ForeignKey('Session', on_delete=models.DO_NOTHING)
+    security_version = models.BigIntegerField()
+    profile = models.CharField(max_length=100)
+    client_sha256 = models.CharField(max_length=64)
+    verifier_sha256 = models.CharField(max_length=64)
+    created_at = models.BigIntegerField()
+    expires_at = models.BigIntegerField()
+    consumed_at = models.BigIntegerField(null=True)
+    revoked = models.BooleanField(default=False)
+
+    class Meta:
+        """只保存票据/证明摘要，不把邮箱密码、玩家 Bearer 或可重复兑换结果写入票据。"""
+        db_table = 'launch_tickets'
+
+
+class GameSession(models.Model):
+    """邮箱启动交接后的独立游戏会话；不能充当管理员、玩家 API 或节点凭据。"""
+    digest = models.CharField(max_length=64, primary_key=True, db_collation='utf8mb4_0900_bin')
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    session = models.ForeignKey('Session', on_delete=models.DO_NOTHING)
+    launch = models.OneToOneField(LaunchTicket, on_delete=models.DO_NOTHING)
+    security_version = models.BigIntegerField()
+    profile = models.CharField(max_length=100)
+    client_sha256 = models.CharField(max_length=64)
+    created_at = models.BigIntegerField()
+    expires_at = models.BigIntegerField()
+    revoked = models.BooleanField(default=False)
+
+    class Meta:
+        """每张启动票据至多产生一个游戏会话；每次授权仍检查源会话和最新制裁。"""
+        db_table = 'game_sessions'
+
 # 账号至多一个角色；昵称使用二进制排序与唯一约束，保留 Unicode 和大小写区分行为。
 class Character(models.Model):
     """账号至多一个角色；昵称使用二进制排序与唯一约束，保留 Unicode 和大小写区分行为。"""
@@ -314,7 +364,169 @@ class DeploymentMetadata(models.Model):
         """指定稳定业务表名和持久化约束；Django 依照这些元数据生成迁移。"""
         db_table = 'deployment_metadata'
 
+class RoomSettings(models.Model):
+    """房间控制面访问配置独立存表，保持旧 SQLite 导入字段兼容。"""
+    room = models.OneToOneField(Room, primary_key=True, on_delete=models.DO_NOTHING)
+    channel = models.CharField(max_length=64, default='local')
+    difficulty = models.CharField(max_length=64, default='default')
+    password_hash = models.CharField(max_length=256, default='')
+    invite_only = models.BooleanField(default=False)
+    class Meta:
+        """密码仅存慢哈希，读取视图通过显式字段白名单去除它。"""
+        db_table = 'room_settings'
+
+
+class RoomInvitation(models.Model):
+    """邀请只绑定指定房间和账号；过期或被替换后不能用于占席。"""
+    digest = models.CharField(max_length=64, primary_key=True)
+    room = models.ForeignKey(Room, on_delete=models.DO_NOTHING)
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    expires_at = models.BigIntegerField()
+    class Meta:
+        """每个房间对同一账号只保留一个当前邀请。"""
+        db_table = 'room_invitations'
+        constraints = [models.UniqueConstraint(fields=['room', 'account'], name='uq_room_invitation')]
+
+
+class AdminRecovery(models.Model):
+    """高熵恢复码只保存摘要，一次使用后失效；重置 MFA 同事务撤销全部旧会话。"""
+    digest = models.CharField(max_length=64, primary_key=True, db_collation='utf8mb4_0900_bin')
+    admin = models.ForeignKey(Admin, on_delete=models.DO_NOTHING)
+    used_at = models.BigIntegerField(null=True)
+    class Meta:
+        """恢复码按摘要唯一，禁止一个码被多个管理员复用。"""
+        db_table = 'admin_recovery'
+
+
+class GrantBatch(models.Model):
+    """冻结发放请求和目标，子项分事务执行；进程重启可继续未执行目标。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    actor = models.ForeignKey(Admin, on_delete=models.DO_NOTHING)
+    catalog_version = models.CharField(max_length=128)
+    payload = models.TextField()
+    status = models.CharField(max_length=32, default='PENDING')
+    created_at = models.BigIntegerField()
+    parent = models.ForeignKey('self', null=True, on_delete=models.DO_NOTHING)
+    class Meta:
+        """批次 ID 是持久任务标识，重试通过新批次关联原批次。"""
+        db_table = 'grant_batches'
+
+
+class GrantTarget(models.Model):
+    """每批每目标只执行一次；错误目标保留原 ID，不因用户筛选变化扩大范围。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    batch = models.ForeignKey(GrantBatch, on_delete=models.DO_NOTHING)
+    target = models.CharField(max_length=32)
+    ordinal = models.PositiveIntegerField()
+    status = models.CharField(max_length=32, default='PENDING')
+    operation = models.ForeignKey(AssetOperation, null=True, on_delete=models.DO_NOTHING)
+    error = models.CharField(max_length=64, default='')
+    class Meta:
+        """目标可以是不存在的账号并作为失败项返回，因此不使用账号外键。"""
+        db_table = 'grant_targets'
+        constraints = [models.UniqueConstraint(fields=['batch', 'target'], name='uq_grant_target')]
+
+
+class ReviewDecision(models.Model):
+    """人工复核只追加处置决定，不改写原始发放或待复核历史。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    operation = models.OneToOneField(AssetOperation, on_delete=models.DO_NOTHING)
+    actor = models.ForeignKey(Admin, on_delete=models.DO_NOTHING)
+    resolution = models.CharField(max_length=32)
+    reason = models.TextField()
+    created_at = models.BigIntegerField()
+    class Meta:
+        """一个待复核操作只有一个最终决定，重复提交由幂等层返回原结果。"""
+        db_table = 'review_decisions'
+
+
+class NodeTicket(models.Model):
+    """分配给单局实例的短时就绪凭据；绝不向玩家发放，也不等同真实实例通过。"""
+    match = models.OneToOneField(Match, primary_key=True, on_delete=models.DO_NOTHING)
+    token_hash = models.CharField(max_length=64)
+    expires_at = models.BigIntegerField()
+    evidence = models.CharField(max_length=64)
+    ready_hash = models.CharField(max_length=64, default='')
+    class Meta:
+        """每局至多一个就绪票据，与 match 的实例、epoch 和租约联合核验。"""
+        db_table = 'node_tickets'
+
+
+class MatchEvent(models.Model):
+    """受认证节点的有序事件和处理结果；同 ID 改内容冲突，断线重发返回已提交结果。"""
+    internal_id = models.BigAutoField(primary_key=True)
+    match = models.ForeignKey(Match, on_delete=models.DO_NOTHING)
+    event_id = models.CharField(max_length=128)
+    sequence = models.PositiveBigIntegerField()
+    payload_hash = models.CharField(max_length=64)
+    result = models.TextField()
+    class Meta:
+        """每局事件标识和序号均唯一，防止换 ID 重用旧序号推进两次。"""
+        db_table = 'match_events'
+        constraints = [models.UniqueConstraint(fields=['match', 'event_id'], name='uq_match_event_id'),
+                       models.UniqueConstraint(fields=['match', 'sequence'], name='uq_match_event_seq')]
+
+
+class PveRun(models.Model):
+    """保存规则快照和权威 PvE 状态；与事件、资产事务共同提交，可重启恢复。"""
+    match = models.OneToOneField(Match, primary_key=True, on_delete=models.DO_NOTHING)
+    rules = models.TextField()
+    state = models.TextField()
+    class Meta:
+        """一次原生实例分配对应一个 PvE 运行状态，尝试编号位于冻结状态中。"""
+        db_table = 'pve_runs'
+
+
+class NodeDelivery(models.Model):
+    """每个事件每个目标实例独立确认，单个节点的确认不会掩盖另一个节点的失败。"""
+    internal_id = models.BigAutoField(primary_key=True)
+    event = models.ForeignKey(Outbox, on_delete=models.DO_NOTHING)
+    match = models.ForeignKey(Match, on_delete=models.DO_NOTHING)
+    status = models.CharField(max_length=32, default='PENDING')
+    acknowledged_at = models.BigIntegerField(null=True)
+    class Meta:
+        """同一个 outbox 事件在同一局只发送一次逻辑通知，可以多次传输。"""
+        db_table = 'node_deliveries'
+        constraints = [models.UniqueConstraint(fields=['event', 'match'], name='uq_node_delivery')]
+
+
+class EmailChallenge(models.Model):
+    """验证码只存服务端 HMAC；记录投递与失败次数，重启后不能绕过一次性消费和发送额度。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    email = models.CharField(max_length=254, db_collation='utf8mb4_0900_bin')
+    purpose = models.CharField(max_length=16)
+    digest = models.CharField(max_length=64)
+    ip_digest = models.CharField(max_length=64)
+    account = models.ForeignKey(Account, null=True, on_delete=models.DO_NOTHING)
+    security_version = models.BigIntegerField(null=True)
+    created_at = models.BigIntegerField()
+    expires_at = models.BigIntegerField()
+    status = models.CharField(max_length=16, default='PENDING')
+    attempts = models.PositiveSmallIntegerField(default=0)
+    consumed_at = models.BigIntegerField(null=True)
+    error_code = models.CharField(max_length=32, default='')
+    class Meta:
+        """邮箱及来源窗口索引支持持久限流；不保存密码、验证码、SMTP 异常正文或邮件正文。"""
+        db_table = 'email_challenges'
+        indexes = [models.Index(fields=['email', 'created_at'], name='email_challenge_window'),
+                   models.Index(fields=['ip_digest', 'created_at'], name='email_source_window')]
+
+
 TABLE_MODELS = {
+    'email_challenges': EmailChallenge,
+    'player_emails': PlayerEmail,
+    'launch_tickets': LaunchTicket,
+    'game_sessions': GameSession,
+    'node_deliveries': NodeDelivery,
+    'room_settings': RoomSettings,
+    'room_invitations': RoomInvitation,
+    'admin_recovery': AdminRecovery,
+    'grant_batches': GrantBatch,
+    'grant_targets': GrantTarget,
+    'review_decisions': ReviewDecision,
+    'node_tickets': NodeTicket,
+    'match_events': MatchEvent,
+    'pve_runs': PveRun,
     'admins': Admin,
     'accounts': Account,
     'invitations': Invitation,

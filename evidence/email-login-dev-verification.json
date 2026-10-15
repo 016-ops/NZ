@@ -1,0 +1,79 @@
+{
+  "kind": "ACTUAL_DEV_EMAIL_AND_LOCAL_NATIVE_IPC_NOT_GAME_ACCEPTANCE",
+  "passed": true,
+  "profiles": [
+    {
+      "profile": "cn-current-unverified",
+      "port": 18765,
+      "email_registration": true,
+      "pending_rejected": true,
+      "approved_login": true,
+      "character_created": true,
+      "handoff_and_native_ipc": {
+        "kind": "NATIVE_EMAIL_IPC_SELF_TEST",
+        "proxy_sha256": "788bea4e34d6aaea8187df482ea2c859f7a6c8802b226b1ab7c2d9a6a10bc047",
+        "ipc_profile": "nz-email-ipc-research-v1",
+        "exit_code": 0,
+        "observations": [
+          {
+            "FactoryCreated": true,
+            "LoginInfoAccepted": true,
+            "LocalGameId": 10001,
+            "LocalTokenMatches": true,
+            "LocalSessionIdMatches": true,
+            "OutputGuardIntact": true
+          }
+        ],
+        "prefix_candidate": "TCLS_SHAREDMEMEMORY",
+        "process_tree_cleanup": true,
+        "ipc_read_verified": true,
+        "native_launch_ready": false,
+        "game_process_started": false,
+        "qq_credentials_used": false
+      },
+      "game_process_started": false,
+      "service_restart_persistence": true,
+      "relogin_preserved": true,
+      "probe_account_disabled": true,
+      "probe_invitation_revoked": true
+    },
+    {
+      "profile": "test-pve-v1",
+      "port": 18767,
+      "email_registration": true,
+      "pending_rejected": true,
+      "approved_login": true,
+      "character_created": true,
+      "handoff_and_native_ipc": {
+        "kind": "NATIVE_EMAIL_IPC_SELF_TEST",
+        "proxy_sha256": "788bea4e34d6aaea8187df482ea2c859f7a6c8802b226b1ab7c2d9a6a10bc047",
+        "ipc_profile": "nz-email-ipc-research-v1",
+        "exit_code": 0,
+        "observations": [
+          {
+            "FactoryCreated": true,
+            "LoginInfoAccepted": true,
+            "LocalGameId": 10001,
+            "LocalTokenMatches": true,
+            "LocalSessionIdMatches": true,
+            "OutputGuardIntact": true
+          }
+        ],
+        "prefix_candidate": "TCLS_SHAREDMEMEMORY",
+        "process_tree_cleanup": true,
+        "ipc_read_verified": true,
+        "native_launch_ready": false,
+        "game_process_started": false,
+        "qq_credentials_used": false
+      },
+      "game_process_started": false,
+      "service_restart_persistence": true,
+      "relogin_preserved": true,
+      "probe_account_disabled": true,
+      "probe_invitation_revoked": true
+    }
+  ],
+  "services_active": 4,
+  "lobby_verified": false,
+  "multiplayer_verified": false
+}

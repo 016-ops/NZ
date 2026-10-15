@@ -1,0 +1,9 @@
+{
+  "kind": "ACTUAL_WORK_COPY_RECOVERY_NOT_WINDOWS_SNAPSHOT",
+  "path": "TCLS/version.ini",
+  "baseline_sha256": "9f05dd6075ec6c649cf1dcc89a52ed6add17a947a7dcafc6926b707fa10667b2",
+  "work_copy_change_observed": true,
+  "work_copy_restored": true,
+  "original_unchanged": true,
+  "original_write_operations": 0
+}

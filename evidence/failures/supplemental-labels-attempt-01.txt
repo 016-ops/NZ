@@ -1,0 +1,21 @@
+test_disconnect_during_boss_preserves_other_player_and_forfeits_reward (unittest.loader._FailedTest.test_disconnect_during_boss_preserves_other_player_and_forfeits_reward) ... ERROR
+test_ten_consecutive_synthetic_rounds_have_distinct_attempts_and_rewards (unittest.loader._FailedTest.test_ten_consecutive_synthetic_rounds_have_distinct_attempts_and_rewards) ... ERROR
+test_native_contract_routes_and_acknowledgement_scope (tests.test_node_http.NodeHttpTests.test_native_contract_routes_and_acknowledgement_scope)
+节点可重放就绪/事件并确认自己的通知；玩家不能替代节点提交或确认。 ... ok
+test_worker_audit_failure_rolls_back_and_restart_resumes_once (tests.test_operations.OperationsTests.test_worker_audit_failure_rolls_back_and_restart_resumes_once)
+子项审计失败必须同时回滚资产和任务结果，重启后可以安全继续该子项。 ... ok
+
+======================================================================
+ERROR: test_disconnect_during_boss_preserves_other_player_and_forfeits_reward (unittest.loader._FailedTest.test_disconnect_during_boss_preserves_other_player_and_forfeits_reward)
+----------------------------------------------------------------------
+AttributeError: type object 'PveTests' has no attribute 'test_disconnect_during_boss_preserves_other_player_and_forfeits_reward'
+
+======================================================================
+ERROR: test_ten_consecutive_synthetic_rounds_have_distinct_attempts_and_rewards (unittest.loader._FailedTest.test_ten_consecutive_synthetic_rounds_have_distinct_attempts_and_rewards)
+----------------------------------------------------------------------
+AttributeError: type object 'PveTests' has no attribute 'test_ten_consecutive_synthetic_rounds_have_distinct_attempts_and_rewards'
+
+----------------------------------------------------------------------
+Ran 4 tests in 13.144s
+
+FAILED (errors=2)

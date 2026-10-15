@@ -1,0 +1,43 @@
+test_application_decode_rejects_wrong_key_footer_and_padding (tests.test_native_transport.NativeApplicationTransportTests.test_application_decode_rejects_wrong_key_footer_and_padding)
+错 key、尾标及危险 padding 值均只给固定错误码，不回显任何解密业务内容。 ... ok
+test_application_decode_requires_exact_frame_and_key (tests.test_native_transport.NativeApplicationTransportTests.test_application_decode_requires_exact_frame_and_key)
+解码入口也独立核验完整边界与 key，不依赖调用方一定经过 receive。 ... ok
+test_application_decode_strips_sequence_and_variable_padding_boundaries (tests.test_native_transport.NativeApplicationTransportTests.test_application_decode_strips_sequence_and_variable_padding_boundaries)
+覆盖空业务、padding6/21 两侧及最大允许正文，返回值只含原业务字节。 ... ok
+test_application_receiver_handles_fragmentation_without_crossing_frames (tests.test_native_transport.NativeApplicationTransportTests.test_application_receiver_handles_fragmentation_without_crossing_frames)
+真实 socket 分片接收两帧 cmd0，并在截断密文时报告 EOF 而非返回半帧。 ... ok
+test_application_receiver_rejects_unknown_shapes_and_total_length (tests.test_native_transport.NativeApplicationTransportTests.test_application_receiver_rejects_unknown_shapes_and_total_length)
+业务接口限定 cmd0/EncHeadLen4/HeadLen12 和完整 AES 块，长度门禁覆盖头加正文。 ... ok
+test_authentication_receiver_stays_closed_to_application_and_key_change (tests.test_native_transport.NativeApplicationTransportTests.test_authentication_receiver_stays_closed_to_application_and_key_change)
+增加新研究接口不能放宽旧认证接收器；cmd0 与 CHGSKEY 入站仍明确拒绝。 ... ok
+test_key_change_encodes_exact_current_parser_contract (tests.test_native_transport.NativeApplicationTransportTests.test_key_change_encodes_exact_current_parser_contract)
+48 字节 CHGSKEY 使用旧 key 加密 16 字节新 key，Type0 只作为显式研究选择。 ... ok
+test_key_change_requires_exact_byte_keys (tests.test_native_transport.NativeApplicationTransportTests.test_key_change_requires_exact_byte_keys)
+旧 key 和新 key 都必须精确 16 字节，不截断字符串或采用未知长度算法。 ... ok
+test_asynchronous_synack_checks_challenge_and_padded_sequence_body (tests.test_native_transport.NativeTransportTests.test_asynchronous_synack_checks_challenge_and_padded_sequence_body)
+61 字节异步 SYNACK 同时验证挑战和正文填充，随机起始序号不强制为 0 或 1。 ... ok
+test_asynchronous_synack_receive_counts_body_and_preserves_next_frame (tests.test_native_transport.NativeTransportTests.test_asynchronous_synack_receive_counts_body_and_preserves_next_frame)
+真实连接按字节发送含正文的 SYNACK，接收包括 16 字节正文且不吞掉下一 AUTH。 ... ok
+test_auth_accepts_only_expected_identity_and_returns_no_token (tests.test_native_transport.NativeTransportTests.test_auth_accepts_only_expected_identity_and_returns_no_token)
+正确首包只返回非秘密结构摘要，令牌或其他账号即使结构有效也不能通过。 ... ok
+test_auth_rejects_unknown_scalars_commands_and_nonexact_lengths (tests.test_native_transport.NativeTransportTests.test_auth_rejects_unknown_scalars_commands_and_nonexact_lengths)
+标量必须符合当前首包，拒绝尾随帧、令牌长度欺骗和错误预期身份配置。 ... ok
+test_challenge_has_proven_compact_frame_and_random_padding (tests.test_native_transport.NativeTransportTests.test_challenge_has_proven_compact_frame_and_random_padding)
+独立解密输出检查当前 IV、16 字节挑战、10 字节随机填充及 tsf4g/填充长度尾标。 ... ok
+test_challenge_reply_checks_key_footer_and_constant_time_challenge (tests.test_native_transport.NativeTransportTests.test_challenge_reply_checks_key_footer_and_constant_time_challenge)
+对端合法 SYNACK 通过；错 key、错挑战、错尾标、错末尾长度和密文破坏均失败。 ... ok
+test_challenge_reply_rejects_framing_and_crypto_input_errors (tests.test_native_transport.NativeTransportTests.test_challenge_reply_rejects_framing_and_crypto_input_errors)
+格式错误不得进入解密；key/challenge 长度必须精确，拒绝隐式截断或未知命令。 ... ok
+test_fragment_truncation_and_socket_timeout_are_not_accepted (tests.test_native_transport.NativeTransportTests.test_fragment_truncation_and_socket_timeout_are_not_accepted)
+截断头或负载明确失败；无数据等待保留调用方的 socket 超时而不无限阻塞。 ... ok
+test_fragmented_socket_frames_do_not_overread_following_frame (tests.test_native_transport.NativeTransportTests.test_fragmented_socket_frames_do_not_overread_following_frame)
+真实 socket 按不同分片发送连续帧，接收一次仅消费一帧且保留下一帧边界。 ... ok
+test_invalid_lengths_and_unknown_header_are_rejected_before_payload_read (tests.test_native_transport.NativeTransportTests.test_invalid_lengths_and_unknown_header_are_rejected_before_payload_read)
+超限、头短、非零正文、未知命令与头标志仅凭 12 字节头立即拒绝，不等待声明的正文。 ... ok
+test_only_proven_synack_encrypted_body_shape_is_accepted (tests.test_native_transport.NativeTransportTests.test_only_proven_synack_encrypted_body_shape_is_accepted)
+仅 cmd9/EncHeadLen4/HeadLen45/BodyLen16 开放；其余命令或尺寸不借机放宽。 ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.052s
+
+OK

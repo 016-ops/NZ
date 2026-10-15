@@ -1,0 +1,164 @@
+{
+  "kind": "CURRENT_TGAME_LOGIN_CONSUMPTION_STATIC_ANALYSIS",
+  "game_sha256": "b81bb4e1256ad1fca1ecbbf93b35979d96c36ca16f8bbfc8d126e9a452df51f8",
+  "proxy_sha256": "788bea4e34d6aaea8187df482ea2c859f7a6c8802b226b1ab7c2d9a6a10bc047",
+  "actual_image_base": "0x400000",
+  "client_file_writes": 0,
+  "native_execution_by_analysis": false,
+  "source": "The parent launch probe captured only bounded instructions in its owned TGame process. This report disassembles those private code fragments and correlates unchanged-file literals; it does not inspect UI or retain runtime identity values.",
+  "code_sources": [
+    {
+      "run": 11,
+      "sample_rva": "0x14a0f57",
+      "length": 256,
+      "sha256": "f49e43d03d9907ca0a0034e86a67b18987a4f07bb41345453f2c486a39d2a007"
+    },
+    {
+      "run": 11,
+      "sample_rva": "0x14a0fd1",
+      "length": 256,
+      "sha256": "e6a250bd605165a5a5603f33b9eee4ac59b5b74642a86e90e0d452ad19492792"
+    },
+    {
+      "run": 11,
+      "sample_rva": "0x14ab698",
+      "length": 256,
+      "sha256": "252515b828b9ca2eee596ca6f8d4f372090f3c522d8ccc45f9d78e7129373f67"
+    },
+    {
+      "run": 11,
+      "sample_rva": "0x14ab863",
+      "length": 256,
+      "sha256": "4426c04b85e919f33affb9dbd046c803ac8ea603e7e741fd368e1e36ec96fab0"
+    },
+    {
+      "run": 11,
+      "sample_rva": "0x14a537f",
+      "length": 256,
+      "sha256": "d382efba9325e64bdaea0e72e27eeca23f60101e16c31110a5adca319438f45f"
+    },
+    {
+      "run": 12,
+      "sample_rva": "0x14ab780",
+      "length": 256,
+      "sha256": "fc27f105ceea34ad45c123f85d4e0bb206a7b75bc63ba9e4a4adbbd4fee21013"
+    },
+    {
+      "run": 12,
+      "sample_rva": "0x14a5100",
+      "length": 768,
+      "sha256": "86e077f83cc9f34970b59981a2bd299b8454c6673934e492e2811a354839f9ed"
+    },
+    {
+      "run": 12,
+      "sample_rva": "0x14a551f",
+      "length": 512,
+      "sha256": "21460fb4f5b3c63734b33b06094222a5829aa3ccb1962659ffd1370bfaed4eef"
+    }
+  ],
+  "verified_code_contracts": [
+    {
+      "rva": "0x14A1020",
+      "description": "Factory wrapper loads the current TenProxy.dll literal, resolves Invoke, and calls it with command0x566 at0x14A1057/0x14A105C, returning the resulting interface pointer."
+    },
+    {
+      "rva": "0x14AB720",
+      "description": "The initialization path also calls Invoke(0x566); interface is stored at this+0xC. At0x14AB790/0x14AB793 it calls vtable+4, matching current TenProxy initialization."
+    },
+    {
+      "rva": "0x14AB8C3",
+      "description": "The success diagnostic pushes Uin from VA0x2640540 and ServiceId from VA0x2640534. These are source addresses in code, not values collected from a running process."
+    },
+    {
+      "rva": "0x14AB903",
+      "description": "The next factory uses unchanged literal ProtocalHandler.dll (RVA0x1EFEB10), resolves Invoke and calls command0x58C at0x14AB92B/0x14AB930. Module loading alone does not establish successful object creation."
+    },
+    {
+      "rva": "0x14A53A5",
+      "description": "When the local EBP flag is zero, this path obtains host text from VA0x26419B0 and a 16-bit port from VA0x2641AB0, then logs the current ServInfo[0].szConnectUrl diagnostic at0x14A53DF. The adjacent alternative uses function parameters and logs bForceUsePassParam."
+    }
+  ],
+  "remaining_boundaries": [
+    "Code fragments establish the current-build contract and a real research-mapping bug. They do not prove the initialization or connection function executed in either sampled run.",
+    "The correct business ServiceId and server subfields4,5,6,7,8 remain unknown. In particular subfield5 has a separate consumer at0x14AB82E; preserving an arbitrary prior value does not verify it.",
+    "Empty signature length is not the observed subfield8 failure hypothesis; no vendor credential or unrelated proof should be added to that field based on this evidence.",
+    "After correcting the proven mapping, the original loopback scenario must be repeated. Remaining possible gates include handler initialization and whether frontend logic requests DevLogin; the current data does not choose between them.",
+    "No directory, character or lobby protocol exchange is proven by these fragments."
+  ],
+  "verified_output_contract": {
+    "GetLoginInfo_output_va": "0x2640530",
+    "argument_push_rva": "0x14AB7DC",
+    "vtable_slot0_call_rva": "0x14AB7E1",
+    "buffer_zero_length": "0x11C80",
+    "buffer_zero_call_rva": "0x14AB7CD",
+    "return_test_rva": "0x14AB7E3",
+    "failure_log_push_rva": "0x14AB7ED",
+    "success_branch_rva": "0x14AB82E",
+    "fields": [
+      {
+        "semantic": "Uin",
+        "tag": 2,
+        "output_offset": "0x10",
+        "consumer_va": "0x2640540",
+        "evidence": "Success log at0x14AB8C3 and DevLogin copy at0x14A52F0."
+      },
+      {
+        "semantic": "ServiceId",
+        "tag": 1,
+        "output_offset": "0x4",
+        "consumer_va": "0x2640534",
+        "evidence": "Success log pushes this as the final ServiceId format argument at0x14AB8A5/0x14AB8BB."
+      },
+      {
+        "semantic": "First server connection host",
+        "tag20_subfield": 2,
+        "output_offset": "0x1480",
+        "consumer_va": "0x26419B0",
+        "evidence": "0x14A53A9/0x14A53B7 use this UTF16 input; diagnostic identifies ServInfo[0].szConnectUrl."
+      },
+      {
+        "semantic": "First server connection port",
+        "tag20_subfield": 3,
+        "output_offset": "0x1580",
+        "consumer_va": "0x2641AB0",
+        "width": "DWORD written by proxy; low16 bits consumed by game",
+        "evidence": "0x14A53C2 reads16 bits and0x14A53D1 writes the connection object port."
+      },
+      {
+        "semantic": "Game signature length",
+        "tag": 3,
+        "output_offset": "0x40",
+        "consumer_va": "0x2640570",
+        "evidence": "0x14A5300 compares this byte; zero logs ActualServerLoginInfo->byGameSignatureLen at0x14A5312."
+      }
+    ],
+    "research_mapping_mismatch_confirmed": true,
+    "correction_scope": "Place independent numeric account identity in tag2; put an explicit research ServiceId in tag1; place loopback host in server subfield2 and port in subfield3. The correct ServiceId business value is still unverified. Server subfield5 is separately consumed at0x14AB82E and cannot be treated as the connection port in this path."
+  },
+  "signature_branch": {
+    "actual_server_login_info_pointer": "GetLoginInfo output+0xC, stored at object+0x48 by0x14A52F9",
+    "length_check_rva": "0x14A5300",
+    "length_source": "top-level tag3/output+0x40",
+    "nonzero_branch": "0x14A5307 jumps directly to0x14A5393, preserving the original login-information pointer.",
+    "zero_branch": "Logs at0x14A5312; constructs a temporary stack login-information buffer and calls protocol-handler vtable+0x14 at0x14A538A; stores the temporary pointer at object+0x48 at0x14A5390 and continues to0x14A5393. The exact helper semantics are not established.",
+    "zero_length_immediately_rejects": false,
+    "server_subfield8_is_this_length": false,
+    "no_reason_to_fill_subfield8_from_this_check": true,
+    "boundary": "This is control-flow proof, not a recommendation to intentionally use zero or fabricate a vendor signature; current independent research token already has a nonzero top-level length."
+  },
+  "initial_connection_contract": {
+    "function_entry_rva": "0x14A5270",
+    "protocol_handler_init": "Calls handler vtable slot0 at0x14A52B4. Null handler or zero return takes0x14A52D3 and returns false before identity/endpoint selection.",
+    "native_vs_parameter_choice": "bIsBootFromTcls at VA0x2658D98 selects the native-login branch. Within it, nonzero bForceUsePassParam selects the parameter host/port alternative; zero uses first server record.",
+    "CreateInitConnection_call_rva": "0x14A55A4",
+    "vtable_slot": 2,
+    "arguments_in_declared_order": [
+      "host from object+0x3C",
+      "port from object+0x40, zero-extended16-bit",
+      "login-information pointer from object+0x48"
+    ],
+    "return_test_rva": "0x14A55A8",
+    "false_result": "Logs Failed to CreateInitConnection at0x14A55BA and returns0.",
+    "nonzero_result": "Logs CreateInitConnection at0x14A55E4 and returns1; no server response or lobby acceptance implied."
+  }
+}

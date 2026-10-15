@@ -1,0 +1,29 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 17,
+  "passed": [
+    "tests.test_operations.OperationsTests.test_admin_secrets_are_one_time_and_role_change_revokes_sessions",
+    "tests.test_operations.OperationsTests.test_batch_author_revocation_prevents_pending_grants",
+    "tests.test_operations.OperationsTests.test_batch_preview_restart_partial_failure_and_failed_only_retry",
+    "tests.test_operations.OperationsTests.test_last_owner_and_permission_are_enforced",
+    "tests.test_operations.OperationsTests.test_manual_review_is_closed_without_rewriting_history",
+    "tests.test_operations.OperationsTests.test_recovery_consumes_code_and_revokes_old_session",
+    "tests.test_room_access.RoomAccessTests.test_password_invitation_binding_expiry_and_no_hash_leak",
+    "tests.test_room_access.RoomAccessTests.test_password_only_room_requires_password_and_invalid_difficulty_rolls_back",
+    "tests.test_pve.PveTests.test_current_client_profile_never_accepts_synthetic_node_events",
+    "tests.test_pve.PveTests.test_defense_facility_failure_and_vehicle_driver_isolation",
+    "tests.test_pve.PveTests.test_encirclement_gate_advances_once_and_rejects_old_stage",
+    "tests.test_pve.PveTests.test_failure_revive_race_and_failed_restart_refund_once",
+    "tests.test_pve.PveTests.test_lost_node_restart_timeout_refunds_after_service_restart",
+    "tests.test_pve.PveTests.test_node_auth_ordering_and_forged_result_are_rejected",
+    "tests.test_pve.PveTests.test_node_delivery_checks_scope_version_and_ban_removes_combat_authority",
+    "tests.test_pve.PveTests.test_successful_restart_gets_new_attempt_and_rejects_stale_packets",
+    "tests.test_pve.PveTests.test_survival_two_players_one_enemy_boss_and_exactly_once_rewards"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 124.188
+}

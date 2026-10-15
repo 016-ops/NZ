@@ -1,0 +1,31 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 19,
+  "passed": [
+    "tests.test_native_transport.NativeApplicationTransportTests.test_application_decode_rejects_wrong_key_footer_and_padding",
+    "tests.test_native_transport.NativeApplicationTransportTests.test_application_decode_requires_exact_frame_and_key",
+    "tests.test_native_transport.NativeApplicationTransportTests.test_application_decode_strips_sequence_and_variable_padding_boundaries",
+    "tests.test_native_transport.NativeApplicationTransportTests.test_application_receiver_handles_fragmentation_without_crossing_frames",
+    "tests.test_native_transport.NativeApplicationTransportTests.test_application_receiver_rejects_unknown_shapes_and_total_length",
+    "tests.test_native_transport.NativeApplicationTransportTests.test_authentication_receiver_stays_closed_to_application_and_key_change",
+    "tests.test_native_transport.NativeApplicationTransportTests.test_key_change_encodes_exact_current_parser_contract",
+    "tests.test_native_transport.NativeApplicationTransportTests.test_key_change_requires_exact_byte_keys",
+    "tests.test_native_transport.NativeTransportTests.test_asynchronous_synack_checks_challenge_and_padded_sequence_body",
+    "tests.test_native_transport.NativeTransportTests.test_asynchronous_synack_receive_counts_body_and_preserves_next_frame",
+    "tests.test_native_transport.NativeTransportTests.test_auth_accepts_only_expected_identity_and_returns_no_token",
+    "tests.test_native_transport.NativeTransportTests.test_auth_rejects_unknown_scalars_commands_and_nonexact_lengths",
+    "tests.test_native_transport.NativeTransportTests.test_challenge_has_proven_compact_frame_and_random_padding",
+    "tests.test_native_transport.NativeTransportTests.test_challenge_reply_checks_key_footer_and_constant_time_challenge",
+    "tests.test_native_transport.NativeTransportTests.test_challenge_reply_rejects_framing_and_crypto_input_errors",
+    "tests.test_native_transport.NativeTransportTests.test_fragment_truncation_and_socket_timeout_are_not_accepted",
+    "tests.test_native_transport.NativeTransportTests.test_fragmented_socket_frames_do_not_overread_following_frame",
+    "tests.test_native_transport.NativeTransportTests.test_invalid_lengths_and_unknown_header_are_rejected_before_payload_read",
+    "tests.test_native_transport.NativeTransportTests.test_only_proven_synack_encrypted_body_shape_is_accepted"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.063
+}

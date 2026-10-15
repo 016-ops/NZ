@@ -1,0 +1,6378 @@
+{
+  "kind": "CURRENT_ZONE_STATIC_CONTRACT_NOT_WIRE_ACCEPTANCE",
+  "date": "2026-10-15",
+  "client_file_writes": 0,
+  "dll_executed": false,
+  "network_requests": 0,
+  "credentials_read": false,
+  "parser_source": "runtime/inspect_current_geo_metadata.py",
+  "parser_source_sha256": "fd2c04aca25da3caa6f5fdf2321f98866b98b9b9ac60df83749c5c7211b19a82",
+  "extension_source": "runtime/inspect_current_zone_contract.py",
+  "file": {
+    "path": "TGame/TDR/proto_c2zn.tdr",
+    "bytes": 3024238,
+    "sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+    "archive_manifest_matches": true,
+    "source_unchanged_after_inspection": true,
+    "header_magic": "0xb02d6",
+    "header_slot1": 32,
+    "macro_count": 6117,
+    "meta_count": 1904,
+    "name_table_relative_offset": "0x1b9d0",
+    "all_named_headers_cross_checked": true,
+    "selected_macros": [
+      {
+        "name": "ZONE_LOGIN_REFUSE_ZONE_FULL",
+        "value": 1,
+        "hex": "0x1",
+        "record_file_offset": "0x63c4",
+        "index": 1579
+      },
+      {
+        "name": "ZONE_LOGIN_REFUSE_LIMIT_BY_PRIVATE_MATCH",
+        "value": 2,
+        "hex": "0x2",
+        "record_file_offset": "0x63d4",
+        "index": 1580
+      },
+      {
+        "name": "ZONE_ERR_SUCC",
+        "value": 33024,
+        "hex": "0x8100",
+        "record_file_offset": "0x64f4",
+        "index": 1598
+      },
+      {
+        "name": "ZONE_ERR_FAIL",
+        "value": 256,
+        "hex": "0x100",
+        "record_file_offset": "0x6504",
+        "index": 1599
+      },
+      {
+        "name": "ZONE_FAIL_BADNICKNAME",
+        "value": 257,
+        "hex": "0x101",
+        "record_file_offset": "0x6514",
+        "index": 1600
+      },
+      {
+        "name": "ZONE_FAIL_SERVERBUSY",
+        "value": 258,
+        "hex": "0x102",
+        "record_file_offset": "0x6524",
+        "index": 1601
+      },
+      {
+        "name": "ZONE_FAIL_NICKNAMEEXIST",
+        "value": 259,
+        "hex": "0x103",
+        "record_file_offset": "0x6534",
+        "index": 1602
+      },
+      {
+        "name": "ZONE_FAIL_NOACCOUNTEXIST",
+        "value": 260,
+        "hex": "0x104",
+        "record_file_offset": "0x6544",
+        "index": 1603
+      },
+      {
+        "name": "ZONE_FAIL_BADROOMID",
+        "value": 261,
+        "hex": "0x105",
+        "record_file_offset": "0x6554",
+        "index": 1604
+      },
+      {
+        "name": "ZONE_FAIL_NOTSYNCHWITHSVR",
+        "value": 262,
+        "hex": "0x106",
+        "record_file_offset": "0x6564",
+        "index": 1605
+      },
+      {
+        "name": "ZONE_FAIL_BADPROPGID",
+        "value": 264,
+        "hex": "0x108",
+        "record_file_offset": "0x6574",
+        "index": 1606
+      },
+      {
+        "name": "ZONE_FAIL_PROPTYPEMISMATCH",
+        "value": 265,
+        "hex": "0x109",
+        "record_file_offset": "0x6584",
+        "index": 1607
+      },
+      {
+        "name": "ZONE_FAIL_GAMESERVERNOTHIRED",
+        "value": 266,
+        "hex": "0x10a",
+        "record_file_offset": "0x6594",
+        "index": 1608
+      },
+      {
+        "name": "ZONE_FAIL_NOCONSUMEPROP",
+        "value": 276,
+        "hex": "0x114",
+        "record_file_offset": "0x65a4",
+        "index": 1609
+      },
+      {
+        "name": "ZONE_FAIL_INPMMATCH",
+        "value": 277,
+        "hex": "0x115",
+        "record_file_offset": "0x65b4",
+        "index": 1610
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_NOTINZONE",
+        "value": 267,
+        "hex": "0x10b",
+        "record_file_offset": "0x65c4",
+        "index": 1611
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_NOTINROOM",
+        "value": 268,
+        "hex": "0x10c",
+        "record_file_offset": "0x65d4",
+        "index": 1612
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_OFFLINE",
+        "value": 269,
+        "hex": "0x10d",
+        "record_file_offset": "0x65e4",
+        "index": 1613
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_INMATCH",
+        "value": 270,
+        "hex": "0x10e",
+        "record_file_offset": "0x65f4",
+        "index": 1614
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_STATUSERROR",
+        "value": 271,
+        "hex": "0x10f",
+        "record_file_offset": "0x6604",
+        "index": 1615
+      },
+      {
+        "name": "ZONE_FAIL_PROPCANNOTDROP",
+        "value": 16,
+        "hex": "0x10",
+        "record_file_offset": "0x6614",
+        "index": 1616
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_BANNED",
+        "value": 272,
+        "hex": "0x110",
+        "record_file_offset": "0x6624",
+        "index": 1617
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_DIRTY",
+        "value": 273,
+        "hex": "0x111",
+        "record_file_offset": "0x6634",
+        "index": 1618
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_CLAN_FREEZE",
+        "value": 274,
+        "hex": "0x112",
+        "record_file_offset": "0x6644",
+        "index": 1619
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_INPMMATCH",
+        "value": 275,
+        "hex": "0x113",
+        "record_file_offset": "0x6654",
+        "index": 1620
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_INCMMATCH",
+        "value": 278,
+        "hex": "0x116",
+        "record_file_offset": "0x6664",
+        "index": 1621
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_INHAPPYMATCH",
+        "value": 279,
+        "hex": "0x117",
+        "record_file_offset": "0x6674",
+        "index": 1622
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_CLANBANNED",
+        "value": 280,
+        "hex": "0x118",
+        "record_file_offset": "0x6684",
+        "index": 1623
+      },
+      {
+        "name": "ZONE_FAIL_ROOMRECRUIT_DISABLED",
+        "value": 281,
+        "hex": "0x119",
+        "record_file_offset": "0x6694",
+        "index": 1624
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_ERROR_OK",
+        "value": 282,
+        "hex": "0x11a",
+        "record_file_offset": "0x66a4",
+        "index": 1625
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_FAIL",
+        "value": 283,
+        "hex": "0x11b",
+        "record_file_offset": "0x66b4",
+        "index": 1626
+      },
+      {
+        "name": "ZONE_FAIL_CHATSVR_FULL",
+        "value": 284,
+        "hex": "0x11c",
+        "record_file_offset": "0x66c4",
+        "index": 1627
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_CHATROOM_SVR_NOT_EXIST",
+        "value": 285,
+        "hex": "0x11d",
+        "record_file_offset": "0x66d4",
+        "index": 1628
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_REQ_TOO_FREQUENTLY",
+        "value": 286,
+        "hex": "0x11e",
+        "record_file_offset": "0x66e4",
+        "index": 1629
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_NOT_IN_CHATROOM",
+        "value": 288,
+        "hex": "0x120",
+        "record_file_offset": "0x66f4",
+        "index": 1630
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_TOO_MANY_CHAT",
+        "value": 289,
+        "hex": "0x121",
+        "record_file_offset": "0x6704",
+        "index": 1631
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_FORBIT_CHAT",
+        "value": 290,
+        "hex": "0x122",
+        "record_file_offset": "0x6714",
+        "index": 1632
+      },
+      {
+        "name": "ZONE_FAIL_CHATSVR_NOT_FULL",
+        "value": 291,
+        "hex": "0x123",
+        "record_file_offset": "0x6724",
+        "index": 1633
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_LEVEL_LESS",
+        "value": 292,
+        "hex": "0x124",
+        "record_file_offset": "0x6734",
+        "index": 1634
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_HAVE_BAN",
+        "value": 293,
+        "hex": "0x125",
+        "record_file_offset": "0x6744",
+        "index": 1635
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_BAN_LIST_FULL",
+        "value": 294,
+        "hex": "0x126",
+        "record_file_offset": "0x6754",
+        "index": 1636
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_ENTER_CHATROOM_TIMEOUT",
+        "value": 295,
+        "hex": "0x127",
+        "record_file_offset": "0x6764",
+        "index": 1637
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_ALREADY_IN_CHATROOM",
+        "value": 296,
+        "hex": "0x128",
+        "record_file_offset": "0x6774",
+        "index": 1638
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_CHAT_ROOM_CLOSED",
+        "value": 297,
+        "hex": "0x129",
+        "record_file_offset": "0x6784",
+        "index": 1639
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_SWITCH_SAME_CHATROOM",
+        "value": 298,
+        "hex": "0x12a",
+        "record_file_offset": "0x6794",
+        "index": 1640
+      },
+      {
+        "name": "ZONE_FAIL_CHAT_CREDITSCORE_TOO_LOW",
+        "value": 299,
+        "hex": "0x12b",
+        "record_file_offset": "0x67a4",
+        "index": 1641
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_RELOGIN",
+        "value": 320,
+        "hex": "0x140",
+        "record_file_offset": "0x67b4",
+        "index": 1642
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_SWITCH_ZONE",
+        "value": 321,
+        "hex": "0x141",
+        "record_file_offset": "0x67c4",
+        "index": 1643
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_LOGIN_TIMEOUT",
+        "value": 322,
+        "hex": "0x142",
+        "record_file_offset": "0x67d4",
+        "index": 1644
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_HEARTBEAT_TIMEOUT",
+        "value": 323,
+        "hex": "0x143",
+        "record_file_offset": "0x67e4",
+        "index": 1645
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_PROTOCOL_ERROR",
+        "value": 324,
+        "hex": "0x144",
+        "record_file_offset": "0x67f4",
+        "index": 1646
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_FREEZE",
+        "value": 325,
+        "hex": "0x145",
+        "record_file_offset": "0x6804",
+        "index": 1647
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_GM",
+        "value": 326,
+        "hex": "0x146",
+        "record_file_offset": "0x6814",
+        "index": 1648
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_ANTIBOT",
+        "value": 327,
+        "hex": "0x147",
+        "record_file_offset": "0x6824",
+        "index": 1649
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_RECV_ERRPKG",
+        "value": 328,
+        "hex": "0x148",
+        "record_file_offset": "0x6834",
+        "index": 1650
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_SERVER_STOP",
+        "value": 329,
+        "hex": "0x149",
+        "record_file_offset": "0x6844",
+        "index": 1651
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_GUARD_FREEZE",
+        "value": 330,
+        "hex": "0x14a",
+        "record_file_offset": "0x6854",
+        "index": 1652
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_AAS_KICKOFF",
+        "value": 331,
+        "hex": "0x14b",
+        "record_file_offset": "0x6864",
+        "index": 1653
+      },
+      {
+        "name": "ZONE_KICKOFF_BY_PLAYERCANCELLATION",
+        "value": 332,
+        "hex": "0x14c",
+        "record_file_offset": "0x6874",
+        "index": 1654
+      },
+      {
+        "name": "ZONE_FAIL_CHANNEL_ROOM_FULL",
+        "value": 336,
+        "hex": "0x150",
+        "record_file_offset": "0x6884",
+        "index": 1655
+      },
+      {
+        "name": "ZONE_FAIL_CHANNEL_BADID",
+        "value": 337,
+        "hex": "0x151",
+        "record_file_offset": "0x6894",
+        "index": 1656
+      },
+      {
+        "name": "ZONE_FAIL_CHANNEL_FULL",
+        "value": 338,
+        "hex": "0x152",
+        "record_file_offset": "0x68a4",
+        "index": 1657
+      },
+      {
+        "name": "ZONE_FAIL_CHANNEL_ALL_FULL",
+        "value": 339,
+        "hex": "0x153",
+        "record_file_offset": "0x68b4",
+        "index": 1658
+      },
+      {
+        "name": "ZONE_FAIL_CHANNEL_LEVEL_TOO_LOW",
+        "value": 340,
+        "hex": "0x154",
+        "record_file_offset": "0x68c4",
+        "index": 1659
+      },
+      {
+        "name": "ZONE_FAIL_CHANNEL_LEVEL_TOO_HIGH",
+        "value": 341,
+        "hex": "0x155",
+        "record_file_offset": "0x68d4",
+        "index": 1660
+      },
+      {
+        "name": "ZONE_FAIL_CHANNEL_NOT_JOIN_CLAN",
+        "value": 342,
+        "hex": "0x156",
+        "record_file_offset": "0x68e4",
+        "index": 1661
+      },
+      {
+        "name": "ZONE_FAIL_PARAM_ERROR",
+        "value": 352,
+        "hex": "0x160",
+        "record_file_offset": "0x68f4",
+        "index": 1662
+      },
+      {
+        "name": "ZONE_FAIL_SKILLGRIDLIMIT",
+        "value": 353,
+        "hex": "0x161",
+        "record_file_offset": "0x6904",
+        "index": 1663
+      },
+      {
+        "name": "ZONE_FAIL_FULLDURABILITY",
+        "value": 354,
+        "hex": "0x162",
+        "record_file_offset": "0x6914",
+        "index": 1664
+      },
+      {
+        "name": "ZONE_FAIL_INVALID_ROLE",
+        "value": 421,
+        "hex": "0x1a5",
+        "record_file_offset": "0x6924",
+        "index": 1665
+      },
+      {
+        "name": "ZONE_FAIL_CANNOTTAKEOFF",
+        "value": 422,
+        "hex": "0x1a6",
+        "record_file_offset": "0x6934",
+        "index": 1666
+      },
+      {
+        "name": "ZONE_FAIL_REGISTER_EXCEEDMAXCOUNT",
+        "value": 355,
+        "hex": "0x163",
+        "record_file_offset": "0x6944",
+        "index": 1667
+      },
+      {
+        "name": "ZONE_LOGIN_NORMAL",
+        "value": 416,
+        "hex": "0x1a0",
+        "record_file_offset": "0x6a94",
+        "index": 1688
+      },
+      {
+        "name": "ZONE_LOGIN_SWITCH_ZONE",
+        "value": 417,
+        "hex": "0x1a1",
+        "record_file_offset": "0x6aa4",
+        "index": 1689
+      },
+      {
+        "name": "ZONE_LOGIN_NEWACCOUNT",
+        "value": 423,
+        "hex": "0x1a7",
+        "record_file_offset": "0x6ae4",
+        "index": 1693
+      },
+      {
+        "name": "ZONE_FAIL_TALENTLEVELNOTREACHED",
+        "value": 428,
+        "hex": "0x1ac",
+        "record_file_offset": "0x6b84",
+        "index": 1703
+      },
+      {
+        "name": "ZONE_FAIL_GROUPALREADYLEARNED",
+        "value": 429,
+        "hex": "0x1ad",
+        "record_file_offset": "0x6b94",
+        "index": 1704
+      },
+      {
+        "name": "ZONE_FAIL_NOPRESKILLLEAREND",
+        "value": 430,
+        "hex": "0x1ae",
+        "record_file_offset": "0x6ba4",
+        "index": 1705
+      },
+      {
+        "name": "ZONE_FAIL_NOENOUGHSKILLPOINT",
+        "value": 431,
+        "hex": "0x1af",
+        "record_file_offset": "0x6bb4",
+        "index": 1706
+      },
+      {
+        "name": "ZONE_FAIL_UPDATESKILLDUPLICATE",
+        "value": 432,
+        "hex": "0x1b0",
+        "record_file_offset": "0x6bc4",
+        "index": 1707
+      },
+      {
+        "name": "ZONE_FAIL_NOTALENTSKILLRESETCARD",
+        "value": 433,
+        "hex": "0x1b1",
+        "record_file_offset": "0x6bd4",
+        "index": 1708
+      },
+      {
+        "name": "ZONE_FAIL_TALENTSKILLNOTFOUND",
+        "value": 434,
+        "hex": "0x1b2",
+        "record_file_offset": "0x6be4",
+        "index": 1709
+      },
+      {
+        "name": "ZONE_FAIL_SKILLPREGROUPNOTLEARNED",
+        "value": 440,
+        "hex": "0x1b8",
+        "record_file_offset": "0x6bf4",
+        "index": 1710
+      },
+      {
+        "name": "ZONE_FAIL_TALENTSKILCANNOTOPERATOR",
+        "value": 457,
+        "hex": "0x1c9",
+        "record_file_offset": "0x6c04",
+        "index": 1711
+      },
+      {
+        "name": "ZONE_FAIL_FUNITEM_NOT_ENOUGH",
+        "value": 1058,
+        "hex": "0x422",
+        "record_file_offset": "0x6cd4",
+        "index": 1724
+      },
+      {
+        "name": "ZONE_FAIL_PROP_NOT_EXIST",
+        "value": 1059,
+        "hex": "0x423",
+        "record_file_offset": "0x6ce4",
+        "index": 1725
+      },
+      {
+        "name": "ZONE_FAIL_PROP_NOT_DELETABLE",
+        "value": 1062,
+        "hex": "0x426",
+        "record_file_offset": "0x6cf4",
+        "index": 1726
+      },
+      {
+        "name": "ZONE_FAIL_PROP_NOT_DONATABLE",
+        "value": 1073,
+        "hex": "0x431",
+        "record_file_offset": "0x6d04",
+        "index": 1727
+      },
+      {
+        "name": "ZONE_FAIL_DO_NOT_HAVE_LIE_YAN_PROP",
+        "value": 1121,
+        "hex": "0x461",
+        "record_file_offset": "0x6d44",
+        "index": 1731
+      },
+      {
+        "name": "DLH_FAIL_PLAYERNOTEXIST",
+        "value": 1025,
+        "hex": "0x401",
+        "record_file_offset": "0x6fe4",
+        "index": 1773
+      },
+      {
+        "name": "DLH_FAIL_CRTACCOUNTFAIL",
+        "value": 1026,
+        "hex": "0x402",
+        "record_file_offset": "0x6ff4",
+        "index": 1774
+      },
+      {
+        "name": "DLH_FAIL_RECORDNOTEXIST",
+        "value": 1027,
+        "hex": "0x403",
+        "record_file_offset": "0x7004",
+        "index": 1775
+      },
+      {
+        "name": "DLH_FAIL_PLAYEROFFLINE",
+        "value": 1028,
+        "hex": "0x404",
+        "record_file_offset": "0x7014",
+        "index": 1776
+      },
+      {
+        "name": "DLH_FAIL_CLANNOTEXIST",
+        "value": 1029,
+        "hex": "0x405",
+        "record_file_offset": "0x7024",
+        "index": 1777
+      },
+      {
+        "name": "DLH_FAIL_CLANPLAYERNOTEXIST",
+        "value": 1030,
+        "hex": "0x406",
+        "record_file_offset": "0x7034",
+        "index": 1778
+      },
+      {
+        "name": "DLH_FAIL_ACHNOACHIEVEINFO",
+        "value": 1031,
+        "hex": "0x407",
+        "record_file_offset": "0x7044",
+        "index": 1779
+      },
+      {
+        "name": "DLH_FAIL_ACHNOCARDINFO",
+        "value": 1032,
+        "hex": "0x408",
+        "record_file_offset": "0x7054",
+        "index": 1780
+      },
+      {
+        "name": "DLH_FAIL_FREEZE",
+        "value": 1033,
+        "hex": "0x409",
+        "record_file_offset": "0x7064",
+        "index": 1781
+      },
+      {
+        "name": "DLH_FAIL_PLAYONLINECANNOTMOD",
+        "value": 1034,
+        "hex": "0x40a",
+        "record_file_offset": "0x7074",
+        "index": 1782
+      },
+      {
+        "name": "DLH_FAIL_WAITCREATEACCOUNT",
+        "value": 1035,
+        "hex": "0x40b",
+        "record_file_offset": "0x7084",
+        "index": 1783
+      },
+      {
+        "name": "DLH_FAIL_ACTVINFONOTEXIST",
+        "value": 1036,
+        "hex": "0x40c",
+        "record_file_offset": "0x7094",
+        "index": 1784
+      },
+      {
+        "name": "DLH_FAIL_PLAYERBELOCKED",
+        "value": 1037,
+        "hex": "0x40d",
+        "record_file_offset": "0x70a4",
+        "index": 1785
+      },
+      {
+        "name": "DLH_FAIL_PLAYERSTORAGEFULL",
+        "value": 1038,
+        "hex": "0x40e",
+        "record_file_offset": "0x70b4",
+        "index": 1786
+      },
+      {
+        "name": "DLH_FAIL_PROPAVAILABLETIMETOOLOW",
+        "value": 1039,
+        "hex": "0x40f",
+        "record_file_offset": "0x70c4",
+        "index": 1787
+      },
+      {
+        "name": "DLH_FAIL_STAR_NOTENOUGH",
+        "value": 1056,
+        "hex": "0x420",
+        "record_file_offset": "0x70d4",
+        "index": 1788
+      },
+      {
+        "name": "DLH_FAIL_STARAWARD_EXCEED_LIMIT",
+        "value": 1057,
+        "hex": "0x421",
+        "record_file_offset": "0x70e4",
+        "index": 1789
+      },
+      {
+        "name": "DLH_FAIL_ATTRIB_MATERIAL_NOT_ENOUGH",
+        "value": 1060,
+        "hex": "0x424",
+        "record_file_offset": "0x70f4",
+        "index": 1790
+      },
+      {
+        "name": "DLH_FAIL_ATTRIB_NOT_MATCH",
+        "value": 1061,
+        "hex": "0x425",
+        "record_file_offset": "0x7104",
+        "index": 1791
+      },
+      {
+        "name": "DLH_FAIL_FREEBUY_TIMEERROR",
+        "value": 1063,
+        "hex": "0x427",
+        "record_file_offset": "0x7114",
+        "index": 1792
+      },
+      {
+        "name": "DLH_FAIL_FREEBUY_PROPERROR",
+        "value": 1064,
+        "hex": "0x428",
+        "record_file_offset": "0x7124",
+        "index": 1793
+      },
+      {
+        "name": "DLH_FAIL_FREEBUY_PROPREPEAT",
+        "value": 1065,
+        "hex": "0x429",
+        "record_file_offset": "0x7134",
+        "index": 1794
+      },
+      {
+        "name": "DLH_FAIL_FREEBUY_PROPTOOMUCH",
+        "value": 1072,
+        "hex": "0x430",
+        "record_file_offset": "0x7144",
+        "index": 1795
+      },
+      {
+        "name": "DLH_FAIL_PLAYERWEAPONPARTSFULL",
+        "value": 1082,
+        "hex": "0x43a",
+        "record_file_offset": "0x7154",
+        "index": 1796
+      },
+      {
+        "name": "DLH_FAIL_GOTALL_BLESSBAGITEM",
+        "value": 1083,
+        "hex": "0x43b",
+        "record_file_offset": "0x7164",
+        "index": 1797
+      },
+      {
+        "name": "DLH_FAIL_WEAPONPART_FULL",
+        "value": 1084,
+        "hex": "0x43c",
+        "record_file_offset": "0x7174",
+        "index": 1798
+      },
+      {
+        "name": "DLH_FAIL_PLAYER_NOT_HAVE_PROP",
+        "value": 1085,
+        "hex": "0x43d",
+        "record_file_offset": "0x7184",
+        "index": 1799
+      },
+      {
+        "name": "DLH_FAIL_PROP_IS_NOT_FREE",
+        "value": 1086,
+        "hex": "0x43e",
+        "record_file_offset": "0x7194",
+        "index": 1800
+      },
+      {
+        "name": "DLH_FAIL_TIANSHEN_IS_NOT_COLLECT_ALL",
+        "value": 1087,
+        "hex": "0x43f",
+        "record_file_offset": "0x71a4",
+        "index": 1801
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_UPDATE_CANNOT_FIND_RESOURCE",
+        "value": 1104,
+        "hex": "0x450",
+        "record_file_offset": "0x71b4",
+        "index": 1802
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_UPDATE_LEVEL_REACH_LIMIT",
+        "value": 1105,
+        "hex": "0x451",
+        "record_file_offset": "0x71c4",
+        "index": 1803
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_UPDATE_NO_SPACE_FOR_PET",
+        "value": 1106,
+        "hex": "0x452",
+        "record_file_offset": "0x71d4",
+        "index": 1804
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_UPDATE_NO_SPACE_FOR_SKILL",
+        "value": 1107,
+        "hex": "0x453",
+        "record_file_offset": "0x71e4",
+        "index": 1805
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_INTERNAL",
+        "value": 1108,
+        "hex": "0x454",
+        "record_file_offset": "0x71f4",
+        "index": 1806
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_UPDATE_NOT_ENOUGH_ITEM_TO_CONSUME",
+        "value": 1109,
+        "hex": "0x455",
+        "record_file_offset": "0x7204",
+        "index": 1807
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_UPDATE_PRE_SKILL_NOT_SATISFIED",
+        "value": 1110,
+        "hex": "0x456",
+        "record_file_offset": "0x7214",
+        "index": 1808
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_UPDATE_SKILL_POINT_NOT_SATISFIED",
+        "value": 1111,
+        "hex": "0x457",
+        "record_file_offset": "0x7224",
+        "index": 1809
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_PET_ID_NOT_EXISTS",
+        "value": 1112,
+        "hex": "0x458",
+        "record_file_offset": "0x7234",
+        "index": 1810
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_SKILL_ID_NOT_EXISTS",
+        "value": 1113,
+        "hex": "0x459",
+        "record_file_offset": "0x7244",
+        "index": 1811
+      },
+      {
+        "name": "DLH_FAIL_PET_SKILL_LEVEL_NOT_MATCHED",
+        "value": 1120,
+        "hex": "0x460",
+        "record_file_offset": "0x7254",
+        "index": 1812
+      },
+      {
+        "name": "DLH_FAIL_PET_WAKEUP_ALREADY_WAKEUP",
+        "value": 1122,
+        "hex": "0x462",
+        "record_file_offset": "0x7264",
+        "index": 1813
+      },
+      {
+        "name": "DLH_FAIL_PET_WAKEUP_NOT_ENOUGH_UNLOCKED_SKILL",
+        "value": 1123,
+        "hex": "0x463",
+        "record_file_offset": "0x7274",
+        "index": 1814
+      },
+      {
+        "name": "DLH_FAIL_PET_WAKEUP_REWARD_NOT_WAKEUP",
+        "value": 1124,
+        "hex": "0x464",
+        "record_file_offset": "0x7284",
+        "index": 1815
+      },
+      {
+        "name": "DLH_FAIL_PET_WAKEUP_REWARD_ALREADY_REWARDED",
+        "value": 1125,
+        "hex": "0x465",
+        "record_file_offset": "0x7294",
+        "index": 1816
+      },
+      {
+        "name": "DLH_FAIL_PET_WAKEUP_REWARD_CAN_NOT_FIND_RESOURCE",
+        "value": 1126,
+        "hex": "0x466",
+        "record_file_offset": "0x72a4",
+        "index": 1817
+      },
+      {
+        "name": "DLH_FAIL_PET_WAKEUP_REWARD_INVALID_REWARD_ID",
+        "value": 1127,
+        "hex": "0x467",
+        "record_file_offset": "0x72b4",
+        "index": 1818
+      },
+      {
+        "name": "DLH_FAIL_PET_WAKEUP_REWARD_ITEM_NOT_EXISTS",
+        "value": 1128,
+        "hex": "0x468",
+        "record_file_offset": "0x72c4",
+        "index": 1819
+      },
+      {
+        "name": "DLH_FAIL_PET_WAKEUP_REWARD_INVALID_REWARD_ITEM_ID",
+        "value": 1129,
+        "hex": "0x469",
+        "record_file_offset": "0x72d4",
+        "index": 1820
+      },
+      {
+        "name": "DLH_FAIL_PET_WAKEUP_REWARD_NOT_ENOUGH_SPACE_FOR_PROP",
+        "value": 1136,
+        "hex": "0x470",
+        "record_file_offset": "0x72e4",
+        "index": 1821
+      },
+      {
+        "name": "DLH_FAIL_DAILYLOTTERY_ITEM_NOT_EXISTS",
+        "value": 1137,
+        "hex": "0x471",
+        "record_file_offset": "0x72f4",
+        "index": 1822
+      },
+      {
+        "name": "ZONE_ERR_TASKCHEST_OPENING",
+        "value": 1808,
+        "hex": "0x710",
+        "record_file_offset": "0x81c4",
+        "index": 2059
+      },
+      {
+        "name": "ZONE_ERR_TASKCHEST_DISABLED",
+        "value": 1809,
+        "hex": "0x711",
+        "record_file_offset": "0x81d4",
+        "index": 2060
+      },
+      {
+        "name": "ZONE_FAIL_NOTFOUNDSUBJECT",
+        "value": 9616,
+        "hex": "0x2590",
+        "record_file_offset": "0x8f04",
+        "index": 2271
+      },
+      {
+        "name": "ZONE_FAIL_MISWEAPONTYPE",
+        "value": 9617,
+        "hex": "0x2591",
+        "record_file_offset": "0x8f14",
+        "index": 2272
+      },
+      {
+        "name": "ZONE_FAIL_OPERATIONNOTKZROLE",
+        "value": 9618,
+        "hex": "0x2592",
+        "record_file_offset": "0x8f24",
+        "index": 2273
+      },
+      {
+        "name": "EPCE_PVEROLETYPE_SWITCH",
+        "value": 128,
+        "hex": "0x80",
+        "record_file_offset": "0xa7a4",
+        "index": 2665
+      },
+      {
+        "name": "EPCE_PLAYER_PLATFORM_SHUNWANG",
+        "value": 8192,
+        "hex": "0x2000",
+        "record_file_offset": "0xa804",
+        "index": 2671
+      },
+      {
+        "name": "EPlayerIdentifier_Nickname",
+        "value": 2,
+        "hex": "0x2",
+        "record_file_offset": "0xbe84",
+        "index": 3031
+      },
+      {
+        "name": "EAFTE_ByNickName",
+        "value": 2,
+        "hex": "0x2",
+        "record_file_offset": "0xd574",
+        "index": 3398
+      },
+      {
+        "name": "PLAYER_NICKNAME_ILLEGAL",
+        "value": 1,
+        "hex": "0x1",
+        "record_file_offset": "0xd784",
+        "index": 3431
+      },
+      {
+        "name": "NAME_MAX_QUERY_COUNT",
+        "value": 200,
+        "hex": "0xc8",
+        "record_file_offset": "0x10804",
+        "index": 4207
+      },
+      {
+        "name": "NAME_SUCCESS",
+        "value": 1,
+        "hex": "0x1",
+        "record_file_offset": "0x10854",
+        "index": 4212
+      },
+      {
+        "name": "NAME_FAIL",
+        "value": 16,
+        "hex": "0x10",
+        "record_file_offset": "0x10864",
+        "index": 4213
+      },
+      {
+        "name": "NAME_FAIL_NOT_EXIST",
+        "value": 17,
+        "hex": "0x11",
+        "record_file_offset": "0x10874",
+        "index": 4214
+      },
+      {
+        "name": "NAME_FAIL_DISCARD",
+        "value": 18,
+        "hex": "0x12",
+        "record_file_offset": "0x10884",
+        "index": 4215
+      },
+      {
+        "name": "NAME_FAIL_TORM_ERROR",
+        "value": 19,
+        "hex": "0x13",
+        "record_file_offset": "0x10894",
+        "index": 4216
+      },
+      {
+        "name": "NAME_FAIL_INVALID_NAME",
+        "value": 20,
+        "hex": "0x14",
+        "record_file_offset": "0x108a4",
+        "index": 4217
+      },
+      {
+        "name": "NAME_FAIL_INVALID_ID",
+        "value": 21,
+        "hex": "0x15",
+        "record_file_offset": "0x108b4",
+        "index": 4218
+      },
+      {
+        "name": "NAME_FAIL_NAME_DUPLICATED",
+        "value": 22,
+        "hex": "0x16",
+        "record_file_offset": "0x108c4",
+        "index": 4219
+      },
+      {
+        "name": "NAME_FAIL_ID_DUPLICATED",
+        "value": 23,
+        "hex": "0x17",
+        "record_file_offset": "0x108d4",
+        "index": 4220
+      },
+      {
+        "name": "PROTO_MAGIC_C2ZN",
+        "value": 12867,
+        "hex": "0x3243",
+        "record_file_offset": "0x131b4",
+        "index": 4874
+      },
+      {
+        "name": "ID_C2ZN_REQ_LOGIN",
+        "value": 40960,
+        "hex": "0xa000",
+        "record_file_offset": "0x131d4",
+        "index": 4876
+      },
+      {
+        "name": "ID_ZN2C_RES_LOGIN",
+        "value": 40961,
+        "hex": "0xa001",
+        "record_file_offset": "0x131e4",
+        "index": 4877
+      },
+      {
+        "name": "ID_C2ZN_REQ_CREATEACCOUNT",
+        "value": 40962,
+        "hex": "0xa002",
+        "record_file_offset": "0x131f4",
+        "index": 4878
+      },
+      {
+        "name": "ID_ZN2C_RES_CREATEACCOUNT",
+        "value": 40963,
+        "hex": "0xa003",
+        "record_file_offset": "0x13204",
+        "index": 4879
+      },
+      {
+        "name": "ID_C2ZN_REQ_HEARTBEAT",
+        "value": 40964,
+        "hex": "0xa004",
+        "record_file_offset": "0x13214",
+        "index": 4880
+      },
+      {
+        "name": "ID_ZN2C_NTF_ZONE_LOGIN_REFUSE",
+        "value": 65298,
+        "hex": "0xff12",
+        "record_file_offset": "0x13244",
+        "index": 4883
+      },
+      {
+        "name": "ID_ZN2C_NTF_PLAYERINFO",
+        "value": 40965,
+        "hex": "0xa005",
+        "record_file_offset": "0x13264",
+        "index": 4885
+      },
+      {
+        "name": "ID_ZN2C_NTF_PLAYERPROPS",
+        "value": 40966,
+        "hex": "0xa006",
+        "record_file_offset": "0x13274",
+        "index": 4886
+      },
+      {
+        "name": "ID_ZN2C_NTF_PLAYERROLETYPE",
+        "value": 40973,
+        "hex": "0xa00d",
+        "record_file_offset": "0x132e4",
+        "index": 4893
+      },
+      {
+        "name": "ID_C2ZN_REQ_ZONECHANNEL_LIST",
+        "value": 41266,
+        "hex": "0xa132",
+        "record_file_offset": "0x13b24",
+        "index": 5025
+      },
+      {
+        "name": "ID_ZN2C_RES_ZONECHANNEL_LIST",
+        "value": 41267,
+        "hex": "0xa133",
+        "record_file_offset": "0x13b34",
+        "index": 5026
+      },
+      {
+        "name": "ID_C2ZN_REQ_CHECK_NICKNAME",
+        "value": 41284,
+        "hex": "0xa144",
+        "record_file_offset": "0x13c44",
+        "index": 5043
+      },
+      {
+        "name": "ID_ZN2C_RES_CHECK_NICKNAME",
+        "value": 41285,
+        "hex": "0xa145",
+        "record_file_offset": "0x13c54",
+        "index": 5044
+      },
+      {
+        "name": "ID_C2ZN_REQ_CHANGE_ROLE",
+        "value": 41286,
+        "hex": "0xa146",
+        "record_file_offset": "0x13c64",
+        "index": 5045
+      },
+      {
+        "name": "ID_ZN2C_RES_CHANGE_ROLE",
+        "value": 41287,
+        "hex": "0xa147",
+        "record_file_offset": "0x13c74",
+        "index": 5046
+      },
+      {
+        "name": "ID_ZN2C_NTF_KICKOFF",
+        "value": 41471,
+        "hex": "0xa1ff",
+        "record_file_offset": "0x13d04",
+        "index": 5055
+      },
+      {
+        "name": "ID_C2ZN_REQ_CHANGE_ROLENAME",
+        "value": 62209,
+        "hex": "0xf301",
+        "record_file_offset": "0x159f4",
+        "index": 5518
+      },
+      {
+        "name": "ID_ZN2C_RES_CHANGE_ROLENAME",
+        "value": 62210,
+        "hex": "0xf302",
+        "record_file_offset": "0x15a04",
+        "index": 5519
+      },
+      {
+        "name": "ID_C2ZN_NTF_PVEROLETYPE_SWITCH",
+        "value": 14151,
+        "hex": "0x3747",
+        "record_file_offset": "0x17684",
+        "index": 5975
+      },
+      {
+        "name": "ELoginPlatform_None",
+        "value": 0,
+        "hex": "0x0",
+        "record_file_offset": "0x17c14",
+        "index": 6064
+      },
+      {
+        "name": "ELoginPlatform_ShunWang",
+        "value": 1,
+        "hex": "0x1",
+        "record_file_offset": "0x17c24",
+        "index": 6065
+      },
+      {
+        "name": "ELoginPlatform_ShunWang2",
+        "value": 2,
+        "hex": "0x2",
+        "record_file_offset": "0x17c34",
+        "index": 6066
+      },
+      {
+        "name": "ELoginPlatform_YunGengXin",
+        "value": 3,
+        "hex": "0x3",
+        "record_file_offset": "0x17c44",
+        "index": 6067
+      }
+    ],
+    "structures": [
+      {
+        "name": "C2ZNPkgHead",
+        "header_file_offset": "0x20c454",
+        "name_table_file_offset": "0x1bd64",
+        "header_record_size_slots_5_41": [
+          904,
+          904
+        ],
+        "header_size_slots_6_7": [
+          8,
+          8
+        ],
+        "total_field_count": 4,
+        "exported_field_count": 4,
+        "fields": [
+          {
+            "name": "Magic",
+            "descriptor_file_offset": "0x20c50c",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Cmd",
+            "descriptor_file_offset": "0x20c5c0",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "HeadLen",
+            "descriptor_file_offset": "0x20c674",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "BodyLen",
+            "descriptor_file_offset": "0x20c728",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              6,
+              6
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZNPkgBody",
+        "header_file_offset": "0x20c7dc",
+        "name_table_file_offset": "0x1bd5c",
+        "header_record_size_slots_5_41": [
+          211684,
+          211684
+        ],
+        "header_size_slots_6_7": [
+          1024703,
+          1025323
+        ],
+        "total_field_count": 1175,
+        "exported_field_count": 18,
+        "fields": [
+          {
+            "name": "ReqLogin",
+            "descriptor_file_offset": "0x21ef30",
+            "type_code": 1,
+            "size_slots_4_5": [
+              18,
+              18
+            ],
+            "element_size_slots_6_7": [
+              18,
+              18
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_ReqLogin",
+            "reference_field": null,
+            "selector": 40960,
+            "selector_macro": {
+              "name": "ID_C2ZN_REQ_LOGIN",
+              "value": 40960,
+              "hex": "0xa000",
+              "record_file_offset": "0x131d4",
+              "index": 4876
+            }
+          },
+          {
+            "name": "ResLogin",
+            "descriptor_file_offset": "0x21efe4",
+            "type_code": 1,
+            "size_slots_4_5": [
+              17953,
+              17953
+            ],
+            "element_size_slots_6_7": [
+              17953,
+              17953
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_ResLogin",
+            "reference_field": null,
+            "selector": 40961,
+            "selector_macro": {
+              "name": "ID_ZN2C_RES_LOGIN",
+              "value": 40961,
+              "hex": "0xa001",
+              "record_file_offset": "0x131e4",
+              "index": 4877
+            }
+          },
+          {
+            "name": "ReqCreateAccount",
+            "descriptor_file_offset": "0x21f098",
+            "type_code": 1,
+            "size_slots_4_5": [
+              36,
+              5
+            ],
+            "element_size_slots_6_7": [
+              36,
+              5
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_ReqCreateAccount",
+            "reference_field": null,
+            "selector": 40962,
+            "selector_macro": {
+              "name": "ID_C2ZN_REQ_CREATEACCOUNT",
+              "value": 40962,
+              "hex": "0xa002",
+              "record_file_offset": "0x131f4",
+              "index": 4878
+            }
+          },
+          {
+            "name": "ResCreateAccount",
+            "descriptor_file_offset": "0x21f14c",
+            "type_code": 1,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_ResCreateAccount",
+            "reference_field": null,
+            "selector": 40963,
+            "selector_macro": {
+              "name": "ID_ZN2C_RES_CREATEACCOUNT",
+              "value": 40963,
+              "hex": "0xa003",
+              "record_file_offset": "0x13204",
+              "index": 4879
+            }
+          },
+          {
+            "name": "ReqHeartbeat",
+            "descriptor_file_offset": "0x21f200",
+            "type_code": 1,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_ReqHeartbeat",
+            "reference_field": null,
+            "selector": 40964,
+            "selector_macro": {
+              "name": "ID_C2ZN_REQ_HEARTBEAT",
+              "value": 40964,
+              "hex": "0xa004",
+              "record_file_offset": "0x13214",
+              "index": 4880
+            }
+          },
+          {
+            "name": "NtfPlayerInfo",
+            "descriptor_file_offset": "0x21f2b4",
+            "type_code": 1,
+            "size_slots_4_5": [
+              1412,
+              1381
+            ],
+            "element_size_slots_6_7": [
+              1412,
+              1381
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_NtfPlayerInfo",
+            "reference_field": null,
+            "selector": 40965,
+            "selector_macro": {
+              "name": "ID_ZN2C_NTF_PLAYERINFO",
+              "value": 40965,
+              "hex": "0xa005",
+              "record_file_offset": "0x13264",
+              "index": 4885
+            }
+          },
+          {
+            "name": "NtfPlayerProps",
+            "descriptor_file_offset": "0x21f368",
+            "type_code": 1,
+            "size_slots_4_5": [
+              355,
+              355
+            ],
+            "element_size_slots_6_7": [
+              355,
+              355
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_NtfPlayerProps",
+            "reference_field": null,
+            "selector": 40966,
+            "selector_macro": {
+              "name": "ID_ZN2C_NTF_PLAYERPROPS",
+              "value": 40966,
+              "hex": "0xa006",
+              "record_file_offset": "0x13274",
+              "index": 4886
+            }
+          },
+          {
+            "name": "NtfPlayerRoleType",
+            "descriptor_file_offset": "0x21f854",
+            "type_code": 1,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_NtfPlayerRoleType",
+            "reference_field": null,
+            "selector": 40973,
+            "selector_macro": {
+              "name": "ID_ZN2C_NTF_PLAYERROLETYPE",
+              "value": 40973,
+              "hex": "0xa00d",
+              "record_file_offset": "0x132e4",
+              "index": 4893
+            }
+          },
+          {
+            "name": "ReqZoneChannelList",
+            "descriptor_file_offset": "0x222770",
+            "type_code": 1,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_ReqZoneChannelList",
+            "reference_field": null,
+            "selector": 41266,
+            "selector_macro": {
+              "name": "ID_C2ZN_REQ_ZONECHANNEL_LIST",
+              "value": 41266,
+              "hex": "0xa132",
+              "record_file_offset": "0x13b24",
+              "index": 5025
+            }
+          },
+          {
+            "name": "ResZoneChannelList",
+            "descriptor_file_offset": "0x222824",
+            "type_code": 1,
+            "size_slots_4_5": [
+              7034,
+              3144
+            ],
+            "element_size_slots_6_7": [
+              7034,
+              3144
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_ResZoneChannelList",
+            "reference_field": null,
+            "selector": 41267,
+            "selector_macro": {
+              "name": "ID_ZN2C_RES_ZONECHANNEL_LIST",
+              "value": 41267,
+              "hex": "0xa133",
+              "record_file_offset": "0x13b34",
+              "index": 5026
+            }
+          },
+          {
+            "name": "ReqCheckNickname",
+            "descriptor_file_offset": "0x223364",
+            "type_code": 1,
+            "size_slots_4_5": [
+              32,
+              1
+            ],
+            "element_size_slots_6_7": [
+              32,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_ReqCheckNickname",
+            "reference_field": null,
+            "selector": 41284,
+            "selector_macro": {
+              "name": "ID_C2ZN_REQ_CHECK_NICKNAME",
+              "value": 41284,
+              "hex": "0xa144",
+              "record_file_offset": "0x13c44",
+              "index": 5043
+            }
+          },
+          {
+            "name": "ResCheckNickname",
+            "descriptor_file_offset": "0x223418",
+            "type_code": 1,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_ResCheckNickname",
+            "reference_field": null,
+            "selector": 41285,
+            "selector_macro": {
+              "name": "ID_ZN2C_RES_CHECK_NICKNAME",
+              "value": 41285,
+              "hex": "0xa145",
+              "record_file_offset": "0x13c54",
+              "index": 5044
+            }
+          },
+          {
+            "name": "ReqChangeRole",
+            "descriptor_file_offset": "0x2234cc",
+            "type_code": 1,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_ReqChangeRole",
+            "reference_field": null,
+            "selector": 41286,
+            "selector_macro": {
+              "name": "ID_C2ZN_REQ_CHANGE_ROLE",
+              "value": 41286,
+              "hex": "0xa146",
+              "record_file_offset": "0x13c64",
+              "index": 5045
+            }
+          },
+          {
+            "name": "ResChangeRole",
+            "descriptor_file_offset": "0x223580",
+            "type_code": 1,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_ResChangeRole",
+            "reference_field": null,
+            "selector": 41287,
+            "selector_macro": {
+              "name": "ID_ZN2C_RES_CHANGE_ROLE",
+              "value": 41287,
+              "hex": "0xa147",
+              "record_file_offset": "0x13c74",
+              "index": 5046
+            }
+          },
+          {
+            "name": "NtfKickOff",
+            "descriptor_file_offset": "0x2263e8",
+            "type_code": 1,
+            "size_slots_4_5": [
+              266,
+              266
+            ],
+            "element_size_slots_6_7": [
+              266,
+              266
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_NtfKickOff",
+            "reference_field": null,
+            "selector": 41471,
+            "selector_macro": {
+              "name": "ID_ZN2C_NTF_KICKOFF",
+              "value": 41471,
+              "hex": "0xa1ff",
+              "record_file_offset": "0x13d04",
+              "index": 5055
+            }
+          },
+          {
+            "name": "ReqChangeRoleName",
+            "descriptor_file_offset": "0x23cc9c",
+            "type_code": 1,
+            "size_slots_4_5": [
+              32,
+              1
+            ],
+            "element_size_slots_6_7": [
+              32,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_ReqChangeRoleName",
+            "reference_field": null,
+            "selector": 62209,
+            "selector_macro": {
+              "name": "ID_C2ZN_REQ_CHANGE_ROLENAME",
+              "value": 62209,
+              "hex": "0xf301",
+              "record_file_offset": "0x159f4",
+              "index": 5518
+            }
+          },
+          {
+            "name": "ResChangeRoleName",
+            "descriptor_file_offset": "0x23cd50",
+            "type_code": 1,
+            "size_slots_4_5": [
+              34,
+              3
+            ],
+            "element_size_slots_6_7": [
+              34,
+              3
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_ResChangeRoleName",
+            "reference_field": null,
+            "selector": 62210,
+            "selector_macro": {
+              "name": "ID_ZN2C_RES_CHANGE_ROLENAME",
+              "value": 62210,
+              "hex": "0xf302",
+              "record_file_offset": "0x15a04",
+              "index": 5519
+            }
+          },
+          {
+            "name": "NtfZoneLoginRefuse",
+            "descriptor_file_offset": "0x23fbb8",
+            "type_code": 1,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_NtfZoneLoginRefuse",
+            "reference_field": null,
+            "selector": 65298,
+            "selector_macro": {
+              "name": "ID_ZN2C_NTF_ZONE_LOGIN_REFUSE",
+              "value": 65298,
+              "hex": "0xff12",
+              "record_file_offset": "0x13244",
+              "index": 4883
+            }
+          }
+        ]
+      },
+      {
+        "name": "C2ZNPkg",
+        "header_file_offset": "0x2402c0",
+        "name_table_file_offset": "0x1bd54",
+        "header_record_size_slots_5_41": [
+          544,
+          544
+        ],
+        "header_size_slots_6_7": [
+          1024711,
+          1025331
+        ],
+        "total_field_count": 2,
+        "exported_field_count": 2,
+        "fields": [
+          {
+            "name": "Head",
+            "descriptor_file_offset": "0x240378",
+            "type_code": 1,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZNPkgHead",
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Body",
+            "descriptor_file_offset": "0x24042c",
+            "type_code": 0,
+            "size_slots_4_5": [
+              1025323,
+              1024703
+            ],
+            "element_size_slots_6_7": [
+              1025323,
+              1024703
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": "C2ZNPkgBody",
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_ReqLogin",
+        "header_file_offset": "0x1de674",
+        "name_table_file_offset": "0x1c5fc",
+        "header_record_size_slots_5_41": [
+          1084,
+          1084
+        ],
+        "header_size_slots_6_7": [
+          18,
+          18
+        ],
+        "total_field_count": 5,
+        "exported_field_count": 5,
+        "fields": [
+          {
+            "name": "SubChannelId",
+            "descriptor_file_offset": "0x1de72c",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "PreferenceCrcValue",
+            "descriptor_file_offset": "0x1de7e0",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "SystemSettingCrcValue",
+            "descriptor_file_offset": "0x1de894",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CurrentZoneHostIp",
+            "descriptor_file_offset": "0x1de948",
+            "type_code": 19,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              12,
+              12
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LoginPlatform",
+            "descriptor_file_offset": "0x1de9fc",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              16,
+              16
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_ResLogin",
+        "header_file_offset": "0x1deab0",
+        "name_table_file_offset": "0x1eebc",
+        "header_record_size_slots_5_41": [
+          1984,
+          1984
+        ],
+        "header_size_slots_6_7": [
+          17953,
+          17953
+        ],
+        "total_field_count": 10,
+        "exported_field_count": 10,
+        "fields": [
+          {
+            "name": "Result",
+            "descriptor_file_offset": "0x1deb68",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "MainChannelId",
+            "descriptor_file_offset": "0x1dec1c",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "SubChannelId",
+            "descriptor_file_offset": "0x1decd0",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              6,
+              6
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ServerTime",
+            "descriptor_file_offset": "0x1ded84",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              10,
+              10
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "TGamePoint",
+            "descriptor_file_offset": "0x1dee38",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              18,
+              18
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "GoldPoint",
+            "descriptor_file_offset": "0x1deeec",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              22,
+              22
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "FreePropCount",
+            "descriptor_file_offset": "0x1defa0",
+            "type_code": 5,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              26,
+              26
+            ],
+            "nested_meta": null,
+            "reference_field": "FreeProps",
+            "selector": null
+          },
+          {
+            "name": "FreeProps",
+            "descriptor_file_offset": "0x1df054",
+            "type_code": 1,
+            "size_slots_4_5": [
+              17920,
+              17920
+            ],
+            "element_size_slots_6_7": [
+              70,
+              70
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 256,
+            "offset_slots_10_11": [
+              28,
+              28
+            ],
+            "nested_meta": "PropInfo",
+            "reference_field": "FreePropCount",
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "MAX_PROP_NUM_PER_PLAYER",
+              "value": 256,
+              "hex": "0x100",
+              "record_file_offset": "0x93c4",
+              "index": 2347
+            }
+          },
+          {
+            "name": "IsNewbie",
+            "descriptor_file_offset": "0x1df108",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              17948,
+              17948
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "AreaId",
+            "descriptor_file_offset": "0x1df1bc",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              17949,
+              17949
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_ReqCreateAccount",
+        "header_file_offset": "0x1e0ec8",
+        "name_table_file_offset": "0x1c364",
+        "header_record_size_slots_5_41": [
+          724,
+          724
+        ],
+        "header_size_slots_6_7": [
+          5,
+          36
+        ],
+        "total_field_count": 3,
+        "exported_field_count": 3,
+        "fields": [
+          {
+            "name": "Nickname",
+            "descriptor_file_offset": "0x1e0f80",
+            "type_code": 21,
+            "size_slots_4_5": [
+              32,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": 32,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null,
+            "string_capacity_macro": {
+              "name": "MAX_NICK_NAME_LEN",
+              "value": 32,
+              "hex": "0x20",
+              "record_file_offset": "0x9344",
+              "index": 2339
+            }
+          },
+          {
+            "name": "LoginPlatform",
+            "descriptor_file_offset": "0x1e1034",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              1,
+              32
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CreatePlatform",
+            "descriptor_file_offset": "0x1e10e8",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              3,
+              34
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_ResCreateAccount",
+        "header_file_offset": "0x1e119c",
+        "name_table_file_offset": "0x1ec34",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          2,
+          2
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "Result",
+            "descriptor_file_offset": "0x1e1254",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_NtfPlayerInfo",
+        "header_file_offset": "0x1e18b8",
+        "name_table_file_offset": "0x1e52c",
+        "header_record_size_slots_5_41": [
+          544,
+          544
+        ],
+        "header_size_slots_6_7": [
+          1381,
+          1412
+        ],
+        "total_field_count": 2,
+        "exported_field_count": 2,
+        "fields": [
+          {
+            "name": "Result",
+            "descriptor_file_offset": "0x1e1970",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "PlayerInfo",
+            "descriptor_file_offset": "0x1e1a24",
+            "type_code": 1,
+            "size_slots_4_5": [
+              1410,
+              1379
+            ],
+            "element_size_slots_6_7": [
+              1410,
+              1379
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": "PlayerInfo",
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_NtfPlayerRoleType",
+        "header_file_offset": "0x1e4480",
+        "name_table_file_offset": "0x1e54c",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          8,
+          8
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "RoleType",
+            "descriptor_file_offset": "0x1e4538",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_ReqCheckNickname",
+        "header_file_offset": "0x1df270",
+        "name_table_file_offset": "0x1c22c",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          1,
+          32
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "Nickname",
+            "descriptor_file_offset": "0x1df328",
+            "type_code": 21,
+            "size_slots_4_5": [
+              32,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": 32,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null,
+            "string_capacity_macro": {
+              "name": "MAX_NICK_NAME_LEN",
+              "value": 32,
+              "hex": "0x20",
+              "record_file_offset": "0x9344",
+              "index": 2339
+            }
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_ResCheckNickname",
+        "header_file_offset": "0x1df3dc",
+        "name_table_file_offset": "0x1eb1c",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          2,
+          2
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "Result",
+            "descriptor_file_offset": "0x1df494",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_ReqChangeRole",
+        "header_file_offset": "0x1df548",
+        "name_table_file_offset": "0x1c1f4",
+        "header_record_size_slots_5_41": [
+          544,
+          544
+        ],
+        "header_size_slots_6_7": [
+          4,
+          4
+        ],
+        "total_field_count": 2,
+        "exported_field_count": 2,
+        "fields": [
+          {
+            "name": "RegularRoleIndex",
+            "descriptor_file_offset": "0x1df600",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "RebelRoleIndex",
+            "descriptor_file_offset": "0x1df6b4",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_ResChangeRole",
+        "header_file_offset": "0x1df768",
+        "name_table_file_offset": "0x1eae4",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          2,
+          2
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "Result",
+            "descriptor_file_offset": "0x1df820",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_ReqZoneChannelList",
+        "header_file_offset": "0x1e8868",
+        "name_table_file_offset": "0x1cc9c",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          4,
+          4
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "MainChannelId",
+            "descriptor_file_offset": "0x1e8920",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_ResZoneChannelList",
+        "header_file_offset": "0x1e89d4",
+        "name_table_file_offset": "0x1f504",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          3144,
+          7034
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "ZoneList",
+            "descriptor_file_offset": "0x1e8a8c",
+            "type_code": 1,
+            "size_slots_4_5": [
+              7034,
+              3144
+            ],
+            "element_size_slots_6_7": [
+              7034,
+              3144
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZoneChannelListInfo",
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_NtfZoneLoginRefuse",
+        "header_file_offset": "0x1e1474",
+        "name_table_file_offset": "0x1e6cc",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          4,
+          4
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "Reason",
+            "descriptor_file_offset": "0x1e152c",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_NtfKickOff",
+        "header_file_offset": "0x1e04e0",
+        "name_table_file_offset": "0x1e444",
+        "header_record_size_slots_5_41": [
+          904,
+          904
+        ],
+        "header_size_slots_6_7": [
+          266,
+          266
+        ],
+        "total_field_count": 4,
+        "exported_field_count": 4,
+        "fields": [
+          {
+            "name": "Reason",
+            "descriptor_file_offset": "0x1e0598",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "FreezeLeft",
+            "descriptor_file_offset": "0x1e064c",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ReasonLen",
+            "descriptor_file_offset": "0x1e0700",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              6,
+              6
+            ],
+            "nested_meta": null,
+            "reference_field": "AntibotPunishReason",
+            "selector": null
+          },
+          {
+            "name": "AntibotPunishReason",
+            "descriptor_file_offset": "0x1e07b4",
+            "type_code": 2,
+            "size_slots_4_5": [
+              256,
+              256
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 256,
+            "offset_slots_10_11": [
+              10,
+              10
+            ],
+            "nested_meta": null,
+            "reference_field": "ReasonLen",
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "MAX_ANTIBOTPUNISH_LEN",
+              "value": 256,
+              "hex": "0x100",
+              "record_file_offset": "0x17cc4",
+              "index": 6075
+            }
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_ReqHeartbeat",
+        "header_file_offset": "0x1e1308",
+        "name_table_file_offset": "0x1c564",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          1,
+          1
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "Padding",
+            "descriptor_file_offset": "0x1e13c0",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_NtfPlayerProps",
+        "header_file_offset": "0x1e1ad8",
+        "name_table_file_offset": "0x1e53c",
+        "header_record_size_slots_5_41": [
+          904,
+          904
+        ],
+        "header_size_slots_6_7": [
+          355,
+          355
+        ],
+        "total_field_count": 4,
+        "exported_field_count": 4,
+        "fields": [
+          {
+            "name": "Result",
+            "descriptor_file_offset": "0x1e1b90",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "IsLastPkg",
+            "descriptor_file_offset": "0x1e1c44",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "PropCount",
+            "descriptor_file_offset": "0x1e1cf8",
+            "type_code": 5,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              3,
+              3
+            ],
+            "nested_meta": null,
+            "reference_field": "Props",
+            "selector": null
+          },
+          {
+            "name": "Props",
+            "descriptor_file_offset": "0x1e1dac",
+            "type_code": 1,
+            "size_slots_4_5": [
+              350,
+              350
+            ],
+            "element_size_slots_6_7": [
+              70,
+              70
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 5,
+            "offset_slots_10_11": [
+              5,
+              5
+            ],
+            "nested_meta": "PropInfo",
+            "reference_field": "PropCount",
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "ZN2C_BATCH_MAXPROPCOUNT",
+              "value": 5,
+              "hex": "0x5",
+              "record_file_offset": "0x17cd4",
+              "index": 6076
+            }
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_ReqChangeRoleName",
+        "header_file_offset": "0x1f49dc",
+        "name_table_file_offset": "0x1c1fc",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          1,
+          32
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "NewNickName",
+            "descriptor_file_offset": "0x1f4a94",
+            "type_code": 21,
+            "size_slots_4_5": [
+              32,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": 32,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null,
+            "string_capacity_macro": {
+              "name": "MAX_NICK_NAME_LEN",
+              "value": 32,
+              "hex": "0x20",
+              "record_file_offset": "0x9344",
+              "index": 2339
+            }
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_ResChangeRoleName",
+        "header_file_offset": "0x1f4b48",
+        "name_table_file_offset": "0x1eaec",
+        "header_record_size_slots_5_41": [
+          544,
+          544
+        ],
+        "header_size_slots_6_7": [
+          3,
+          34
+        ],
+        "total_field_count": 2,
+        "exported_field_count": 2,
+        "fields": [
+          {
+            "name": "Result",
+            "descriptor_file_offset": "0x1f4c00",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "NewNickName",
+            "descriptor_file_offset": "0x1f4cb4",
+            "type_code": 21,
+            "size_slots_4_5": [
+              32,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": 32,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null,
+            "string_capacity_macro": {
+              "name": "MAX_NICK_NAME_LEN",
+              "value": 32,
+              "hex": "0x20",
+              "record_file_offset": "0x9344",
+              "index": 2339
+            }
+          }
+        ]
+      },
+      {
+        "name": "PlayerPreference",
+        "header_file_offset": "0xdab60",
+        "name_table_file_offset": "0x1dc6c",
+        "header_record_size_slots_5_41": [
+          1624,
+          1624
+        ],
+        "header_size_slots_6_7": [
+          1458,
+          1458
+        ],
+        "total_field_count": 8,
+        "exported_field_count": 8,
+        "fields": [
+          {
+            "name": "CrcValue",
+            "descriptor_file_offset": "0xdac18",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "DefaultClassicModeIndex",
+            "descriptor_file_offset": "0xdaccc",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "DefaultZMModeIndex",
+            "descriptor_file_offset": "0xdad80",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              5,
+              5
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ModeCount",
+            "descriptor_file_offset": "0xdae34",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              6,
+              6
+            ],
+            "nested_meta": null,
+            "reference_field": "ModeParams",
+            "selector": null
+          },
+          {
+            "name": "ModeParams",
+            "descriptor_file_offset": "0xdaee8",
+            "type_code": 1,
+            "size_slots_4_5": [
+              750,
+              750
+            ],
+            "element_size_slots_6_7": [
+              15,
+              15
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 50,
+            "offset_slots_10_11": [
+              7,
+              7
+            ],
+            "nested_meta": "ModeParam",
+            "reference_field": "ModeCount",
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "ID_MAX_MODEPARAM_COUNT",
+              "value": 50,
+              "hex": "0x32",
+              "record_file_offset": "0x10694",
+              "index": 4184
+            }
+          },
+          {
+            "name": "MapCount",
+            "descriptor_file_offset": "0xdaf9c",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              757,
+              757
+            ],
+            "nested_meta": null,
+            "reference_field": "MapFlags",
+            "selector": null
+          },
+          {
+            "name": "MapIndexs",
+            "descriptor_file_offset": "0xdb050",
+            "type_code": 3,
+            "size_slots_4_5": [
+              350,
+              350
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 350,
+            "offset_slots_10_11": [
+              758,
+              758
+            ],
+            "nested_meta": null,
+            "reference_field": "MapCount",
+            "selector": null
+          },
+          {
+            "name": "MapFlags",
+            "descriptor_file_offset": "0xdb104",
+            "type_code": 3,
+            "size_slots_4_5": [
+              350,
+              350
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 350,
+            "offset_slots_10_11": [
+              1108,
+              1108
+            ],
+            "nested_meta": null,
+            "reference_field": "MapCount",
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "PlayerSystemSettingData",
+        "header_file_offset": "0xdb3d8",
+        "name_table_file_offset": "0x1dd04",
+        "header_record_size_slots_5_41": [
+          544,
+          544
+        ],
+        "header_size_slots_6_7": [
+          2,
+          2
+        ],
+        "total_field_count": 2,
+        "exported_field_count": 2,
+        "fields": [
+          {
+            "name": "KeyType",
+            "descriptor_file_offset": "0xdb490",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "KeyCommandType",
+            "descriptor_file_offset": "0xdb544",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              1,
+              1
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "PropInfo",
+        "header_file_offset": "0x2aa7c",
+        "name_table_file_offset": "0x1dda4",
+        "header_record_size_slots_5_41": [
+          2704,
+          2704
+        ],
+        "header_size_slots_6_7": [
+          70,
+          70
+        ],
+        "total_field_count": 14,
+        "exported_field_count": 14,
+        "fields": [
+          {
+            "name": "Uin",
+            "descriptor_file_offset": "0x2ab34",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "GID",
+            "descriptor_file_offset": "0x2abe8",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ItemId",
+            "descriptor_file_offset": "0x2ac9c",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              16,
+              16
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ResFlag",
+            "descriptor_file_offset": "0x2ad50",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              20,
+              20
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "StackNum",
+            "descriptor_file_offset": "0x2ae04",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              28,
+              28
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ObtainTime",
+            "descriptor_file_offset": "0x2aeb8",
+            "type_code": 11,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              32,
+              32
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Validity",
+            "descriptor_file_offset": "0x2af6c",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              40,
+              40
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Durability",
+            "descriptor_file_offset": "0x2b020",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              44,
+              44
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "DurabilityMax",
+            "descriptor_file_offset": "0x2b0d4",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              48,
+              48
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "OwnerGID",
+            "descriptor_file_offset": "0x2b188",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              52,
+              52
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Location",
+            "descriptor_file_offset": "0x2b23c",
+            "type_code": 2,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              60,
+              60
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "AvailbilityHour",
+            "descriptor_file_offset": "0x2b2f0",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              61,
+              61
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "UseHour",
+            "descriptor_file_offset": "0x2b3a4",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              65,
+              65
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "GainType",
+            "descriptor_file_offset": "0x2b458",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              69,
+              69
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "PlayerInfo",
+        "header_file_offset": "0x24c18",
+        "name_table_file_offset": "0x1dbec",
+        "header_record_size_slots_5_41": [
+          14224,
+          14224
+        ],
+        "header_size_slots_6_7": [
+          1379,
+          1410
+        ],
+        "total_field_count": 78,
+        "exported_field_count": 78,
+        "fields": [
+          {
+            "name": "Uin",
+            "descriptor_file_offset": "0x24cd0",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "VerifyKey",
+            "descriptor_file_offset": "0x24d84",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "NickName",
+            "descriptor_file_offset": "0x24e38",
+            "type_code": 21,
+            "size_slots_4_5": [
+              32,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": 32,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              12,
+              12
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null,
+            "string_capacity_macro": {
+              "name": "MAX_NICK_NAME_LEN",
+              "value": 32,
+              "hex": "0x20",
+              "record_file_offset": "0x9344",
+              "index": 2339
+            }
+          },
+          {
+            "name": "TGamePoint",
+            "descriptor_file_offset": "0x24eec",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              13,
+              44
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "GoldPoint",
+            "descriptor_file_offset": "0x24fa0",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              17,
+              48
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "MonthPoint",
+            "descriptor_file_offset": "0x25054",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              21,
+              52
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "HappyPoint",
+            "descriptor_file_offset": "0x25108",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              25,
+              56
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LastAddHappyPointTime",
+            "descriptor_file_offset": "0x251bc",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              29,
+              60
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "TodayAddCount",
+            "descriptor_file_offset": "0x25270",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              33,
+              64
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Experience",
+            "descriptor_file_offset": "0x25324",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              35,
+              66
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "EvolutionPoint",
+            "descriptor_file_offset": "0x253d8",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              39,
+              70
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "EvolutionGameTime",
+            "descriptor_file_offset": "0x2548c",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              43,
+              74
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LastLoginTime",
+            "descriptor_file_offset": "0x25540",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              47,
+              78
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CreateTime",
+            "descriptor_file_offset": "0x255f4",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              55,
+              86
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CurRoleGID",
+            "descriptor_file_offset": "0x256a8",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              63,
+              94
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "RoleType",
+            "descriptor_file_offset": "0x2575c",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              71,
+              102
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ClanID",
+            "descriptor_file_offset": "0x25810",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              79,
+              110
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CardId",
+            "descriptor_file_offset": "0x258c4",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              87,
+              118
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "AchScore",
+            "descriptor_file_offset": "0x25978",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              91,
+              122
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "SkillScore",
+            "descriptor_file_offset": "0x25a2c",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              95,
+              126
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ZombieSkillScore",
+            "descriptor_file_offset": "0x25ae0",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              99,
+              130
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "PrivacyFlags",
+            "descriptor_file_offset": "0x25b94",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              103,
+              134
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "FreezeEndDate",
+            "descriptor_file_offset": "0x25c48",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              105,
+              136
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "BannedEndDate",
+            "descriptor_file_offset": "0x25cfc",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              113,
+              144
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "TotalOnlineTime",
+            "descriptor_file_offset": "0x25db0",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              121,
+              152
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LevelUpTime",
+            "descriptor_file_offset": "0x25e64",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              125,
+              156
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Level",
+            "descriptor_file_offset": "0x25f18",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              129,
+              160
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "TalentLevel",
+            "descriptor_file_offset": "0x25fcc",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              133,
+              164
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "QuitClanDate",
+            "descriptor_file_offset": "0x26080",
+            "type_code": 7,
+            "size_slots_4_5": [
+              12,
+              12
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 3,
+            "offset_slots_10_11": [
+              135,
+              166
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "AchAwardFlags",
+            "descriptor_file_offset": "0x26134",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              147,
+              178
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LastLogoutTime",
+            "descriptor_file_offset": "0x261e8",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              151,
+              182
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "PMProtectScore",
+            "descriptor_file_offset": "0x2629c",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              159,
+              190
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "VoteStaus",
+            "descriptor_file_offset": "0x26350",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              167,
+              198
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LoginDayCtn",
+            "descriptor_file_offset": "0x26404",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              175,
+              206
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CommonFlag",
+            "descriptor_file_offset": "0x264b8",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              179,
+              210
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "FreezeReason",
+            "descriptor_file_offset": "0x2656c",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              183,
+              214
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "BannedReason",
+            "descriptor_file_offset": "0x26620",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              185,
+              216
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LoginDayCtnInBar",
+            "descriptor_file_offset": "0x266d4",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              187,
+              218
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ActiveDaysPerMonth",
+            "descriptor_file_offset": "0x26788",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              191,
+              222
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LastClearMPTime",
+            "descriptor_file_offset": "0x2683c",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              195,
+              226
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "SVRewardCard",
+            "descriptor_file_offset": "0x268f0",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              203,
+              234
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "IFRewardCard",
+            "descriptor_file_offset": "0x269a4",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              205,
+              236
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LDRewardCard",
+            "descriptor_file_offset": "0x26a58",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              207,
+              238
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ATDRewardCard",
+            "descriptor_file_offset": "0x26b0c",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              209,
+              240
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LastClearCardTime",
+            "descriptor_file_offset": "0x26bc0",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              211,
+              242
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ActvStatID",
+            "descriptor_file_offset": "0x26c74",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              219,
+              250
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ActvStatFlag",
+            "descriptor_file_offset": "0x26d28",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              223,
+              254
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "NewTipsCount",
+            "descriptor_file_offset": "0x26ddc",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              227,
+              258
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "BackTipsCount",
+            "descriptor_file_offset": "0x26e90",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              229,
+              260
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "TipsTime",
+            "descriptor_file_offset": "0x26f44",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              231,
+              262
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "OfflineStolenSnsCard",
+            "descriptor_file_offset": "0x26ff8",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              239,
+              270
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "SnsCardStartTime",
+            "descriptor_file_offset": "0x270ac",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              241,
+              272
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "MonthLimitCommodityInfoClearTime",
+            "descriptor_file_offset": "0x27160",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              249,
+              280
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "DailyNoticeData",
+            "descriptor_file_offset": "0x27214",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              257,
+              288
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LotteryShotCount",
+            "descriptor_file_offset": "0x272c8",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              261,
+              292
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "StarPoint",
+            "descriptor_file_offset": "0x2737c",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              265,
+              296
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "StarAward",
+            "descriptor_file_offset": "0x27430",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              267,
+              298
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LastClearStarTime",
+            "descriptor_file_offset": "0x274e4",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              269,
+              300
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "SpcChestDrawTimes",
+            "descriptor_file_offset": "0x27598",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              277,
+              308
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LoginDaysMonth",
+            "descriptor_file_offset": "0x2764c",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              281,
+              312
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "LoginDaysLastMonth",
+            "descriptor_file_offset": "0x27700",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              285,
+              316
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "MechaPoint",
+            "descriptor_file_offset": "0x277b4",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              289,
+              320
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "VipPVEPoint",
+            "descriptor_file_offset": "0x27868",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              297,
+              328
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "VipPVEEndTime",
+            "descriptor_file_offset": "0x2791c",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              301,
+              332
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "VipPVPPoint",
+            "descriptor_file_offset": "0x279d0",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              305,
+              336
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "VipPVPEndTime",
+            "descriptor_file_offset": "0x27a84",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              309,
+              340
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CommonFlag2",
+            "descriptor_file_offset": "0x27b38",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              313,
+              344
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ChatRoomRegion",
+            "descriptor_file_offset": "0x27bec",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              317,
+              348
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CreditStar",
+            "descriptor_file_offset": "0x27ca0",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              319,
+              350
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "KunTaoEvolutionLevel",
+            "descriptor_file_offset": "0x27d54",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              321,
+              352
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "NewSkillScore",
+            "descriptor_file_offset": "0x27e08",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              323,
+              354
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "BraveSignetEndTime",
+            "descriptor_file_offset": "0x27ebc",
+            "type_code": 15,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              327,
+              358
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "GongMingFlag",
+            "descriptor_file_offset": "0x27f70",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              335,
+              366
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CancellationFlag",
+            "descriptor_file_offset": "0x28024",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              339,
+              370
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CommonFlag3",
+            "descriptor_file_offset": "0x280d8",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              343,
+              374
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "DepositExpansionCapacity",
+            "descriptor_file_offset": "0x2818c",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              347,
+              378
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "PlayerGeniusFlag",
+            "descriptor_file_offset": "0x28240",
+            "type_code": 1,
+            "size_slots_4_5": [
+              1024,
+              1024
+            ],
+            "element_size_slots_6_7": [
+              1024,
+              1024
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              351,
+              382
+            ],
+            "nested_meta": "PlayerGeniusFlagDb",
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CreditScore",
+            "descriptor_file_offset": "0x282f4",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              1375,
+              1406
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZoneChannelListInfo",
+        "header_file_offset": "0xd9418",
+        "name_table_file_offset": "0x1f654",
+        "header_record_size_slots_5_41": [
+          904,
+          904
+        ],
+        "header_size_slots_6_7": [
+          3144,
+          7034
+        ],
+        "total_field_count": 4,
+        "exported_field_count": 4,
+        "fields": [
+          {
+            "name": "IsFirstPkg",
+            "descriptor_file_offset": "0xd94d0",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "IsLastPkg",
+            "descriptor_file_offset": "0xd9584",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              1,
+              1
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ZoneCount",
+            "descriptor_file_offset": "0xd9638",
+            "type_code": 5,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": "Zones",
+            "selector": null
+          },
+          {
+            "name": "Zones",
+            "descriptor_file_offset": "0xd96ec",
+            "type_code": 1,
+            "size_slots_4_5": [
+              7030,
+              3140
+            ],
+            "element_size_slots_6_7": [
+              1406,
+              628
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 5,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": "ZoneChannelInfo",
+            "reference_field": "ZoneCount",
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "ID_MAX_ZONECHANNEL_LIST_COUNT",
+              "value": 5,
+              "hex": "0x5",
+              "record_file_offset": "0x10544",
+              "index": 4163
+            }
+          }
+        ]
+      },
+      {
+        "name": "ModeParam",
+        "header_file_offset": "0xda724",
+        "name_table_file_offset": "0x1d68c",
+        "header_record_size_slots_5_41": [
+          1084,
+          1084
+        ],
+        "header_size_slots_6_7": [
+          15,
+          15
+        ],
+        "total_field_count": 5,
+        "exported_field_count": 5,
+        "fields": [
+          {
+            "name": "ModeId",
+            "descriptor_file_offset": "0xda7dc",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "SubModeId",
+            "descriptor_file_offset": "0xda890",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "DefaultMapIndex",
+            "descriptor_file_offset": "0xda944",
+            "type_code": 3,
+            "size_slots_4_5": [
+              1,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ModeFlag",
+            "descriptor_file_offset": "0xda9f8",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              9,
+              9
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "MatchRuleBits",
+            "descriptor_file_offset": "0xdaaac",
+            "type_code": 3,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 4,
+            "offset_slots_10_11": [
+              11,
+              11
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "ID_MATCHRULE_COUNT",
+              "value": 4,
+              "hex": "0x4",
+              "record_file_offset": "0x10684",
+              "index": 4183
+            }
+          }
+        ]
+      },
+      {
+        "name": "PlayerGeniusFlagDb",
+        "header_file_offset": "0x24aac",
+        "name_table_file_offset": "0x1dbb4",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          1024,
+          1024
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "groups",
+            "descriptor_file_offset": "0x24b64",
+            "type_code": 1,
+            "size_slots_4_5": [
+              1024,
+              1024
+            ],
+            "element_size_slots_6_7": [
+              128,
+              128
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 8,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "PlayerGeniusFlagGroup",
+            "reference_field": null,
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "PLAYER_GENIUS_GROUP_NUM",
+              "value": 8,
+              "hex": "0x8",
+              "record_file_offset": "0xa964",
+              "index": 2693
+            }
+          }
+        ]
+      },
+      {
+        "name": "ZoneChannelInfo",
+        "header_file_offset": "0xd8dc0",
+        "name_table_file_offset": "0x1f64c",
+        "header_record_size_slots_5_41": [
+          1624,
+          1624
+        ],
+        "header_size_slots_6_7": [
+          628,
+          1406
+        ],
+        "total_field_count": 8,
+        "exported_field_count": 8,
+        "fields": [
+          {
+            "name": "MainChannelId",
+            "descriptor_file_offset": "0xd8e78",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Ipv4",
+            "descriptor_file_offset": "0xd8f2c",
+            "type_code": 19,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Domain",
+            "descriptor_file_offset": "0xd8fe0",
+            "type_code": 21,
+            "size_slots_4_5": [
+              128,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": 128,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null,
+            "string_capacity_macro": {
+              "name": "MAX_DOMAIN_NAME_LEN",
+              "value": 128,
+              "hex": "0x80",
+              "record_file_offset": "0xa054",
+              "index": 2548
+            }
+          },
+          {
+            "name": "Port",
+            "descriptor_file_offset": "0xd9094",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              9,
+              136
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "ChannelCount",
+            "descriptor_file_offset": "0xd9148",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              11,
+              138
+            ],
+            "nested_meta": null,
+            "reference_field": "Channels",
+            "selector": null
+          },
+          {
+            "name": "Channels",
+            "descriptor_file_offset": "0xd91fc",
+            "type_code": 1,
+            "size_slots_4_5": [
+              960,
+              464
+            ],
+            "element_size_slots_6_7": [
+              60,
+              29
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 16,
+            "offset_slots_10_11": [
+              15,
+              142
+            ],
+            "nested_meta": "ChannelInfo",
+            "reference_field": "ChannelCount",
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "MAX_CHANNEL_NUM_PER_ZONE",
+              "value": 16,
+              "hex": "0x10",
+              "record_file_offset": "0x9f94",
+              "index": 2536
+            }
+          },
+          {
+            "name": "FalseChnlCount",
+            "descriptor_file_offset": "0xd92b0",
+            "type_code": 7,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              479,
+              1102
+            ],
+            "nested_meta": null,
+            "reference_field": "FalseChnls",
+            "selector": null
+          },
+          {
+            "name": "FalseChnls",
+            "descriptor_file_offset": "0xd9364",
+            "type_code": 1,
+            "size_slots_4_5": [
+              300,
+              145
+            ],
+            "element_size_slots_6_7": [
+              60,
+              29
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 5,
+            "offset_slots_10_11": [
+              483,
+              1106
+            ],
+            "nested_meta": "ChannelInfo",
+            "reference_field": "FalseChnlCount",
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "MAX_FALSECHNL_NUM_PER_ZONE",
+              "value": 5,
+              "hex": "0x5",
+              "record_file_offset": "0x9fa4",
+              "index": 2537
+            }
+          }
+        ]
+      },
+      {
+        "name": "PlayerGeniusFlagGroup",
+        "header_file_offset": "0x24940",
+        "name_table_file_offset": "0x1dbbc",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          128,
+          128
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "datas",
+            "descriptor_file_offset": "0x249f8",
+            "type_code": 3,
+            "size_slots_4_5": [
+              128,
+              128
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 128,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "PLAYER_GENIUS_DATA_NUM",
+              "value": 128,
+              "hex": "0x80",
+              "record_file_offset": "0xa974",
+              "index": 2694
+            }
+          }
+        ]
+      },
+      {
+        "name": "ChannelInfo",
+        "header_file_offset": "0xd8768",
+        "name_table_file_offset": "0x1cf34",
+        "header_record_size_slots_5_41": [
+          1624,
+          1624
+        ],
+        "header_size_slots_6_7": [
+          29,
+          60
+        ],
+        "total_field_count": 8,
+        "exported_field_count": 8,
+        "fields": [
+          {
+            "name": "Id",
+            "descriptor_file_offset": "0xd8820",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Name",
+            "descriptor_file_offset": "0xd88d4",
+            "type_code": 21,
+            "size_slots_4_5": [
+              32,
+              1
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": 32,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null,
+            "string_capacity_macro": {
+              "name": "MAX_CHANNEL_NAME_LEN",
+              "value": 32,
+              "hex": "0x20",
+              "record_file_offset": "0x9954",
+              "index": 2436
+            }
+          },
+          {
+            "name": "PlayerCapacity",
+            "descriptor_file_offset": "0xd8988",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              5,
+              36
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "PlayerNum",
+            "descriptor_file_offset": "0xd8a3c",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              9,
+              40
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "PMPlayerNum",
+            "descriptor_file_offset": "0xd8af0",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              13,
+              44
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "CMPlayerNum",
+            "descriptor_file_offset": "0xd8ba4",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              17,
+              48
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "NMPlayerNum",
+            "descriptor_file_offset": "0xd8c58",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              21,
+              52
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "RAPlayerNum",
+            "descriptor_file_offset": "0xd8d0c",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              25,
+              56
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      }
+    ]
+  },
+  "limits": [
+    "Current file metadata only. No Zone request/response or login sequence was executed.",
+    "Primitive signedness, strings, endian, optional-field conditions and actual encoded lengths need current pack/unpack and client consumer proof.",
+    "offset_slots_10_11 and header_size_slots_6_7 are metadata layout slots, not observed wire positions.",
+    "A selected error/success macro is a declaration; call-site routing to each response still requires current consumer evidence.",
+    "Django field mapping is documented separately and is not a deployed native adapter."
+  ]
+}

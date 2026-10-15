@@ -1,0 +1,23 @@
+test_native_contract_routes_and_acknowledgement_scope (tests.test_node_http.NodeHttpTests.test_native_contract_routes_and_acknowledgement_scope)
+节点可重放就绪/事件并确认自己的通知；玩家不能替代节点提交或确认。 ... ok
+test_worker_audit_failure_rolls_back_and_restart_resumes_once (tests.test_operations.OperationsTests.test_worker_audit_failure_rolls_back_and_restart_resumes_once)
+子项审计失败必须同时回滚资产和任务结果，重启后可以安全继续该子项。 ... ok
+test_disconnect_during_boss_keeps_other_player_and_no_reward_for_leaver (tests.test_pve.PveTests.test_disconnect_during_boss_keeps_other_player_and_no_reward_for_leaver)
+Boss 战中一人掉线不会终止另一人对局，退出者不获得最终奖励。 ... ok
+test_ten_synthetic_rounds_have_new_entities_events_and_unique_settlements (tests.test_pve.PveTests.test_ten_synthetic_rounds_have_new_entities_events_and_unique_settlements)
+同一对账号连续十局，上一局状态不进入新局；这是合成回归，不是实机十局。 ... ok
+test_seed_groups_keep_whitelisted_rows_and_reject_arbitrary_sql (tests.test_catalog_import_mysql.CatalogImportParsingTests.test_seed_groups_keep_whitelisted_rows_and_reject_arbitrary_sql)
+相邻同列 INSERT 可合并，额外命令及过大单行均在发送数据库前拒绝。 ... ok
+test_semicolon_inside_quoted_note_is_not_a_statement_boundary (tests.test_catalog_import_mysql.CatalogImportParsingTests.test_semicolon_inside_quoted_note_is_not_a_statement_boundary)
+真实首轮失败中的说明字符串必须保持为一个 SELECT。 ... ok
+test_copy_restore_and_bad_source_preserve_original_and_good_target (tests.test_workspace.WorkspaceTests.test_copy_restore_and_bad_source_preserve_original_and_good_target)
+副本修改后从摘要基线恢复；来源失配时保留目标及原件失败证据。 ... ok
+test_matrix_retains_unknown_maps_and_never_enables_static_candidates (tests.test_workspace.WorkspaceTests.test_matrix_retains_unknown_maps_and_never_enables_static_candidates)
+主图存在只提供静态线索，未知图和难度继续进入分母且不能启用。 ... ok
+test_traversal_and_hardlinks_are_rejected (tests.test_workspace.WorkspaceTests.test_traversal_and_hardlinks_are_rejected)
+目录穿越和外部硬链接不能成为已验证工作副本，避免副本写入波及原件。 ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 139.501s
+
+OK

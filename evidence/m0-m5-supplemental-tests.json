@@ -1,0 +1,16 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 4,
+  "passed": [
+    "tests.test_node_http.NodeHttpTests.test_native_contract_routes_and_acknowledgement_scope",
+    "tests.test_operations.OperationsTests.test_worker_audit_failure_rolls_back_and_restart_resumes_once",
+    "tests.test_pve.PveTests.test_disconnect_during_boss_keeps_other_player_and_no_reward_for_leaver",
+    "tests.test_pve.PveTests.test_ten_synthetic_rounds_have_new_entities_events_and_unique_settlements"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 38.531
+}

@@ -1,0 +1,154 @@
+{
+  "kind": "CURRENT_PLAYER_DEFINE_EMPTY_RESPONSE_NATIVE_GOLDEN",
+  "profile": "cn2020-player-define-empty-research-v1",
+  "scope": "Offline current DLL/TDR serialization; no response sent, no nonempty customization blob, no player-info fabrication.",
+  "component_sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228",
+  "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+  "consumer_evidence": "evidence/aliyun-native-playerinfo-consumer-static.json (boot23_define_info_consumer)",
+  "request": {
+    "source": "Owned boot22 actual A204",
+    "bytes": 8,
+    "sha256": "5a238cd4b51f13f21306b4c45b14bbdb33d1b40440ec0e64f354870eb0826e67",
+    "schema": "C2ZNPkgHead",
+    "scope": "C2ZNPkgHead only; no A204 union body schema",
+    "exact_roundtrip": true
+  },
+  "response": {
+    "profile": "cn2020-player-define-empty-research-v1",
+    "bytes": 14,
+    "body_length": 6,
+    "sha256": "5568769e481a4c956bc5376f80cbb7c4614c8a311f3175f15275fb288e113080",
+    "roundtrip_equal": true,
+    "decoded_host_equal": true,
+    "header_lengths_equal": true,
+    "standalone_body_equal": true,
+    "network_reply_sent": false,
+    "nonempty_data_constructed": false,
+    "file": "player-define-empty-response.bin"
+  },
+  "schemas": {
+    "package": "C2ZNPkg",
+    "package_host_bytes": 1025331,
+    "body": "ZN2C_ResGetPlayerDefineInfo",
+    "body_host_bytes": 3206
+  },
+  "research_fields": {
+    "Result": "0x8100",
+    "DataLen": 0,
+    "Data": []
+  },
+  "wire_layout": [
+    {
+      "offset": 0,
+      "bytes": 8,
+      "field": "Magic/Cmd/HeadLen/BodyLen",
+      "encoding": "BE16 3243,A205,8,6"
+    },
+    {
+      "offset": 8,
+      "bytes": 2,
+      "field": "Result",
+      "encoding": "BE16 8100"
+    },
+    {
+      "offset": 10,
+      "bytes": 4,
+      "field": "DataLen",
+      "encoding": "BE32 0; no Data elements"
+    }
+  ],
+  "checks": [
+    {
+      "step": "vtable_slot",
+      "slot": "0x50",
+      "function_rva": "0x29530"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x54",
+      "function_rva": "0x29670"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x58",
+      "function_rva": "0x29560"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x5C",
+      "function_rva": "0x294C0"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x60",
+      "function_rva": "0x294E0"
+    },
+    {
+      "step": "load_metadata",
+      "return_code": 0,
+      "canaries": true
+    },
+    {
+      "step": "captured_request_unpack",
+      "return_code": 0,
+      "input_length_before": 8,
+      "output_capacity": 8,
+      "output_length": 8,
+      "input_length_after": 8,
+      "canaries": true
+    },
+    {
+      "step": "captured_request_pack",
+      "return_code": 0,
+      "input_length_before": 8,
+      "output_capacity": 32768,
+      "output_length": 8,
+      "input_length_after": 8,
+      "canaries": true
+    },
+    {
+      "step": "define_empty_body_pack",
+      "return_code": 0,
+      "input_length_before": 3206,
+      "output_capacity": 32768,
+      "output_length": 6,
+      "input_length_after": 3206,
+      "canaries": true
+    },
+    {
+      "step": "define_empty_response_pack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 14,
+      "input_length_after": 1025331,
+      "canaries": true
+    },
+    {
+      "step": "define_empty_response_unpack",
+      "return_code": 0,
+      "input_length_before": 14,
+      "output_capacity": 1025331,
+      "output_length": 1025331,
+      "input_length_after": 14,
+      "canaries": true
+    },
+    {
+      "step": "define_empty_response_repack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 14,
+      "input_length_after": 1025331,
+      "canaries": true
+    }
+  ],
+  "passed": true,
+  "job_cleanup_verified": true,
+  "timeout": false,
+  "boundaries": [
+    "This asserts no custom player data for the isolated research session. It is not a recovered production default blob.",
+    "Current empty-data completion branch is proven statically; actual A205 game consumption awaits parent probe.",
+    "A005 PlayerInfo, role asset definitions, inventory, callback gates and lobby remain separate unresolved work."
+  ]
+}

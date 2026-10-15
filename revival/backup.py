@@ -80,7 +80,15 @@ def backup(database, destination):
                     for name, model in TABLE_MODELS.items():
                         columns = ','.join(f'`{column}`' for column in column_map(model))
                         cursor.execute(f'SELECT {columns} FROM `{name}`')
-                        rows = sorted(json.dumps(row,ensure_ascii=False,sort_keys=True,separators=(',',':')) for row in cursor.fetchall())
+                        # ORM 把 MySQL tinyint(1) 转为 bool，原生游标返回 int；用模型相同转换后再对账。
+                        # 不放宽字段/行内容比较，避免含真实启动票据时出现 false 与 0 的伪差异。
+                        values = cursor.fetchall()
+                        booleans = [field.column for field in model._meta.concrete_fields if field.get_internal_type() == 'BooleanField']
+                        for row in values:
+                            for column in booleans:
+                                if row[column] is not None:
+                                    row[column] = bool(row[column])
+                        rows = sorted(json.dumps(row,ensure_ascii=False,sort_keys=True,separators=(',',':')) for row in values)
                         restored[name] = {'count':len(rows),'sha256':hashlib.sha256('\n'.join(rows).encode()).hexdigest()}
             if restored != before:
                 raise RuntimeError('Restored backup differs from the source snapshot')

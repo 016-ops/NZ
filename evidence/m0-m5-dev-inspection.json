@@ -1,0 +1,26 @@
+{
+  "kind": "DEV_READ_ONLY_INSPECTION",
+  "ssh_host_key_sha256": "Iuxqn+hqePsRr5jJkOKRcugjhAjd5nuK/VI9+m1iwwU",
+  "host_key_trust": "FIRST_CONNECTION_RECORDED_TOFU",
+  "exit_code": 0,
+  "inspection": {
+    "system": "Linux",
+    "release": "5.15.0-190-generic",
+    "python": "3.10.12",
+    "uid": 1000,
+    "os_release": "PRETTY_NAME=\"Ubuntu 22.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.5 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy\n",
+    "disk_free": 45768228864,
+    "tools": {
+      "systemctl": "/usr/bin/systemctl",
+      "mysql": null,
+      "mysqldump": null,
+      "gcc": "/usr/bin/gcc",
+      "pkg-config": null,
+      "apt-get": "/usr/bin/apt-get",
+      "dnf": null
+    },
+    "project_exists": false,
+    "units": []
+  },
+  "error": null
+}

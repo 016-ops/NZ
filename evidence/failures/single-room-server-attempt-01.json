@@ -1,0 +1,16 @@
+{
+  "kind": "USER_PROVIDED_SINGLE_ROOM_SERVER_READ_ONLY_INSPECTION",
+  "date": "2026-10-15",
+  "source_file": "房间服务器配置.txt",
+  "server_mutations": 0,
+  "services_restarted": 0,
+  "credentials_published": false,
+  "connection_verified": false,
+  "requested_topology": {
+    "selectable_zone_entries": 1,
+    "room_nodes": 1,
+    "multiple_isolated_rooms_per_node_retained": true
+  },
+  "error_type": "NoValidConnectionsError",
+  "inspection_succeeded": false
+}

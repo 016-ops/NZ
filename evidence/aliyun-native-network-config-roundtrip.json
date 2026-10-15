@@ -1,0 +1,9 @@
+{
+  "kind": "CURRENT_GEONET_CONFIG_ROUNDTRIP",
+  "only_four_network_fields_changed": true,
+  "authentication_and_other_fields_preserved": true,
+  "invalid_ports_rejected": true,
+  "wrong_sample_rejected": true,
+  "client_files_written": 0,
+  "original_file_unchanged": true
+}

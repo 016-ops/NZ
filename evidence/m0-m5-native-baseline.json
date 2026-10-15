@@ -1,0 +1,195 @@
+{
+  "kind": "ACTUAL_CURRENT_CLIENT_BASELINE_AND_STARTUP_NOT_PLAYABLE",
+  "files": 17730,
+  "bytes": 104215527790,
+  "independent_copy": true,
+  "post_probe_full_hash_verification": "VERIFIED",
+  "original_write_operations": 0,
+  "win64_entry_entirely_zero_filled": true,
+  "probes": [
+    {
+      "probe": "native-win32-01",
+      "kind": "CURRENT_CLIENT_NATIVE_PROBE",
+      "entry_sha256": "dec50155fa028832760dcde17e2a4341a65b78fc2e1432f75860aae8648f9407",
+      "command": [
+        "TGame",
+        "server",
+        "SV-Maya_3_Main?game=PVEGame.TGSVGame",
+        "-unattended",
+        "-nosplash",
+        "-nomoviestartup",
+        "-log",
+        "-FORCELOGFLUSH"
+      ],
+      "pe": {
+        "architecture": "x86",
+        "imports": [
+          "TGameBase.dll"
+        ]
+      },
+      "map_loaded_verified": false,
+      "spawn_verified": false,
+      "network_ready_verified": false,
+      "retail_ready": false,
+      "original_client_writes": 0,
+      "start_error": {
+        "winerror": 740,
+        "errno": 22,
+        "message": "[WinError 740] 请求的操作需要提升。"
+      },
+      "seconds": 0.125,
+      "changed_files": [],
+      "conclusion": "NATIVE_RUNTIME_NOT_VERIFIED"
+    },
+    {
+      "probe": "native-win32-invoker-01",
+      "kind": "CURRENT_CLIENT_NATIVE_PROBE",
+      "entry_sha256": "dec50155fa028832760dcde17e2a4341a65b78fc2e1432f75860aae8648f9407",
+      "command": [
+        "TGame",
+        "server",
+        "SV-Maya_3_Main?game=PVEGame.TGSVGame",
+        "-unattended",
+        "-nosplash",
+        "-nomoviestartup",
+        "-log",
+        "-FORCELOGFLUSH"
+      ],
+      "execution_context": "RUN_AS_INVOKER",
+      "map_loaded_verified": false,
+      "spawn_verified": false,
+      "network_ready_verified": false,
+      "retail_ready": false,
+      "original_client_writes": 0,
+      "pe": {
+        "architecture": "x86",
+        "imports": [
+          "TGameBase.dll"
+        ]
+      },
+      "exit_code": 3221225595,
+      "timed_out": false,
+      "seconds": 9.843,
+      "changed_files": [],
+      "conclusion": "NATIVE_RUNTIME_NOT_VERIFIED"
+    },
+    {
+      "probe": "native-win32-invoker-02",
+      "kind": "CURRENT_CLIENT_NATIVE_PROBE",
+      "entry_sha256": "dec50155fa028832760dcde17e2a4341a65b78fc2e1432f75860aae8648f9407",
+      "command": [
+        "TGame",
+        "server",
+        "SV-Maya_3_Main?game=PVEGame.TGSVGame",
+        "-unattended",
+        "-nosplash",
+        "-nomoviestartup",
+        "-log",
+        "-FORCELOGFLUSH"
+      ],
+      "execution_context": "RUN_AS_INVOKER",
+      "map_loaded_verified": false,
+      "spawn_verified": false,
+      "network_ready_verified": false,
+      "retail_ready": false,
+      "original_client_writes": 0,
+      "pe": {
+        "architecture": "x86",
+        "imports": [
+          "TGameBase.dll"
+        ]
+      },
+      "exit_code": 3221225595,
+      "timed_out": false,
+      "seconds": 0.047,
+      "changed_files": [],
+      "conclusion": "NATIVE_RUNTIME_NOT_VERIFIED"
+    },
+    {
+      "probe": "native-win64-02",
+      "kind": "CURRENT_CLIENT_NATIVE_PROBE",
+      "entry_sha256": "2a1478fc06c2810e87d47e97093dbf4dc91657ecc7210daf735cd2d30b56bd57",
+      "command": [
+        "TGame",
+        "server",
+        "SV-Maya_3_Main?game=PVEGame.TGSVGame",
+        "-unattended",
+        "-nosplash",
+        "-nomoviestartup",
+        "-log",
+        "-FORCELOGFLUSH"
+      ],
+      "execution_context": "DEFAULT",
+      "map_loaded_verified": false,
+      "spawn_verified": false,
+      "network_ready_verified": false,
+      "retail_ready": false,
+      "original_client_writes": 0,
+      "image_error": "Not a PE image",
+      "seconds": 0.032,
+      "changed_files": [],
+      "conclusion": "NATIVE_RUNTIME_NOT_VERIFIED"
+    }
+  ],
+  "all_logical_maps": 248,
+  "m5_candidate_clues": [
+    {
+      "map_id": 16,
+      "name": "钢铁森林",
+      "map_name": "Factory_3_Main",
+      "main_resource_status": "MISSING",
+      "difficulty": null,
+      "player_limit": null,
+      "dependency_closure": "UNVERIFIED",
+      "native_loaded": false,
+      "enabled": false
+    },
+    {
+      "map_id": 47,
+      "name": "祭坛",
+      "map_name": "SV-Maya_3_Main",
+      "main_resource_status": "PRESENT_UNVERIFIED",
+      "difficulty": null,
+      "player_limit": null,
+      "dependency_closure": "UNVERIFIED",
+      "native_loaded": false,
+      "enabled": false
+    },
+    {
+      "map_id": 95,
+      "name": "星海虫影",
+      "map_name": "IF2-Factory_83_main",
+      "main_resource_status": "PRESENT_UNVERIFIED",
+      "difficulty": null,
+      "player_limit": null,
+      "dependency_closure": "UNVERIFIED",
+      "native_loaded": false,
+      "enabled": false
+    },
+    {
+      "map_id": 128,
+      "name": "古墓尸变",
+      "map_name": "SV3-Maya_8_Main",
+      "main_resource_status": "MISSING",
+      "difficulty": null,
+      "player_limit": null,
+      "dependency_closure": "UNVERIFIED",
+      "native_loaded": false,
+      "enabled": false
+    },
+    {
+      "map_id": 156,
+      "name": "天际城",
+      "map_name": "SV4-City_15_Main",
+      "main_resource_status": "PRESENT_UNVERIFIED",
+      "difficulty": null,
+      "player_limit": null,
+      "dependency_closure": "UNVERIFIED",
+      "native_loaded": false,
+      "enabled": false
+    }
+  ],
+  "scope_confirmed_complete": false,
+  "single_client_playable_verified": false,
+  "dual_client_verified": false
+}

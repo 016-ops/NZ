@@ -1,0 +1,153 @@
+{
+  "kind": "CURRENT_ZONE_LOGIN_RESPONSE_NATIVE_GOLDEN",
+  "profile": "cn2020-zone-login-success-research-v1",
+  "scope": "Offline fixed-current DLL only; no response sent, no real wallet or role data read or modified.",
+  "consumer_evidence": "evidence/aliyun-native-zone-login-consumer-static.json (boot21_result_branch)",
+  "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+  "component_sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228",
+  "schemas": {
+    "package": "C2ZNPkg",
+    "package_host_bytes": 1025331,
+    "body": "ZN2C_ResLogin",
+    "body_host_bytes": 17953
+  },
+  "research_fields": {
+    "Result": "0x8100",
+    "MainChannelId": 1,
+    "SubChannelId": 1,
+    "ServerTime": 0,
+    "TGamePoint": 0,
+    "GoldPoint": 0,
+    "FreePropCount": 0,
+    "FreeProps": [],
+    "IsNewbie": 0,
+    "AreaId": 0
+  },
+  "compatibility_differences": [
+    "Main/SubChannel1 are explicit single-server research assignments; do not interpret or mirror requestFFFFFFFF.",
+    "ServerTime0 takes current proven skip-conversion branch; no production time contract claimed.",
+    "Zero currencies and free items are isolated probe values, not a projection of the real DEV account wallet/inventory.",
+    "IsNewbie0 and AreaId0 are explicit research values pending role/region rules."
+  ],
+  "wire_layout": [
+    {
+      "offset": 0,
+      "field": "Magic/Cmd/HeadLen/BodyLen",
+      "bytes": 8,
+      "encoding": "BE16 3243,A001,8,33"
+    },
+    {
+      "offset": 8,
+      "field": "Result",
+      "bytes": 2,
+      "encoding": "BE16 8100"
+    },
+    {
+      "offset": 10,
+      "field": "MainChannelId",
+      "bytes": 4,
+      "encoding": "BE32 1"
+    },
+    {
+      "offset": 14,
+      "field": "SubChannelId",
+      "bytes": 4,
+      "encoding": "BE32 1"
+    },
+    {
+      "offset": 18,
+      "field": "ServerTime",
+      "bytes": 8,
+      "encoding": "BE64 0"
+    },
+    {
+      "offset": 26,
+      "field": "TGamePoint",
+      "bytes": 4,
+      "encoding": "BE32 0"
+    },
+    {
+      "offset": 30,
+      "field": "GoldPoint",
+      "bytes": 4,
+      "encoding": "BE32 0"
+    },
+    {
+      "offset": 34,
+      "field": "FreePropCount",
+      "bytes": 2,
+      "encoding": "BE16 0; no FreeProps elements"
+    },
+    {
+      "offset": 36,
+      "field": "IsNewbie",
+      "bytes": 1,
+      "encoding": "U8 0"
+    },
+    {
+      "offset": 37,
+      "field": "AreaId",
+      "bytes": 4,
+      "encoding": "BE32 0"
+    }
+  ],
+  "golden": {
+    "profile": "cn2020-zone-login-success-research-v1",
+    "bytes": 41,
+    "body_length": 33,
+    "sha256": "71c6d9b507ea51733717213d306cc2d587960275fae747474683b89515aafc2c",
+    "roundtrip_equal": true,
+    "decoded_host_equal": true,
+    "header_lengths_equal": true,
+    "standalone_body_equal": true,
+    "network_reply_sent": false,
+    "real_account_assets_used": false,
+    "file": "zone-login-response-research.bin"
+  },
+  "checks": [
+    {
+      "step": "login_response_body_pack",
+      "return_code": 0,
+      "input_length_before": 17953,
+      "output_capacity": 32768,
+      "output_length": 33,
+      "input_length_after": 17953,
+      "canaries": true
+    },
+    {
+      "step": "login_response_pack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 41,
+      "input_length_after": 1025331,
+      "canaries": true
+    },
+    {
+      "step": "login_response_unpack",
+      "return_code": 0,
+      "input_length_before": 41,
+      "output_capacity": 1025331,
+      "output_length": 1025331,
+      "input_length_after": 41,
+      "canaries": true
+    },
+    {
+      "step": "login_response_repack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 41,
+      "input_length_after": 1025331,
+      "canaries": true
+    }
+  ],
+  "passed": true,
+  "job_cleanup_verified": true,
+  "timeout": false,
+  "boundaries": [
+    "Native serialization agreement does not prove actual login, role or lobby success.",
+    "Expected next FF05 is a client anti-bot version notification; do not invent a server success/acknowledgment for it.",
+    "No business rewards, balances or player-asset projection are enabled by this offline probe."
+  ]
+}

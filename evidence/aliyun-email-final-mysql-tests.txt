@@ -1,0 +1,67 @@
+test_rejects_unknown_endpoint_and_plaintext (tests.test_email_verification.AliyunTransport.test_rejects_unknown_endpoint_and_plaintext)
+错误区域或明文端口在任何认证材料发出前被拒绝。 ... ok
+test_tls_single_recipient_and_failure_redaction (tests.test_email_verification.AliyunTransport.test_tls_single_recipient_and_failure_redaction)
+生产路径显式启用主机名和证书验证，连接异常只返回固定码，不含邮件或密码。 ... ok
+test_attempts_expiry_purpose_address_and_resend_persist (tests.test_email_verification.EmailVerification.test_attempts_expiry_purpose_address_and_resend_persist)
+错误次数重建服务后仍保留；目的和地址隔离；重发旧码及过期码均失效。 ... ok
+test_backup_with_boolean_game_session_roundtrips (tests.test_email_verification.EmailVerification.test_backup_with_boolean_game_session_roundtrips)
+有真实布尔列值的启动票据及游戏会话必须能在临时 MySQL 库恢复并逐表一致。 ... ok
+test_concurrent_reset_consumes_once_and_audit_rollback (tests.test_email_verification.EmailVerification.test_concurrent_reset_consumes_once_and_audit_rollback)
+并发恢复只成功一次；审计失败不能留密码/消费半事务，失败后原码仍能重试。 ... ok
+test_concurrent_send_reserves_only_one_quota_slot (tests.test_email_verification.EmailVerification.test_concurrent_send_reserves_only_one_quota_slot)
+两个工作线程同时发码只有一个获准投递，持久冷却不依赖单进程内存。 ... ok
+test_delivery_failure_quota_and_no_plaintext_persistence (tests.test_email_verification.EmailVerification.test_delivery_failure_quota_and_no_plaintext_persistence)
+失败也占冷却额度；服务商异常不入库，重启不能绕过额度，验证码正文不持久化。 ... ok
+test_existing_binding_verify_and_email_replacement_invalidate_old_reset (tests.test_email_verification.EmailVerification.test_existing_binding_verify_and_email_replacement_invalidate_old_reset)
+迁移前邮箱可以补验；管理员换绑提升安全版本，旧邮箱码不能重置新身份。 ... ok
+test_http_boundary_rejects_legacy_bypass_and_missing_provider (tests.test_email_verification.EmailVerification.test_http_boundary_rejects_legacy_bypass_and_missing_provider)
+公共旧注册接口不能绕过邮箱；发信服务缺失必须明确失败，不能假称已发送。 ... ok
+test_recovery_does_not_activate_disabled_account_and_unknown_has_same_response (tests.test_email_verification.EmailVerification.test_recovery_does_not_activate_disabled_account_and_unknown_has_same_response)
+恢复不解除停用；未知邮箱同样投递但无可恢复账号，响应结构不泄露存在性。 ... ok
+test_registration_requires_code_replays_and_preserves_approval (tests.test_email_verification.EmailVerification.test_registration_requires_code_replays_and_preserves_approval)
+无验证禁止注册，成功只消费一次码/邀请；同键可重放，批准前不得登录。 ... ok
+test_reset_response_replay_survives_service_restart_without_reapplying (tests.test_email_verification.EmailVerification.test_reset_response_replay_survives_service_restart_without_reapplying)
+同键相同请求恢复丢失响应，不二次撤销会话；换密码或验证码同键冲突，新键不能复用旧码。 ... ok
+test_reset_revokes_web_and_game_preserves_character_assets (tests.test_email_verification.EmailVerification.test_reset_revokes_web_and_game_preserves_character_assets)
+恢复密码同事务撤销旧 Web/游戏授权，角色映射与账本不变，重登使用新密码。 ... ok
+test_same_key_concurrent_reset_returns_one_durable_result (tests.test_email_verification.EmailVerification.test_same_key_concurrent_reset_returns_one_durable_result)
+同键并发均取得同一成功结果，密码、安全版本及审计只有一次实际变化。 ... ok
+test_email_endpoint_rejects_username_bypass_and_preserves_native_boundary (tests.test_email_login.EmailHttpTests.test_email_endpoint_rejects_username_bypass_and_preserves_native_boundary)
+专用邮箱入口不能退回用户名/QQ 凭据，状态接口明确原生桥尚未实现。 ... ok
+test_real_http_email_approval_handoff_and_logout (tests.test_email_login.EmailHttpTests.test_real_http_email_approval_handoff_and_logout)
+通过真实 HTTP 完成邮箱注册、审批后登录、单次兑换、身份读取和注销撤销。 ... ok
+test_ban_relogin_and_game_expiry_are_rechecked (tests.test_email_login.EmailTests.test_ban_relogin_and_game_expiry_are_rechecked)
+封禁、安全版本、重登撤销和游戏会话期限都必须在每次授权重新检查。 ... ok
+test_binding_conflict_permission_and_audit_failure_roll_back (tests.test_email_login.EmailTests.test_binding_conflict_permission_and_audit_failure_roll_back)
+邮箱不能抢占其他玩家身份，玩家不能绑定他人邮箱，审计失败不能留下半次迁移。 ... ok
+test_concurrent_case_variants_create_one_account_and_one_invitation_use (tests.test_email_login.EmailTests.test_concurrent_case_variants_create_one_account_and_one_invitation_use)
+独立 MySQL 连接并发注册大小写不同邮箱，唯一约束和事务只允许一个成功。 ... ok
+test_concurrent_redemption_and_restart_never_replay_secret (tests.test_email_login.EmailTests.test_concurrent_redemption_and_restart_never_replay_secret)
+并发兑换仅一人取得新凭据，重建服务仍识别已消费；数据库不保存明文秘密。 ... ok
+test_email_normalization_boundaries_and_aliases (tests.test_email_login.EmailTests.test_email_normalization_boundaries_and_aliases)
+邮箱大小写统一，但加号/点别名不合并；拒绝注入、超长本地名及非 ASCII 本地部分。 ... ok
+test_email_retry_digest_is_not_a_fast_database_only_password_verifier (tests.test_email_login.EmailTests.test_email_retry_digest_is_not_a_fast_database_only_password_verifier)
+注册幂等仍可重放，但新邮箱记录不能沿用可通过数据库已知字段快速猜测密码的摘要。 ... ok
+test_legacy_binding_preserves_game_id_assets_and_revokes_old_alias_and_session (tests.test_email_login.EmailTests.test_legacy_binding_preserves_game_id_assets_and_revokes_old_alias_and_session)
+旧账号改邮箱沿用账号/角色/资产；旧会话与旧用户名不能继续认证。 ... ok
+test_long_email_registration_replay_pending_and_persistence (tests.test_email_login.EmailTests.test_long_email_registration_replay_pending_and_persistence)
+长于旧用户名的邮箱可持久化，重放不重复消费邀请，审批前仍拒绝登录。 ... ok
+test_redemption_and_issue_audit_failures_are_atomic (tests.test_email_login.EmailTests.test_redemption_and_issue_audit_failures_are_atomic)
+审计写失败回滚票据消费、会话和旧票据撤销；恢复后原票据仍能成功兑换。 ... ok
+test_ticket_expiry_replacement_game_session_revocation_and_client_binding (tests.test_email_login.EmailTests.test_ticket_expiry_replacement_game_session_revocation_and_client_binding)
+替换和过期票据拒绝；新游戏会话撤销旧会话，注销源会话立即使交接失效。 ... ok
+test_ticket_proof_protocol_and_privilege_separation (tests.test_email_login.EmailTests.test_ticket_proof_protocol_and_privilege_separation)
+正确邮箱会话可交接本地身份；错误证明/版本及跨权限使用全部拒绝。 ... ok
+test_concurrent_registration_replay_allocates_one_random_identity (tests.test_email_alias.EmailAliasTests.test_concurrent_registration_replay_allocates_one_random_identity)
+同一验证码与幂等键并发提交只分配一个随机隐藏名，不多建账号或消费邀请。 ... ok
+test_random_alias_retries_collision_and_public_login_still_requires_email (tests.test_email_alias.EmailAliasTests.test_random_alias_retries_collision_and_public_login_still_requires_email)
+随机名碰到旧用户名时重新取名，公开登录不能凭隐藏名绕过邮箱身份。 ... ok
+test_released_legacy_email_can_register_without_rewriting_old_account (tests.test_email_alias.EmailAliasTests.test_released_legacy_email_can_register_without_rewriting_old_account)
+旧哈希隐藏名保留时，换绑后的旧邮箱仍可注册；历史重放、角色、资产和旧身份保持隔离。 ... ok
+test_two_email_accounts_reach_native_proxy_without_shared_identity_or_qq (tests.test_email_native.EmailNativeTests.test_two_email_accounts_reach_native_proxy_without_shared_identity_or_qq)
+两个邮箱分别通过完整 HTTP 交接，原生组件读到各自 ID/令牌，结束时注销源会话。 ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 318.309s
+
+OK

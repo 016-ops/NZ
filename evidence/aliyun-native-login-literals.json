@@ -1,0 +1,147 @@
+{
+  "kind": "CURRENT_TGAME_NATIVE_LOGIN_LITERALS",
+  "game_sha256": "b81bb4e1256ad1fca1ecbbf93b35979d96c36ca16f8bbfc8d126e9a452df51f8",
+  "preferred_base": "0x400000",
+  "client_writes": 0,
+  "native_execution_by_analysis": false,
+  "observed_literals": [
+    {
+      "label": "proxy_module",
+      "string_rva": "0x1efeb38",
+      "preferred_va": "0x22feb38",
+      "source": "unchanged game file UTF16 literal",
+      "text": "TenProxy.dll",
+      "raw_exact_address_matches": [
+        "0x721dfa"
+      ]
+    },
+    {
+      "label": "handoff_failed",
+      "string_rva": "0x1efd0b8",
+      "preferred_va": "0x22fd0b8",
+      "source": "unchanged game file UTF16 literal",
+      "text": "Failed to get LoginInfo! exit program",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "proxy_factory_failed",
+      "string_rva": "0x1efd104",
+      "preferred_va": "0x22fd104",
+      "source": "unchanged game file UTF16 literal",
+      "text": "Failed to create TCLS proxy!",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "handoff_success",
+      "string_rva": "0x1efd1b0",
+      "preferred_va": "0x22fd1b0",
+      "source": "unchanged game file UTF16 literal",
+      "text": "Get LoginInfo from TCLS succeed!, boot client from TCLS. Uin = %u Version = %s ServiceId = %u",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "protocol_handler_create_failed",
+      "string_rva": "0x1efd278",
+      "preferred_va": "0x22fd278",
+      "source": "unchanged game file UTF16 literal",
+      "text": "Failed to create game server protocal handler",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "metalib_load_progress",
+      "string_rva": "0x1efd310",
+      "preferred_va": "0x22fd310",
+      "source": "unchanged game file UTF16 literal",
+      "text": "[gaviviliu]TGTenio -- Init -- tdr_load_metalib GetCurrentDirectory: %s RelativeHandlerMetaLibPath:%s",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "metalib_load_failed",
+      "string_rva": "0x1efd484",
+      "preferred_va": "0x22fd484",
+      "source": "unchanged game file UTF16 literal",
+      "text": "Failed to tdr_load_metalib(%s)",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "protocol_handler_init_failed",
+      "string_rva": "0x1efd4c8",
+      "preferred_va": "0x22fd4c8",
+      "source": "unchanged game file UTF16 literal",
+      "text": "Failed to initialize TGTenio's protocol handler",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "signature_length_zero",
+      "string_rva": "0x1efd528",
+      "preferred_va": "0x22fd528",
+      "source": "unchanged game file UTF16 literal",
+      "text": "ActualServerLoginInfo->byGameSignatureLen = 0",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "server_record0_endpoint",
+      "string_rva": "0x1efd588",
+      "preferred_va": "0x22fd588",
+      "source": "unchanged game file UTF16 literal",
+      "text": "LoginInfo.stGameServerInfo.ServInfo[0].szConnectUrl, Host = %s, Port= %d, Uin = %u",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "dev_login_mode_and_endpoint",
+      "string_rva": "0x1efd730",
+      "preferred_va": "0x22fd730",
+      "source": "unchanged game file UTF16 literal",
+      "text": "TGTenio::DevLogin bIsBootFromTcls = %d, bForceUsePassParam = %d, Host = %s, Port= %d, Uin = %u",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "init_connection_failed",
+      "string_rva": "0x1efd7f0",
+      "preferred_va": "0x22fd7f0",
+      "source": "unchanged game file UTF16 literal",
+      "text": "Failed to CreateInitConnection(%s:%d)",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "init_connection_endpoint",
+      "string_rva": "0x1efd860",
+      "preferred_va": "0x22fd860",
+      "source": "unchanged game file UTF16 literal",
+      "text": "CreateInitConnection, Host = %s, Port= %d, Uin = %u",
+      "raw_exact_address_matches": []
+    },
+    {
+      "label": "init_connection_error_code",
+      "string_rva": "0x1efd8c8",
+      "preferred_va": "0x22fd8c8",
+      "source": "unchanged game file UTF16 literal",
+      "text": "OnCreateInitConnectionFail:ErrorCode=%d",
+      "raw_exact_address_matches": []
+    }
+  ],
+  "certainty": "Literal text establishes that this build contains distinct proxy handoff, TDR metalib/protocol-handler and initial-connection diagnostic paths. It does not establish which path actually executed or the corresponding function addresses.",
+  "unverified_raw_match": {
+    "rva": "0x721DFA",
+    "target_literal_rva": "0x1EFEB38",
+    "reason": "The preceding bytes do not yield a valid known instruction boundary. Packed/protected raw file bytes cannot establish this as a real runtime code reference."
+  },
+  "minimal_next_runtime_inspection": {
+    "purpose": "Locate only current-build code references to three fixed public static literals, without changing code, reading UI or retaining arbitrary process data.",
+    "target_literal_rvas": [
+      "0x1EFEB38",
+      "0x1EFD1B0",
+      "0x1EFD588"
+    ],
+    "pattern": "x86 PUSH imm32: 68 followed by little-endian(actual_module_base + literal_rva); optionally validated MOV immediates if PUSH scan has no hits",
+    "bounds": "Only committed executable pages within the known TGame first code section RVA0x1000..0x1A3D2EC, 64KiB reads; at most8 matches per literal; release each chunk after matching.",
+    "returned_evidence": "For each validated match, only instruction RVA and bounded96 bytes before plus160 bytes after it; do not save whole sections or data pages.",
+    "reason_no_fixed_function_rva": "No trustworthy function RVA can be derived from the protected on-disk code for these literals. Guessing PH addresses or treating the raw0x721DFA match as code would invent evidence."
+  },
+  "important_boundaries": [
+    "The literal ServInfo[0] names a diagnostic path; executable flow is needed before asserting this is the active endpoint or that selected index is ignored.",
+    "A zero signature-length diagnostic does not establish which research tag is responsible. Existing nonempty independent token already passes the DLL getter self-test.",
+    "Presence of DevLogin/force-parameter strings is not authorization or evidence that changing a flag bypasses required initialization.",
+    "Current sampled frame pacing is independent of the missing role/directory request; no reason to disable the frame wait."
+  ]
+}

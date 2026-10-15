@@ -1,0 +1,19 @@
+{
+  "kind": "WINDOWS_SINGLE_ROOM_SERVER_READ_ONLY_INSPECTION",
+  "date": "2026-10-15",
+  "server_mutations": 0,
+  "services_restarted": 0,
+  "credentials_published": false,
+  "process_command_lines_read": false,
+  "user_documents_read": false,
+  "connection_verified": true,
+  "inspection_succeeded": false,
+  "requested_topology": {
+    "selectable_zone_entries": 1,
+    "room_nodes": 1,
+    "multiple_isolated_rooms_per_node_retained": true
+  },
+  "ssh_host_key_sha256": "e3EH0Jc732u/P89cm/KftUbk5ICUHfwt/Bvh3RXzUwY",
+  "host_key_trust": "FIRST_CONNECTION_RECORDED_TOFU",
+  "inspection_exit_code": 1
+}

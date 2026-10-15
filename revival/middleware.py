@@ -76,7 +76,8 @@ class ControlPlaneMiddleware:
             if origin and origin not in {'http://' + host for host in hosts}:
                 raise Fault('ORIGIN', 'Cross-origin requests are rejected', 403)
             if request.method == 'POST':
-                auth = request.path in ('/api/login', '/api/register')
+                auth = request.path in ('/api/login', '/api/register', '/api/player/login', '/api/player/register',
+                    '/api/player/email-code', '/api/player/password-reset', '/api/player/email-verify', '/api/launcher/redeem')
                 if not self.limits.allow((request.META.get('REMOTE_ADDR'), request.path), 20 if auth else 120, 300 if auth else 60):
                     raise Fault('RATE_LIMIT', 'Request limit reached; retry later', 429)
                 if request.content_type != 'application/json' or request.headers.get('X-NZ-Request') != '1':

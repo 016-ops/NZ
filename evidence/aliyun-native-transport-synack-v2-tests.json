@@ -1,0 +1,23 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 11,
+  "passed": [
+    "tests.test_native_transport.NativeTransportTests.test_asynchronous_synack_checks_challenge_and_padded_sequence_body",
+    "tests.test_native_transport.NativeTransportTests.test_asynchronous_synack_receive_counts_body_and_preserves_next_frame",
+    "tests.test_native_transport.NativeTransportTests.test_auth_accepts_only_expected_identity_and_returns_no_token",
+    "tests.test_native_transport.NativeTransportTests.test_auth_rejects_unknown_scalars_commands_and_nonexact_lengths",
+    "tests.test_native_transport.NativeTransportTests.test_challenge_has_proven_compact_frame_and_random_padding",
+    "tests.test_native_transport.NativeTransportTests.test_challenge_reply_checks_key_footer_and_constant_time_challenge",
+    "tests.test_native_transport.NativeTransportTests.test_challenge_reply_rejects_framing_and_crypto_input_errors",
+    "tests.test_native_transport.NativeTransportTests.test_fragment_truncation_and_socket_timeout_are_not_accepted",
+    "tests.test_native_transport.NativeTransportTests.test_fragmented_socket_frames_do_not_overread_following_frame",
+    "tests.test_native_transport.NativeTransportTests.test_invalid_lengths_and_unknown_header_are_rejected_before_payload_read",
+    "tests.test_native_transport.NativeTransportTests.test_only_proven_synack_encrypted_body_shape_is_accepted"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.047
+}

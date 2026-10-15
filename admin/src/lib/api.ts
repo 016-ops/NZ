@@ -7,8 +7,9 @@ export interface Session { token: string; subject_id: string; kind: Kind; expire
 export interface Status { profile: string; evidence: string; test_profile: boolean; retail: Record<string, string> }
 export interface Metadata { request_id: string; idempotency_key: string; reason: string }
 export interface Catalog { id: string; currencies: Record<string, { min: number; max: number }>; items: Record<string, Data>; offers: Record<string, Data>; maps: Record<string, { capacity: number }> }
-export interface Room { id: string; owner: string; map_key: string; capacity: number; state: string; revision: number; match_id: string | null }
-export type Action = 'invite.create' | 'invite.revoke' | 'user.approve' | 'user.activate' | 'user.disable' | 'user.reset' | 'session.revoke' | 'sanction.create' | 'sanction.revoke' | 'character.create' | 'room.create' | 'room.join' | 'room.leave' | 'room.ready' | 'room.configure' | 'room.start' | 'room.cancel' | 'asset.grant' | 'asset.batch' | 'asset.compensate' | 'shop.purchase' | 'inventory.consume' | 'inventory.equip'
+export interface Room { id: string; owner: string; map_key: string; capacity: number; state: string; revision: number; match_id: string | null; invite_only?: boolean; members?: { account_id: string; slot: number; ready: number }[] }
+export type ExtraAction = 'admin.create' | 'admin.update' | 'admin.password.reset' | 'admin.mfa.reset' | 'admin.recovery.rotate' | 'asset.batch.preview' | 'asset.batch.enqueue' | 'asset.batch.retry' | 'asset.review.resolve' | 'room.invite' | 'node.enroll' | 'pve.revive'
+export type Action = 'user.email.set' | ExtraAction | 'invite.create' | 'invite.revoke' | 'user.approve' | 'user.activate' | 'user.disable' | 'user.reset' | 'session.revoke' | 'sanction.create' | 'sanction.revoke' | 'character.create' | 'room.create' | 'room.join' | 'room.leave' | 'room.ready' | 'room.configure' | 'room.start' | 'room.cancel' | 'asset.grant' | 'asset.batch' | 'asset.compensate' | 'shop.purchase' | 'inventory.consume' | 'inventory.equip'
 
 /** 每个提交入口维护自己的重试槽：内容改变才换键，成功后清空，失败保留。 */
 export class RetryEnvelope {

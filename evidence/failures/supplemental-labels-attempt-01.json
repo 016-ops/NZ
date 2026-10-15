@@ -1,0 +1,23 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 4,
+  "passed": [
+    "tests.test_node_http.NodeHttpTests.test_native_contract_routes_and_acknowledgement_scope",
+    "tests.test_operations.OperationsTests.test_worker_audit_failure_rolls_back_and_restart_resumes_once"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "unittest.loader._FailedTest.test_disconnect_during_boss_preserves_other_player_and_forfeits_reward",
+      "traceback": "AttributeError: type object 'PveTests' has no attribute 'test_disconnect_during_boss_preserves_other_player_and_forfeits_reward'\n"
+    },
+    {
+      "test": "unittest.loader._FailedTest.test_ten_consecutive_synthetic_rounds_have_distinct_attempts_and_rewards",
+      "traceback": "AttributeError: type object 'PveTests' has no attribute 'test_ten_consecutive_synthetic_rounds_have_distinct_attempts_and_rewards'\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 13.297
+}

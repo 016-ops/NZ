@@ -1,0 +1,13 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 1,
+  "passed": [
+    "tests.test_pve.PveTests.test_two_live_pve_rooms_keep_entities_tokens_progress_and_rewards_separate"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 40.235
+}

@@ -1,0 +1,15 @@
+{
+  "email_verified": true,
+  "registered": true,
+  "reset_verified": true,
+  "old_session_revoked": true,
+  "old_game_session_revoked": true,
+  "same_character": true,
+  "same_game_id": true,
+  "same_assets": true,
+  "recovery_preparation_admin_reset": true,
+  "phase": "reset-finish",
+  "emails_requested": 3,
+  "game_started": false,
+  "lobby_verified": false
+}

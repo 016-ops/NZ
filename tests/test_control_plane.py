@@ -2,7 +2,7 @@
 import json
 from django.db import DatabaseError, connections
 from django.db.models import Q
-from django.test import TransactionTestCase
+from django.test import TransactionTestCase, override_settings
 from revival.models import DeploymentLock, SchemaVersion, DeploymentMetadata
 from unittest.mock import patch
 import tempfile
@@ -36,12 +36,16 @@ class Base(TransactionTestCase):
     def setUp(self):
         """建立本例独立业务环境和依赖；所有业务数据使用真实 MySQL 测试库。"""
         super().setUp()
+        # 旧业务夹具保留迁移前注册路径；验证码专项另行覆盖开启，生产默认始终开启。
+        self.email_fixture_settings = override_settings(NZ_EMAIL_VERIFICATION_REQUIRED=False)
+        self.email_fixture_settings.enable()
+        self.addCleanup(self.email_fixture_settings.disable)
         DeploymentLock.objects.get_or_create(pk=1)
         SchemaVersion.objects.get_or_create(version=1)
         self.directory = tempfile.TemporaryDirectory()
         self.path = 'default'
         self.now = 1800000000
-        self.s = Service(self.path, test_profile=True, clock=lambda: self.now)
+        self.s = Service(self.path, test_profile=True, clock=lambda: self.now, test_pve=getattr(self, 'pve_profile', False))
         self.password = 'local-test-password-123'
         self.admin = self.s.bootstrap_admin('owner', self.password)
         self.owner = self.s.login('owner', self.password, kind='admin', otp_code=otp(self.admin['otp_secret'], self.now // 30))['token']

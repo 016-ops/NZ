@@ -1,0 +1,19 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 7,
+  "passed": [
+    "tests.test_email_alias.EmailAliasTests.test_concurrent_registration_replay_allocates_one_random_identity",
+    "tests.test_email_alias.EmailAliasTests.test_random_alias_retries_collision_and_public_login_still_requires_email",
+    "tests.test_email_alias.EmailAliasTests.test_registration_replay_when_peer_commits_before_code_precheck",
+    "tests.test_email_alias.EmailAliasTests.test_released_legacy_email_can_register_without_rewriting_old_account",
+    "tests.test_email_verification.EmailVerification.test_registration_requires_code_replays_and_preserves_approval",
+    "tests.test_email_verification.EmailVerification.test_attempts_expiry_purpose_address_and_resend_persist",
+    "tests.test_email_login.EmailTests.test_concurrent_case_variants_create_one_account_and_one_invitation_use"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 82.485
+}

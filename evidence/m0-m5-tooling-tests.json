@@ -1,0 +1,27 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 15,
+  "passed": [
+    "tests.test_inventory.InventoryTests.test_repeated_manifest_and_precise_change_detection",
+    "tests.test_inventory.InventoryTests.test_symbol_index_never_claims_wire_validation",
+    "tests.test_inventory.InventoryTests.test_unsafe_output_empty_and_duplicate_manifests_are_rejected",
+    "tests.test_client_catalog.ClientCatalogTests.test_added_and_modified_client_files_are_detected",
+    "tests.test_client_catalog.ClientCatalogTests.test_decoder_preserves_chinese_and_rejects_corruption",
+    "tests.test_client_catalog.ClientCatalogTests.test_export_fidelity_and_unresolved_references",
+    "tests.test_client_catalog.ClientCatalogTests.test_ini_keeps_operators_comments_multiline_and_unknown_lines",
+    "tests.test_client_catalog.ClientCatalogTests.test_inline_comments_keep_values_and_semicolons_in_strings",
+    "tests.test_client_catalog.ClientCatalogTests.test_map_reference_is_not_a_new_map_definition",
+    "tests.test_client_catalog.ClientCatalogTests.test_nested_arrays_repeated_fields_and_strings",
+    "tests.test_client_catalog.ClientCatalogTests.test_optional_empty_suite_array_is_not_price_period_error",
+    "tests.test_client_catalog.ClientCatalogTests.test_rebuild_refuses_tampered_capture",
+    "tests.test_workspace.WorkspaceTests.test_copy_restore_and_bad_source_preserve_original_and_good_target",
+    "tests.test_workspace.WorkspaceTests.test_matrix_retains_unknown_maps_and_never_enables_static_candidates",
+    "tests.test_workspace.WorkspaceTests.test_traversal_and_hardlinks_are_rejected"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.719
+}

@@ -5,6 +5,9 @@ import hmac
 import re
 import secrets
 import struct
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.conf import settings
 
 
 def token_hash(value):
@@ -50,6 +53,37 @@ def normalize_login(value):
     if not isinstance(value, str) or not re.fullmatch(r'[A-Za-z0-9_.-]{3,32}', value):
         raise ValueError('Local web login requires 3 to 32 ASCII letters, digits, _, ., -')
     return value.lower()
+
+
+def normalize_email(value):
+    """校验独立邮箱标识并统一小写；不合并加号/点别名，不声称已验证邮箱所有权。
+
+    当前版本支持 ASCII 邮箱（国际化域可用 punycode），总长最多 254、本地部分最多 64。
+    大小写不区分是本服务的登录约定，不推断各邮件服务商的投递规则。
+    """
+    if not isinstance(value, str) or not value.isascii() or any(ord(char) < 32 for char in value):
+        raise ValueError('请输入有效邮箱地址')
+    normalized = value.strip().lower()
+    if len(normalized) > 254 or normalized.count('@') != 1:
+        raise ValueError('请输入有效邮箱地址')
+    local, domain = normalized.split('@')
+    if (not 1 <= len(local) <= 64 or not re.fullmatch(r"[a-z0-9.!#$%&'*+/=?^_`{|}~-]+", local)
+            or '.' not in domain or domain.startswith('[')):
+        raise ValueError('请输入有效邮箱地址')
+    try:
+        validate_email(normalized)
+    except ValidationError:
+        raise ValueError('请输入有效邮箱地址') from None
+    return normalized
+
+
+def email_registration_proof(password):
+    """为邮箱注册幂等摘要生成服务端密钥保护的证明，避免数据库形成便宜的密码猜测校验器。
+
+    密码真正存储仍为随机盐 scrypt；这里仅比较注册重试内容，原有账号/资产幂等记录不改写。
+    部署必须保留 NZ_SECRET_KEY；更换密钥后，未决注册应通过账号状态确认而非重发创建。
+    """
+    return hmac.new(settings.SECRET_KEY.encode('utf-8'), b'nz-email-register-v1\0' + password.encode('utf-8'), hashlib.sha256).hexdigest()
 
 
 def otp(secret, step):

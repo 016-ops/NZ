@@ -1,0 +1,27 @@
+test_asynchronous_synack_checks_challenge_and_padded_sequence_body (tests.test_native_transport.NativeTransportTests.test_asynchronous_synack_checks_challenge_and_padded_sequence_body)
+61 字节异步 SYNACK 同时验证挑战和正文填充，随机起始序号不强制为 0 或 1。 ... ok
+test_asynchronous_synack_receive_counts_body_and_preserves_next_frame (tests.test_native_transport.NativeTransportTests.test_asynchronous_synack_receive_counts_body_and_preserves_next_frame)
+真实连接按字节发送含正文的 SYNACK，接收包括 16 字节正文且不吞掉下一 AUTH。 ... ok
+test_auth_accepts_only_expected_identity_and_returns_no_token (tests.test_native_transport.NativeTransportTests.test_auth_accepts_only_expected_identity_and_returns_no_token)
+正确首包只返回非秘密结构摘要，令牌或其他账号即使结构有效也不能通过。 ... ok
+test_auth_rejects_unknown_scalars_commands_and_nonexact_lengths (tests.test_native_transport.NativeTransportTests.test_auth_rejects_unknown_scalars_commands_and_nonexact_lengths)
+标量必须符合当前首包，拒绝尾随帧、令牌长度欺骗和错误预期身份配置。 ... ok
+test_challenge_has_proven_compact_frame_and_random_padding (tests.test_native_transport.NativeTransportTests.test_challenge_has_proven_compact_frame_and_random_padding)
+独立解密输出检查当前 IV、16 字节挑战、10 字节随机填充及 tsf4g/填充长度尾标。 ... ok
+test_challenge_reply_checks_key_footer_and_constant_time_challenge (tests.test_native_transport.NativeTransportTests.test_challenge_reply_checks_key_footer_and_constant_time_challenge)
+对端合法 SYNACK 通过；错 key、错挑战、错尾标、错末尾长度和密文破坏均失败。 ... ok
+test_challenge_reply_rejects_framing_and_crypto_input_errors (tests.test_native_transport.NativeTransportTests.test_challenge_reply_rejects_framing_and_crypto_input_errors)
+格式错误不得进入解密；key/challenge 长度必须精确，拒绝隐式截断或未知命令。 ... ok
+test_fragment_truncation_and_socket_timeout_are_not_accepted (tests.test_native_transport.NativeTransportTests.test_fragment_truncation_and_socket_timeout_are_not_accepted)
+截断头或负载明确失败；无数据等待保留调用方的 socket 超时而不无限阻塞。 ... ok
+test_fragmented_socket_frames_do_not_overread_following_frame (tests.test_native_transport.NativeTransportTests.test_fragmented_socket_frames_do_not_overread_following_frame)
+真实 socket 按不同分片发送连续帧，接收一次仅消费一帧且保留下一帧边界。 ... ok
+test_invalid_lengths_and_unknown_header_are_rejected_before_payload_read (tests.test_native_transport.NativeTransportTests.test_invalid_lengths_and_unknown_header_are_rejected_before_payload_read)
+超限、头短、非零正文、未知命令与头标志仅凭 12 字节头立即拒绝，不等待声明的正文。 ... ok
+test_only_proven_synack_encrypted_body_shape_is_accepted (tests.test_native_transport.NativeTransportTests.test_only_proven_synack_encrypted_body_shape_is_accepted)
+仅 cmd9/EncHeadLen4/HeadLen45/BodyLen16 开放；其余命令或尺寸不借机放宽。 ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.040s
+
+OK

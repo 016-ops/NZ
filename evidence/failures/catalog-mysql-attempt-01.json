@@ -1,0 +1,7 @@
+{
+  "kind": "ACTUAL_USER_MYSQL_CATALOG_IMPORT",
+  "phase": "VERIFY_1",
+  "passed": false,
+  "error_type": "ProgrammingError",
+  "error_code": 1064
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 5,
+  "passed": [
+    "tests.test_native_tdr_probe.NativeTdrProbeBoundaryTests.test_arbitrary_dll_option_is_rejected",
+    "tests.test_native_tdr_probe.NativeTdrProbeBoundaryTests.test_output_outside_private_evidence_is_rejected",
+    "tests.test_native_tdr_probe.NativeTdrProbeBoundaryTests.test_zone_captured_input_modes_are_mutually_exclusive",
+    "tests.test_native_tdr_probe.NativeTdrProbeBoundaryTests.test_zone_login_cannot_enable_geo_responses",
+    "tests.test_native_tdr_probe.NativeTdrProbeBoundaryTests.test_zone_notification_cannot_enable_geo_responses"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.0
+}

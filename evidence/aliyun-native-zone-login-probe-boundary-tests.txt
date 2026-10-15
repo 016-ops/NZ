@@ -1,0 +1,15 @@
+test_arbitrary_dll_option_is_rejected (tests.test_native_tdr_probe.NativeTdrProbeBoundaryTests.test_arbitrary_dll_option_is_rejected)
+工具没有任意 DLL 参数，外部路径不得进入加载流程。 ... ok
+test_output_outside_private_evidence_is_rejected (tests.test_native_tdr_probe.NativeTdrProbeBoundaryTests.test_output_outside_private_evidence_is_rejected)
+即使路径在仓库内，也不能把含主机结构的原生输出写到公开证据目录。 ... ok
+test_zone_captured_input_modes_are_mutually_exclusive (tests.test_native_tdr_probe.NativeTdrProbeBoundaryTests.test_zone_captured_input_modes_are_mutually_exclusive)
+一个离线进程只能选择一条固定Zone输入，不让通知和登录两个样本模式相互覆盖。 ... ok
+test_zone_login_cannot_enable_geo_responses (tests.test_native_tdr_probe.NativeTdrProbeBoundaryTests.test_zone_login_cannot_enable_geo_responses)
+真实登录请求往返模式不能夹带GEO响应构造，互斥校验必须早于任何原生进程。 ... ok
+test_zone_notification_cannot_enable_geo_responses (tests.test_native_tdr_probe.NativeTdrProbeBoundaryTests.test_zone_notification_cannot_enable_geo_responses)
+通知模式不能同时构造任一种 GEO 响应，且拒绝发生在启动子进程前。 ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.006s
+
+OK

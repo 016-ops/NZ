@@ -1,0 +1,83 @@
+{
+  "kind": "ALIYUN_FINAL_DEPLOYMENT_VERIFICATION",
+  "profiles": [
+    {
+      "port": 18765,
+      "profile": "cn-current-unverified",
+      "frontend": true,
+      "assets": [
+        "/assets/favicon.svg",
+        "/assets/index-BPNvOCO0.js",
+        "/assets/index-BqqA1Nab.css"
+      ],
+      "mail_configuration_ready": true,
+      "capabilities": {
+        "protocol": "nz-email-v1",
+        "identity_provider": "independent-email",
+        "email_password": true,
+        "email_ownership_verification": "CONFIGURED",
+        "email_verification_required": true,
+        "password_recovery": "EMAIL_CODE",
+        "one_time_handoff": true,
+        "native_client_adapter": "UNIMPLEMENTED",
+        "native_launch_ready": false,
+        "qq_required": false
+      },
+      "anonymous_protected_view_denied": true
+    },
+    {
+      "port": 18767,
+      "profile": "test-pve-v1",
+      "frontend": true,
+      "assets": [
+        "/assets/favicon.svg",
+        "/assets/index-BPNvOCO0.js",
+        "/assets/index-BqqA1Nab.css"
+      ],
+      "mail_configuration_ready": true,
+      "capabilities": {
+        "protocol": "nz-email-v1",
+        "identity_provider": "independent-email",
+        "email_password": true,
+        "email_ownership_verification": "CONFIGURED",
+        "email_verification_required": true,
+        "password_recovery": "EMAIL_CODE",
+        "one_time_handoff": true,
+        "native_client_adapter": "UNIMPLEMENTED",
+        "native_launch_ready": false,
+        "qq_required": false
+      },
+      "anonymous_protected_view_denied": true
+    }
+  ],
+  "emails_sent": 0,
+  "native_lobby_verified": false,
+  "same_game_id": true,
+  "same_character": true,
+  "verified_after_restart": true,
+  "same_assets": true,
+  "four_units_active": true,
+  "mysql_checks": [
+    {
+      "integrity": "ok",
+      "schema": 1,
+      "mysql_version": "8.0.30-txsql",
+      "immutable_triggers": 6,
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    {
+      "integrity": "ok",
+      "schema": 1,
+      "mysql_version": "8.0.30-txsql",
+      "immutable_triggers": 6,
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  ],
+  "listeners": [
+    "LISTEN 0      1024       127.0.0.1:18767      0.0.0.0:*          ",
+    "LISTEN 0      1024       127.0.0.1:18765      0.0.0.0:*          "
+  ],
+  "passed": true
+}

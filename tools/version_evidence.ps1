@@ -1,4 +1,5 @@
-param([string]$ClientRoot = './nz', [string]$Output = './evidence/private/version-evidence.json')
+# 仓库位于 repository/，原客户端是同级 nz/；输出仍拒绝写回客户端。
+param([string]$ClientRoot = (Join-Path $PSScriptRoot '../../nz'), [string]$Output = './evidence/private/version-evidence.json')
 $ErrorActionPreference = 'Stop'
 $clientPath = (Resolve-Path -LiteralPath $ClientRoot).Path.TrimEnd([char]92)
 $outputPath = [IO.Path]::GetFullPath($Output)

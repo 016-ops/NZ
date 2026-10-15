@@ -1,0 +1,13 @@
+{
+  "connections": [
+    {
+      "pid": 13624,
+      "state": 5,
+      "local_address": "127.0.0.1",
+      "local_port": 57076,
+      "remote_address": "127.0.0.1",
+      "remote_port": 57075
+    }
+  ],
+  "verified": true
+}

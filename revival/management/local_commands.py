@@ -32,6 +32,8 @@ class LocalCommand(BaseCommand):
             result = service.bootstrap_admin(options['login'], password)
             self.stdout.write('Store this MFA URI privately; it is shown once:')
             self.stdout.write(f"otpauth://totp/NZRevival:{quote(options['login'])}?secret={result['otp_secret']}&issuer=NZRevival")
+            self.stdout.write('Store these one-time recovery codes privately:')
+            self.stdout.write('\n'.join(result['recovery_codes']))
         elif self.operation=='serve':
             from revival.server import local_server
             from nzproject.wsgi import application
@@ -48,10 +50,14 @@ class LocalCommand(BaseCommand):
                 server.close()
         elif self.operation=='maintain':
             from revival.rooms import maintain
+            from revival.batching import run_batches
+            from revival.pve import recover_timeouts
             try:
                 while True:
                     close_old_connections()
                     maintain(service)
+                    run_batches(service)
+                    recover_timeouts(service)
                     if options['once']: break
                     time.sleep(5)
             except KeyboardInterrupt:

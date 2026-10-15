@@ -1,0 +1,13 @@
+test_http_redirect_is_not_followed_and_error_message_does_not_echo_password (tests.test_email_tools.EmailToolTests.test_http_redirect_is_not_followed_and_error_message_does_not_echo_password)
+真实 HTTP 返回跳转时不转发登录正文，服务端错误 message 也不能回显密码到 CLI。 ... ok
+test_ipc_fields_are_bounded_and_do_not_include_network_server_records (tests.test_email_tools.EmailToolTests.test_ipc_fields_are_bounded_and_do_not_include_network_server_records)
+编码的本地 ID/令牌和偏移均受界限约束；研究格式的服务器列表始终为空。 ... ok
+test_loopback_server_primary_endpoint_uses_current_consumed_subfields (tests.test_email_tools.EmailToolTests.test_loopback_server_primary_endpoint_uses_current_consumed_subfields)
+当前游戏消费 sub2/sub3 作为主端点；嵌套表必须有界并把回环地址放在已证位置。 ... ok
+test_remote_urls_credentials_paths_and_implicit_ports_are_rejected (tests.test_email_tools.EmailToolTests.test_remote_urls_credentials_paths_and_implicit_ports_are_rejected)
+启动器只使用明确端口的本机/SSH 隧道，不接受外部 URL、URL 密码或路径。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.520s
+
+OK

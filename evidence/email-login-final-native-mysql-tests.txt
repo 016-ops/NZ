@@ -1,0 +1,7 @@
+test_two_email_accounts_reach_native_proxy_without_shared_identity_or_qq (tests.test_email_native.EmailNativeTests.test_two_email_accounts_reach_native_proxy_without_shared_identity_or_qq)
+两个邮箱分别通过完整 HTTP 交接，原生组件读到各自 ID/令牌，结束时注销源会话。 ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 18.193s
+
+OK

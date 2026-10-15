@@ -1,0 +1,173 @@
+{
+  "kind": "READ_ONLY_NATIVE_IMAGE_AUDIT",
+  "files": [
+    {
+      "name": "TGameBase.dll",
+      "bytes": 34440256,
+      "sha256": "6d891fad86a0f86ab171a8e6cb661205352a3cb463a796463b5a7391b0354ce7",
+      "entirely_zero_filled": false,
+      "windows_nonexecuting_mapping": {
+        "executed": false,
+        "opened": true,
+        "mapping_created": false,
+        "winerror": 193
+      },
+      "pe": {
+        "machine": "0x14c",
+        "optional_magic": "0x10b",
+        "sections": [
+          {
+            "name": ".text",
+            "rva": 4096,
+            "virtual_size": 4995511,
+            "raw_offset": 1024,
+            "raw_size": 4995584,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".rdata",
+            "rva": 5001216,
+            "virtual_size": 1972705,
+            "raw_offset": 4996608,
+            "raw_size": 1972736,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".data",
+            "rva": 6975488,
+            "virtual_size": 1185312,
+            "raw_offset": 6969344,
+            "raw_size": 502272,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".rsrc",
+            "rva": 8163328,
+            "virtual_size": 11164,
+            "raw_offset": 7471616,
+            "raw_size": 11264,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".tls",
+            "rva": 8175616,
+            "virtual_size": 1417216,
+            "raw_offset": 7482880,
+            "raw_size": 1413632,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".tvm0",
+            "rva": 9592832,
+            "virtual_size": 26693632,
+            "raw_offset": 8896512,
+            "raw_size": 26692096,
+            "bytes_beyond_eof": 1148352
+          },
+          {
+            "name": ".reloc",
+            "rva": 36286464,
+            "virtual_size": 245760,
+            "raw_offset": 35588608,
+            "raw_size": 244224,
+            "bytes_beyond_eof": 1392576
+          }
+        ],
+        "issues": [
+          "SECTION_RAW_DATA_BEYOND_EOF:.tvm0",
+          "SECTION_RAW_DATA_BEYOND_EOF:.reloc"
+        ],
+        "required_raw_end": 35832832
+      }
+    },
+    {
+      "name": "TGameBase.dll",
+      "bytes": 35847832,
+      "sha256": "79894ee3b24ad12610c23a385f66820ec4bc6ab9049c57ff5867bcdf1462b6ca",
+      "entirely_zero_filled": false,
+      "windows_nonexecuting_mapping": {
+        "executed": false,
+        "opened": true,
+        "mapping_created": true,
+        "winerror": 0
+      },
+      "pe": {
+        "machine": "0x14c",
+        "optional_magic": "0x10b",
+        "sections": [
+          {
+            "name": ".text",
+            "rva": 4096,
+            "virtual_size": 4995511,
+            "raw_offset": 1024,
+            "raw_size": 4995584,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".rdata",
+            "rva": 5001216,
+            "virtual_size": 1972705,
+            "raw_offset": 4996608,
+            "raw_size": 1972736,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".data",
+            "rva": 6975488,
+            "virtual_size": 1185312,
+            "raw_offset": 6969344,
+            "raw_size": 502272,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".rsrc",
+            "rva": 8163328,
+            "virtual_size": 11164,
+            "raw_offset": 7471616,
+            "raw_size": 11264,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".tls",
+            "rva": 8175616,
+            "virtual_size": 1417216,
+            "raw_offset": 7482880,
+            "raw_size": 1413632,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".tvm0",
+            "rva": 9592832,
+            "virtual_size": 26693632,
+            "raw_offset": 8896512,
+            "raw_size": 26692096,
+            "bytes_beyond_eof": 0
+          },
+          {
+            "name": ".reloc",
+            "rva": 36286464,
+            "virtual_size": 245760,
+            "raw_offset": 35588608,
+            "raw_size": 244224,
+            "bytes_beyond_eof": 0
+          }
+        ],
+        "issues": [],
+        "required_raw_end": 35832832
+      }
+    },
+    {
+      "name": "TGame.exe",
+      "bytes": 61762088,
+      "sha256": "2a1478fc06c2810e87d47e97093dbf4dc91657ecc7210daf735cd2d30b56bd57",
+      "entirely_zero_filled": true,
+      "windows_nonexecuting_mapping": {
+        "executed": false,
+        "opened": true,
+        "mapping_created": false,
+        "winerror": 193
+      },
+      "image_error": "NOT_PE"
+    }
+  ]
+}

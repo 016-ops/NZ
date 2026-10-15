@@ -1,0 +1,39 @@
+test_admin_secrets_are_one_time_and_role_change_revokes_sessions (tests.test_operations.OperationsTests.test_admin_secrets_are_one_time_and_role_change_revokes_sessions)
+创建响应丢失重试不泄漏 MFA；角色改变后旧管理员会话立即失效。 ... ok
+test_batch_author_revocation_prevents_pending_grants (tests.test_operations.OperationsTests.test_batch_author_revocation_prevents_pending_grants)
+排队后撤销操作者安全版本，尚未执行子项拒绝发放。 ... ok
+test_batch_preview_restart_partial_failure_and_failed_only_retry (tests.test_operations.OperationsTests.test_batch_preview_restart_partial_failure_and_failed_only_retry)
+预览无资产变更；中途重启只处理未完成目标，重试不能扩大到成功目标。 ... ok
+test_last_owner_and_permission_are_enforced (tests.test_operations.OperationsTests.test_last_owner_and_permission_are_enforced)
+最后 Owner 的停用/降权回滚，玩家不能通过直接调用创建管理员。 ... ok
+test_manual_review_is_closed_without_rewriting_history (tests.test_operations.OperationsTests.test_manual_review_is_closed_without_rewriting_history)
+已花费发放的人工复核只追加决定，不能改原账本或制造负余额。 ... ok
+test_recovery_consumes_code_and_revokes_old_session (tests.test_operations.OperationsTests.test_recovery_consumes_code_and_revokes_old_session)
+密码加恢复码可恢复 MFA；旧码、旧会话及旧验证码均不再生效。 ... ok
+test_password_invitation_binding_expiry_and_no_hash_leak (tests.test_room_access.RoomAccessTests.test_password_invitation_binding_expiry_and_no_hash_leak)
+邀请不能转交另一账号，错误口令/过期邀请不能占席，读模型不泄漏哈希。 ... ok
+test_password_only_room_requires_password_and_invalid_difficulty_rolls_back (tests.test_room_access.RoomAccessTests.test_password_only_room_requires_password_and_invalid_difficulty_rolls_back)
+公开受密码保护房间按服务端校验，未知难度不能产生半配置的房间。 ... ok
+test_current_client_profile_never_accepts_synthetic_node_events (tests.test_pve.PveTests.test_current_client_profile_never_accepts_synthetic_node_events)
+当前客户端模式在没有原生证据时始终拒绝节点就绪和事件。 ... ok
+test_defense_facility_failure_and_vehicle_driver_isolation (tests.test_pve.PveTests.test_defense_facility_failure_and_vehicle_driver_isolation)
+载具席位只属于一人，非驾驶员不能移动；目标归零会失败且不发胜利奖励。 ... ok
+test_encirclement_gate_advances_once_and_rejects_old_stage (tests.test_pve.PveTests.test_encirclement_gate_advances_once_and_rejects_old_stage)
+机关在清空队列后解锁；重复触发原事件返回原结果，旧阶段新事件拒绝。 ... ok
+test_failure_revive_race_and_failed_restart_refund_once (tests.test_pve.PveTests.test_failure_revive_race_and_failed_restart_refund_once)
+两次并发续局只扣最后一个道具一次，节点重开失败后只补偿一次。 ... ok
+test_lost_node_restart_timeout_refunds_after_service_restart (tests.test_pve.PveTests.test_lost_node_restart_timeout_refunds_after_service_restart)
+扣道具后节点失联，维护进程在重启后仍能补偿，重复维护不再发道具。 ... ok
+test_node_auth_ordering_and_forged_result_are_rejected (tests.test_pve.PveTests.test_node_auth_ordering_and_forged_result_are_rejected)
+玩家 token、旧 epoch、乱序和直接胜利都不能驱动 PvE 或奖励。 ... ok
+test_node_delivery_checks_scope_version_and_ban_removes_combat_authority (tests.test_pve.PveTests.test_node_delivery_checks_scope_version_and_ban_removes_combat_authority)
+资产与制裁逐实例确认；错误版本不算同步，封禁后旧战斗名单不再有效。 ... ok
+test_successful_restart_gets_new_attempt_and_rejects_stale_packets (tests.test_pve.PveTests.test_successful_restart_gets_new_attempt_and_rejects_stale_packets)
+成功续局建立新 attempt；旧攻击包不影响新敌人，最终奖励仍只有一份。 ... ok
+test_survival_two_players_one_enemy_boss_and_exactly_once_rewards (tests.test_pve.PveTests.test_survival_two_players_one_enemy_boss_and_exactly_once_rewards)
+两名玩家共同扣减同一敌人生命，自动通过波次/Boss，结算重放只到账一次。 ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 124.027s
+
+OK

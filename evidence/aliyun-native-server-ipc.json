@@ -1,0 +1,23 @@
+{
+  "kind": "NATIVE_EMAIL_IPC_SELF_TEST",
+  "proxy_sha256": "788bea4e34d6aaea8187df482ea2c859f7a6c8802b226b1ab7c2d9a6a10bc047",
+  "ipc_profile": "nz-email-ipc-research-v1",
+  "exit_code": 0,
+  "observations": [
+    {
+      "FactoryCreated": true,
+      "LoginInfoAccepted": true,
+      "LocalGameId": 10001,
+      "LocalTokenMatches": true,
+      "LocalSessionIdMatches": true,
+      "OutputGuardIntact": true,
+      "ServerRecordVerified": true
+    }
+  ],
+  "prefix_candidate": "TCLS_SHAREDMEMEMORY",
+  "process_tree_cleanup": true,
+  "ipc_read_verified": true,
+  "native_launch_ready": false,
+  "game_process_started": false,
+  "qq_credentials_used": false
+}
