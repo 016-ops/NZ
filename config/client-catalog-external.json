@@ -1,0 +1,64 @@
+{
+  "sources": [
+    {
+      "id": "HISTORICAL_MODES_2017_17173",
+      "url": "https://nz.17173.com/news/01232017/161120319.shtml?__stay_on_pc=&vid=sogou_iwan_vr",
+      "title": "逆战全模式大盘点 一定有你没体验过的玩法",
+      "published_date": "2017-01-23",
+      "accessed_date": "2026-10-14",
+      "source_type": "HISTORICAL_SECONDARY",
+      "limitations": "仅用于本地模式类对应的历史简介；不继承文章声称的全集、人数、掉率或停用状态。"
+    },
+    {
+      "id": "HISTORICAL_MODES_17173",
+      "url": "https://nz.17173.com/news/07102014/094003674_all.shtml",
+      "title": "逆战游戏官方介绍 逆战新手快速了解游戏内容",
+      "published_date": "2016-04-20",
+      "accessed_date": "2026-10-14",
+      "source_type": "HISTORICAL_SECONDARY",
+      "date_note": "页面显示 2016-04-20，URL 含 2014；采用页面显示日期并保留歧义。",
+      "limitations": "历史玩法背景；未确认当前样本版本。页面有 AI 总结提示，补充仅依据正文历史模式段落，不采用推荐新闻或新游戏内容。"
+    },
+    {
+      "id": "HISTORICAL_DEFEND_17173",
+      "url": "https://nz.17173.com/info/map_defend.shtml",
+      "title": "逆战保卫战地图介绍",
+      "published_date": "2012-03-15",
+      "accessed_date": "2026-10-14",
+      "source_type": "HISTORICAL_SECONDARY",
+      "limitations": "介绍钢铁森林背景，只作为本地名称命中的历史补充。"
+    },
+    {
+      "id": "HISTORICAL_SURVIVAL_17173",
+      "url": "https://nz.17173.com/info/map_survival.shtml",
+      "title": "逆战生存战地图介绍",
+      "published_date": "2012-03-15",
+      "accessed_date": "2026-10-14",
+      "source_type": "HISTORICAL_SECONDARY",
+      "limitations": "介绍装配中心背景，不迁移历史人数为当前客户端规则。"
+    },
+    {
+      "id": "OFFICIAL_CURRENT_EXCLUDED",
+      "url": "https://nz.qq.com/",
+      "title": "逆战官方网站当前活动页",
+      "published_date": null,
+      "accessed_date": "2026-10-14",
+      "source_type": "OFFICIAL_VERSION_UNMATCHED",
+      "limitations": "已访问，但现行活动无法证明当前样本版本，未使用其价格、奖励或新条目补入。历史商城与版本链接访问失败，不编造官方历史验证。"
+    }
+  ],
+  "annotations": [
+    {"id":"hunter","source_id":"HISTORICAL_MODES_2017_17173","categories":["mode"],"client_match":"\\.TGAD[0-9]*Game$","display_name":"僵尸猎场系列（历史类名对应线索）","summary":"协作推进关卡，挑战首领；历史资料提及通关掉落。"},
+    {"id":"bomb","source_id":"HISTORICAL_MODES_2017_17173","categories":["mode"],"client_match":"\\.TG(?:PM|CM|C|T2C)?BombMatch$|\\.TGSBombMatch$","display_name":"爆破系列（历史类名对应线索）","summary":"围绕爆破目标展开战术对抗。"},
+    {"id":"crazy-team","source_id":"HISTORICAL_MODES_2017_17173","categories":["mode"],"client_match":"\\.TGCrazyTeamMatch$","display_name":"疯狂团队战（历史类名对应线索）","summary":"从出生点选取特殊武器开展对战。"},
+    {"id":"capture-point","source_id":"HISTORICAL_MODES_2017_17173","categories":["mode"],"client_match":"\\.TG(?:CM)?CPMatch$","display_name":"夺点战（历史类名对应线索）","summary":"争夺目标区域并累积得分；历史停用描述不作为当前状态。"},
+    {"id":"survival","source_id":"HISTORICAL_MODES_17173","categories":["mode"],"client_match":"\\.TGSV[0-9]*Game$","display_name":"生存战（历史类名对应线索）","summary":"小队守住区域，抵御逐轮增强的敌人。"},
+    {"id":"defend","source_id":"HISTORICAL_MODES_17173","categories":["mode"],"client_match":"\\.TGWB[0-9]*Game$","display_name":"保卫战（历史类名对应线索）","summary":"协作保护建筑，击退连续进攻的敌人。"},
+    {"id":"tower","source_id":"HISTORICAL_MODES_17173","categories":["mode"],"client_match":"\\.ATDGameInfo$|\\.TGATD[0-9]*Game$","display_name":"塔防战（历史类名对应线索）","summary":"布置陷阱保护基地，同时使用武器抵挡敌人。"},
+    {"id":"mecha","source_id":"HISTORICAL_MODES_17173","categories":["mode"],"client_match":"\\.TGMechaHumanMatch$","display_name":"机甲战（历史类名对应线索）","summary":"人类与机甲阵营对抗，目标随阵营变化。"},
+    {"id":"tank","source_id":"HISTORICAL_MODES_17173","categories":["mode"],"client_match":"\\.TGTank(?:DB|Team)Match$","display_name":"坦克战（历史类名对应线索）","summary":"玩家驾驶不同坦克开展团队对战。"},
+    {"id":"bio","source_id":"HISTORICAL_MODES_17173","categories":["mode"],"client_match":"\\.TGBio[0-9]*Match(?:_16)?$","display_name":"变异战（历史类名对应线索）","summary":"人类依靠武器抵抗变异体感染，双方使用不同能力。"},
+    {"id":"defend-map","source_id":"HISTORICAL_DEFEND_17173","categories":["map"],"client_match":"钢铁森林","display_name":"钢铁森林历史背景","summary":"机甲制造中心遭袭，小队守卫厂区并等待支援。"},
+    {"id":"survival-map","source_id":"HISTORICAL_SURVIVAL_17173","categories":["map"],"client_match":"装配中心","display_name":"装配中心历史背景","summary":"潜入制造工厂的小队被困，需要依靠现场补给坚守。"}
+  ]
+}

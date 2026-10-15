@@ -19,6 +19,10 @@
 
 [启动与管理手册](docs/LOCAL_RUNBOOK.md) · [实际接口](docs/API.md) · [架构决策](docs/DECISIONS.md) · [本轮 MySQL 自动化证据](evidence/stack-refactor-tests.json)
 
+## 当前客户端资产目录
+
+玩法、模式、地图、物品、武器、功能和商城的只读提取工具，以及 JSON、Markdown 和独立 MySQL 目录 SQL，见 [资产目录交付说明](docs/CLIENT_CATALOG.md)。完整产物在工作区 `evidence/private/client-catalog/`，包含来源、原始字段和缺口。目录产物的实际 MySQL 导入与游戏内运行尚未验证；目录工具与已迁移的 Django/MySQL 控制面业务库保持独立。
+
 ## 本地启动
 
 当前技术栈为 React + TypeScript + shadcn/ui、Django 5.2 和 MySQL。需要 Python 3.12–3.14、Node 22.12+ 及 MySQL。Windows 本地独立实例默认使用已有 MySQL 9.0 程序，不修改系统服务。在仓库根目录执行：
@@ -47,6 +51,7 @@ python -m venv .venv
 ## 验证
 
 ```powershell
+.venv/Scripts/python.exe -m pip install -r requirements-catalog.txt
 .venv/Scripts/python.exe tools/run_tests.py
 .venv/Scripts/python.exe -m revival check
 cd admin

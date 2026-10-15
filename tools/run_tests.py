@@ -1,5 +1,6 @@
 """执行实际自动化测试并保存通过项、失败项和数据库版本；不将合成验证描述为真实游戏验收。"""
 import argparse
+import fnmatch
 import io
 import json
 import os
@@ -25,9 +26,10 @@ def main():
     """解析 CLI 参数并执行测试，记录真实结果与版本；失败使用非零退出码。"""
     parser=argparse.ArgumentParser()
     parser.add_argument('--output',default='evidence/stack-refactor-tests.json')
-    parser.add_argument('--tooling',action='store_true',help='Run independent inventory tooling without a database')
+    parser.add_argument('--tooling',action='store_true',help='Run independent inventory and catalogue tooling without a database')
     parser.add_argument('--labels',nargs='+',default=['tests'],help='Optional Django test labels for a targeted regression')
     parser.add_argument('--upstream',action='store_true')
+    parser.add_argument('--pattern',default='test*.py',help='Local unittest discovery pattern')
     args=parser.parse_args()
     root=Path(__file__).resolve().parents[1]
     output=root/args.output;output.parent.mkdir(parents=True,exist_ok=True)
@@ -46,15 +48,21 @@ def main():
         import tempfile
         cache=root/'runtime/test-tmp';cache.mkdir(parents=True,exist_ok=True);tempfile.tempdir=str(cache)
         runner=None;old_config=None;mysql_version=None
-        if args.tooling:
-            suite=unittest.defaultTestLoader.loadTestsFromName('tests.test_inventory')
+        # 盘点和只读目录使用临时夹具，不需要业务库；保留远端 --pattern 专项测试入口。
+        # 默认完整回归仍由 Django 初始化真实 MySQL，不能用独立工具结果代替数据库验收。
+        independent_modules=['tests.test_inventory','tests.test_client_catalog']
+        selected=[name for name in independent_modules if fnmatch.fnmatch(name.rsplit('.',1)[-1]+'.py',args.pattern)]
+        business_matches=[path for path in (root/'tests').glob(args.pattern)
+                          if 'tests.'+path.stem not in independent_modules]
+        if args.tooling or (selected and not business_matches):
+            suite=unittest.defaultTestLoader.loadTestsFromNames(selected)
         else:
             os.environ.setdefault('DJANGO_SETTINGS_MODULE','nzproject.settings')
             import django
             django.setup()
             from django.db import connections
             from django.test.runner import DiscoverRunner
-            runner=DiscoverRunner(interactive=False,verbosity=0)
+            runner=DiscoverRunner(interactive=False,verbosity=0,pattern=args.pattern)
             runner.setup_test_environment()
             old_config=runner.setup_databases()
             with connections['default'].cursor() as cursor:

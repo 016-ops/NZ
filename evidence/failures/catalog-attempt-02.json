@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-14",
+  "kind": "CATALOG_ENCODING_FIXTURE",
+  "test": "tests.test_client_catalog.ClientCatalogTests.test_decoder_preserves_chinese_and_rejects_corruption",
+  "failure": "A CP1252 smart apostrophe was accidentally valid as a GB18030 sequence and decoded to a Chinese character",
+  "repair": "Prioritize CP1252 for INI text containing only Western control-range smart punctuation beyond ASCII; preserve a fallback-encoding issue and rerun the original test"
+}

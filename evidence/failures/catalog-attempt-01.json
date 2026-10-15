@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-14",
+  "kind": "CATALOG_FIXTURE_STATIC_VERIFICATION",
+  "test": "tests.test_client_catalog.ClientCatalogTests.test_export_fidelity_and_unresolved_references",
+  "failure": "Duplicate primary key: entities; orphan entity references",
+  "cause": "JSON id field was not mapped to SQL entity_id",
+  "repair": "Add explicit entities id-to-entity_id mapping, rerun original fixture"
+}
