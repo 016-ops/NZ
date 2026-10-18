@@ -1,0 +1,28 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 16,
+  "passed": [
+    "tests.test_native_workshop.NativeWorkshopTests.test_all_current_voucher_definitions_validate",
+    "tests.test_native_workshop.NativeWorkshopTests.test_free_day_boundary_and_failure_leave_no_state",
+    "tests.test_native_workshop.NativeWorkshopTests.test_free_then_paid_and_rule_change_cannot_reset_day",
+    "tests.test_native_workshop.NativeWorkshopTests.test_guarantee_and_invalid_configuration_rejected_before_cost",
+    "tests.test_native_workshop.NativeWorkshopTests.test_native_pending_reconnect_failure_and_delivery",
+    "tests.test_native_workshop.NativeWorkshopTests.test_refund_owned_and_batch_duplicate_preserve_voucher_gid",
+    "tests.test_native_workshop.NativeWorkshopTests.test_ten_atomic_concurrent_retries_and_tail_failure",
+    "tests.test_native_session_sync.NativeSessionSyncTests.test_bridge_poll_uses_one_view_and_respects_animation_hold",
+    "tests.test_native_session_sync.NativeSessionSyncTests.test_clan_online_follows_heartbeat_and_logout",
+    "tests.test_native_session_sync.NativeSessionSyncTests.test_snapshot_is_private_and_does_not_ack_events",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_animation_sync_timeout_recovers_assets_without_confirming_receipt",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_material_partial_consume_uses_stack_update_and_context_is_private",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_native_pool_dates_cost_and_choice_types",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_native_reconnect_preserves_unseen_result_then_refresh_acknowledges",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_refund_owned_preserves_material_gid_and_rollback_round",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_two_choices_freeze_twelve_prizes_and_lock_until_finished"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 87.39
+}

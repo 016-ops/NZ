@@ -1,0 +1,58 @@
+{
+  "added": [
+    {
+      "item_id": 102111,
+      "quantity": 200
+    },
+    {
+      "item_id": 102432,
+      "quantity": 200
+    },
+    {
+      "item_id": 101517,
+      "quantity": 200
+    },
+    {
+      "item_id": 101144,
+      "quantity": 200
+    },
+    {
+      "item_id": 103428,
+      "quantity": 1
+    },
+    {
+      "item_id": 103379,
+      "quantity": 1
+    },
+    {
+      "item_id": 101147,
+      "quantity": 1
+    },
+    {
+      "item_id": 102517,
+      "quantity": 1
+    },
+    {
+      "item_id": 103542,
+      "quantity": 1
+    },
+    {
+      "item_id": 102304,
+      "quantity": 1
+    },
+    {
+      "item_id": 100003,
+      "quantity": 1
+    }
+  ],
+  "operations": [
+    "1e5852bb65aa42c4b79dc37283e28e22"
+  ],
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "formal_checkin_enabled": 0
+}

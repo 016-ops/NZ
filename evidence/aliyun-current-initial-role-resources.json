@@ -1,0 +1,552 @@
+{
+  "kind": "CURRENT_ROLE_RESOURCE_MAPPING_READ_ONLY_PARTIAL",
+  "date": "2026-10-15",
+  "scope": {
+    "client_root": "runtime/native-recovery/coherent-2020/nz",
+    "old_catalog_index": "../evidence/private/client-catalog/json/source_files.json",
+    "selected_config_count": 7,
+    "selected_candidate_item_count": 2,
+    "selected_package_count": 12,
+    "client_file_writes": 0,
+    "database_writes": 0,
+    "credentials_read": false,
+    "dll_executed": false,
+    "game_executed": false,
+    "network_requests": 0
+  },
+  "configs": [
+    {
+      "path": "TGame/Config/DefaultItemLibrary.ini",
+      "bytes": 352820,
+      "sha256": "741963c2174004735a9456ea559a6976f53665f591f9ba995d7889b8db0911a6",
+      "archive_manifest_matches": true,
+      "encoding": "gb18030",
+      "decoded_sha256": "417e905a8010a07969bff68511948a267a4b9caca32c04d4f58186e2ccb47e13",
+      "old_catalog_decoded_sha256": "417e905a8010a07969bff68511948a267a4b9caca32c04d4f58186e2ccb47e13",
+      "decoded_matches_old_catalog": true,
+      "exact_role_field_mentions": []
+    },
+    {
+      "path": "TGame/Config/DefaultTGResManager.ini",
+      "bytes": 30580,
+      "sha256": "9361eb84e14f60e9a6275f7885f3e1da5d0db1c626bd6498ca39bb5557354605",
+      "archive_manifest_matches": true,
+      "encoding": "gb18030",
+      "decoded_sha256": "dee18f7c24403caa0ece27badc8490bc93e80cf3d18b80a1925adcee0dd208d5",
+      "old_catalog_decoded_sha256": "dee18f7c24403caa0ece27badc8490bc93e80cf3d18b80a1925adcee0dd208d5",
+      "decoded_matches_old_catalog": true,
+      "exact_role_field_mentions": []
+    },
+    {
+      "path": "TGame/Config/DefaultAvatarChar.ini",
+      "bytes": 23668,
+      "sha256": "bc4b30859de980d1dea0cca3ae3c3dbc77ea7c6090d5d7cb6b1d83be23b56d22",
+      "archive_manifest_matches": true,
+      "encoding": "gb18030",
+      "decoded_sha256": "f65e44d324513122501c7ae368f280c5726ee4c9c13cd573a514c5e6127d90d7",
+      "old_catalog_decoded_sha256": "f65e44d324513122501c7ae368f280c5726ee4c9c13cd573a514c5e6127d90d7",
+      "decoded_matches_old_catalog": true,
+      "exact_role_field_mentions": []
+    },
+    {
+      "path": "TGame/Config/DefaultGame.ini",
+      "bytes": 28196,
+      "sha256": "1d970d31f82cd0d38c2386d9bda0e1928917141776fd0ff67b0342ea9525c34d",
+      "archive_manifest_matches": true,
+      "encoding": "gb18030",
+      "decoded_sha256": "27d8796131350cee24b80a3e5a0a801650ca4f8b4f6d3a1e1b69a3487408713a",
+      "old_catalog_decoded_sha256": "27d8796131350cee24b80a3e5a0a801650ca4f8b4f6d3a1e1b69a3487408713a",
+      "decoded_matches_old_catalog": true,
+      "exact_role_field_mentions": []
+    },
+    {
+      "path": "TGame/Config/DefaultCharInfo.ini",
+      "bytes": 820,
+      "sha256": "77ec50c7d0a7e241a617b37add39ea0b079ef8eb8d7b20cc87e4fe998093ed75",
+      "archive_manifest_matches": true,
+      "encoding": "gb18030",
+      "decoded_sha256": "d56e802e97bd7c373301e912230ab6cf371abb601f976d7971c0ea9e195e4503",
+      "old_catalog_decoded_sha256": "d56e802e97bd7c373301e912230ab6cf371abb601f976d7971c0ea9e195e4503",
+      "decoded_matches_old_catalog": true,
+      "exact_role_field_mentions": []
+    },
+    {
+      "path": "TGame/Config/DefaultCustomChar.ini",
+      "bytes": 4676,
+      "sha256": "638e54366fdc2e03e6dbe84699f3f16df38a7d3c770eae274e3f888a9c9dbce6",
+      "archive_manifest_matches": true,
+      "encoding": "gb18030",
+      "decoded_sha256": "2c281fe4162c1202f036d570e3e3ae5d80b3dc7bf8c070fa9ec532442a13b24f",
+      "old_catalog_decoded_sha256": "2c281fe4162c1202f036d570e3e3ae5d80b3dc7bf8c070fa9ec532442a13b24f",
+      "decoded_matches_old_catalog": true,
+      "exact_role_field_mentions": []
+    },
+    {
+      "path": "TGame/Config/DefaultFamily.ini",
+      "bytes": 180,
+      "sha256": "6cd253df4ce51feb09aa97e2f7b6c38d1a7ee0d76ac7c811414a102bb9cbbb6c",
+      "archive_manifest_matches": true,
+      "encoding": "gb18030",
+      "decoded_sha256": "380a099ece3cbeac67dbe3e227aa188b9e5e565ddf6078f64a7ed273d577e6b9",
+      "old_catalog_decoded_sha256": "380a099ece3cbeac67dbe3e227aa188b9e5e565ddf6078f64a7ed273d577e6b9",
+      "decoded_matches_old_catalog": true,
+      "exact_role_field_mentions": []
+    }
+  ],
+  "candidate_item_rows": [
+    {
+      "source_path": "TGame/Config/DefaultItemLibrary.ini",
+      "section": "UTGame.TGFPSItemLibrary",
+      "line": 15,
+      "key": "ItemDatas",
+      "fields": {
+        "ItemName": "GhostArmy",
+        "nItemID": 100014,
+        "ResID1": 1879048192,
+        "ResID2": 65536,
+        "nItemIconID": 3000088,
+        "bDefaultItem": true,
+        "bHidden": false,
+        "Location": 10,
+        "ConsumeType": 0
+      }
+    },
+    {
+      "source_path": "TGame/Config/DefaultItemLibrary.ini",
+      "section": "UTGame.TGFPSItemLibrary",
+      "line": 16,
+      "key": "ItemDatas",
+      "fields": {
+        "ItemName": "Variance",
+        "nItemID": 100016,
+        "ResID1": 1881145344,
+        "ResID2": 0,
+        "nItemIconID": 3000019,
+        "bDefaultItem": true,
+        "bHidden": false,
+        "Location": 11,
+        "ConsumeType": 0
+      }
+    }
+  ],
+  "family_mirror_rows": [
+    {
+      "source_path": "TGame/Config/DefaultTGResManager.ini",
+      "section": "UTGame.TGResManager",
+      "line": 13,
+      "key": "ArrayFamilyPathMirror",
+      "fields": {
+        "FamilyType": "FamilyType_Army",
+        "FamilyString": "Army",
+        "FamilyID": 0,
+        "FamilyPath": "FamilyArmy"
+      }
+    },
+    {
+      "source_path": "TGame/Config/DefaultTGResManager.ini",
+      "section": "UTGame.TGResManager",
+      "line": 15,
+      "key": "ArrayFamilyPathMirror",
+      "fields": {
+        "FamilyType": "FamilyType_Variance",
+        "FamilyString": "Variance",
+        "FamilyID": 2,
+        "FamilyPath": "FamilyVariance"
+      }
+    },
+    {
+      "source_path": "TGame/Config/DefaultTGResManager.ini",
+      "section": "UTGame.TGResManager",
+      "line": 75,
+      "key": "ArrayCharacterMirror",
+      "fields": {
+        "CharacterSubType": "FamilyType_Army",
+        "CharacterName": "FamilyArmy"
+      }
+    },
+    {
+      "source_path": "TGame/Config/DefaultTGResManager.ini",
+      "section": "UTGame.TGResManager",
+      "line": 77,
+      "key": "ArrayCharacterMirror",
+      "fields": {
+        "CharacterSubType": "FamilyType_Variance",
+        "CharacterName": "FamilyVariance"
+      }
+    }
+  ],
+  "selected_packages": [
+    {
+      "path": "TGame/CookedPC/Avatar/CharacterItem/FamilyArmy.upk",
+      "bytes": 18628,
+      "sha256": "829403c1028a17709bde7a2e5efa07fc10bf74cce11cd71a241a3d98f251e179",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "c97124c8b7d33cc041b1db2cadb74f10a5ced610e27448567ec0af446da90688",
+      "raw_matches_old_catalog": false,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/CharacterItem/FamilyVariance.upk",
+      "bytes": 19257,
+      "sha256": "b7b390250dfcf4cf0b6b0826d75c10a8ea2177710860ca0ae8a3800c3b2c1b5e",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "873378f78d1c89dfc3a7633b1d3419a49c517b9aa948f23e600c2016ef69477d",
+      "raw_matches_old_catalog": false,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/FamilyArmy/Arms/FamilyArmy_Arms_002_F.upk",
+      "bytes": 2031383,
+      "sha256": "275769b0fa7e9da6902c9e5d27abd41d6059c370a773490d44c4a122f2dc5015",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "887bca76f5519f45851403b6ce43863941660ffb095396dea524f6fa3382d41e",
+      "raw_matches_old_catalog": false,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/FamilyArmy/Arms/FamilyArmy_Arms_002_F_SF.upk",
+      "bytes": 729853,
+      "sha256": "baa7626bc095294ee708b652c63f60c616ff6f2a0b2a5488b4a6b121ef7bb0b9",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "baa7626bc095294ee708b652c63f60c616ff6f2a0b2a5488b4a6b121ef7bb0b9",
+      "raw_matches_old_catalog": true,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/FamilyArmy/Body/FamilyArmy_Body_001.upk",
+      "bytes": 4491742,
+      "sha256": "21fd27bd16fdc0258d242cc33ee6a449e434f4286d226ba9831c947399f35dfe",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "e9528dae4cc25c754a8742628b0624a78e4e346023971d2fa02e6477ac9e4da0",
+      "raw_matches_old_catalog": false,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/FamilyArmy/torsor/FamilyArmy_Torsor_002_F.upk",
+      "bytes": 1320712,
+      "sha256": "a58c2970e39145bce5108d63d9051d1b2a735eb3f1efe91e1ae09370469eee68",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "113d2f45f13f09cccc35d76befcf9b46cc06e5c2f79f62af122890b412226295",
+      "raw_matches_old_catalog": false,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/FamilyArmy/torsor/FamilyArmy_Torsor_002_F_SF.upk",
+      "bytes": 575596,
+      "sha256": "30b329071085bdddab2c98ce8a23ffbd2c08621b40a8986e1a5a2904826f91b4",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "30b329071085bdddab2c98ce8a23ffbd2c08621b40a8986e1a5a2904826f91b4",
+      "raw_matches_old_catalog": true,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/FamilyVariance/Arms/FamilyVariance_Arms_001_F.upk",
+      "bytes": 1669793,
+      "sha256": "d18377f7f72684413b8f58eac900a4dd4a8529f6574b2f9afbc20f5fac3466a0",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "18bd2ccbc2e8798351c68a9b2c716b8aaf54aa88599ab26d340d98339875b2e0",
+      "raw_matches_old_catalog": false,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/FamilyVariance/Arms/FamilyVariance_Arms_001_F_SF.upk",
+      "bytes": 531834,
+      "sha256": "30317d5480dea9bad5b0c8f58da9f3575ae85335421cdac617693cac3e3845d4",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "30317d5480dea9bad5b0c8f58da9f3575ae85335421cdac617693cac3e3845d4",
+      "raw_matches_old_catalog": true,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/FamilyVariance/Body/FamilyVariance_Body_001.upk",
+      "bytes": 4240264,
+      "sha256": "4199348a4658349ea4c02167214ae18347186f13d1461799338f0b894f9790b4",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "9fdf163482c3e62bcba9e2e201a231cbaac7612a894865bc03c99e219cebac1e",
+      "raw_matches_old_catalog": false,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/FamilyVariance/torsor/FamilyVariance_Torsor_001_F.upk",
+      "bytes": 870505,
+      "sha256": "5f273839003fd516ce1e55d7d4e24dcb9e51e54894c6e1de1759a03ea8990bb9",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "6f68f3b1d2fbf53860e914808a9a2fa8ede22c7b2032020183d3d64e97bc1d7c",
+      "raw_matches_old_catalog": false,
+      "package_objects_and_dependency_closure_verified": false
+    },
+    {
+      "path": "TGame/CookedPC/Avatar/FamilyVariance/torsor/FamilyVariance_Torsor_001_F_SF.upk",
+      "bytes": 288846,
+      "sha256": "8b098b1a9c393a20ea318449bb3824e5878b3bc71dab94bbf741f2c165d2e90a",
+      "archive_manifest_matches": true,
+      "leading_four_bytes_hex": "ffa8273e",
+      "old_catalog_status": "PACKAGE_UNDECODED",
+      "old_catalog_sha256": "8b098b1a9c393a20ea318449bb3824e5878b3bc71dab94bbf741f2c165d2e90a",
+      "raw_matches_old_catalog": true,
+      "package_objects_and_dependency_closure_verified": false
+    }
+  ],
+  "current_zone_metadata": {
+    "path": "TGame/TDR/proto_c2zn.tdr",
+    "sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+    "selected_macros": [
+      {
+        "name": "EPropLocationType_Role1",
+        "value": 10,
+        "hex": "0xa",
+        "record_file_offset": "0x254",
+        "index": 20
+      },
+      {
+        "name": "EPropLocationType_Role2",
+        "value": 11,
+        "hex": "0xb",
+        "record_file_offset": "0x264",
+        "index": 21
+      },
+      {
+        "name": "ECamp_Rebel",
+        "value": 0,
+        "hex": "0x0",
+        "record_file_offset": "0xba84",
+        "index": 2967
+      },
+      {
+        "name": "ECamp_Regular",
+        "value": 1,
+        "hex": "0x1",
+        "record_file_offset": "0xba94",
+        "index": 2968
+      }
+    ],
+    "selected_structures": [
+      {
+        "name": "ZN2C_NtfPlayerRoleType",
+        "header_file_offset": "0x1e4480",
+        "fields": [
+          {
+            "name": "RoleType",
+            "descriptor_file_offset": "0x1e4538",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_ReqChangeRole",
+        "header_file_offset": "0x1df548",
+        "fields": [
+          {
+            "name": "RegularRoleIndex",
+            "descriptor_file_offset": "0x1df600",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "RebelRoleIndex",
+            "descriptor_file_offset": "0x1df6b4",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "PropInfo",
+        "header_file_offset": "0x2aa7c",
+        "fields": [
+          {
+            "name": "GID",
+            "descriptor_file_offset": "0x2abe8",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "PlayerInfo",
+        "header_file_offset": "0x24c18",
+        "fields": [
+          {
+            "name": "CurRoleGID",
+            "descriptor_file_offset": "0x256a8",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              63,
+              94
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "RoleType",
+            "descriptor_file_offset": "0x2575c",
+            "type_code": 12,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              71,
+              102
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      }
+    ]
+  },
+  "default_flag_counterexamples": [
+    {
+      "line": 3623,
+      "fields": {
+        "nItemID": 104192,
+        "ItemName": "AngelSwim",
+        "Location": 10,
+        "ConsumeType": 1,
+        "bDefaultItem": true
+      }
+    },
+    {
+      "line": 3624,
+      "fields": {
+        "nItemID": 104193,
+        "ItemName": "Scientist",
+        "Location": 10,
+        "ConsumeType": 1,
+        "bDefaultItem": true
+      }
+    },
+    {
+      "line": 3625,
+      "fields": {
+        "nItemID": 104194,
+        "ItemName": "DoctorGirl",
+        "Location": 11,
+        "ConsumeType": 1,
+        "bDefaultItem": true
+      }
+    }
+  ],
+  "proven": [
+    "Current selected config plaintext SHA256 equals the previously extracted catalog; current on-disk raw SHA256 equals the recovered archive manifest.",
+    "Current item 100014 is GhostArmy at Location10 with ResID1 0x70000000 and ResID2 65536; item 100016 is Variance at Location11 with ResID1 0x70200000 and ResID2 0.",
+    "Current TDR declares Role1=10, Role2=11, Rebel=0 and Regular=1, without a direct declaration connecting Role1/Role2 to RegularRoleIndex/RebelRoleIndex.",
+    "Current TGResManager explicitly maps FamilyType_Army/FamilyID0 to FamilyArmy, and FamilyType_Variance/FamilyID2 to FamilyVariance.",
+    "All selected current package files exist and match the current archive manifest; this is file integrity evidence, not object or dependency loading evidence.",
+    "RegularRoleIndex and RebelRoleIndex are each 2-byte fields; item IDs 100014/100016 exceed an unsigned 16-bit value and therefore cannot be copied directly into them."
+  ],
+  "unverified": [
+    "The native ResID1 bit extraction that selects a family, and the exact distinction between item ID, role index, family ID, resource ID and property GID.",
+    "The mapping from Role1/Role2 to Regular/Rebel indices and the role choice defaults for new independent accounts.",
+    "CurRoleGID/RoleType ownership, masks, validity and linkage to PropInfo GID; same field width/name is not a proven foreign-key or bitset contract.",
+    "Package object names, skeletal mesh/material/animation dependencies and a complete loadable starter character; selected packages have opaque current headers and were not unpacked or executed.",
+    "Whether bDefaultItem is a starter grant rule. Current later entries also carry bDefaultItem=true with ConsumeType=1; this flag alone is insufficient.",
+    "No candidate was enabled in the business catalog, granted to a player, encoded into PlayerInfo, or tested in the native lobby."
+  ]
+}

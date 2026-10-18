@@ -1,0 +1,13 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 1,
+  "passed": [
+    "tests.test_native_settings.NativeSettingsTests.test_http_routes_require_game_bearer_and_commit_before_acknowledging"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 4.453
+}

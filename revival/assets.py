@@ -25,6 +25,21 @@ def currency_value(service, code, delta):
     return definition
 
 
+def body_expiration(service, actor, account_id, source, change, resource, minimum):
+    """内部角色部件沿用父角色的精确期限，避免慢事务跨秒使子项比角色多活一秒。
+
+    仅身体补齐来源、本人玩家身份和冻结身体资源允许传入绝对期限；普通发放/补偿
+    不能借额外字段绕过期限策略。无此字段的既有资产操作保持原合同。
+    """
+    from .native_avatar_body import catalog
+    item_id = resource.removeprefix('cn2020:')
+    if (source != 'native.avatar.body' or actor != {'id': account_id, 'role': 'player'}
+            or item_id not in catalog()['parts']):
+        raise Fault('INVALID', 'Absolute body expiration is internal only')
+    return integer(change['expires_at_exact'], minimum,
+        service.clock()+service.catalog['items'][resource]['duration_max'], 'expires_at_exact')
+
+
 # 统一资产入口：逐项验证余额、库存容量、期限与归属，写版本化余额/实例及不可改写流水，最后追加 outbox；任一项失败由外层回滚全部改动。
 def mutate(service, c, actor, account_id, changes, reason, source, linked=None):
     """统一资产入口：逐项验证余额、库存容量、期限与归属，写版本化余额/实例及不可改写流水，最后追加 outbox；任一项失败由外层回滚全部改动。"""
@@ -37,6 +52,8 @@ def mutate(service, c, actor, account_id, changes, reason, source, linked=None):
                                                 if isinstance(x, dict) and x.get('type') == 'currency'
                                                 and type(x.get('delta')) is int) > 10000:
         raise Fault('LIMIT', 'Resource administrator per-operation currency limit is 10000', 403)
+    if source == 'NATIVE_SUPER_ACCOUNT' and actor == {'id': 'local-management:super-account', 'role': 'owner'} and linked is None:
+        return _new_native_items(service, c, actor, account_id, changes, reason, source)
     operation_id = identifier()
     c.insert('asset_operations', {'id': operation_id, 'account_id': account_id, 'actor': actor['id'], 'source': source, 'reason': reason, 'created_at': service.clock(), 'status': 'COMMITTED', 'linked_operation': linked})
     for index, change in enumerate(changes):
@@ -73,44 +90,140 @@ def mutate(service, c, actor, account_id, changes, reason, source, linked=None):
             else:
                 integer(duration, 1, definition['duration_max'], 'duration_seconds')
                 expires = service.clock() + duration
+            if 'expires_at_exact' in change:
+                expires = body_expiration(service, actor, account_id, source, change, key, service.clock()+1)
             owned = c.select('inventory', ((Q(account_id=account_id) & Q(item_key=key)) & (Q(expires_at__isnull=True) | Q(expires_at__gt=service.clock()))), order=('id',), limit=1).fetchone()
             if owned and definition['exclusive']:
                 raise Fault('EXCLUSIVE', 'An active exclusive instance already exists', 409)
-            stack = c.select('inventory', ((Q(account_id=account_id) & Q(item_key=key)) & Q(expires_at=expires)), order=('id',), limit=1).fetchone() if not definition['exclusive'] else None
+            stack = c.select('inventory', ((Q(account_id=account_id) & Q(item_key=key)) & Q(expires_at=expires)), order=('id',), limit=1).fetchone() if not definition['exclusive'] and definition.get('storage_mode') != 'instance' else None
             if stack:
                 before, instance_id = stack['quantity'], stack['id']
                 after = before + delta
                 if after > definition['stack']:
-                    raise Fault('INVENTORY_FULL', 'Stack limit exceeded', 409)
+                    raise Fault('QUANTITY_LIMIT' if definition.get('native') else 'INVENTORY_FULL', 'Stack limit exceeded', 409)
                 c.update('inventory', Q(id=instance_id), {'quantity': after, 'version': F('version') + 1})
             else:
-                if c.count('inventory', Q(account_id=account_id)).fetchone()[0] >= service.catalog['inventory_limit']:
+                if service.catalog['inventory_limit'] is not None and c.count('inventory', Q(account_id=account_id)).fetchone()[0] >= service.catalog['inventory_limit']:
                     raise Fault('INVENTORY_FULL', 'No capacity; request rejected without asset changes', 409)
                 instance_id, before, after = identifier(), 0, delta
                 c.insert('inventory', {'id': instance_id, 'account_id': account_id, 'item_key': key, 'quantity': delta, 'expires_at': expires})
+                if definition.get('native'):
+                    c.insert('native_inventory_bindings', {'inventory_id': instance_id, 'rules_version': definition['rules_version']})
             resource = key
             detail = {'expires_at': expires, 'permanent': expires is None, 'bound': True, 'catalog_version': service.catalog['id']}
-        elif kind == 'consume':
+            if definition.get('native'):
+                # 原生兼容资产有独立冻结版本，审计不能仅记录尚未验证的部署profile名称。
+                detail['native_rules_version'] = definition['rules_version']
+                detail['native_manifest_sha256'] = service.catalog['native_assets']['manifest_sha256']
+        elif kind in ('consume', 'remove'):
             instance_id = change.get('instance_id')
             item = c.select('inventory', (Q(id=instance_id) & Q(account_id=account_id))).fetchone()
             if not item or (item['expires_at'] is not None and item['expires_at'] <= service.clock()):
                 raise Fault('INVENTORY', 'Active owned instance required', 409)
             definition = service.catalog['items'].get(item['item_key'])
-            if not definition or not definition.get('consumable'):
+            if not definition or (kind == 'consume' and not definition.get('consumable')) or (kind == 'remove' and not definition.get('native')):
                 raise Fault('INVALID', 'Item is not a confirmed consumable')
             delta = -integer(change.get('quantity'), 1, item['quantity'], 'quantity')
+            binding = c.select('native_inventory_bindings', Q(inventory_id=instance_id)).fetchone()
+            if binding and (c.table('native_item_states').filter(state__swallow__gid=binding['id']+1000).exists()
+                    or c.table('native_item_states').filter(inventory_id=instance_id,state__swallow__isnull=False).exists()):
+                raise Fault('ITEM_IN_USE','Detach the fusion relationship before consuming either item',409)
             before, after, resource = item['quantity'], item['quantity'] + delta, item['item_key']
             if after:
                 c.update('inventory', Q(id=instance_id), {'quantity': after, 'version': F('version') + 1})
             else:
+                binding = c.select('native_inventory_bindings', Q(inventory_id=instance_id)).fetchone()
+                if binding and c.table('equipment').filter(account_id=account_id,slot__startswith=f"native:{binding['id']+1000}:").exists():
+                    raise Fault('ITEM_IN_USE', 'Unload child equipment before consuming its parent', 409)
+                if binding and c.table('native_item_states').filter(state__skin__gid=binding['id']+1000).exists():
+                    raise Fault('ITEM_IN_USE', 'Remove this skin from its weapon before consuming it', 409)
                 c.delete('equipment', Q(inventory_id=instance_id))
+                c.delete('native_inventory_bindings', Q(inventory_id=instance_id))
                 c.delete('inventory', Q(id=instance_id))
             detail = {'expires_at': item['expires_at'], 'bound': bool(item['bound']), 'version_before': item['version']}
+        elif kind in ('native_state', 'renew'):
+            # 仅由已校验的原生领域操作构造；玩家不能直接调用统一资产函数设置任意状态。
+            instance_id = change.get('instance_id')
+            item = c.select('inventory', Q(id=instance_id, account_id=account_id)).fetchone()
+            if not item or not service.catalog['items'].get(item['item_key'], {}).get('native'):
+                raise Fault('INVENTORY', 'Owned native instance required', 409)
+            resource = item['item_key']
+            if kind == 'renew':
+                if item['expires_at'] is None:
+                    raise Fault('PERMANENT', 'Permanent items do not need renewal', 409)
+                duration = integer(change.get('duration_seconds'), 1, service.catalog['items'][resource]['duration_max'], 'duration_seconds')
+                before = item['expires_at']
+                after = max(before, service.clock()) + duration
+                if 'expires_at_exact' in change:
+                    after = body_expiration(service, actor, account_id, source, change, resource, max(before,service.clock())+1)
+                c.update('inventory', Q(id=instance_id), {'expires_at':after, 'version':F('version')+1})
+                detail = {'expires_before':before, 'expires_after':after}
+            else:
+                if item['expires_at'] is not None and item['expires_at'] <= service.clock() and not change.get('allow_expired'):
+                    raise Fault('INVENTORY', 'Expired item cannot change state', 409)
+                old = c.select('native_item_states', Q(inventory_id=instance_id)).fetchone()
+                before, after = old['revision'] if old else 0, (old['revision'] if old else 0)+1
+                state = change['state']
+                detail = {'state_before':old['state'] if old else {}, 'state_after':state}
+                if old:
+                    c.update('native_item_states', Q(inventory_id=instance_id), {'state':state, 'revision':after})
+                else:
+                    c.insert('native_item_states', {'inventory_id':instance_id, 'state':state, 'revision':after})
+                c.update('inventory', Q(id=instance_id), {'version':F('version')+1})
+            delta = after-before
         else:
             raise Fault('INVALID', 'Unsupported asset change')
         c.insert('asset_entries', {'operation_id': operation_id, 'entry_no': index, 'kind': kind, 'resource': resource, 'instance_id': instance_id, 'delta': delta, 'before_value': before, 'after_value': after})
         c.insert('asset_entry_details', {'operation_id': operation_id, 'entry_no': index, 'detail': canonical(detail)})
+    from .native_inventory import advance_revision
+    advance_revision(c, account_id, instance_ids=list(c.table('asset_entries').filter(
+        operation_id=operation_id,instance_id__isnull=False).values_list('instance_id',flat=True)))
     service._outbox(c, 'assets:' + operation_id, 'assets.changed', account_id, {'operation_id': operation_id, 'account_id': account_id})
+    return {'operation_id': operation_id, 'status': 'COMMITTED', 'sync_status': 'PENDING', 'evidence': service.catalog['evidence']}
+
+
+def _new_native_items(service, c, actor, account_id, changes, reason, source):
+    """统一发放入口的受限批量分支：仅新增永久、非互斥、单件原生权益，账本语义不变。
+
+    管理命令已持有部署锁；一次核对整批既有库存及容量，再批量插入实例和对应流水。
+    不承接钱包、消费、叠加或普通HTTP管理发放；任何重复、目录不符或outbox失败均回滚。
+    """
+    keys = []
+    for change in changes:
+        if not isinstance(change, dict) or set(change) != {'type', 'item_key', 'quantity'}:
+            raise Fault('INVALID', 'Native grant requires exact permanent single-item changes')
+        key = change.get('item_key')
+        definition = service.catalog['items'].get(key)
+        if (change['type'] != 'item' or type(change['quantity']) is not int or change['quantity'] != 1
+                or not definition or not definition.get('native') or definition['stack'] < 1
+                or not definition['permanent'] or key in keys):
+            raise Fault('INVALID', 'Native grant requires unique permanent single-item definitions')
+        keys.append(key)
+    if service.catalog['inventory_limit'] is not None and c.count('inventory', Q(account_id=account_id)).fetchone()[0] + len(keys) > service.catalog['inventory_limit']:
+        raise Fault('INVENTORY_FULL', 'No capacity; request rejected without asset changes', 409)
+    if c.select('inventory', Q(account_id=account_id, item_key__in=keys, expires_at__isnull=True), limit=1):
+        raise Fault('INVENTORY_FULL', 'Permanent single-item instance already exists', 409)
+    operation_id = identifier()
+    c.insert('asset_operations', {'id': operation_id, 'account_id': account_id, 'actor': actor['id'],
+        'source': source, 'reason': reason, 'created_at': service.clock(), 'status': 'COMMITTED', 'linked_operation': None})
+    inventory, entries, details = [], [], []
+    for index, key in enumerate(keys):
+        instance_id = identifier()
+        definition = service.catalog['items'][key]
+        inventory.append({'id': instance_id, 'account_id': account_id, 'item_key': key, 'quantity': 1, 'expires_at': None})
+        entries.append({'operation_id': operation_id, 'entry_no': index, 'kind': 'item', 'resource': key,
+            'instance_id': instance_id, 'delta': 1, 'before_value': 0, 'after_value': 1})
+        details.append({'operation_id': operation_id, 'entry_no': index, 'detail': canonical({
+            'expires_at': None, 'permanent': True, 'bound': True, 'catalog_version': service.catalog['id'],
+            'native_rules_version': definition['rules_version'],
+            'native_manifest_sha256': service.catalog['native_assets']['manifest_sha256']})})
+    c.insert_many('inventory', inventory)
+    c.insert_many('asset_entries', entries)
+    c.insert_many('asset_entry_details', details)
+    from .native_inventory import advance_revision
+    advance_revision(c, account_id, instance_ids=[row['id'] for row in inventory])
+    service._outbox(c, 'assets:' + operation_id, 'assets.changed', account_id,
+                    {'operation_id': operation_id, 'account_id': account_id})
     return {'operation_id': operation_id, 'status': 'COMMITTED', 'sync_status': 'PENDING', 'evidence': service.catalog['evidence']}
 
 

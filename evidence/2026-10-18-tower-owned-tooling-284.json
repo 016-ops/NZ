@@ -1,0 +1,21 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 5,
+  "passed": [
+    "tests.test_native_tower_owned_compat.TowerOwnedTests.test_candidate_can_only_be_applied_once",
+    "tests.test_native_tower_owned_compat.TowerOwnedTests.test_original_package_and_other_16532_exports_unchanged",
+    "tests.test_native_tower_owned_compat.TowerOwnedTests.test_prefix_refreshes_only_owned_local_player_and_preserves_original",
+    "tests.test_native_tower_owned_compat.TowerOwnedTests.test_three_debug_conditions_skip_only_original_standalone_gifts"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_tower_owned_compat.TowerOwnedTests.test_guard_restores_exact_tower_package_after_interruption",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_tower_owned_compat.py\", line 137, in test_guard_restores_exact_tower_package_after_interruption\n    guard=NativeConfigGuard(root,out);guard.apply(tower.RELATIVE,self.variant)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_config_guard.py\", line 91, in __init__\n    self._paths(root, output)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_config_guard.py\", line 102, in _paths\n    self.root, self.output = root.resolve(strict=True), output.resolve(strict=True)\n                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\pathlib.py\", line 1240, in resolve\n    s = self._flavour.realpath(self, strict=strict)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen ntpath>\", line 695, in realpath\nFileNotFoundError: [WinError 2] 系统找不到指定的文件。: 'C:\\\\Users\\\\ZJH\\\\NZ\\\\2020逆战\\\\repository\\\\runtime\\\\test-tmp\\\\tmpgn5_bre1\\\\report'\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 0.187
+}

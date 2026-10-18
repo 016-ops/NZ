@@ -1,0 +1,17 @@
+test_foreign_source_rejected (tests.test_native_owned_loadout_compat.OwnedFingerprintTests.test_foreign_source_rejected)
+任意内容不能作为当前构建生成或安装，不能通过猜测偏移修补。 ... ok
+test_ut_limit_and_restart_restore (tests.test_native_owned_loadout_compat.OwnedFingerprintTests.test_ut_limit_and_restart_restore)
+只有准确UTGame路径支持32MiB，中断后原件可恢复，其他配置继续限制4MiB。 ... ok
+test_character_read_precedes_original_restart_and_card_initialization (tests.test_native_owned_loadout_compat.OwnedLoadoutTests.test_character_read_precedes_original_restart_and_card_initialization)
+真实角色数据在原RestartPlayer前读取，卡片初始化只由原函数执行一次，不重置HasGetTools。 ... ok
+test_independent_vm_and_online_bot_isolation (tests.test_native_owned_loadout_compat.OwnedLoadoutTests.test_independent_vm_and_online_bot_isolation)
+四种NetMode、机器人、空Pawn/PRI分别核对，只有单机人类读取本人数据。 ... ok
+test_original_package_retained_except_export_pointer (tests.test_native_owned_loadout_compat.OwnedLoadoutTests.test_original_package_retained_except_export_pointer)
+按逻辑块独立比较全部原内容，原区仅两条函数导出指针变化，其余内容逐字节保留。 ... ok
+test_second_patch_rejected (tests.test_native_owned_loadout_compat.OwnedLoadoutTests.test_second_patch_rejected)
+已变体包不能再次追加，避免同一启动重复安装或错认来源。 ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 12.650s
+
+OK

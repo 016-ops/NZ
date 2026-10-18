@@ -1,0 +1,19 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 7,
+  "passed": [
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_component_wrong_family_and_weapon_parent_fail_without_losing_connection",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_default_component_tail_failure_rolls_back_whole_cart",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_native_move_knife_fills_source_bag_and_failure_allows_next_equip",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_registration_equips_roles_first_loadout_and_every_bag_knife_once",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_reported_role_packages_use_tier_period_and_keep_every_component",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_role_purchase_attaches_defaults_and_preserves_gids_on_reload",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_starter_tail_failure_rolls_back_character_wallet_and_all_assets"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 37.484
+}

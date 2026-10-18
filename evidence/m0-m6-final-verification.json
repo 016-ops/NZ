@@ -1,0 +1,32 @@
+{
+  "kind": "CURRENT_BATCH_VERIFICATION_NOT_PLAYABLE_ACCEPTANCE",
+  "documents_checked": 7,
+  "local_links_checked": 69,
+  "missing_links": [],
+  "restored_current_configurations": [
+    {
+      "path": "TGame/Config/DefaultTGNet.ini",
+      "matches_original_sha256": true
+    },
+    {
+      "path": "TCLS/config/dirserver.xml",
+      "matches_original_sha256": true
+    },
+    {
+      "path": "TCLS/config/VersionServerConfig.xml",
+      "matches_original_sha256": true
+    }
+  ],
+  "game_config_matches_fixed_sha256": true,
+  "latest_probe": 59,
+  "latest_owned_job_cleanup": true,
+  "latest_capture_stopped": true,
+  "latest_source_credentials_invalidated": true,
+  "compileall_passed": true,
+  "independent_tool_tests": 163,
+  "native_m5_t01_t12": "NOT_RUN",
+  "native_m6_t01_t12": "NOT_RUN",
+  "native_lobby_verified": false,
+  "online_playable_release_delivered": false,
+  "offline_delivery": "DEFERRED_BY_USER"
+}

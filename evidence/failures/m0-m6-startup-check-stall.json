@@ -1,0 +1,11 @@
+{
+  "kind": "NATIVE_STARTUP_UPDATE_SCREEN_FAILURE",
+  "boot": 77,
+  "observation": "User screenshot showed update checking; no game application login frames were captured",
+  "root_cause_verified": false,
+  "retry_boot": 78,
+  "retry_reached_lobby": true,
+  "cleanup_verified": true,
+  "configuration_restored": true,
+  "source_and_game_revoked": true
+}

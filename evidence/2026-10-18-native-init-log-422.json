@@ -1,0 +1,40 @@
+{
+  "kind": "READ_ONLY_412_INIT_LOGS",
+  "files": [
+    {
+      "name": "bugreport.txt",
+      "bytes": 4244,
+      "sha256": "753865d1cccc5333460d115fdbed95ebd848eec33587007827cd797f7b3c62b5",
+      "mtime": 1792335691,
+      "shader_source_missing": false,
+      "d3d9_invalid_call": true,
+      "command_line_empty": true,
+      "internal_server_line": false
+    },
+    {
+      "name": "BugTrace.log",
+      "bytes": 343,
+      "sha256": "cb54a1eadc9ee2a87d1bf8aadf4e7f5c1b1107cf61c2eeaed6c3842d526c04c9",
+      "mtime": 1792335689,
+      "shader_source_missing": false,
+      "d3d9_invalid_call": false,
+      "command_line_empty": false,
+      "internal_server_line": false
+    },
+    {
+      "name": "CrashHandler.txt",
+      "bytes": 12,
+      "sha256": "1bf7f43b8f3234aaa8ab1d4f7fd8dff1b24cc61357a17e704283dd152afca65e",
+      "mtime": 1792335691,
+      "shader_source_missing": false,
+      "d3d9_invalid_call": false,
+      "command_line_empty": false,
+      "internal_server_line": false
+    }
+  ],
+  "missing": [
+    "engine.log",
+    "Launch.log"
+  ],
+  "original_client_writes": 0
+}

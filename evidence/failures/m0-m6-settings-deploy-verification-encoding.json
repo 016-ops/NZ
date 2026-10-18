@@ -1,0 +1,6 @@
+{
+  "kind": "LOCAL_VERIFICATION_ENCODING_ERROR_FIXED",
+  "error": "Default Windows read_text encoding gbk rejected existing UTF-8 private state; no credentials were printed",
+  "correction": "Explicit UTF-8 for remaining local reads; reuse completed remote checks",
+  "deployment_failed": false
+}

@@ -15,4 +15,7 @@ evidence/private/
 .env.local.*
 node_modules/
 admin/dist/
+launcher/target/
+launcher/bin/
+launcher/gen/
 .pytest_cache/

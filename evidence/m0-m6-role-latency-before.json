@@ -1,0 +1,74 @@
+{
+  "kind": "OWNED_ROLE_UNCHANGED_HTTP_LATENCY",
+  "label": "before",
+  "initial_inventory": {
+    "response_bytes": 937038,
+    "headers_ms": 1530.9,
+    "body_ms": 3276.569,
+    "decode_ms": 4.653,
+    "total_ms": 4812.122
+  },
+  "inventory_count": 4323,
+  "rounds": [
+    {
+      "commit_ms": 1179.677,
+      "refresh_ms": 4999.758,
+      "total_ms": 6179.532,
+      "commit_http": {
+        "response_bytes": 137,
+        "headers_ms": 1110.062,
+        "body_ms": 69.479,
+        "decode_ms": 0.026,
+        "total_ms": 1179.568
+      },
+      "refresh_http": {
+        "response_bytes": 937038,
+        "headers_ms": 1760.928,
+        "body_ms": 3230.663,
+        "decode_ms": 4.405,
+        "total_ms": 4995.997
+      }
+    },
+    {
+      "commit_ms": 1148.279,
+      "refresh_ms": 4930.259,
+      "total_ms": 6078.639,
+      "commit_http": {
+        "response_bytes": 137,
+        "headers_ms": 1073.611,
+        "body_ms": 74.54,
+        "decode_ms": 0.026,
+        "total_ms": 1148.177
+      },
+      "refresh_http": {
+        "response_bytes": 937038,
+        "headers_ms": 1733.486,
+        "body_ms": 3188.431,
+        "decode_ms": 4.37,
+        "total_ms": 4926.286
+      }
+    },
+    {
+      "commit_ms": 1154.032,
+      "refresh_ms": 4867.23,
+      "total_ms": 6021.355,
+      "commit_http": {
+        "response_bytes": 137,
+        "headers_ms": 1076.922,
+        "body_ms": 76.982,
+        "decode_ms": 0.025,
+        "total_ms": 1153.929
+      },
+      "refresh_http": {
+        "response_bytes": 937038,
+        "headers_ms": 1537.095,
+        "body_ms": 3321.97,
+        "decode_ms": 4.18,
+        "total_ms": 4863.246
+      }
+    }
+  ],
+  "role_changed": false,
+  "native_ui": false,
+  "source_and_game_revoked": true
+}

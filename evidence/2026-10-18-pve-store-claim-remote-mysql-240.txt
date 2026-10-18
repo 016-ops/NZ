@@ -1,0 +1,13 @@
+test_captured_native_seq_and_reward_id_request_grants_then_rejects_active_duplicate (tests.test_native_pve_benefits.NativePveBenefitTests.test_captured_native_seq_and_reward_id_request_grants_then_rejects_active_duplicate)
+固定第71轮实收18字节请求，独立于编码器字段假设；领取成功后同连接和重复点击正常。 ... ok
+test_expired_reward_can_be_reacquired_with_history_and_old_gid_preserved (tests.test_native_pve_benefits.NativePveBenefitTests.test_expired_reward_can_be_reacquired_with_history_and_old_gid_preserved)
+六天有效期结束后可再次领用，旧实例和领取流水保留；同一旧请求仍只返回原回执。 ... ok
+test_claim_tail_failure_rolls_back_reward_and_claim_marker (tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_tail_failure_rolls_back_reward_and_claim_marker)
+最后通知失败同时回滚武器、领取标记及账本；同一领取随后可成功。 ... ok
+test_concurrent_different_requests_only_grant_once (tests.test_native_pve_benefits.NativePveBenefitTests.test_concurrent_different_requests_only_grant_once)
+两个不同幂等键并发领取同一权益，部署事务锁与已领标记保证只有一次奖励。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 64.205s
+
+OK

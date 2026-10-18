@@ -1,0 +1,15 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 3,
+  "passed": [
+    "tests.test_native_pve_compat.PveCompatTests.test_only_fixed_pve_path_has_larger_limit",
+    "tests.test_native_pve_compat.PveCompatTests.test_real_candidate_preserves_original_function_and_recovers_after_restart",
+    "tests.test_native_pve_compat.PveCompatTests.test_unknown_source_rejected_before_parsing"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 1.891
+}

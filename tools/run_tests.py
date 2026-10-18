@@ -52,7 +52,18 @@ def main():
         # 默认完整回归仍由 Django 初始化真实 MySQL，不能用独立工具结果代替数据库验收。
         independent_modules=['tests.test_inventory','tests.test_client_catalog','tests.test_workspace','tests.test_native_images',
                              'tests.test_email_tools','tests.test_native_config_guard','tests.test_native_transport','tests.test_native_geo',
-                             'tests.test_native_zone','tests.test_native_tdr_probe']
+                             'tests.test_native_zone','tests.test_native_tdr_probe','tests.test_hunt_readiness',
+                             'tests.test_pve_acceptance_matrix',
+                             'tests.test_native_login_probe','tests.test_native_client_logs','tests.test_native_role_resources',
+                             'tests.test_native_settings_bridge','tests.test_native_ui_config',
+                             'tests.test_native_package_dependencies','tests.test_native_map_streaming','tests.test_native_server_entry',
+                             'tests.test_native_udp_probe','tests.test_native_probe_session_cleanup','tests.test_native_job',
+                             'tests.test_native_inventory_bridge','tests.test_native_launcher','tests.test_native_graphics_compat',
+                             'tests.test_native_frame_bridge','tests.test_native_pve_compat','tests.test_native_hunt_compat',
+                             'tests.test_native_owned_loadout_compat','tests.test_native_tower_owned_compat',
+                             'tests.test_native_legacy_tower_owned_compat','tests.test_native_bag_compat',
+                             'tests.test_native_room_protocol','tests.test_native_room_journal',
+                             'tests.test_native_room_server_config']
         selected=[name for name in independent_modules if fnmatch.fnmatch(name.rsplit('.',1)[-1]+'.py',args.pattern)]
         business_matches=[path for path in (root/'tests').glob(args.pattern)
                           if 'tests.'+path.stem not in independent_modules]

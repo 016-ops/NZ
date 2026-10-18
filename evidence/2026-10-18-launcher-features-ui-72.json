@@ -1,0 +1,20 @@
+{
+  "kind": "LAUNCHER_PRODUCT_FRAME_COPY_REAL_GAME",
+  "last_phase": "INVENTORY_SENT",
+  "run": "launcher-20261018-124154-961996",
+  "parent_pipe_eof": true,
+  "source_and_game_revoked": true,
+  "configuration_restored": true,
+  "own_process_cleanup": true,
+  "lobby_verified": false,
+  "graphics_compatibility": {
+    "profile": "cn2020-frame-copy-v1-lobby-verified",
+    "files": {
+      "Binaries/Win32/d3d9.dll": "12592afcafdb0e76581a48ce142f3b152fcda55288ce1156855c639a393fd051"
+    },
+    "system_changed": false,
+    "original_client_writes": 0,
+    "presentation": "d3d11-flip-on-game-window"
+  },
+  "raw_transport_files": 0
+}

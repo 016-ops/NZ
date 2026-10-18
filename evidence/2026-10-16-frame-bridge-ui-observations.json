@@ -1,0 +1,40 @@
+{
+  "kind": "COMPUTER_USE_FRAME_COPY_GAME_OBSERVATIONS",
+  "runs": [
+    {
+      "run": "launcher-20261016-151620-851369",
+      "profile": "own-frame-copy-v4-direct-window-diagnostic",
+      "observed": [
+        "lobby",
+        "inventory_categories",
+        "friend_panel",
+        "shop"
+      ],
+      "evidence_prefix": "2026-10-16-game-direct-bridge"
+    },
+    {
+      "run": "launcher-20261016-153058-006275",
+      "profile": "cn2020-frame-copy-v1-lobby-verified",
+      "product_launcher_api": true,
+      "diagnostic_monkeypatch": false,
+      "observed": [
+        "installment_0_day_notice",
+        "notice_confirm_dismissed",
+        "lobby",
+        "inventory",
+        "shop",
+        "game_exit_activity_page"
+      ],
+      "evidence_prefix": "2026-10-16-game-product",
+      "notice_close_x_did_not_dismiss": true,
+      "notice_confirm_button_did_dismiss": true,
+      "ordinary_game_exit_verified": false,
+      "ordinary_game_exit_limitation": "Legacy exit activity page loaded official login content; no authentication interaction performed."
+    }
+  ],
+  "original_client_writes": 0,
+  "battle_verified": false,
+  "multiplayer_verified": false,
+  "business_transactions_verified": false,
+  "installment_notice_fixed": false
+}

@@ -1,0 +1,22 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 6,
+  "passed": [
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_entire_extended_batch_rolls_back_on_second_account_failure",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_five_exact_bags_with_concurrent_retry_and_original_receipt",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_full_gm_entitlements_and_gids_are_reused",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_kernel_level_rejects_expired_duplicate_and_missing_weapon",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_negative_root_slot_roundtrip_does_not_replace_expert_card"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_sixth_element_set_and_all_kernels_preserve_previous_receipt",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_acceptance_extended.py\", line 126, in test_sixth_element_set_and_all_kernels_preserve_previous_receipt\n    command,data=parse(bridge.inventory.player_info(b'CoreTest'))\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\adapters\\cn_current\\features.py\", line 145, in parse\n    raise ZoneProtocolError('FEATURE_UNKNOWN_COMMAND')\nadapters.cn_current.zone.ZoneProtocolError: FEATURE_UNKNOWN_COMMAND\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 34.5
+}

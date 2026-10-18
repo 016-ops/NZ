@@ -1,0 +1,47 @@
+{
+  "kind": "COMPUTER_USE_SINGLE_CLIENT_STANDALONE_PARTIAL",
+  "run": "launcher-20261017-201201-871274",
+  "map_id": 273,
+  "map_name": "狂沙圣殿",
+  "candidate_sha256": "3667b4168913d64a95fce3ac04131bbd4f10dca809363f3c327296608f5310df",
+  "explicit_user_authorization": true,
+  "observation_limit_seconds": 600,
+  "world_render_observed": true,
+  "enemy_wave_observed": true,
+  "natural_defeat_observed": true,
+  "automatic_returns_to_lobby_observed": 2,
+  "same_process_next_game_spawned": true,
+  "independent_difficulty_selection_verified": false,
+  "traps_full_flow_verified": false,
+  "victory_verified": false,
+  "trusted_settlement_verified": false,
+  "online_multiplayer_verified": false,
+  "playable_map_accepted": false,
+  "all_maps_accepted": false,
+  "observations": "用户未操作；由computer-use观察界面，未修改进程状态或发放局外奖励。",
+  "evidence": [
+    {
+      "path": "evidence/private/features-ui-59-screens/tower-v2-first-wave.png",
+      "sha256": "e76afa0e0829506bb969fb6c14d8363c3a97d296ea1d3fed7e82f283d6a2ecee"
+    },
+    {
+      "path": "evidence/private/features-ui-59-screens/tower-v2-core-zero.png",
+      "sha256": "0213f991a63d216a6528939111e58c2cc291683102c32b1e7bc7ec2925808caa"
+    },
+    {
+      "path": "evidence/private/features-ui-59-screens/tower-v2-returned-lobby.png",
+      "sha256": "f27193ff60969fb4c96fee2acbec328224304e5ff3d0117fe1db42b7ad9a01b0"
+    },
+    {
+      "path": "evidence/private/features-ui-59-screens/tower-v2-next-game-spawned.png",
+      "sha256": "82694b702348def8fc638909587d2f8953aef12a497083e5de0779416ba81e90"
+    },
+    {
+      "path": "evidence/private/features-ui-59-screens/tower-v2-second-returned-lobby.png",
+      "sha256": "e7bb95916fe321200076c1f6a7e09333c53c873c893cc7e52d80c78de581e201"
+    }
+  ],
+  "configuration_restored": true,
+  "own_process_cleanup": true,
+  "session_revoked": true
+}

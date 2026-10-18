@@ -7,6 +7,7 @@ import hashlib
 from pathlib import Path
 import secrets
 import re
+import time
 from urllib.parse import urlsplit
 import uuid
 from adapters.email_protocol import PROTOCOL
@@ -20,7 +21,7 @@ class LoginError(Exception):
 
 class Client:
     """回环 HTTP 客户端；不接受 URL 凭据、查询参数或跳转，不将密码发到重定向目标。"""
-    def __init__(self, url):
+    def __init__(self, url, *, host_port=None):
         """限定用户已选择的 SSH 隧道/本机服务，禁止明文凭据直接发到外部主机。"""
         parsed = urlsplit(url)
         if (parsed.scheme != 'http' or parsed.hostname not in ('127.0.0.1', 'localhost')
@@ -28,19 +29,31 @@ class Client:
                 or not parsed.port or not 1 <= parsed.port <= 65535):
             raise ValueError('Use a loopback HTTP URL with an explicit port, including for the DEV SSH tunnel')
         self.host, self.port = parsed.hostname, parsed.port
+        # 专属随机端口 SSH 隧道仍发送远端固定 Host；该值仅由受控代码指定，不接受页面输入。
+        if host_port is not None and (type(host_port) is not int or not 1 <= host_port <= 65535):
+            raise ValueError('Invalid fixed server Host port')
+        self.host_port = host_port or self.port
+        self.last_request_timing = None
 
     def request(self, path, data=None, token=None):
         """单次请求使用独立连接与内存令牌；不自动重试、持久化凭据或解析第三方跳转。"""
+        start = time.perf_counter()
+        self.last_request_timing = None
         connection = http.client.HTTPConnection(self.host, self.port, timeout=15)
-        headers = {'Content-Type': 'application/json', 'X-NZ-Request': '1'}
+        headers = {'Content-Type': 'application/json', 'X-NZ-Request': '1', 'Host': f'{self.host}:{self.host_port}'}
         if token:
             headers['Authorization'] = 'Bearer ' + token
         try:
             connection.request('POST' if data is not None else 'GET', path,
                                json.dumps(data).encode('utf-8') if data is not None else None, headers)
             result = connection.getresponse()
-            body = result.read(65537)
-            if len(body) > 65536:
+            headers_at = time.perf_counter()
+            # 全目录账号的本人库存快照可达数MiB；仅这两个已鉴权读入口扩大上限，认证响应仍64KiB。
+            limit = (8 * 1024 * 1024 if path in ('/api/views/me', '/api/game/inventory/get') else
+                     1024 * 1024 if path in ('/api/game/view','/api/game/command') else 65536)
+            body = result.read(limit + 1)
+            body_at = time.perf_counter()
+            if len(body) > limit:
                 raise LoginError('RESPONSE_TOO_LARGE')
             if result.status != 200:
                 try:
@@ -52,6 +65,13 @@ class Client:
             value = json.loads(body)
             if not isinstance(value, dict):
                 raise LoginError('INVALID_RESPONSE')
+            # 仅保留成功响应的字节数和耗时，不记录路径、账号、正文或凭据。
+            # 首字节包括连接、网络和服务端处理，不能直接标成数据库耗时。
+            self.last_request_timing = dict(response_bytes=len(body),
+                headers_ms=round((headers_at-start)*1000,3),
+                body_ms=round((body_at-headers_at)*1000,3),
+                decode_ms=round((time.perf_counter()-body_at)*1000,3),
+                total_ms=round((time.perf_counter()-start)*1000,3))
             return value
         finally:
             connection.close()

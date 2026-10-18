@@ -1,0 +1,15 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 3,
+  "passed": [
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_claimed_weapon_cannot_be_engineering_material_but_ordinary_copy_can",
+    "tests.test_native_engineering.NativeEngineeringTests.test_decompose_all_types_idempotent_and_batch_atomic",
+    "tests.test_native_engineering.NativeEngineeringTests.test_native_failure_then_success_and_progress_relogin"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 50.61
+}

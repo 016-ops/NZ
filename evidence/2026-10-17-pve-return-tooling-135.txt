@@ -1,0 +1,23 @@
+test_only_fixed_pve_path_has_larger_limit (tests.test_native_pve_compat.PveCompatTests.test_only_fixed_pve_path_has_larger_limit)
+为16MiB原PVE包提供有界恢复；其他脚本和相似路径不获得该权限。 ... ok
+test_real_candidate_preserves_original_function_and_recovers_after_restart (tests.test_native_pve_compat.PveCompatTests.test_real_candidate_preserves_original_function_and_recovers_after_restart)
+重启守卫必须恢复完整原包；候选只新增Standalone分支，原报告/胜负代码逐字节保留。 ... ERROR
+test_unknown_source_rejected_before_parsing (tests.test_native_pve_compat.PveCompatTests.test_unknown_source_rejected_before_parsing)
+错误文件不进入解压或安装流程，不能把任意包当成当前构建。 ... ok
+
+======================================================================
+ERROR: test_real_candidate_preserves_original_function_and_recovers_after_restart (tests.test_native_pve_compat.PveCompatTests.test_real_candidate_preserves_original_function_and_recovers_after_restart)
+重启守卫必须恢复完整原包；候选只新增Standalone分支，原报告/胜负代码逐字节保留。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_compat.py", line 34, in test_real_candidate_preserves_original_function_and_recovers_after_restart
+    before=pve._Package(original)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tools\native_pve_compat.py", line 72, in __init__
+    raise ValueError('PVE_PACKAGE_TAIL_INVALID')
+ValueError: PVE_PACKAGE_TAIL_INVALID
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.014s
+
+FAILED (errors=1)

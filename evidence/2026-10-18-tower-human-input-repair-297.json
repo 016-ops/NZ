@@ -1,0 +1,28 @@
+{
+  "kind": "USER_OPERATED_TOWER_TRIAL_STOPPED_FOR_INPUT_BINDING_REPAIR",
+  "run": "launcher-20261018-142156-638275",
+  "map_id": 273,
+  "samples": 147,
+  "rounds": [
+    1,
+    2,
+    3
+  ],
+  "max_traps": 14,
+  "trap_levels": [
+    2
+  ],
+  "all_trap_owners_local": true,
+  "natural_match_over_observed": true,
+  "input_actions_from_observer": 0,
+  "process_writes": 0,
+  "right_mouse_conflict_confirmed_by_user": true,
+  "conflict_source": "temporary diagnostic GBA_AltFire=PressNKey; remove before next human trial",
+  "user_requested_stop": true,
+  "configuration_restored": true,
+  "own_process_cleanup": true,
+  "credentials_revoked": true,
+  "map_complete_accepted": false,
+  "upgrade_transaction_verified": false,
+  "sale_transaction_verified": false
+}

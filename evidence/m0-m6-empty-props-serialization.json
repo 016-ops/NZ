@@ -1,0 +1,11 @@
+{
+  "profile": "cn2020-player-props-empty-research-v1",
+  "bytes": 13,
+  "sha256": "161fe246961f75fbcc22507c1f9285937697e6b3286c2f156a0e79c10360b90f",
+  "host_bytes": 355,
+  "roundtrip_equal": true,
+  "decoded_host_equal": true,
+  "standalone_body_equal": true,
+  "native_python_wire_equal": true,
+  "network_reply_sent": false
+}

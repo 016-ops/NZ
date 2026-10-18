@@ -1,0 +1,8 @@
+{
+  "kind": "NATIVE_PROBE_57_SOURCE_SESSION_RECOVERY",
+  "prior_logout_error": "CONNECTION_REFUSED_AFTER_TUNNEL_CLOSED",
+  "new_real_email_sent": 0,
+  "prior_source_revoked_by_normal_account_relogin": true,
+  "recovery_session_logged_out": true,
+  "first_recovery_readback_error": "KEY_ERROR_ACCOUNT_ID_AFTER_AUTHENTICATED_LOGIN; finally logout executed"
+}

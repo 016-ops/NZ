@@ -1,4 +1,4 @@
-"""只读采样当前 Job 的 IPv4 TCP 端点，保存连接状态而不抓取报文或其他程序连接。"""
+"""只读采样当前 Job 的 IPv4 TCP/UDP端点，保存端点状态而不抓取报文或其他程序连接。"""
 import ctypes
 from ctypes import wintypes
 import socket
@@ -46,3 +46,42 @@ def sample_owned_tcp(group):
                     'remote_port': socket.ntohs(remote_port & 0xffff)})
         return {'connections': rows, 'verified': True}
     return {'connections': [], 'verified': False, 'error': 'TABLE_CHANGED_OR_INVALID'}
+
+
+def sample_owned_udp(group):
+    """按微软OWNER_PID表合同查询本Job的IPv4 UDP绑定；存在端口不等于原生握手或战斗就绪。
+
+    API及12字节行格式：GetExtendedUdpTable、MIB_UDPROW_OWNER_PID。只返回本Job两次活跃
+    集合的交集，不收集其他程序的地址，也不发送数据报。IPv6和采样间的短绑定不在覆盖范围。
+    """
+    owned=set(group.pids())
+    if not owned:
+        return {'endpoints':[], 'verified':True}
+    query=ctypes.WinDLL('iphlpapi',use_last_error=True).GetExtendedUdpTable
+    query.argtypes=[ctypes.c_void_p,ctypes.POINTER(wintypes.DWORD),wintypes.BOOL,
+                    wintypes.ULONG,ctypes.c_int,wintypes.ULONG]
+    query.restype=wintypes.DWORD
+    size=wintypes.DWORD(0)
+    for _ in range(4):
+        if size.value>8*1024*1024:
+            return {'endpoints':[], 'verified':False, 'error':'TABLE_SIZE_LIMIT'}
+        buffer=ctypes.create_string_buffer(size.value) if size.value else None
+        status=query(buffer,ctypes.byref(size),False,2,1,0)  # AF_INET、UDP_TABLE_OWNER_PID。
+        if status==122:
+            continue
+        if status:
+            return {'endpoints':[], 'verified':False, 'winerror':status}
+        if buffer is None or len(buffer)<4:
+            break
+        count=struct.unpack_from('<I',buffer)[0]
+        if count>(len(buffer)-4)//12:
+            break
+        owned.intersection_update(group.pids())
+        rows=[]
+        for index in range(count):
+            address,port,pid=struct.unpack_from('<III',buffer,4+index*12)
+            if pid in owned:
+                rows.append({'pid':pid,'local_address':socket.inet_ntoa(struct.pack('<I',address)),
+                             'local_port':socket.ntohs(port & 0xffff)})
+        return {'endpoints':rows, 'verified':True}
+    return {'endpoints':[], 'verified':False, 'error':'TABLE_CHANGED_OR_INVALID'}

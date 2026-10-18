@@ -38,7 +38,7 @@
     "tools/native_thread_probe.py",
     "tools/run_tests.py"
   ],
-  "docstrings_checked": 438,
+  "docstrings_checked": 450,
   "missing_chinese": [],
   "all_project_remediation_claimed": false,
   "audit_scope": "Python AST module/class/function Chinese docstrings; critical changed branches also read manually",

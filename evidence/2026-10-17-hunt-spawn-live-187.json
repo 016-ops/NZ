@@ -1,0 +1,98 @@
+{
+  "kind": "NATIVE_HUNT_SPAWN_BLACK_SCREEN_LIMITED_LIVE_VERIFICATION",
+  "run": "launcher-20261017-215147-563160",
+  "map_id": 113,
+  "map_name": "大都会",
+  "standalone": true,
+  "candidate_sha256": "f6741534475f1c07d743407b535d8b947dffe06958b479c89b311b3934a68c2b",
+  "native_package_loaded": true,
+  "stable_grounded_spawns": 2,
+  "world_visible_twice": true,
+  "shots": [
+    {
+      "before": 300,
+      "after": 299
+    },
+    {
+      "before": 300,
+      "after": 295
+    }
+  ],
+  "active_exit_to_lobby_count": 2,
+  "same_process_second_match": true,
+  "original_client_writes": 0,
+  "process_memory_writes": 0,
+  "cleanup": {
+    "configurations_restored": true,
+    "both_script_packages_restored": true,
+    "owned_processes_clean": true,
+    "credentials_revoked": true
+  },
+  "traces": [
+    {
+      "path": "evidence/private/hunt-spawn-trace-183/trace.json",
+      "sha256": "617d45dcece0e7cc8a54dd99672209b84aff2ecfdcad8893301410d25d6ba987",
+      "samples": 303,
+      "last_seconds": 119.938,
+      "grounded_samples": 211,
+      "health": 100,
+      "pawn_z": -276.765,
+      "physics": 1,
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "evidence/private/hunt-spawn-trace-186/trace.json",
+      "sha256": "a4ab1720058d2ccfb661f2a7e96d037ab4c2836ba478f3185b0ea8763d09fde7",
+      "samples": 151,
+      "last_seconds": 59.891,
+      "grounded_samples": 93,
+      "health": 100,
+      "pawn_z": -276.765,
+      "physics": 1,
+      "velocity": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "evidence/private/features-ui-67-screens/hunt-world-visible-stable.png",
+      "sha256": "bf4430a4887cff5f798423fc576bf13d27d94d791e7a416579c1c4c67ff8078a"
+    },
+    {
+      "path": "evidence/private/features-ui-67-screens/hunt-shot-299.png",
+      "sha256": "1957cb368639b0e5958b509a2aa717287fb884179c05a91b0eb60997f7e27a88"
+    },
+    {
+      "path": "evidence/private/features-ui-67-screens/hunt-active-exit-lobby.png",
+      "sha256": "f21bacce96a27fc06814dca1ab04ebafe602d176bad7812e725995ca8c41f56c"
+    },
+    {
+      "path": "evidence/private/features-ui-67-screens/hunt-second-game-world.png",
+      "sha256": "039ea50d093ba3a1edcb8e658b13279cf0bf78c144f54c0ea786f49a5e6b3765"
+    },
+    {
+      "path": "evidence/private/features-ui-67-screens/hunt-second-shot-295.png",
+      "sha256": "256c3355e303a97bd72c0b2d23b388dcf6c92a161c8bd27e618e45a7188b3163"
+    },
+    {
+      "path": "evidence/private/features-ui-67-screens/hunt-second-exit-lobby.png",
+      "sha256": "af231853ba9df6f9fb18472645910295f61ea863d75c78e6a4bf69f04d02e693"
+    }
+  ],
+  "continuous_movement_verified": false,
+  "route_verified": false,
+  "boss_verified": false,
+  "victory_verified": false,
+  "trusted_settlement_verified": false,
+  "online_verified": false,
+  "playable_map_accepted": false,
+  "default_launcher_integrated": false,
+  "dev_published": false
+}

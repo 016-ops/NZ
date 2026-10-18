@@ -1,0 +1,107 @@
+{
+  "kind": "NATIVE_OWNED_LOADOUT_PARTIAL_LIVE_NOT_MAP_ACCEPTANCE",
+  "profile": "cn2020-standalone-owned-loadout-v2-candidate",
+  "candidate_sha256": "6258dc73eaa7b851cf0a1ef2d7b77681ef66cfe708c36b33e86cf009d96f2e40",
+  "live_state": {
+    "kind": "OWNED_TOWER_REAL_LOADOUT_READ_ONLY",
+    "run": "launcher-20261018-133300-734153",
+    "pid": 25044,
+    "process_writes": 0,
+    "input_actions": 0,
+    "current_bag": 0,
+    "default_bag": 0,
+    "equipped_functional_item_ids": [
+      101210,
+      101211,
+      101149,
+      100216,
+      100218,
+      100323,
+      300062,
+      300063,
+      100026,
+      103981
+    ],
+    "weapons": [
+      {
+        "identity": "ATD1-Capital_44_Main.TheWorld.PersistentLevel.TGWeap_ZSGDmain_PVE_Content_0",
+        "class_name": "TGWeap_ZSGDmain_PVE_Content"
+      },
+      {
+        "identity": "ATD1-Capital_44_Main.TheWorld.PersistentLevel.TGWeap_ZSGDnu_PVE_Content_0",
+        "class_name": "TGWeap_ZSGDnu_PVE_Content"
+      },
+      {
+        "identity": "ATD1-Capital_44_Main.TheWorld.PersistentLevel.TGWeap_ZSGDhammer_PVE_Content_0",
+        "class_name": "TGWeap_ZSGDhammer_PVE_Content"
+      },
+      {
+        "identity": "validated_inventory_chain@0x8b47c800",
+        "class_name": "TGATDTrapProjector5"
+      }
+    ],
+    "expert_card": true,
+    "cash_card": true,
+    "pve_store_active": false,
+    "pve_store_level": 0,
+    "max_traps": 50,
+    "money": 3000,
+    "playable_map_accepted": false,
+    "all_card_effects_verified": false,
+    "lobby_store_level": 3,
+    "lobby_store_points": 10500
+  },
+  "cleanup": {
+    "74": {
+      "run": "launcher-20261018-130626-080864",
+      "source_and_game_revoked": true,
+      "configuration_restored": true,
+      "own_process_cleanup": true,
+      "raw_transport_files": 0
+    },
+    "75": {
+      "run": "launcher-20261018-132110-438711",
+      "source_and_game_revoked": true,
+      "configuration_restored": true,
+      "own_process_cleanup": true,
+      "raw_transport_files": 0
+    },
+    "76": {
+      "run": "launcher-20261018-133300-734153",
+      "source_and_game_revoked": true,
+      "configuration_restored": true,
+      "own_process_cleanup": true,
+      "raw_transport_files": 0
+    }
+  },
+  "screenshot_sha256": {
+    "74": {
+      "main-fired-400-to-398.png": "34bff9415443d014c47f0fa9eb50246d3bd86a86f4b1ece55c4e7ea557ae3ba2",
+      "returned-lobby-same-process.png": "7c8ada9291fd3f5a3f99ea77a0913ac8a77ac88eddbcef360236ab9fd31bf7a9",
+      "secondary-shot-zero-ammo.png": "dabbfee7c02e888dd2a677ccc025fdffc410243e296074fd7f7d60a14a3c4b79",
+      "zhushen-main-in-tower.png": "f44950ffabdc94b531035f7bcf0c7c9057988fd3d45c73811c7aa83ac3a9f550",
+      "zhushen-melee-in-tower.png": "d1c5ac2df3b1c60456cf4082efa759beade8400623cc0de254a1f2cf63f274cb",
+      "zhushen-secondary-in-tower.png": "e46ddca4632f596a2367c05bf40fde5e869f00915270cd04e9581064927ae74b"
+    },
+    "76": {
+      "first-wave-started.png": "8ba32db58cafaa7c348846b2299bd807fff218aebc55cab9332495c64ad704e0",
+      "owned-main-and-cards-before-wave.png": "8a94c5e834f44623f3ff74672453890adf610b57170ba253edb6e7e1c5bcd0ee",
+      "tower-state-after-first-wave.png": "64c594871e881c2f2ba19e69fb785059f81b5a240e6554123edbd01e3cbd3b70"
+    }
+  },
+  "observed_main_fire_round74": {
+    "before": 400,
+    "after": 398
+  },
+  "same_process_second_map_loaded_round75": true,
+  "result": "PARTIAL_REPAIR",
+  "full_tower_victory_accepted": false,
+  "all_map_difficulties_accepted": false,
+  "remaining": [
+    "百宝箱大厅3级但局内0级",
+    "塔防卡全部效果与对照尚未验证",
+    "诸神投掷物被原塔防模式过滤，技能伤害仍待验证",
+    "原生单机附送全能陷阱调试逻辑尚未收口",
+    "全地图逐难度胜败结算未完成"
+  ]
+}

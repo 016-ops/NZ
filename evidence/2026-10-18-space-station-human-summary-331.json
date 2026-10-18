@@ -1,0 +1,37 @@
+{
+  "kind": "SPACE_STATION_HUMAN_TOWER_RUN_82_PARTIAL_ACCEPTANCE",
+  "run": "launcher-20261018-150144-356677",
+  "map_id": 168,
+  "difficulty_values": [
+    2
+  ],
+  "samples": 369,
+  "seconds": 736.328,
+  "rounds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "max_traps": 35,
+  "observed_levels": [
+    1,
+    2,
+    3
+  ],
+  "same_identity_upgrade_transitions": [],
+  "unexplained_removals": 25,
+  "match_end_seen": true,
+  "returned_warehouse_screenshot": true,
+  "natural_win_or_loss_verified": false,
+  "next_round_after_return_verified": false,
+  "in_game_bag_change_reported_broken": true,
+  "no_full_map_acceptance": true,
+  "process_writes": 0,
+  "input_actions_during_human": 0,
+  "trace_sha256": "74d2318605f46196f01ff9d6949b3590955fc3be26d0e8d3994efdf7cdba6f80"
+}

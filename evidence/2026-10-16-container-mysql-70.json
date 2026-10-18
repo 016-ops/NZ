@@ -1,0 +1,33 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 8,
+  "passed": [
+    "tests.test_native_crafting.NativeCraftingTests.test_craft_shortage_wrong_recipe_foreign_gid_and_fault_are_atomic",
+    "tests.test_native_crafting.NativeCraftingTests.test_frozen_recipes_all_execute_and_consume_exact_inputs",
+    "tests.test_native_crafting.NativeCraftingTests.test_native_upgrade_failure_then_success_keeps_connection",
+    "tests.test_native_crafting.NativeCraftingTests.test_subject_only_custom_recipe_rejects_free_reward"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_containers.NativeContainerTests.test_concurrent_replay_keeps_one_consumption_and_three_rewards",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_crafting.py\", line 23, in setUp\n    super().setUp()\n    ^^^^^^^^^^^^^\nTypeError: super(type, obj): obj must be an instance or subtype of type\n"
+    },
+    {
+      "test": "tests.test_native_containers.NativeContainerTests.test_existing_card_counts_report_only_new_awards",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_crafting.py\", line 23, in setUp\n    super().setUp()\n    ^^^^^^^^^^^^^\nTypeError: super(type, obj): obj must be an instance or subtype of type\n"
+    },
+    {
+      "test": "tests.test_native_containers.NativeContainerTests.test_protocol_failure_success_and_unknown_commit_recovery",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_crafting.py\", line 23, in setUp\n    super().setUp()\n    ^^^^^^^^^^^^^\nTypeError: super(type, obj): obj must be an instance or subtype of type\n"
+    },
+    {
+      "test": "tests.test_native_containers.NativeContainerTests.test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_crafting.py\", line 23, in setUp\n    super().setUp()\n    ^^^^^^^^^^^^^\nTypeError: super(type, obj): obj must be an instance or subtype of type\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 972.484
+}

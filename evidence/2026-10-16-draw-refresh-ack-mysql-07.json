@@ -1,0 +1,16 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 4,
+  "passed": [
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_native_pool_dates_cost_and_choice_types",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_native_reconnect_preserves_unseen_result_then_refresh_acknowledges",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_refund_owned_preserves_material_gid_and_rollback_round",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_two_choices_freeze_twelve_prizes_and_lock_until_finished"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 21.329
+}

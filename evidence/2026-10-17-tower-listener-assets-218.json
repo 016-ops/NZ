@@ -1,0 +1,38 @@
+{
+  "kind": "HUMAN_TOWER_READ_ONLY_LISTENER_AND_ASSET_GUARDS",
+  "run": "launcher-20261017-222459-162534",
+  "account_inventory_count": 37,
+  "equipment_relationships": 31,
+  "wallet": [
+    {
+      "currency": "cn2020:GP",
+      "balance": 88188
+    },
+    {
+      "currency": "cn2020:MP",
+      "balance": 9000
+    }
+  ],
+  "gm_inventory_counts": [
+    4323
+  ],
+  "gm_binding_counts": [
+    4323
+  ],
+  "enabled_formal_checkin": 0,
+  "database_read_at": 1792248608,
+  "database_writes": 0,
+  "input_actions": 0,
+  "listener_retry": {
+    "failed_listener": 213,
+    "failed_reason": "FROZEN_METADATA_COMPARISON_CHANGED",
+    "failed_samples": 0,
+    "recovered_listener": 216,
+    "recovery": "FRESH_OWNED_PROPERTY_AND_OBJECT_METADATA",
+    "validation_weakened": false
+  },
+  "user_confirmed_round_10_advanced": true,
+  "round_10_stall_is_known_bug": false,
+  "playable_map_accepted": false,
+  "remaining": "Match still active; final victory or defeat, native return and cleanup await actual evidence."
+}

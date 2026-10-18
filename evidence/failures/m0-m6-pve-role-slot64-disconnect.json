@@ -1,0 +1,18 @@
+{
+  "kind": "PVE_ROLE_SWITCH_DISCONNECT_BEFORE_FIX",
+  "boot": 73,
+  "request_sha256": "3ee57bceb7110c36b84380dc0974b1764e03f9c47373e3409ccaf9816b22a9c0",
+  "request_bytes": 27,
+  "operation": 0,
+  "target": 1,
+  "requested_location": -1,
+  "item_id": 103696,
+  "catalog_location": 64,
+  "native_observation": "Network reconnect overlay immediately after using Chushuang beach role",
+  "cause": "Native automatic equipment whitelist omitted PVE role slot 64; bridge raised ValueError and closed connection",
+  "fix": "Allow owned nonhidden verified PVE role slot 64; preserve faction roots and verify committed snapshot before A009/A00B",
+  "retested_boots": [
+    74,
+    75
+  ]
+}

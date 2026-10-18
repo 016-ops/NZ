@@ -1,0 +1,412 @@
+{
+  "kind": "READ_ONLY_DEV_AFTER_REAL_CLIENT_WORKSHOP",
+  "receipts": [
+    {
+      "id": "6d531de02f2a437bbcc4e06fb7acc31b",
+      "result": {
+        "free": true,
+        "mode": "free",
+        "pool": "workshop",
+        "count": 1,
+        "awards": [
+          {
+            "entry": {
+              "key": "101",
+              "free": true,
+              "paid": false,
+              "tier": 3,
+              "pic_id": 2000061,
+              "reward": {
+                "item_id": 102169,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          }
+        ],
+        "status": "DRAWN",
+        "rule_id": "f9a561cc65cc4cf7bfc4e32ea64e7161",
+        "operations": [
+          "f4b828c5d73b4c58b3072ca78ef1a49c"
+        ],
+        "receipt_id": "6d531de02f2a437bbcc4e06fb7acc31b",
+        "last_free_at": 1792145266,
+        "refunded_quantity": 0
+      },
+      "confirmed": true
+    },
+    {
+      "id": "5dbc169235944aeebc981aa30f105911",
+      "result": {
+        "free": false,
+        "mode": "paid",
+        "pool": "workshop",
+        "count": 10,
+        "awards": [
+          {
+            "entry": {
+              "key": "32",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000049,
+              "reward": {
+                "item_id": 102761,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "48",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 102712,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "39",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 103953,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "36",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000102,
+              "reward": {
+                "item_id": 102952,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "73",
+              "free": true,
+              "paid": true,
+              "tier": 4,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 103602,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "25",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 102037,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "49",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000006,
+              "reward": {
+                "item_id": 103455,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "74",
+              "free": true,
+              "paid": true,
+              "tier": 4,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 103247,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "16",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000030,
+              "reward": {
+                "item_id": 102317,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "39",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 103953,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": true
+          }
+        ],
+        "status": "DRAWN",
+        "rule_id": "f9a561cc65cc4cf7bfc4e32ea64e7161",
+        "operations": [
+          "58fa307a28b54033b092e294642bee57"
+        ],
+        "receipt_id": "5dbc169235944aeebc981aa30f105911",
+        "last_free_at": 1792145266,
+        "refunded_quantity": 1
+      },
+      "confirmed": true
+    }
+  ],
+  "awarded_inventory": [
+    {
+      "id": "390da40c32a949388438a3712ebc3928",
+      "item_key": "cn2020:103455",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "3c2bf6cca3ec48d39db8a5ede2cc069b",
+      "item_key": "cn2020:103247",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "411690efcc8f483aa9cdc4e4ae0c17d6",
+      "item_key": "cn2020:102317",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "4bc5944d47924ac8b59d49765f7d1a03",
+      "item_key": "cn2020:102169",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "8ec68aee55f94599b7fb411825a2836c",
+      "item_key": "cn2020:103953",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "b9edf9b289534b9ba259631797ef163e",
+      "item_key": "cn2020:102037",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "d8c62338c64748afa6a675a2052b4dca",
+      "item_key": "cn2020:102712",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "e137be86673d4779827c36a9b8b35834",
+      "item_key": "cn2020:102952",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "f299174ae7d14cf0b1c5a0cd690963e8",
+      "item_key": "cn2020:103602",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "f97a4156f9a14f909a09bcbc6e955052",
+      "item_key": "cn2020:102761",
+      "quantity": 1,
+      "expires_at": null
+    }
+  ],
+  "vouchers": [
+    {
+      "item_key": "cn2020:103745",
+      "quantity": 30
+    },
+    {
+      "item_key": "cn2020:103746",
+      "quantity": 21
+    }
+  ],
+  "free_state": [
+    {
+      "last_free_at": 1792145266
+    }
+  ],
+  "settings": [
+    {
+      "revision": 1,
+      "byte_count": 104
+    }
+  ],
+  "asset_entries": [
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "remove",
+      "resource": "cn2020:103746",
+      "delta": -9,
+      "before_value": 30,
+      "after_value": 21
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:102761",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:102712",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:103953",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:102952",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:103602",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:102037",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:103455",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:103247",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:102317",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "f4b828c5d73b4c58b3072ca78ef1a49c",
+      "kind": "item",
+      "resource": "cn2020:102169",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    }
+  ],
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "enabled_checkin": 0
+}

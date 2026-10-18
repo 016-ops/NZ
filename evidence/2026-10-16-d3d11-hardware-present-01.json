@@ -1,0 +1,1 @@
+{"kind":"OWNED_D3D11_GDI_NOT_GAME","backend":"d3d11-hardware","x86":true,"create_hr":0,"target_hr":0,"readback_hr":0,"present_hr":0,"feature_level":45056,"pixel_matches":true,"frames":3878,"failures":0,"presented_ok":3876,"present_other_status":2,"gdi_paints":66,"game_modified":false}

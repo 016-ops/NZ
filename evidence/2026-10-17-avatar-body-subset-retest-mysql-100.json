@@ -1,0 +1,14 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 2,
+  "passed": [
+    "tests.test_native_inventory.NativeInventoryTests.test_compact_commit_is_atomic_authorized_and_matches_full_snapshot",
+    "tests.test_native_inventory.NativeInventoryTests.test_pve_role_switch_preserves_factions_and_rejects_other_owner"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 13.719
+}

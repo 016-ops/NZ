@@ -1,0 +1,13 @@
+test_entire_extended_batch_rolls_back_on_second_account_failure (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_entire_extended_batch_rolls_back_on_second_account_failure)
+新增方案仍共用一笔MySQL事务；第二账号事件失败不能留下首账号的套装或卡。 ... ok
+test_five_exact_bags_with_concurrent_retry_and_original_receipt (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_five_exact_bags_with_concurrent_retry_and_original_receipt)
+原v1回执保留；新v2并发只提交一次，五套20件和四卡永久入库并准确挂接。 ... ok
+test_full_gm_entitlements_and_gids_are_reused (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_full_gm_entitlements_and_gids_are_reused)
+4323项永久GM库存完全复用原实例；新方案不得重发套装、全能卡或删除任何旧权益。 ... ok
+test_negative_root_slot_roundtrip_does_not_replace_expert_card (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_negative_root_slot_roundtrip_does_not_replace_expert_card)
+卡片-1是明确根槽；A008/A009/A006可往返，与36专家槽并存，错父和过期继续拒绝。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 223.892s
+
+OK

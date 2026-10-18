@@ -1,0 +1,102 @@
+{
+  "release": "20261016T100406-bcfdad43e550",
+  "hashes": {
+    "revival/models.py": "d851ec78f15fa2e31e7d6ece818fa519fc4a2f2d7e5c84afa35c357cd121079d",
+    "revival/native_features.py": "01dafefaa21abff77a6dfd775c6bda2cd2311dc221918440054a53c7ecb59c6f",
+    "revival/native_social.py": "28b05c1ea7f3d67f27e51e77109508fcc2be794c7a11da239d90c933522a933e",
+    "revival/native_workshop.py": "4d24383b2d8f319363b0ee6b048892325a6e6c2296c302dc517ea983feadd548",
+    "revival/native_rewards.py": "85b783fdad6c1dfdc695af6a0aafa71fbf968d282118c7306b5a876c0af244ab",
+    "revival/native_draw_defaults.py": "a0c1f990e717648f50a074596cdbbbdff88edb3e48b62b75ee1d768f436b1985",
+    "revival/migrations/0018_native_workshop_state.py": "9591a0dbd8962367521927b9634e943cc9bfeac4abfc23eab1c6684e95cf6519",
+    "config/cn2020-feature-protocol-v8.json": "eec57972aa8e313ea7a444ae995b5d03b5eaf1f04fc8bdbb48ce8b27c05558ff",
+    "admin/dist/index.html": "a28d9d66cf2fa72438cb9131dd574537269ae693ae252cd7cccce8bf65e4cccb"
+  },
+  "migrations": [
+    "0001_initial",
+    "0002_invariants",
+    "0003_operations_and_pve",
+    "0004_room_access_and_deliveries",
+    "0005_independent_email_login",
+    "0006_email_verification",
+    "0007_native_player_settings",
+    "0008_native_inventory_entitlements",
+    "0009_native_feature_transactions",
+    "0010_native_presence",
+    "0011_native_sync_cursor",
+    "0012_native_draw_selection",
+    "0013_native_sync_changes",
+    "0014_native_friend_groups",
+    "0015_native_clan_bindings",
+    "0016_launcher_session_lease",
+    "0017_native_draw_round",
+    "0018_native_workshop_state"
+  ],
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "enabled_checkin": 0,
+  "units": {
+    "nz-dev-current.service": "active",
+    "nz-dev-current-maintain.service": "active",
+    "nz-dev-pve.service": "active",
+    "nz-dev-pve-maintain.service": "active"
+  },
+  "health": [
+    {
+      "status": "ok",
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    {
+      "status": "ok",
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  ],
+  "rules": {
+    "version": "cn2020-draw-compat-v3",
+    "results": [
+      {
+        "namespace": "draw:epic",
+        "status": "EXISTING_PRESERVED"
+      },
+      {
+        "namespace": "draw:fine",
+        "status": "EXISTING_PRESERVED"
+      },
+      {
+        "namespace": "draw:rare",
+        "status": "EXISTING_PRESERVED"
+      },
+      {
+        "namespace": "draw:selected",
+        "status": "EXISTING_PRESERVED"
+      },
+      {
+        "namespace": "draw:workshop",
+        "status": "PUBLISHED",
+        "revision": 3
+      }
+    ],
+    "checkin_modified": false
+  },
+  "workshop": {
+    "version": "cn2020-draw-compat-v3",
+    "pool_count": 136,
+    "recipes": 155
+  },
+  "fixture_vouchers": [
+    {
+      "item_key": "cn2020:103745",
+      "quantity": 30
+    },
+    {
+      "item_key": "cn2020:103746",
+      "quantity": 30
+    }
+  ],
+  "source_matches_local": true
+}

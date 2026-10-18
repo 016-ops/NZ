@@ -72,14 +72,26 @@ def endpoint(request, view=None):
                 result = (request_code(service, data, request.META.get('REMOTE_ADDR', 'unknown'))
                           if path == '/api/player/email-code' else
                           recover(service, data, verify_only=path == '/api/player/email-verify'))
-            elif path in ('/api/launcher/tickets', '/api/launcher/redeem', '/api/game/session'):
-                from .launcher import issue, redeem, identity
+            elif path in ('/api/launcher/tickets', '/api/launcher/redeem', '/api/game/session', '/api/game/session/renew'):
+                from .launcher import issue, redeem, identity, renew
                 if path == '/api/launcher/tickets':
                     result = issue(service, token(request), data)
                 elif path == '/api/launcher/redeem':
                     result = redeem(service, data)
+                elif path == '/api/game/session/renew':
+                    result = renew(service, token(request), data)
                 else:
                     result = identity(service, token(request), data)
+            elif path in ('/api/game/settings/get', '/api/game/settings/set'):
+                from .native_settings import load, save
+                result = (load if path.endswith('/get') else save)(service, token(request), data)
+            elif path in ('/api/game/inventory/get', '/api/game/inventory/equip'):
+                from .native_inventory import load, equip
+                result = (load if path.endswith('/get') else equip)(service, token(request), data)
+            elif path in ('/api/game/command', '/api/game/view'):
+                from .native_features import command, query
+                # 统一对象信封支持列表视图，现有回环客户端不接受裸JSON数组。
+                result = command(service,token(request),data) if path.endswith('/command') else {'data':query(service,token(request),data)}
             elif path == '/api/command':
                 maintain(service)
                 result = service.command(token(request), data.get('action'), data)

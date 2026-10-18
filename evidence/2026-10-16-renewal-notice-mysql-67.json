@@ -1,0 +1,20 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 8,
+  "passed": [
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_expired_renew_and_transaction_tail_failures",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_renew_wire_retains_gid_and_expiry_and_rejects_permanent",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_failure_is_atomic_and_cross_account_rejected",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_price_replay_and_preserved_state",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_wire_failure_then_success_and_concurrent_replay",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_restored_offer_purchase_and_sale_window_remain_authoritative",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_sell_default_and_equipped_rejected",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_sell_wire_response_loss_recovers_without_second_reward"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 45.344
+}

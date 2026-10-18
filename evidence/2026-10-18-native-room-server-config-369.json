@@ -1,0 +1,19 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 3,
+  "passed": [
+    "tests.test_native_room_server_config.NativeRoomServerConfigTests.test_bad_source_missing_map_and_out_of_range_port_are_rejected",
+    "tests.test_native_room_server_config.NativeRoomServerConfigTests.test_two_priority_maps_have_exact_variants_and_keep_logging"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_room_server_config.NativeRoomServerConfigTests.test_private_instance_config_restores_without_touching_shared_pool",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_room_server_config.py\", line 45, in test_private_instance_config_restores_without_touching_shared_pool\n    output=Path(directory)/'evidence';guard=NativeConfigGuard(root,output)\n                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_config_guard.py\", line 92, in __init__\n    self._paths(root, output)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_config_guard.py\", line 103, in _paths\n    self.root, self.output = root.resolve(strict=True), output.resolve(strict=True)\n                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\pathlib.py\", line 1240, in resolve\n    s = self._flavour.realpath(self, strict=strict)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen ntpath>\", line 695, in realpath\nFileNotFoundError: [WinError 2] 系统找不到指定的文件。: 'C:\\\\Users\\\\ZJH\\\\NZ\\\\2020逆战\\\\repository\\\\runtime\\\\test-tmp\\\\tmpayrjupg5\\\\evidence'\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 0.062
+}

@@ -1,0 +1,18 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 6,
+  "passed": [
+    "tests.test_native_features.NativeFeatureTests.test_native_friend_decision_matches_live_request_and_preserves_unknown",
+    "tests.test_native_features.NativeFeatureTests.test_friend_delivery_block_and_unrelated_event_ack",
+    "tests.test_native_features.NativeFeatureTests.test_native_friend_groups_preserve_remark_and_blacklist",
+    "tests.test_native_session_sync.NativeSessionSyncTests.test_bridge_poll_uses_one_view_and_respects_animation_hold",
+    "tests.test_native_session_sync.NativeSessionSyncTests.test_clan_online_follows_heartbeat_and_logout",
+    "tests.test_native_session_sync.NativeSessionSyncTests.test_snapshot_is_private_and_does_not_ack_events"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 41.39
+}

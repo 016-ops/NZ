@@ -1,0 +1,36 @@
+{
+  "kind": "TRAINING_INPUT_DIAGNOSTIC_NOT_GAMEPLAY_ACCEPTANCE",
+  "run": "launcher-20261017-203617-446488",
+  "map_id": 364,
+  "keyboard_received_by_native_settings_ui": true,
+  "f12_change_cancelled": true,
+  "native_settings_save_ack_count": 0,
+  "normal_w_r_escape_automation_verified": false,
+  "continuous_movement_verified": false,
+  "temporary_mouse_walk_displacement": 3.26,
+  "released_velocity": [
+    0.0,
+    0.0,
+    0.0
+  ],
+  "native_menu_opened": true,
+  "native_exit_returned_lobby": true,
+  "client_original_writes": 0,
+  "config_and_credentials_cleaned": true,
+  "default_input_profile_changed": false,
+  "playable_map_accepted": false,
+  "screenshots": [
+    {
+      "path": "evidence/private/features-ui-64-screens/training-before-movement.png",
+      "sha256": "564582591e68aaa528728371366814482dd4d7770bdfd0dc287ea2bee58ab256"
+    },
+    {
+      "path": "evidence/private/features-ui-64-screens/native-ui-captured-f12.png",
+      "sha256": "a975089a9d64a44895c3626726214f87151c1061c3dc4d62d9f9a0f167fd5986"
+    },
+    {
+      "path": "evidence/private/features-ui-64-screens/training-exit-returned-lobby.png",
+      "sha256": "d52e1a4e081ddcc65b222b1ed174c3e683d38e24c7243cdfb0f333b5573858c8"
+    }
+  ]
+}

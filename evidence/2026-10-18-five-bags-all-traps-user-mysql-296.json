@@ -1,0 +1,20 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 4,
+  "passed": [
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_entire_extended_batch_rolls_back_on_second_account_failure",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_five_exact_bags_with_concurrent_retry_and_original_receipt",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_full_gm_entitlements_and_gids_are_reused"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_negative_root_slot_roundtrip_does_not_replace_expert_card",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_acceptance_extended.py\", line 73, in test_negative_root_slot_roundtrip_does_not_replace_expert_card\n    props=[codec.unpack_from(p,13+70*i) for p in inventory.packets() for i in range(struct.unpack_from('>H',p,11)[0])]\n                                                 ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_inventory_bridge.py\", line 200, in packets\n    if location==-1 and owner and owned[owner].get('expires_at') is not None and owned[owner]['expires_at']<=int(time.time()):\n                                  ~~~~~^^^^^^^\nKeyError: 1\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 174.437
+}

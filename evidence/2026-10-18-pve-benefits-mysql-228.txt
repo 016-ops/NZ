@@ -1,0 +1,143 @@
+test_claim_multiple_actual_rewards_idempotency_and_receipt (tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_multiple_actual_rewards_idempotency_and_receipt)
+三个成长权益各产生一件144小时武器，重复提交原结果，新请求不能再领。 ... ERROR
+test_claim_tail_failure_rolls_back_reward_and_claim_marker (tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_tail_failure_rolls_back_reward_and_claim_marker)
+最后通知失败同时回滚武器、领取标记及账本；同一领取随后可成功。 ... ERROR
+test_concurrent_different_requests_only_grant_once (tests.test_native_pve_benefits.NativePveBenefitTests.test_concurrent_different_requests_only_grant_once)
+两个不同幂等键并发领取同一权益，部署事务锁与已领标记保证只有一次奖励。 ... ok
+test_expiry_boundary_unknown_prop_and_bad_growth_are_not_success (tests.test_native_pve_benefits.NativePveBenefitTests.test_expiry_boundary_unknown_prop_and_bad_growth_are_not_success)
+到期当秒停止权益，任意武器ID/重复权益/坏成长都拒绝，不能借查询或领奖增加资产。 ... ERROR
+test_functional_card_root_slot_cross_account_and_native_roundtrip (tests.test_native_pve_benefits.NativePveBenefitTests.test_functional_card_root_slot_cross_account_and_native_roundtrip)
+卡片自动槽落根1，不能挂在背包或引用他人GID；拒绝后合法装备继续成功。 ... ok
+test_gm_existing_4323_entitlements_and_gids_survive_preset (tests.test_native_pve_benefits.NativePveBenefitTests.test_gm_existing_4323_entitlements_and_gids_survive_preset)
+完整GM目录只改装备和百宝箱状态，永久物品和稳定GID总数仍4323。 ... ok
+test_prepare_two_accounts_exact_equipment_growth_and_unchanged_wallet (tests.test_native_pve_benefits.NativePveBenefitTests.test_prepare_two_accounts_exact_equipment_growth_and_unchanged_wallet)
+两个账号得到真实首包四件套、三张根功能卡和10500点，原武器与钱包保留。 ... ok
+test_replay_is_unchanged_and_new_request_reuses_assets (tests.test_native_pve_benefits.NativePveBenefitTests.test_replay_is_unchanged_and_new_request_reuses_assets)
+未知提交重试不增发和重复审计；新请求重装复用同一GID，也保留已经领取标记。 ... ERROR
+test_second_account_tail_failure_rolls_back_entire_batch (tests.test_native_pve_benefits.NativePveBenefitTests.test_second_account_tail_failure_rolls_back_entire_batch)
+第二个账号最终事件失败，首账号也不能留下已提交的武器、状态或流水。 ... ERROR
+test_unknown_or_disabled_target_and_duplicate_ids_do_not_modify_assets (tests.test_native_pve_benefits.NativePveBenefitTests.test_unknown_or_disabled_target_and_duplicate_ids_do_not_modify_assets)
+全批先核对账号资格；停用账号、未知账号和重复目标均不能造成部分配装。 ... ERROR
+test_v11_keeps_every_previous_schema_and_query_failure_keeps_connection (tests.test_native_pve_benefits.NativePveBenefitTests.test_v11_keeps_every_previous_schema_and_query_failure_keeps_connection)
+升级协议目录不得改变旧462个结构；不持有百宝箱时领奖失败后仍能正常查询。 ... ok
+test_vip_query_and_player_info_use_same_real_growth (tests.test_native_pve_benefits.NativePveBenefitTests.test_vip_query_and_player_info_use_same_real_growth)
+资料与3602都返回实际10500点及32位日期边界，不依赖伪造界面等级。 ... ok
+
+======================================================================
+ERROR: test_claim_multiple_actual_rewards_idempotency_and_receipt (tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_multiple_actual_rewards_idempotency_and_receipt)
+三个成长权益各产生一件144小时武器，重复提交原结果，新请求不能再领。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 145, in test_claim_multiple_actual_rewards_idempotency_and_receipt
+    result=command(self.s,self.game,request);before=self.counts()
+                                                    ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 45, in counts
+    return {name:c.count(name).fetchone()[0] for name in ('inventory','equipment','native_inventory_bindings',
+                 ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 102, in count
+    return Rows([{'count': self.table(name).filter(condition).count()}])
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 49, in table
+    return TABLE_MODELS[name].objects.using(self.alias)
+           ~~~~~~~~~~~~^^^^^^
+KeyError: 'audits'
+
+======================================================================
+ERROR: test_claim_tail_failure_rolls_back_reward_and_claim_marker (tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_tail_failure_rolls_back_reward_and_claim_marker)
+最后通知失败同时回滚武器、领取标记及账本；同一领取随后可成功。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 154, in test_claim_tail_failure_rolls_back_reward_and_claim_marker
+    self.prepare();before=self.counts()
+                          ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 45, in counts
+    return {name:c.count(name).fetchone()[0] for name in ('inventory','equipment','native_inventory_bindings',
+                 ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 102, in count
+    return Rows([{'count': self.table(name).filter(condition).count()}])
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 49, in table
+    return TABLE_MODELS[name].objects.using(self.alias)
+           ~~~~~~~~~~~~^^^^^^
+KeyError: 'audits'
+
+======================================================================
+ERROR: test_expiry_boundary_unknown_prop_and_bad_growth_are_not_success (tests.test_native_pve_benefits.NativePveBenefitTests.test_expiry_boundary_unknown_prop_and_bad_growth_are_not_success)
+到期当秒停止权益，任意武器ID/重复权益/坏成长都拒绝，不能借查询或领奖增加资产。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 175, in test_expiry_boundary_unknown_prop_and_bad_growth_are_not_success
+    before=self.counts()
+           ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 45, in counts
+    return {name:c.count(name).fetchone()[0] for name in ('inventory','equipment','native_inventory_bindings',
+                 ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 102, in count
+    return Rows([{'count': self.table(name).filter(condition).count()}])
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 49, in table
+    return TABLE_MODELS[name].objects.using(self.alias)
+           ~~~~~~~~~~~~^^^^^^
+KeyError: 'audits'
+
+======================================================================
+ERROR: test_replay_is_unchanged_and_new_request_reuses_assets (tests.test_native_pve_benefits.NativePveBenefitTests.test_replay_is_unchanged_and_new_request_reuses_assets)
+未知提交重试不增发和重复审计；新请求重装复用同一GID，也保留已经领取标记。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 71, in test_replay_is_unchanged_and_new_request_reuses_assets
+    first=self.prepare();before=self.counts();rows=self.view('inventory')['items']
+                                ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 45, in counts
+    return {name:c.count(name).fetchone()[0] for name in ('inventory','equipment','native_inventory_bindings',
+                 ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 102, in count
+    return Rows([{'count': self.table(name).filter(condition).count()}])
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 49, in table
+    return TABLE_MODELS[name].objects.using(self.alias)
+           ~~~~~~~~~~~~^^^^^^
+KeyError: 'audits'
+
+======================================================================
+ERROR: test_second_account_tail_failure_rolls_back_entire_batch (tests.test_native_pve_benefits.NativePveBenefitTests.test_second_account_tail_failure_rolls_back_entire_batch)
+第二个账号最终事件失败，首账号也不能留下已提交的武器、状态或流水。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 97, in test_second_account_tail_failure_rolls_back_entire_batch
+    before=self.counts()
+           ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 45, in counts
+    return {name:c.count(name).fetchone()[0] for name in ('inventory','equipment','native_inventory_bindings',
+                 ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 102, in count
+    return Rows([{'count': self.table(name).filter(condition).count()}])
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 49, in table
+    return TABLE_MODELS[name].objects.using(self.alias)
+           ~~~~~~~~~~~~^^^^^^
+KeyError: 'audits'
+
+======================================================================
+ERROR: test_unknown_or_disabled_target_and_duplicate_ids_do_not_modify_assets (tests.test_native_pve_benefits.NativePveBenefitTests.test_unknown_or_disabled_target_and_duplicate_ids_do_not_modify_assets)
+全批先核对账号资格；停用账号、未知账号和重复目标均不能造成部分配装。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 104, in test_unknown_or_disabled_target_and_duplicate_ids_do_not_modify_assets
+    before=self.counts()
+           ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_pve_benefits.py", line 45, in counts
+    return {name:c.count(name).fetchone()[0] for name in ('inventory','equipment','native_inventory_bindings',
+                 ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 102, in count
+    return Rows([{'count': self.table(name).filter(condition).count()}])
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 49, in table
+    return TABLE_MODELS[name].objects.using(self.alias)
+           ~~~~~~~~~~~~^^^^^^
+KeyError: 'audits'
+
+----------------------------------------------------------------------
+Ran 12 tests in 64.948s
+
+FAILED (errors=6)

@@ -1,0 +1,175 @@
+{
+  "kind": "CURRENT_PLAYER_INFO_SERIALIZATION_FIXTURES_NOT_NATIVE_LOBBY",
+  "date": "2026-10-15",
+  "dll_sha256": "e28a7da8e6668feb65f5573819714738bce7210b79c49dfe287a63f2be3da228",
+  "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+  "schema": "ZN2C_NtfPlayerInfo",
+  "body_host_bytes": 1412,
+  "package_host_bytes": 1025331,
+  "fixtures": [
+    {
+      "file": "player_info_fixture_0.bin",
+      "bytes": 1404,
+      "body_length": 1396,
+      "sha256": "ccac6e8e24102ed748c14611cc8653132c3dbea0d4baabc237e555f38d9267a3",
+      "fixture_game_id": 10001,
+      "ascii_nickname_bytes": 11,
+      "roundtrip_equal": true,
+      "decoded_host_equal": true,
+      "standalone_body_equal": true
+    },
+    {
+      "file": "player_info_fixture_1.bin",
+      "bytes": 1410,
+      "body_length": 1402,
+      "sha256": "e2e0975871ef846c65942dff1c689d293a5e1c10a6d172618a2cdc8bd4baa8de",
+      "fixture_game_id": 10002,
+      "ascii_nickname_bytes": 17,
+      "roundtrip_equal": true,
+      "decoded_host_equal": true,
+      "standalone_body_equal": true
+    }
+  ],
+  "checks": [
+    {
+      "step": "vtable_slot",
+      "slot": "0x50",
+      "function_rva": "0x29530"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x54",
+      "function_rva": "0x29670"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x58",
+      "function_rva": "0x29560"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x5C",
+      "function_rva": "0x294C0"
+    },
+    {
+      "step": "vtable_slot",
+      "slot": "0x60",
+      "function_rva": "0x294E0"
+    },
+    {
+      "step": "load_metadata",
+      "return_code": 0,
+      "canaries": true
+    },
+    {
+      "step": "captured_request_unpack",
+      "return_code": 0,
+      "input_length_before": 26,
+      "output_capacity": 1025331,
+      "output_length": 1025331,
+      "input_length_after": 26,
+      "canaries": true
+    },
+    {
+      "step": "captured_request_pack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 26,
+      "input_length_after": 1025331,
+      "canaries": true
+    },
+    {
+      "step": "player_info_fixture_0_body_pack",
+      "return_code": 0,
+      "input_length_before": 1412,
+      "output_capacity": 32768,
+      "output_length": 1396,
+      "input_length_after": 1412,
+      "canaries": true
+    },
+    {
+      "step": "player_info_fixture_0_pack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 1404,
+      "input_length_after": 1025331,
+      "canaries": true
+    },
+    {
+      "step": "player_info_fixture_0_unpack",
+      "return_code": 0,
+      "input_length_before": 1404,
+      "output_capacity": 1025331,
+      "output_length": 1025331,
+      "input_length_after": 1404,
+      "canaries": true
+    },
+    {
+      "step": "player_info_fixture_0_repack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 1404,
+      "input_length_after": 1025331,
+      "canaries": true
+    },
+    {
+      "step": "player_info_fixture_1_body_pack",
+      "return_code": 0,
+      "input_length_before": 1412,
+      "output_capacity": 32768,
+      "output_length": 1402,
+      "input_length_after": 1412,
+      "canaries": true
+    },
+    {
+      "step": "player_info_fixture_1_pack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 1410,
+      "input_length_after": 1025331,
+      "canaries": true
+    },
+    {
+      "step": "player_info_fixture_1_unpack",
+      "return_code": 0,
+      "input_length_before": 1410,
+      "output_capacity": 1025331,
+      "output_length": 1025331,
+      "input_length_after": 1410,
+      "canaries": true
+    },
+    {
+      "step": "player_info_fixture_1_repack",
+      "return_code": 0,
+      "input_length_before": 1025331,
+      "output_capacity": 32768,
+      "output_length": 1410,
+      "input_length_after": 1025331,
+      "canaries": true
+    }
+  ],
+  "passed": true,
+  "job_cleanup_verified": true,
+  "native_return_codes_all_zero": true,
+  "profile": "cn2020-player-info-empty-assets-research-v1",
+  "fixture_values": {
+    "Result": 33024,
+    "Level": 1,
+    "other_non_identity_fields": 0
+  },
+  "network_reply_sent": false,
+  "real_account_data_used": false,
+  "nickname_encoding_verified": false,
+  "real_assets_projected": false,
+  "lobby_verified": false,
+  "private_source": "evidence/private/native-tdr-player-info-01/report.json",
+  "limitations": [
+    "Fixtures prove current encoding layout only; unknown statistics, currencies, roles and dates are not business rules.",
+    "Python byte encoder agrees with both independent native full-host roundtrips; it is not connected to the boot sender.",
+    "Actual owned account nickname is non-ASCII; its consumer encoding remains unresolved. Do not truncate or rename it."
+  ]
+}

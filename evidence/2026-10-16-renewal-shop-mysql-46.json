@@ -1,0 +1,32 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 16,
+  "passed": [
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_expired_renew_and_transaction_tail_failures",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_renew_wire_retains_gid_and_expiry_and_rejects_permanent",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_failure_is_atomic_and_cross_account_rejected",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_price_replay_and_preserved_state",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_wire_failure_then_success_and_concurrent_replay",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_sell_default_and_equipped_rejected",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_sell_wire_response_loss_recovers_without_second_reward",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_component_wrong_family_and_weapon_parent_fail_without_losing_connection",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_default_component_tail_failure_rolls_back_whole_cart",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_legacy_owned_components_attach_on_role_equip_without_regrant",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_native_move_knife_fills_source_bag_and_failure_allows_next_equip",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_registration_equips_roles_first_loadout_and_every_bag_knife_once",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_reported_role_packages_use_tier_period_and_keep_every_component",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_role_purchase_attaches_defaults_and_preserves_gids_on_reload",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_starter_tail_failure_rolls_back_character_wallet_and_all_assets"
+  ],
+  "failures": [
+    {
+      "test": "tests.test_native_maintenance.NativeMaintenanceTests.test_restored_offer_purchase_and_sale_window_remain_authoritative",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_maintenance.py\", line 171, in test_restored_offer_purchase_and_sale_window_remain_authoritative\n    self.assertEqual(self.call('shop.purchase',key='restore-scar',lines=lines,quote=quote),result)\nAssertionError: {'receipt_id': 'ecc55434c0cb4162ab91b43433a01594', 'statu[1269 chars]: 5}} != {'receipt_id': '8a9f24e008f2415cade6486d0dce910e', 'statu[1271 chars]: 3}}\nDiff is 2888 characters long. Set self.maxDiff to None to see it.\n"
+    }
+  ],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 85.969
+}

@@ -1,0 +1,23 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 11,
+  "passed": [
+    "tests.test_native_pve_compat.PveCompatTests.test_only_fixed_pve_path_has_larger_limit",
+    "tests.test_native_pve_compat.PveCompatTests.test_real_candidate_preserves_original_function_and_recovers_after_restart",
+    "tests.test_native_pve_compat.PveCompatTests.test_unknown_source_rejected_before_parsing",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_fixed_live_candidate_and_unchanged_original_body",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_interrupted_install_restores_and_rejects_double_patch",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_missing_floor_waits_without_spawning",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_missing_spawn_preserves_original_failure",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_numbered_objects_have_distinct_identity",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_online_and_existing_pawn_call_only_original_super",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_ready_floor_clears_retry_before_original_spawn",
+    "tests.test_native_hunt_compat.HuntFingerprintTests.test_unknown_source_rejected_before_parse_or_install"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 2.422
+}

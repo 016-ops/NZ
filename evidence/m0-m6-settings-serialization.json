@@ -1,0 +1,80 @@
+{
+  "kind": "CURRENT_OPAQUE_SETTINGS_TDR_CODEC_NOT_LOBBY_ACCEPTANCE",
+  "native_passed": true,
+  "cleanup_verified": true,
+  "fixtures": [
+    {
+      "file": "player_define_a202_0.bin",
+      "command": 41474,
+      "data_bytes": 0,
+      "bytes": 12,
+      "sha256": "51f1f47563816b66f51a82e6e88cee5de48339bc2899c4cb6ee89af4468f0bd8",
+      "host_equal": true,
+      "roundtrip_equal": true,
+      "standalone_body_equal": true,
+      "python_equal": true
+    },
+    {
+      "file": "player_define_a205_0.bin",
+      "command": 41477,
+      "data_bytes": 0,
+      "bytes": 14,
+      "sha256": "5568769e481a4c956bc5376f80cbb7c4614c8a311f3175f15275fb288e113080",
+      "host_equal": true,
+      "roundtrip_equal": true,
+      "standalone_body_equal": true,
+      "python_equal": true
+    },
+    {
+      "file": "player_define_a202_104.bin",
+      "command": 41474,
+      "data_bytes": 104,
+      "bytes": 116,
+      "sha256": "b58a3ef6a789582d62cd066b321ab972a04743cfaa0b4d9c130a40786817f310",
+      "host_equal": true,
+      "roundtrip_equal": true,
+      "standalone_body_equal": true,
+      "python_equal": true
+    },
+    {
+      "file": "player_define_a205_104.bin",
+      "command": 41477,
+      "data_bytes": 104,
+      "bytes": 118,
+      "sha256": "ac8a4318b7f48a917bddbee1ecbf2152d07fdf1077ab88bb3146d3d37fa033df",
+      "host_equal": true,
+      "roundtrip_equal": true,
+      "standalone_body_equal": true,
+      "python_equal": true
+    },
+    {
+      "file": "player_define_a202_3200.bin",
+      "command": 41474,
+      "data_bytes": 3200,
+      "bytes": 3212,
+      "sha256": "7e13b87fe968834ecb45e873350870f0f2a683e0d6452addfcfb5ce1b9945d53",
+      "host_equal": true,
+      "roundtrip_equal": true,
+      "standalone_body_equal": true,
+      "python_equal": true
+    },
+    {
+      "file": "player_define_a205_3200.bin",
+      "command": 41477,
+      "data_bytes": 3200,
+      "bytes": 3214,
+      "sha256": "a709e3d4699a64d29837739a88663540ae2ca5457689bee63860cf24f62439b7",
+      "host_equal": true,
+      "roundtrip_equal": true,
+      "standalone_body_equal": true,
+      "python_equal": true
+    }
+  ],
+  "ack": {
+    "bytes": 10,
+    "sha256": "b18ac912293a5330e930e9758d584536a819f3536be3303a6b7d89f44c0bed25",
+    "host_equal": true,
+    "roundtrip_equal": true,
+    "python_equal": true
+  }
+}

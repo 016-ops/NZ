@@ -1,0 +1,408 @@
+{
+  "kind": "BACKPACK_FIX_AND_MANUAL_START_INCREMENT",
+  "completed_runs": [
+    {
+      "boot": 76,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "source_and_game_revoked": true,
+      "equipment_acks": 10,
+      "equipment_changes": 7,
+      "timings": [
+        {
+          "commit_ms": 1278.336,
+          "refresh_ms": 1.122,
+          "total_ms": 1279.474,
+          "commit_http": {
+            "response_bytes": 1069,
+            "headers_ms": 1196.095,
+            "body_ms": 82.173,
+            "decode_ms": 0.041,
+            "total_ms": 1278.31
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1829.314,
+          "refresh_ms": 1.227,
+          "total_ms": 1830.696,
+          "commit_http": {
+            "response_bytes": 1065,
+            "headers_ms": 1755.767,
+            "body_ms": 73.36,
+            "decode_ms": 0.044,
+            "total_ms": 1829.172
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1672.396,
+          "refresh_ms": 1.164,
+          "total_ms": 1673.686,
+          "commit_http": {
+            "response_bytes": 1065,
+            "headers_ms": 1597.642,
+            "body_ms": 74.552,
+            "decode_ms": 0.041,
+            "total_ms": 1672.236
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1770.728,
+          "refresh_ms": 1.247,
+          "total_ms": 1772.08,
+          "commit_http": {
+            "response_bytes": 1065,
+            "headers_ms": 1741.396,
+            "body_ms": 29.161,
+            "decode_ms": 0.042,
+            "total_ms": 1770.599
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1655.276,
+          "refresh_ms": 0.927,
+          "total_ms": 1656.29,
+          "commit_http": {
+            "response_bytes": 1065,
+            "headers_ms": 1626.259,
+            "body_ms": 28.836,
+            "decode_ms": 0.035,
+            "total_ms": 1655.13
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1708.557,
+          "refresh_ms": 1.098,
+          "total_ms": 1709.763,
+          "commit_http": {
+            "response_bytes": 1065,
+            "headers_ms": 1625.35,
+            "body_ms": 83.056,
+            "decode_ms": 0.035,
+            "total_ms": 1708.442
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1306.494,
+          "refresh_ms": 1.47,
+          "total_ms": 1308.097,
+          "commit_http": {
+            "response_bytes": 1069,
+            "headers_ms": 1277.551,
+            "body_ms": 28.781,
+            "decode_ms": 0.047,
+            "total_ms": 1306.38
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1774.477,
+          "refresh_ms": 1.564,
+          "total_ms": 1776.227,
+          "commit_http": {
+            "response_bytes": 1117,
+            "headers_ms": 1745.284,
+            "body_ms": 28.975,
+            "decode_ms": 0.035,
+            "total_ms": 1774.294
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1205.048,
+          "refresh_ms": 1.096,
+          "total_ms": 1206.315,
+          "commit_http": {
+            "response_bytes": 1121,
+            "headers_ms": 1175.733,
+            "body_ms": 29.132,
+            "decode_ms": 0.046,
+            "total_ms": 1204.912
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1739.644,
+          "refresh_ms": 1.291,
+          "total_ms": 1741.157,
+          "commit_http": {
+            "response_bytes": 1167,
+            "headers_ms": 1710.563,
+            "body_ms": 28.9,
+            "decode_ms": 0.042,
+            "total_ms": 1739.506
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1760.666,
+          "refresh_ms": 1.67,
+          "total_ms": 1762.521,
+          "commit_http": {
+            "response_bytes": 1167,
+            "headers_ms": 1731.348,
+            "body_ms": 29.114,
+            "decode_ms": 0.055,
+            "total_ms": 1760.517
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        }
+      ],
+      "errors": [],
+      "captured_application_files": 612
+    },
+    {
+      "boot": 77,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "source_and_game_revoked": true,
+      "equipment_acks": 0,
+      "equipment_changes": 0,
+      "timings": [],
+      "errors": [],
+      "captured_application_files": 0
+    },
+    {
+      "boot": 78,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "source_and_game_revoked": true,
+      "equipment_acks": 3,
+      "equipment_changes": 1,
+      "timings": [
+        {
+          "commit_ms": 1392.194,
+          "refresh_ms": 1.13,
+          "total_ms": 1393.423,
+          "commit_http": {
+            "response_bytes": 1169,
+            "headers_ms": 1309.932,
+            "body_ms": 82.194,
+            "decode_ms": 0.042,
+            "total_ms": 1392.169
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1758.479,
+          "refresh_ms": 1.067,
+          "total_ms": 1759.667,
+          "commit_http": {
+            "response_bytes": 1217,
+            "headers_ms": 1729.222,
+            "body_ms": 29.186,
+            "decode_ms": 0.046,
+            "total_ms": 1758.455
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        },
+        {
+          "commit_ms": 1328.042,
+          "refresh_ms": 1.319,
+          "total_ms": 1329.528,
+          "commit_http": {
+            "response_bytes": 1221,
+            "headers_ms": 1252.906,
+            "body_ms": 75.069,
+            "decode_ms": 0.048,
+            "total_ms": 1328.024
+          },
+          "refresh_http": null,
+          "snapshot_mode": "cn2020-equipment-state-v1"
+        }
+      ],
+      "errors": [
+        {
+          "type": "ValueError",
+          "code": null
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        }
+      ],
+      "captured_application_files": 364
+    }
+  ],
+  "active_run": "manual-online-20261016-012032-748968",
+  "active_state": {
+    "state": "RUNNING",
+    "elapsed_seconds": 66.0,
+    "owned_pids": [
+      30544,
+      11976,
+      31140,
+      2424
+    ],
+    "automatic_time_limit": false,
+    "cleanup_pending": true
+  },
+  "observations": [
+    "Computer Use observed complete warehouse UI after new manual launcher started",
+    "User operated the window; agent only observed",
+    "Readonly MySQL confirmed new backpack 100035 attached with four weapon slots; old two backpacks and weapons retained"
+  ],
+  "exact_backpack_100037_live_retest": false,
+  "startup_entry": "启动在线测试.cmd",
+  "automatic_time_limit": false,
+  "original_client_writes": 0,
+  "new_real_test_emails": 0,
+  "native_gameplay_verified": false,
+  "multiplayer_verified": false,
+  "first_manual_run": {
+    "name": "manual-online-20261016-010915-823544",
+    "cleanup_verified": true,
+    "configuration_restored": true,
+    "source_and_game_revoked": true,
+    "equipment_acks": 15
+  },
+  "first_manual_equipment_requests": [
+    {
+      "operation": 0,
+      "subject": 3633,
+      "target": 1,
+      "location": 10
+    },
+    {
+      "operation": 0,
+      "subject": 1022,
+      "target": 1,
+      "location": 12
+    },
+    {
+      "operation": 0,
+      "subject": 1031,
+      "target": 1,
+      "location": -1
+    },
+    {
+      "operation": 0,
+      "subject": 4482,
+      "target": 1031,
+      "location": -1
+    },
+    {
+      "operation": 0,
+      "subject": 4480,
+      "target": 1031,
+      "location": -1
+    },
+    {
+      "operation": 0,
+      "subject": 4416,
+      "target": 1031,
+      "location": -1
+    },
+    {
+      "operation": 0,
+      "subject": 4418,
+      "target": 1031,
+      "location": 3
+    },
+    {
+      "operation": 0,
+      "subject": 4414,
+      "target": 1031,
+      "location": -1
+    },
+    {
+      "operation": 0,
+      "subject": 1055,
+      "target": 1,
+      "location": 12
+    },
+    {
+      "operation": 0,
+      "subject": 1032,
+      "target": 1,
+      "location": -1
+    },
+    {
+      "operation": 0,
+      "subject": 1031,
+      "target": 1,
+      "location": 12
+    },
+    {
+      "operation": 0,
+      "subject": 1032,
+      "target": 1,
+      "location": 12
+    },
+    {
+      "operation": 0,
+      "subject": 5027,
+      "target": 1032,
+      "location": -1
+    },
+    {
+      "operation": 0,
+      "subject": 5019,
+      "target": 1032,
+      "location": -1
+    },
+    {
+      "operation": 0,
+      "subject": 5015,
+      "target": 1032,
+      "location": -1
+    },
+    {
+      "operation": 0,
+      "subject": 3816,
+      "target": 3865,
+      "location": -1
+    }
+  ],
+  "equipment_negative_ack_ui_verified": false
+}

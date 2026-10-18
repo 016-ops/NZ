@@ -1,0 +1,18 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 6,
+  "passed": [
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_entire_extended_batch_rolls_back_on_second_account_failure",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_five_exact_bags_with_concurrent_retry_and_original_receipt",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_full_gm_entitlements_and_gids_are_reused",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_kernel_level_rejects_expired_duplicate_and_missing_weapon",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_negative_root_slot_roundtrip_does_not_replace_expert_card",
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_sixth_element_set_and_all_kernels_preserve_previous_receipt"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 34.453
+}

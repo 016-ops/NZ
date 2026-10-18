@@ -1,0 +1,101 @@
+{
+  "kind": "NATIVE_SERVER_RESEARCH_NOT_PLAYABLE_ACCEPTANCE",
+  "runs": [
+    {
+      "run": "launcher-20261016-223733-942256",
+      "configuration_restored": true,
+      "own_process_cleanup": true,
+      "source_and_game_revoked": true
+    },
+    {
+      "run": "launcher-20261016-224752-665158",
+      "configuration_restored": true,
+      "own_process_cleanup": true,
+      "source_and_game_revoked": true
+    },
+    {
+      "run": "launcher-20261016-225331-108171",
+      "configuration_restored": true,
+      "own_process_cleanup": true,
+      "source_and_game_revoked": true
+    },
+    {
+      "run": "launcher-20261016-225651-710436",
+      "configuration_restored": true,
+      "own_process_cleanup": true,
+      "source_and_game_revoked": true
+    },
+    {
+      "run": "launcher-20261016-225918-035702",
+      "configuration_restored": true,
+      "own_process_cleanup": true,
+      "source_and_game_revoked": true
+    },
+    {
+      "run": "launcher-20261016-230223-115127",
+      "configuration_restored": true,
+      "own_process_cleanup": true,
+      "source_and_game_revoked": true
+    },
+    {
+      "run": "launcher-20261016-230600-511428",
+      "configuration_restored": true,
+      "own_process_cleanup": true,
+      "source_and_game_revoked": true
+    }
+  ],
+  "native_room_ready": false,
+  "target_map_loaded": false,
+  "battle_or_settlement_verified": false,
+  "world_observations": [
+    {
+      "sample": "objects-35",
+      "complete": true,
+      "object_count": 440576,
+      "worlds": [
+        "Engine.Default__World",
+        "UTFrontEnd.TheWorld"
+      ],
+      "target_game_instances": []
+    },
+    {
+      "sample": "objects-70",
+      "complete": true,
+      "object_count": 440576,
+      "worlds": [
+        "Engine.Default__World",
+        "UTFrontEnd.TheWorld"
+      ],
+      "target_game_instances": []
+    }
+  ],
+  "ds_metadata_load": {
+    "passed": false,
+    "error": "生成元数据库文件的tdr工具的核心数据构建版本和tdr库的核心数据构构建版本不一致",
+    "cleanup_verified": true
+  },
+  "run38_failure": {
+    "stage": "diagnostic-script-TypeError",
+    "first_configuration_restore": false,
+    "forward_retry_configuration_restore": true,
+    "original_failure_evidence_preserved": true
+  },
+  "actual_map_load_run41": {
+    "run": "launcher-20261016-231921-492352",
+    "samples_seconds": [
+      35,
+      70
+    ],
+    "complete": true,
+    "world": "SV-Maya_3_Main.TheWorld",
+    "game": "SV-Maya_3_Main.TheWorld.PersistentLevel.TGSVGame_0",
+    "object_count": 463508,
+    "name_count": 200791,
+    "cleanup_verified": true,
+    "configuration_restored": true,
+    "credentials_revoked": true,
+    "network_ready": false,
+    "player_join_verified": false,
+    "playable": false
+  }
+}

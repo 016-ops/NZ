@@ -1,0 +1,15 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 3,
+  "passed": [
+    "tests.test_native_server_entry.NativeServerEntryTests.test_changed_config_missing_resource_and_unsafe_name_rejected",
+    "tests.test_native_server_entry.NativeServerEntryTests.test_duplicate_logical_map_or_conflicting_mode_rejected",
+    "tests.test_native_server_entry.NativeServerEntryTests.test_map_mode_derived_from_current_config_and_existing_resource"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.046
+}

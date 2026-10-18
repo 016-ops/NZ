@@ -1,0 +1,16 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 4,
+  "passed": [
+    "tests.test_native_login_probe.NicknameCodeBoundaryTests.test_data_guard_and_noaccess_pages_are_not_read",
+    "tests.test_native_login_probe.NicknameCodeBoundaryTests.test_non_owned_process_never_reads_slots",
+    "tests.test_native_login_probe.NicknameCodeBoundaryTests.test_owned_code_reads_two_fixed_targets_without_following_relative_jump",
+    "tests.test_native_login_probe.NicknameCodeBoundaryTests.test_partial_slot_read_cannot_create_evidence"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.0
+}

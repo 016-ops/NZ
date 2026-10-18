@@ -1,0 +1,1 @@
+{"kind":"OWNED_X86_D3D9_PRESENT_NOT_GAME","backend":"system-d3d9","on12_export_available":true,"on12_interface_hr":-2147467262,"x86":true,"create_hr":0,"clear_hr":0,"present_hr":0,"readback_hr":0,"pixel_matches":true,"frames":7240,"failures":0,"presented_ok":7240,"present_other_status":0,"game_modified":false}

@@ -1,0 +1,40 @@
+test_native_friend_decision_matches_live_request_and_preserves_unknown (tests.test_native_features.NativeFeatureTests.test_native_friend_decision_matches_live_request_and_preserves_unknown)
+实收同意33537建立双向关系；通用成功33536不得当成拒绝，专用拒绝769仅移除待办。 ... ERROR
+test_friend_delivery_block_and_unrelated_event_ack (tests.test_native_features.NativeFeatureTests.test_friend_delivery_block_and_unrelated_event_ack)
+申请与私聊投递给真实对端，第三方不能确认事件，拉黑后私聊拒绝。 ... ok
+test_native_friend_groups_preserve_remark_and_blacklist (tests.test_native_features.NativeFeatureTests.test_native_friend_groups_preserve_remark_and_blacklist)
+原生分组/删除组/黑名单回放真实关系；单改分组不能抹掉备注，超长消息不能进入事件箱。 ... ok
+test_bridge_poll_uses_one_view_and_respects_animation_hold (tests.test_native_session_sync.NativeSessionSyncTests.test_bridge_poll_uses_one_view_and_respects_animation_hold)
+空闲心跳只用一个HTTP读，开奖延迟期间仍处理社交但不提前投影奖励。 ... ok
+test_clan_online_follows_heartbeat_and_logout (tests.test_native_session_sync.NativeSessionSyncTests.test_clan_online_follows_heartbeat_and_logout)
+加入战队不会直接变在线；有效游戏心跳变在线，退出来源会话后立即离线。 ... ok
+test_snapshot_is_private_and_does_not_ack_events (tests.test_native_session_sync.NativeSessionSyncTests.test_snapshot_is_private_and_does_not_ack_events)
+别人的事件与资产不进入快照；发送者只有公开身份，读取不把未送达事件提前确认。 ... ok
+
+======================================================================
+ERROR: test_native_friend_decision_matches_live_request_and_preserves_unknown (tests.test_native_features.NativeFeatureTests.test_native_friend_decision_matches_live_request_and_preserves_unknown)
+实收同意33537建立双向关系；通用成功33536不得当成拒绝，专用拒绝769仅移除待办。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_features.py", line 493, in test_native_friend_decision_matches_live_request_and_preserves_unknown
+    peer_account,_,game,base=self.player_game('native-decision')
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_inventory.py", line 31, in player_game
+    self.command('character.create', {'nickname': 'inventory-'+suffix}, player)
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_control_plane.py", line 65, in command
+    return self.s.command(token or self.owner, action, self.meta(**(data or {})))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\service.py", line 392, in command
+    result = self._account_command(c, actor, action, data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\service.py", line 464, in _account_command
+    nickname = unicodedata.normalize('NFC', text_field(data.get('nickname'), 'nickname', 24))
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\service.py", line 54, in text_field
+    raise Fault('INVALID', f'Invalid {name}')
+revival.service.Fault: Invalid nickname
+
+----------------------------------------------------------------------
+Ran 6 tests in 39.369s
+
+FAILED (errors=1)

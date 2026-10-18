@@ -1,11 +1,12 @@
 """邮箱启动器传输边界与当前 IPC 编码回归；普通工具测试不依赖游戏文件或数据库。"""
 import http.server
-from contextlib import redirect_stderr
+from contextlib import redirect_stderr, redirect_stdout
 import io
 import json
 import struct
 import sys
 import threading
+from pathlib import Path
 from unittest import TestCase
 from unittest.mock import Mock, patch
 from adapters.cn_current.email_ipc import research_mapping
@@ -14,13 +15,196 @@ from tools.email_launcher import Client, LoginError
 
 class EmailToolTests(TestCase):
     """防止把邮箱密码发送到 URL 中的外部主机、跳转目标或非本项目原生组件。"""
+    def test_large_inventory_reads_do_not_expand_authentication_response_limit(self):
+        """只有本人库存读入口放宽到8MiB，超大库存及普通认证响应仍拒绝，避免无界内存读取。"""
+        client=Client('http://127.0.0.1:18765')
+        def transport(payload):
+            """模拟有界HTTP读取，返回真实JSON字节，不执行网络或保存玩家信息。"""
+            response=Mock(status=200)
+            response.read.side_effect=lambda count:payload[:count]
+            connection=Mock();connection.getresponse.return_value=response
+            return connection
+        payload=json.dumps({'items':['x'*100000]}).encode()
+        for path in ('/api/views/me','/api/game/inventory/get'):
+            with patch('http.client.HTTPConnection',return_value=transport(payload)):
+                self.assertEqual(len(client.request(path)['items'][0]),100000)
+        with patch('http.client.HTTPConnection',return_value=transport(payload)):
+            with self.assertRaisesRegex(LoginError,'RESPONSE_TOO_LARGE'):
+                client.request('/api/player/login',{})
+        with patch('http.client.HTTPConnection',return_value=transport(b'x'*(8*1024*1024+1))):
+            with self.assertRaisesRegex(LoginError,'RESPONSE_TOO_LARGE'):
+                client.request('/api/game/inventory/get',{})
+
+    def test_native_observation_limit_is_rejected_before_credentials_and_launch(self):
+        """用户授权的最长观察为300秒；越界时先拒绝，不读验收凭据、不登录也不启动进程。"""
+        from tools import native_email_boot
+        for seconds in ('0','-1','301'):
+            args=['native_email_boot','--workspace','not-used','--output','not-used',
+                  '--dev-email-state','--seconds',seconds]
+            with self.subTest(seconds=seconds), patch.object(sys,'argv',args), \
+                    patch.object(Path,'read_text') as read_state, patch.object(native_email_boot,'probe') as launch, \
+                    redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit) as result:
+                    native_email_boot.main()
+                self.assertEqual(result.exception.code,2)
+                read_state.assert_not_called()
+                launch.assert_not_called()
+
+    def test_manual_test_cannot_bypass_owned_session_requirements(self):
+        """手动保留模式缺少真实库存、DEV身份或持续区服任一前置时，在读凭据和启动前拒绝。"""
+        from tools import native_email_boot
+        required=['--dev-email-state','--native-inventory','--continuous-zone']
+        for missing in required:
+            args=['native_email_boot','--workspace','not-used','--output','not-used','--manual-test']
+            args.extend(flag for flag in required if flag!=missing)
+            with patch.object(sys,'argv',args),patch.object(Path,'read_text') as read_state, \
+                    patch.object(native_email_boot,'probe') as launch,redirect_stderr(io.StringIO()):
+                with self.assertRaises(SystemExit) as result:
+                    native_email_boot.main()
+                self.assertEqual(result.exception.code,2)
+                read_state.assert_not_called();launch.assert_not_called()
+
+    def test_player_info_uses_same_fresh_identity_and_original_character_nickname(self):
+        """同一次me身份/角色绑定通过后编码原昵称；不改写视图、不读取历史昵称或再次发邮件。"""
+        from tools.native_email_boot import current_dev_player_info
+        client=Mock()
+        nickname='邮箱DEV_0123456789'
+        view={'id':'owned','game_id':10001,'email_verified':True,
+              'character':{'id':'character','account_id':'owned','nickname':nickname}}
+        client.request.return_value=view
+        proof,encoded=current_dev_player_info(client,'session',
+            {'account_id':'owned','game_id':10001,'character_id':'character'},
+            {'account_id':'owned','game_id':10001},code_page=936)
+        self.assertEqual(encoded.decode('cp936'),nickname)
+        self.assertEqual(view['character']['nickname'],nickname)
+        self.assertTrue(proof['email_verified'])
+        client.request.assert_called_once_with('/api/views/me',token='session')
+
+    def test_player_info_rejects_unbound_character_before_encoding(self):
+        """角色不存在、角色ID或所属账号不符时拒绝，不能借另一角色昵称绕过独立身份。"""
+        from tools.native_email_boot import current_dev_player_info
+        state={'account_id':'owned','game_id':10001,'character_id':'character'}
+        identity={'account_id':'owned','game_id':10001}
+        client=Mock()
+        for character in (None,{'id':'other','account_id':'owned','nickname':'中文'},
+                          {'id':'character','account_id':'other','nickname':'中文'}):
+            client.request.return_value={'id':'owned','game_id':10001,'email_verified':True,'character':character}
+            with self.subTest(character=character), self.assertRaisesRegex(ValueError,'CURRENT_DEV_CHARACTER_MISMATCH'):
+                current_dev_player_info(client,'session',state,identity,code_page=936)
+
+    def test_empty_props_requires_current_inventory_to_be_explicitly_empty(self):
+        """存在任何真实库存或缺少读取字段时拒绝空终包；不能用该研究功能清空玩家资产显示。"""
+        from tools.native_email_boot import current_dev_player_info
+        client=Mock()
+        view={'id':'owned','game_id':10001,'email_verified':True,
+              'character':{'id':'character','account_id':'owned','nickname':'中文'}}
+        for inventory in (None,{},[{'id':'real-item'}]):
+            client.request.return_value=dict(view,inventory=inventory)
+            with self.subTest(inventory=inventory), self.assertRaisesRegex(ValueError,'CURRENT_DEV_INVENTORY_NOT_EMPTY'):
+                current_dev_player_info(client,'session',{'account_id':'owned','game_id':10001,'character_id':'character'},
+                    {'account_id':'owned','game_id':10001},code_page=936,require_empty_inventory=True)
+        client.request.return_value=dict(view,inventory=[])
+        proof,_=current_dev_player_info(client,'session',{'account_id':'owned','game_id':10001,'character_id':'character'},
+            {'account_id':'owned','game_id':10001},code_page=936,require_empty_inventory=True)
+        self.assertTrue(proof['email_verified'])
+
+    def _run_owned_dev_cli(self, current_view, identity=None):
+        """只用内存夹具执行完整 CLI 分支；捕获启动与注销调用，不读真实凭据、不发请求或启动游戏。"""
+        from tools import native_email_boot, email_launcher
+        state = {'registered': True, 'email_verified': True, 'reset_verified': True,
+                 'account_id': 'owned-account', 'game_id': 10001,
+                 'email': 'fixture@example.test', 'password': 'fixture-only-password'}
+        game_identity = identity or {'account_id': 'owned-account', 'game_id': 10001}
+        client = Mock()
+        revoked = False
+
+        def request(path, data=None, token=None):
+            """按当前 HTTP 路径提供固定返回，实时读取失败也交给 CLI 的 finally 执行注销。"""
+            nonlocal revoked
+            if path == '/api/logout':
+                revoked = True
+                return {'logged_out': True}
+            if revoked and path in ('/api/views/me', '/api/game/session'):
+                raise LoginError('AUTH')
+            if path == '/api/views/me':
+                if isinstance(current_view, Exception):
+                    raise current_view
+                return current_view
+            return {'/api/player/login': {'token': 'fixture-session'},
+                    '/api/launcher/tickets': {'ticket': 'fixture-ticket'},
+                    '/api/launcher/redeem': {'game_token': 'fixture-game-token'},
+                    '/api/game/session': game_identity}[path]
+
+        client.request.side_effect = request
+        argv = ['native_email_boot', '--workspace', 'not-used', '--output', 'not-used',
+                '--verify-native-challenge', '--capture-application', '--serve-geo-ping',
+                '--serve-geo-zone', '--capture-zone-sequence', '--serve-zone-login',
+                '--serve-player-define', '--dev-email-state']
+        failure = None
+        with patch.object(sys, 'argv', argv), patch.object(Path, 'read_text', return_value=json.dumps(state)), \
+                patch.object(Path, 'write_text'), patch.object(email_launcher, 'Client', return_value=client), \
+                patch.object(email_launcher, 'fingerprint', return_value=('a' * 64, {})), \
+                patch.object(native_email_boot, 'probe', return_value={}) as launch, \
+                redirect_stdout(io.StringIO()) as stdout:
+            try:
+                native_email_boot.main()
+            except Exception as error:
+                failure = error
+        return client, launch, failure, stdout.getvalue()
+
+    def test_native_dev_rebound_email_is_rejected_and_session_revoked(self):
+        """历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。"""
+        for current in (False, None, 1, 'true', LoginError('AUTH')):
+            view = current if isinstance(current, Exception) else {
+                'id': 'owned-account', 'game_id': 10001, 'email_verified': current}
+            with self.subTest(current=type(current).__name__):
+                client, launch, failure, _ = self._run_owned_dev_cli(view)
+                self.assertIsNotNone(failure)
+                launch.assert_not_called()
+                self.assertEqual(client.request.call_args_list[-3].args, ('/api/logout', {}, 'fixture-session'))
+                self.assertEqual(client.request.call_args_list[-2].args, ('/api/views/me', None, 'fixture-session'))
+
+    def test_native_dev_live_account_and_redeemed_identity_must_match(self):
+        """实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。"""
+        normal = {'id': 'owned-account', 'game_id': 10001, 'email_verified': True}
+        cases = [(dict(normal, id='another-account'), None),
+                 (normal, {'account_id': 'another-account', 'game_id': 10001}),
+                 (dict(normal, game_id=10002), None),
+                 (normal, {'account_id': 'owned-account', 'game_id': 10002})]
+        for view, identity in cases:
+            with self.subTest(view_id_matches=view['id'] == 'owned-account', identity=identity is not None):
+                client, launch, failure, _ = self._run_owned_dev_cli(view, identity)
+                self.assertIsInstance(failure, ValueError)
+                launch.assert_not_called()
+                self.assertEqual(client.request.call_args_list[-3].args, ('/api/logout', {}, 'fixture-session'))
+                self.assertEqual(client.request.call_args_list[-2].args, ('/api/views/me', None, 'fixture-session'))
+
+    def test_native_dev_fresh_verification_precedes_probe_and_is_reported(self):
+        """成功路径必须实时读取 me、匹配兑换身份后才启动，报告保留核验范围并注销来源会话。"""
+        client, launch, failure, output = self._run_owned_dev_cli({
+            'id': 'owned-account', 'game_id': 10001, 'email_verified': True})
+        self.assertIsNone(failure)
+        launch.assert_called_once()
+        self.assertEqual(launch.call_args.args[1:3], (10001, 'fixture-game-token'))
+        client.request.assert_any_call('/api/views/me', token='fixture-session')
+        self.assertEqual(client.request.call_args_list[-3].args, ('/api/logout', {}, 'fixture-session'))
+        self.assertEqual(client.request.call_args_list[-2].args, ('/api/views/me', None, 'fixture-session'))
+        self.assertEqual(client.request.call_args.args[0], '/api/game/session')
+        report = json.loads(output)
+        self.assertIs(report['server_email_identity_verified'], True)
+        self.assertEqual(report['server_email_identity_verification'], {
+            'source': 'CURRENT_API_VIEWS_ME_AND_REDEEMED_IDENTITY',
+            'email_verified': True, 'acceptance_account_matches': True,
+            'game_identity_account_matches': True, 'game_id_matches': True})
+
     def test_zone_reply_requires_explicit_capture_and_verified_email_before_launch(self):
         """研究登录响应不能由缺失前置模式或匿名 CLI 启用，参数拒绝发生在读凭据与启动游戏之前。"""
         from tools import native_email_boot
         base = ['native_email_boot', '--workspace', 'not-used', '--output', 'not-used']
         capture = ['--verify-native-challenge', '--capture-application', '--serve-geo-ping',
                    '--serve-geo-zone', '--capture-zone-sequence']
-        for options in (['--serve-zone-login'], ['--serve-player-define'], capture + ['--serve-player-define'], capture + ['--serve-zone-login'],
+        for options in (['--defer-player-info-after-version'], ['--serve-zone-hints'], ['--server-map','SV-Maya_3_Main'], ['--refresh-role-probe'], ['--native-settings'], ['--serve-detailed-channel'], ['--serve-role-equip-probe'], ['--probe-role-resources'], ['--serve-player-props'], ['--serve-player-info'], capture+['--serve-zone-login','--serve-player-info','--dev-email-state'],
+                        ['--serve-zone-login'], ['--serve-player-define'], capture + ['--serve-player-define'], capture + ['--serve-zone-login'],
                         ['--dev-email-state', '--serve-zone-login']):
             with self.subTest(options=options), patch.object(sys, 'argv', base + options), \
                     patch.object(native_email_boot, 'probe') as start, redirect_stderr(io.StringIO()):

@@ -1,0 +1,45 @@
+test_registration_equips_roles_first_loadout_and_every_bag_knife_once (tests.test_native_starter_shop.NativeStarterShopTests.test_registration_equips_roles_first_loadout_and_every_bag_knife_once)
+首次建角得到指定角色、首包主副刀雷及六个独立默认刀；重试不增发或覆盖选择。 ... ok
+test_reported_role_packages_use_tier_period_and_keep_every_component (tests.test_native_starter_shop.NativeStarterShopTests.test_reported_role_packages_use_tier_period_and_keep_every_component)
+复现用户四个角色包：-2继承档位，长效永久、720小时角色及隐藏部件完整入库。 ... ok
+test_starter_tail_failure_rolls_back_character_wallet_and_all_assets (tests.test_native_starter_shop.NativeStarterShopTests.test_starter_tail_failure_rolls_back_character_wallet_and_all_assets)
+初装最后事件失败时不留半套装备、角色、钱包、绑定或回执，重试可成功。 ... ok
+test_all_37_recipes_keep_cost_result_and_progress (tests.test_native_engineering.NativeEngineeringTests.test_all_37_recipes_keep_cost_result_and_progress)
+包括隐藏和随机项的全部配方逐一制造；精确扣料、有效期限、熟练度和回执同存。 ... ok
+test_decompose_all_types_idempotent_and_batch_atomic (tests.test_native_engineering.NativeEngineeringTests.test_decompose_all_types_idempotent_and_batch_atomic)
+三类分解各消耗本人1件，材料数量正确；幂等重放不能再次移除或发放。 ... ok
+test_material_conversion_preserves_quantity_and_rejects_underflow (tests.test_native_engineering.NativeEngineeringTests.test_material_conversion_preserves_quantity_and_rejects_underflow)
+计数部件5合1再1拆5保持总量；重复GID拆分按实际数量合并，余额不足全回滚。 ... ok
+test_native_failure_then_success_and_progress_relogin (tests.test_native_engineering.NativeEngineeringTests.test_native_failure_then_success_and_progress_relogin)
+同连接材料不足返回工厂失败应答；补足后制造成功，重建桥后熟练度仍为1。 ... ok
+test_owner_expiry_duplicate_and_rule_version_rejected (tests.test_native_engineering.NativeEngineeringTests.test_owner_expiry_duplicate_and_rule_version_rejected)
+跨账号、过期、重复装备引用、畸形GID和过期规则均不可消费。 ... ok
+test_paid_batch_failure_rolls_back_currency_parts_progress_and_receipt (tests.test_native_engineering.NativeEngineeringTests.test_paid_batch_failure_rolls_back_currency_parts_progress_and_receipt)
+最后事件故障发生时，不留下部分奖励、扣款或先增加的熟练度。 ... ok
+test_atomic_full_inventory_and_outbox_failure (tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure)
+容量不足和最后审计/outbox故障都回滚整个发放，保留之前已有记录。 ... ok
+test_backpack_root_preserves_all_other_bags_and_children (tests.test_native_inventory.NativeInventoryTests.test_backpack_root_preserves_all_other_bags_and_children)
+boot78背包100037挂到根12；保持双默认包及其武器，重试幂等、回读故障回滚、越权拒绝。 ... ok
+test_compact_commit_is_atomic_authorized_and_matches_full_snapshot (tests.test_native_inventory.NativeInventoryTests.test_compact_commit_is_atomic_authorized_and_matches_full_snapshot)
+轻量换装和回读同事务；回读故障回滚换装/审计，错投影与撤销凭据不能走快捷路径。 ... ok
+test_concurrent_grants_commit_once (tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once)
+两连接并发全量补齐由部署事务锁串行，一次发放一次幂等返回。 ... ok
+test_full_catalog_repeat_preserves_gids_and_user_unequip (tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip)
+全4323件永久入库；重试不增加流水/GID，也不恢复玩家已经卸下的默认装备。 ... ok
+test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once (tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once)
+最终outbox故障回滚钱包和流水；双连接重试仅一次补满，旧规则不允许写入。 ... ok
+test_gm_wallet_maximize_atomic_repeat_and_isolation (tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_maximize_atomic_repeat_and_isolation)
+七币种补满共用账本，重复不写新版本或流水；非GM拒绝且其他账号保持零。 ... ok
+test_hidden_default_knife_replaces_owned_melee_only (tests.test_native_inventory.NativeInventoryTests.test_hidden_default_knife_replaces_owned_melee_only)
+实机卸下近战会穿回隐藏默认匕首；原武器释放且重试无重复审计，外部GID仍拒绝。 ... ok
+test_http_equipment_owner_version_revocation_and_atomicity (tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity)
+HTTP只接受游戏Bearer；装备换位/重试持久，跨账号、版本变化、来源撤销及失败写入拒绝。 ... ok
+test_native_zero_target_unequip_owned_only_and_repeat (tests.test_native_inventory.NativeInventoryTests.test_native_zero_target_unequip_owned_only_and_repeat)
+实机Target0卸下仅操作本人实例；未装备重复无写入，穿戴或跨账号引用0仍拒绝。 ... ok
+test_pve_role_switch_preserves_factions_and_rejects_other_owner (tests.test_native_inventory.NativeInventoryTests.test_pve_role_switch_preserves_factions_and_rejects_other_owner)
+猎场角色64在根1独立换装，旧PvE槽释放，两阵营不变；错背包/跨账号仍失败。 ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 119.695s
+
+OK

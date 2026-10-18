@@ -1,0 +1,907 @@
+{
+  "now": 1792148461,
+  "receipts": [
+    {
+      "id": "6d531de02f2a437bbcc4e06fb7acc31b",
+      "kind": "workshop",
+      "result": {
+        "free": true,
+        "mode": "free",
+        "pool": "workshop",
+        "count": 1,
+        "awards": [
+          {
+            "entry": {
+              "key": "101",
+              "free": true,
+              "paid": false,
+              "tier": 3,
+              "pic_id": 2000061,
+              "reward": {
+                "item_id": 102169,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          }
+        ],
+        "status": "DRAWN",
+        "rule_id": "f9a561cc65cc4cf7bfc4e32ea64e7161",
+        "operations": [
+          "f4b828c5d73b4c58b3072ca78ef1a49c"
+        ],
+        "receipt_id": "6d531de02f2a437bbcc4e06fb7acc31b",
+        "last_free_at": 1792145266,
+        "refunded_quantity": 0
+      },
+      "confirmed": true,
+      "created_at": 1792145266
+    },
+    {
+      "id": "5dbc169235944aeebc981aa30f105911",
+      "kind": "workshop",
+      "result": {
+        "free": false,
+        "mode": "paid",
+        "pool": "workshop",
+        "count": 10,
+        "awards": [
+          {
+            "entry": {
+              "key": "32",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000049,
+              "reward": {
+                "item_id": 102761,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "48",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 102712,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "39",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 103953,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "36",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000102,
+              "reward": {
+                "item_id": 102952,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "73",
+              "free": true,
+              "paid": true,
+              "tier": 4,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 103602,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "25",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 102037,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "49",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000006,
+              "reward": {
+                "item_id": 103455,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "74",
+              "free": true,
+              "paid": true,
+              "tier": 4,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 103247,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "16",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000030,
+              "reward": {
+                "item_id": 102317,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "39",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 103953,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": true
+          }
+        ],
+        "status": "DRAWN",
+        "rule_id": "f9a561cc65cc4cf7bfc4e32ea64e7161",
+        "operations": [
+          "58fa307a28b54033b092e294642bee57"
+        ],
+        "receipt_id": "5dbc169235944aeebc981aa30f105911",
+        "last_free_at": 1792145266,
+        "refunded_quantity": 1
+      },
+      "confirmed": true,
+      "created_at": 1792145302
+    },
+    {
+      "id": "e398316c3d0448128d853ed1fedf1128",
+      "kind": "engineering.compose",
+      "result": {
+        "mode": 1,
+        "count": 1,
+        "status": "COMMITTED",
+        "rewards": [
+          {
+            "item_id": 100465,
+            "quantity": 1,
+            "duration_seconds": 7200
+          }
+        ],
+        "recipe_id": 90037,
+        "successes": 1,
+        "operations": [
+          "2d5c614b9f3d41d3ae59bacaa2fa341a"
+        ],
+        "receipt_id": "e398316c3d0448128d853ed1fedf1128",
+        "proficiency": 1,
+        "rule_version": "cn2020-engineering-compat-v1",
+        "cooldown_until": 0
+      },
+      "confirmed": true,
+      "created_at": 1792147683
+    },
+    {
+      "id": "82209b50b77f41e49b5f7111203b5618",
+      "kind": "engineering.compose",
+      "result": {
+        "mode": 1,
+        "count": 1,
+        "status": "COMMITTED",
+        "rewards": [
+          {
+            "item_id": 100543,
+            "quantity": 1,
+            "duration_seconds": 7200
+          }
+        ],
+        "recipe_id": 90037,
+        "successes": 1,
+        "operations": [
+          "423ffe92b9b24c56bfcbfb5d36006b6c"
+        ],
+        "receipt_id": "82209b50b77f41e49b5f7111203b5618",
+        "proficiency": 2,
+        "rule_version": "cn2020-engineering-compat-v1",
+        "cooldown_until": 0
+      },
+      "confirmed": true,
+      "created_at": 1792147699
+    },
+    {
+      "id": "fd084a3b347d481396e7dd616c4dd768",
+      "kind": "workshop",
+      "result": {
+        "free": false,
+        "mode": "paid",
+        "pool": "workshop",
+        "count": 10,
+        "awards": [
+          {
+            "entry": {
+              "key": "78",
+              "free": true,
+              "paid": true,
+              "tier": 4,
+              "pic_id": 2000035,
+              "reward": {
+                "item_id": 102031,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "29",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000003,
+              "reward": {
+                "item_id": 102304,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": true
+          },
+          {
+            "entry": {
+              "key": "27",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000005,
+              "reward": {
+                "item_id": 103652,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "31",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000050,
+              "reward": {
+                "item_id": 102751,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "46",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000106,
+              "reward": {
+                "item_id": 104205,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "22",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000024,
+              "reward": {
+                "item_id": 102470,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "4",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 103957,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "37",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 2000001,
+              "reward": {
+                "item_id": 103498,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "80",
+              "free": true,
+              "paid": true,
+              "tier": 4,
+              "pic_id": 2000033,
+              "reward": {
+                "item_id": 101377,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 1
+            },
+            "refunded": false
+          },
+          {
+            "entry": {
+              "key": "51",
+              "free": false,
+              "paid": true,
+              "tier": 5,
+              "pic_id": 0,
+              "reward": {
+                "item_id": 103246,
+                "quantity": 1,
+                "duration_seconds": null
+              },
+              "weight": 1,
+              "show_id": 0
+            },
+            "refunded": false
+          }
+        ],
+        "status": "DRAWN",
+        "rule_id": "f9a561cc65cc4cf7bfc4e32ea64e7161",
+        "operations": [
+          "6de0d6f8e5cf4b9db9bd834bebe4a9f6"
+        ],
+        "receipt_id": "fd084a3b347d481396e7dd616c4dd768",
+        "last_free_at": 1792145266,
+        "refunded_quantity": 1
+      },
+      "confirmed": true,
+      "created_at": 1792147988
+    },
+    {
+      "id": "76eb2ee6e19e4ec5916204115ef2dcba",
+      "kind": "engineering.compose",
+      "result": {
+        "mode": 2,
+        "count": 1,
+        "status": "COMMITTED",
+        "rewards": [
+          {
+            "item_id": 100543,
+            "quantity": 1,
+            "duration_seconds": 432000
+          }
+        ],
+        "recipe_id": 90037,
+        "successes": 1,
+        "operations": [
+          "e636685540c4464cb11d1116bf691c54"
+        ],
+        "receipt_id": "76eb2ee6e19e4ec5916204115ef2dcba",
+        "proficiency": 3,
+        "rule_version": "cn2020-engineering-compat-v1",
+        "cooldown_until": 0
+      },
+      "confirmed": true,
+      "created_at": 1792148149
+    }
+  ],
+  "items": [
+    {
+      "id": "1764630e676c4195900fffb4fa2931dc",
+      "item_key": "cn2020:100543",
+      "quantity": 1,
+      "expires_at": 1792154898
+    },
+    {
+      "id": "1ed8995f7ce64648bea07150d828a32c",
+      "item_key": "cn2020:100543",
+      "quantity": 1,
+      "expires_at": 1792580148
+    },
+    {
+      "id": "6a2a80b47c8243ab86e4649186c76bde",
+      "item_key": "cn2020:100767",
+      "quantity": 197,
+      "expires_at": null
+    },
+    {
+      "id": "7dbadf0e6f8e4e518aec28e61992c71a",
+      "item_key": "cn2020:100765",
+      "quantity": 164,
+      "expires_at": null
+    },
+    {
+      "id": "8489ae0737c5486ba12845fcf9a0085f",
+      "item_key": "cn2020:100764",
+      "quantity": 104,
+      "expires_at": null
+    },
+    {
+      "id": "859b645b8ebd4e618050e58f894d79c2",
+      "item_key": "cn2020:100766",
+      "quantity": 152,
+      "expires_at": null
+    },
+    {
+      "id": "a3c0c5e8516a4c278d3aabf7905917f1",
+      "item_key": "cn2020:103745",
+      "quantity": 30,
+      "expires_at": null
+    },
+    {
+      "id": "a451acf6f9224ca5bda45c192c2269fb",
+      "item_key": "cn2020:100465",
+      "quantity": 1,
+      "expires_at": 1792154882
+    },
+    {
+      "id": "ab84d523f04a4e9f83086b2613d292ae",
+      "item_key": "cn2020:103746",
+      "quantity": 12,
+      "expires_at": null
+    }
+  ],
+  "wallet": [
+    {
+      "currency": "cn2020:EP",
+      "balance": 0
+    },
+    {
+      "currency": "cn2020:GP",
+      "balance": 1000000
+    },
+    {
+      "currency": "cn2020:HP",
+      "balance": 0
+    },
+    {
+      "currency": "cn2020:MECHA",
+      "balance": 0
+    },
+    {
+      "currency": "cn2020:MP",
+      "balance": 1000000
+    },
+    {
+      "currency": "cn2020:SP",
+      "balance": 0
+    },
+    {
+      "currency": "cn2020:TP",
+      "balance": 999900
+    }
+  ],
+  "progress": [
+    {
+      "recipe_id": 90037,
+      "proficiency": 3,
+      "attempts": 3
+    }
+  ],
+  "entries": [
+    {
+      "operation_id": "2d5c614b9f3d41d3ae59bacaa2fa341a",
+      "kind": "remove",
+      "resource": "cn2020:100764",
+      "delta": -32,
+      "before_value": 200,
+      "after_value": 168
+    },
+    {
+      "operation_id": "2d5c614b9f3d41d3ae59bacaa2fa341a",
+      "kind": "remove",
+      "resource": "cn2020:100765",
+      "delta": -12,
+      "before_value": 200,
+      "after_value": 188
+    },
+    {
+      "operation_id": "2d5c614b9f3d41d3ae59bacaa2fa341a",
+      "kind": "remove",
+      "resource": "cn2020:100766",
+      "delta": -16,
+      "before_value": 200,
+      "after_value": 184
+    },
+    {
+      "operation_id": "2d5c614b9f3d41d3ae59bacaa2fa341a",
+      "kind": "remove",
+      "resource": "cn2020:100767",
+      "delta": -1,
+      "before_value": 200,
+      "after_value": 199
+    },
+    {
+      "operation_id": "2d5c614b9f3d41d3ae59bacaa2fa341a",
+      "kind": "item",
+      "resource": "cn2020:100465",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "423ffe92b9b24c56bfcbfb5d36006b6c",
+      "kind": "remove",
+      "resource": "cn2020:100764",
+      "delta": -32,
+      "before_value": 168,
+      "after_value": 136
+    },
+    {
+      "operation_id": "423ffe92b9b24c56bfcbfb5d36006b6c",
+      "kind": "remove",
+      "resource": "cn2020:100765",
+      "delta": -12,
+      "before_value": 188,
+      "after_value": 176
+    },
+    {
+      "operation_id": "423ffe92b9b24c56bfcbfb5d36006b6c",
+      "kind": "remove",
+      "resource": "cn2020:100766",
+      "delta": -16,
+      "before_value": 184,
+      "after_value": 168
+    },
+    {
+      "operation_id": "423ffe92b9b24c56bfcbfb5d36006b6c",
+      "kind": "remove",
+      "resource": "cn2020:100767",
+      "delta": -1,
+      "before_value": 199,
+      "after_value": 198
+    },
+    {
+      "operation_id": "423ffe92b9b24c56bfcbfb5d36006b6c",
+      "kind": "item",
+      "resource": "cn2020:100543",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "remove",
+      "resource": "cn2020:103746",
+      "delta": -9,
+      "before_value": 30,
+      "after_value": 21
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:102761",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:102712",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:103953",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:102952",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:103602",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:102037",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:103455",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:103247",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "58fa307a28b54033b092e294642bee57",
+      "kind": "item",
+      "resource": "cn2020:102317",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "6de0d6f8e5cf4b9db9bd834bebe4a9f6",
+      "kind": "remove",
+      "resource": "cn2020:103746",
+      "delta": -9,
+      "before_value": 21,
+      "after_value": 12
+    },
+    {
+      "operation_id": "6de0d6f8e5cf4b9db9bd834bebe4a9f6",
+      "kind": "item",
+      "resource": "cn2020:102031",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "6de0d6f8e5cf4b9db9bd834bebe4a9f6",
+      "kind": "item",
+      "resource": "cn2020:103652",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "6de0d6f8e5cf4b9db9bd834bebe4a9f6",
+      "kind": "item",
+      "resource": "cn2020:102751",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "6de0d6f8e5cf4b9db9bd834bebe4a9f6",
+      "kind": "item",
+      "resource": "cn2020:104205",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "6de0d6f8e5cf4b9db9bd834bebe4a9f6",
+      "kind": "item",
+      "resource": "cn2020:102470",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "6de0d6f8e5cf4b9db9bd834bebe4a9f6",
+      "kind": "item",
+      "resource": "cn2020:103957",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "6de0d6f8e5cf4b9db9bd834bebe4a9f6",
+      "kind": "item",
+      "resource": "cn2020:103498",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "6de0d6f8e5cf4b9db9bd834bebe4a9f6",
+      "kind": "item",
+      "resource": "cn2020:101377",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "6de0d6f8e5cf4b9db9bd834bebe4a9f6",
+      "kind": "item",
+      "resource": "cn2020:103246",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "e636685540c4464cb11d1116bf691c54",
+      "kind": "remove",
+      "resource": "cn2020:100764",
+      "delta": -32,
+      "before_value": 136,
+      "after_value": 104
+    },
+    {
+      "operation_id": "e636685540c4464cb11d1116bf691c54",
+      "kind": "remove",
+      "resource": "cn2020:100765",
+      "delta": -12,
+      "before_value": 176,
+      "after_value": 164
+    },
+    {
+      "operation_id": "e636685540c4464cb11d1116bf691c54",
+      "kind": "remove",
+      "resource": "cn2020:100766",
+      "delta": -16,
+      "before_value": 168,
+      "after_value": 152
+    },
+    {
+      "operation_id": "e636685540c4464cb11d1116bf691c54",
+      "kind": "remove",
+      "resource": "cn2020:100767",
+      "delta": -1,
+      "before_value": 198,
+      "after_value": 197
+    },
+    {
+      "operation_id": "e636685540c4464cb11d1116bf691c54",
+      "kind": "currency",
+      "resource": "cn2020:TP",
+      "delta": -100,
+      "before_value": 1000000,
+      "after_value": 999900
+    },
+    {
+      "operation_id": "e636685540c4464cb11d1116bf691c54",
+      "kind": "item",
+      "resource": "cn2020:100543",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    },
+    {
+      "operation_id": "f4b828c5d73b4c58b3072ca78ef1a49c",
+      "kind": "item",
+      "resource": "cn2020:102169",
+      "delta": 1,
+      "before_value": 0,
+      "after_value": 1
+    }
+  ],
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "formal_checkin": 0
+}

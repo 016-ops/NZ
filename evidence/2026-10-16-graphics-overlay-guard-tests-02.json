@@ -1,0 +1,29 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 17,
+  "passed": [
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_external_file_and_install_race_are_preserved",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_files_recover_after_restart_without_touching_originals",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_prepared_plan_survives_post_install_failure",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_atomic_replace_failure_leaves_original_and_cleans_temporary_file",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_corrupt_backup_and_missing_target_are_reported_independently",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_directory_reparse_point_in_plan_is_rejected",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_durable_plan_precedes_mutation_and_fresh_instance_restores",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_external_change_is_preserved_while_other_files_restore",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_external_write_during_staging_is_rechecked_before_replace",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_hardlinked_target_is_rejected_before_backup_or_mutation",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_one_restore_failure_does_not_stop_other_files_or_report",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_plan_persistence_failure_during_restore_still_restores_all_files",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_plan_rejects_path_escape_backup_escape_and_wrong_root",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_plan_write_failure_never_mutates_target",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_post_restore_digest_mismatch_is_reported_and_external_bytes_kept",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_prepared_disk_plan_recovers_when_post_write_recording_fails",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_variant_flush_failure_never_replaces_original"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.641
+}

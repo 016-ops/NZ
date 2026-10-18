@@ -1,0 +1,23 @@
+{
+  "kind": "BOUNDED_NATIVE_ROOM_ENTRY_EXPERIMENT",
+  "map_id": 168,
+  "limit_seconds": 90,
+  "node_ready": false,
+  "original_client_writes": 0,
+  "configuration_restored": true,
+  "cleanup_verified": true,
+  "started": true,
+  "elapsed_seconds": 90.0,
+  "error": null,
+  "watchdog_fired": true,
+  "exit_codes": {
+    "5616": "0x0",
+    "1512": "0xe0000001",
+    "4272": "0xe0000001",
+    "4852": "0xe0000001"
+  },
+  "archive_sha256": "a8a30f320135fefeae629fdbe211d40ffd5ee94ca4f9032b40e5a8c95ee1b43e",
+  "remote_exit_code": 0,
+  "controller_seconds": 92.079,
+  "source_and_game_revoked": true
+}

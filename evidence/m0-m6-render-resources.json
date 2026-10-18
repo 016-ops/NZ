@@ -1,0 +1,27 @@
+{
+  "kind": "TOP_LEVEL_RENDER_ASSETS_NOT_RENDERING_ACCEPTANCE",
+  "files": [
+    {
+      "path": "TGame/CookedPC/Engine_MI_Shaders.upk",
+      "bytes": 3812297,
+      "sha256": "e7a2a891a03b68f684d2ce3d480e611a89d21d693d919da4b71aad7acc39259f",
+      "status": "PRESENT_UNVERIFIED",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/GlobalShaderCache-PC-D3D-SM3.bin",
+      "bytes": 454041,
+      "sha256": "eb31e716843570464beb497f67af6edc90c2f2b512d0dad5fdd70f594c12468d",
+      "status": "PRESENT_UNVERIFIED",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/RefShaderCache-PC-D3D-SM3.upk",
+      "bytes": 38515776,
+      "sha256": "f6190cef585003fd95b5318d3b758b459b950f0ad591a2e4a8571e710b71232a",
+      "status": "PRESENT_UNVERIFIED",
+      "archive_matches": true
+    }
+  ],
+  "rendering_verified": false
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "PACKAGE_IMPORT_TRAVERSAL_LIMIT_BEFORE_FIX",
+  "max_packages": 1024,
+  "seed_count": 8,
+  "observed_error": "PACKAGE_TRAVERSAL_LIMIT",
+  "old_behavior": "Raised before writing JSON; exception was retained in tool output.",
+  "repair": "Retain pending package names and traversal_complete=false at the explicit limit.",
+  "regression": "tests.test_native_package_dependencies.PackageDependenciesTests.test_missing_ambiguous_and_budget_pending_dependencies_remain_visible"
+}

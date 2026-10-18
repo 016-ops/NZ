@@ -1,0 +1,22 @@
+{
+  "kind": "FRAME_COPY_PRODUCT_BUILD",
+  "cpp_profile": "cn2020-frame-copy-v1-lobby-verified",
+  "cpp_reproducible_builds": 3,
+  "cpp_warnings": 0,
+  "react_typescript_build": true,
+  "rust_release_tests": {
+    "passed": 1,
+    "failed": 0
+  },
+  "rust_release_build": true,
+  "files": {
+    "launcher/bin/NZLauncher.exe": "61996ab253036eb85f01af05735a6806ad703ba9df2470b8636d0f6523226f65",
+    "launcher/bin/components/d3d9-frame-copy.dll": "12592afcafdb0e76581a48ce142f3b152fcda55288ce1156855c639a393fd051",
+    "admin/dist/assets/index-BSy3I4Il.js": "96cb1814fa2bd97c40a8c21369f50db99ef697c4a333ea09b36f74f0d9eb1aa4"
+  },
+  "sandbox_first_build": {
+    "passed": false,
+    "reason": "VITE_PARENT_DIRECTORY_ACCESS_DENIED"
+  },
+  "normal_desktop_build": true
+}

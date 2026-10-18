@@ -1,0 +1,26 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 14,
+  "passed": [
+    "tests.test_native_map_streaming.MapStreamingTests.test_compressed_exports_and_empty_packages_keep_actual_scope",
+    "tests.test_native_map_streaming.MapStreamingTests.test_corrupt_compressed_data_is_not_empty_dependency_list",
+    "tests.test_native_map_streaming.MapStreamingTests.test_dynamic_package_is_separate_from_import_roots",
+    "tests.test_native_map_streaming.MapStreamingTests.test_invalid_class_reference_is_not_a_non_streaming_object",
+    "tests.test_native_map_streaming.MapStreamingTests.test_struct_byte_and_bool_tag_lengths_do_not_shift_package_name",
+    "tests.test_native_map_streaming.MapStreamingTests.test_wrong_property_type_duplicate_and_missing_terminator_rejected",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_fixed_live_candidate_and_unchanged_original_body",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_interrupted_install_restores_and_rejects_double_patch",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_missing_floor_waits_without_spawning",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_missing_spawn_preserves_original_failure",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_numbered_objects_have_distinct_identity",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_online_and_existing_pawn_call_only_original_super",
+    "tests.test_native_hunt_compat.HuntCompatTests.test_ready_floor_clears_retry_before_original_spawn",
+    "tests.test_native_hunt_compat.HuntFingerprintTests.test_unknown_source_rejected_before_parse_or_install"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.437
+}

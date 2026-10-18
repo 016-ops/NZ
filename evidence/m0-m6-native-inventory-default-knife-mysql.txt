@@ -1,0 +1,17 @@
+test_atomic_full_inventory_and_outbox_failure (tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure)
+容量不足和最后审计/outbox故障都回滚整个发放，保留之前已有记录。 ... ok
+test_concurrent_grants_commit_once (tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once)
+两连接并发全量补齐由部署事务锁串行，一次发放一次幂等返回。 ... ok
+test_full_catalog_repeat_preserves_gids_and_user_unequip (tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip)
+全4323件永久入库；重试不增加流水/GID，也不恢复玩家已经卸下的默认装备。 ... ok
+test_hidden_default_knife_replaces_owned_melee_only (tests.test_native_inventory.NativeInventoryTests.test_hidden_default_knife_replaces_owned_melee_only)
+实机卸下近战会穿回隐藏默认匕首；原武器释放且重试无重复审计，外部GID仍拒绝。 ... ok
+test_http_equipment_owner_version_revocation_and_atomicity (tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity)
+HTTP只接受游戏Bearer；装备换位/重试持久，跨账号、版本变化、来源撤销及失败写入拒绝。 ... ok
+test_native_zero_target_unequip_owned_only_and_repeat (tests.test_native_inventory.NativeInventoryTests.test_native_zero_target_unequip_owned_only_and_repeat)
+实机Target0卸下仅操作本人实例；未装备重复无写入，穿戴或跨账号引用0仍拒绝。 ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 36.201s
+
+OK

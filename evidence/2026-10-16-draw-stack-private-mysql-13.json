@@ -1,0 +1,18 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 2,
+  "passed": [
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_native_pool_dates_cost_and_choice_types"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_draw_round.NativeDrawRoundTests.test_material_partial_consume_uses_stack_update_and_context_is_private",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_draw_round.py\", line 137, in test_material_partial_consume_uses_stack_update_and_context_is_private\n    other,_,token,base=self.player_game('isolated-context')\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 31, in player_game\n    self.command('character.create', {'nickname': 'inventory-'+suffix}, player)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_control_plane.py\", line 64, in command\n    return self.s.command(token or self.owner, action, self.meta(**(data or {})))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 392, in command\n    result = self._account_command(c, actor, action, data)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 460, in _account_command\n    nickname = unicodedata.normalize('NFC', text_field(data.get('nickname'), 'nickname', 24))\n                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 54, in text_field\n    raise Fault('INVALID', f'Invalid {name}')\nrevival.service.Fault: Invalid nickname\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 11.953
+}

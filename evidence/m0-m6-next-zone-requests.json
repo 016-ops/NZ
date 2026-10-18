@@ -1,0 +1,256 @@
+{
+  "kind": "CURRENT_POST_A005_REQUEST_METADATA_NOT_IMPLEMENTED_RESPONSES",
+  "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+  "observed_in_boot": 35,
+  "requests": [
+    {
+      "command": "0xf124",
+      "macros": [
+        "ID_C2ZN_REQ_PLMATCHSEASONTIME"
+      ],
+      "branches": [
+        {
+          "schema": "C2ZN_ReqPLMatchSeasonTime",
+          "host_size_slots": [
+            1,
+            1
+          ],
+          "fields": [
+            {
+              "name": "Pad",
+              "type_code": 3,
+              "host_offset_slots": [
+                0,
+                0
+              ],
+              "element_size_slots": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "body_wire_verified": false,
+      "response_sent": false
+    },
+    {
+      "command": "0xf501",
+      "macros": [
+        "ID_C2ZN_REQ_PLAYERCOMPLAINRESULT"
+      ],
+      "branches": [
+        {
+          "schema": "C2ZN_ReqPlayerComplainResult",
+          "host_size_slots": [
+            8,
+            8
+          ],
+          "fields": [
+            {
+              "name": "Uin",
+              "type_code": 12,
+              "host_offset_slots": [
+                0,
+                0
+              ],
+              "element_size_slots": [
+                8,
+                8
+              ]
+            }
+          ]
+        }
+      ],
+      "body_wire_verified": false,
+      "response_sent": false
+    },
+    {
+      "command": "0xfa16",
+      "macros": [
+        "ID_C2ZN_REQ_LOTTERY_EXCHANGE_PROP_POOL"
+      ],
+      "branches": [
+        {
+          "schema": "C2ZN_ReqLotteryExchangePropPool",
+          "host_size_slots": [
+            4,
+            4
+          ],
+          "fields": [
+            {
+              "name": "FragmentId",
+              "type_code": 7,
+              "host_offset_slots": [
+                0,
+                0
+              ],
+              "element_size_slots": [
+                4,
+                4
+              ]
+            }
+          ]
+        }
+      ],
+      "body_wire_verified": false,
+      "response_sent": false
+    },
+    {
+      "command": "0x4103",
+      "macros": [
+        "ID_C2ZN_REQ_QUARTERCARDMISSIONDESC"
+      ],
+      "branches": [
+        {
+          "schema": "C2ZN_ReqQuarterCardMissionDesc",
+          "host_size_slots": [
+            1,
+            1
+          ],
+          "fields": [
+            {
+              "name": "Padding",
+              "type_code": 2,
+              "host_offset_slots": [
+                0,
+                0
+              ],
+              "element_size_slots": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "body_wire_verified": false,
+      "response_sent": false
+    },
+    {
+      "command": "0x4100",
+      "macros": [
+        "ID_C2ZN_REQ_QUARTERCARDMISSIONINFO"
+      ],
+      "branches": [
+        {
+          "schema": "C2ZN_ReqQuarterCardMissionInfo",
+          "host_size_slots": [
+            1,
+            1
+          ],
+          "fields": [
+            {
+              "name": "Padding",
+              "type_code": 2,
+              "host_offset_slots": [
+                0,
+                0
+              ],
+              "element_size_slots": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "body_wire_verified": false,
+      "response_sent": false
+    },
+    {
+      "command": "0x4005",
+      "macros": [
+        "ID_C2ZN_REQ_QUARTERCARD_CONFIGINFO"
+      ],
+      "branches": [
+        {
+          "schema": "C2ZN_ReqQuarterCardConfigInfo",
+          "host_size_slots": [
+            1,
+            1
+          ],
+          "fields": [
+            {
+              "name": "padding",
+              "type_code": 3,
+              "host_offset_slots": [
+                0,
+                0
+              ],
+              "element_size_slots": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "body_wire_verified": false,
+      "response_sent": false
+    },
+    {
+      "command": "0x4120",
+      "macros": [
+        "ID_C2ZN_REQ_QUARTERCARDAllRANK"
+      ],
+      "branches": [
+        {
+          "schema": "C2ZN_ReqQuarterCardAllRank",
+          "host_size_slots": [
+            1,
+            1
+          ],
+          "fields": [
+            {
+              "name": "padding",
+              "type_code": 3,
+              "host_offset_slots": [
+                0,
+                0
+              ],
+              "element_size_slots": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "body_wire_verified": false,
+      "response_sent": false
+    },
+    {
+      "command": "0x4122",
+      "macros": [
+        "ID_C2ZN_REQ_QUARTERCARDFRIENDRANK"
+      ],
+      "branches": [
+        {
+          "schema": "C2ZN_ReqQuarterCardFriendRank",
+          "host_size_slots": [
+            1,
+            1
+          ],
+          "fields": [
+            {
+              "name": "padding",
+              "type_code": 3,
+              "host_offset_slots": [
+                0,
+                0
+              ],
+              "element_size_slots": [
+                1,
+                1
+              ]
+            }
+          ]
+        }
+      ],
+      "body_wire_verified": false,
+      "response_sent": false
+    }
+  ],
+  "security_module_messages_examined": false
+}

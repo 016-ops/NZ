@@ -1,0 +1,13 @@
+test_reject_unknown_missing_or_duplicate_config (tests.test_native_ui_config.NativeShopConfigTests.test_reject_unknown_missing_or_duplicate_config)
+入口安装必须完整匹配白名单，错误时不返回部分配置。 ... ok
+test_renewal_flags_only_and_non_target_bytes_unchanged (tests.test_native_ui_config.NativeShopConfigTests.test_renewal_flags_only_and_non_target_bytes_unchanged)
+固定商品两开关改变，价格、中文/BOM、日期和未选中的商品逐字节保持。 ... ok
+test_only_scene_texture_field_changes_and_chinese_bom_survive (tests.test_native_ui_config.NativeUiConfigTests.test_only_scene_texture_field_changes_and_chinese_bom_survive)
+中文/BOM/CRLF和其他节同名属性原样保留，仅场景客户端的一处true改false。 ... ok
+test_unknown_fingerprint_missing_and_duplicate_fields_fail_closed (tests.test_native_ui_config.NativeUiConfigTests.test_unknown_fingerprint_missing_and_duplicate_fields_fail_closed)
+指纹错误先拒绝；固定版本校验通过后仍检查目标字段完整且唯一。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.015s
+
+OK

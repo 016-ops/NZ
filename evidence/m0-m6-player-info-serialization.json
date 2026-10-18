@@ -1,0 +1,45 @@
+{
+  "kind": "CURRENT_PLAYER_INFO_ASCII_AND_CP936_SERIALIZER_VERIFICATION",
+  "fixtures": [
+    {
+      "file": "player_info_fixture_0.bin",
+      "bytes": 1404,
+      "body_length": 1396,
+      "sha256": "ccac6e8e24102ed748c14611cc8653132c3dbea0d4baabc237e555f38d9267a3",
+      "fixture_game_id": 10001,
+      "nickname_bytes": 11,
+      "nickname_encoding": "ASCII",
+      "roundtrip_equal": true,
+      "decoded_host_equal": true,
+      "standalone_body_equal": true
+    },
+    {
+      "file": "player_info_fixture_1.bin",
+      "bytes": 1410,
+      "body_length": 1402,
+      "sha256": "e2e0975871ef846c65942dff1c689d293a5e1c10a6d172618a2cdc8bd4baa8de",
+      "fixture_game_id": 10002,
+      "nickname_bytes": 17,
+      "nickname_encoding": "ASCII",
+      "roundtrip_equal": true,
+      "decoded_host_equal": true,
+      "standalone_body_equal": true
+    },
+    {
+      "file": "player_info_fixture_2.bin",
+      "bytes": 1401,
+      "body_length": 1393,
+      "sha256": "2a06c3b8cd74ce0c4e5bc6288b388d55d03ea15d301fbd047f8731f72525afd4",
+      "fixture_game_id": 10003,
+      "nickname_bytes": 8,
+      "nickname_encoding": "CP936",
+      "roundtrip_equal": true,
+      "decoded_host_equal": true,
+      "standalone_body_equal": true
+    }
+  ],
+  "native_python_wire_equal": true,
+  "cleanup_verified": true,
+  "network_reply_sent": false,
+  "real_account_data_used": false
+}

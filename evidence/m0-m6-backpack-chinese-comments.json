@@ -1,0 +1,291 @@
+{
+  "kind": "CHANGED_PYTHON_CHINESE_DOCSTRING_AUDIT",
+  "files": [
+    {
+      "file": "adapters/cn_current/zone.py",
+      "sha256": "1989a822bdfeb6df863cd726f864dac62951da8ce860acd4b34b5f634824f80b",
+      "objects": 24,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "nzproject/urls.py",
+      "sha256": "985bd20fa30dcaf61cec5ae072205a0d778d887c7edae59822f05f295de77aac",
+      "objects": 1,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/assets.py",
+      "sha256": "93101588fab3f9c9ff9d1f3663413d775a35e53fa5d288b1d58e30bfd8d247ef",
+      "objects": 10,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/backup.py",
+      "sha256": "98d7251560880202781a9d56591442ce4bbfb794e56914e22d9df4c2a4f874b2",
+      "objects": 5,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/catalogs.py",
+      "sha256": "483892f95bea1365aab2fd9c4d036dbdfc261c44f4639217cb199c79fa8f9f01",
+      "objects": 5,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/db.py",
+      "sha256": "f9e8cf654e8cc507cf9dcb777e7914e7e1b97ba6041fba0d04114d9e4e00bf43",
+      "objects": 29,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/launcher.py",
+      "sha256": "ae2501717ae572d74aa0ee2f2c6bbbc886c8f2afee8a0855d1875ac02c1aa657",
+      "objects": 9,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/management/commands/grant_native_inventory.py",
+      "sha256": "407c708b4dd136718d1429e36f2a8ad28add8c3053371b62b3d691399d87aeac",
+      "objects": 4,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/management/commands/maximize_native_wallet.py",
+      "sha256": "205fb8afb92f335babb9b49a6e2489f19bf523983dfcd710e67e4b4e86efa502",
+      "objects": 4,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/migrations/0007_native_player_settings.py",
+      "sha256": "0ed4ac39bc52112e33b8d8740df11bfb65cc20a745abdf4fe34dc431a5aab6ad",
+      "objects": 2,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/migrations/0008_native_inventory_entitlements.py",
+      "sha256": "c18ead1545cf1fe830f1d0729e5738117e67aa2adb86faf57c4afaa76c1df6e1",
+      "objects": 2,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/models.py",
+      "sha256": "b54e182a1730f91167fbcabf63875f3a22397f5686fdb2f2030a22d0a5495a40",
+      "objects": 81,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/native_inventory.py",
+      "sha256": "2f6470a1ac60742d99606c8f07758f84b258fea2577655dd8f3aae7d80de859b",
+      "objects": 8,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/native_settings.py",
+      "sha256": "8f114e8729e9727e33f8a112ba4cee1c4711a05acc5bb216542ecdfb4fa78b0a",
+      "objects": 5,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/native_wallet.py",
+      "sha256": "389f3af5e529cd8b602f82b864b82d1ab5917c9fccb4d641d8c03276bba38852",
+      "objects": 4,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/service.py",
+      "sha256": "51332ea0816dada8b5ffc1360c54ef393d6a1e18fd9a4ea09ad12d2453bb3101",
+      "objects": 30,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "revival/views.py",
+      "sha256": "c6d823b6e729da5229564fecf3e47b08792d06e2932189479fbe49e18a40eeb8",
+      "objects": 5,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_email_tools.py",
+      "sha256": "b8fe4f124b2bef8be8d795e2a42d240f2618083f5877e3b293c103c58671fe39",
+      "objects": 25,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_hunt_readiness.py",
+      "sha256": "4d467fd115a59b15c12f6e0a8267592e823290037f5efd8051c4fc22c5c2e7d3",
+      "objects": 7,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_client_logs.py",
+      "sha256": "a6456fd2020c9c94448d54f20125e435c82ef9ba9e6c3993bc2a68963a962720",
+      "objects": 7,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_inventory.py",
+      "sha256": "fe90ae5b3112ae5ac1b4e1de44f2a1c1c044e8d91261c7ab3f31f4ed590ac699",
+      "objects": 21,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_inventory_bridge.py",
+      "sha256": "123d1f4e7a5875ce1afcf16e7630500741b25e1d7a6162a7f6e0c4d7a4534af1",
+      "objects": 17,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_login_probe.py",
+      "sha256": "668a0525352ab436cbbd91800e35455410d0a00f8e4c6133dd0b29f06ad1699a",
+      "objects": 9,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_package_dependencies.py",
+      "sha256": "5e0a05461ce6b57c23b9e07c9ab56c72adf8bfa9df4fe8b0eeced86a535ee273",
+      "objects": 9,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_probe_session_cleanup.py",
+      "sha256": "deda252f73c3576e90f3bf2d5aaa526ed961039656759e7c399f917868b72859",
+      "objects": 6,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_role_resources.py",
+      "sha256": "437d76c43fb3ce806bb172f3cda9fbfef4373d4366aeaf9cd2b25c22192c7d8d",
+      "objects": 7,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_server_entry.py",
+      "sha256": "2374318660348236e32ac588fc036d6e9547e55aca478b334cb307384f601bd4",
+      "objects": 6,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_settings.py",
+      "sha256": "cbe9302f5d6b7803510f4e8fdc5b37e719a9a16bea651572d956b7ef31145b14",
+      "objects": 16,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_settings_bridge.py",
+      "sha256": "7b8b4ba48c9dba91254117ab74b87bc725a3e427cf25c146fa6f7e8148ba1027",
+      "objects": 9,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_udp_probe.py",
+      "sha256": "e3ca34542a87c733a7023ffb3b800dbc604e73b1e29008f83806292c3d435250",
+      "objects": 8,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_ui_config.py",
+      "sha256": "dad6186f8aeac291ce279f285a38917cc0e6c44124308bce61900f760b65dee6",
+      "objects": 5,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tests/test_native_zone.py",
+      "sha256": "4d8868d69cba0aaf6d1448ed99024360677e0996f1d1af5c75580b96b5c89348",
+      "objects": 45,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/hunt_readiness.py",
+      "sha256": "46d967d7553a14239f1f3d0de7d5acfa8071fcb9df4bac26df99e2912e33708e",
+      "objects": 4,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_client_logs.py",
+      "sha256": "4e2cf2a9836cf7c46dff4e22d6458f7f54f5342317b101462d45484b31287cb9",
+      "objects": 3,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_compat_catalog.py",
+      "sha256": "5b0999855f39f35264edb74f5f86459a037a74c90acca2b4cc4bae288722a84d",
+      "objects": 3,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_email_boot.py",
+      "sha256": "1398153717f7e8212c384a298328f2858594ec2bb462861ee080d877ac97664b",
+      "objects": 22,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_inventory_bridge.py",
+      "sha256": "0d35c1f669ebc0f83cf17ec7da130e14e2bf22a5dda44d84ed41b53ad32656bd",
+      "objects": 14,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_login_probe.py",
+      "sha256": "5daf89b24302814cd450a9f2e1f8cb4ac6a2ab611e65ffbb9199399e14833bf2",
+      "objects": 10,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_package_dependencies.py",
+      "sha256": "3a0f04393c08b54ea039aa1b0851cf0afb59b3cc0440891acde83e64a8d4d55f",
+      "objects": 7,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_role_resources.py",
+      "sha256": "3245e37735d4579a488b8141700b4a60b53de997e2ccbd7480418aaf441758f7",
+      "objects": 4,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_settings_bridge.py",
+      "sha256": "f64df2c54c7167d0601f50ddd48f75cf010628cfa1fc77cbf3a5e17d40845f62",
+      "objects": 5,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_tcp_probe.py",
+      "sha256": "dfc6fd13c5bc41f0c971c7cf57120f7d24dc214734f5f445222c52ce6082d7c3",
+      "objects": 3,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_tdr_probe.py",
+      "sha256": "64f0bee39f2cd2c23b1537da592ef386716d80d6d33c3bcbd70ed6d6ac3cea28",
+      "objects": 2,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_thread_probe.py",
+      "sha256": "c07c562c5bd365070b7343a0b15f92e50f93211a5ff64fbde3f6a7034bc262eb",
+      "objects": 5,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/native_ui_config.py",
+      "sha256": "1bc1f1f81f3c10fc20e1c2591c146fdd5088c4a30ce3fdb97d39e82d58bd62c7",
+      "objects": 2,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/run_tests.py",
+      "sha256": "dc656238a8064921a445845188fdb1240105f7715d2e2c000c7c37e704a2cd1b",
+      "objects": 5,
+      "missing_chinese_docstrings": []
+    },
+    {
+      "file": "tools/start_native.py",
+      "sha256": "27979161ff1e6b2cba88eb20af4beb744239552c857d690460d587a4d44480f2",
+      "objects": 6,
+      "missing_chinese_docstrings": []
+    }
+  ],
+  "file_count": 47,
+  "objects": 520,
+  "missing": [],
+  "whole_repository_claim": false
+}

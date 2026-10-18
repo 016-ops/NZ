@@ -1,0 +1,14 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 2,
+  "passed": [
+    "tests.test_native_job.NativeJobCleanupTests.test_observer_error_waits_for_owned_file_holder_before_restore",
+    "tests.test_native_job.NativeJobCleanupTests.test_parent_exit_does_not_leave_unobserved_owned_child_running"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.218
+}

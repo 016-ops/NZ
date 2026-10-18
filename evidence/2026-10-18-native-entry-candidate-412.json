@@ -1,0 +1,13 @@
+{
+  "kind": "PENDING_AUTHORIZATION_PREINIT_SERVER_ARGUMENT_412",
+  "archive_sha256": "3c8ea86e660c03641b63fd40b7b0b5742d277d4dc6ef7e358f9d98e7d776c554",
+  "instruction_va": "0x13c4155",
+  "before": "68f4491402",
+  "after": "6850921402",
+  "limit_seconds": 90,
+  "previous_mode_writes_removed": true,
+  "authentication_changes": false,
+  "disk_executable_modified": false,
+  "native_started": false,
+  "explicit_authorization_pending": true
+}

@@ -1,0 +1,16 @@
+{
+  "operations": [
+    "73c526787d394184bfffe0a88e8a4369"
+  ],
+  "game_id": 10005,
+  "kind": "ISOLATED_RENEWAL_AND_USE_FIXTURE",
+  "items": 24,
+  "equipment": 22,
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "formal_checkin": 0
+}

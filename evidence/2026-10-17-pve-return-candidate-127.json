@@ -1,0 +1,7 @@
+{
+  "kind": "PVE_RETURN_CANDIDATE_STRUCTURAL_NOT_NATIVE",
+  "source_bytes": 16752271,
+  "candidate_bytes": 16529261,
+  "candidate_sha256": "d078a2904983078ac3663d683e29c252d57c005472d76815ae72d1b011d43a53",
+  "native_load_verified": false
+}

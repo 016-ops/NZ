@@ -1,0 +1,16 @@
+{
+  "kind": "CURRENT_MAIN_CHANNEL_HEARTBEAT_NATIVE_CODEC",
+  "fixtures": [
+    {
+      "command": "A356",
+      "bytes": 50,
+      "python_native_equal": true
+    },
+    {
+      "command": "FF10",
+      "bytes": 9,
+      "python_native_equal": true
+    }
+  ],
+  "native_report_passed": true
+}

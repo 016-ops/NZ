@@ -1,0 +1,41 @@
+{
+  "kind": "OWNED_TOWER_REAL_LOADOUT_READ_ONLY",
+  "run": "launcher-20261018-141200-679715",
+  "pid": 2056,
+  "process_writes": 0,
+  "input_actions": 0,
+  "current_bag": 5,
+  "default_bag": 5,
+  "equipped_functional_item_ids": [
+    101210,
+    101211,
+    101149,
+    100216,
+    100218,
+    100323,
+    300062,
+    300063,
+    100933,
+    100027
+  ],
+  "weapons": [
+    {
+      "identity": "validated_inventory_chain@0x4f913200",
+      "class_name": "TGATDBaseTrapGrenade"
+    }
+  ],
+  "expert_card": true,
+  "cash_card": true,
+  "pve_store_active": true,
+  "pve_store_level": 3,
+  "max_traps": 60,
+  "money": 3000,
+  "playable_map_accepted": false,
+  "all_card_effects_verified": false,
+  "lobby_store_level": 3,
+  "lobby_store_points": 10500,
+  "chest_extra_traps": 10,
+  "chest_can_sell_anytime": true,
+  "unowned_all_traps_card": false,
+  "unowned_projector5": false
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "CURRENT_TDR_ROLE_GID_REFERENCE_FIXTURE_NOT_BUSINESS_ASSETS",
+  "native_passed": true,
+  "cleanup_verified": true,
+  "fixture": {
+    "bytes": 1404,
+    "sha256": "3da16a67a99493505605715c230a21221b7dce677944abc73480b56391dd9fd2",
+    "host_equal": true,
+    "roundtrip_equal": true,
+    "standalone_body_equal": true,
+    "role_or_inventory_verified": false,
+    "python_equal": true
+  },
+  "sequence": "TEMP_PROPS_THEN_EXACT_EQUIP_ACK_THEN_A005_CURRENT_GID_1001",
+  "business_inventory_written": false,
+  "lobby_verified": false
+}

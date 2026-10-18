@@ -1,0 +1,9 @@
+test_binary_settings_survive_verified_mysql_backup_restore (tests.test_native_settings.NativeSettingsTests.test_binary_settings_survive_verified_mysql_backup_restore)
+真正导出/恢复到随机临时MySQL库并逐表对账，覆盖BLOB所有字节，正式业务库不回退。 ... ok
+test_http_routes_require_game_bearer_and_commit_before_acknowledging (tests.test_native_settings.NativeSettingsTests.test_http_routes_require_game_bearer_and_commit_before_acknowledging)
+真实Django路由/中间件接受游戏凭据；玩家Bearer拒绝，成功响应后的正文已可从MySQL重读。 ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 33.170s
+
+OK

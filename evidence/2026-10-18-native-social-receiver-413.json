@@ -1,0 +1,12 @@
+{
+  "kind": "NATIVE_RECEIVER_WITH_API_TEST_SENDER",
+  "sender_game_id": 10004,
+  "recipient_game_id": 10005,
+  "two_native_clients": false,
+  "request_sent": true,
+  "accepted": false,
+  "message_queued": false,
+  "recipient_ui_verified": false,
+  "source_and_game_revoked": true,
+  "previous_relation": null
+}

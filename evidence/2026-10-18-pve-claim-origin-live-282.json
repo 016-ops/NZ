@@ -1,0 +1,55 @@
+{
+  "kind": "VIP_TAKE_SOURCE_RELOGIN_NATIVE_UI_LIVE",
+  "release": "20261018T055449-f7349b93ef09",
+  "run": "launcher-20261018-135635-186335",
+  "reward_sources": [
+    {
+      "gid": 5560,
+      "item_id": 100482,
+      "gain_type": 35
+    },
+    {
+      "gid": 5561,
+      "item_id": 100786,
+      "gain_type": 35
+    },
+    {
+      "gid": 5562,
+      "item_id": 100924,
+      "gain_type": 35
+    }
+  ],
+  "labels_all_claimed": true,
+  "claimed_button_click_new_requests": 0,
+  "three_rewards_visible_six_days": true,
+  "vip_rewards_absent_from_engineering_list": true,
+  "assets_newly_granted": 0,
+  "observation_note": "私人A006旁路记录误把下标7耐久字段命名available_hours，原记录保留；该字段不用于期限验证。源码记录器已改为真实下标11，下次启动生效。",
+  "screenshots": {
+    "claimed-three-weapons-relogin-six-days.png": "b20d6fade9a1c362027e7d7466a6db47725a91885355eb1c6d19382f3d99faea",
+    "engineering-excludes-vip-take.png": "be2b064c96c259964e73b9af904a0d41aeb7db70bf037a5d049309f27faa68c2",
+    "pve-store-claimed-labels-page1.png": "7923e2cac706d50312cd9243ee9849097747a50f38d09dffec6d03c2204f1e91",
+    "pve-store-claimed-labels-page2.png": "b6f41cb0d61d2496caed3ceb6e0c666a169f68c2ecc087427a9fad1157513a16"
+  },
+  "cleanup": {
+    "kind": "LAUNCHER_PRODUCT_FRAME_COPY_REAL_GAME",
+    "last_phase": "INVENTORY_SENT",
+    "run": "launcher-20261018-135635-186335",
+    "parent_pipe_eof": true,
+    "source_and_game_revoked": true,
+    "configuration_restored": true,
+    "own_process_cleanup": true,
+    "lobby_verified": false,
+    "graphics_compatibility": {
+      "profile": "cn2020-frame-copy-v1-lobby-verified",
+      "files": {
+        "Binaries/Win32/d3d9.dll": "12592afcafdb0e76581a48ce142f3b152fcda55288ce1156855c639a393fd051"
+      },
+      "system_changed": false,
+      "original_client_writes": 0,
+      "presentation": "d3d11-flip-on-game-window"
+    },
+    "raw_transport_files": 0
+  },
+  "all_gameplay_complete": false
+}

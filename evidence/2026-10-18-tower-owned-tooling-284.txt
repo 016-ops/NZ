@@ -1,0 +1,34 @@
+test_candidate_can_only_be_applied_once (tests.test_native_tower_owned_compat.TowerOwnedTests.test_candidate_can_only_be_applied_once)
+已经修改的包和外来文件不接受再次修补，不累积追加逻辑。 ... ok
+test_guard_restores_exact_tower_package_after_interruption (tests.test_native_tower_owned_compat.TowerOwnedTests.test_guard_restores_exact_tower_package_after_interruption)
+8MiB边界只对固定塔防路径放开，恢复读取持久计划并还原原件。 ... ERROR
+test_original_package_and_other_16532_exports_unchanged (tests.test_native_tower_owned_compat.TowerOwnedTests.test_original_package_and_other_16532_exports_unchanged)
+除一个导出指针和末尾追加函数外，全部原字节、目录尾及其他导出均不变。 ... ok
+test_prefix_refreshes_only_owned_local_player_and_preserves_original (tests.test_native_tower_owned_compat.TowerOwnedTests.test_prefix_refreshes_only_owned_local_player_and_preserves_original)
+本地真实PRI只刷新一次；在线、AI、空PRI和无Player控制器均直接执行原函数。 ... ok
+test_three_debug_conditions_skip_only_original_standalone_gifts (tests.test_native_tower_owned_compat.TowerOwnedTests.test_three_debug_conditions_skip_only_original_standalone_gifts)
+原三段调试条件准确替换为false，父分支地址及其他原字节保持；原VM跨度均38。 ... ok
+
+======================================================================
+ERROR: test_guard_restores_exact_tower_package_after_interruption (tests.test_native_tower_owned_compat.TowerOwnedTests.test_guard_restores_exact_tower_package_after_interruption)
+8MiB边界只对固定塔防路径放开，恢复读取持久计划并还原原件。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_tower_owned_compat.py", line 137, in test_guard_restores_exact_tower_package_after_interruption
+    guard=NativeConfigGuard(root,out);guard.apply(tower.RELATIVE,self.variant)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tools\native_config_guard.py", line 91, in __init__
+    self._paths(root, output)
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tools\native_config_guard.py", line 102, in _paths
+    self.root, self.output = root.resolve(strict=True), output.resolve(strict=True)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1240, in resolve
+    s = self._flavour.realpath(self, strict=strict)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen ntpath>", line 695, in realpath
+FileNotFoundError: [WinError 2] 系统找不到指定的文件。: 'C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\runtime\\test-tmp\\tmpgn5_bre1\\report'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.197s
+
+FAILED (errors=1)

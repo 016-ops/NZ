@@ -1,0 +1,49 @@
+{
+  "kind": "BOUNDED_EXISTING_INTERACTIVE_TOKEN_NATIVE_ENTRY_412",
+  "map_id": 168,
+  "archive_sha256": "3c8ea86e660c03641b63fd40b7b0b5742d277d4dc6ef7e358f9d98e7d776c554",
+  "limit_seconds": 90,
+  "node_ready": false,
+  "original_client_writes": 0,
+  "started": true,
+  "phase": "native_report_collected",
+  "source_and_game_revoked": true,
+  "extra_memory_write_sites": 1,
+  "remote_parser": {
+    "version": "5.1.26100.32860",
+    "files": [
+      {
+        "errors": 0,
+        "name": "relay.ps1"
+      },
+      {
+        "errors": 0,
+        "name": "interactive.ps1"
+      }
+    ]
+  },
+  "remote_exit_code": 0,
+  "missing_reports": [
+    "objects-35.json",
+    "objects-70.json"
+  ],
+  "configuration_restored": true,
+  "cleanup_verified": true,
+  "elapsed_seconds": 90.0,
+  "watchdog_fired": true,
+  "exit_codes": {
+    "6236": "0x0",
+    "6492": "0x0",
+    "260": "0x3",
+    "7184": "0xe0000001",
+    "5944": "0xe0000001",
+    "7280": "0xe0000001"
+  },
+  "task_cleanup": {
+    "stored_windows_password": false,
+    "created": true,
+    "definition_matches": true,
+    "deleted": true
+  },
+  "controller_seconds": 108.5
+}

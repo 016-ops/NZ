@@ -1,0 +1,9 @@
+{
+  "kind": "INVENTORY_10MS_PACING_STILL_BLANK",
+  "run": "manual-online-20261016-130023-495583",
+  "lobby_verified": false,
+  "configuration_restored": true,
+  "cleanup_verified": true,
+  "credentials_revoked": true,
+  "inventory_send_interval": 0.01
+}

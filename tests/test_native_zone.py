@@ -5,12 +5,174 @@ import struct
 import unittest
 
 from adapters.cn_current.zone import (
+    ZONE_EMPTY_ASSET_PLAYER_INFO_PROFILE, build_research_player_info, player_info_research_compatibility,
+    encode_current_player_nickname,
+    ZONE_EMPTY_PLAYER_PROPS_PROFILE, build_research_empty_player_props,
+    ZONE_PLAYER_PROPS_CODEC_PROFILE, build_research_player_props,
+    ZONE_DETAILED_CHANNEL_PROFILE, build_research_detailed_main_channel, parse_detailed_main_channel_request,
+    build_research_main_channel, build_research_zone_channels, build_current_heartbeat_response,
     ZONE_EMPTY_PLAYER_DEFINE_PROFILE, build_research_empty_player_define_response, parse_player_define_request,
     MAX_ZONE_PACKET_BYTES, ZONE_HEADER_PROFILE, ZONE_LOGIN_REQUEST_PROFILE, ZONE_LOGIN_RESPONSE_PROFILE,
     ZONE_METADATA_SHA256, ZONE_NETBAR_KEY_PROFILE,
     ZoneProtocolError, build_research_login_response, login_response_compatibility,
     parse_login_request, parse_netbar_key_notification, parse_zone_header,
 )
+
+
+class NativeDetailedChannelTests(unittest.TestCase):
+    """当前A358数组和单一回环入口边界，避免误发其他版本短结构或任意公网目标。"""
+    def test_main_channel_and_zone_channel_current_native_goldens(self):
+        """当前DLL的A356/A133逐字节摘要，防止向无Result的A133错误添加成功码。"""
+        main = build_research_main_channel(profile=ZONE_DETAILED_CHANNEL_PROFILE)
+        self.assertEqual(hashlib.sha256(main).hexdigest(), 'df2ba9dde48e9559ed3b37dc53e013c594bafb07a72f9fad08ee98e0cfc64930')
+        request = struct.pack('>HHHHI',0x3243,0xA132,8,4,1)
+        channel = build_research_zone_channels(request,port=19001,profile=ZONE_DETAILED_CHANNEL_PROFILE)
+        self.assertEqual(hashlib.sha256(channel).hexdigest(),'fae3d7a5533ddc4347106502d1c21a9c4d583c39cd12a20f3a7df7b8d69ce62c')
+        for invalid in (request[:-1],request[:-1]+b'\2',request+b'\0'):
+            with self.assertRaises(ZoneProtocolError):
+                build_research_zone_channels(invalid,port=19001,profile=ZONE_DETAILED_CHANNEL_PROFILE)
+
+    def test_heartbeat_exact_padding_and_current_response(self):
+        """仅已核验的A004零Padding得到FF10，未知填充和其他命令拒绝。"""
+        request = struct.pack('>HHHHB',0x3243,0xA004,8,1,0)
+        response = build_current_heartbeat_response(request)
+        self.assertEqual(hashlib.sha256(response).hexdigest(),'62f0baa4dd3a5a95a6b1b315e7c624b871952b1f838c32d53db540e7de0ee1dd')
+        for invalid in (request[:-1]+b'\1',response,request[:-1]):
+            with self.assertRaises(ZoneProtocolError):
+                build_current_heartbeat_response(invalid)
+    def test_two_ports_match_current_native_full_host_goldens(self):
+        """两个实际DLL61B夹具覆盖动态端口、字符串NUL和嵌套计数，不能只回放固定目录字节。"""
+        for port, expected in ((19001,'0bb6ec868701e6a9c5dc090fee2dfe998adee5b483822c6dae10a385c729636e'),
+                               (45678,'2af0fa2520715016020b14e876512a13ddbb3f024f774c4994cdb508a326946f')):
+            wire=build_research_detailed_main_channel(port=port,profile=ZONE_DETAILED_CHANNEL_PROFILE)
+            self.assertEqual(len(wire),61)
+            self.assertEqual(hashlib.sha256(wire).hexdigest(),expected)
+
+    def test_ports_profile_and_request_lengths_are_strict(self):
+        """非普通端口、布尔值及其他profile拒绝；请求必须准确A357加4字节Padding。"""
+        for port in (0,80,65536,True,'19001'):
+            with self.assertRaisesRegex(ZoneProtocolError,'INVALID_DETAILED_CHANNEL_LOOPBACK_PORT'):
+                build_research_detailed_main_channel(port=port,profile=ZONE_DETAILED_CHANNEL_PROFILE)
+        with self.assertRaisesRegex(ZoneProtocolError,'UNSUPPORTED_DETAILED_CHANNEL_PROFILE'):
+            build_research_detailed_main_channel(port=19001,profile='ph')
+        self.assertEqual(parse_detailed_main_channel_request(bytes.fromhex('3243a3570008000400000000')),0)
+        with self.assertRaisesRegex(ZoneProtocolError,'INVALID_DETAILED_CHANNEL_REQUEST'):
+            parse_detailed_main_channel_request(bytes.fromhex('3243a35700080000'))
+
+
+class NativePlayerPropsCodecTests(unittest.TestCase):
+    """以两条实际当前DLL非空数组golden覆盖端序、64位、负值、槽步长及连接拥有关系。"""
+    def fixture_props(self):
+        """返回当前DLL独立host夹具的完整字段；这些是编码测试数值，不是有效角色默认值。"""
+        return [dict(Uin=10001,GID=1001+i,ItemId=(100014,100016)[i],ResFlag=0x123456789abcdef0,
+                     StackNum=1,ObtainTime=12345,Validity=-1,Durability=123,DurabilityMax=456,
+                     OwnerGID=0,Location=10+i,AvailbilityHour=876000,UseHour=17,GainType=48)
+                for i in range(2)]
+
+    def test_nonempty_current_native_serializer_goldens_match_both_terminal_states(self):
+        """两组153B全包来自当前DLL，而非Python自往返；一个末包字节的变化也必须精确一致。"""
+        for terminal, expected in (
+            (False,'f7b2c6bed19690cc6c48934db06ade5b100c03f15fb3c46c833ddb0e4761288a'),
+            (True,'bdbe09ab1cdc6c7b02f0fcd750a9475750e8784c94bb353f00fd308f292c6500')):
+            wire=build_research_player_props(game_id=10001,props=self.fixture_props(),is_last=terminal,
+                                               profile=ZONE_PLAYER_PROPS_CODEC_PROFILE)
+            self.assertEqual(len(wire),153)
+            self.assertEqual(hashlib.sha256(wire).hexdigest(),expected)
+
+    def test_foreign_identity_duplicate_gid_and_missing_fields_fail_closed(self):
+        """不能把另一账号道具、重复实例或缺字段数据编码成看似有效的原生库存。"""
+        for modify in ('foreign','duplicate','missing','bool'):
+            props=self.fixture_props()
+            if modify=='foreign': props[0]['Uin']=10002
+            elif modify=='duplicate': props[1]['GID']=props[0]['GID']
+            elif modify=='missing': del props[0]['OwnerGID']
+            else: props[0]['GID']=True
+            with self.subTest(case=modify), self.assertRaises(ZoneProtocolError):
+                build_research_player_props(game_id=10001,props=props,is_last=True,profile=ZONE_PLAYER_PROPS_CODEC_PROFILE)
+
+    def test_integer_width_overflows_and_invalid_chunks_are_rejected(self):
+        """覆盖64位、带符号32位、带符号位置及无符号来源边界，避免struct异常或截断外泄。"""
+        for field,value in (('GID',1<<64),('ItemId',1<<31),('Validity',-(1<<31)-1),
+                            ('Location',128),('GainType',256),('ResFlag',-1)):
+            props=self.fixture_props();props[0][field]=value
+            with self.subTest(field=field), self.assertRaisesRegex(ZoneProtocolError,'PLAYER_PROP_FIELD_OUT_OF_RANGE'):
+                build_research_player_props(game_id=10001,props=props,is_last=True,profile=ZONE_PLAYER_PROPS_CODEC_PROFILE)
+        for props,terminal in ((self.fixture_props()*3,True),(self.fixture_props(),1)):
+            with self.assertRaisesRegex(ZoneProtocolError,'INVALID_PLAYER_PROPS_CHUNK'):
+                build_research_player_props(game_id=10001,props=props,is_last=terminal,profile=ZONE_PLAYER_PROPS_CODEC_PROFILE)
+
+    def test_empty_codec_matches_verified_empty_terminal_but_profile_is_explicit(self):
+        """同一布局的空终包必须与既有golden一致，其他功能profile不能误启用非空能力。"""
+        wire=build_research_player_props(game_id=10001,props=[],is_last=True,profile=ZONE_PLAYER_PROPS_CODEC_PROFILE)
+        self.assertEqual(wire,build_research_empty_player_props(profile=ZONE_EMPTY_PLAYER_PROPS_PROFILE))
+        with self.assertRaisesRegex(ZoneProtocolError,'UNSUPPORTED_PLAYER_PROPS_CODEC_PROFILE'):
+            build_research_player_props(game_id=10001,props=[],is_last=True,profile=ZONE_EMPTY_PLAYER_PROPS_PROFILE)
+
+
+class NativePlayerInfoResearchTests(unittest.TestCase):
+    """以当前DLL独立两组全包摘要验证当前长资料布局，拒绝身份错位和昵称截断。"""
+    def test_empty_props_terminal_packet_matches_current_native_serializer(self):
+        """零数组终包只含8100/IsLast=1/Count=0；不能夹带道具或由其他profile启用。"""
+        wire=build_research_empty_player_props(profile=ZONE_EMPTY_PLAYER_PROPS_PROFILE)
+        self.assertEqual(wire,bytes.fromhex('3243a006000800058100010000'))
+        for profile in (None,True,'',ZONE_EMPTY_ASSET_PLAYER_INFO_PROFILE):
+            with self.assertRaisesRegex(ZoneProtocolError,'UNSUPPORTED_EMPTY_PLAYER_PROPS_PROFILE'):
+                build_research_empty_player_props(profile=profile)
+
+    def test_two_current_native_full_host_roundtrips_match_exact_wire(self):
+        """ID和字符串长度均不同的两套golden防止只固定一个字节串或误用PH短结构。"""
+        for game_id, nickname, size, digest in (
+            (10001, b'NZResearchA', 1404, 'ccac6e8e24102ed748c14611cc8653132c3dbea0d4baabc237e555f38d9267a3'),
+            (10002, b'NZProfileFixtureB', 1410, 'e2e0975871ef846c65942dff1c689d293a5e1c10a6d172618a2cdc8bd4baa8de'),
+        ):
+            wire = build_research_player_info(game_id=game_id, nickname_bytes=nickname,
+                                               profile=ZONE_EMPTY_ASSET_PLAYER_INFO_PROFILE)
+            self.assertEqual(len(wire), size)
+            self.assertEqual(hashlib.sha256(wire).hexdigest(), digest)
+
+    def test_current_chinese_nickname_is_lossless_without_renaming(self):
+        """当前CP936下中文与ASCII混合昵称逐字节往返；API接受原文，不作规范化或替换。"""
+        encoded=encode_current_player_nickname('中文昵称',code_page=936)
+        self.assertEqual(encoded,bytes.fromhex('d6d0cec4eac7b3c6'))
+        nickname='邮箱DEV_0123456789'
+        self.assertEqual(encode_current_player_nickname(nickname,code_page=936).decode('cp936'),nickname)
+
+    def test_unverified_codepage_unrepresentable_and_byte_overflow_are_rejected(self):
+        """不同ACP、emoji、NUL、空值和双字节溢出均拒绝，不能改名、静默问号替换或截断。"""
+        for page in (65001,0,True,'936'):
+            with self.assertRaisesRegex(ZoneProtocolError,'UNVERIFIED_PLAYER_NICKNAME_CODE_PAGE'):
+                encode_current_player_nickname('中文',code_page=page)
+        for name in (None,'','x\0y'):
+            with self.assertRaisesRegex(ZoneProtocolError,'INVALID_PLAYER_INFO_NICKNAME'):
+                encode_current_player_nickname(name,code_page=936)
+        with self.assertRaisesRegex(ZoneProtocolError,'UNREPRESENTABLE_PLAYER_NICKNAME'):
+            encode_current_player_nickname('玩家😀',code_page=936)
+        with self.assertRaisesRegex(ZoneProtocolError,'PLAYER_NICKNAME_BYTE_LIMIT'):
+            encode_current_player_nickname('中'*16,code_page=936)
+        self.assertEqual(len(encode_current_player_nickname('中'*15+'x',code_page=936)),31)
+
+    def test_identity_and_nickname_boundaries_do_not_convert_or_truncate(self):
+        """拒绝bool/越界ID、隐式编码、NUL和超过含终止符32B容量的昵称；边界字节原样保留。"""
+        for game_id in (True, 0, -1, 0x80000000, '10001'):
+            with self.assertRaisesRegex(ZoneProtocolError, '^INVALID_PLAYER_INFO_GAME_ID$'):
+                build_research_player_info(game_id=game_id, nickname_bytes=b'x', profile=ZONE_EMPTY_ASSET_PLAYER_INFO_PROFILE)
+        for nickname in ('name', bytearray(b'x'), b'', b'\0', b'x\0y', b'x' * 32):
+            with self.assertRaisesRegex(ZoneProtocolError, '^INVALID_PLAYER_INFO_NICKNAME_BYTES$'):
+                build_research_player_info(game_id=10001, nickname_bytes=nickname, profile=ZONE_EMPTY_ASSET_PLAYER_INFO_PROFILE)
+        wire = build_research_player_info(game_id=0x7FFFFFFF, nickname_bytes=b'x' * 31,
+                                           profile=ZONE_EMPTY_ASSET_PLAYER_INFO_PROFILE)
+        self.assertEqual(struct.unpack_from('>I', wire, 22)[0], 32)
+        self.assertEqual(wire[26:58], b'x' * 31 + b'\0')
+
+    def test_profile_is_explicit_and_compatibility_copy_does_not_enable_assets(self):
+        """研究资料必须显式启用；修改说明副本不能悄悄启用真实资产或大厅完成标志。"""
+        for profile in (None, True, '', ZONE_EMPTY_ASSET_PLAYER_INFO_PROFILE + '-next'):
+            with self.assertRaisesRegex(ZoneProtocolError, '^UNSUPPORTED_PLAYER_INFO_RESEARCH_PROFILE$'):
+                build_research_player_info(game_id=10001, nickname_bytes=b'x', profile=profile)
+        details = player_info_research_compatibility()
+        details['lobby_verified'] = True
+        self.assertFalse(player_info_research_compatibility()['lobby_verified'])
+        self.assertFalse(player_info_research_compatibility()['real_wallet_or_inventory_projected'])
 
 
 class NativePlayerDefineTests(unittest.TestCase):
@@ -220,6 +382,19 @@ class NativeZoneLoginResponseTests(unittest.TestCase):
         self.assertEqual(hashlib.sha256(response).hexdigest(),
                          '71c6d9b507ea51733717213d306cc2d587960275fae747474683b89515aafc2c')
         self.assertEqual(struct.unpack_from('>HHHH', response), (0x3243, 0xA001, 8, 33))
+
+    def test_explicit_compat_clock_preserves_other_fields_and_bounds(self):
+        """兼容日历只替换64位时间；拒绝毫秒、零时刻及隐式profile，旧研究夹具保持不变。"""
+        from adapters.cn_current.zone import build_clock_login_response,ZONE_CLOCK_COMPAT_PROFILE
+        original=build_research_login_response(profile=ZONE_LOGIN_RESPONSE_PROFILE)
+        wire=build_clock_login_response(server_time=2208988800,profile=ZONE_CLOCK_COMPAT_PROFILE)
+        self.assertEqual(wire[:18]+wire[26:],original[:18]+original[26:])
+        self.assertEqual(struct.unpack_from('>Q',wire,18)[0],2208988800)
+        for value in (None,True,0,1577836799,4102444800,2208988800000):
+            with self.assertRaises(ZoneProtocolError):
+                build_clock_login_response(server_time=value,profile=ZONE_CLOCK_COMPAT_PROFILE)
+        with self.assertRaises(ZoneProtocolError):
+            build_clock_login_response(server_time=2208988800,profile=ZONE_LOGIN_RESPONSE_PROFILE)
 
     def test_response_requires_the_explicit_exact_research_profile(self):
         """生产或其他研究profile不能隐式启用该固定响应，调用方也不能传入任意业务字段。"""

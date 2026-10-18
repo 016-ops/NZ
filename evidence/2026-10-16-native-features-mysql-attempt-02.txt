@@ -1,0 +1,27 @@
+test_checkin_disabled_by_default_and_no_repeat_after_rule_change (tests.test_native_features.NativeFeatureTests.test_checkin_disabled_by_default_and_no_repeat_after_rule_change)
+正式签到默认停用；同一天改版也不能重复领，次日重新具备资格。 ... ok
+test_clan_invitation_transfer_and_old_owner_permission (tests.test_native_features.NativeFeatureTests.test_clan_invitation_transfer_and_old_owner_permission)
+邀请需对端接受；移交后旧队长不能再解散，成员退出不会误删队伍。 ... ok
+test_draw_failure_restores_exhausted_material_binding (tests.test_native_features.NativeFeatureTests.test_draw_failure_restores_exhausted_material_binding)
+耗尽碎片会删除实例与绑定，但最后事件故障须将它们连同数量全部恢复。 ... ok
+test_fragment_stack_and_draw_confirmation_are_atomic (tests.test_native_features.NativeFeatureTests.test_fragment_stack_and_draw_confirmation_are_atomic)
+材料数量累加，开奖扣一次、入库一次；重复确认和并发重试返回同一结果。 ... ok
+test_friend_delivery_block_and_unrelated_event_ack (tests.test_native_features.NativeFeatureTests.test_friend_delivery_block_and_unrelated_event_ack)
+申请与私聊投递给真实对端，第三方不能确认事件，拉黑后私聊拒绝。 ... ok
+test_game_api_rejects_player_token_and_changed_retry (tests.test_native_features.NativeFeatureTests.test_game_api_rejects_player_token_and_changed_retry)
+普通玩家Bearer不能冒充游戏会话；相同幂等键修改载荷必须冲突。 ... ok
+test_purchase_duplicate_instances_no_capacity_and_idempotency (tests.test_native_features.NativeFeatureTests.test_purchase_duplicate_instances_no_capacity_and_idempotency)
+同一永久武器可重复购买形成不同GID；重复提交原请求只能扣款一次。 ... ok
+test_purchase_event_failure_rolls_back_money_items_and_receipt (tests.test_native_features.NativeFeatureTests.test_purchase_event_failure_rolls_back_money_items_and_receipt)
+最终接收事件失败时，购物车不得保留扣款、GID或订单。 ... ok
+test_selected_pool_rejects_unknown_choice_without_consumption (tests.test_native_features.NativeFeatureTests.test_selected_pool_rejects_unknown_choice_without_consumption)
+自选只允许当前奖池中指定数量的奖项，错误选择不能扣材料。 ... ok
+test_skin_relationship_and_cross_account_rejected (tests.test_native_features.NativeFeatureTests.test_skin_relationship_and_cross_account_rejected)
+皮肤仅绑定已定义的主体且必须本人持有；主体和皮肤数量均不减少。 ... ok
+test_swallow_consumes_material_and_persists_host (tests.test_native_features.NativeFeatureTests.test_swallow_consumes_material_and_persists_host)
+已配置吞噬组合消费材料一次并保存主体效果，重复吞噬不能再次消费同效果。 ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 58.475s
+
+OK

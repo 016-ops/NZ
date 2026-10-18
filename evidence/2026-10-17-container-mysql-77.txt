@@ -1,0 +1,13 @@
+test_concurrent_replay_keeps_one_consumption_and_three_rewards (tests.test_native_containers.NativeContainerTests.test_concurrent_replay_keeps_one_consumption_and_three_rewards)
+并发重试同一请求只扣一个礼包、发三张卡；回执保持原始数量和永久期限。 ... ok
+test_existing_card_gets_independent_reward_without_false_capacity_error (tests.test_native_containers.NativeContainerTests.test_existing_card_gets_independent_reward_without_false_capacity_error)
+来源唯一性字段未确认账号独占；沿用既有模型生成独立卡片GID，不合并或误报满仓。 ... ok
+test_protocol_failure_success_and_unknown_commit_recovery (tests.test_native_containers.NativeContainerTests.test_protocol_failure_success_and_unknown_commit_recovery)
+原生失败应答不断开；提交后响应丢失跨桥接重建恢复同一礼包回执，忽略预测奖励。 ... ok
+test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets (tests.test_native_containers.NativeContainerTests.test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets)
+数量不足、过期、他人持箱及末尾事件故障都不能产生半份奖励或遗留回执。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 22.191s
+
+OK

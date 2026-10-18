@@ -1,0 +1,17 @@
+{
+  "kind": "CURRENT_DLL_AND_PYTHON_ZONE_HINTS_SERIALIZATION",
+  "profile": "cn2020-zone-no-hints-research-v1",
+  "bytes": 10,
+  "sha256": "3eb4e5de4c9da6953c17cdb7f83f25c9f7be95f393b42345cc090c7fe826768e",
+  "fixture": {
+    "bytes": 10,
+    "sha256": "3eb4e5de4c9da6953c17cdb7f83f25c9f7be95f393b42345cc090c7fe826768e",
+    "host_equal": true,
+    "roundtrip_equal": true,
+    "standalone_body_equal": true,
+    "hint_semantics_verified": false
+  },
+  "python_exact_match": true,
+  "native_lobby_verified": false,
+  "hint_semantics_verified": false
+}

@@ -1,0 +1,13 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 1,
+  "passed": [
+    "tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_sixth_element_set_and_all_kernels_preserve_previous_receipt"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 102.906
+}

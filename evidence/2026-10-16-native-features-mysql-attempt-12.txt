@@ -1,0 +1,7 @@
+test_kernel_attachment_parent_persistence_and_cross_account (tests.test_native_features.NativeFeatureTests.test_kernel_attachment_parent_persistence_and_cross_account)
+隐藏103379按UI固定关系挂在103428；错误主体/跨账号拒绝，卸下保留两件资产。 ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 7.282s
+
+OK

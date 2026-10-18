@@ -1,0 +1,17 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 5,
+  "passed": [
+    "tests.test_native_features.NativeFeatureTests.test_native_shop_failure_then_commit_and_incremental_cache",
+    "tests.test_native_features.NativeFeatureTests.test_native_unknown_commit_recovery_survives_bridge_restart",
+    "tests.test_native_features.NativeFeatureTests.test_gift_other_session_incremental_sync_and_local_purchase_keeps_all_changes",
+    "tests.test_native_features.NativeFeatureTests.test_native_friend_groups_preserve_remark_and_blacklist",
+    "tests.test_native_features.NativeFeatureTests.test_native_clan_identity_queries_and_review_permissions"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 30.5
+}

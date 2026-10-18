@@ -1,0 +1,19 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 7,
+  "passed": [
+    "tests.test_native_containers.NativeContainerTests.test_all_source_pools_and_lost_random_response_recover_same_receipt",
+    "tests.test_native_containers.NativeContainerTests.test_concurrent_replay_keeps_one_consumption_and_three_rewards",
+    "tests.test_native_containers.NativeContainerTests.test_existing_card_gets_independent_reward_without_false_capacity_error",
+    "tests.test_native_containers.NativeContainerTests.test_protocol_failure_success_and_unknown_commit_recovery",
+    "tests.test_native_containers.NativeContainerTests.test_random_concurrent_retry_and_legacy_fixed_recipe",
+    "tests.test_native_containers.NativeContainerTests.test_random_counter_counts_are_increment_only_and_tail_failure_rolls_back",
+    "tests.test_native_containers.NativeContainerTests.test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 41.359
+}

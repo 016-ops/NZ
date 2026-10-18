@@ -1,0 +1,23 @@
+{
+  "kind": "ORIGINAL_ROOM_RESOURCE_STAGING_NOT_READY",
+  "maps": [
+    113,
+    168
+  ],
+  "remote_workspace": "C:/NZResearch/client-workspaces/cn2020-room-20261018",
+  "total_bytes": 14944962452,
+  "unresolved_imports": [
+    "EditorMeshes",
+    "Weapon_Manta",
+    "UN_Sky"
+  ],
+  "original_client_writes": 0,
+  "native_started": false,
+  "node_ready": false,
+  "staged_files": 2725,
+  "upload_complete": true,
+  "remote_hashes_verified": false,
+  "source_independent_copy": true,
+  "resumed_from": 565,
+  "elapsed_seconds": 6956.2
+}

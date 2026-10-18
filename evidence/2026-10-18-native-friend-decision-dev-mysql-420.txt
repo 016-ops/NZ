@@ -1,0 +1,17 @@
+test_native_friend_decision_matches_live_request_and_preserves_unknown (tests.test_native_features.NativeFeatureTests.test_native_friend_decision_matches_live_request_and_preserves_unknown)
+实收同意33537建立双向关系；通用成功33536不得当成拒绝，专用拒绝769仅移除待办。 ... ok
+test_friend_delivery_block_and_unrelated_event_ack (tests.test_native_features.NativeFeatureTests.test_friend_delivery_block_and_unrelated_event_ack)
+申请与私聊投递给真实对端，第三方不能确认事件，拉黑后私聊拒绝。 ... ok
+test_native_friend_groups_preserve_remark_and_blacklist (tests.test_native_features.NativeFeatureTests.test_native_friend_groups_preserve_remark_and_blacklist)
+原生分组/删除组/黑名单回放真实关系；单改分组不能抹掉备注，超长消息不能进入事件箱。 ... ok
+test_bridge_poll_uses_one_view_and_respects_animation_hold (tests.test_native_session_sync.NativeSessionSyncTests.test_bridge_poll_uses_one_view_and_respects_animation_hold)
+空闲心跳只用一个HTTP读，开奖延迟期间仍处理社交但不提前投影奖励。 ... ok
+test_clan_online_follows_heartbeat_and_logout (tests.test_native_session_sync.NativeSessionSyncTests.test_clan_online_follows_heartbeat_and_logout)
+加入战队不会直接变在线；有效游戏心跳变在线，退出来源会话后立即离线。 ... ok
+test_snapshot_is_private_and_does_not_ack_events (tests.test_native_session_sync.NativeSessionSyncTests.test_snapshot_is_private_and_does_not_ack_events)
+别人的事件与资产不进入快照；发送者只有公开身份，读取不把未送达事件提前确认。 ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 157.597s
+
+OK

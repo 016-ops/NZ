@@ -1,0 +1,9 @@
+{
+  "kind": "INDEPENDENT_ARCHIVE_BASELINE_FOR_REAL_CLIENT",
+  "files": 8982,
+  "bytes": 30299626336,
+  "manifest_sha256": "3ead163a832764a8d0f085c3fd52da0c46fd6f9ffcaa2ece53b05cb51d086e9c",
+  "hardlinks": false,
+  "original_write_operations": 0,
+  "seconds": 176.968
+}

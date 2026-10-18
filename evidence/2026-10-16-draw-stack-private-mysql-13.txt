@@ -1,0 +1,32 @@
+test_material_partial_consume_uses_stack_update_and_context_is_private (tests.test_native_draw_round.NativeDrawRoundTests.test_material_partial_consume_uses_stack_update_and_context_is_private)
+部分扣料使用专用计数通知，合并视图仅返回本人回执，减少原生开奖往返。 ... ERROR
+test_native_pool_dates_cost_and_choice_types (tests.test_native_draw_round.NativeDrawRoundTests.test_native_pool_dates_cost_and_choice_types)
+原生初始化返回有效开放区间、实际成本、剩余列表及合法自选类型，避免整页锁死。 ... ok
+
+======================================================================
+ERROR: test_material_partial_consume_uses_stack_update_and_context_is_private (tests.test_native_draw_round.NativeDrawRoundTests.test_material_partial_consume_uses_stack_update_and_context_is_private)
+部分扣料使用专用计数通知，合并视图仅返回本人回执，减少原生开奖往返。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_draw_round.py", line 137, in test_material_partial_consume_uses_stack_update_and_context_is_private
+    other,_,token,base=self.player_game('isolated-context')
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_inventory.py", line 31, in player_game
+    self.command('character.create', {'nickname': 'inventory-'+suffix}, player)
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_control_plane.py", line 64, in command
+    return self.s.command(token or self.owner, action, self.meta(**(data or {})))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\service.py", line 392, in command
+    result = self._account_command(c, actor, action, data)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\service.py", line 460, in _account_command
+    nickname = unicodedata.normalize('NFC', text_field(data.get('nickname'), 'nickname', 24))
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\service.py", line 54, in text_field
+    raise Fault('INVALID', f'Invalid {name}')
+revival.service.Fault: Invalid nickname
+
+----------------------------------------------------------------------
+Ran 2 tests in 11.712s
+
+FAILED (errors=1)

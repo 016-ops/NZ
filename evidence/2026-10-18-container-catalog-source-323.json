@@ -1,0 +1,14 @@
+{
+  "kind": "CONTAINER_SOURCE_CATALOG_REPRODUCED",
+  "source_hashes": {
+    "DefaultCommonDataLibrary.ini": "34702b2499def121c51a49a99255db6186fd12355438c81ef3a297d5381576fb",
+    "DefaultItemLibrary.ini": "741963c2174004735a9456ea559a6976f53665f591f9ba995d7889b8db0911a6"
+  },
+  "version": "cn2020-container-compat-v2",
+  "recipes": 38,
+  "pending": 102,
+  "sha256": "79b724843a9dbc2b700d79e0cd413c90587a2a13f36c08447912fde19846a364",
+  "original_client_writes": 0,
+  "old_307_recipe_unchanged": true,
+  "probability_policy": "uniform_explicit_compatibility"
+}

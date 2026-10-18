@@ -63,6 +63,7 @@ PERMISSIONS = {
 }
 
 COMMANDS = {
+    'native.rules.preview': '*', 'native.rules.publish': '*',
     'admin.create': '*', 'admin.update': '*', 'admin.password.reset': '*',
     'admin.mfa.reset': '*', 'admin.recovery.rotate': '*',
     'asset.batch.preview': '*', 'asset.batch.enqueue': '*', 'asset.batch.retry': '*', 'asset.review.resolve': '*',
@@ -115,6 +116,9 @@ class Service:
             'id': 'cn-current-unverified', 'evidence': 'UNKNOWN', 'currencies': {}, 'items': {},
             'offers': {}, 'maps': {}, 'inventory_limit': 0,
         }
+        if not test_profile:
+            from .catalogs import with_native_inventory
+            self.catalog = with_native_inventory(self.catalog)
         from django.conf import settings
         if test_pve or getattr(settings, 'NZ_PVE_TEST_PROFILE', False):
             if not test_profile:
@@ -363,7 +367,10 @@ class Service:
                                               and type(x.get('delta')) is int) > 10000)
             if high_risk and actor['kind'] == 'admin' and actor['role'] == 'owner':
                 self._step_up(c, actor, data)
-            if action.startswith('admin.'):
+            if action.startswith('native.rules.'):
+                from .native_rewards import publish
+                result = publish(self,c,actor,action,data)
+            elif action.startswith('admin.'):
                 from .administration import admin_command
                 result = admin_command(self, c, actor, action, data)
             elif action == 'node.enroll':
@@ -434,6 +441,10 @@ class Service:
         if member:
             from .rooms import leave_room
             leave_room(self, c, account_id, member['room_id'])
+            # 账号注销/停用也释放独立游戏席位并通知剩余成员，不能遗留另一连接可控制的幽灵席位。
+            c.delete('native_room_presence',Q(account_id=account_id))
+            from .native_rooms import changed
+            changed(self,c,member['room_id'])
 
     # 实现邀请、角色初始化、审批、停用、重置和制裁；保留原状态转换和权限边界，外层负责统一幂等和审计。
     def _account_command(self, c, actor, action, data):
@@ -465,7 +476,12 @@ class Service:
                 raise Fault('CONFLICT', 'Nickname is already used', 409)
             for currency in self.catalog['currencies']:
                 c.insert('wallets', {'account_id': actor['id'], 'currency': currency, 'balance': 0})
-            return {'character_id': character_id, 'state': 'READY', 'evidence': 'LOCAL_EQUIVALENT', 'starter_assets': 'NONE'}
+            from django.conf import settings
+            starter='NONE'
+            if self.catalog.get('native_assets') and getattr(settings,'NZ_STARTER_EQUIPMENT_ENABLED',True):
+                from .native_starter import ensure
+                starter=ensure(self,c,actor['id'])
+            return {'character_id': character_id, 'state': 'READY', 'evidence': 'LOCAL_EQUIVALENT', 'starter_assets': starter}
         if action == 'sanction.revoke':
             row = c.select('sanctions', Q(id=data.get('sanction_id'))).fetchone()
             if row is None:
@@ -523,6 +539,9 @@ class Service:
     def query(self, token, view, **filters):
         """按视图执行服务端权限检查和有界分页；只暴露旧接口允许的逻辑列，资源/用户管理员只读自己的审计记录。"""
         with self.db.transaction() as c:
+            if view == 'native-rules':
+                self._actor(c,token,'*')
+                return list(c.select('native_rule_revisions',order=('namespace','-revision'),limit=200))
             if view in ('pve', 'pve-runs'):
                 actor = self._actor(c, token)
                 if actor['kind'] == 'admin' and actor['role'] not in ('owner', 'auditor'):

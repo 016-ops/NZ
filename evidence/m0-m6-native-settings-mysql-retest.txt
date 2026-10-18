@@ -1,0 +1,19 @@
+test_audit_and_outbox_failures_roll_back_settings_update (tests.test_native_settings.NativeSettingsTests.test_audit_and_outbox_failures_roll_back_settings_update)
+审计或outbox故障必须与设置更新一起回滚，不能回复一次并未持久化的保存成功。 ... ok
+test_binary_roundtrip_restart_and_client_version_isolation (tests.test_native_settings.NativeSettingsTests.test_binary_roundtrip_restart_and_client_version_isolation)
+包含NUL/非UTF8的3200B设置原样重登；另一客户端指纹与未知TDR不能覆盖原版本。 ... ok
+test_concurrent_writes_and_lost_ack_retry_do_not_lose_newer_settings (tests.test_native_settings.NativeSettingsTests.test_concurrent_writes_and_lost_ack_retry_do_not_lose_newer_settings)
+同一revision并发不同正文只有一次提交；相同正文重试不增版，旧不同内容不能覆盖新内容。 ... ok
+test_cross_account_and_non_game_credentials_are_isolated (tests.test_native_settings.NativeSettingsTests.test_cross_account_and_non_game_credentials_are_isolated)
+其他账号只能写自己的设置；玩家/管理员凭据、错误客户端指纹均不能调用游戏设置。 ... ok
+test_database_constraints_reject_wrong_lengths_zero_revision_and_duplicate_scope (tests.test_native_settings.NativeSettingsTests.test_database_constraints_reject_wrong_lengths_zero_revision_and_duplicate_scope)
+直接仓储写也受真实MySQL长度/版本/复合唯一键保护，不仅依赖HTTP校验。 ... ok
+test_invalid_base64_boundaries_and_revision_fail_before_changes (tests.test_native_settings.NativeSettingsTests.test_invalid_base64_boundaries_and_revision_fail_before_changes)
+超限、非规范base64、布尔/负版本拒绝；空设置是可持久化的显式客户端选择。 ... ok
+test_source_session_revocation_expiry_and_security_change_reject_writes (tests.test_native_settings.NativeSettingsTests.test_source_session_revocation_expiry_and_security_change_reject_writes)
+每次操作检查来源会话/到期/安全版本，不允许缓存已撤销的游戏授权。 ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 35.659s
+
+OK

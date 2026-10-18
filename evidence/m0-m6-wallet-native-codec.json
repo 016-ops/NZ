@@ -1,0 +1,49 @@
+{
+  "kind": "CURRENT_NATIVE_WALLET_CODEC_NOT_LIVE",
+  "rules_version": "cn2020-wallet-width-compat-v1",
+  "player_info": [
+    {
+      "fixture": 3,
+      "bytes": 1410,
+      "sha256": "ad0c8983806e9cad2f32cd0328bfb0d1e26e5bcfb4d51cf85a0846c43daad9ea",
+      "equal": true
+    },
+    {
+      "fixture": 4,
+      "bytes": 1410,
+      "sha256": "95b20706c2a6b993c6ad9d0ae06364d982776f52fe9a17c339891f945de8cea9",
+      "equal": true
+    }
+  ],
+  "login_equal": true,
+  "tp_balance": [
+    {
+      "balance": 0,
+      "bytes": 70,
+      "sha256": "4fb89cedff20a928de1937562e15e4ab125fec36ea4040caab31f51519064c43",
+      "equal": true
+    },
+    {
+      "balance": 123456,
+      "bytes": 70,
+      "sha256": "5afa93f09be84583e0f6b384bdf4c4d1e416639f2b497ed3444ea6528755f25c",
+      "equal": true
+    },
+    {
+      "balance": 2147483647,
+      "bytes": 70,
+      "sha256": "e4d08418554ebe708d07813e1e5d6e2defa66bcc717780047a59d71e57642901",
+      "equal": true
+    }
+  ],
+  "limits": {
+    "cn2020:TP": 2147483647,
+    "cn2020:GP": 2147483647,
+    "cn2020:MP": 2147483647,
+    "cn2020:HP": 2147483647,
+    "cn2020:EP": 2147483647,
+    "cn2020:SP": 65535,
+    "cn2020:MECHA": 9223372036854775807
+  },
+  "original_business_caps_verified": false
+}

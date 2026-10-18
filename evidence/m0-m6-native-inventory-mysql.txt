@@ -1,0 +1,51 @@
+test_atomic_full_inventory_and_outbox_failure (tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure)
+容量不足和最后审计/outbox故障都回滚整个发放，保留之前已有记录。 ... ERROR
+test_concurrent_grants_commit_once (tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once)
+两连接并发全量补齐由部署事务锁串行，一次发放一次幂等返回。 ... ok
+test_full_catalog_repeat_preserves_gids_and_user_unequip (tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip)
+全4323件永久入库；重试不增加流水/GID，也不恢复玩家已经卸下的默认装备。 ... ERROR
+test_http_equipment_owner_version_revocation_and_atomicity (tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity)
+HTTP只接受游戏Bearer；装备换位/重试持久，跨账号、版本变化、来源撤销及失败写入拒绝。 ... ok
+
+======================================================================
+ERROR: test_atomic_full_inventory_and_outbox_failure (tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure)
+容量不足和最后审计/outbox故障都回滚整个发放，保留之前已有记录。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_inventory.py", line 78, in test_atomic_full_inventory_and_outbox_failure
+    before = self.counts()
+             ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_inventory.py", line 54, in counts
+    return {t:c.count(t).fetchone()[0] for t in ('inventory', 'native_inventory_bindings',
+              ^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 89, in count
+    return Rows([{'count': self.table(name).filter(condition).count()}])
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 49, in table
+    return TABLE_MODELS[name].objects.using(self.alias)
+           ~~~~~~~~~~~~^^^^^^
+KeyError: 'audit'
+
+======================================================================
+ERROR: test_full_catalog_repeat_preserves_gids_and_user_unequip (tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip)
+全4323件永久入库；重试不增加流水/GID，也不恢复玩家已经卸下的默认装备。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_inventory.py", line 67, in test_full_catalog_repeat_preserves_gids_and_user_unequip
+    before = self.counts()
+             ^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_inventory.py", line 54, in counts
+    return {t:c.count(t).fetchone()[0] for t in ('inventory', 'native_inventory_bindings',
+              ^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 89, in count
+    return Rows([{'count': self.table(name).filter(condition).count()}])
+                           ^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\db.py", line 49, in table
+    return TABLE_MODELS[name].objects.using(self.alias)
+           ~~~~~~~~~~~~^^^^^^
+KeyError: 'audit'
+
+----------------------------------------------------------------------
+Ran 4 tests in 59.356s
+
+FAILED (errors=2)

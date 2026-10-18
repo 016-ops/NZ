@@ -1,0 +1,7 @@
+{
+  "kind": "NATIVE_DLL_CODEC_NOT_CLIENT_UI",
+  "fixtures": 108,
+  "passed": true,
+  "cleanup_verified": true,
+  "private_run": "native-feature-codec-09"
+}

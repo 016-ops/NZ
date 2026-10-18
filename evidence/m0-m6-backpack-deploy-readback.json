@@ -1,0 +1,26 @@
+{
+  "release": "20261015T170739-9f43165cad44",
+  "hashes": {
+    "revival/catalogs.py": "483892f95bea1365aab2fd9c4d036dbdfc261c44f4639217cb199c79fa8f9f01",
+    "revival/native_inventory.py": "2f6470a1ac60742d99606c8f07758f84b258fea2577655dd8f3aae7d80de859b"
+  },
+  "units": {
+    "nz-dev-current.service": "active",
+    "nz-dev-current-maintain.service": "active",
+    "nz-dev-pve.service": "active",
+    "nz-dev-pve-maintain.service": "active"
+  },
+  "health": [
+    {
+      "status": "ok",
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    {
+      "status": "ok",
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  ],
+  "kind": "DEV_BACKPACK_FIX_READBACK"
+}

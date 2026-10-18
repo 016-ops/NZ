@@ -1,0 +1,17 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 5,
+  "passed": [
+    "tests.test_pve_acceptance_matrix.PveAcceptanceMatrixTests.test_all_logical_ids_and_missing_maps_remain_pending",
+    "tests.test_pve_acceptance_matrix.PveAcceptanceMatrixTests.test_dynamic_levels_keep_present_missing_and_ambiguous_states",
+    "tests.test_pve_acceptance_matrix.PveAcceptanceMatrixTests.test_global_difficulty_names_do_not_assert_per_map_support",
+    "tests.test_pve_acceptance_matrix.PveAcceptanceMatrixTests.test_legacy_and_current_tower_classes_share_scope",
+    "tests.test_pve_acceptance_matrix.PveAcceptanceMatrixTests.test_old_defense_and_name_fallback_are_distinguished"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.032
+}

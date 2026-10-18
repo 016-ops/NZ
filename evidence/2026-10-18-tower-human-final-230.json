@@ -1,0 +1,1509 @@
+{
+  "kind": "HUMAN_TOWER_NATIVE_FINAL_PARTIAL_EVIDENCE",
+  "run": "launcher-20261017-222459-162534",
+  "map_id": 273,
+  "supersedes_summary": "evidence/2026-10-17-tower-human-final-219.json",
+  "sources": {
+    "assets_first": {
+      "path": "evidence/private/tower-human-198/trace-199.json",
+      "sha256": "560895c9df925f5e9d8b3051792ba7ddf2f129bb864f4ecfcc732e7369236b0b",
+      "samples": 600,
+      "stop_reason": "TIME_BOUND"
+    },
+    "assets_last": {
+      "path": "evidence/private/tower-human-215/trace-216.json",
+      "sha256": "9e45836ffdb2e4d7158b95d42803a09bec3465ab8bab155cb603607307863ffb",
+      "samples": 205,
+      "stop_reason": "OWNED_PROCESS_OR_WORLD_EXITED"
+    },
+    "rounds_first": {
+      "path": "evidence/private/tower-human-201/trace-202.json",
+      "sha256": "40f4a135bf1ffdc528ddf1cbdcb9fb771d505bfe9e0ac249aad34bdd52ca675e",
+      "samples": 600,
+      "stop_reason": "TIME_BOUND"
+    },
+    "rounds_last": {
+      "path": "evidence/private/tower-boss-212/trace-214.json",
+      "sha256": "9ba9b9f31fe1097c4e698d814c6fd499bf0e98bff30fe67ccb5e38291ad93c7f",
+      "samples": 241,
+      "stop_reason": "OWNED_PROCESS_OR_WORLD_EXITED"
+    },
+    "world": {
+      "path": "evidence/private/tower-return-208/trace-209.json",
+      "sha256": "c5e908da376d6a8aa2441fb51621b1f2fa4422f066b3ac1af3a69c56ba17bf77",
+      "samples": 176,
+      "stop_reason": "OWNED_PROCESS_EXITED"
+    }
+  },
+  "difficulty_raw_values": [
+    2
+  ],
+  "observed_rounds": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "maximum_rounds": [
+    15
+  ],
+  "core_health_min": 2,
+  "core_health_max": 30,
+  "core_reference_missing_samples": 2,
+  "final_sample": {
+    "money": 47478,
+    "player_trap_count": 50,
+    "all_trap_count": 50,
+    "core_health": 5,
+    "match_over": false
+  },
+  "trap_types": [
+    13,
+    14,
+    18,
+    27,
+    35
+  ],
+  "trap_levels": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "simultaneous_traps_max": 50,
+  "all_sampled_traps_local_owner": true,
+  "movement_axis_spans": [
+    5548.364,
+    1628.725,
+    387.286
+  ],
+  "observed_moving_samples": 483,
+  "trap_events": {
+    "assets_first": [
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 68.328,
+        "type": 35,
+        "old_level": 4,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 82.328,
+        "type": 35,
+        "old_level": 1,
+        "new_level": 4,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 106.343,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 122.343,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 142.359,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 150.359,
+        "type": 35,
+        "old_level": 4,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 164.359,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 210.375,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 216.375,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 218.39,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 220.39,
+        "type": 35,
+        "old_level": 4,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 220.39,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 222.39,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 224.39,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 226.39,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 228.39,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 248.39,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 314.421,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 322.437,
+        "type": 35,
+        "old_level": 4,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 328.437,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 352.437,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 356.453,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 482.515,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 484.515,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 500.531,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 530.546,
+        "type": 27,
+        "old_level": 4
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 534.546,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 550.546,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 552.546,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 588.578,
+        "type": 27,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 596.578,
+        "type": 27,
+        "old_level": 4,
+        "new_level": 3,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 616.593,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 4,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 4,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 686.625,
+        "type": 27,
+        "old_level": 4,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 704.64,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 722.64,
+        "type": 18,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 722.64,
+        "type": 18,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 722.64,
+        "type": 18,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 750.656,
+        "type": 18,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 750.656,
+        "type": 18,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 750.656,
+        "type": 18,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 764.671,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 768.671,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 770.671,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 772.671,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 776.671,
+        "count": 3,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 778.671,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 788.687,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 792.687,
+        "count": 3,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 798.687,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 806.687,
+        "type": 13,
+        "old_level": 1,
+        "new_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 812.703,
+        "type": 18,
+        "old_level": 3
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 816.703,
+        "type": 18,
+        "old_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 18,
+        "old_level": 3,
+        "new_level": 2
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 832.703,
+        "type": 27,
+        "old_level": 1,
+        "new_level": 4
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 14,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 14,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 14,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 14,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 832.703,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 832.703,
+        "count": 14,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 844.718,
+        "type": 35,
+        "old_level": 1
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 860.718,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 862.718,
+        "count": 3,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 878.734,
+        "count": 3,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 880.734,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 886.734,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 888.734,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 902.75,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 906.75,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 908.75,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 910.75,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 962.781,
+        "type": 18,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 964.796,
+        "type": 18,
+        "old_level": 2
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 976.796,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 982.796,
+        "type": 18,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "STABLE_FIELDS_LEVEL_CHANGE",
+        "seconds": 982.796,
+        "type": 18,
+        "old_level": 2,
+        "new_level": 3
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 992.812,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 992.812,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 1052.843,
+        "type": 18,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 1052.843,
+        "type": 18,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 1052.843,
+        "type": 18,
+        "old_level": 3,
+        "new_level": 1,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 1066.843,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 1072.859,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 1084.859,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 1104.875,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 1156.906,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 1158.906,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 1160.906,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 1164.906,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 1168.906,
+        "type": 14,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 1190.921,
+        "type": 13,
+        "old_level": 2
+      }
+    ],
+    "assets_last": [
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 8.015,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 14.031,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 26.031,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 46.046,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 98.078,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 100.078,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 102.078,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 106.078,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 110.078,
+        "type": 14,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 132.109,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 300.218,
+        "type": 18,
+        "old_level": 1
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 300.218,
+        "type": 18,
+        "old_level": 1
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 312.218,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 314.234,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 326.234,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 330.234,
+        "count": 4,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 332.234,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 336.25,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "REMOVAL_CAUSE_UNVERIFIED",
+        "seconds": 344.25,
+        "type": 13,
+        "old_level": 2
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 400.296,
+        "count": 1,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "NEW_INSTANCES_OBSERVED",
+        "seconds": 404.296,
+        "count": 2,
+        "all_local_owner": true,
+        "charged_price_verified": false
+      },
+      {
+        "kind": "SAME_LOCATION_REPLACEMENT",
+        "seconds": 408.296,
+        "type": 13,
+        "old_level": 2,
+        "new_level": 1,
+        "charged_price_verified": false
+      }
+    ]
+  },
+  "boss_health_positive_observed": false,
+  "match_over_observed": false,
+  "world_classes": [
+    "TGATD1Game"
+  ],
+  "timed_out": true,
+  "launcher_stop_requested": true,
+  "configuration_restored": true,
+  "own_process_cleanup": true,
+  "source_and_game_credentials_revoked": true,
+  "original_client_writes": 0,
+  "process_memory_writes": 0,
+  "computer_use_input_actions_during_manual_play": 0,
+  "snapshot_coherence": "Sequential read-only field samples; no atomic native snapshot or UObject serial-number proof.",
+  "sale_verified": false,
+  "isolated_trap_cost_verified": false,
+  "victory_verified": false,
+  "defeat_verified": false,
+  "native_return_verified": false,
+  "trusted_settlement_verified": false,
+  "playable_map_accepted": false,
+  "limitation": "The bounded run ended before an observed match result; no natural result or lobby transition was sampled."
+}

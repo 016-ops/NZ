@@ -1,0 +1,12 @@
+{
+  "kind": "TP_BALANCE_OFFLINE_FIXTURE_FAILURE",
+  "attempts": [
+    1,
+    2
+  ],
+  "network_sent": false,
+  "cause": "Current TDR canonicalizes empty TalentSkillInfoEx Version from 0 to 3; full host differed at offset 7248",
+  "correction": "Explicitly initialize native default version 3 without talent update flag",
+  "retest": 3,
+  "retest_passed": true
+}

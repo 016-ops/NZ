@@ -1,0 +1,77 @@
+{
+  "release": "20261016T043502-3daed1318a56",
+  "migrations": [
+    "0001_initial",
+    "0002_invariants",
+    "0003_operations_and_pve",
+    "0004_room_access_and_deliveries",
+    "0005_independent_email_login",
+    "0006_email_verification",
+    "0007_native_player_settings",
+    "0008_native_inventory_entitlements",
+    "0009_native_feature_transactions",
+    "0010_native_presence",
+    "0011_native_sync_cursor",
+    "0012_native_draw_selection",
+    "0013_native_sync_changes",
+    "0014_native_friend_groups",
+    "0015_native_clan_bindings"
+  ],
+  "entitlements": [
+    {
+      "owned": 4323,
+      "bindings": 4323,
+      "enabled": true
+    }
+  ],
+  "enabled_checkin": 0,
+  "draw_rules": [
+    {
+      "namespace": "draw:workshop",
+      "revision": 1,
+      "enabled": true
+    },
+    {
+      "namespace": "draw:fine",
+      "revision": 1,
+      "enabled": true
+    },
+    {
+      "namespace": "draw:rare",
+      "revision": 1,
+      "enabled": true
+    },
+    {
+      "namespace": "draw:selected",
+      "revision": 1,
+      "enabled": true
+    },
+    {
+      "namespace": "draw:epic",
+      "revision": 1,
+      "enabled": true
+    }
+  ],
+  "legacy_swallow_states": 0,
+  "source_sha256": "d7a061cc3e7dfc8620698ada97bd679d46ca8490e3389bcc624051622ecc61b7",
+  "health": {
+    "18765": {
+      "status": "ok",
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    "18767": {
+      "status": "ok",
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  },
+  "four_services_active": true,
+  "source_matches_local": true,
+  "service_names": [
+    "nz-dev-current",
+    "nz-dev-current-maintain",
+    "nz-dev-pve",
+    "nz-dev-pve-maintain"
+  ]
+}

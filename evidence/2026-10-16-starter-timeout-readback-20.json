@@ -1,0 +1,31 @@
+{
+  "exists": true,
+  "account_id": "ef756944fb7e478eae401f686e2f7245",
+  "game_id": 10004,
+  "starter": {
+    "status": "COMMITTED",
+    "backpacks": 6,
+    "operations": [
+      "11ab2f1db9434623bb7ce2f604bc91b5",
+      "3c85121093ca4bc2ad07b2709340ae9d",
+      "d3c2aa485ed341b2ad1c13ef6560ecb4",
+      "77fc3db1e01e4f76aefe48136ef684a3",
+      "d71e3ab827b84b48b699a209d495e02b",
+      "af1f18aa7d9b4693a5f854267b8e9297",
+      "87c55ffea52246c681a7244a8c96b426",
+      "8bfc75dec4ee4f638b5015213d44b9ec",
+      "de66e39352844dfda84187b52e41013e",
+      "ef2f8444baab4e2b8cec4f149b84574c",
+      "b4a9847f560048bb810d55648f29ce9f",
+      "b110f021d5864027bdf7c988bd4510ca",
+      "a2347205a9174d1db9f33f2fc0663138",
+      "17ff0fd068c54bcfa0aa10f05c798595",
+      "312737c66f7048f0a7e1ffff71a4f82d",
+      "fb0e2ab111d342dd8adab58c79b8faae",
+      "a183c1303b224fa49e2bfee2ac46522a"
+    ],
+    "rule_version": "cn2020-starter-loadout-v1"
+  },
+  "inventory_count": 23,
+  "materials": 1
+}

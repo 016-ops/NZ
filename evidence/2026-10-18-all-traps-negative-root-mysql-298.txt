@@ -1,0 +1,20 @@
+test_negative_root_slot_roundtrip_does_not_replace_expert_card (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_negative_root_slot_roundtrip_does_not_replace_expert_card)
+卡片-1是明确根槽；A008/A009/A006可往返，与36专家槽并存，错父和过期继续拒绝。 ... ERROR
+
+======================================================================
+ERROR: test_negative_root_slot_roundtrip_does_not_replace_expert_card (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_negative_root_slot_roundtrip_does_not_replace_expert_card)
+卡片-1是明确根槽；A008/A009/A006可往返，与36专家槽并存，错父和过期继续拒绝。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_acceptance_extended.py", line 73, in test_negative_root_slot_roundtrip_does_not_replace_expert_card
+    props=[codec.unpack_from(p,13+70*i) for p in inventory.packets() for i in range(struct.unpack_from('>H',p,11)[0])]
+                                                 ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tools\native_inventory_bridge.py", line 200, in packets
+    if location==-1 and owner and owned[owner].get('expires_at') is not None and owned[owner]['expires_at']<=int(time.time()):
+                                  ~~~~~^^^^^^^
+KeyError: 1
+
+----------------------------------------------------------------------
+Ran 1 test in 5.045s
+
+FAILED (errors=1)

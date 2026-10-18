@@ -1,0 +1,23 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 4,
+  "passed": [
+    "tests.test_native_bag_compat.NativeBagTests.test_local_eligible_calls_original_permission_and_opens_once",
+    "tests.test_native_bag_compat.NativeBagTests.test_online_ai_missing_pawn_and_ineligible_keep_original"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_bag_compat.NativeBagTests.test_fingerprint_reapplication_and_interruption_restore",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_bag_compat.py\", line 112, in test_fingerprint_reapplication_and_interruption_restore\n    with NativeConfigGuard(client,root/'evidence') as guard:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_config_guard.py\", line 92, in __init__\n    self._paths(root, output)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_config_guard.py\", line 103, in _paths\n    self.root, self.output = root.resolve(strict=True), output.resolve(strict=True)\n                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\pathlib.py\", line 1240, in resolve\n    s = self._flavour.realpath(self, strict=strict)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen ntpath>\", line 695, in realpath\nFileNotFoundError: [WinError 2] 系统找不到指定的文件。: 'C:\\\\Users\\\\ZJH\\\\NZ\\\\2020逆战\\\\repository\\\\runtime\\\\test-tmp\\\\tmp6sb72zqf\\\\evidence'\n"
+    },
+    {
+      "test": "tests.test_native_bag_compat.NativeBagTests.test_original_region_and_all_other_exports_preserved",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_bag_compat.py\", line 99, in test_original_region_and_all_other_exports_preserved\n    expected=bytearray(self.before.read(logical,size))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_owned_loadout_compat.py\", line 100, in read\n    _require(0<size<=12*1024*1024 and 0<=offset<=self.logical_end-size,'READ_BOUNDS_INVALID')\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_owned_loadout_compat.py\", line 27, in _require\n    raise ValueError('OWNED_LOADOUT_'+code)\nValueError: OWNED_LOADOUT_READ_BOUNDS_INVALID\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 24.281
+}

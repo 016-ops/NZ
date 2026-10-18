@@ -1,0 +1,11 @@
+{
+  "kind": "OFFLINE_X86_NATIVE_CODEC_NOT_LIVE",
+  "fixtures": 214,
+  "full_host_equal": true,
+  "python_equal": true,
+  "repack_equal": true,
+  "cleanup_verified": true,
+  "game_started": false,
+  "network_init_called": false,
+  "exit_code": 0
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "LAUNCHER_GRAPHICS_CHANGED_PYTHON_COMMENTS",
+  "counts": {
+    "tools/native_graphics_compat.py": 3,
+    "tools/prepare_graphics_compat.py": 2,
+    "tools/native_config_guard.py": 13,
+    "tools/native_launcher.py": 28,
+    "tools/native_capability_matrix.py": 3,
+    "tests/test_native_graphics_compat.py": 6,
+    "tests/test_native_config_guard.py": 29,
+    "tests/test_native_launcher.py": 21
+  },
+  "missing": [],
+  "whole_repository_claim": false
+}

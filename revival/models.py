@@ -1,6 +1,8 @@
 """控制面持久化模型；保持旧业务列名并以 MySQL 约束保护身份、资产和房间关系。"""
 from django.db import models
 from django.db.models import Q, F
+from django.db.models.functions import Length
+from django.db.models.lookups import Exact
 
 # 固定主键为 1 的单行锁；用 SELECT FOR UPDATE 保留本地控制面原有串行事务语义。
 class DeploymentLock(models.Model):
@@ -100,6 +102,8 @@ class GameSession(models.Model):
     client_sha256 = models.CharField(max_length=64)
     created_at = models.BigIntegerField()
     expires_at = models.BigIntegerField()
+    # 新Launcher使用可续短租约；空值保持历史一小时会话合同，不改写已有会话。
+    lease_max_expires_at = models.BigIntegerField(null=True)
     revoked = models.BooleanField(default=False)
 
     class Meta:
@@ -203,7 +207,31 @@ class Inventory(models.Model):
         db_table = 'inventory'
         constraints = [models.CheckConstraint(condition=Q(quantity__gt=0), name='ck_inventory')]
 
-# 账号与槽位唯一，引用已验证归属的库存实例；开始对局时复制到冻结快照。
+# 原生数值标识与持久库存一对一绑定，不能以临时夹具GID替代真实资产。
+class NativeInventoryBinding(models.Model):
+    """为真实库存实例分配重登稳定的原生数值GID；线上值为id+1000，保留根对象1。"""
+    id = models.BigAutoField(primary_key=True)
+    inventory = models.OneToOneField(Inventory, on_delete=models.DO_NOTHING)
+    rules_version = models.CharField(max_length=100)
+
+    class Meta:
+        """仅增加映射表，不改原库存主键、已有账号资产或不可改写流水。"""
+        db_table = 'native_inventory_bindings'
+
+
+class NativeSuperAccount(models.Model):
+    """记录用户明确授权的全目录权益；这是游戏资产权益，不是后台Owner或绕过认证。"""
+    account = models.OneToOneField(Account, on_delete=models.DO_NOTHING, primary_key=True)
+    rules_version = models.CharField(max_length=100)
+    source_sha256 = models.CharField(max_length=64)
+    granted_at = models.BigIntegerField()
+    enabled = models.BooleanField(default=True)
+
+    class Meta:
+        """账号一对一权益版本与资产发放在同一个事务提交。"""
+        db_table = 'native_super_accounts'
+
+
 class Equipment(models.Model):
     """账号与槽位唯一，引用已验证归属的库存实例；开始对局时复制到冻结快照。"""
     internal_id = models.BigAutoField(primary_key=True)
@@ -512,7 +540,315 @@ class EmailChallenge(models.Model):
                    models.Index(fields=['ip_digest', 'created_at'], name='email_source_window')]
 
 
+class NativePlayerSettings(models.Model):
+    """按账号、客户端指纹及TDR版本隔离保存原生不透明设置；版本号用于并发写入和断线重试。"""
+    id = models.CharField(max_length=32, primary_key=True, db_collation='utf8mb4_0900_bin')
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    client_sha256 = models.CharField(max_length=64, db_collation='utf8mb4_0900_bin')
+    metadata_sha256 = models.CharField(max_length=64, db_collation='utf8mb4_0900_bin')
+    payload = models.BinaryField(max_length=3200)
+    payload_sha256 = models.CharField(max_length=64, db_collation='utf8mb4_0900_bin')
+    byte_count = models.PositiveSmallIntegerField()
+    revision = models.PositiveBigIntegerField()
+    updated_at = models.BigIntegerField()
+
+    class Meta:
+        """向前新增独立表，不覆盖账号/资产；复合唯一键和大小约束拒绝版本混用或超限数据。"""
+        db_table = 'native_player_settings'
+        constraints = [
+            models.UniqueConstraint(fields=['account','client_sha256','metadata_sha256'], name='uq_native_settings_scope'),
+            models.CheckConstraint(condition=Q(byte_count__lte=3200) & Q(revision__gte=1), name='ck_native_settings_bounds'),
+            models.CheckConstraint(condition=Exact(Length('payload'), F('byte_count')), name='ck_native_settings_length'),
+        ]
+
+
+class NativeSyncCursor(models.Model):
+    """玩家资产同步版本；分页期间发生写入时要求重新读取，避免拼接不同快照。"""
+    account = models.OneToOneField(Account, on_delete=models.DO_NOTHING, primary_key=True)
+    revision = models.PositiveBigIntegerField(default=0)
+
+    class Meta:
+        """版本随统一资产事务推进，迁移不改写既有实例或流水。"""
+        db_table = 'native_sync_cursors'
+
+
+class NativeItemState(models.Model):
+    """原生实例的皮肤、耐久及成长附加状态；保留原库存主键和稳定GID。"""
+    inventory = models.OneToOneField(Inventory, on_delete=models.CASCADE, primary_key=True)
+    state = models.JSONField(default=dict)
+    revision = models.PositiveBigIntegerField(default=1)
+
+    class Meta:
+        """附加状态随合法耗尽实例删除，历史状态另存不可变资产详情。"""
+        db_table = 'native_item_states'
+
+
+class NativeRuleRevision(models.Model):
+    """管理员发布的不可变规则快照；停用只改变当前启用标记，历史领奖仍引用原版本。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    namespace = models.CharField(max_length=100, db_collation='utf8mb4_0900_bin')
+    revision = models.PositiveBigIntegerField()
+    definition = models.JSONField()
+    enabled = models.BooleanField(default=False)
+    created_at = models.BigIntegerField()
+    actor = models.CharField(max_length=160)
+
+    class Meta:
+        """命名空间内版本唯一，发布在部署事务锁内进行。"""
+        db_table = 'native_rule_revisions'
+        constraints = [models.UniqueConstraint(fields=['namespace','revision'], name='uq_native_rule_revision')]
+
+
+class NativeReceipt(models.Model):
+    """购物、赠礼和抽奖的持久回执；开奖后确认只回读结果，不再次扣费或随机。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    kind = models.CharField(max_length=32)
+    result = models.JSONField()
+    created_at = models.BigIntegerField()
+    confirmed = models.BooleanField(default=False)
+
+    class Meta:
+        """按本人及创建时间查询历史，客户端不能读其他玩家订单或抽奖。"""
+        db_table = 'native_receipts'
+        indexes = [models.Index(fields=['account','created_at'], name='native_receipt_history')]
+
+
+class NativeSyncChange(models.Model):
+    """资产版本对应的变化实例；接收者可按版本补取，不依赖消息是否已读或最后50张订单。"""
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    revision = models.PositiveBigIntegerField()
+    instance_ids = models.JSONField(null=True)
+
+    class Meta:
+        """同账号版本唯一；None表示早期批量调整需重新建立全量快照。"""
+        db_table = 'native_sync_changes'
+        constraints = [models.UniqueConstraint(fields=['account','revision'], name='uq_native_sync_change')]
+
+
+class NativeDrawSelection(models.Model):
+    """本人自选奖池绑定规则快照；规则换版后必须重新选择，不能默用旧物品集合。"""
+    account = models.OneToOneField(Account, on_delete=models.DO_NOTHING, primary_key=True)
+    rule = models.ForeignKey(NativeRuleRevision, on_delete=models.DO_NOTHING)
+    selected = models.JSONField(default=list)
+    # 保留用户选中的2项，另外冻结服务端补足的整轮奖池；重连不能重新生成。
+    pool_keys = models.JSONField(default=list)
+    round_id = models.CharField(max_length=32, default='')
+
+    class Meta:
+        """一账号一份当前选择；历史开奖仍保存在不可重抽的订单中。"""
+        db_table = 'native_draw_selections'
+
+
+class NativeEngineeringProgress(models.Model):
+    """本人各工程配方的累计尝试与熟练度；与扣费、制造结果及回执在同一事务提交。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    recipe_id = models.PositiveIntegerField()
+    proficiency = models.PositiveSmallIntegerField(default=0)
+    attempts = models.PositiveBigIntegerField(default=0)
+
+    class Meta:
+        """唯一约束防止重连产生平行熟练度记录，历史值不因客户端配置更新自动重置。"""
+        db_table = 'native_engineering_progress'
+        constraints = [models.UniqueConstraint(fields=['account','recipe_id'], name='uq_native_engineering_recipe')]
+
+
+class NativeWorkshopState(models.Model):
+    """工坊每日免费次数的账号事实；规则换版、重登和跨进程不能恢复当天已用次数。"""
+    account = models.OneToOneField(Account, on_delete=models.DO_NOTHING, primary_key=True)
+    last_free_at = models.PositiveBigIntegerField(default=0)
+
+    class Meta:
+        """只新增状态表，不更改已有库存或订单；抽奖事务与此状态一起提交。"""
+        db_table = 'native_workshop_states'
+
+
+class NativeCheckin(models.Model):
+    """北京时间每日签到事实；规则换版不会解除同活动同日唯一约束。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    campaign = models.CharField(max_length=100)
+    day = models.DateField()
+    rule = models.ForeignKey(NativeRuleRevision, on_delete=models.DO_NOTHING)
+    result = models.JSONField()
+
+    class Meta:
+        """重复点击和跨进程并发最多产生一次签到及奖励。"""
+        db_table = 'native_checkins'
+        constraints = [models.UniqueConstraint(fields=['account','campaign','day'], name='uq_native_checkin_day')]
+
+
+class NativePlayerEvent(models.Model):
+    """发给指定玩家的持久事件；确认只标记该玩家事件，不改其他接收者状态。"""
+    id = models.BigAutoField(primary_key=True)
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    kind = models.CharField(max_length=64)
+    payload = models.JSONField()
+    created_at = models.BigIntegerField()
+    acknowledged = models.BooleanField(default=False)
+
+    class Meta:
+        """按接收者及确认状态索引，离线后仍可继续读取待送达记录。"""
+        db_table = 'native_player_events'
+        indexes = [models.Index(fields=['account','acknowledged','id'], name='native_events_pending')]
+
+
+class NativePresence(models.Model):
+    """近期游戏心跳绑定真实游戏会话；源会话退出、封禁或超时立即失去在线资格。"""
+    account = models.OneToOneField(Account, on_delete=models.DO_NOTHING, primary_key=True)
+    game = models.ForeignKey(GameSession, on_delete=models.DO_NOTHING)
+    last_seen = models.BigIntegerField()
+
+    class Meta:
+        """在线记录每账号覆盖更新，不追加无限增长的心跳事件。"""
+        db_table = 'native_presence'
+
+
+class NativeFriendGroup(models.Model):
+    """玩家自定义好友分组；编号保存在账号范围内，删除分组只把好友移回默认组。"""
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    group_id = models.PositiveSmallIntegerField()
+    name = models.CharField(max_length=32)
+
+    class Meta:
+        """当前原生最多10组，与好友关系和备注独立保存。"""
+        db_table = 'native_friend_groups'
+        constraints = [models.UniqueConstraint(fields=['account','group_id'], name='uq_native_friend_group')]
+
+
+class NativeFriend(models.Model):
+    """有方向的好友关系与备注、分组、拉黑；同意申请时在事务内建立双向关系。"""
+    id = models.BigAutoField(primary_key=True)
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING, related_name='+')
+    peer = models.ForeignKey(Account, on_delete=models.DO_NOTHING, related_name='+')
+    status = models.CharField(max_length=16)
+    remark = models.CharField(max_length=64, default='')
+    group = models.CharField(max_length=64, default='')
+
+    class Meta:
+        """每对有向账号只有一份关系，禁止自己成为自己的好友。"""
+        db_table = 'native_friends'
+        constraints = [models.UniqueConstraint(fields=['account','peer'], name='uq_native_friend_pair'),
+                       models.CheckConstraint(condition=~Q(account=F('peer')), name='ck_native_friend_self')]
+
+
+class NativeClan(models.Model):
+    """本地战队资料；资金使用已有钱包账本，成员权限由成员表实时读取。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    name = models.CharField(max_length=64, unique=True, db_collation='utf8mb4_0900_bin')
+    announcement = models.CharField(max_length=1000, default='')
+    capacity = models.PositiveIntegerField(default=100)
+    badge = models.PositiveIntegerField(default=0)
+    active = models.BooleanField(default=True)
+    created_at = models.BigIntegerField()
+
+    class Meta:
+        """解散保留队伍历史，不删除社交及资产审计。"""
+        db_table = 'native_clans'
+
+
+class NativeClanBinding(models.Model):
+    """当前客户端使用64位整数战队ID，与内部UUID永久一一对应。"""
+    clan = models.OneToOneField(NativeClan, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        """绑定保留到解散以后，数字ID不复用。"""
+        db_table = 'native_clan_bindings'
+
+
+class NativeClanMember(models.Model):
+    """玩家同时只能在一个战队；转让在同一事务更新新旧队长。"""
+    account = models.OneToOneField(Account, on_delete=models.DO_NOTHING, primary_key=True)
+    clan = models.ForeignKey(NativeClan, on_delete=models.DO_NOTHING)
+    role = models.CharField(max_length=16)
+    joined_at = models.BigIntegerField()
+
+    class Meta:
+        """只保存当前成员，退出和踢人历史由审计与玩家事件保留。"""
+        db_table = 'native_clan_members'
+
+
+class NativeClanApplication(models.Model):
+    """加入申请与邀请分开记录方向，接收者必须明确同意才能加入。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    clan = models.ForeignKey(NativeClan, on_delete=models.DO_NOTHING)
+    account = models.ForeignKey(Account, on_delete=models.DO_NOTHING)
+    invited = models.BooleanField(default=False)
+    status = models.CharField(max_length=16, default='PENDING')
+
+    class Meta:
+        """每人每队每方向复用一份申请状态，避免重复邀请无限新增。"""
+        db_table = 'native_clan_applications'
+        constraints = [models.UniqueConstraint(fields=['clan','account','invited'], name='uq_native_clan_application')]
+
+
+class NativeClanApplicationBinding(models.Model):
+    """原生邀请及审核以整数引用内部申请；重试复用绑定，不能按玩家ID猜申请。"""
+    application = models.OneToOneField(NativeClanApplication, on_delete=models.DO_NOTHING)
+
+    class Meta:
+        """仅稳定映射，不替代申请归属、方向和当前权限校验。"""
+        db_table = 'native_clan_application_bindings'
+
+
+class NativeRoomBinding(models.Model):
+    """原生64位房号永久绑定既有房间；短展示号仅在活动频道内复用，不回收真实房号。"""
+    id=models.BigAutoField(primary_key=True)
+    room=models.OneToOneField(Room,on_delete=models.DO_NOTHING)
+    display_id=models.PositiveSmallIntegerField()
+    main_channel=models.PositiveIntegerField(default=1)
+    sub_channel=models.PositiveIntegerField(default=1)
+    name=models.CharField(max_length=31)
+    fighter_capacity=models.PositiveSmallIntegerField()
+    observer_capacity=models.PositiveSmallIntegerField(default=0)
+    settings=models.JSONField()
+    # 原生房主移交通知需要当前房间口令；加密保存仅供新房主读，不混入公开快照或审计。
+    sealed_password=models.TextField(default='')
+    rule_version=models.CharField(max_length=64)
+    created_at=models.BigIntegerField()
+
+    class Meta:
+        """绑定独立新增表，不改变旧Room主键、资产或合成实例记录。"""
+        db_table='native_room_bindings'
+
+
+class NativeRoomPresence(models.Model):
+    """房间席位绑定实际游戏会话，过期或被撤销时释放；不依赖伪造的在线标记。"""
+    account=models.OneToOneField(Account,on_delete=models.DO_NOTHING,primary_key=True)
+    session=models.ForeignKey(GameSession,on_delete=models.DO_NOTHING)
+    observer=models.BooleanField(default=False)
+    in_match=models.BooleanField(default=False)
+
+    class Meta:
+        """一个账号只由一个有效游戏会话控制房间，旧连接不能继续改新连接的席位。"""
+        db_table='native_room_presence'
+
+
 TABLE_MODELS = {
+    'native_room_bindings':NativeRoomBinding,
+    'native_room_presence':NativeRoomPresence,
+    'native_workshop_states': NativeWorkshopState,
+    'native_clan_bindings': NativeClanBinding,
+    'native_clan_application_bindings': NativeClanApplicationBinding,
+    'native_friend_groups': NativeFriendGroup,
+    'native_sync_changes': NativeSyncChange,
+    'native_draw_selections': NativeDrawSelection,
+    'native_sync_cursors': NativeSyncCursor,
+    'native_presence': NativePresence,
+    'native_item_states': NativeItemState,
+    'native_rule_revisions': NativeRuleRevision,
+    'native_receipts': NativeReceipt,
+    'native_engineering_progress': NativeEngineeringProgress,
+    'native_checkins': NativeCheckin,
+    'native_player_events': NativePlayerEvent,
+    'native_friends': NativeFriend,
+    'native_clans': NativeClan,
+    'native_clan_members': NativeClanMember,
+    'native_clan_applications': NativeClanApplication,
+    'native_inventory_bindings': NativeInventoryBinding,
+    'native_super_accounts': NativeSuperAccount,
+    'native_player_settings': NativePlayerSettings,
     'email_challenges': EmailChallenge,
     'player_emails': PlayerEmail,
     'launch_tickets': LaunchTicket,

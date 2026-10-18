@@ -1,0 +1,10 @@
+{
+  "run": "launcher-20261016-150359-744007",
+  "source": "DIRECT_USER_TODESK_OBSERVATION",
+  "full_lobby_visible": true,
+  "window_unresponsive": true,
+  "visible_notice": "圣光裁决（分期版）还剩0天，请注意及时还款",
+  "computer_use_activation": "TIMED_OUT_TWICE",
+  "game_fixed": false,
+  "note": "显示恢复和无响应分别记录；没有宣布可交互大厅验收通过。"
+}

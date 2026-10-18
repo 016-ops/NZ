@@ -1,0 +1,9 @@
+{
+  "kind": "FRONTEND_BUILD_TEST_SANDBOX_STARTUP_FAILURE",
+  "commands": [
+    "npm --prefix admin test",
+    "npm --prefix admin run build"
+  ],
+  "error": "esbuild Cannot read directory ../../../..: Access is denied; Could not resolve repository/admin/vite.config.ts",
+  "retry": "Use normal-user environment; no source change"
+}

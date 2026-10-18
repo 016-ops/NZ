@@ -1,0 +1,49 @@
+test_all_37_recipes_keep_cost_result_and_progress (tests.test_native_engineering.NativeEngineeringTests.test_all_37_recipes_keep_cost_result_and_progress)
+包括隐藏和随机项的全部配方逐一制造；精确扣料、有效期限、熟练度和回执同存。 ... ok
+test_decompose_all_types_idempotent_and_batch_atomic (tests.test_native_engineering.NativeEngineeringTests.test_decompose_all_types_idempotent_and_batch_atomic)
+三类分解各消耗本人1件，材料数量正确；幂等重放不能再次移除或发放。 ... ok
+test_material_conversion_preserves_quantity_and_rejects_underflow (tests.test_native_engineering.NativeEngineeringTests.test_material_conversion_preserves_quantity_and_rejects_underflow)
+计数部件5合1再1拆5保持总量；重复GID拆分按实际数量合并，余额不足全回滚。 ... ok
+test_native_failure_then_success_and_progress_relogin (tests.test_native_engineering.NativeEngineeringTests.test_native_failure_then_success_and_progress_relogin)
+同连接材料不足返回工厂失败应答；补足后制造成功，重建桥后熟练度仍为1。 ... ok
+test_owner_expiry_duplicate_and_rule_version_rejected (tests.test_native_engineering.NativeEngineeringTests.test_owner_expiry_duplicate_and_rule_version_rejected)
+跨账号、过期、重复装备引用、畸形GID和过期规则均不可消费。 ... ok
+test_paid_batch_failure_rolls_back_currency_parts_progress_and_receipt (tests.test_native_engineering.NativeEngineeringTests.test_paid_batch_failure_rolls_back_currency_parts_progress_and_receipt)
+最后事件故障发生时，不留下部分奖励、扣款或先增加的熟练度。 ... ok
+test_all_current_voucher_definitions_validate (tests.test_native_workshop.NativeWorkshopTests.test_all_current_voucher_definitions_validate)
+136条当前候选和155条独立配方均通过服务端校验；不发布测试外配置。 ... ok
+test_free_day_boundary_and_failure_leave_no_state (tests.test_native_workshop.NativeWorkshopTests.test_free_day_boundary_and_failure_leave_no_state)
+北京时间午夜之前与之后分别仅一次；提交尾部故障不能占用免费日或产生半份奖品。 ... ok
+test_free_then_paid_and_rule_change_cannot_reset_day (tests.test_native_workshop.NativeWorkshopTests.test_free_then_paid_and_rule_change_cannot_reset_day)
+免费一次直接入库；确认后第二次需券，规则改版和重登不能重新免费。 ... ok
+test_guarantee_and_invalid_configuration_rejected_before_cost (tests.test_native_workshop.NativeWorkshopTests.test_guarantee_and_invalid_configuration_rejected_before_cost)
+普通奖项连续九次后第十次落在配置的保底分类；无保底池或非法原生期限发布失败。 ... ok
+test_native_pending_reconnect_failure_and_delivery (tests.test_native_workshop.NativeWorkshopTests.test_native_pending_reconnect_failure_and_delivery)
+原生免费开奖后断线，查询重放原奖；传输确认后余额不足有失败应答，仍可查询。 ... ok
+test_refund_owned_and_batch_duplicate_preserve_voucher_gid (tests.test_native_workshop.NativeWorkshopTests.test_refund_owned_and_batch_duplicate_preserve_voucher_gid)
+永久重复项退款但不跳过全额持有校验；同批第一件入库后其余九件退券，计数材料不退款。 ... ok
+test_ten_atomic_concurrent_retries_and_tail_failure (tests.test_native_workshop.NativeWorkshopTests.test_ten_atomic_concurrent_retries_and_tail_failure)
+十连尾部故障回滚十券和全部奖品；两个并发同键只生成一个持久结果。 ... ok
+test_bridge_poll_uses_one_view_and_respects_animation_hold (tests.test_native_session_sync.NativeSessionSyncTests.test_bridge_poll_uses_one_view_and_respects_animation_hold)
+空闲心跳只用一个HTTP读，开奖延迟期间仍处理社交但不提前投影奖励。 ... ok
+test_clan_online_follows_heartbeat_and_logout (tests.test_native_session_sync.NativeSessionSyncTests.test_clan_online_follows_heartbeat_and_logout)
+加入战队不会直接变在线；有效游戏心跳变在线，退出来源会话后立即离线。 ... ok
+test_snapshot_is_private_and_does_not_ack_events (tests.test_native_session_sync.NativeSessionSyncTests.test_snapshot_is_private_and_does_not_ack_events)
+别人的事件与资产不进入快照；发送者只有公开身份，读取不把未送达事件提前确认。 ... ok
+test_animation_sync_timeout_recovers_assets_without_confirming_receipt (tests.test_native_draw_round.NativeDrawRoundTests.test_animation_sync_timeout_recovers_assets_without_confirming_receipt)
+原生弹层被异常关闭且没有确认查询时，延迟到期仍补发资产，开奖回执保留可恢复。 ... ok
+test_material_partial_consume_uses_stack_update_and_context_is_private (tests.test_native_draw_round.NativeDrawRoundTests.test_material_partial_consume_uses_stack_update_and_context_is_private)
+部分扣料使用专用计数通知，合并视图仅返回本人回执，减少原生开奖往返。 ... ok
+test_native_pool_dates_cost_and_choice_types (tests.test_native_draw_round.NativeDrawRoundTests.test_native_pool_dates_cost_and_choice_types)
+原生初始化返回有效开放区间、实际成本、剩余列表及合法自选类型，避免整页锁死。 ... ok
+test_native_reconnect_preserves_unseen_result_then_refresh_acknowledges (tests.test_native_draw_round.NativeDrawRoundTests.test_native_reconnect_preserves_unseen_result_then_refresh_acknowledges)
+丢线后首次查池不确认，重放同一奖品后客户端刷新确认；全过程只扣一次15片。 ... ok
+test_refund_owned_preserves_material_gid_and_rollback_round (tests.test_native_draw_round.NativeDrawRoundTests.test_refund_owned_preserves_material_gid_and_rollback_round)
+已有永久奖品净零扣费，保留材料GID，尾部故障不推进轮次或留下回执。 ... ok
+test_two_choices_freeze_twelve_prizes_and_lock_until_finished (tests.test_native_draw_round.NativeDrawRoundTests.test_two_choices_freeze_twelve_prizes_and_lock_until_finished)
+选择2项补足12格后，重连仍读同一池；抽中不重复，半轮不能重置，结束后可以。 ... ok
+
+----------------------------------------------------------------------
+Ran 22 tests in 125.040s
+
+OK

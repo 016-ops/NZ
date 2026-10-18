@@ -1,0 +1,81 @@
+{
+  "kind": "CURRENT_DRAW_CONSUMER_BYTECODE_CONSTANTS",
+  "source_sha256": "cd213dcd3157bb879dcd10a7aecf490151a87bbaa6c711cbdfc3f8d04fafea6f",
+  "functions": [
+    {
+      "name": "GfxMovie_AvatarRoom.OnGetLotteryExchangePropIds",
+      "bytes": 565,
+      "sha256": "27a23c7fc0b65841d10bebc4f00fd2d71aa216375b3fe37d94192ca1344b2edb",
+      "constant_offsets": {
+        "0x8100": [
+          57
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_FragementExchange.OnGetLotteryExchangePropIds",
+      "bytes": 720,
+      "sha256": "4f03816aec856707e354b165738605d8906175179f4545947821d77b66224c4d",
+      "constant_offsets": {
+        "0x8100": [
+          199
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_ShopRoom.OnGetLotteryExchangePropIds",
+      "bytes": 525,
+      "sha256": "02d1cf7e5a1a3be62da61cebad568514c559690ea77718abde3d55972c025153",
+      "constant_offsets": {
+        "0x8100": [
+          57
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnPartExchageReturn",
+      "bytes": 278,
+      "sha256": "08f81ea1648b3c9c6e6e5065ab89aa5b0a7c9a9c00571a6da590cff0157b64d1",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnGetLotteryExchangePropIds",
+      "bytes": 823,
+      "sha256": "2bf7276e4100e9a85a88b1aeab983e4e996d9f210a50d0d41c5adcab81538754",
+      "constant_offsets": {
+        "0x8100": [
+          145
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.DecideFinalDrawIndex",
+      "bytes": 146,
+      "sha256": "6f8427e3b98820d2a06f526f2952d08ba0606a433c9e97679dbbb83c05d237c2",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    }
+  ],
+  "boundary": "Constants require branch and real-client confirmation; no script or process mutation"
+}

@@ -1,0 +1,21 @@
+test_expired_renew_and_transaction_tail_failures (tests.test_native_maintenance.NativeMaintenanceTests.test_expired_renew_and_transaction_tail_failures)
+过期实例从当前时间续费；续费和出售在事件末尾失败均回滚钱包、实例及回执。 ... ok
+test_renew_wire_retains_gid_and_expiry_and_rejects_permanent (tests.test_native_maintenance.NativeMaintenanceTests.test_renew_wire_retains_gid_and_expiry_and_rejects_permanent)
+A509续费有限期SCAR，保留GID且延长原期限；永久物品负应答不影响后续请求。 ... ok
+test_repair_batch_failure_is_atomic_and_cross_account_rejected (tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_failure_is_atomic_and_cross_account_rejected)
+事件末尾失败回滚两件耐久和钱包，外账号GID混入整单拒绝。 ... ok
+test_repair_batch_price_replay_and_preserved_state (tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_price_replay_and_preserved_state)
+两件缺损一起扣GP并修满；同键重放不重复扣款，满耐久新请求无新资产操作。 ... ok
+test_repair_wire_failure_then_success_and_concurrent_replay (tests.test_native_maintenance.NativeMaintenanceTests.test_repair_wire_failure_then_success_and_concurrent_replay)
+余额不足后同桥接可继续，随后并发同键只修一次；应答给原生耐久更新原因6。 ... ok
+test_restored_offer_purchase_and_sale_window_remain_authoritative (tests.test_native_maintenance.NativeMaintenanceTests.test_restored_offer_purchase_and_sale_window_remain_authoritative)
+恢复SCAR正常购买且重复提交只发一份；未关联隐藏商品和已下架商品仍被拒绝。 ... ok
+test_sell_default_and_equipped_rejected (tests.test_native_maintenance.NativeMaintenanceTests.test_sell_default_and_equipped_rejected)
+默认小刀和仍装备的可售MP5不得出售；库存、装备和流水保持。 ... ok
+test_sell_wire_response_loss_recovers_without_second_reward (tests.test_native_maintenance.NativeMaintenanceTests.test_sell_wire_response_loss_recovers_without_second_reward)
+出售后丢应答，重建桥接恢复同一结果；物品已不存在也不能重复发退款。 ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 41.818s
+
+OK

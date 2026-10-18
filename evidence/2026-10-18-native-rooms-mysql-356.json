@@ -1,0 +1,35 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 19,
+  "passed": [
+    "tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure",
+    "tests.test_native_inventory.NativeInventoryTests.test_backpack_root_preserves_all_other_bags_and_children",
+    "tests.test_native_inventory.NativeInventoryTests.test_compact_commit_is_atomic_authorized_and_matches_full_snapshot",
+    "tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once",
+    "tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip",
+    "tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once",
+    "tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_maximize_atomic_repeat_and_isolation",
+    "tests.test_native_inventory.NativeInventoryTests.test_hidden_default_knife_replaces_owned_melee_only",
+    "tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity",
+    "tests.test_native_inventory.NativeInventoryTests.test_native_zero_target_unequip_owned_only_and_repeat",
+    "tests.test_native_inventory.NativeInventoryTests.test_pve_role_switch_preserves_factions_and_rejects_other_owner",
+    "tests.test_native_rooms.NativeRoomTests.test_create_retry_keeps_id_and_assets_and_hides_password",
+    "tests.test_native_rooms.NativeRoomTests.test_game_lease_revoke_releases_and_transfers_without_parent_logout",
+    "tests.test_native_rooms.NativeRoomTests.test_last_fighter_seat_is_atomic_and_bad_password_preserves_room",
+    "tests.test_native_rooms.NativeRoomTests.test_observer_has_no_reward_eligibility_and_owner_can_reconfigure",
+    "tests.test_native_rooms.NativeRoomTests.test_ready_revision_owner_kick_and_cross_room_reference",
+    "tests.test_native_rooms.NativeRoomTests.test_settings_are_server_validated_and_missing_map_does_not_allocate",
+    "tests.test_native_rooms.NativeRoomTests.test_tail_event_fault_rolls_back_whole_creation"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_start_reserves_frozen_instance_but_cannot_fake_native_ready",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_rooms.py\", line 134, in test_start_reserves_frozen_instance_but_cannot_fake_native_ready\n    second=self.call('room.start');self.assertNotEqual(second['match_id'],match['id'])\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_rooms.py\", line 38, in call\n    return features.command(self.s,token,self.meta(**base,action=action,**data))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_features.py\", line 147, in command\n    result=room_command(service,c,account,session,action,data)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_rooms.py\", line 233, in command\n    if not players or any(not p['ready'] for p in players):raise Fault('NOT_READY','战斗成员尚未全部准备',409)\n                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nrevival.service.Fault: 战斗成员尚未全部准备\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 133.531
+}

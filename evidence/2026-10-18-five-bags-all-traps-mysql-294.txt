@@ -1,0 +1,67 @@
+test_entire_extended_batch_rolls_back_on_second_account_failure (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_entire_extended_batch_rolls_back_on_second_account_failure)
+新增方案仍共用一笔MySQL事务；第二账号事件失败不能留下首账号的套装或卡。 ... ok
+test_five_exact_bags_with_concurrent_retry_and_original_receipt (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_five_exact_bags_with_concurrent_retry_and_original_receipt)
+原v1回执保留；新v2并发只提交一次，五套20件和四卡永久入库并准确挂接。 ... ok
+test_full_gm_entitlements_and_gids_are_reused (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_full_gm_entitlements_and_gids_are_reused)
+4323项永久GM库存完全复用原实例；新方案不得重发套装、全能卡或删除任何旧权益。 ... ok
+test_negative_root_slot_roundtrip_does_not_replace_expert_card (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_negative_root_slot_roundtrip_does_not_replace_expert_card)
+卡片-1是明确根槽；A008/A009/A006可往返，与36专家槽并存，错父和过期继续拒绝。 ... ERROR
+test_captured_native_seq_and_reward_id_request_grants_then_rejects_active_duplicate (tests.test_native_pve_benefits.NativePveBenefitTests.test_captured_native_seq_and_reward_id_request_grants_then_rejects_active_duplicate)
+固定第71轮实收18字节请求，独立于编码器字段假设；领取成功后同连接和重复点击正常。 ... ok
+test_claim_multiple_actual_rewards_idempotency_and_receipt (tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_multiple_actual_rewards_idempotency_and_receipt)
+三个权益分别产生144小时武器；同请求返回原结果，仍持有有效武器时不重复发放。 ... ok
+test_claim_origin_survives_pages_delta_relogin_and_same_weapon_purchase (tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_origin_survives_pages_delta_relogin_and_same_weapon_purchase)
+旧领取实例由账本还原35；相同武器另行购买仍48，四种库存投影及原生帧一致。 ... ok
+test_claim_tail_failure_rolls_back_reward_and_claim_marker (tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_tail_failure_rolls_back_reward_and_claim_marker)
+最后通知失败同时回滚武器、领取标记及账本；同一领取随后可成功。 ... ok
+test_claimed_weapon_cannot_be_engineering_material_but_ordinary_copy_can (tests.test_native_pve_benefits.NativePveBenefitTests.test_claimed_weapon_cannot_be_engineering_material_but_ordinary_copy_can)
+同款狂蟒VIP实例禁止工程分解且整单回滚，普通购买实例仍按原配方产出材料。 ... ok
+test_concurrent_different_requests_only_grant_once (tests.test_native_pve_benefits.NativePveBenefitTests.test_concurrent_different_requests_only_grant_once)
+两个不同幂等键并发领取同一权益，部署事务锁与已领标记保证只有一次奖励。 ... ok
+test_expired_reward_can_be_reacquired_with_history_and_old_gid_preserved (tests.test_native_pve_benefits.NativePveBenefitTests.test_expired_reward_can_be_reacquired_with_history_and_old_gid_preserved)
+六天有效期结束后可再次领用，旧实例和领取流水保留；同一旧请求仍只返回原回执。 ... ok
+test_expiry_boundary_unknown_prop_and_bad_growth_are_not_success (tests.test_native_pve_benefits.NativePveBenefitTests.test_expiry_boundary_unknown_prop_and_bad_growth_are_not_success)
+到期当秒停止权益，任意武器ID/重复权益/坏成长都拒绝，不能借查询或领奖增加资产。 ... ok
+test_functional_card_root_slot_cross_account_and_native_roundtrip (tests.test_native_pve_benefits.NativePveBenefitTests.test_functional_card_root_slot_cross_account_and_native_roundtrip)
+卡片自动槽落根1，不能挂在背包或引用他人GID；拒绝后合法装备继续成功。 ... ok
+test_gm_additional_bags_keep_all_entitlements_and_get_independent_knives (tests.test_native_pve_benefits.NativePveBenefitTests.test_gm_additional_bags_keep_all_entitlements_and_get_independent_knives)
+已启用六个背包的GM保留4323项权益；额外空刀槽通过新独立默认刀补齐，不复用同一GID。 ... ok
+test_gm_existing_4323_entitlements_and_gids_survive_preset (tests.test_native_pve_benefits.NativePveBenefitTests.test_gm_existing_4323_entitlements_and_gids_survive_preset)
+完整GM目录只改装备和百宝箱状态，永久物品和稳定GID总数仍4323。 ... ok
+test_prepare_two_accounts_exact_equipment_growth_and_unchanged_wallet (tests.test_native_pve_benefits.NativePveBenefitTests.test_prepare_two_accounts_exact_equipment_growth_and_unchanged_wallet)
+两个账号得到真实首包四件套、三张根功能卡和10500点，原武器与钱包保留。 ... ok
+test_replay_is_unchanged_and_new_request_reuses_assets (tests.test_native_pve_benefits.NativePveBenefitTests.test_replay_is_unchanged_and_new_request_reuses_assets)
+未知提交重试不增发和重复审计；新请求重装复用同一GID，也保留已经领取标记。 ... ok
+test_second_account_tail_failure_rolls_back_entire_batch (tests.test_native_pve_benefits.NativePveBenefitTests.test_second_account_tail_failure_rolls_back_entire_batch)
+第二个账号最终事件失败，首账号也不能留下已提交的武器、状态或流水。 ... ok
+test_signed_time_projection_boundary_never_expires_permanent_server_right (tests.test_native_pve_benefits.NativePveBenefitTests.test_signed_time_projection_boundary_never_expires_permanent_server_right)
+2038协议日期上限不改变服务端永久有效性；真实领取仍须以数据库期限为准。 ... ok
+test_unconfirmed_wrong_owner_and_unreceipted_claim_source_do_not_mark_vip (tests.test_native_pve_benefits.NativePveBenefitTests.test_unconfirmed_wrong_owner_and_unreceipted_claim_source_do_not_mark_vip)
+来源文字不能替代真实成功回执；未确认、他人及配方不符均不得标为VIP领用。 ... ok
+test_unknown_or_disabled_target_and_duplicate_ids_do_not_modify_assets (tests.test_native_pve_benefits.NativePveBenefitTests.test_unknown_or_disabled_target_and_duplicate_ids_do_not_modify_assets)
+全批先核对账号资格；停用账号、未知账号和重复目标均不能造成部分配装。 ... ok
+test_v11_keeps_every_previous_schema_and_query_failure_keeps_connection (tests.test_native_pve_benefits.NativePveBenefitTests.test_v11_keeps_every_previous_schema_and_query_failure_keeps_connection)
+升级协议目录不得改变旧462个结构；不持有百宝箱时领奖失败后仍能正常查询。 ... ok
+test_vip_query_and_player_info_use_same_real_growth (tests.test_native_pve_benefits.NativePveBenefitTests.test_vip_query_and_player_info_use_same_real_growth)
+资料与3602都返回实际10500点及32位日期边界，不依赖伪造界面等级。 ... ok
+
+======================================================================
+ERROR: test_negative_root_slot_roundtrip_does_not_replace_expert_card (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_negative_root_slot_roundtrip_does_not_replace_expert_card)
+卡片-1是明确根槽；A008/A009/A006可往返，与36专家槽并存，错父和过期继续拒绝。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_acceptance_extended.py", line 70, in test_negative_root_slot_roundtrip_does_not_replace_expert_card
+    reply=inventory.equip(struct.pack('>HHHHhQQb',0x3243,0xa008,8,19,0,card['gid'],1,-1))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tools\native_inventory_bridge.py", line 318, in equip
+    expected_slot=body_slot(item['item_id'],target)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\native_avatar_body.py", line 36, in slot
+    part = catalog()['parts'][str(item_id)]
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+KeyError: '102000'
+
+----------------------------------------------------------------------
+Ran 23 tests in 127.371s
+
+FAILED (errors=1)

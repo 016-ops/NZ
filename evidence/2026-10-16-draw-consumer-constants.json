@@ -1,0 +1,210 @@
+{
+  "kind": "CURRENT_DRAW_CONSUMER_BYTECODE_CONSTANTS",
+  "source_sha256": "cd213dcd3157bb879dcd10a7aecf490151a87bbaa6c711cbdfc3f8d04fafea6f",
+  "functions": [
+    {
+      "name": "GfxMovie_AvatarRoom.OnResResetCustomExchangePool",
+      "bytes": 544,
+      "sha256": "583abc67f721c46306c278ef8b2af8b0c60408016e68a0636a1a223bb9b8186f",
+      "constant_offsets": {
+        "0x8100": [
+          57
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": [
+          175
+        ]
+      }
+    },
+    {
+      "name": "GfxMovie_AvatarRoom.OnGetLotteryExchangePropIds",
+      "bytes": 565,
+      "sha256": "27a23c7fc0b65841d10bebc4f00fd2d71aa216375b3fe37d94192ca1344b2edb",
+      "constant_offsets": {
+        "0x8100": [
+          57
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_FragementExchange.OnResCustomExchangePool",
+      "bytes": 325,
+      "sha256": "0823f13e4bfda38daa464620cd3364ddfaf0e367c49453330c503e8cf597da3f",
+      "constant_offsets": {
+        "0x8100": [
+          68
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": [
+          164
+        ]
+      }
+    },
+    {
+      "name": "GfxMovie_FragementExchange.OnResCustomExchangeList",
+      "bytes": 116,
+      "sha256": "9251d7c2b0365cdd6bf1742608a0a6932745ba3715fd538e9af71c4e2d9e7003",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_FragementExchange.OnResCommitCustomExchangePool",
+      "bytes": 283,
+      "sha256": "f63f31e64aa8c5734f6dd38dce55f4a738d9ee1c4346cb95e23fe870ded0bf7e",
+      "constant_offsets": {
+        "0x8100": [
+          57
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_FragementExchange.OnGetLotteryExchangePropIds",
+      "bytes": 720,
+      "sha256": "4f03816aec856707e354b165738605d8906175179f4545947821d77b66224c4d",
+      "constant_offsets": {
+        "0x8100": [
+          199
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_FragementExchange.OnResResetCustomExchangePool",
+      "bytes": 465,
+      "sha256": "13aec5bda83ee681b974a9e9d2ac4f42f81b57d2d7ac3e043c9c5b1500497d19",
+      "constant_offsets": {
+        "0x8100": [
+          57
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": [
+          89
+        ]
+      }
+    },
+    {
+      "name": "GfxMovie_FragementExchange.OnGetLotteryExchangeRandResultTimerOut",
+      "bytes": 252,
+      "sha256": "5bd985dc93544ec461c75d4158b1ce1da600cdace02b827c0592d787d15ed4ad",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_FragementExchange.OnGetLotteryExchangeRandResult",
+      "bytes": 1393,
+      "sha256": "96add10c6aeaa282dcf25625e4fed2908a6a4f87a71f413e15edc3535493c836",
+      "constant_offsets": {
+        "0x8100": [
+          294
+        ],
+        "0x2501": [],
+        "0x2507": [
+          325,
+          459
+        ],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_FragementExchange.OnLotteryExchangeRandConfirm",
+      "bytes": 306,
+      "sha256": "95a803162f4ea9a8977fd7360fd6872e11d91a4533a0a338aecdda532d109793",
+      "constant_offsets": {
+        "0x8100": [
+          74
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_ShopRoom.OnGetLotteryExchangePropIds",
+      "bytes": 525,
+      "sha256": "02d1cf7e5a1a3be62da61cebad568514c559690ea77718abde3d55972c025153",
+      "constant_offsets": {
+        "0x8100": [
+          57
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnGetLotteryPropPool",
+      "bytes": 106,
+      "sha256": "fb77f3f80ff942c67f9bab932ec3b52ceceb56fd706872e374adb802b325341f",
+      "constant_offsets": {
+        "0x8100": [
+          57
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnGetLotteryExchangePropIds",
+      "bytes": 823,
+      "sha256": "2bf7276e4100e9a85a88b1aeab983e4e996d9f210a50d0d41c5adcab81538754",
+      "constant_offsets": {
+        "0x8100": [
+          145
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnGetLotteryExchangeRandResult",
+      "bytes": 1545,
+      "sha256": "1567d7ee4452b6591475148d1dec279f9e19d24b6690f6eec178e4145de4caaf",
+      "constant_offsets": {
+        "0x8100": [
+          216
+        ],
+        "0x2501": [],
+        "0x2507": [
+          247,
+          329
+        ],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnLotteryExchangeRandConfirm",
+      "bytes": 454,
+      "sha256": "71b20cdd09941373d3492b33f379de7b11d03133d4fceb211fc5f7c33bf3b5f6",
+      "constant_offsets": {
+        "0x8100": [
+          91
+        ],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    }
+  ],
+  "boundary": "Constants require branch and real-client confirmation; no script or process mutation"
+}

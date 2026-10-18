@@ -1,0 +1,14 @@
+{
+  "kind": "OWNED_NATIVE_GRANT_CANCELLED_FOR_QUERY_PERFORMANCE",
+  "remote_transaction_seconds_observed": 711,
+  "transaction_rows_modified_before_cancel": 5304,
+  "grant_committed": false,
+  "readback": {
+    "inventory": 0,
+    "native_super_accounts": 0,
+    "equipment": 0,
+    "asset_operations": 0
+  },
+  "database_restored": false,
+  "real_emails_sent": 0
+}

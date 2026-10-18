@@ -1,0 +1,24 @@
+{
+  "kind": "M0_M6_LAST_HEALTH_NOT_PLAYABLE_RELEASE",
+  "services_active": true,
+  "health": {
+    "18765": {
+      "status": "ok",
+      "profile": "cn-current-unverified",
+      "retail_compatible": false,
+      "settings_storage": "CURRENT_TDR_OPAQUE_V1",
+      "native_launch_ready": false
+    },
+    "18767": {
+      "status": "ok",
+      "profile": "test-pve-v1",
+      "retail_compatible": false,
+      "settings_storage": "CURRENT_TDR_OPAQUE_V1",
+      "native_launch_ready": false
+    }
+  },
+  "new_real_email_sent": 0,
+  "source_session_cleanup_58_verified": true,
+  "native_lobby_verified": false,
+  "multiplayer_verified": false
+}

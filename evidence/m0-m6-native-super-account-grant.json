@@ -1,0 +1,57 @@
+{
+  "kind": "EXISTING_ACCOUNT_NATIVE_SUPER_INVENTORY_GRANT",
+  "rules_version": "cn2020-full-inventory-compat-v1",
+  "attempts": [
+    {
+      "rules_version": "cn2020-full-inventory-compat-v1",
+      "items_granted": 4323,
+      "items_owned": 4323,
+      "operation_count": 217,
+      "status": "GRANTED",
+      "native_usability": "REQUIRES_LIVE_ACCEPTANCE",
+      "seconds": 113.2
+    },
+    {
+      "rules_version": "cn2020-full-inventory-compat-v1",
+      "items_granted": 0,
+      "items_owned": 4323,
+      "operation_count": 0,
+      "status": "UNCHANGED",
+      "native_usability": "REQUIRES_LIVE_ACCEPTANCE",
+      "seconds": 2.02
+    }
+  ],
+  "real_emails_sent": 0,
+  "all_items_native_usable_verified": false,
+  "database_readback": {
+    "inventory": 4323,
+    "native_super_accounts": 1,
+    "equipment": 8,
+    "asset_operations": 217,
+    "gid_count": 4323,
+    "gid_mapping_sha256": "6113f130dae8fa0a832f70f3b29e08675e5018766a27dc03cd27cd3042376969",
+    "asset_entries": 4323,
+    "grant_audits": 1,
+    "mysql_version": "8.0.30-txsql"
+  },
+  "initial_health_check_wrong_unit_names": {
+    "exit": 3,
+    "states": [
+      "inactive",
+      "inactive",
+      "inactive",
+      "inactive"
+    ]
+  },
+  "service_health_command_exit": 0,
+  "service_health": [
+    "active",
+    "active",
+    "active",
+    "active"
+  ],
+  "http_health": [
+    "ok",
+    "ok"
+  ]
+}

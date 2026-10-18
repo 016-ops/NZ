@@ -1,0 +1,19 @@
+{
+  "kind": "DESKTOP_PIPE_GRAPHICS_COMPAT_REAL_GAME",
+  "last_phase": "INVENTORY_SENT",
+  "run": "launcher-20261016-150359-744007",
+  "parent_pipe_eof": true,
+  "source_and_game_revoked": true,
+  "configuration_restored": true,
+  "own_process_cleanup": true,
+  "lobby_verified": false,
+  "graphics_compatibility": {
+    "profile": "own-frame-copy-v2-diagnostic",
+    "files": {
+      "Binaries/Win32/d3d9.dll": "493326d60c6d2b3292cd6d416d22950e428d2e5f029c61b94f9258294bfa8520"
+    },
+    "system_changed": false,
+    "original_client_writes": 0
+  },
+  "raw_transport_files": 0
+}

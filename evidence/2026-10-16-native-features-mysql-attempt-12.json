@@ -1,0 +1,13 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 1,
+  "passed": [
+    "tests.test_native_features.NativeFeatureTests.test_kernel_attachment_parent_persistence_and_cross_account"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 7.593
+}

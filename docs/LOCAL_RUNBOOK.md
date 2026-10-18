@@ -1,5 +1,21 @@
 # 本地启动与管理手册
 
+## 日常统一入口：React + Tauri（2026-10-16）
+
+当前Launcher保留原版`TGameGfxUI.u`。工坊日期修复变体虽通过字节检查，第20轮实机加载仍被客户端拒绝，已停止安装；该按钮尚未修复。网络和图形配置继续使用恢复守卫，停止或异常恢复时还原独立工作副本，原始客户端不修改。新账号完成建角后自动获得初装；历史账号不在启动时批量覆盖装备。
+
+双击工作区根目录`启动Launcher.cmd`，打开本机`repository/launcher/bin/NZLauncher.exe`，输入自己的邮箱账号并启动游戏。窗口关闭先结束本轮游戏、恢复配置并注销；重复双击聚焦已有窗口。采用专属SSH通道连接既有DEV及远程MySQL，不复用本机测试服务。参见[完整Launcher手册](native-launcher.md)。默认兼容显示已完成本机大厅及页面切换实测；连接/库存同步仍仅是协议状态。分期0天提示可点“确定”关闭，语义修复尚未完成；退出建议使用Launcher的停止按钮，旧游戏退出活动页仍待修复。下方旧GM自动登录命令仅保留作诊断入口。
+
+## 当前原生大厅手动测试入口（2026-10-16）
+
+在`C:\Users\ZJH\NZ\2020逆战`双击`启动在线测试.cmd`。入口自动使用本机已登记GM和既有DEV服务，按需建立本机SSH隧道；不需要手工输入账号，也不发送新邮件。启动后保留命令窗口，等待游戏出现。此次没有自动退出计时；从游戏内退出后等待命令窗口完成清理，再按任意键关闭。如果游戏窗口已经退出、只剩启动器卡住，可在本轮命令窗口按Ctrl+C请求退出。
+
+重复双击或检测到上一轮配置尚未恢复时会拒绝重新登录，保护现有会话。不要直接运行恢复目录中的`TGame.exe`或`GameLoader.exe`。本入口目前供大厅、仓库、换装测试；商城购买、四类碎片/工坊抽奖及原生开局仍未完成。
+
+可在仓库根目录仅检查入口：`.venv\Scripts\python.exe -X utf8 -m tools.start_native --check`。详情和最新实机边界见[本批交接](delivery/2026-10-16-inventory-shop-role-wallet.md)。下文早期启动轮次保留为历史记录。
+
+新会话首先阅读[2026-10-15接续交接](delivery/2026-10-15-session-handoff.md)：当前Git为e42705a并有后续未提交修改；最新原生轮次25，工具113/113，角色/大厅/原生节点仍未完成。本文保留各阶段启动方式，不代替该最新状态表。
+
 当前架构为 React + TypeScript + shadcn/ui、Django 5.2、MySQL。真实游戏客户端接入仍未完成；本地业务验证不能代替原客户端兼容验收。
 
 玩家入口采用邮箱和独立密码，新用户先取得邮件验证码，使用邀请注册并等待批准；管理员切到“管理员”页签，继续使用账号、密码与 MFA。旧玩家由用户管理员/Owner 在“设置玩家邮箱”中迁移，保留原 game_id、角色与资产，撤销旧会话和旧用户名登录。页面提供“找回密码”和“验证已有邮箱”；所有权校验与账号审批是独立步骤。
@@ -13,6 +29,8 @@
 Windows 可追加 `--proxy-self-test`，用系统自带 32 位 Windows PowerShell 调用当前已核验 TenProxy，在独立进程读取本地 ID、短期令牌和会话标识。它不运行 TGame；诊断结束注销玩家会话。`--handshake-only` 不可省略，当前仅有受控目录及 Zone 请求研究，完整登录/大厅仍未实现。详细边界见 [邮箱交接记录](delivery/2026-10-15-independent-email-login.md)。
 
 当前本机工具使用 IPC v2：本地 game_id 写入游戏实际使用的 tag2；旧 v1 自测的 LocalGameId 标签指向 tag1，现已证实那是 ServiceId。旧报告保留为布局读取历史，勿据此判断真实账号已正确进入游戏。v2 默认 DLL 自测、相关工具回归及两个独立 MySQL 账号到 DLL 的桥接回归已通过；第 13 次捕获 60 字节 AUTH，第 15 次通过 challenge，第 16 次换钥后收到首个 9 字节 GEO PingList，第 17 次以真实 DEV 邮箱身份复现。随后 18/19 已消费特定单条 GEO 目录，20/21 真实邮箱身份已到 Zone A000；第 22/23 次 A001 研究响应已消费并收到 A204/FF05，角色与大厅仍未完成，诊断工具不因此开放面向玩家的完整启动入口。
+
+`--dev-email-state` 每次启动前都实时读取 `/api/views/me`，要求当前邮箱验证状态严格为 true、账号与私人验收记录和兑换身份一致、game_id 三方一致。历史 `mail-acceptance.json` 的成功标记不能跳过该检查；邮箱换绑未补验或账号不符时拒绝启动，并通过既有 finally 注销本次来源会话。公开报告只保留校验布尔值和来源，不复制身份信息。
 
 ## 邮件服务与邮箱入口
 
@@ -159,3 +177,37 @@ npm test
 ```
 
 测试结果写入 `evidence/stack-refactor-tests.json` 和文本日志；数据库测试实际使用 MySQL，SQLite 仅用于导入源夹具。CI 的 Ubuntu 使用 MySQL 8.4，Windows 执行独立工具与前端检查；是否实际运行以 Actions 结果为准。
+
+
+## M0–M6：当前资料与黑屏复测
+
+本次完整范围已扩至M6，逐图台账见 [M6](delivery/M6.md)，最新边界见 [续建交接](delivery/2026-10-15-m0-m6.md)。以下仍是本机研究入口，不是正式启动器或房间服务。
+
+`--serve-player-info` 要求完整认证、目录、Zone登录、A205及DEV邮箱身份选项；从同一次fresh me读取既有角色原昵称，核对账号/game_id/角色ID/所属账号，并严格按已核验的当前ACP936编码。不能编码或超过31字节时拒绝，不能修改业务昵称绕过。
+
+`--serve-player-props` 另要求上述资料模式，且fresh me库存必须明确为空列表；只发送当前DLL验证的13字节A006零道具末包，不写入/清空数据库资产。已有道具、缺少库存视图或未匹配的角色全部拒绝。当前这两种研究响应没有真实角色/钱包/库存投影。
+
+原生观察默认60秒，当前上限300秒，5分钟上限由用户本轮明确要求。采集总时限15秒，默认8帧、A005模式16帧、A006模式32帧；采集结束保持已认证连接至统一清理，不能当作常驻游戏服务。
+
+同一工作副本一次只运行一个Job，输出必须是全新的 `evidence/private/` 子目录。当前最新目录编号和实机UI结果以续建交接末尾为准。参数示例需替换为尚不存在的输出目录：
+
+```powershell
+.venv/Scripts/python.exe -m tools.native_email_boot --workspace runtime/native-recovery/coherent-2020/nz --output evidence/private/email-native-boot-NEXT --seconds 300 --sample-threads --redirect-game-network --verify-native-challenge --capture-application --serve-geo-ping --serve-geo-zone --capture-zone-sequence --serve-zone-login --serve-player-define --serve-player-info --serve-player-props --dev-email-state
+```
+
+窗口观察现在可使用 `computer-use` 技能的 `node_repl` + `@oai/sky`。先重新枚举并唯一选择当前TGame窗口；进程退出后不能复用旧窗口句柄。公告网页可见不能计为角色或大厅通过；不点击官方支付、下载或登录入口。原件保持只读，恢复冲突保留现场，不按名称批量结束进程。
+
+
+原生设置增量需要先向前应用migration0007。DEV增量`20261015T111056-a6ef9c556708`已具备`/api/game/settings/get`和`/set`；旧服务不可直接使用`--native-settings`，读取失败会在启动前拒绝，不回退为空数据。该开关要求既有DEV身份与`--serve-player-define`，提交失败不发送A203。设置按账号/客户端/TDR隔离，不能迁移到其他构建后盲目重放。当前仍只有研究启动链，在线可玩版本尚未验收。
+
+本次要求交付在线版本，离线暂缓；目前在线可玩版本未完成。新增临时角色/装备/详细频道探针均需显式开关，使用已有空库存验收账号和自有Job；临时GID不是业务资产，不得用于公开发放。新探针目录必须递增，不覆盖49及后续证据。详见当日M0–M6交接末尾最新记录。
+
+只读包依赖工具需要`requirements-research.txt`中的`lzokay==2.1.0`。例如：
+
+```powershell
+.venv/Scripts/python.exe -m tools.native_package_dependencies --workspace runtime/native-recovery/coherent-2020/nz --packages UTFrontEnd SV-Maya_3_Main AD-Capital_20_Main --output evidence/private/package-imports-NEXT.json --max-packages 4096
+```
+
+该工具只输出名称/导入表元数据；未知首部、缺失、重名和限额待展开项保留，不能凭它开启地图。`--server-map`是传统引擎入口诊断，要求当前配置中的唯一地图、实际资源和DEV身份；当前尚未证明可作为原生房间服务。`--serve-zone-hints`仅发当前DLL互证的零FF13；`--defer-player-info-after-version`仅对照A205与已观察四字节版本通知之后延后一秒发资料的时序，不回应或修改版本通知，不默认启用，也不代表大厅门禁已经确定。
+
+每次新探针在注销后，用原来源与游戏凭据回读，必须得到明确AUTH拒绝才记凭据清理通过。隧道中断/超时不算撤销成功；若中断，恢复既有回环转发后通过既有验收账号正常重登撤销旧来源，再注销恢复会话。不恢复旧数据库，不新增真实测试邮件。

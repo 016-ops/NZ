@@ -1,0 +1,77 @@
+{
+  "release": "20261017T104950-e8535a008e44",
+  "hashes": {
+    "revival/assets.py": "4ae61387583df0bb05d13c49f4de468d3df6bf247565083539b2bbb0ec247acf",
+    "revival/native_avatar_body.py": "d8addf4574d5cfba3e07864c5c2099bad23d1f5f82cd9424d780bfad09247ff0",
+    "revival/launcher.py": "b97398da402c46d89c177df98b44ad0871a99e893a7ac816cde2e46388345950",
+    "config/cn2020-avatar-body-compat-v1.json": "f308ca0fe60e0fd94c271a224b3d4f987eb76427a0a27aac108dbb0d8a5c486a",
+    "revival/native_containers.py": "4b2c5b31bdbcd90f9b260ad99c66ed264554a5c1d3271b51d9a201052f032d03",
+    "config/cn2020-container-compat-v1.json": "cb03c8516886699ce4e401782d7e21ab8e2a8dc4fc045a5444ba542b27f7bef7",
+    "revival/native_shop_compat.py": "6c3b3a931be538c6d0bb77d83d2598689c7c0a7bf2660386daf3cea43859b791",
+    "config/cn2020-renewal-offer-restore-v1.json": "4cc8cb0ae2a05e2aded1dc5e4fc248451b895053b2edb85f99927a708946984c",
+    "revival/native_maintenance.py": "033c9c21950b679217d14013f2f3b9bcf0a0e5921435651130a33bd61e743a30",
+    "config/cn2020-item-maintenance-v1.json": "b033a5e1ad58388505ccee8bc9c18b6df64085fbfdd9d54b308fc441ab852513",
+    "revival/native_avatar.py": "083b78fb6cd5fc04549b1abb5004700e32aa5dcd05d2ce7a87396cb85693db30",
+    "revival/native_starter.py": "37a8294917f45a1092d10fa2820a1dcfc24d4b389db1526bbd13c9fe593ec4b4",
+    "revival/native_actions.py": "15fae434c6a1721baa088b08c3c34da338cacb00f4b5bf90120738c9136ee78b",
+    "revival/native_inventory.py": "4f6842c2b43549a7078607d4d744e41c51ca18bd638fda0b08d609ff7f36ecda",
+    "revival/catalogs.py": "f8a030a6bbcacbbd3285a07476d2ccda7f7f5d9b1adbfe4ce6213b143362c7e1",
+    "config/cn2020-avatar-components-v1.json": "0c54707be7c8e59630d3a6aca30189d4f8dde787baf75ae1465861d86c00366c",
+    "revival/native_engineering.py": "2adf512405a4b9cde77d852b75090379f831e3798e4a42f0619066ed6d55d88d",
+    "revival/native_features.py": "807f9c4b6145e27d1982d00f4827febac920ea79f42abe430b076d20718f635a",
+    "revival/native_features_catalog.py": "e6f7697cf6c478c2d015a237a4ed0d1bab3f0a73ba34dc2efa9eedae398494e7",
+    "revival/models.py": "9452990025a7022517905dda57bfa59085fb4a6ac54a33f0a5b23e1920a687a8",
+    "revival/migrations/0019_native_engineering_progress.py": "c88cc26da1e427249803570318f5f2bfd0d35e81d6bd08948922c91d71dd7cc7",
+    "adapters/cn_current/features.py": "f43f2af861e89061a9e6575a35c56dea1bac2be4e2078962b8e7c1ffdd27b043",
+    "config/cn2020-feature-protocol-v10.json": "4b8273b979ccb01fd2b5d7426cc95cd54a44c86e0ca28369c86f2ca9c222b9de",
+    "config/cn2020-engineering-v1.json": "e04bd1b45a3d8f8ccd2563f34dcd492be0b4018db4bb98f2630a05d0afc896a5",
+    "admin/dist/index.html": "a28d9d66cf2fa72438cb9131dd574537269ae693ae252cd7cccce8bf65e4cccb"
+  },
+  "migrations": [
+    "0001_initial",
+    "0002_invariants",
+    "0003_operations_and_pve",
+    "0004_room_access_and_deliveries",
+    "0005_independent_email_login",
+    "0006_email_verification",
+    "0007_native_player_settings",
+    "0008_native_inventory_entitlements",
+    "0009_native_feature_transactions",
+    "0010_native_presence",
+    "0011_native_sync_cursor",
+    "0012_native_draw_selection",
+    "0013_native_sync_changes",
+    "0014_native_friend_groups",
+    "0015_native_clan_bindings",
+    "0016_launcher_session_lease",
+    "0017_native_draw_round",
+    "0018_native_workshop_state",
+    "0019_native_engineering_progress"
+  ],
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "enabled_checkin": 0,
+  "units": {
+    "nz-dev-current.service": "active",
+    "nz-dev-current-maintain.service": "active",
+    "nz-dev-pve.service": "active",
+    "nz-dev-pve-maintain.service": "active"
+  },
+  "health": [
+    {
+      "status": "ok",
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    {
+      "status": "ok",
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  ],
+  "source_matches_local": true
+}

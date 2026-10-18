@@ -1,0 +1,8 @@
+{
+  "python_matches_dll": true,
+  "bytes": 1410,
+  "feature_fixture_count": 42,
+  "game_started": false,
+  "client_capacity_field": 1000000,
+  "server_inventory_limit": null
+}

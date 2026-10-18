@@ -1,0 +1,61 @@
+test_concurrent_replay_keeps_one_consumption_and_three_rewards (tests.test_native_containers.NativeContainerTests.test_concurrent_replay_keeps_one_consumption_and_three_rewards)
+并发重试同一请求只扣一个礼包、发三张卡；回执保持原始数量和永久期限。 ... ERROR
+test_existing_card_counts_report_only_new_awards (tests.test_native_containers.NativeContainerTests.test_existing_card_counts_report_only_new_awards)
+已有计数卡片时，奖励消息只表达新增数量，库存增量表达真实合计。 ... ERROR
+test_protocol_failure_success_and_unknown_commit_recovery (tests.test_native_containers.NativeContainerTests.test_protocol_failure_success_and_unknown_commit_recovery)
+原生失败应答不断开；提交后响应丢失跨桥接重建恢复同一礼包回执，忽略预测奖励。 ... ERROR
+test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets (tests.test_native_containers.NativeContainerTests.test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets)
+数量不足、过期、他人持箱及末尾事件故障都不能产生半份奖励或遗留回执。 ... ERROR
+test_craft_shortage_wrong_recipe_foreign_gid_and_fault_are_atomic (tests.test_native_crafting.NativeCraftingTests.test_craft_shortage_wrong_recipe_foreign_gid_and_fault_are_atomic)
+不足、错配、跨账号、最后事件失败都保留原仓库；成功后旧请求只能重放。 ... ok
+test_frozen_recipes_all_execute_and_consume_exact_inputs (tests.test_native_crafting.NativeCraftingTests.test_frozen_recipes_all_execute_and_consume_exact_inputs)
+139条配方均走同一正式入口；同物品转化与0额外材料不能丢失或多扣主体。 ... ok
+test_native_upgrade_failure_then_success_keeps_connection (tests.test_native_crafting.NativeCraftingTests.test_native_upgrade_failure_then_success_keeps_connection)
+原生A375材料不足返回1799，随后补足材料仍能在同一个桥上成功并增量更新。 ... ok
+test_subject_only_custom_recipe_rejects_free_reward (tests.test_native_crafting.NativeCraftingTests.test_subject_only_custom_recipe_rejects_free_reward)
+后台允许消耗主体的0额外材料配方，但拒绝没有任何消耗的空材料配方。 ... ok
+
+======================================================================
+ERROR: test_concurrent_replay_keeps_one_consumption_and_three_rewards (tests.test_native_containers.NativeContainerTests.test_concurrent_replay_keeps_one_consumption_and_three_rewards)
+并发重试同一请求只扣一个礼包、发三张卡；回执保持原始数量和永久期限。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_crafting.py", line 23, in setUp
+    super().setUp()
+    ^^^^^^^^^^^^^
+TypeError: super(type, obj): obj must be an instance or subtype of type
+
+======================================================================
+ERROR: test_existing_card_counts_report_only_new_awards (tests.test_native_containers.NativeContainerTests.test_existing_card_counts_report_only_new_awards)
+已有计数卡片时，奖励消息只表达新增数量，库存增量表达真实合计。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_crafting.py", line 23, in setUp
+    super().setUp()
+    ^^^^^^^^^^^^^
+TypeError: super(type, obj): obj must be an instance or subtype of type
+
+======================================================================
+ERROR: test_protocol_failure_success_and_unknown_commit_recovery (tests.test_native_containers.NativeContainerTests.test_protocol_failure_success_and_unknown_commit_recovery)
+原生失败应答不断开；提交后响应丢失跨桥接重建恢复同一礼包回执，忽略预测奖励。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_crafting.py", line 23, in setUp
+    super().setUp()
+    ^^^^^^^^^^^^^
+TypeError: super(type, obj): obj must be an instance or subtype of type
+
+======================================================================
+ERROR: test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets (tests.test_native_containers.NativeContainerTests.test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets)
+数量不足、过期、他人持箱及末尾事件故障都不能产生半份奖励或遗留回执。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_crafting.py", line 23, in setUp
+    super().setUp()
+    ^^^^^^^^^^^^^
+TypeError: super(type, obj): obj must be an instance or subtype of type
+
+----------------------------------------------------------------------
+Ran 8 tests in 972.259s
+
+FAILED (errors=4)

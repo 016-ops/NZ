@@ -1,0 +1,15 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 3,
+  "passed": [
+    "tests.test_native_room_server_config.NativeRoomServerConfigTests.test_bad_source_missing_map_and_out_of_range_port_are_rejected",
+    "tests.test_native_room_server_config.NativeRoomServerConfigTests.test_private_instance_config_restores_without_touching_shared_pool",
+    "tests.test_native_room_server_config.NativeRoomServerConfigTests.test_two_priority_maps_have_exact_variants_and_keep_logging"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.125
+}

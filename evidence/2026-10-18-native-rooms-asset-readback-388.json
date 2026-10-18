@@ -1,0 +1,60 @@
+{
+  "kind": "NATIVE_ROOM_FORWARD_MIGRATION_ASSET_PRESERVATION",
+  "release": "20261018T134255-f2eb539b82d7",
+  "before": {
+    "inventory": {
+      "count": 4647,
+      "sha256": "0e11a81d5651ce0a781ee6e0335e697144c04601bb481b7bceaf41798e0c99a7"
+    },
+    "wallets": {
+      "count": 28,
+      "sha256": "f7d72b629628cd0c4674a79ed232977174d082adebfbb252849ae3d52719a704"
+    },
+    "asset_operations": {
+      "count": 471,
+      "sha256": "f1d3348fe423c24d43ee3483600755033b9027ee961d3fe778e11af4d3b1d80e"
+    },
+    "native_receipts": {
+      "count": 52,
+      "sha256": "4804d39c80003d79a056f85ebc8763552526897702d3cf0ec1eead84db2c653c"
+    },
+    "equipment": {
+      "count": 161,
+      "sha256": "337dd1d8a7a142e8f2067ac8ee29c643981fd37639c59e8310d3f36deac5ac2d"
+    },
+    "gids": {
+      "count": 4647,
+      "sha256": "f6acaeadda0dc37bb0517e67ffdce819ea6910f2cb2c28928a057a8e72325a2f"
+    }
+  },
+  "after": {
+    "inventory": {
+      "count": 4647,
+      "sha256": "0e11a81d5651ce0a781ee6e0335e697144c04601bb481b7bceaf41798e0c99a7"
+    },
+    "wallets": {
+      "count": 28,
+      "sha256": "f7d72b629628cd0c4674a79ed232977174d082adebfbb252849ae3d52719a704"
+    },
+    "asset_operations": {
+      "count": 471,
+      "sha256": "f1d3348fe423c24d43ee3483600755033b9027ee961d3fe778e11af4d3b1d80e"
+    },
+    "native_receipts": {
+      "count": 52,
+      "sha256": "4804d39c80003d79a056f85ebc8763552526897702d3cf0ec1eead84db2c653c"
+    },
+    "equipment": {
+      "count": 161,
+      "sha256": "337dd1d8a7a142e8f2067ac8ee29c643981fd37639c59e8310d3f36deac5ac2d"
+    },
+    "gids": {
+      "count": 4647,
+      "sha256": "f6acaeadda0dc37bb0517e67ffdce819ea6910f2cb2c28928a057a8e72325a2f"
+    }
+  },
+  "all_prior_assets_gids_wallet_receipts_equipment_preserved": true,
+  "services_active": 4,
+  "node_ready": false,
+  "native_live_verified": false
+}

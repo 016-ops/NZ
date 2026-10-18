@@ -1,0 +1,27 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 15,
+  "passed": [
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_attachment_wrong_parent_fails_without_commit_or_state_change",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_automatic_location_commits_catalog_slot_and_notifies",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_automatic_location_rejects_unknown_or_root_component",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_backpack_automatic_slot_uses_independent_root_membership",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_calendar_expiration_preserves_absolute_second_across_relogin",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_committed_ack_without_matching_readback_is_not_notified",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_compact_state_rejects_foreign_duplicate_slot_and_partial_corruption",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_empty_backpack_business_failure_keeps_bridge_usable",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_equipment_projection_uses_actual_parent_only",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_equipment_requires_matching_committed_ack",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_full_catalog_bounded_packets_and_exact_last_marker",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_pve_role_automatic_slot_is_persisted_and_projected",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_snapshot_rejects_wrong_identity_duplicate_gid_and_catalog_change",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_tp_query_refreshes_real_wallet_and_rejects_foreign_or_failed_read",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_wallet_maxima_roundtrip_login_and_player_info_and_reject_corruption"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.296
+}

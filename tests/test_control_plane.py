@@ -37,7 +37,8 @@ class Base(TransactionTestCase):
         """建立本例独立业务环境和依赖；所有业务数据使用真实 MySQL 测试库。"""
         super().setUp()
         # 旧业务夹具保留迁移前注册路径；验证码专项另行覆盖开启，生产默认始终开启。
-        self.email_fixture_settings = override_settings(NZ_EMAIL_VERIFICATION_REQUIRED=False)
+        # 旧资产回归明确使用空仓夹具；新账号初装专项单独启用默认生产策略。
+        self.email_fixture_settings = override_settings(NZ_EMAIL_VERIFICATION_REQUIRED=False,NZ_STARTER_EQUIPMENT_ENABLED=False)
         self.email_fixture_settings.enable()
         self.addCleanup(self.email_fixture_settings.disable)
         DeploymentLock.objects.get_or_create(pk=1)

@@ -1,0 +1,28 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 16,
+  "passed": [
+    "tests.test_native_launcher.LauncherTests.test_cancel_before_ticket_still_logs_out",
+    "tests.test_native_launcher.LauncherTests.test_cleanup_failure_is_retryable_without_losing_credentials",
+    "tests.test_native_launcher.LauncherTests.test_desktop_pipe_eof_requests_cleanup",
+    "tests.test_native_launcher.LauncherTests.test_double_submit_does_not_create_two_workers",
+    "tests.test_native_launcher.LauncherTests.test_error_text_never_echoes_credentials",
+    "tests.test_native_launcher.LauncherTests.test_failed_identity_read_revokes_just_created_source_session",
+    "tests.test_native_launcher.LauncherTests.test_graphics_mode_cannot_select_arbitrary_dll_or_change_during_run",
+    "tests.test_native_launcher.LauncherTests.test_invalid_lease_is_rejected_before_starting_thread",
+    "tests.test_native_launcher.LauncherTests.test_login_discards_password_and_keeps_tokens_out_of_status",
+    "tests.test_native_launcher.LauncherTests.test_origin_host_capability_and_method_are_required",
+    "tests.test_native_launcher.LauncherTests.test_oversized_non_json_and_unknown_arguments_fail",
+    "tests.test_native_launcher.LauncherTests.test_recovery_preserves_active_process_and_external_edits",
+    "tests.test_native_launcher.LauncherTests.test_revoked_lease_stops_game_without_retry",
+    "tests.test_native_launcher.LauncherTests.test_startup_timeout_is_not_success_and_revokes_both_sessions",
+    "tests.test_native_launcher.LauncherTests.test_static_traversal_cannot_read_private_files",
+    "tests.test_native_launcher.LauncherTests.test_uncertain_redeem_does_not_repeat_and_revokes_source"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.094
+}

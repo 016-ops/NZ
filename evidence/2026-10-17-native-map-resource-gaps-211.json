@@ -1,0 +1,67 @@
+{
+  "kind": "ORIGINAL_ARCHIVE_METADATA_RESOURCE_GAPS",
+  "archive_entries": 10254,
+  "archive_bytes": 18336656429,
+  "directory_fingerprint": "1758db0d3719f2423680f802cedb8681ff68f9f0c71d5b99bac81b4dd0e7458e",
+  "source_archive_modified": false,
+  "client_writes": 0,
+  "rows": [
+    {
+      "map_id": 128,
+      "package": "SV3-Maya_8_Main",
+      "archive_matches": [],
+      "recovery_manifest_matches": [],
+      "status": "ABSENT_FROM_ORIGINAL_ARCHIVE_AND_RECOVERY",
+      "runtime_requirement": "REQUIRED_MAIN_MAP"
+    },
+    {
+      "map_id": 164,
+      "package": "Capital_30_NavMesh",
+      "archive_matches": [],
+      "recovery_manifest_matches": [],
+      "status": "ABSENT_FROM_ORIGINAL_ARCHIVE_AND_RECOVERY",
+      "runtime_requirement": "PENDING_ROUTE_AND_STREAMING_RULE_CHECK"
+    },
+    {
+      "map_id": 319,
+      "package": "Capital_99_Navart",
+      "archive_matches": [],
+      "recovery_manifest_matches": [],
+      "status": "ABSENT_FROM_ORIGINAL_ARCHIVE_AND_RECOVERY",
+      "runtime_requirement": "PENDING_ROUTE_AND_STREAMING_RULE_CHECK"
+    },
+    {
+      "map_id": 341,
+      "package": "Capital_111_Navart2",
+      "archive_matches": [],
+      "recovery_manifest_matches": [],
+      "status": "ABSENT_FROM_ORIGINAL_ARCHIVE_AND_RECOVERY",
+      "runtime_requirement": "PENDING_ROUTE_AND_STREAMING_RULE_CHECK"
+    },
+    {
+      "map_id": 341,
+      "package": "Capital_111_Whitebox",
+      "archive_matches": [],
+      "recovery_manifest_matches": [],
+      "status": "ABSENT_FROM_ORIGINAL_ARCHIVE_AND_RECOVERY",
+      "runtime_requirement": "PENDING_ROUTE_AND_STREAMING_RULE_CHECK"
+    },
+    {
+      "map_id": 351,
+      "package": "Capital_112_Navart",
+      "archive_matches": [],
+      "recovery_manifest_matches": [],
+      "status": "ABSENT_FROM_ORIGINAL_ARCHIVE_AND_RECOVERY",
+      "runtime_requirement": "PENDING_ROUTE_AND_STREAMING_RULE_CHECK"
+    },
+    {
+      "map_id": 373,
+      "package": "Capital_114_Navart",
+      "archive_matches": [],
+      "recovery_manifest_matches": [],
+      "status": "ABSENT_FROM_ORIGINAL_ARCHIVE_AND_RECOVERY",
+      "runtime_requirement": "PENDING_ROUTE_AND_STREAMING_RULE_CHECK"
+    }
+  ],
+  "playable_map_accepted": false
+}

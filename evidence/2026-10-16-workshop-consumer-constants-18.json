@@ -1,0 +1,128 @@
+{
+  "kind": "CURRENT_DRAW_CONSUMER_BYTECODE_CONSTANTS",
+  "source_sha256": "cd213dcd3157bb879dcd10a7aecf490151a87bbaa6c711cbdfc3f8d04fafea6f",
+  "functions": [
+    {
+      "name": "GfxMovie_LotteryUI.UpdateFreeDailyLotteryInfo",
+      "bytes": 846,
+      "sha256": "e7626b853079bf3b64fb23cc45c6c79fa5b63a4b85f116a279b4a8205be35611",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnClickDailyLottery",
+      "bytes": 931,
+      "sha256": "e5d28618c137735a3875de05759c31053ba4c96a0b125e359f7e690b81a086a2",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.RequestDailyLottery",
+      "bytes": 208,
+      "sha256": "995e028671b207e40a3676081a3bb6a784e87d180927b19ee85aef887feba0bf",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnClickDailyLotteryRule",
+      "bytes": 168,
+      "sha256": "ee5d290c31eaa40699f86c334767ad2ccfc025a0f8f511d0cbe43c21fbb719e7",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnResDailyLottery",
+      "bytes": 1813,
+      "sha256": "ac28bd4527a18f6a0fa06c3485f71da589a6c01357c77e57aa2c34725f8ee4e4",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.DailyLotteryFinish",
+      "bytes": 265,
+      "sha256": "4e72cd99ff2ef54a985c3fe35a39e9606ac09e2f1b939ccab9ee5cd586e7eaf1",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnNtfDailyLotteryInfo",
+      "bytes": 217,
+      "sha256": "6a92ed638e89bb676fa4a7cf53dbc632a75a126e517e2748167a37aeae36443e",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnResDailyLotteryPoolInfo",
+      "bytes": 1397,
+      "sha256": "f67f1c4dbb75f00e765b303b5ef14aecc1640a6669a86b89eb3726063abc079e",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.GetDailyLotteryItemByID",
+      "bytes": 164,
+      "sha256": "c9c6747116448138cacfed7aa1f272298805c04c736215d6e820a4f944cb2da4",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.GetDailyLotteryItemByIDAndPeriod",
+      "bytes": 198,
+      "sha256": "dfda58853bf19611b30ef3cf9db43f5a612fbd3bf1fe9b1d1f6fec8c1b3de430",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.BuyDailyLotteryTicket",
+      "bytes": 183,
+      "sha256": "2e767a8772c8aaa3b22896ea58d23f887bf5bb3b19bcd352019d714c7e38d8fe",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    }
+  ],
+  "boundary": "Constants require branch and real-client confirmation; no script or process mutation"
+}

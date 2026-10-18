@@ -1,0 +1,19 @@
+test_claimed_weapon_cannot_be_engineering_material_but_ordinary_copy_can (tests.test_native_pve_benefits.NativePveBenefitTests.test_claimed_weapon_cannot_be_engineering_material_but_ordinary_copy_can)
+同款狂蟒VIP实例禁止工程分解且整单回滚，普通购买实例仍按原配方产出材料。 ... ok
+test_all_37_recipes_keep_cost_result_and_progress (tests.test_native_engineering.NativeEngineeringTests.test_all_37_recipes_keep_cost_result_and_progress)
+包括隐藏和随机项的全部配方逐一制造；精确扣料、有效期限、熟练度和回执同存。 ... ok
+test_decompose_all_types_idempotent_and_batch_atomic (tests.test_native_engineering.NativeEngineeringTests.test_decompose_all_types_idempotent_and_batch_atomic)
+三类分解各消耗本人1件，材料数量正确；幂等重放不能再次移除或发放。 ... ok
+test_material_conversion_preserves_quantity_and_rejects_underflow (tests.test_native_engineering.NativeEngineeringTests.test_material_conversion_preserves_quantity_and_rejects_underflow)
+计数部件5合1再1拆5保持总量；重复GID拆分按实际数量合并，余额不足全回滚。 ... ok
+test_native_failure_then_success_and_progress_relogin (tests.test_native_engineering.NativeEngineeringTests.test_native_failure_then_success_and_progress_relogin)
+同连接材料不足返回工厂失败应答；补足后制造成功，重建桥后熟练度仍为1。 ... ok
+test_owner_expiry_duplicate_and_rule_version_rejected (tests.test_native_engineering.NativeEngineeringTests.test_owner_expiry_duplicate_and_rule_version_rejected)
+跨账号、过期、重复装备引用、畸形GID和过期规则均不可消费。 ... ok
+test_paid_batch_failure_rolls_back_currency_parts_progress_and_receipt (tests.test_native_engineering.NativeEngineeringTests.test_paid_batch_failure_rolls_back_currency_parts_progress_and_receipt)
+最后事件故障发生时，不留下部分奖励、扣款或先增加的熟练度。 ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 40.477s
+
+OK

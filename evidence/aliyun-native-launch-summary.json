@@ -65,6 +65,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v1",
       "execution_context": "restricted_tool_environment",
       "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": null,
       "loopback_request_count": 0,
       "loopback_packet_count": 0,
@@ -93,6 +94,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v1",
       "execution_context": "restricted_tool_environment",
       "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": null,
       "loopback_request_count": 0,
       "loopback_packet_count": 0,
@@ -121,6 +123,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v1",
       "execution_context": "restricted_tool_environment",
       "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": null,
       "loopback_request_count": 0,
       "loopback_packet_count": 0,
@@ -149,6 +152,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v1",
       "execution_context": "restricted_tool_environment",
       "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": null,
       "loopback_request_count": 0,
       "loopback_packet_count": 0,
@@ -177,6 +181,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v1",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": null,
       "loopback_request_count": 0,
       "loopback_packet_count": 0,
@@ -205,6 +210,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v1",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": false,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": null,
       "loopback_request_count": 0,
       "loopback_packet_count": 0,
@@ -233,6 +239,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v1",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": false,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 0,
       "loopback_packet_count": 0,
@@ -261,6 +268,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v1",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": false,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 0,
       "loopback_packet_count": 0,
@@ -289,6 +297,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v1",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": false,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 0,
       "loopback_packet_count": 0,
@@ -317,6 +326,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": false,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 1,
       "loopback_packet_count": 1,
@@ -350,6 +360,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": false,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 1,
       "loopback_packet_count": 2,
@@ -392,6 +403,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         }
       ],
@@ -429,6 +444,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": false,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 2,
       "loopback_packet_count": 3,
@@ -476,6 +492,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         }
       ],
@@ -513,6 +533,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": false,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 3,
       "loopback_packet_count": 5,
@@ -570,6 +591,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         }
       ],
@@ -607,6 +632,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 3,
       "loopback_packet_count": 5,
@@ -664,6 +690,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         }
       ],
@@ -701,6 +731,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": false,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 4,
       "loopback_packet_count": 7,
@@ -768,6 +799,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         }
       ],
@@ -805,6 +840,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": false,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 7,
       "loopback_packet_count": 13,
@@ -907,6 +943,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -936,6 +976,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         }
       ],
@@ -973,6 +1017,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 8,
       "loopback_packet_count": 14,
@@ -1080,6 +1125,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1120,6 +1169,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         }
       ],
@@ -1157,6 +1210,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 8,
       "loopback_packet_count": 14,
@@ -1264,6 +1318,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1304,6 +1362,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         }
       ],
@@ -1341,6 +1403,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 15,
       "loopback_packet_count": 31,
@@ -1533,6 +1596,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1659,6 +1726,10 @@
           "zone_login_response_profile": "cn2020-zone-login-success-research-v1",
           "zone_login_response_bytes": 41,
           "zone_login_response_sha256": "71c6d9b507ea51733717213d306cc2d587960275fae747474683b89515aafc2c",
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1683,6 +1754,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1707,6 +1782,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1731,6 +1810,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1755,6 +1838,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1779,6 +1866,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1803,6 +1894,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1827,6 +1922,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1851,6 +1950,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -1875,6 +1978,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         }
       ],
@@ -1912,6 +2019,7 @@
       "ipc_profile": "nz-email-ipc-loopback-research-v2",
       "execution_context": "normal_user_graphics",
       "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
       "graphics_preflight_verified": true,
       "loopback_request_count": 15,
       "loopback_packet_count": 22,
@@ -2059,6 +2167,10 @@
           "zone_login_response_profile": null,
           "zone_login_response_bytes": null,
           "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": null
         },
         {
@@ -2185,6 +2297,10 @@
           "zone_login_response_profile": "cn2020-zone-login-success-research-v1",
           "zone_login_response_bytes": 41,
           "zone_login_response_sha256": "71c6d9b507ea51733717213d306cc2d587960275fae747474683b89515aafc2c",
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
           "connection_held_after_capture": true
         }
       ],
@@ -2209,6 +2325,5497 @@
       "tcp_snapshot_errors": 0,
       "sampled_thread_count": 16,
       "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 24,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": null,
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 15,
+      "loopback_packet_count": 23,
+      "loopback_requests": [
+        {
+          "bytes": 72,
+          "sha256": "8ecc3acebbeaf9dc20da82fbb9c96ba4b2aa5d4ec550f4046c7be7b30b8f65ec",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "02bd461c9c026e7c52349ad6995d166c5378ae79f74acf10ff2931a5f7ce16aa",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "102bd36daa39b145f11cf2f0952c2d5fb92873453922acdca8c6c18c41f69dc7",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "2db89ebe152a9b7dc786cfd2ee83bb8c54aa78c88d2b5f35147fcb55a9469231",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "add88969be874138ca4ab5b390c0b3bd77ec553f5bbe6f65068fbcb4601463f9",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 76,
+          "sha256": "843e129aa77510fc3f62f0d320b8cadc6c78ccd3ccb0ea71c272da9615a18337",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 76,
+          "sha256": "8516cc7ce09f25a22b983f0f268b896a3d0ba9c342dfa3131f34449620c5653a",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 92,
+          "sha256": "bb5ef7dbd80818b3814577d8f8dda825d471e286f299eadcb7e55011729e3f06",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 72,
+          "sha256": "8ecc3acebbeaf9dc20da82fbb9c96ba4b2aa5d4ec550f4046c7be7b30b8f65ec",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "170d6d494df5af718f80798d296585363f92800b2aeb25193b9a8d3e2f68d86d",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "e7f864a4b34a3a6574b1ebe3b1e3f03df6902cc9271b5373ccd0fc8a70a162f7",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "a12ecfbd0b8d31c778666a2ee07ed3e0ae19671f62da63c7ab05f78bb79cdfb1",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "9ac5a28544a6350d5133bdcb097b41d7479617e9d8448b17b7077ea0b268ffd6",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 60,
+          "sha256": "6b2f631de9d8ce4ed0c54151dcb37479d372fb9fe4be4e1eac20d4516c0191fc",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 60,
+          "sha256": "32d0d9b1e807daa16d23a8f535a5114dfdf2570cf350adf63789e3876882352b",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "d01ec6c00ce8348ecc0491cbe4047cdaf63913de688056a08356a30121cefa8a",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 44,
+          "sha256": "6be4769f1a79ac59a8efe60f17e501f9a451e9689c7e0cdeff14d6911cebd480",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "9dcbf4974734745316ea50fc5a1076267e99c8e270435773a0eed2df26bf359a",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 156,
+          "sha256": "3a262ed286862165577020df06dc3f48aec23a80e429abb5099645fc9d06eb23",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 140,
+          "sha256": "4c840dec9fc3ba19aef71724c2c8cb2418206c0717986c6ec44dfdc570fefd7a",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 140,
+          "sha256": "f1b6a3cdec6786d13e35c8b141a61eed0ac89a72aff18634b16ebbbecce12f68",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 156,
+          "sha256": "d383676b68451e69211f8b5a33ee42b1baff412295b0f5c5cf7a05de7638e54e",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 236,
+          "sha256": "8ad0ff4eba23454b3ef43333a1900be1ab81a96d38d97376cac4e629c34270a7",
+          "direction": "client_to_probe"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": true,
+      "transport_capture_stopped": true,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 9,
+          "application_sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+          "application_header": {
+            "magic": 33282,
+            "command": 4097,
+            "head_length": 8,
+            "body_length": 1
+          },
+          "stage": "zone_directory_sent",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": true,
+          "geo_ping_response_advanced_to_zone_list": true,
+          "geo_zone_request_verified": true,
+          "geo_zone_response_sent": true,
+          "next_tcp_connection_observed": true,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 11,
+          "application_sha256": "411481f88d63ea7ac96ed7db0d264d023d53243acd31f01e0149fb6af7b469ca",
+          "application_header": {
+            "magic": 12867,
+            "command": 4688,
+            "head_length": 8,
+            "body_length": 3
+          },
+          "stage": "zone_application_sequence_captured",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": [
+            {
+              "bytes": 26,
+              "sha256": "4c00864169617cf28adfedffc566c8e6867471d1836e6546a44548679b106a38",
+              "header": {
+                "magic": 12867,
+                "command": 40960,
+                "head_length": 8,
+                "body_length": 18
+              },
+              "structure": {
+                "zone_profile": "nz-current-zone-login-request-v1",
+                "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+                "magic": 12867,
+                "command": 40960,
+                "head_length": 8,
+                "body_length": 18,
+                "body_validation": "VALIDATED_STRUCTURE_ONLY",
+                "message": "C2ZN_ReqLogin",
+                "sub_channel_id": 4294967295,
+                "preference_crc_value": 0,
+                "system_setting_crc_value": 704643316,
+                "current_zone_host_ip_wire_bytes": "0100007f",
+                "current_zone_host_ip_dword": 16777343,
+                "login_platform": 0
+              }
+            },
+            {
+              "bytes": 8,
+              "sha256": "5a238cd4b51f13f21306b4c45b14bbdb33d1b40440ec0e64f354870eb0826e67",
+              "header": {
+                "magic": 12867,
+                "command": 41476,
+                "head_length": 8,
+                "body_length": 0
+              },
+              "structure": {
+                "zone_profile": "nz-current-player-define-request-v1",
+                "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+                "magic": 12867,
+                "command": 41476,
+                "head_length": 8,
+                "body_length": 0,
+                "body_validation": "VERIFIED_EMPTY_REQUEST",
+                "message": "ID_C2ZN_REQ_GET_PLAYERDEFINEINFO"
+              }
+            },
+            {
+              "bytes": 12,
+              "sha256": "e99e616e5a007a0cc49d8dcb9fe570488efa7513b924794d55db0c0f11d1c4bd",
+              "header": {
+                "magic": 12867,
+                "command": 65285,
+                "head_length": 8,
+                "body_length": 4
+              }
+            },
+            {
+              "bytes": 128,
+              "sha256": "4268f5f750ce5d244c5a28b93a2fee4202a02749a427ccf732926afbc631a34e",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 120
+              }
+            },
+            {
+              "bytes": 116,
+              "sha256": "e88957c29f7de010a04efc71c704232014fc3a0db5596a982c7561ba9e716ac3",
+              "header": {
+                "magic": 12867,
+                "command": 41474,
+                "head_length": 8,
+                "body_length": 108
+              }
+            },
+            {
+              "bytes": 111,
+              "sha256": "6f2854293f4e7b1c09a9f2168012cd083bdf90111872cc4014cc6974f2b07391",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 103
+              }
+            },
+            {
+              "bytes": 134,
+              "sha256": "9ec02852c76dfab222973a5d9684a2248f20a6df23acbe1d8b8231f7f9a1246f",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 126
+              }
+            },
+            {
+              "bytes": 204,
+              "sha256": "b6a9f95dbf683fd236a262813c70970a28a6e9dadb03f52927dcbd712a1ec6d6",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 196
+              }
+            }
+          ],
+          "zone_sequence_stop_reason": "FRAME_LIMIT",
+          "zone_login_response_sent": true,
+          "zone_login_response_profile": "cn2020-zone-login-success-research-v1",
+          "zone_login_response_bytes": 41,
+          "zone_login_response_sha256": "71c6d9b507ea51733717213d306cc2d587960275fae747474683b89515aafc2c",
+          "player_define_response_sent": true,
+          "player_define_response_profile": "cn2020-player-define-empty-research-v1",
+          "player_define_response_bytes": 14,
+          "player_define_response_sha256": "5568769e481a4c956bc5376f80cbb7c4614c8a311f3175f15275fb288e113080",
+          "connection_held_after_capture": true
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "native_launch_ready": false,
+      "role_verified": false,
+      "lobby_verified": false,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "original_client_writes": 0,
+      "attempt": 25,
+      "observation_limit_seconds": 60,
+      "ipc_profile": "nz-email-ipc-loopback-research-v2",
+      "execution_context": "normal_user_graphics",
+      "verified_dev_email_identity": true,
+      "current_dev_email_identity_verification": {
+        "source": "CURRENT_API_VIEWS_ME_AND_REDEEMED_IDENTITY",
+        "email_verified": true,
+        "acceptance_account_matches": true,
+        "game_identity_account_matches": true,
+        "game_id_matches": true
+      },
+      "graphics_preflight_verified": true,
+      "loopback_request_count": 15,
+      "loopback_packet_count": 23,
+      "loopback_requests": [
+        {
+          "bytes": 72,
+          "sha256": "59f8ba4a530aaeaca21d82815c8054062bab33fc0d6d59b5e4bf6924098ac5d5",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "064e6e6719042e2b3cf40fd3c412b7a00f568078b77d0bb9df9463dab4dee66f",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "06e6069bfe5b883d50d2a7ddd329377df41afc7d3cc616887c434535a3987055",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "976d2a1ddf440de75b0fcbabbe6433f9e9e39af81974fa326bf4eb5cf3fc38b6",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "50c2e2b28d838a94b5c39e0b38d1866866c74d9f12b1140ddb9d8b662f6bd3fd",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 76,
+          "sha256": "1bdfae251adca8db50b2eeade92f6cc9b41e572882ec0452e06ea95c31f9ddf8",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 76,
+          "sha256": "7b234904eca4b15196f1cedfbdbf7e527fdb4bfae15a7fc274a043248484d353",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 92,
+          "sha256": "af7effb9ce34ce5b080542cc9dc026df406a93ebfb77e36f6f432add7392ad98",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 72,
+          "sha256": "59f8ba4a530aaeaca21d82815c8054062bab33fc0d6d59b5e4bf6924098ac5d5",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 45,
+          "sha256": "55242669883cc5c430ab386810ef82cfab4bf5a37b0435554d960e0448ee1351",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 61,
+          "sha256": "eb8a9da064a48e665f0730c3d2ed968e4c5c9b087f884f7c5dcda10b31447192",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 48,
+          "sha256": "22ba8023a1c28e6249bedf5541ccbb46fb437aefe7a8a432361e4399886473af",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "face7ce2d940dab5a3671c412acd33e5fc16b9a5bbc9ec24af331812194b8a5c",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 60,
+          "sha256": "b944063d35fcdb41f600c5cb4587c3b51f2fac8a082141e7bbcb6c4b56ac79e2",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 60,
+          "sha256": "a86737853ecdd15af9434e80e1dfdceff0341ed58d05052989db703eb4827e69",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "3b076e4a304152d5c8ad3e54ad222d6102879ec9bb6c0d7a4a0955a224748330",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 44,
+          "sha256": "50ed28b27a9b2b69a15e020338b1e222f76ff5dd3da5cda9ff5a4735dff25abd",
+          "direction": "probe_to_client"
+        },
+        {
+          "bytes": 44,
+          "sha256": "e39dd98d0c113c183cbcc6d8fc1abc5088afb1396dc34d1cc7d5c4798ae7811e",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 156,
+          "sha256": "74b941d8f13943d47acd23a9009281cd96306ccbc5e0b96c8bdbf249c7d4ac6b",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 140,
+          "sha256": "675e2fb8851743dcc2e5db1aa9344751d6873be4accddb5e168467dff7e48286",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 140,
+          "sha256": "8f895bbbe2809cbd33f4d90f081ff3728abad16f509d7679499a8ae0c9c5376d",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 172,
+          "sha256": "5bbc8c88a4328374fb1955b6f01a96c06ada1b5a09864f14bd7dd3bd002777ad",
+          "direction": "client_to_probe"
+        },
+        {
+          "bytes": 236,
+          "sha256": "7ab25115687f366a02318ac96988e35981d1c9f3901b5511dc37b2d9bd27fb7e",
+          "direction": "client_to_probe"
+        }
+      ],
+      "transport_research_profile": "nz-current-auth-challenge-research-v2",
+      "native_transport_challenge_verified": true,
+      "native_new_key_application_received": true,
+      "transport_capture_stopped": true,
+      "transport_sessions": [
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 9,
+          "application_sha256": "62c85c113786fadf47bfcb66180e9ba50eb1a443f051fbb02d2681618cda5324",
+          "application_header": {
+            "magic": 33282,
+            "command": 4097,
+            "head_length": 8,
+            "body_length": 1
+          },
+          "stage": "zone_directory_sent",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": true,
+          "geo_ping_response_advanced_to_zone_list": true,
+          "geo_zone_request_verified": true,
+          "geo_zone_response_sent": true,
+          "next_tcp_connection_observed": true,
+          "zone_following_applications": null,
+          "zone_sequence_stop_reason": null,
+          "zone_login_response_sent": null,
+          "zone_login_response_profile": null,
+          "zone_login_response_bytes": null,
+          "zone_login_response_sha256": null,
+          "player_define_response_sent": null,
+          "player_define_response_profile": null,
+          "player_define_response_bytes": null,
+          "player_define_response_sha256": null,
+          "connection_held_after_capture": null
+        },
+        {
+          "auth_verified": true,
+          "challenge_verified": true,
+          "key_change_sent": true,
+          "new_key_application_received": true,
+          "application_bytes": 11,
+          "application_sha256": "411481f88d63ea7ac96ed7db0d264d023d53243acd31f01e0149fb6af7b469ca",
+          "application_header": {
+            "magic": 12867,
+            "command": 4688,
+            "head_length": 8,
+            "body_length": 3
+          },
+          "stage": "zone_application_sequence_captured",
+          "error_type": null,
+          "error_code": null,
+          "geo_ping_response_sent": null,
+          "geo_ping_response_advanced_to_zone_list": null,
+          "geo_zone_request_verified": null,
+          "geo_zone_response_sent": null,
+          "next_tcp_connection_observed": null,
+          "zone_following_applications": [
+            {
+              "bytes": 26,
+              "sha256": "4c00864169617cf28adfedffc566c8e6867471d1836e6546a44548679b106a38",
+              "header": {
+                "magic": 12867,
+                "command": 40960,
+                "head_length": 8,
+                "body_length": 18
+              },
+              "structure": {
+                "zone_profile": "nz-current-zone-login-request-v1",
+                "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+                "magic": 12867,
+                "command": 40960,
+                "head_length": 8,
+                "body_length": 18,
+                "body_validation": "VALIDATED_STRUCTURE_ONLY",
+                "message": "C2ZN_ReqLogin",
+                "sub_channel_id": 4294967295,
+                "preference_crc_value": 0,
+                "system_setting_crc_value": 704643316,
+                "current_zone_host_ip_wire_bytes": "0100007f",
+                "current_zone_host_ip_dword": 16777343,
+                "login_platform": 0
+              }
+            },
+            {
+              "bytes": 8,
+              "sha256": "5a238cd4b51f13f21306b4c45b14bbdb33d1b40440ec0e64f354870eb0826e67",
+              "header": {
+                "magic": 12867,
+                "command": 41476,
+                "head_length": 8,
+                "body_length": 0
+              },
+              "structure": {
+                "zone_profile": "nz-current-player-define-request-v1",
+                "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+                "magic": 12867,
+                "command": 41476,
+                "head_length": 8,
+                "body_length": 0,
+                "body_validation": "VERIFIED_EMPTY_REQUEST",
+                "message": "ID_C2ZN_REQ_GET_PLAYERDEFINEINFO"
+              }
+            },
+            {
+              "bytes": 12,
+              "sha256": "e99e616e5a007a0cc49d8dcb9fe570488efa7513b924794d55db0c0f11d1c4bd",
+              "header": {
+                "magic": 12867,
+                "command": 65285,
+                "head_length": 8,
+                "body_length": 4
+              }
+            },
+            {
+              "bytes": 128,
+              "sha256": "83b914932e8f3cb18a59d69a49b3ef6bca9ed9a371ba8496484f7d120596b420",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 120
+              }
+            },
+            {
+              "bytes": 116,
+              "sha256": "e88957c29f7de010a04efc71c704232014fc3a0db5596a982c7561ba9e716ac3",
+              "header": {
+                "magic": 12867,
+                "command": 41474,
+                "head_length": 8,
+                "body_length": 108
+              }
+            },
+            {
+              "bytes": 110,
+              "sha256": "2700f3b92e624c2643bee891495960d06a6d69e6885a2ec4b729b319127a2741",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 102
+              }
+            },
+            {
+              "bytes": 150,
+              "sha256": "74ee8356136c7c3eefeaf62a2aecf858cd8e71242580f623d9774743ccef539f",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 142
+              }
+            },
+            {
+              "bytes": 204,
+              "sha256": "b6a9f95dbf683fd236a262813c70970a28a6e9dadb03f52927dcbd712a1ec6d6",
+              "header": {
+                "magic": 12867,
+                "command": 65282,
+                "head_length": 8,
+                "body_length": 196
+              }
+            }
+          ],
+          "zone_sequence_stop_reason": "FRAME_LIMIT",
+          "zone_login_response_sent": true,
+          "zone_login_response_profile": "cn2020-zone-login-success-research-v1",
+          "zone_login_response_bytes": 41,
+          "zone_login_response_sha256": "71c6d9b507ea51733717213d306cc2d587960275fae747474683b89515aafc2c",
+          "player_define_response_sent": true,
+          "player_define_response_profile": "cn2020-player-define-empty-research-v1",
+          "player_define_response_bytes": 14,
+          "player_define_response_sha256": "5568769e481a4c956bc5376f80cbb7c4614c8a311f3175f15275fb288e113080",
+          "connection_held_after_capture": true
+        }
+      ],
+      "login_state_comparisons": [
+        {
+          "verified": true,
+          "account_matches": true,
+          "research_service_matches": true,
+          "primary_host_matches_loopback": true,
+          "primary_port_matches": true,
+          "login_key_length_nonzero": true,
+          "initialization_scalars": {
+            "0x2258d98": 1,
+            "0x2258d9c": 1
+          },
+          "credential_bytes_read": false,
+          "raw_identity_or_endpoint_returned": false
+        }
+      ],
+      "game_network_research_profile": "nz-current-geozone-loopback-research-v1",
+      "tcp_sample_count": 30,
+      "tcp_snapshot_errors": 0,
+      "sampled_thread_count": 16,
+      "all_sampled_threads_resumed": true
+    },
+    {
+      "attempt": 26,
+      "source_private": "evidence/private/email-native-boot-26/report.json",
+      "game_process_started": false,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": null,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": false,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 27,
+      "source_private": "evidence/private/email-native-boot-27/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": false,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 166
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 28,
+      "source_private": "evidence/private/email-native-boot-28/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": false,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 166
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 29,
+      "source_private": "evidence/private/email-native-boot-29/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": false,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 30,
+      "source_private": "evidence/private/email-native-boot-30/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": false,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 31,
+      "source_private": "evidence/private/email-native-boot-31/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": false,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 32,
+      "source_private": "evidence/private/email-native-boot-32/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": false,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 33,
+      "source_private": "evidence/private/email-native-boot-33/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": false,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 34,
+      "source_private": "evidence/private/email-native-boot-34/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 35,
+      "source_private": "evidence/private/email-native-boot-35/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 36,
+      "source_private": "evidence/private/email-native-boot-36/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 37,
+      "source_private": "evidence/private/email-native-boot-37/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 38,
+      "source_private": "evidence/private/email-native-boot-38/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 39,
+      "source_private": "evidence/private/email-native-boot-39/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": false,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 40,
+      "source_private": "evidence/private/email-native-boot-40/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "a006_empty_sent": true,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 41,
+      "source_private": "evidence/private/email-native-boot-41/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "a006_empty_sent": true,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 118
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 42,
+      "source_private": "evidence/private/email-native-boot-42/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "a006_empty_sent": true,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 118
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 43,
+      "source_private": "evidence/private/email-native-boot-43/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "a006_empty_sent": true,
+      "temporary_role_resource_probe_sent": false,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 111
+        },
+        {
+          "command": "0xff02",
+          "bytes": 118
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 44,
+      "source_private": "evidence/private/email-native-boot-44/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "a006_empty_sent": false,
+      "temporary_role_resource_probe_sent": true,
+      "protocol_error_types": [],
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 182
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 45,
+      "source_private": "evidence/private/email-native-boot-45/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 0,
+      "role_info_refresh_sent": false,
+      "native_settings_loaded_bytes": 0,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 134
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 46,
+      "source_private": "evidence/private/email-native-boot-46/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": false,
+      "native_settings_loaded_bytes": 0,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 182
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xff02",
+          "bytes": 114
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 221
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 47,
+      "source_private": "evidence/private/email-native-boot-47/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": false,
+      "native_settings_loaded_bytes": 0,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 150
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xff02",
+          "bytes": 114
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 221
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 48,
+      "source_private": "evidence/private/email-native-boot-48/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": false,
+      "native_settings_loaded_bytes": 0,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 134
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xff02",
+          "bytes": 114
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 221
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 49,
+      "source_private": "evidence/private/email-native-boot-49/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": false,
+      "native_settings_loaded_bytes": 0,
+      "native_settings_save_acks": 1,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xa202",
+          "bytes": 116
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 111
+        },
+        {
+          "command": "0xff02",
+          "bytes": 118
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xff02",
+          "bytes": 115
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 221
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 50,
+      "source_private": "evidence/private/email-native-boot-50/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": false,
+      "native_settings_loaded_bytes": 104,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 150
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xff02",
+          "bytes": 114
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 221
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 300
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        },
+        {
+          "command": "0xff02",
+          "bytes": 203
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 51,
+      "source_private": "evidence/private/email-native-boot-51/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": true,
+      "native_settings_loaded_bytes": 104,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 118
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 114
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 52,
+      "source_private": "evidence/private/email-native-boot-52/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": true,
+      "native_settings_loaded_bytes": 104,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 134
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xff02",
+          "bytes": 114
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 53,
+      "source_private": "evidence/private/email-native-boot-53/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": true,
+      "native_settings_loaded_bytes": 104,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 118
+        },
+        {
+          "command": "0xff02",
+          "bytes": 111
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 115
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 54,
+      "source_private": "evidence/private/email-native-boot-54/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": true,
+      "native_settings_loaded_bytes": 104,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 118
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xff02",
+          "bytes": 114
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 55,
+      "source_private": "evidence/private/email-native-boot-55/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": true,
+      "native_settings_loaded_bytes": 104,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 111
+        },
+        {
+          "command": "0xff02",
+          "bytes": 182
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 115
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 56,
+      "source_private": "evidence/private/email-native-boot-56/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": true,
+      "native_settings_loaded_bytes": 104,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": true,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 118
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 114
+        }
+      ],
+      "real_emails_sent": 0
+    },
+    {
+      "attempt": 57,
+      "source_private": "evidence/private/email-native-boot-57/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": false,
+      "temporary_role_resource_probe_sent": false,
+      "role_equip_probe_responses": 0,
+      "role_info_refresh_sent": false,
+      "native_settings_loaded_bytes": 0,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": false,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 166
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        }
+      ],
+      "real_emails_sent": 0,
+      "source_logout_failed_due_to_tunnel": true,
+      "source_session_recovery": "evidence/m0-m6-probe-session-recovery.json",
+      "engine_server_arguments_requested": [
+        "server",
+        "SV-Maya_3_Main?game=PVEGame.TGSVGame",
+        "-unattended",
+        "-nosplash"
+      ]
+    },
+    {
+      "attempt": 58,
+      "source_private": "evidence/private/email-native-boot-58/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "verified_current_email": true,
+      "a005_sent": true,
+      "temporary_role_resource_probe_sent": true,
+      "role_equip_probe_responses": 1,
+      "role_info_refresh_sent": true,
+      "native_settings_loaded_bytes": 104,
+      "native_settings_save_acks": 0,
+      "zone_no_hints_sent": true,
+      "commands": [
+        {
+          "command": "0xa000",
+          "bytes": 26
+        },
+        {
+          "command": "0xa204",
+          "bytes": 8
+        },
+        {
+          "command": "0xff05",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 128
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 110
+        },
+        {
+          "command": "0xff02",
+          "bytes": 182
+        },
+        {
+          "command": "0xa021",
+          "bytes": 12
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0xa008",
+          "bytes": 27
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa127",
+          "bytes": 35
+        },
+        {
+          "command": "0xc119",
+          "bytes": 9
+        },
+        {
+          "command": "0xa153",
+          "bytes": 35
+        },
+        {
+          "command": "0xa159",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16d",
+          "bytes": 35
+        },
+        {
+          "command": "0xa169",
+          "bytes": 35
+        },
+        {
+          "command": "0xa16b",
+          "bytes": 35
+        },
+        {
+          "command": "0xfa0a",
+          "bytes": 16
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x3504",
+          "bytes": 18
+        },
+        {
+          "command": "0x4211",
+          "bytes": 16
+        },
+        {
+          "command": "0xc00d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa357",
+          "bytes": 12
+        },
+        {
+          "command": "0xc11d",
+          "bytes": 16
+        },
+        {
+          "command": "0xa125",
+          "bytes": 35
+        },
+        {
+          "command": "0xa161",
+          "bytes": 35
+        },
+        {
+          "command": "0xa190",
+          "bytes": 35
+        },
+        {
+          "command": "0xa192",
+          "bytes": 35
+        },
+        {
+          "command": "0xa12b",
+          "bytes": 16
+        },
+        {
+          "command": "0xd002",
+          "bytes": 16
+        },
+        {
+          "command": "0x370f",
+          "bytes": 16
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3a9",
+          "bytes": 12
+        },
+        {
+          "command": "0xa3ab",
+          "bytes": 20
+        },
+        {
+          "command": "0xa3b1",
+          "bytes": 12
+        },
+        {
+          "command": "0xff02",
+          "bytes": 204
+        },
+        {
+          "command": "0xff02",
+          "bytes": 74
+        },
+        {
+          "command": "0xf124",
+          "bytes": 9
+        },
+        {
+          "command": "0xf501",
+          "bytes": 16
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0xfa16",
+          "bytes": 12
+        },
+        {
+          "command": "0x4103",
+          "bytes": 9
+        },
+        {
+          "command": "0x4100",
+          "bytes": 9
+        },
+        {
+          "command": "0x4005",
+          "bytes": 9
+        },
+        {
+          "command": "0x4120",
+          "bytes": 9
+        },
+        {
+          "command": "0x4122",
+          "bytes": 9
+        },
+        {
+          "command": "0x4301",
+          "bytes": 20
+        },
+        {
+          "command": "0xff02",
+          "bytes": 114
+        }
+      ],
+      "real_emails_sent": 0,
+      "source_session_cleanup_verified": true,
+      "engine_server_arguments_requested": [
+        "server",
+        "SV-Maya_3_Main?game=PVEGame.TGSVGame",
+        "-unattended",
+        "-nosplash"
+      ]
+    },
+    {
+      "attempt": 59,
+      "source_private": "evidence/private/email-native-boot-59/report.json",
+      "game_process_started": true,
+      "configuration_restored": true,
+      "cleanup_verified": true,
+      "transport_capture_stopped": true,
+      "role_verified": false,
+      "lobby_verified": false,
+      "source_session_cleanup_verified": true,
+      "profile_send_timing_diagnostic": "evidence/m0-m6-player-info-timing.json",
+      "real_emails_sent": 0
     }
   ],
   "restricted_graphics_gate": {
@@ -2237,6 +7844,8 @@
     "Boot22 sent the native-verified research A001 response with Result8100 and captured A204 then FF05, confirming execution of the current success-initialization branch. PlayerInfo, role and lobby remained unverified.",
     "Boot22 closed its connection at the eight-frame capture limit; subsequent unsupported reconnect frames are a probe/reconnect limitation, not rejection of the prior login response.",
     "Boot23 repeated A001 consumption with the verified email identity and held the authenticated connection until bounded probe cleanup; only two connections and no unsupported reconnect errors were observed.",
+    "Boot24 sent the native-verified empty A205 profile and observed a following A202 settings-write request; opaque settings persistence and A203 remain unimplemented.",
+    "Boot25 freshly rechecked current /api/views/me email ownership and both account/game identity bindings before startup, then repeated AUTH, GEO, A001 and A205 with clean two-connection shutdown. No additional email was sent.",
     "Persistent configuration guard restored all three variants after each guarded probe and verified original hashes."
   ],
   "user_observation": "Loading picture appeared; did not reach lobby.",
@@ -2258,7 +7867,16 @@
     "aliyun-native-v2-default-ipc.json",
     "native-config-guard-fault-tests.json",
     "aliyun-native-tdr-offline.json",
-    "aliyun-current-zone-login-contract.json"
+    "aliyun-current-zone-login-contract.json",
+    "m0-m6-native-settings-live.json",
+    "m0-m6-package-imports.json",
+    "m6-package-imports.json",
+    "m0-m6-native-server-entry.json",
+    "m0-m6-probe-session-recovery.json",
+    "m0-m6-player-info-timing.json"
   ],
-  "next_step": "Verify the observed current Zone application sequence and response consumers, then implement character and lobby exchanges against the independent identity."
+  "next_step": "Online playable release remains incomplete: stable native lobby/real role and assets, verified native room entry, M5 first-map multiplayer loop and full M6. Offline delivery deferred. Native settings save/relogin is live verified; all 22 M6 main import tables are parsed, with remaining closure gaps retained. See docs/delivery/2026-10-15-m0-m6.md.",
+  "current_delivery_scope": "ONLINE_PLAYABLE_REQUIRED_OFFLINE_DEFERRED",
+  "latest_native_lobby_verified": false,
+  "native_settings_save_relogin_verified": true
 }

@@ -1,0 +1,21 @@
+{
+  "migrations": [
+    "0020_native_rooms",
+    "0021_native_room_secret"
+  ],
+  "crypto": "50.0.2",
+  "cffi": "2.1.1",
+  "formal_checkin_enabled": 0,
+  "room_version": "cn2020-native-room-compat-v2",
+  "maps": 55,
+  "health": [
+    {
+      "port": 18765,
+      "status": 200
+    },
+    {
+      "port": 18767,
+      "status": 200
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "NATIVE_FRIEND_DECISION_FAILURE_AND_SOURCE_PROOF",
+  "receiver_game_id": 10005,
+  "sender_game_id": 10004,
+  "observed_ui_action": "green agree button in native inbox",
+  "request_command": "0xa307",
+  "request_result": 33537,
+  "request_sha256": "f4de84887d625ea1375d3ff55beed794fb0268c544b618f18d4f4c168f060071",
+  "old_bridge_chose": "friend.reject",
+  "sender_acceptance_observed": false,
+  "current_tdr_agree": 33537,
+  "current_tdr_refuse": 769,
+  "generic_sns_success": 33536,
+  "native_consumer_code": [
+    {
+      "va": "0x193f31a",
+      "behavior": "cmp received result with 0x8301 before accepted branch"
+    },
+    {
+      "va": "0x193f68b",
+      "behavior": "compare result with 0x8301 or 0x0301; other values are not a decision"
+    }
+  ],
+  "executable_sha256": "b81bb4e1256ad1fca1ecbbf93b35979d96c36ca16f8bbfc8d126e9a452df51f8",
+  "code_evidence": "evidence/private/native-friend-code-416",
+  "code_only_read": true,
+  "memory_writes": 0,
+  "bridge_fix_live_retest_pending": true
+}

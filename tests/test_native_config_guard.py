@@ -12,6 +12,15 @@ from tools.native_config_guard import NativeConfigGuard, _stage_bytes
 
 class NativeConfigGuardTests(unittest.TestCase):
     """每例使用独立临时工作副本及证据目录，所有故障只影响本例自建的普通文件。"""
+    def test_bounded_script_restore_after_restart(self):
+        """大于4MiB的固定UI脚本可从恢复计划回滚；相同大小普通配置继续拒绝。"""
+        relative='TGame/CookedPC/TGameGfxUI.u';path=self.root/relative
+        path.parent.mkdir(parents=True);original=b'a'*(5*1024*1024);path.write_bytes(original)
+        self.guard.apply(relative,b'b'*len(original))
+        self.assertTrue(NativeConfigGuard.from_plan(self.root,self.output).restore()['configuration_restored'])
+        self.assertEqual(path.read_bytes(),original)
+        with self.assertRaises(ValueError):self.guard.apply('first.ini',original)
+
 
     def setUp(self):
         """建立两个配置及外部证据目录；绝不读取真实客户端或实际凭据。"""
@@ -249,6 +258,58 @@ class NativeConfigGuardTests(unittest.TestCase):
         self.addCleanup(linked.rmdir)
         plan = json.loads(self.guard.plan_path.read_text(encoding='utf-8'))
         plan['records'][0]['relative'] = 'link/outside.ini'
+        self.guard.plan_path.write_text(json.dumps(plan), encoding='utf-8')
+        with self.assertRaises(ValueError):
+            NativeConfigGuard.from_plan(self.root, self.output)
+
+    def test_additive_files_recover_after_restart_without_touching_originals(self):
+        """兼容DLL仅作为新文件加入，进程重建后移除它，已有配置恢复原值；重复恢复安全。"""
+        self.guard.apply('first.ini', b'variant')
+        self.guard.add_new('renderer.dll', b'owned renderer')
+        result = NativeConfigGuard.from_plan(self.root, self.output).restore()
+        self.assertTrue(result['configuration_restored'])
+        self.assertFalse((self.root/'renderer.dll').exists())
+        self.assertEqual((self.root/'first.ini').read_bytes(), self.originals['first.ini'])
+        self.assertTrue(NativeConfigGuard.from_plan(self.root, self.output).restore()['configuration_restored'])
+
+    def test_additive_external_file_and_install_race_are_preserved(self):
+        """旧文件、暂存期间竞争创建、运行中外部替换均不能覆盖或误删。"""
+        with self.assertRaises(RuntimeError):
+            self.guard.add_new('first.ini', b'not installed')
+        stage = _stage_bytes
+        def competing_creation(target, content):
+            """只模拟本例目标的竞争创建，恢复计划照常写入。"""
+            temporary = stage(target, content)
+            if target.name == 'racing.dll':
+                target.write_bytes(b'external')
+            return temporary
+        with patch('tools.native_config_guard._stage_bytes', side_effect=competing_creation):
+            with self.assertRaises(FileExistsError):
+                self.guard.add_new('racing.dll', b'owned')
+        self.guard.add_new('renderer.dll', b'owned')
+        (self.root/'renderer.dll').write_bytes(b'external replacement')
+        result = NativeConfigGuard.from_plan(self.root, self.output).restore()
+        self.assertFalse(result['configuration_restored'])
+        self.assertEqual((self.root/'racing.dll').read_bytes(), b'external')
+        self.assertEqual((self.root/'renderer.dll').read_bytes(), b'external replacement')
+
+    def test_additive_prepared_plan_survives_post_install_failure(self):
+        """安装后落盘状态失败时PREPARED计划仍可恢复；禁止把旧版本计划伪装为可删除文件。"""
+        persist = self.guard._persist
+        calls = 0
+        def fail_second_write():
+            """首次计划成功，安装后的第二次写入失败。"""
+            nonlocal calls
+            calls += 1
+            if calls > 1:
+                raise OSError('injected')
+            persist()
+        with patch.object(self.guard, '_persist', side_effect=fail_second_write):
+            with self.assertRaises(OSError):
+                self.guard.add_new('renderer.dll', b'owned')
+        self.assertTrue(NativeConfigGuard.from_plan(self.root, self.output).restore()['configuration_restored'])
+        plan = json.loads(self.guard.plan_path.read_text(encoding='utf-8'))
+        plan['version'] = 1
         self.guard.plan_path.write_text(json.dumps(plan), encoding='utf-8')
         with self.assertRaises(ValueError):
             NativeConfigGuard.from_plan(self.root, self.output)

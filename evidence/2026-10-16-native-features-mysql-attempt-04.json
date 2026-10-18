@@ -1,0 +1,73 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 27,
+  "passed": [
+    "tests.test_native_features.NativeFeatureTests.test_checkin_beijing_midnight_boundary",
+    "tests.test_native_features.NativeFeatureTests.test_checkin_disabled_by_default_and_no_repeat_after_rule_change",
+    "tests.test_native_features.NativeFeatureTests.test_clan_invitation_transfer_and_old_owner_permission",
+    "tests.test_native_features.NativeFeatureTests.test_draw_failure_restores_exhausted_material_binding",
+    "tests.test_native_features.NativeFeatureTests.test_fragment_stack_and_draw_confirmation_are_atomic",
+    "tests.test_native_features.NativeFeatureTests.test_friend_delivery_block_and_unrelated_event_ack",
+    "tests.test_native_features.NativeFeatureTests.test_game_api_rejects_player_token_and_changed_retry",
+    "tests.test_native_features.NativeFeatureTests.test_native_shop_failure_then_commit_and_incremental_cache",
+    "tests.test_native_features.NativeFeatureTests.test_native_skin_and_social_packets_use_current_result_domains",
+    "tests.test_native_features.NativeFeatureTests.test_native_unknown_commit_recovery_survives_bridge_restart",
+    "tests.test_native_features.NativeFeatureTests.test_pagination_rejects_mixed_versions_and_old_limit_is_removed",
+    "tests.test_native_features.NativeFeatureTests.test_purchase_duplicate_instances_no_capacity_and_idempotency",
+    "tests.test_native_features.NativeFeatureTests.test_purchase_event_failure_rolls_back_money_items_and_receipt",
+    "tests.test_native_features.NativeFeatureTests.test_selected_pool_rejects_unknown_choice_without_consumption",
+    "tests.test_native_features.NativeFeatureTests.test_skin_relationship_and_cross_account_rejected",
+    "tests.test_native_features.NativeFeatureTests.test_swallow_consumes_material_and_persists_host"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 116, in test_atomic_full_inventory_and_outbox_failure\n    self.grant_all(account)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined\n"
+    },
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_backpack_root_preserves_all_other_bags_and_children",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 270, in test_backpack_root_preserves_all_other_bags_and_children\n    self.small_catalog();account,_,game,data=self.player_game();self.grant_all(account)\n                                                                ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined. Did you mean: 'account_id'?\n"
+    },
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_compact_commit_is_atomic_authorized_and_matches_full_snapshot",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 232, in test_compact_commit_is_atomic_authorized_and_matches_full_snapshot\n    self.small_catalog();account,player,game,data=self.player_game();self.grant_all(account)\n                                                                     ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined. Did you mean: 'account_id'?\n"
+    },
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 124, in test_concurrent_grants_commit_once\n    values = list(pool.map(self.grant_all, [account, account]))\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\concurrent\\futures\\_base.py\", line 619, in result_iterator\n    yield _result_or_cancel(fs.pop())\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\concurrent\\futures\\_base.py\", line 317, in _result_or_cancel\n    return fut.result(timeout)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\concurrent\\futures\\_base.py\", line 456, in result\n    return self.__get_result()\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\concurrent\\futures\\_base.py\", line 401, in __get_result\n    raise self._exception\n  File \"C:\\Users\\ZJH\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\concurrent\\futures\\thread.py\", line 59, in run\n    result = self.fn(*self.args, **self.kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\support.py\", line 14, in run\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined. Did you mean: 'account_id'?\n"
+    },
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 62, in test_full_catalog_repeat_preserves_gids_and_user_unequip\n    self.assertEqual(self.grant_all(account)['items_granted'], 4323)\n                     ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined. Did you mean: 'account_id'?\n"
+    },
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 322, in test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once\n    self.small_catalog();account,_,game,data=self.player_game();self.grant_all(account)\n                                                                ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined. Did you mean: 'account_id'?\n"
+    },
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_maximize_atomic_repeat_and_isolation",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 304, in test_gm_wallet_maximize_atomic_repeat_and_isolation\n    self.grant_all(account)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined. Did you mean: 'account_id'?\n"
+    },
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_hidden_default_knife_replaces_owned_melee_only",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 192, in test_hidden_default_knife_replaces_owned_melee_only\n    self.grant_all(account)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined. Did you mean: 'account_id'?\n"
+    },
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\test\\utils.py\", line 456, in inner\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 158, in test_http_equipment_owner_version_revocation_and_atomicity\n    self.grant_all(account)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined. Did you mean: 'account_id'?\n"
+    },
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_native_zero_target_unequip_owned_only_and_repeat",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 133, in test_native_zero_target_unequip_owned_only_and_repeat\n    self.grant_all(account)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined. Did you mean: 'account_id'?\n"
+    },
+    {
+      "test": "tests.test_native_inventory.NativeInventoryTests.test_pve_role_switch_preserves_factions_and_rejects_other_owner",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 211, in test_pve_role_switch_preserves_factions_and_rejects_other_owner\n    _,_,other,_=self.player_game('other');self.grant_all(account)\n                                          ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 40, in grant_all\n    return native_inventory.grant_full_inventory(self.s, account,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_inventory.py\", line 125, in grant_full_inventory\n    advance_revision(c, account['id'])\n                        ^^^^^^^\nNameError: name 'account' is not defined. Did you mean: 'account_id'?\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 151.766
+}

@@ -1,0 +1,25 @@
+{
+  "kind": "DEPLOYMENT_READBACK_AFTER_SSH_CHANNEL_EXIT_MINUS_ONE",
+  "code": 0,
+  "release": "20261015T163100-776ab6395492",
+  "source_hashes_match": true,
+  "services": [
+    "active",
+    "active",
+    "active",
+    "active"
+  ],
+  "health": [
+    {
+      "status": "ok",
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    {
+      "status": "ok",
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  ],
+  "error_present": false
+}

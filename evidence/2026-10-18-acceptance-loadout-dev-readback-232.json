@@ -1,0 +1,239 @@
+{
+  "kind": "DEV_ACCEPTANCE_ZHUSHEN_ASSET_READBACK",
+  "release": "20261018T042054-d837db891ef8",
+  "mysql_version": "8.0.30-txsql",
+  "checked_hashes": {
+    "revival/native_acceptance_loadout.py": "d330c7cbdcad143bf7dfe56f0237c9ea95289f40734bddf0e40b40e4a62fc639",
+    "revival/native_pve_benefits.py": "9b609c280712aafcc0df824fa4fb983212621901e7bdf18c1e5ea767d40a6d18",
+    "revival/native_inventory.py": "12ad8397bfb36cfe851b60ccf35dba7f39ed557572e9d58de84d43608c651960",
+    "revival/native_features.py": "d3fcb1876e61f5f2db9d8c912259a73d52c394735f8769fe791fd7ed0747eb9a",
+    "revival/catalogs.py": "1b569a14a1963ec42f9f322f163a00895c2c7b790f11f9f687ac32af5dde5679",
+    "adapters/cn_current/features.py": "e19895ff394da3a235c011ee64b5be9d0d944cfd852c0be51ff7d27c13f87914",
+    "config/cn2020-pve-benefits-v1.json": "1469180a8e97bc850d5a3e3689fcac1fe383b513b0c3499cb4286d8db615c51f",
+    "config/cn2020-feature-protocol-v11.json": "a0eaa8a50b850c9bad9c6f4c9b2a958d07ae9a24c2b70b608da59a3f6047f041"
+  },
+  "request_id": "acceptance-zhushen-20261018-v1",
+  "idempotent_replay_equal": true,
+  "preexisting_receipts": 0,
+  "accounts": [
+    {
+      "game_id": 10002,
+      "inventory_before": 4323,
+      "inventory_after": 4325,
+      "bindings_after": 4325,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "equipment_count": 27,
+      "equipped_item_ids": [
+        103981,
+        103983,
+        103985,
+        103987,
+        101210,
+        101211,
+        101149
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 100713,
+            "equipped": false
+          },
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 100591,
+            "equipped": false
+          },
+          {
+            "item_id": 100810,
+            "equipped": false
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          }
+        ]
+      },
+      "gm": true
+    },
+    {
+      "game_id": 10003,
+      "inventory_before": 52,
+      "inventory_after": 59,
+      "bindings_after": 59,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "equipment_count": 9,
+      "equipped_item_ids": [
+        103981,
+        103983,
+        103985,
+        103987,
+        101210,
+        101211,
+        101149
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          },
+          {
+            "item_id": 101211,
+            "equipped": true
+          }
+        ]
+      },
+      "gm": false
+    },
+    {
+      "game_id": 10004,
+      "inventory_before": 93,
+      "inventory_after": 101,
+      "bindings_after": 101,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "equipment_count": 25,
+      "equipped_item_ids": [
+        103981,
+        103983,
+        103985,
+        103987,
+        101210,
+        101211,
+        101149
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          },
+          {
+            "item_id": 101149,
+            "equipped": true
+          }
+        ]
+      },
+      "gm": false
+    },
+    {
+      "game_id": 10005,
+      "inventory_before": 37,
+      "inventory_after": 45,
+      "bindings_after": 45,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "equipment_count": 34,
+      "equipped_item_ids": [
+        103981,
+        103983,
+        103985,
+        103987,
+        101210,
+        101211,
+        101149
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          }
+        ]
+      },
+      "gm": false
+    }
+  ],
+  "health": [
+    {
+      "port": 18765,
+      "status": 200,
+      "data": {
+        "status": "ok",
+        "profile": "cn-current-unverified",
+        "retail_compatible": false
+      }
+    },
+    {
+      "port": 18767,
+      "status": 200,
+      "data": {
+        "status": "ok",
+        "profile": "test-pve-v1",
+        "retail_compatible": false
+      }
+    }
+  ],
+  "latest_migration": [
+    "0019_native_engineering_progress"
+  ],
+  "formal_checkin_enabled": 0,
+  "at": 1792297598,
+  "native_ui_verified": false,
+  "native_battle_effects_verified": false
+}

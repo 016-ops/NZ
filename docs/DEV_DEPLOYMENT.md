@@ -1,5 +1,7 @@
 # DEV 控制面部署与 SSH 隧道
 
+2026-10-15 设置增量发布 **20261015T111056-a6ef9c556708**：新增0007原生设置表及游戏会话读写接口，MySQL CAS/事务/恢复验收通过。四服务、两库完整性、各六个保护触发器和发布前后既有账号角色/资产视图一致。此为控制面增量，原生大厅、房间和在线可玩交付仍未完成；离线暂缓。见 [M0–M6交接](delivery/2026-10-15-m0-m6.md)、[发布](../evidence/m0-m6-native-settings-dev-deploy.json)与[核验](../evidence/m0-m6-native-settings-dev-verification.json)。
+
 2026-10-15 最新发布 **20261015T061412-1cfd594907ca** 已部署邮箱恢复/补验幂等、注册并发重放修复、前端请求期间锁定和随机内部别名。四个服务 active、两环境前端与资源、匿名权限拒绝、邮箱能力、两库完整性及各六个保护触发器通过；仅监听回环 18765/18767，重登后 game_id、角色、verified 状态和资产视图保持。本次发布验证追加邮件 **0 封**，原生大厅仍未通过。见[最终发布报告](../evidence/aliyun-email-final-dev-deploy.json)、[最终运行核验](../evidence/aliyun-email-final-dev-verification.json)及[本批交接](delivery/2026-10-15-aliyun-email-and-native-launch.md)。
 
 此前发布 **20261015T054145-873d60549d7d** 加入阿里云 SMTP、migration 0006、验证码注册、找回密码与旧邮箱验证，并完成三封真实邮件的闭环验收。原报告 `evidence/aliyun-email-dev-deploy.json`、`evidence/aliyun-email-live.json`、`evidence/aliyun-email-restart.json` 保留。下述更早记录继续保留，不把任一控制面发布当作原生游戏通过。

@@ -1,0 +1,11 @@
+test_bad_source_missing_map_and_out_of_range_port_are_rejected (tests.test_native_room_server_config.NativeRoomServerConfigTests.test_bad_source_missing_map_and_out_of_range_port_are_rejected)
+任何源位变、缺主图、布尔和越界端口均在安装之前拒绝。 ... ok
+test_private_instance_config_restores_without_touching_shared_pool (tests.test_native_room_server_config.NativeRoomServerConfigTests.test_private_instance_config_restores_without_touching_shared_pool)
+恢复守卫只更改独立实例配置，不创建硬链接、不修改共享资源或客户端原件。 ... ok
+test_two_priority_maps_have_exact_variants_and_keep_logging (tests.test_native_room_server_config.NativeRoomServerConfigTests.test_two_priority_maps_have_exact_variants_and_keep_logging)
+地图URL和共享只读目录可读回；原-Suppress减号语义保留，未伪造难度字段。 ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.120s
+
+OK

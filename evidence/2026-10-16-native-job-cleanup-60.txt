@@ -1,0 +1,9 @@
+test_observer_error_waits_for_owned_file_holder_before_restore (tests.test_native_job.NativeJobCleanupTests.test_observer_error_waits_for_owned_file_holder_before_restore)
+重现诊断pids错误；退出with后文件持有者已结束，首次配置恢复即可成功。 ... ok
+test_parent_exit_does_not_leave_unobserved_owned_child_running (tests.test_native_job.NativeJobCleanupTests.test_parent_exit_does_not_leave_unobserved_owned_child_running)
+父进程先退出且没有调用pids；关闭Job仍枚举并等待后代，避免只等待父句柄。 ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.221s
+
+OK

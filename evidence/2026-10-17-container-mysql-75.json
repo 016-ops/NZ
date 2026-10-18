@@ -1,0 +1,28 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 4,
+  "passed": [],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_containers.NativeContainerTests.test_concurrent_replay_keeps_one_consumption_and_three_rewards",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_containers.py\", line 36, in test_concurrent_replay_keeps_one_consumption_and_three_rewards\n    request=self.meta(**self.base,action='inventory.open',**self.payload())\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: tests.test_control_plane.Base.meta() got multiple values for keyword argument 'protocol'\n"
+    },
+    {
+      "test": "tests.test_native_containers.NativeContainerTests.test_exclusive_card_conflict_preserves_box_and_reports_real_reason",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_containers.py\", line 95, in test_exclusive_card_conflict_preserves_box_and_reports_real_reason\n    with self.assertRaises(Fault) as caught:self.call('inventory.open',**self.payload())\n                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 31, in call\n    return features.command(self.s,self.game,self.meta(**self.base,action=action,**data))\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: tests.test_control_plane.Base.meta() got multiple values for keyword argument 'protocol'\n"
+    },
+    {
+      "test": "tests.test_native_containers.NativeContainerTests.test_protocol_failure_success_and_unknown_commit_recovery",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_containers.py\", line 71, in test_protocol_failure_success_and_unknown_commit_recovery\n    self.assertEqual(parse(bridge.handle(raw)[0])[1]['Result'],1799)\n                           ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_feature_bridge.py\", line 219, in handle\n    return self.dispatch(command,fields)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_feature_bridge.py\", line 329, in dispatch\n    result=self.commit('inventory.open',protocol=fields['FortuneKeyType'],\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_feature_bridge.py\", line 95, in commit\n    result=self.client.request('/api/game/command',self.pending['request'],self.inventory.game_token)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 245, in request\n    raise LoginError(error.code) from None\ntools.email_launcher.LoginError: PROTOCOL\n"
+    },
+    {
+      "test": "tests.test_native_containers.NativeContainerTests.test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_containers.py\", line 50, in test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets\n    with self.assertRaises(Fault):self.call('inventory.open',**values)\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 31, in call\n    return features.command(self.s,self.game,self.meta(**self.base,action=action,**data))\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: tests.test_control_plane.Base.meta() got multiple values for keyword argument 'protocol'\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 19.25
+}

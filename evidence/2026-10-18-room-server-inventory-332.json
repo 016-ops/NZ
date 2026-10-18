@@ -1,0 +1,13 @@
+{
+  "kind": "ROOM_NODE_INITIAL_RESOURCE_INVENTORY",
+  "exit_code": 0,
+  "inspection": {
+    "folders": [
+      "NZResearch"
+    ],
+    "python": [
+      "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe"
+    ],
+    "existing_nz_processes": []
+  }
+}

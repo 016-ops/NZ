@@ -1,0 +1,32 @@
+test_native_pool_dates_cost_and_choice_types (tests.test_native_draw_round.NativeDrawRoundTests.test_native_pool_dates_cost_and_choice_types)
+原生初始化返回有效开放区间、实际成本、剩余列表及合法自选类型，避免整页锁死。 ... ok
+test_refund_owned_preserves_material_gid_and_rollback_round (tests.test_native_draw_round.NativeDrawRoundTests.test_refund_owned_preserves_material_gid_and_rollback_round)
+已有永久奖品净零扣费，保留材料GID，尾部故障不推进轮次或留下回执。 ... ok
+test_two_choices_freeze_twelve_prizes_and_lock_until_finished (tests.test_native_draw_round.NativeDrawRoundTests.test_two_choices_freeze_twelve_prizes_and_lock_until_finished)
+选择2项补足12格后，重连仍读同一池；抽中不重复，半轮不能重置，结束后可以。 ... ok
+test_native_upgrade_failure_then_success_keeps_connection (tests.test_native_crafting.NativeCraftingTests.test_native_upgrade_failure_then_success_keeps_connection)
+原生A375材料不足返回1799，随后补足材料仍能在同一个桥上成功并增量更新。 ... ERROR
+
+======================================================================
+ERROR: test_native_upgrade_failure_then_success_keeps_connection (tests.test_native_crafting.NativeCraftingTests.test_native_upgrade_failure_then_success_keeps_connection)
+原生A375材料不足返回1799，随后补足材料仍能在同一个桥上成功并增量更新。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_crafting.py", line 83, in test_native_upgrade_failure_then_success_keeps_connection
+    succeeded=bridge.handle(raw)
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tools\native_feature_bridge.py", line 196, in handle
+    return self.dispatch(command,fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tools\native_feature_bridge.py", line 283, in dispatch
+    props=[self.prop(row) for row in result['delta']['items']
+           ^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tools\native_feature_bridge.py", line 117, in prop
+    Durability=row.get('state',{}).get('durability',row['durability_max']),DurabilityMax=row['durability_max'],
+                                                    ~~~^^^^^^^^^^^^^^^^^^
+KeyError: 'durability_max'
+
+----------------------------------------------------------------------
+Ran 4 tests in 21.271s
+
+FAILED (errors=1)

@@ -1,0 +1,19 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 7,
+  "passed": [
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_claimed_weapon_cannot_be_engineering_material_but_ordinary_copy_can",
+    "tests.test_native_engineering.NativeEngineeringTests.test_all_37_recipes_keep_cost_result_and_progress",
+    "tests.test_native_engineering.NativeEngineeringTests.test_decompose_all_types_idempotent_and_batch_atomic",
+    "tests.test_native_engineering.NativeEngineeringTests.test_material_conversion_preserves_quantity_and_rejects_underflow",
+    "tests.test_native_engineering.NativeEngineeringTests.test_native_failure_then_success_and_progress_relogin",
+    "tests.test_native_engineering.NativeEngineeringTests.test_owner_expiry_duplicate_and_rule_version_rejected",
+    "tests.test_native_engineering.NativeEngineeringTests.test_paid_batch_failure_rolls_back_currency_parts_progress_and_receipt"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 40.734
+}

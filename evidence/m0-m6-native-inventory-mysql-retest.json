@@ -1,0 +1,16 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 4,
+  "passed": [
+    "tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure",
+    "tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once",
+    "tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip",
+    "tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 63.172
+}

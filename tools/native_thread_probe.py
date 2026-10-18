@@ -90,6 +90,15 @@ def sample_owned_threads(group, code_output=None, discover_login_references=Fals
             result[pid]['winerror']=ctypes.get_last_error(); continue
         try:
             if code_output is not None:
+                # 当前31轮的两个E9已定位到TGameBase的166A52/167847，再由同哈希文件
+                # 的直接跳转定位1BB2A9A/1BB9FA4；它们分别从以下固定槽异或恢复API地址。
+                # 这里只读各4字节导入地址并转换模块/RVA，不能读取周边数据或调用解出的函数。
+                for module_base,module_length,module_name in modules:
+                    if module_name.lower()=='tgamebase.dll' and module_base<0x100000000 and module_length>0x76e95c:
+                        from tools.native_login_probe import sample_nickname_resolvers
+                        result[pid]['nickname_api_resolvers']=sample_nickname_resolvers(
+                            group,pid,process,module_base,code_output,location)
+                        break
                 # 仅采集当前样本已观察到的调用点指令；不读取 MessageBox 参数、窗口文本或任意数据区。
                 # 代码 RVA 来自本次主线程帧链，不能将它用于其他客户端构建。
                 for base,length,name in modules:
@@ -104,7 +113,30 @@ def sample_owned_threads(group, code_output=None, discover_login_references=Fals
                                          (0x14ab780,0x100),(0x14a5100,0x300),(0x14a551f,0x200),
                                          (0x14a1c20,0x60),(0x14a1180,0x100),(0x14a60a0,0x180),(0x14bb4d0,0x180),
                                          (0x14bae80,0x200),(0x155f39c,0x500),(0x155f851,0x4a0),(0x155e540,0x200),
-                                         (0x14f42c0,0x400),(0x14f58bd,0x900)):
+                                         (0x14f42c0,0x400),(0x14f58bd,0x900),
+                                         (0x14f49a0,0x500),(0x14e74f0,0x300),
+                                         # 14E74F0当前首条直接跳转的目标；观察完成条件，不改就绪位。
+                                         (0x23d918d,0x100),
+                                         # 当前磁盘在48EDF/48EF0、729010/729066直接比较标准/私有包标记。
+                                         # 只采固定消费者代码以确定资源首部格式，不读资源正文或复制整进程。
+                                         (0x48e80,0x300),(0x728f80,0x240),
+                                         # 38轮否定153CA40（数组工具函数）；PropInfo循环入口位于其后。
+                                         # 固定采样已证尾部之前的代码，寻找实际入口而非套用邻近虚表指针。
+                                         (0x153d000,0xa00),
+                                         # 39轮已证A006入口及末包分支；补其角色自修复路径，
+                                         # 并补A005中CurRoleGID消费的固定范围，只读取本Job代码。
+                                         (0x153de2e,0x600),(0x153d9d8,0x460),(0x14f56e0,0x200),
+                                         # 当前 A005 消费者在正文 +0xE 调用此函数转换昵称；
+                                         # 仅采样这 512 字节代码，不能读取昵称正文或猜测字符集。
+                                         (0x91f0,0x200),
+                                         # boot67在当前SERVER字符串引用FC3531定位FC3635/FC3643分支。
+                                         # 只补其后启动模式代码，不读取/改写引擎状态或使用PH地址。
+                                         (0xfc3635,0x500),
+                                         # boot68末尾明确写两个相邻模式候选值1/0；补随后的条件使用以确认含义。
+                                         (0xfc3b14,0x400),
+                                         # boot69的FC3AF5分支直接调用FB9F00；只读固定被调代码，
+                                         # 用于核对SERVER/COMMANDLET初始化，不把PH构建地址移植过来。
+                                         (0xfb9f00,0x600)):
                             code=ctypes.create_string_buffer(size); read=ctypes.c_size_t()
                             if kernel.ReadProcessMemory(process,base+rva,code,size,ctypes.byref(read)) and read.value==size:
                                 target=code_output/f'tgame-{pid}-{rva:x}.bin'
@@ -112,6 +144,17 @@ def sample_owned_threads(group, code_output=None, discover_login_references=Fals
                                     stream.write(code.raw)
                                 result[pid]['code_samples'].append({'image_base':hex(base),'rva':hex(rva),'bytes':size,
                                     'sha256':hashlib.sha256(code.raw).hexdigest(),'file':target.name})
+                        # 91F0 当前实际指令只调用这两个固定函数槽。读取的8字节仅为代码地址，
+                        # 随即转换为模块/RVA；不跟随指针读取内存或将其用于执行调用。
+                        if pid in group.pids() and length >= 0x1a3e1a8:
+                            slots=ctypes.create_string_buffer(8); read=ctypes.c_size_t()
+                            if kernel.ReadProcessMemory(process,base+0x1a3e1a0,slots,8,ctypes.byref(read)) and read.value==8:
+                                result[pid]['nickname_conversion_imports']={
+                                    # 绝对代码地址只进入私人report，供无法归属时核对；不解引用目标。
+                                    hex(0x1a3e1a0+index*4):dict(location(address), private_code_pointer=hex(address))
+                                    for index,address in enumerate(struct.unpack('<II',slots.raw))}
+                            from tools.native_login_probe import sample_nickname_thunks
+                            result[pid]['nickname_conversion_thunks']=sample_nickname_thunks(group,pid,process,base,code_output,location)
                         # 固定当前构建的公开登录/Geo诊断常量，只在代码页寻找引用，不读取 UI 或账号结构。
                         if discover_login_references:
                             from tools.native_login_probe import sample_login_code

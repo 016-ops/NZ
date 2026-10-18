@@ -1,0 +1,544 @@
+{
+  "now": 1792160535,
+  "receipts": [
+    {
+      "id": "fa0196bd15fc427fa4d58375926e0054",
+      "kind": "starter.loadout",
+      "result": {
+        "status": "COMMITTED",
+        "backpacks": 6,
+        "operations": [
+          "b311d30365ff4ad9bad8b35aa2dbac74",
+          "1a8be84910cf4904a93ebe39915cce10",
+          "d2a535cdf8aa4787a24ab8600fef9574",
+          "cf46b4480c774eb99009b27f0aa032bf",
+          "11bb74d765ae4c379d3b7f41b29c239b",
+          "587755fc8a8044d1b63011cddbf799a3",
+          "0d374a2ea94147ee8865cf7d781d6593",
+          "566db5e374de44b3bbc5f607934bb8b1",
+          "64b77ba8efe2409eb4b780e9275093a9",
+          "1522ee913c364e9ca0cf3ea11d400501",
+          "72b472b951b041c1b3ba6b460ca6cb54",
+          "3b37d90538a64a40ace26587c394a75b",
+          "ae0fccb3b74c4c8bb3ea397e29b07d92",
+          "f86f876261a849bd89188df185677a4e",
+          "93ee128d18ca463db0d15dee174603e2",
+          "9366b9f82d664610817de4c72a4fd91a",
+          "e5d056e6096940e4afb213d0139c4469",
+          "71ac0f1d87c94c75930dfebaf932a50a",
+          "06070430d860441aa61a1781a61d54e6",
+          "def318b0d5be4e239d49b520220e28d1",
+          "52ad8b0f58b1429b873bc23abcf9df27"
+        ],
+        "rule_version": "cn2020-starter-loadout-v2"
+      },
+      "confirmed": true,
+      "created_at": 1792156963
+    },
+    {
+      "id": "maintenance-20261016-45",
+      "kind": "acceptance.maintenance.fixture",
+      "result": {
+        "kind": "ISOLATED_FIXTURE_NOT_COMBAT_DURABILITY",
+        "game_id": 10005,
+        "operations": [
+          "8c442b589be74b5daf11046ead8e4aa5"
+        ]
+      },
+      "confirmed": true,
+      "created_at": 1792158637
+    },
+    {
+      "id": "1d3a2d82da7d443e8bf0f1bd5d90fd9d",
+      "kind": "inventory.repair",
+      "result": {
+        "items": [
+          {
+            "gid": 5480,
+            "cost": 3150,
+            "item_id": 100009
+          }
+        ],
+        "status": "COMMITTED",
+        "totals": {
+          "cn2020:GP": 3150
+        },
+        "operations": [
+          "35785e9705d34bc890b5125be34b2536"
+        ],
+        "receipt_id": "1d3a2d82da7d443e8bf0f1bd5d90fd9d",
+        "rule_version": "cn2020-item-maintenance-v1"
+      },
+      "confirmed": true,
+      "created_at": 1792158823
+    },
+    {
+      "id": "cdb33b36b3684d378d3e94346b84410f",
+      "kind": "inventory.repair",
+      "result": {
+        "items": [
+          {
+            "gid": 5479,
+            "cost": 10800,
+            "item_id": 100292
+          }
+        ],
+        "status": "COMMITTED",
+        "totals": {
+          "cn2020:GP": 10800
+        },
+        "operations": [
+          "9dd1413a676b477ca94f0982f70f3fdd"
+        ],
+        "receipt_id": "cdb33b36b3684d378d3e94346b84410f",
+        "rule_version": "cn2020-item-maintenance-v1"
+      },
+      "confirmed": true,
+      "created_at": 1792159063
+    },
+    {
+      "id": "1b6dbf795bc54be1b3c766971f41430d",
+      "kind": "inventory.sell",
+      "result": {
+        "items": [
+          {
+            "gid": 5492,
+            "cost": 2138,
+            "item_id": 100003
+          }
+        ],
+        "status": "COMMITTED",
+        "totals": {
+          "cn2020:GP": 2138
+        },
+        "operations": [
+          "2064e1a574f74b3f92dd671974b7596a"
+        ],
+        "receipt_id": "1b6dbf795bc54be1b3c766971f41430d",
+        "rule_version": "cn2020-item-maintenance-v1"
+      },
+      "confirmed": true,
+      "created_at": 1792159134
+    },
+    {
+      "id": "c3421c7651cf4992b121373d8221534e",
+      "kind": "shop.renew",
+      "result": {
+        "quote": {
+          "lines": [
+            {
+              "price": 500,
+              "rewards": [
+                {
+                  "item_id": 100027,
+                  "quantity": 1,
+                  "duration_seconds": 259200
+                }
+              ],
+              "currency": "cn2020:MP",
+              "giftable": false,
+              "quantity": 1,
+              "price_index": 0,
+              "commodity_id": 200020
+            }
+          ],
+          "totals": {
+            "cn2020:MP": 500
+          },
+          "version": "cn2020-feature-catalog-v1",
+          "shop_rule_version": "cn2020-shop-package-period-v2",
+          "restored_offer_rule": "cn2020-renewal-offer-restore-v1"
+        },
+        "status": "COMMITTED",
+        "operations": [
+          "e2f4712c4f254b238b0949957a2c5bdc"
+        ],
+        "receipt_id": "c3421c7651cf4992b121373d8221534e",
+        "line_grants": [
+          [
+            {
+              "gid": 5493,
+              "item_id": 100027,
+              "quantity": 1,
+              "durability": 0,
+              "expires_at": 1792421435
+            }
+          ]
+        ],
+        "avatar_equipment": [],
+        "recipient_game_id": 10005,
+        "recipient_account_id": "b33c51e2dc2e4d3a8b68c81ac1a0614e"
+      },
+      "confirmed": false,
+      "created_at": 1792160246
+    }
+  ],
+  "items": [
+    {
+      "id": "0bff02ff561d4dbba6b03565c1ffd827",
+      "item_key": "cn2020:100063",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "0e4cef2371564f7f95d36daf8335ca8b",
+      "item_key": "cn2020:100009",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "1cc6826c64ea4633a347f54d70b6b1e8",
+      "item_key": "cn2020:100013",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "28aee58f03fb46e98d98dc502299cb78",
+      "item_key": "cn2020:100026",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "3ce39984af1d49fb98809554adc0c270",
+      "item_key": "cn2020:100933",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "54e9262228eb4d63a27acf0187362349",
+      "item_key": "cn2020:100036",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "5a3c9503c58141e7abb267ef3cf4bb4d",
+      "item_key": "cn2020:100216",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "69625a4ca021425f81ae4a7c41d02f85",
+      "item_key": "cn2020:100010",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "6c6d2baad39b4ef295e837dccf77db8b",
+      "item_key": "cn2020:100027",
+      "quantity": 1,
+      "expires_at": 1792421435
+    },
+    {
+      "id": "79d2747f0e294d57a8e75e90ed4b0c52",
+      "item_key": "cn2020:100013",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "a2fa3690c28f46bfa442796b4f2af11b",
+      "item_key": "cn2020:100219",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "be889d34949b40a794555fb9d94e68de",
+      "item_key": "cn2020:100013",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "ca15f5b181b043bb9e53ee8e15cafb4b",
+      "item_key": "cn2020:100323",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "ce92be800b0f4c13ac24a461b8053024",
+      "item_key": "cn2020:100217",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "d07c1e0166f0438891491483fe42ea05",
+      "item_key": "cn2020:100324",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "d0b728454207478494a29235cffee20a",
+      "item_key": "cn2020:100035",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "d6e1251e6a6844fd855052fa4b97e988",
+      "item_key": "cn2020:100013",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "dc2b509c606048319c3bd2916478b764",
+      "item_key": "cn2020:100037",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "df300ef2fba145469d0ef5b3fba18dbd",
+      "item_key": "cn2020:100013",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "e90e8ea16618468799e5a90dc330d910",
+      "item_key": "cn2020:100292",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "eb3c8a6b7b9d41d5bebb217a6c338d65",
+      "item_key": "cn2020:100218",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "id": "f0568898827e46a584afb4ecb66624f1",
+      "item_key": "cn2020:100013",
+      "quantity": 1,
+      "expires_at": null
+    }
+  ],
+  "equipment": [
+    {
+      "inventory_id": "5a3c9503c58141e7abb267ef3cf4bb4d",
+      "slot": "native:1:10"
+    },
+    {
+      "inventory_id": "ce92be800b0f4c13ac24a461b8053024",
+      "slot": "native:1:11"
+    },
+    {
+      "inventory_id": "ca15f5b181b043bb9e53ee8e15cafb4b",
+      "slot": "native:5471:0"
+    },
+    {
+      "inventory_id": "eb3c8a6b7b9d41d5bebb217a6c338d65",
+      "slot": "native:5471:1"
+    },
+    {
+      "inventory_id": "d07c1e0166f0438891491483fe42ea05",
+      "slot": "native:5474:0"
+    },
+    {
+      "inventory_id": "a2fa3690c28f46bfa442796b4f2af11b",
+      "slot": "native:5474:1"
+    },
+    {
+      "inventory_id": "e90e8ea16618468799e5a90dc330d910",
+      "slot": "native:5477:0"
+    },
+    {
+      "inventory_id": "0e4cef2371564f7f95d36daf8335ca8b",
+      "slot": "native:5477:1"
+    },
+    {
+      "inventory_id": "be889d34949b40a794555fb9d94e68de",
+      "slot": "native:5477:2"
+    },
+    {
+      "inventory_id": "69625a4ca021425f81ae4a7c41d02f85",
+      "slot": "native:5477:3"
+    },
+    {
+      "inventory_id": "1cc6826c64ea4633a347f54d70b6b1e8",
+      "slot": "native:5482:2"
+    },
+    {
+      "inventory_id": "df300ef2fba145469d0ef5b3fba18dbd",
+      "slot": "native:5484:2"
+    },
+    {
+      "inventory_id": "79d2747f0e294d57a8e75e90ed4b0c52",
+      "slot": "native:5486:2"
+    },
+    {
+      "inventory_id": "f0568898827e46a584afb4ecb66624f1",
+      "slot": "native:5488:2"
+    },
+    {
+      "inventory_id": "6c6d2baad39b4ef295e837dccf77db8b",
+      "slot": "native:5490:0"
+    },
+    {
+      "inventory_id": "d6e1251e6a6844fd855052fa4b97e988",
+      "slot": "native:5490:2"
+    },
+    {
+      "inventory_id": "28aee58f03fb46e98d98dc502299cb78",
+      "slot": "native:bag:100026"
+    },
+    {
+      "inventory_id": "d0b728454207478494a29235cffee20a",
+      "slot": "native:bag:100035"
+    },
+    {
+      "inventory_id": "54e9262228eb4d63a27acf0187362349",
+      "slot": "native:bag:100036"
+    },
+    {
+      "inventory_id": "dc2b509c606048319c3bd2916478b764",
+      "slot": "native:bag:100037"
+    },
+    {
+      "inventory_id": "0bff02ff561d4dbba6b03565c1ffd827",
+      "slot": "native:bag:100063"
+    },
+    {
+      "inventory_id": "3ce39984af1d49fb98809554adc0c270",
+      "slot": "native:bag:100933"
+    }
+  ],
+  "bindings": [
+    {
+      "id": 4482,
+      "inventory_id": "0bff02ff561d4dbba6b03565c1ffd827"
+    },
+    {
+      "id": 4480,
+      "inventory_id": "0e4cef2371564f7f95d36daf8335ca8b"
+    },
+    {
+      "id": 4483,
+      "inventory_id": "1cc6826c64ea4633a347f54d70b6b1e8"
+    },
+    {
+      "id": 4477,
+      "inventory_id": "28aee58f03fb46e98d98dc502299cb78"
+    },
+    {
+      "id": 4490,
+      "inventory_id": "3ce39984af1d49fb98809554adc0c270"
+    },
+    {
+      "id": 4486,
+      "inventory_id": "54e9262228eb4d63a27acf0187362349"
+    },
+    {
+      "id": 4471,
+      "inventory_id": "5a3c9503c58141e7abb267ef3cf4bb4d"
+    },
+    {
+      "id": 4481,
+      "inventory_id": "69625a4ca021425f81ae4a7c41d02f85"
+    },
+    {
+      "id": 4493,
+      "inventory_id": "6c6d2baad39b4ef295e837dccf77db8b"
+    },
+    {
+      "id": 4487,
+      "inventory_id": "79d2747f0e294d57a8e75e90ed4b0c52"
+    },
+    {
+      "id": 4475,
+      "inventory_id": "a2fa3690c28f46bfa442796b4f2af11b"
+    },
+    {
+      "id": 4478,
+      "inventory_id": "be889d34949b40a794555fb9d94e68de"
+    },
+    {
+      "id": 4473,
+      "inventory_id": "ca15f5b181b043bb9e53ee8e15cafb4b"
+    },
+    {
+      "id": 4474,
+      "inventory_id": "ce92be800b0f4c13ac24a461b8053024"
+    },
+    {
+      "id": 4476,
+      "inventory_id": "d07c1e0166f0438891491483fe42ea05"
+    },
+    {
+      "id": 4484,
+      "inventory_id": "d0b728454207478494a29235cffee20a"
+    },
+    {
+      "id": 4491,
+      "inventory_id": "d6e1251e6a6844fd855052fa4b97e988"
+    },
+    {
+      "id": 4488,
+      "inventory_id": "dc2b509c606048319c3bd2916478b764"
+    },
+    {
+      "id": 4485,
+      "inventory_id": "df300ef2fba145469d0ef5b3fba18dbd"
+    },
+    {
+      "id": 4479,
+      "inventory_id": "e90e8ea16618468799e5a90dc330d910"
+    },
+    {
+      "id": 4472,
+      "inventory_id": "eb3c8a6b7b9d41d5bebb217a6c338d65"
+    },
+    {
+      "id": 4489,
+      "inventory_id": "f0568898827e46a584afb4ecb66624f1"
+    }
+  ],
+  "states": [
+    {
+      "inventory_id": "0e4cef2371564f7f95d36daf8335ca8b",
+      "state": {
+        "durability": 2160
+      },
+      "revision": 2
+    },
+    {
+      "inventory_id": "e90e8ea16618468799e5a90dc330d910",
+      "state": {
+        "durability": 4320
+      },
+      "revision": 2
+    }
+  ],
+  "wallet": [
+    {
+      "currency": "cn2020:EP",
+      "balance": 0
+    },
+    {
+      "currency": "cn2020:GP",
+      "balance": 88188
+    },
+    {
+      "currency": "cn2020:HP",
+      "balance": 0
+    },
+    {
+      "currency": "cn2020:MECHA",
+      "balance": 0
+    },
+    {
+      "currency": "cn2020:MP",
+      "balance": 9500
+    },
+    {
+      "currency": "cn2020:SP",
+      "balance": 0
+    },
+    {
+      "currency": "cn2020:TP",
+      "balance": 0
+    }
+  ],
+  "progress": [],
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "formal_checkin": 0
+}

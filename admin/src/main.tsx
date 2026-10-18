@@ -2,7 +2,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { App } from './App'
+import { NativeLauncher } from './components/native-launcher'
 import './index.css'
 import './console.css'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><App /></React.StrictMode>)
+// Launcher 使用独立本机服务和能力令牌，不复用后台管理登录或权限。
+ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode>{window.location.pathname === '/launcher' ? <NativeLauncher /> : <App />}</React.StrictMode>)

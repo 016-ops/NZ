@@ -1,0 +1,9 @@
+{
+  "kind": "COMPUTER_USE_STOP_SIGNAL_INCONSISTENT_WITH_USER_REPORT",
+  "user_denied_escape": true,
+  "official_js_kernel_reset": true,
+  "initialization_and_list_windows_returned_same_stop": true,
+  "no_alternative_ui_automation_used": true,
+  "game_run_87_cleanup_verified": true,
+  "playable_delivery_complete": false
+}

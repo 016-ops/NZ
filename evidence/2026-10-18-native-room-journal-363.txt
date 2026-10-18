@@ -1,0 +1,11 @@
+test_corrupted_protected_journal_is_preserved_and_rejected (tests.test_native_room_journal.NativeRoomJournalTests.test_corrupted_protected_journal_is_preserved_and_rejected)
+密文被篡改不能变成空口令或新请求；保留文件供明确恢复。 ... ok
+test_previous_passwordless_journal_remains_compatible (tests.test_native_room_journal.NativeRoomJournalTests.test_previous_passwordless_journal_remains_compatible)
+已有商城/工程无口令日志不强制迁移，保证历史未知提交仍可恢复。 ... ok
+test_secret_is_protected_and_same_user_can_resume (tests.test_native_room_journal.NativeRoomJournalTests.test_secret_is_protected_and_same_user_can_resume)
+明文短口令不出现在磁盘，同一Windows用户恢复得到相同请求，清理只删本文件。 ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.040s
+
+OK

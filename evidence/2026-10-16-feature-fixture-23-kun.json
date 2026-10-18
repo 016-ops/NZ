@@ -1,0 +1,18 @@
+{
+  "added": [
+    {
+      "item_id": 103438,
+      "quantity": 1
+    }
+  ],
+  "operations": [
+    "1ac893617d0048429beac78b4790c9aa"
+  ],
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "formal_checkin_enabled": 0
+}

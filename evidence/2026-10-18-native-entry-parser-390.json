@@ -1,0 +1,22 @@
+{
+  "kind": "WINPS5_BOM_PARSE_VALIDATION",
+  "previous_archive_preserved": true,
+  "archive_sha256": "de6da39c0115b1b9c820e7f08a31c43e20088a2ba7e37d328fca0c2c7b70f322",
+  "parser_checks": [
+    {
+      "path": "interactive.ps1",
+      "utf8_bom": true,
+      "version": "5.1.26100.8115",
+      "error_count": 0
+    },
+    {
+      "path": "relay.ps1",
+      "utf8_bom": true,
+      "version": "5.1.26100.8115",
+      "error_count": 0
+    }
+  ],
+  "native_started": false,
+  "extra_memory_write_sites": 0,
+  "limit_seconds": 90
+}

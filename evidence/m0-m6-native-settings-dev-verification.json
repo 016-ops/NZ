@@ -1,0 +1,38 @@
+{
+  "services_active": true,
+  "release_matches": true,
+  "current_integrity": {
+    "integrity": "ok",
+    "schema": 1,
+    "mysql_version": "8.0.30-txsql",
+    "immutable_triggers": 6,
+    "profile": "cn-current-unverified",
+    "retail_compatible": false
+  },
+  "synthetic_integrity": {
+    "integrity": "ok",
+    "schema": 1,
+    "mysql_version": "8.0.30-txsql",
+    "immutable_triggers": 6,
+    "profile": "test-pve-v1",
+    "retail_compatible": false
+  },
+  "18765_health": {
+    "status": "ok",
+    "profile": "cn-current-unverified",
+    "retail_compatible": false
+  },
+  "18765_settings_storage": "CURRENT_TDR_OPAQUE_V1",
+  "18767_health": {
+    "status": "ok",
+    "profile": "test-pve-v1",
+    "retail_compatible": false
+  },
+  "18767_settings_storage": "CURRENT_TDR_OPAQUE_V1",
+  "existing_account_character_assets_unchanged": true,
+  "kind": "NATIVE_SETTINGS_DEV_DEPLOY_VERIFICATION_NOT_PLAYABLE_RELEASE",
+  "real_emails_sent": 0,
+  "native_lobby_verified": false,
+  "multiplayer_verified": false,
+  "migration_0007_apply_ok_count": 2
+}

@@ -1,0 +1,20 @@
+{
+  "kind": "NATIVE_EQUIPMENT_NEGATIVE_ACK_CODEC",
+  "fixtures": [
+    {
+      "code": 264,
+      "bytes": 29,
+      "sha256": "3f6472852f0531368c33a1144aa1e95d782393c5d7d1d1394de4fa0bb605920e",
+      "python_native_exact": true
+    },
+    {
+      "code": 265,
+      "bytes": 29,
+      "sha256": "e5b7c52efa522f26579e6bf798a8303571075b4d61dfa378428e9ec6ac067206",
+      "python_native_exact": true
+    }
+  ],
+  "native_fixture_host_roundtrip": true,
+  "game_started": false,
+  "native_ui_verified": false
+}

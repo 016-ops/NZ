@@ -1,0 +1,13 @@
+test_all_maps_retained_and_exact_prefixes_do_not_enable_native_play (tests.test_hunt_readiness.HuntReadinessTests.test_all_maps_retained_and_exact_prefixes_do_not_enable_native_play)
+AD10不误配AD、AD100不因前缀相似进入猎场；缺图继续计入分母且不能启用。 ... ok
+test_config_changed_during_scan_does_not_publish_a_mixed_snapshot (tests.test_hunt_readiness.HuntReadinessTests.test_config_changed_during_scan_does_not_publish_a_mixed_snapshot)
+配置前后摘要不同时拒绝发布，避免将前一版本模式和后一版本地图混在一起。 ... ok
+test_current_files_detect_zero_and_empty_resources_and_repair_changes_snapshot (tests.test_hunt_readiness.HuntReadinessTests.test_current_files_detect_zero_and_empty_resources_and_repair_changes_snapshot)
+实际流式读取检测全零和空文件；恢复后摘要和状态更新，但不升级为依赖闭包通过。 ... ok
+test_duplicate_map_id_cannot_silently_drop_a_scope_entry (tests.test_hunt_readiness.HuntReadinessTests.test_duplicate_map_id_cannot_silently_drop_a_scope_entry)
+相同MapId即使物理图名不同仍拒绝，不能通过字典覆盖减少分母。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.057s
+
+OK

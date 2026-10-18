@@ -1,0 +1,13 @@
+test_fingerprint_reapplication_and_interruption_restore (tests.test_native_bag_compat.NativeBagTests.test_fingerprint_reapplication_and_interruption_restore)
+错误原件和二次套用拒绝；异常中断恢复原UTGame及固定摘要。 ... ok
+test_local_eligible_calls_original_permission_and_opens_once (tests.test_native_bag_compat.NativeBagTests.test_local_eligible_calls_original_permission_and_opens_once)
+合规单机玩家必须先通过Pawn原资格检查，才显示一次换包界面。 ... ok
+test_online_ai_missing_pawn_and_ineligible_keep_original (tests.test_native_bag_compat.NativeBagTests.test_online_ai_missing_pawn_and_ineligible_keep_original)
+在线、非本地和空Pawn直接原路；不合资格的单机玩家也不能绕过原检查。 ... ok
+test_original_region_and_all_other_exports_preserved (tests.test_native_bag_compat.NativeBagTests.test_original_region_and_all_other_exports_preserved)
+相对已验证配装v3仅新增一函数及其导出指针；全部其他原区逐块保持。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 34.975s
+
+OK

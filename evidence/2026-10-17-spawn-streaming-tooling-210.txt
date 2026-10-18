@@ -1,0 +1,33 @@
+test_compressed_exports_and_empty_packages_keep_actual_scope (tests.test_native_map_streaming.MapStreamingTests.test_compressed_exports_and_empty_packages_keep_actual_scope)
+LZO原生属性与未压缩一致；合法零导出包保持空列表，也不能宣称完整闭包。 ... ok
+test_corrupt_compressed_data_is_not_empty_dependency_list (tests.test_native_map_streaming.MapStreamingTests.test_corrupt_compressed_data_is_not_empty_dependency_list)
+LZO正文截断或损坏必须失败，不能当作没有动态关卡继续验收。 ... ok
+test_dynamic_package_is_separate_from_import_roots (tests.test_native_map_streaming.MapStreamingTests.test_dynamic_package_is_separate_from_import_roots)
+RoomA只在LevelStreaming属性中出现，必须补入动态依赖而非依赖导入表碰巧包含。 ... ok
+test_invalid_class_reference_is_not_a_non_streaming_object (tests.test_native_map_streaming.MapStreamingTests.test_invalid_class_reference_is_not_a_non_streaming_object)
+越界类索引直接拒绝，不能跳过该导出后宣称没有动态依赖。 ... ok
+test_struct_byte_and_bool_tag_lengths_do_not_shift_package_name (tests.test_native_map_streaming.MapStreamingTests.test_struct_byte_and_bool_tag_lengths_do_not_shift_package_name)
+不同类型附加标签正确消耗，假值不能变为丢失属性，两个原生包字段均保留。 ... ok
+test_wrong_property_type_duplicate_and_missing_terminator_rejected (tests.test_native_map_streaming.MapStreamingTests.test_wrong_property_type_duplicate_and_missing_terminator_rejected)
+损坏依赖属性、重复字段与尾部残余必须失败，不能产生空关卡清单。 ... ok
+test_fixed_live_candidate_and_unchanged_original_body (tests.test_native_hunt_compat.HuntCompatTests.test_fixed_live_candidate_and_unchanged_original_body)
+产物必须与两次实机的摘要相同，旧函数、目录及非目标导出均保持。 ... ok
+test_interrupted_install_restores_and_rejects_double_patch (tests.test_native_hunt_compat.HuntCompatTests.test_interrupted_install_restores_and_rejects_double_patch)
+新守卫实例可恢复原包；候选再次作为原件时拒绝，不累加修改。 ... ok
+test_missing_floor_waits_without_spawning (tests.test_native_hunt_compat.HuntCompatTests.test_missing_floor_waits_without_spawning)
+地板尚未出现时只安排原生0.25秒重试，不提前生成或伪造碰撞就绪。 ... ok
+test_missing_spawn_preserves_original_failure (tests.test_native_hunt_compat.HuntCompatTests.test_missing_spawn_preserves_original_failure)
+没有出生点时不凭空传送或无限等待地板，沿用原Super的失败处理。 ... ok
+test_numbered_objects_have_distinct_identity (tests.test_native_hunt_compat.HuntCompatTests.test_numbered_objects_have_distinct_identity)
+原包中同名、不同FName数字的导入项合法，不应误判为重复身份。 ... ok
+test_online_and_existing_pawn_call_only_original_super (tests.test_native_hunt_compat.HuntCompatTests.test_online_and_existing_pawn_call_only_original_super)
+客户端、监听、专服及已有Pawn都不检查地板，不增加延迟或修改原生成路径。 ... ok
+test_ready_floor_clears_retry_before_original_spawn (tests.test_native_hunt_compat.HuntCompatTests.test_ready_floor_clears_retry_before_original_spawn)
+原生碰撞命中后先清重试计时器，再执行原Super及原函数余下部分。 ... ok
+test_unknown_source_rejected_before_parse_or_install (tests.test_native_hunt_compat.HuntFingerprintTests.test_unknown_source_rejected_before_parse_or_install)
+未知版本、错误类型和截断文件在解码前失败，不生成任意包变体。 ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.443s
+
+OK

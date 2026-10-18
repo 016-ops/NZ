@@ -1,0 +1,24 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 12,
+  "passed": [
+    "tests.test_native_rooms.NativeRoomTests.test_create_retry_keeps_id_and_assets_and_hides_password",
+    "tests.test_native_rooms.NativeRoomTests.test_game_lease_revoke_releases_and_transfers_without_parent_logout",
+    "tests.test_native_rooms.NativeRoomTests.test_last_fighter_seat_is_atomic_and_bad_password_preserves_room",
+    "tests.test_native_rooms.NativeRoomTests.test_native_bridge_create_list_failure_then_continue_and_allocation",
+    "tests.test_native_rooms.NativeRoomTests.test_native_create_unknown_commit_recovers_same_room_after_restart",
+    "tests.test_native_rooms.NativeRoomTests.test_observer_has_no_reward_eligibility_and_owner_can_reconfigure",
+    "tests.test_native_rooms.NativeRoomTests.test_password_transfer_is_private_and_bound_to_room_identity",
+    "tests.test_native_rooms.NativeRoomTests.test_ready_revision_owner_kick_and_cross_room_reference",
+    "tests.test_native_rooms.NativeRoomTests.test_room_receiver_events_ack_only_after_encoded_delivery",
+    "tests.test_native_rooms.NativeRoomTests.test_settings_are_server_validated_and_missing_map_does_not_allocate",
+    "tests.test_native_rooms.NativeRoomTests.test_start_reserves_frozen_instance_but_cannot_fake_native_ready",
+    "tests.test_native_rooms.NativeRoomTests.test_tail_event_fault_rolls_back_whole_creation"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 85.265
+}

@@ -1,0 +1,38 @@
+{
+  "kind": "MYSQL_SETTINGS_DEDUPLICATED_AUTOMATION_NOT_NATIVE_GAMEPLAY",
+  "mysql_version": "8.0.30-txsql",
+  "reports": [
+    "evidence/m0-m6-native-settings-user-mysql-tests.json",
+    "evidence/m0-m6-native-settings-backup-http-tests.json"
+  ],
+  "unique_test_ids": [
+    "tests.test_email_login.EmailHttpTests.test_email_endpoint_rejects_username_bypass_and_preserves_native_boundary",
+    "tests.test_email_login.EmailHttpTests.test_real_http_email_approval_handoff_and_logout",
+    "tests.test_email_login.EmailTests.test_ban_relogin_and_game_expiry_are_rechecked",
+    "tests.test_email_login.EmailTests.test_binding_conflict_permission_and_audit_failure_roll_back",
+    "tests.test_email_login.EmailTests.test_concurrent_case_variants_create_one_account_and_one_invitation_use",
+    "tests.test_email_login.EmailTests.test_concurrent_redemption_and_restart_never_replay_secret",
+    "tests.test_email_login.EmailTests.test_email_normalization_boundaries_and_aliases",
+    "tests.test_email_login.EmailTests.test_email_retry_digest_is_not_a_fast_database_only_password_verifier",
+    "tests.test_email_login.EmailTests.test_legacy_binding_preserves_game_id_assets_and_revokes_old_alias_and_session",
+    "tests.test_email_login.EmailTests.test_long_email_registration_replay_pending_and_persistence",
+    "tests.test_email_login.EmailTests.test_redemption_and_issue_audit_failures_are_atomic",
+    "tests.test_email_login.EmailTests.test_ticket_expiry_replacement_game_session_revocation_and_client_binding",
+    "tests.test_email_login.EmailTests.test_ticket_proof_protocol_and_privilege_separation",
+    "tests.test_native_settings.NativeSettingsTests.test_audit_and_outbox_failures_roll_back_settings_update",
+    "tests.test_native_settings.NativeSettingsTests.test_binary_roundtrip_restart_and_client_version_isolation",
+    "tests.test_native_settings.NativeSettingsTests.test_binary_settings_survive_verified_mysql_backup_restore",
+    "tests.test_native_settings.NativeSettingsTests.test_concurrent_writes_and_lost_ack_retry_do_not_lose_newer_settings",
+    "tests.test_native_settings.NativeSettingsTests.test_cross_account_and_non_game_credentials_are_isolated",
+    "tests.test_native_settings.NativeSettingsTests.test_database_constraints_reject_wrong_lengths_zero_revision_and_duplicate_scope",
+    "tests.test_native_settings.NativeSettingsTests.test_http_routes_require_game_bearer_and_commit_before_acknowledging",
+    "tests.test_native_settings.NativeSettingsTests.test_invalid_base64_boundaries_and_revision_fail_before_changes",
+    "tests.test_native_settings.NativeSettingsTests.test_opaque_payload_stays_out_of_audit_and_outbox",
+    "tests.test_native_settings.NativeSettingsTests.test_source_session_revocation_expiry_and_security_change_reject_writes"
+  ],
+  "unique_tests": 23,
+  "native_settings_scenarios": 10,
+  "old_email_regression_scenarios": 11,
+  "native_lobby_verified": false,
+  "multiplayer_verified": false
+}

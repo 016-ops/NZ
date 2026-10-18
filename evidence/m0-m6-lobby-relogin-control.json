@@ -1,0 +1,13 @@
+{
+  "kind": "LEGACY_64_FRAME_RELOGIN_CONTROL_UI_INTERRUPTED",
+  "boot": 61,
+  "continuous_zone": false,
+  "captured_zone_frames": 64,
+  "ui_observation": "INTERRUPTED_BY_COMPUTER_USE_ESCAPE_STOP",
+  "user_authorized_resume": true,
+  "computer_use_resume_result": "TOOL_REPORTED_PHYSICAL_ESCAPE_STOP_AGAIN",
+  "cleanup_verified": true,
+  "configuration_restored": true,
+  "source_credentials_revoked": true,
+  "native_playable_verified": false
+}

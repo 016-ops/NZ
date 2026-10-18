@@ -1,0 +1,59 @@
+{
+  "kind": "NATIVE_RESOURCE_ROOT_FIX_AND_NEW_RENDERER_FAILURE",
+  "actual_caller": [
+    {
+      "sample": "entry-35.json",
+      "module": "TGame.exe",
+      "rva": "0xe6616",
+      "sample_rva": "0xe6596",
+      "file": "startup-caller-7440-e6616.bin",
+      "bytes": 512,
+      "sha256": "9161943fbbb780c0778c2eb087a026972797f63eaeadad7a514eee57b3bf3f81",
+      "ui_or_parameters_read": false
+    },
+    {
+      "sample": "entry-70.json",
+      "module": "TGame.exe",
+      "rva": "0xe6616",
+      "sample_rva": "0xe6596",
+      "file": "startup-caller-7440-e6616.bin",
+      "bytes": 512,
+      "sha256": "9161943fbbb780c0778c2eb087a026972797f63eaeadad7a514eee57b3bf3f81",
+      "ui_or_parameters_read": false
+    }
+  ],
+  "static_program_diagnostic": "Ambiguous package name",
+  "private_shared_overlap_count": 75,
+  "all_overlap_hashes_equal": true,
+  "shared_pool_duplicate_package_names": 0,
+  "engine_profile": "cn2020-native-room-engine-v2-single-resource-root",
+  "config_sha256": {
+    "168": "026f0582145318499ce74c6e5e1c56d88a8f7b4a539b042ca2ae21690d9e41b6",
+    "113": "63b2de71f1406bf4dea4c6e858cfd7d20ab7d70770c2c92a0aade235050000be"
+  },
+  "tests": {
+    "command": ".venv/Scripts/python.exe -X utf8 -m unittest tests.test_native_room_server_config -v",
+    "tests": 3,
+    "failures": 0,
+    "exit_code": 0,
+    "elapsed_seconds": 0.122
+  },
+  "retest_400": {
+    "ambiguity_wait_removed": true,
+    "world_created": false,
+    "node_ready": false,
+    "game_exit_code": "0x1234",
+    "failure": "D3DERR_INVALIDCALL",
+    "operation": "Direct3D->GetAdapterDisplayMode(AdapterIndex,&CurrentDisplayMode)",
+    "engine_command_line_empty": true,
+    "external_arguments_contained_nullrhi": true,
+    "crash_reporter_side_by_side_failure": "Microsoft.VC80.ATL 8.0.50727.4053 x86",
+    "config_restored": true,
+    "own_processes_cleaned": true,
+    "source_and_game_revoked": true,
+    "task_deleted": true
+  },
+  "raw_ui_text_or_credentials_read": false,
+  "additional_memory_write_sites": 0,
+  "task_complete": false
+}

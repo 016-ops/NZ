@@ -1,0 +1,20 @@
+{
+  "kind": "NATIVE_WAREHOUSE_VISIBLE_WITH_EQUIPMENT_PROJECTION_DEFECT",
+  "probe": 68,
+  "warehouse_visible": true,
+  "weapon_pages_displayed": 105,
+  "visible_examples": [
+    "M4A1 (NZ edition)",
+    "GM weapon",
+    "Zhao Xin",
+    "Hun Yin"
+  ],
+  "unworn_items_incorrectly_shown_equipped": true,
+  "a005_repeated_after_noop_equipment": true,
+  "equipment_acks": 44,
+  "actual_equipment_changes_not_inferred_from_ack_count": true,
+  "job_cleanup": true,
+  "configuration_restored": true,
+  "source_session_cleanup": true,
+  "online_playable": false
+}

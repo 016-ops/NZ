@@ -1,0 +1,17 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 5,
+  "passed": [
+    "tests.test_native_inventory.NativeInventoryTests.test_backpack_root_preserves_all_other_bags_and_children",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_native_move_knife_fills_source_bag_and_failure_allows_next_equip",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_registration_equips_roles_first_loadout_and_every_bag_knife_once",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_reported_role_packages_use_tier_period_and_keep_every_component",
+    "tests.test_native_starter_shop.NativeStarterShopTests.test_starter_tail_failure_rolls_back_character_wallet_and_all_assets"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 27.328
+}

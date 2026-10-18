@@ -1,0 +1,15 @@
+test_compressed_exports_stay_explicitly_unverified (tests.test_native_map_streaming.MapStreamingTests.test_compressed_exports_stay_explicitly_unverified)
+目前只支持未压缩导出；压缩包的导入成功不提升为动态属性读取成功。 ... ok
+test_dynamic_package_is_separate_from_import_roots (tests.test_native_map_streaming.MapStreamingTests.test_dynamic_package_is_separate_from_import_roots)
+RoomA只在LevelStreaming属性中出现，必须补入动态依赖而非依赖导入表碰巧包含。 ... ok
+test_invalid_class_reference_is_not_a_non_streaming_object (tests.test_native_map_streaming.MapStreamingTests.test_invalid_class_reference_is_not_a_non_streaming_object)
+越界类索引直接拒绝，不能跳过该导出后宣称没有动态依赖。 ... ok
+test_struct_byte_and_bool_tag_lengths_do_not_shift_package_name (tests.test_native_map_streaming.MapStreamingTests.test_struct_byte_and_bool_tag_lengths_do_not_shift_package_name)
+不同类型附加标签正确消耗，假值不能变为丢失属性，两个原生包字段均保留。 ... ok
+test_wrong_property_type_duplicate_and_missing_terminator_rejected (tests.test_native_map_streaming.MapStreamingTests.test_wrong_property_type_duplicate_and_missing_terminator_rejected)
+损坏依赖属性、重复字段与尾部残余必须失败，不能产生空关卡清单。 ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.054s
+
+OK

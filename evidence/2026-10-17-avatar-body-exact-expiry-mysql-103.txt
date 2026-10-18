@@ -1,0 +1,15 @@
+test_body_tail_failure_rolls_back_new_parts_and_relationships (tests.test_native_avatar_body.NativeAvatarBodyTests.test_body_tail_failure_rolls_back_new_parts_and_relationships)
+最后部件事件异常时，原角色保留，新资源/GID/关系和流水全回滚，重试恢复完整结果。 ... ok
+test_default_parts_enter_native_character_tree_and_reject_wrong_parent (tests.test_native_avatar_body.NativeAvatarBodyTests.test_default_parts_enter_native_character_tree_and_reject_wrong_parent)
+首装实际有手臂/身体四项，原生仍发 -1；错家族拒绝后合法武器操作继续成功。 ... ok
+test_old_account_redemption_reuses_owned_parts_and_keeps_old_receipt (tests.test_native_avatar_body.NativeAvatarBodyTests.test_old_account_redemption_reuses_owned_parts_and_keeps_old_receipt)
+旧账号启动时补挂本人既有部件，重复兑换不发新资产，旧初装回执版本保持原样。 ... ok
+test_slow_transaction_keeps_parent_exact_expiry_and_public_grant_cannot_override (tests.test_native_avatar_body.NativeAvatarBodyTests.test_slow_transaction_keeps_parent_exact_expiry_and_public_grant_cannot_override)
+跨秒补齐仍与父角色到期秒完全一致；普通管理发放不能使用内部绝对期限字段。 ... ok
+test_two_role_instances_keep_independent_parts_and_renew_atomically (tests.test_native_avatar_body.NativeAvatarBodyTests.test_two_role_instances_keep_independent_parts_and_renew_atomically)
+相同角色两实例不共享身体 GID，续费同步部件期限；再次准备不新增流水或绑定。 ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 26.122s
+
+OK

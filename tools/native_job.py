@@ -40,6 +40,8 @@ class JobGroup:
         self.kernel.WaitForSingleObject.restype = wintypes.DWORD
         # 保留首次观察到的子进程句柄，退出后仍可查询状态，且不会误读复用后的同号 PID。
         self.process_handles, self.exit_codes, self.query_errors = {}, {}, {}
+        self.cleanup_verified = False
+        self.cleanup_errors = []
         self.handle = self.kernel.CreateJobObjectW(None, None)
         if not self.handle:
             raise ctypes.WinError(ctypes.get_last_error())
@@ -102,10 +104,34 @@ class JobGroup:
             raise ctypes.WinError(ctypes.get_last_error())
 
     def close(self):
-        """异常退出也关闭最后一个 Job 句柄，由 Windows 清理关联进程。"""
+        """先结束并等待本Job退出，再释放句柄，避免配置恢复抢在DLL解除占用之前。
+
+        Windows的KILL_ON_JOB_CLOSE不承诺CloseHandle返回时进程已完全退出。异常路径
+        也必须等待；此处直接使用基础枚举，不能再次执行可能出错的诊断子类pids钩子。
+        失败仍关闭最后Job句柄兜底，但保留未验证状态，不把无法查询当成已清理。
+        """
         if self.handle:
-            self.kernel.CloseHandle(self.handle)
-            self.handle = None
+            try:
+                # 先取得仍活跃后代的只读句柄；终止后它们可能立即从Job列表消失。
+                JobGroup.pids(self)
+                self.terminate()
+                deadline = time.monotonic() + 3
+                active = JobGroup.pids(self)
+                while active and time.monotonic() < deadline:
+                    time.sleep(0.02)
+                    active = JobGroup.pids(self)
+                # Job已移除PID可能早于进程句柄触发；退出信号才允许紧接着恢复被占用文件。
+                self.collect_exits(timeout_ms=max(0, int((deadline-time.monotonic())*1000)))
+                self.cleanup_verified = not active and all(pid in self.exit_codes for pid in self.process_handles)
+            except Exception as error:
+                self.cleanup_errors.append(type(error).__name__)
+                self.cleanup_verified = False
+            finally:
+                self.kernel.CloseHandle(self.handle)
+                self.handle = None
+            # 即使终止/枚举失败，关闭Job后的兜底也等待已持有的进程；不因此升级验证状态。
+            if not self.cleanup_verified:
+                self.collect_exits(timeout_ms=1000)
         for handle in self.process_handles.values():
             self.kernel.CloseHandle(handle)
         self.process_handles.clear()

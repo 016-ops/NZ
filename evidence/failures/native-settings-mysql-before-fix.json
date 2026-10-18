@@ -1,0 +1,36 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 20,
+  "passed": [
+    "tests.test_native_settings.NativeSettingsTests.test_audit_and_outbox_failures_roll_back_settings_update",
+    "tests.test_native_settings.NativeSettingsTests.test_binary_roundtrip_restart_and_client_version_isolation",
+    "tests.test_native_settings.NativeSettingsTests.test_cross_account_and_non_game_credentials_are_isolated",
+    "tests.test_native_settings.NativeSettingsTests.test_database_constraints_reject_wrong_lengths_zero_revision_and_duplicate_scope",
+    "tests.test_native_settings.NativeSettingsTests.test_invalid_base64_boundaries_and_revision_fail_before_changes",
+    "tests.test_native_settings.NativeSettingsTests.test_source_session_revocation_expiry_and_security_change_reject_writes",
+    "tests.test_email_login.EmailHttpTests.test_email_endpoint_rejects_username_bypass_and_preserves_native_boundary",
+    "tests.test_email_login.EmailHttpTests.test_real_http_email_approval_handoff_and_logout",
+    "tests.test_email_login.EmailTests.test_ban_relogin_and_game_expiry_are_rechecked",
+    "tests.test_email_login.EmailTests.test_binding_conflict_permission_and_audit_failure_roll_back",
+    "tests.test_email_login.EmailTests.test_concurrent_case_variants_create_one_account_and_one_invitation_use",
+    "tests.test_email_login.EmailTests.test_concurrent_redemption_and_restart_never_replay_secret",
+    "tests.test_email_login.EmailTests.test_email_normalization_boundaries_and_aliases",
+    "tests.test_email_login.EmailTests.test_email_retry_digest_is_not_a_fast_database_only_password_verifier",
+    "tests.test_email_login.EmailTests.test_legacy_binding_preserves_game_id_assets_and_revokes_old_alias_and_session",
+    "tests.test_email_login.EmailTests.test_long_email_registration_replay_pending_and_persistence",
+    "tests.test_email_login.EmailTests.test_redemption_and_issue_audit_failures_are_atomic",
+    "tests.test_email_login.EmailTests.test_ticket_expiry_replacement_game_session_revocation_and_client_binding",
+    "tests.test_email_login.EmailTests.test_ticket_proof_protocol_and_privilege_separation"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_settings.NativeSettingsTests.test_concurrent_writes_and_lost_ack_retry_do_not_lose_newer_settings",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_settings.py\", line 77, in test_concurrent_writes_and_lost_ack_retry_do_not_lose_newer_settings\n    self.assertEqual(c.count('outbox',Q(topic='native.settings.changed'))[0][0],2)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\db.py\", line 89, in count\n    return Rows([{'count': self.table(name).filter(condition).count()}])\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\db\\models\\query.py\", line 1495, in filter\n    return self._filter_or_exclude(False, args, kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\db\\models\\query.py\", line 1513, in _filter_or_exclude\n    clone._filter_or_exclude_inplace(negate, args, kwargs)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\db\\models\\query.py\", line 1523, in _filter_or_exclude_inplace\n    self._query.add_q(Q(*args, **kwargs))\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\db\\models\\sql\\query.py\", line 1648, in add_q\n    clause, _ = self._add_q(q_object, can_reuse)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\db\\models\\sql\\query.py\", line 1680, in _add_q\n    child_clause, needed_inner = self.build_filter(\n                                 ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\db\\models\\sql\\query.py\", line 1505, in build_filter\n    return self._add_q(\n           ^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\db\\models\\sql\\query.py\", line 1680, in _add_q\n    child_clause, needed_inner = self.build_filter(\n                                 ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\db\\models\\sql\\query.py\", line 1528, in build_filter\n    lookups, parts, reffed_expression = self.solve_lookup_type(arg, summarize)\n                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\db\\models\\sql\\query.py\", line 1335, in solve_lookup_type\n    _, field, _, lookup_parts = self.names_to_path(lookup_splitted, self.get_meta())\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\.venv\\Lib\\site-packages\\django\\db\\models\\sql\\query.py\", line 1813, in names_to_path\n    raise FieldError(\ndjango.core.exceptions.FieldError: Cannot resolve keyword 'topic' into field. Choices are: account_id, attempts, delivered_at, event_key, id, last_error, next_retry, nodedelivery, payload, status, type\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 104.453
+}

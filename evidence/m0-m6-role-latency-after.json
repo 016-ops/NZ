@@ -1,0 +1,59 @@
+{
+  "kind": "OWNED_ROLE_UNCHANGED_HTTP_LATENCY",
+  "label": "after",
+  "initial_inventory": {
+    "response_bytes": 937038,
+    "headers_ms": 1709.985,
+    "body_ms": 3311.264,
+    "decode_ms": 4.608,
+    "total_ms": 5025.857
+  },
+  "inventory_count": 4323,
+  "rounds": [
+    {
+      "commit_ms": 1360.112,
+      "refresh_ms": 8.405,
+      "total_ms": 1368.623,
+      "commit_http": {
+        "response_bytes": 1069,
+        "headers_ms": 1282.949,
+        "body_ms": 76.974,
+        "decode_ms": 0.041,
+        "total_ms": 1359.965
+      },
+      "refresh_http": null,
+      "snapshot_mode": "cn2020-equipment-state-v1"
+    },
+    {
+      "commit_ms": 1390.734,
+      "refresh_ms": 0.953,
+      "total_ms": 1391.786,
+      "commit_http": {
+        "response_bytes": 1069,
+        "headers_ms": 1361.483,
+        "body_ms": 29.107,
+        "decode_ms": 0.039,
+        "total_ms": 1390.629
+      },
+      "refresh_http": null,
+      "snapshot_mode": "cn2020-equipment-state-v1"
+    },
+    {
+      "commit_ms": 1242.505,
+      "refresh_ms": 1.287,
+      "total_ms": 1243.89,
+      "commit_http": {
+        "response_bytes": 1069,
+        "headers_ms": 1213.535,
+        "body_ms": 28.817,
+        "decode_ms": 0.045,
+        "total_ms": 1242.398
+      },
+      "refresh_http": null,
+      "snapshot_mode": "cn2020-equipment-state-v1"
+    }
+  ],
+  "role_changed": false,
+  "native_ui": false,
+  "source_and_game_revoked": true
+}

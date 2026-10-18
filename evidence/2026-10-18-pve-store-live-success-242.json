@@ -1,0 +1,189 @@
+{
+  "kind": "NATIVE_PVE_STORE_THREE_REAL_CLAIMS_AND_DUPLICATE_FAILURE",
+  "run": "launcher-20261018-124154-961996",
+  "requests": [
+    {
+      "file": "application-01-sequence-520.bin",
+      "sha256": "e194020ea040dd5e22be499d1037fbac3ac43a444b428c6fc7ea59420903592d",
+      "command": 13827,
+      "fields": {
+        "Seq": 10014,
+        "PropIdCount": 1,
+        "PropIds": [
+          100482
+        ]
+      }
+    },
+    {
+      "file": "application-01-sequence-568.bin",
+      "sha256": "30176e1deb49071cd500418e150f1df27907a4dca3293f6409cb4e71524bedc2",
+      "command": 13827,
+      "fields": {
+        "Seq": 10015,
+        "PropIdCount": 1,
+        "PropIds": [
+          100786
+        ]
+      }
+    },
+    {
+      "file": "application-01-sequence-737.bin",
+      "sha256": "c358785172ebe980f783f2d53a989d2c530eb28832da66c72db48fed159fb12a",
+      "command": 13827,
+      "fields": {
+        "Seq": 10016,
+        "PropIdCount": 1,
+        "PropIds": [
+          100924
+        ]
+      }
+    },
+    {
+      "file": "application-01-sequence-773.bin",
+      "sha256": "c358785172ebe980f783f2d53a989d2c530eb28832da66c72db48fed159fb12a",
+      "command": 13827,
+      "fields": {
+        "Seq": 10016,
+        "PropIdCount": 1,
+        "PropIds": [
+          100924
+        ]
+      }
+    }
+  ],
+  "responses": [
+    {
+      "file": "response-0034.bin",
+      "sha256": "14e83b8ebdeb086257720a78a3322f654736a64f3f446c934d90aea960874c02",
+      "command": 13826,
+      "fields": {
+        "result": 33024,
+        "VipBaseInfo": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        }
+      }
+    },
+    {
+      "file": "response-0036.bin",
+      "sha256": "6dce9fe47b04ec48db5bae0dfefa2823ae536ea16a23402789fcc41ac8fc07aa",
+      "command": 13828,
+      "fields": {
+        "Seq": 10014,
+        "Result": 33024
+      }
+    },
+    {
+      "file": "response-0037.bin",
+      "sha256": "14e83b8ebdeb086257720a78a3322f654736a64f3f446c934d90aea960874c02",
+      "command": 13826,
+      "fields": {
+        "result": 33024,
+        "VipBaseInfo": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        }
+      }
+    },
+    {
+      "file": "response-0039.bin",
+      "sha256": "ff2b30c131d6be07a39ba0881485e54c3e3bc8f1d739bb5dcd1aef4e7b9f332d",
+      "command": 13828,
+      "fields": {
+        "Seq": 10015,
+        "Result": 33024
+      }
+    },
+    {
+      "file": "response-0040.bin",
+      "sha256": "14e83b8ebdeb086257720a78a3322f654736a64f3f446c934d90aea960874c02",
+      "command": 13826,
+      "fields": {
+        "result": 33024,
+        "VipBaseInfo": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        }
+      }
+    },
+    {
+      "file": "response-0042.bin",
+      "sha256": "64b30c30a5513aa132a99fac17ec7fceb3f77dc1f9915708ad5958478768729f",
+      "command": 13828,
+      "fields": {
+        "Seq": 10016,
+        "Result": 33024
+      }
+    },
+    {
+      "file": "response-0043.bin",
+      "sha256": "14e83b8ebdeb086257720a78a3322f654736a64f3f446c934d90aea960874c02",
+      "command": 13826,
+      "fields": {
+        "result": 33024,
+        "VipBaseInfo": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        }
+      }
+    },
+    {
+      "file": "response-0044.bin",
+      "sha256": "425273473455a9b73f47dc9efa8dd8b7bc8a198e5c3196860cbf92b27c10e52f",
+      "command": 13828,
+      "fields": {
+        "Seq": 10016,
+        "Result": 1091
+      }
+    }
+  ],
+  "screenshot_sha256": {
+    "deathhunter-claimed-six-days.png": "12c4a8c126c11d1ffcf3b2b59db715aafe7ffb86d0076b4c532535fe9482d3ed",
+    "gatling-claimed-six-days.png": "5738b2c21c4893fd1fb1f5db8833f4f5bb8aab9176a0ac5b370b7c311185ac50",
+    "hurricane-claimed-six-days.png": "e6281a742a1718950a11ae30b543469da85d72040dc36aa7536d9bf97c6a46dc",
+    "three-free-weapons-in-inventory.png": "69679b1950ab0495bbee4961a21d89dd76d0e0fcae9ea52b2d181a1c286e5ef2",
+    "zhushen-and-claimed-inventory.png": "1ff10e0f6172d0a507aa97d1ae89ed62e24a2c5d95aa7e9776676eb8084d3132"
+  },
+  "observed_game_id": 10005,
+  "ui_verified": {
+    "three_success_dialogs_six_days": true,
+    "three_rewards_visible_in_inventory": true,
+    "zhushen_bag1_preserved": true,
+    "wallet_gp": 88188,
+    "wallet_mp": 9000,
+    "duplicate_success_dialog": false,
+    "connection_alive_after_failure": true
+  },
+  "cleanup": {
+    "kind": "LAUNCHER_PRODUCT_FRAME_COPY_REAL_GAME",
+    "last_phase": "INVENTORY_SENT",
+    "run": "launcher-20261018-124154-961996",
+    "parent_pipe_eof": true,
+    "source_and_game_revoked": true,
+    "configuration_restored": true,
+    "own_process_cleanup": true,
+    "lobby_verified": false,
+    "graphics_compatibility": {
+      "profile": "cn2020-frame-copy-v1-lobby-verified",
+      "files": {
+        "Binaries/Win32/d3d9.dll": "12592afcafdb0e76581a48ce142f3b152fcda55288ce1156855c639a393fd051"
+      },
+      "system_changed": false,
+      "original_client_writes": 0,
+      "presentation": "d3d11-flip-on-game-window"
+    },
+    "raw_transport_files": 0
+  },
+  "db_readback": "evidence/2026-10-18-pve-claim-dev-readback-241.json",
+  "ui_remaining_issue": "Claim labels were not immediately refreshed on the open store page; rewards appeared on warehouse tab. Duplicate attempt returned 1091 without an explanatory dialog.",
+  "native_battle_effects_verified": false,
+  "playable_map_accepted": false
+}

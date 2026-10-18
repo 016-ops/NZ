@@ -1,0 +1,161 @@
+{
+  "kind": "NATIVE_COMPUTER_USE_WAREHOUSE_AND_ROOM_OBSERVATION",
+  "game_id": 10005,
+  "computer_use_recovered": true,
+  "real_lobby_rendered": true,
+  "firewall_dialog_absent": true,
+  "kun": {
+    "magic_and_tian_swallow_pages_visible": true,
+    "seven_cores_visible_unlocked": true,
+    "magic_selected_dracula_then_restored_corpse": true,
+    "readback": "2026-10-18-kun-core-readback-395.json",
+    "weapon_cores_not_consumed": true,
+    "battle_effects_verified": false
+  },
+  "warehouse": {
+    "scar_equipped_into_bag6": true,
+    "held_model_changed": true,
+    "element_main_restored": true,
+    "selected_bag1": true,
+    "connection_retained": true,
+    "all_items_verified": false
+  },
+  "rooms": {
+    "space": {
+      "map_id": 168,
+      "channel_created": true,
+      "start_attempted": true,
+      "actual_world_loaded": false,
+      "failure": "DS_ALLOCATION_EXPIRED_NATIVE_DIALOG",
+      "hero_settings_ack": true,
+      "left_success": true
+    },
+    "metropolis": {
+      "map_id": 113,
+      "channel_created": true,
+      "difficulty_acks": [
+        4097,
+        4101,
+        4099
+      ],
+      "left_success": true,
+      "actual_world_loaded": false
+    }
+  },
+  "decoded_nonsecret_responses": [
+    {
+      "run": "88",
+      "command": "0xa330",
+      "fields": {
+        "Result": 33024,
+        "MatchSettings": {
+          "ModeId": 8197,
+          "MapId": 168,
+          "MapString": "",
+          "SubModeId": 4099,
+          "Flags": 12328,
+          "Type": 0,
+          "Value": 0,
+          "RespawnTime": 0,
+          "RecodeType": 0,
+          "LiveDelaySec": 0,
+          "InitialMoney": 0
+        }
+      },
+      "sha256": "d3640617718895d54656c12a1823853df822fb5b6da57a40f7d61d623b1a1604"
+    },
+    {
+      "run": "88",
+      "command": "0xa108",
+      "fields": {
+        "Result": 33024,
+        "Reason": 0
+      },
+      "sha256": "971044f24697889a2dd4eba124c8ba04295448196d77cea223923973e97329aa"
+    },
+    {
+      "run": "89",
+      "command": "0xa330",
+      "fields": {
+        "Result": 33024,
+        "MatchSettings": {
+          "ModeId": 260,
+          "MapId": 113,
+          "MapString": "",
+          "SubModeId": 4101,
+          "Flags": 12328,
+          "Type": 0,
+          "Value": 0,
+          "RespawnTime": 0,
+          "RecodeType": 0,
+          "LiveDelaySec": 0,
+          "InitialMoney": 0
+        }
+      },
+      "sha256": "2a82a9da90045a2c8fcb599d79c43c698dd5ee19bcc472868e67febbeef1f7e8"
+    },
+    {
+      "run": "89",
+      "command": "0xa330",
+      "fields": {
+        "Result": 33024,
+        "MatchSettings": {
+          "ModeId": 260,
+          "MapId": 113,
+          "MapString": "",
+          "SubModeId": 4099,
+          "Flags": 12328,
+          "Type": 0,
+          "Value": 0,
+          "RespawnTime": 0,
+          "RecodeType": 0,
+          "LiveDelaySec": 0,
+          "InitialMoney": 0
+        }
+      },
+      "sha256": "4b26342a548f9df52c8b11ee969f8bab7e232916ace4db8ccb39c5fb9f0e98f7"
+    },
+    {
+      "run": "89",
+      "command": "0xa330",
+      "fields": {
+        "Result": 33024,
+        "MatchSettings": {
+          "ModeId": 260,
+          "MapId": 113,
+          "MapString": "",
+          "SubModeId": 4097,
+          "Flags": 12328,
+          "Type": 0,
+          "Value": 0,
+          "RespawnTime": 0,
+          "RecodeType": 0,
+          "LiveDelaySec": 0,
+          "InitialMoney": 0
+        }
+      },
+      "sha256": "a8fa53f159a7e7527ef0b036d97d825d54b9d18f1967d9715393cd9e9859bd1b"
+    },
+    {
+      "run": "89",
+      "command": "0xa108",
+      "fields": {
+        "Result": 33024,
+        "Reason": 0
+      },
+      "sha256": "971044f24697889a2dd4eba124c8ba04295448196d77cea223923973e97329aa"
+    }
+  ],
+  "full_map_difficulty_playthroughs": 0,
+  "task_complete": false,
+  "shop": {
+    "role_item_id": 100061,
+    "role_name": "金战云",
+    "permanent": true,
+    "gp_before": 88188,
+    "gp_after": 83188,
+    "held_model_changed": true,
+    "original_role_restored": true,
+    "database_readback": "2026-10-18-native-role-equipment-readback-401.json"
+  }
+}

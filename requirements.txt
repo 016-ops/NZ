@@ -5,3 +5,7 @@ python-dotenv==1.2.4
 sqlparse==0.6.0
 tzdata==2026.5
 waitress==3.0.2
+# 房间口令的AES-GCM封装使用标准实现；锁定与本机实际验收一致的依赖，不自制密码算法。
+cryptography==50.0.2
+cffi==2.1.1
+pycparser==3.11

@@ -1,0 +1,32 @@
+{
+  "release": "20261016T032909-ff36cf3c1b62",
+  "health": {
+    "18765": {
+      "status": "ok",
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    "18767": {
+      "status": "ok",
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  },
+  "migrations": [
+    "0009_native_feature_transactions",
+    "0010_native_presence",
+    "0011_native_sync_cursor"
+  ],
+  "entitlements": [
+    {
+      "owned": 4323,
+      "bindings": 4323,
+      "enabled": true
+    }
+  ],
+  "enabled_checkin": 0,
+  "old_game_sessions_valid": 0,
+  "source_sha256": "6b55b0d936dce5c16da794f5a6e94292077b0d27197835dcfb8d2409808d921f",
+  "four_services_active": true,
+  "source_matches_local": true
+}

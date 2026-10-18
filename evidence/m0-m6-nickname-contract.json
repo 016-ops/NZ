@@ -1,0 +1,35 @@
+{
+  "kind": "CURRENT_NICKNAME_CONVERSION_CODE_CONTRACT",
+  "component_sha256": "b81bb4e1256ad1fca1ecbbf93b35979d96c36ca16f8bbfc8d126e9a452df51f8",
+  "consumer_rva": "0x91f0",
+  "consumer_code_bytes": 512,
+  "consumer_sha256": "efcddf80a53f27c9bf94de8d16c43b7babc45f1b9e34a807973e8d06518e112c",
+  "method": "OWNED_CURRENT_CODE_PLUS_TWO_RELOCATED_X86_SYSTEM_EXPORT_STUBS",
+  "checks": [
+    {
+      "slot_rva": "0x76e55c",
+      "api": "MultiByteToWideChar",
+      "reference_module": "KERNEL32.DLL",
+      "reference_export_rva": "0x14f10",
+      "normalized_16_bytes_equal": true,
+      "normalized_sha256": "ea2ae4d26abc1fe78ff3d7ba730167008ed14425573849f952ab6e8eb7e08a96"
+    },
+    {
+      "slot_rva": "0x76e958",
+      "api": "lstrlenA",
+      "reference_module": "KERNEL32.DLL",
+      "reference_export_rva": "0x1d390",
+      "normalized_16_bytes_equal": true,
+      "normalized_sha256": "f667450a1b5fb8ce48281fdb0b05c0e32b5271b15249dc2062384057db2641b8"
+    }
+  ],
+  "both_api_stubs_share_inferred_base": true,
+  "windows_code_page_argument": 0,
+  "code_page_semantics": "CP_ACP",
+  "current_x86_system_acp": 936,
+  "active_code_page_manifest_found": false,
+  "nickname_or_credential_content_published": false,
+  "game_player_info_sent": false,
+  "lobby_verified": false,
+  "api_identity_verified": true
+}

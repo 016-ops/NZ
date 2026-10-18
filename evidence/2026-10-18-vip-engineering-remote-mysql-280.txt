@@ -1,0 +1,11 @@
+test_claimed_weapon_cannot_be_engineering_material_but_ordinary_copy_can (tests.test_native_pve_benefits.NativePveBenefitTests.test_claimed_weapon_cannot_be_engineering_material_but_ordinary_copy_can)
+同款狂蟒VIP实例禁止工程分解且整单回滚，普通购买实例仍按原配方产出材料。 ... ok
+test_decompose_all_types_idempotent_and_batch_atomic (tests.test_native_engineering.NativeEngineeringTests.test_decompose_all_types_idempotent_and_batch_atomic)
+三类分解各消耗本人1件，材料数量正确；幂等重放不能再次移除或发放。 ... ok
+test_native_failure_then_success_and_progress_relogin (tests.test_native_engineering.NativeEngineeringTests.test_native_failure_then_success_and_progress_relogin)
+同连接材料不足返回工厂失败应答；补足后制造成功，重建桥后熟练度仍为1。 ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 50.330s
+
+OK

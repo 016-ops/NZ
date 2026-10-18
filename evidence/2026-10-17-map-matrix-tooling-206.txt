@@ -1,0 +1,15 @@
+test_all_logical_ids_and_missing_maps_remain_pending (tests.test_pve_acceptance_matrix.PveAcceptanceMatrixTests.test_all_logical_ids_and_missing_maps_remain_pending)
+同一物理地图的两个ID各占一行，缺资源与未知玩法保留，不输出虚假的可玩通过。 ... ok
+test_dynamic_levels_keep_present_missing_and_ambiguous_states (tests.test_pve_acceptance_matrix.PveAcceptanceMatrixTests.test_dynamic_levels_keep_present_missing_and_ambiguous_states)
+导入表外的RoomA逐图核对存在性，缺失与重名都保留，不改变地图完整接受数。 ... ok
+test_global_difficulty_names_do_not_assert_per_map_support (tests.test_pve_acceptance_matrix.PveAcceptanceMatrixTests.test_global_difficulty_names_do_not_assert_per_map_support)
+名称表保留原ID对应关系，缺失/重复值拒绝，绝不由全局名称生成已通过地图难度。 ... ok
+test_legacy_and_current_tower_classes_share_scope (tests.test_pve_acceptance_matrix.PveAcceptanceMatrixTests.test_legacy_and_current_tower_classes_share_scope)
+实际ATDGameInfo与TGATD均纳入塔防，名称相似的非玩法类不能误入。 ... ok
+test_old_defense_and_name_fallback_are_distinguished (tests.test_pve_acceptance_matrix.PveAcceptanceMatrixTests.test_old_defense_and_name_fallback_are_distinguished)
+原PVE保卫类是配置证据，单纯IF图名仍明确保留候选标记。 ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.038s
+
+OK

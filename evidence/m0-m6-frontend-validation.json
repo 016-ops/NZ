@@ -1,0 +1,55 @@
+{
+  "kind": "UNCHANGED_FRONTEND_REBUILD_VALIDATION",
+  "tests": 2,
+  "test_files": 1,
+  "test_exit_code": 0,
+  "build_exit_code": 0,
+  "system_configuration_changed": false,
+  "dist": [
+    {
+      "path": "admin/dist/index.html",
+      "bytes": 732,
+      "sha256": "530148cfc4e44b9b2f4556ca1eb7a50401fdad9f2e93f941193058f3d19b15cc"
+    },
+    {
+      "path": "admin/dist/assets/favicon.svg",
+      "bytes": 810,
+      "sha256": "bba15e64dc30b2b8bd0fa6c254ba7d886766bc1e5118d2e9240045e3fea8691a"
+    },
+    {
+      "path": "admin/dist/assets/geist-cyrillic-ext-wght-normal-DjL33-gN.woff2",
+      "bytes": 7420,
+      "sha256": "2317fa4bb293c9c0b110e18315d529235c47a0ddd3338cea3d8c7955e927899e"
+    },
+    {
+      "path": "admin/dist/assets/geist-cyrillic-wght-normal-BEAKL7Jp.woff2",
+      "bytes": 15084,
+      "sha256": "6894439694946a589d157ece003086960a6a4013d74a813dab7602efdb3d8c09"
+    },
+    {
+      "path": "admin/dist/assets/geist-latin-ext-wght-normal-DC-KSUi6.woff2",
+      "bytes": 16512,
+      "sha256": "824f485b5d26e2f2da3c2b236132ece1bc8e4e43373452950bb0e40548b4313f"
+    },
+    {
+      "path": "admin/dist/assets/geist-latin-wght-normal-BgDaEnEv.woff2",
+      "bytes": 29400,
+      "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1"
+    },
+    {
+      "path": "admin/dist/assets/geist-vietnamese-wght-normal-6IgcOCM7.woff2",
+      "bytes": 8004,
+      "sha256": "8fa40e5d248247735eb97a0bd593b8852440430600d6ba01364c31fe0abc1fe1"
+    },
+    {
+      "path": "admin/dist/assets/index-BPNvOCO0.js",
+      "bytes": 411366,
+      "sha256": "da549c0fa3cac663fff9440bf07df782a383d6c3e3168c640654f6fcf55e8e69"
+    },
+    {
+      "path": "admin/dist/assets/index-BqqA1Nab.css",
+      "bytes": 50924,
+      "sha256": "8ea3553ac236222969a22103ba91af34861e1c643ff5e047292520c6eaf7ac5e"
+    }
+  ]
+}

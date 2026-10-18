@@ -1,0 +1,242 @@
+{
+  "game_id": 10005,
+  "role_purchase": [
+    {
+      "item_key": "cn2020:100061",
+      "quantity": 1,
+      "expires_at": null
+    }
+  ],
+  "wallet": [],
+  "core_equipment": [
+    {
+      "slot": "native:5602:94",
+      "inventory__item_key": "cn2020:103380"
+    }
+  ],
+  "equipment": [
+    {
+      "slot": "native:1:-1",
+      "inventory__item_key": "cn2020:102000"
+    },
+    {
+      "slot": "native:1:10",
+      "inventory__item_key": "cn2020:100216"
+    },
+    {
+      "slot": "native:1:11",
+      "inventory__item_key": "cn2020:100217"
+    },
+    {
+      "slot": "native:1:36",
+      "inventory__item_key": "cn2020:101210"
+    },
+    {
+      "slot": "native:1:42",
+      "inventory__item_key": "cn2020:101211"
+    },
+    {
+      "slot": "native:1:50",
+      "inventory__item_key": "cn2020:101149"
+    },
+    {
+      "slot": "native:5471:0",
+      "inventory__item_key": "cn2020:100323"
+    },
+    {
+      "slot": "native:5471:1",
+      "inventory__item_key": "cn2020:100218"
+    },
+    {
+      "slot": "native:5471:body1",
+      "inventory__item_key": "cn2020:300062"
+    },
+    {
+      "slot": "native:5471:body2",
+      "inventory__item_key": "cn2020:300063"
+    },
+    {
+      "slot": "native:5474:0",
+      "inventory__item_key": "cn2020:100324"
+    },
+    {
+      "slot": "native:5474:1",
+      "inventory__item_key": "cn2020:100219"
+    },
+    {
+      "slot": "native:5474:body1",
+      "inventory__item_key": "cn2020:300067"
+    },
+    {
+      "slot": "native:5474:body2",
+      "inventory__item_key": "cn2020:300068"
+    },
+    {
+      "slot": "native:5477:0",
+      "inventory__item_key": "cn2020:103981"
+    },
+    {
+      "slot": "native:5477:1",
+      "inventory__item_key": "cn2020:103983"
+    },
+    {
+      "slot": "native:5477:2",
+      "inventory__item_key": "cn2020:103985"
+    },
+    {
+      "slot": "native:5477:3",
+      "inventory__item_key": "cn2020:103987"
+    },
+    {
+      "slot": "native:5482:0",
+      "inventory__item_key": "cn2020:103428"
+    },
+    {
+      "slot": "native:5482:1",
+      "inventory__item_key": "cn2020:103429"
+    },
+    {
+      "slot": "native:5482:2",
+      "inventory__item_key": "cn2020:103430"
+    },
+    {
+      "slot": "native:5482:3",
+      "inventory__item_key": "cn2020:103431"
+    },
+    {
+      "slot": "native:5484:0",
+      "inventory__item_key": "cn2020:103428"
+    },
+    {
+      "slot": "native:5484:1",
+      "inventory__item_key": "cn2020:103429"
+    },
+    {
+      "slot": "native:5484:2",
+      "inventory__item_key": "cn2020:103430"
+    },
+    {
+      "slot": "native:5484:3",
+      "inventory__item_key": "cn2020:103431"
+    },
+    {
+      "slot": "native:5486:0",
+      "inventory__item_key": "cn2020:102762"
+    },
+    {
+      "slot": "native:5486:1",
+      "inventory__item_key": "cn2020:102764"
+    },
+    {
+      "slot": "native:5486:2",
+      "inventory__item_key": "cn2020:102763"
+    },
+    {
+      "slot": "native:5486:3",
+      "inventory__item_key": "cn2020:102765"
+    },
+    {
+      "slot": "native:5488:0",
+      "inventory__item_key": "cn2020:102118"
+    },
+    {
+      "slot": "native:5488:1",
+      "inventory__item_key": "cn2020:102119"
+    },
+    {
+      "slot": "native:5488:2",
+      "inventory__item_key": "cn2020:102120"
+    },
+    {
+      "slot": "native:5488:3",
+      "inventory__item_key": "cn2020:102121"
+    },
+    {
+      "slot": "native:5490:0",
+      "inventory__item_key": "cn2020:104259"
+    },
+    {
+      "slot": "native:5490:1",
+      "inventory__item_key": "cn2020:104261"
+    },
+    {
+      "slot": "native:5490:2",
+      "inventory__item_key": "cn2020:104263"
+    },
+    {
+      "slot": "native:5490:3",
+      "inventory__item_key": "cn2020:104265"
+    },
+    {
+      "slot": "native:5496:body1",
+      "inventory__item_key": "cn2020:300002"
+    },
+    {
+      "slot": "native:5496:body2",
+      "inventory__item_key": "cn2020:300003"
+    },
+    {
+      "slot": "native:5497:0",
+      "inventory__item_key": "cn2020:100023"
+    },
+    {
+      "slot": "native:5497:body1",
+      "inventory__item_key": "cn2020:300012"
+    },
+    {
+      "slot": "native:5497:body2",
+      "inventory__item_key": "cn2020:300013"
+    },
+    {
+      "slot": "native:5602:94",
+      "inventory__item_key": "cn2020:103380"
+    },
+    {
+      "slot": "native:5681:0",
+      "inventory__item_key": "cn2020:100325"
+    },
+    {
+      "slot": "native:5681:body1",
+      "inventory__item_key": "cn2020:300022"
+    },
+    {
+      "slot": "native:5681:body2",
+      "inventory__item_key": "cn2020:300023"
+    },
+    {
+      "slot": "native:bag:100026",
+      "inventory__item_key": "cn2020:100026"
+    },
+    {
+      "slot": "native:bag:100035",
+      "inventory__item_key": "cn2020:100035"
+    },
+    {
+      "slot": "native:bag:100036",
+      "inventory__item_key": "cn2020:100036"
+    },
+    {
+      "slot": "native:bag:100037",
+      "inventory__item_key": "cn2020:100037"
+    },
+    {
+      "slot": "native:bag:100063",
+      "inventory__item_key": "cn2020:100063"
+    },
+    {
+      "slot": "native:bag:100933",
+      "inventory__item_key": "cn2020:100933"
+    }
+  ],
+  "inventory_count": 89,
+  "wallet_query_correction": "Currency is cn2020:GP; initial GP filter matched no rows",
+  "native_gp_wallet": [
+    {
+      "currency": "cn2020:GP",
+      "balance": 83188
+    }
+  ],
+  "ui_purchase_success": true,
+  "gp_debit": 5000,
+  "prior_gp": 88188
+}

@@ -173,16 +173,14 @@
     "security_responses_constructed": false
   },
   "next_bounded_targets": {
-    "literal_refs": [
-      "0x1f0ce08",
-      "0x1f0d118",
-      "0x1f0d258"
+    "fixed": [
+      {
+        "rva": "0x91F0",
+        "bytes": 512,
+        "reason": "Determine current narrow nickname-to-string conversion; existing caller is unambiguous."
+      }
     ],
-    "optional_already_known_helper": {
-      "rva": "0x155E540",
-      "bytes": 512,
-      "reason": "Called by both normal8100 and alternate401/40B paths; local state meaning unproven."
-    }
+    "deferred": "Protected14E74F0 readiness meaning remains unresolved; do not decode its linear continuation as ordinary control flow."
   },
   "unverified": [
     "Current required PlayerInfo values and validity checks; declaration is not proof that zero values are acceptable.",
@@ -271,7 +269,8 @@
     "entry_candidate": {
       "rva": "0x14F42C0",
       "pointer_record_rva": "0x1F2ADD4",
-      "reason": "Current non-executable read-only section contains this function pointer; nearest earlier candidate before observed PlayerInfo body. Function identity still requires entry sample."
+      "reason": "Current non-executable read-only section contains this function pointer; nearest earlier candidate before observed PlayerInfo body. Function identity still requires entry sample.",
+      "resolution": "REJECTED_BY_BOOT24: sampled function is DevLogin, not PlayerInfo; preserved as prior candidate history."
     },
     "next_fixed_samples": [
       {
@@ -294,5 +293,96 @@
       "Current constants passed at155E5B0/155E5B5 resolve to read mode r,ccs=UTF-8 and ShutdownAbnormal.txt; subsequent calls parse local text."
     ],
     "boundary": "Sample does not show A005 readiness gating; do not infer a lobby wait from this helper."
+  },
+  "boot24_player_info_tail": {
+    "source": "Two previously captured bounded code fragments only; no new process, UI or packet payload read.",
+    "samples": [
+      {
+        "rva": "0x14F42C0",
+        "bytes": 1024,
+        "sha256": "0273df0786a5d07e381be79e66b1734ceff02fc77442dd723d2d5bed78c4ad7e"
+      },
+      {
+        "rva": "0x14F58BD",
+        "bytes": 2304,
+        "sha256": "e35bc5644910cd3a30062225b22fe587df9871969b2e15dc3533ef6cb83ee265"
+      }
+    ],
+    "rejected_entry": {
+      "rva": "0x14F42C0",
+      "observations": [
+        "Calls with current DevLogin/StartQQTalk/StartGCloudVoice literals at14F4334/14F4361/14F4381.",
+        "Returns at14F463E; next separate function begins14F4650 and checks an integer index against object+44 with failure target14F49AE."
+      ],
+      "conclusion": "Nearest read-only function pointer does not identify PlayerInfo. Its real entry remains unsampled before14F51D2."
+    },
+    "confirmed_tail": [
+      "14F58BD loads this+280;14F58C3 ORs object+314 with2. Meaning of other bits and required state gate remains unverified.",
+      "14F58CA/14F58E3 read body+88/body+78 matching nested PrivacyFlags134/CardId118 plus outer Result2.",
+      "14F58EC..14F5907 forwards body+178/+15A/+D4 matching CommonFlag3/CommonFlag2/CommonFlag to helper16732A0.",
+      "14F5E25..14F5E51 calls14CB3D0,14CB4C0,14CB100,14CB1F0,14CB2E0,14CB7D0,14E4E40; helper semantics unproven.",
+      "14F5E88/14F5E8D/14F5E96 use current literals UTGameUI/GameName/TGOnlineClient;14F5EA6 reads Uin low DWORD atbody+2 then calls16A6D10. This is not proof of completed identity verification or lobby entry.",
+      "14F5EE7 calls14E74F0 with this; epilogue returns at14F5F13. Next function starts14F5F20 and is outside PlayerInfo."
+    ],
+    "next_minimal_fixed_samples": [
+      {
+        "rva": "0x14F49A0",
+        "bytes": 1280,
+        "reason": "Locate true PlayerInfo prologue and Result branch after adjacent index utility, before known body14F51D2."
+      },
+      {
+        "rva": "0x14E74F0",
+        "bytes": 768,
+        "reason": "Determine final helper conditions and delegate route; tail call alone does not prove lobby gate."
+      }
+    ],
+    "unverified": [
+      "A005 Result comparison and failure route.",
+      "Whether this+280 object+314 bit2 participates in AccountLogin/lobby readiness.",
+      "Actual valid role/asset references and required PlayerInfo values; no zero-filled response authorized by these observations."
+    ]
+  },
+  "boot25_player_info_entry": {
+    "source": "Already completed owned boot25 bounded executable-code samples; no new probe.",
+    "samples": [
+      {
+        "rva": "0x14F49A0",
+        "bytes": 1280,
+        "sha256": "4b99f965d3497c23b852b5c0d733eeda45cc0967d0053f4f98cb423231c55d2a"
+      },
+      {
+        "rva": "0x14E74F0",
+        "bytes": 768,
+        "sha256": "7580ea4b59657ee53c8ba492b8f1cf2edc3398cf5b9546f6c346219d2d415ffa"
+      }
+    ],
+    "entry_rva": "0x14F4BA0",
+    "entry_gate": [
+      "14F4BE4 loads this+280;14F4BEA tests nonnull;14F4BEC jumps to common epilogue14F5EEC if absent.",
+      "14F4BF2/14F4BF5 directly read body+6/body+2 matching PlayerInfo Uin. Sampled entry does not inspect outer Result before these reads.",
+      "Nearby14F49F0..14F4B92 is a different function whose1F08450 literal identifies Response_PingList; its8B00 compare cannot establish A005 result semantics."
+    ],
+    "nickname_consumption": {
+      "field": "outer body+0xE = nested NickName12 plus Result2",
+      "caller_rva": "0x14F4CC8",
+      "call_rva": "0x14F4CD0",
+      "callee_rva": "0x91F0",
+      "following": "14F4CD5 loads returned object+0x100;14F4CE2 selects local-player+64 string destination;14F4CF0 assigns through helper1FDD30.",
+      "encoding": "UNVERIFIED: current on-disk91F0 is protected data rather than a reliable decoded instruction body. No CP_UTF8/ACP/936 conclusion.",
+      "next_fixed_sample": {
+        "rva": "0x91F0",
+        "bytes": 512
+      }
+    },
+    "final_helper_boundary": {
+      "rva": "0x14E74F0",
+      "observed_first_instruction": "JMP to RVA23D918D",
+      "conclusion": "Captured helper begins a protected/transformed control-flow path; linear disassembly after the jump is not sufficient to name a readiness test or callback. No bypass or patch attempted."
+    },
+    "limits": [
+      "Only local-player object existence is established as an entry condition; full Result handling and global readiness may also occur in dispatchers or later unsampled code.",
+      "Serialization fixtures do not certify required role IDs, inventories, UTF encoding, wallet mapping or native lobby readiness.",
+      "No A005 response was generated or transmitted by this static analysis."
+    ]
   }
 }

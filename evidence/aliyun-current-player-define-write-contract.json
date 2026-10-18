@@ -1,0 +1,471 @@
+{
+  "kind": "CURRENT_ZONE_DEFINE_WRITE_STATIC_METADATA_NOT_RESPONSE_ACCEPTANCE",
+  "date": "2026-10-15",
+  "game_executed": false,
+  "dll_executed": false,
+  "client_writes": 0,
+  "packet_payload_read": false,
+  "network_requests": 0,
+  "metadata": {
+    "path": "TGame/TDR/proto_c2zn.tdr",
+    "bytes": 3024238,
+    "sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+    "archive_manifest_matches": true,
+    "source_unchanged_after_inspection": true,
+    "header_magic": "0xb02d6",
+    "header_slot1": 32,
+    "macro_count": 6117,
+    "meta_count": 1904,
+    "name_table_relative_offset": "0x1b9d0",
+    "all_named_headers_cross_checked": true,
+    "selected_macros": [
+      {
+        "name": "PROTO_MAGIC_C2ZN",
+        "value": 12867,
+        "hex": "0x3243",
+        "record_file_offset": "0x131b4",
+        "index": 4874
+      },
+      {
+        "name": "ID_C2ZN_REQ_SET_PLAYERDEFINEINFO",
+        "value": 41474,
+        "hex": "0xa202",
+        "record_file_offset": "0x13d34",
+        "index": 5058
+      },
+      {
+        "name": "ID_ZN2C_RES_SET_PLAYERDEFINEINFO",
+        "value": 41475,
+        "hex": "0xa203",
+        "record_file_offset": "0x13d44",
+        "index": 5059
+      }
+    ],
+    "structures": [
+      {
+        "name": "C2ZNPkgHead",
+        "header_file_offset": "0x20c454",
+        "name_table_file_offset": "0x1bd64",
+        "header_record_size_slots_5_41": [
+          904,
+          904
+        ],
+        "header_size_slots_6_7": [
+          8,
+          8
+        ],
+        "total_field_count": 4,
+        "exported_field_count": 4,
+        "fields": [
+          {
+            "name": "Magic",
+            "descriptor_file_offset": "0x20c50c",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Cmd",
+            "descriptor_file_offset": "0x20c5c0",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              2,
+              2
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "HeadLen",
+            "descriptor_file_offset": "0x20c674",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "BodyLen",
+            "descriptor_file_offset": "0x20c728",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              6,
+              6
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZNPkgBody",
+        "header_file_offset": "0x20c7dc",
+        "name_table_file_offset": "0x1bd5c",
+        "header_record_size_slots_5_41": [
+          211684,
+          211684
+        ],
+        "header_size_slots_6_7": [
+          1024703,
+          1025323
+        ],
+        "total_field_count": 1175,
+        "exported_field_count": 2,
+        "fields": [
+          {
+            "name": "ReqSetPlayerDefineInfo",
+            "descriptor_file_offset": "0x22649c",
+            "type_code": 1,
+            "size_slots_4_5": [
+              3204,
+              3204
+            ],
+            "element_size_slots_6_7": [
+              3204,
+              3204
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZN_ReqSetPlayerDefineInfo",
+            "reference_field": null,
+            "selector": 41474,
+            "selector_macro": {
+              "name": "ID_C2ZN_REQ_SET_PLAYERDEFINEINFO",
+              "value": 41474,
+              "hex": "0xa202",
+              "record_file_offset": "0x13d34",
+              "index": 5058
+            }
+          },
+          {
+            "name": "ResSetPlayerDefineInfo",
+            "descriptor_file_offset": "0x226550",
+            "type_code": 1,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "ZN2C_ResSetPlayerDefineInfo",
+            "reference_field": null,
+            "selector": 41475,
+            "selector_macro": {
+              "name": "ID_ZN2C_RES_SET_PLAYERDEFINEINFO",
+              "value": 41475,
+              "hex": "0xa203",
+              "record_file_offset": "0x13d44",
+              "index": 5059
+            }
+          }
+        ]
+      },
+      {
+        "name": "C2ZNPkg",
+        "header_file_offset": "0x2402c0",
+        "name_table_file_offset": "0x1bd54",
+        "header_record_size_slots_5_41": [
+          544,
+          544
+        ],
+        "header_size_slots_6_7": [
+          1024711,
+          1025331
+        ],
+        "total_field_count": 2,
+        "exported_field_count": 2,
+        "fields": [
+          {
+            "name": "Head",
+            "descriptor_file_offset": "0x240378",
+            "type_code": 1,
+            "size_slots_4_5": [
+              8,
+              8
+            ],
+            "element_size_slots_6_7": [
+              8,
+              8
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "C2ZNPkgHead",
+            "reference_field": null,
+            "selector": null
+          },
+          {
+            "name": "Body",
+            "descriptor_file_offset": "0x24042c",
+            "type_code": 0,
+            "size_slots_4_5": [
+              1025323,
+              1024703
+            ],
+            "element_size_slots_6_7": [
+              1025323,
+              1024703
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              8,
+              8
+            ],
+            "nested_meta": "C2ZNPkgBody",
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "C2ZN_ReqSetPlayerDefineInfo",
+        "header_file_offset": "0x1ea134",
+        "name_table_file_offset": "0x1cb04",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          3204,
+          3204
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "Info",
+            "descriptor_file_offset": "0x1ea1ec",
+            "type_code": 1,
+            "size_slots_4_5": [
+              3204,
+              3204
+            ],
+            "element_size_slots_6_7": [
+              3204,
+              3204
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": "PlayerDefineInfo",
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "ZN2C_ResSetPlayerDefineInfo",
+        "header_file_offset": "0x1ea2a0",
+        "name_table_file_offset": "0x1f3a4",
+        "header_record_size_slots_5_41": [
+          364,
+          364
+        ],
+        "header_size_slots_6_7": [
+          2,
+          2
+        ],
+        "total_field_count": 1,
+        "exported_field_count": 1,
+        "fields": [
+          {
+            "name": "Result",
+            "descriptor_file_offset": "0x1ea358",
+            "type_code": 6,
+            "size_slots_4_5": [
+              2,
+              2
+            ],
+            "element_size_slots_6_7": [
+              2,
+              2
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": null,
+            "selector": null
+          }
+        ]
+      },
+      {
+        "name": "PlayerDefineInfo",
+        "header_file_offset": "0xdb1b8",
+        "name_table_file_offset": "0x1db6c",
+        "header_record_size_slots_5_41": [
+          544,
+          544
+        ],
+        "header_size_slots_6_7": [
+          3204,
+          3204
+        ],
+        "total_field_count": 2,
+        "exported_field_count": 2,
+        "fields": [
+          {
+            "name": "DataLen",
+            "descriptor_file_offset": "0xdb270",
+            "type_code": 8,
+            "size_slots_4_5": [
+              4,
+              4
+            ],
+            "element_size_slots_6_7": [
+              4,
+              4
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 1,
+            "offset_slots_10_11": [
+              0,
+              0
+            ],
+            "nested_meta": null,
+            "reference_field": "Data",
+            "selector": null
+          },
+          {
+            "name": "Data",
+            "descriptor_file_offset": "0xdb324",
+            "type_code": 3,
+            "size_slots_4_5": [
+              3200,
+              3200
+            ],
+            "element_size_slots_6_7": [
+              1,
+              1
+            ],
+            "string_capacity_slot8": null,
+            "array_capacity_slot9": 3200,
+            "offset_slots_10_11": [
+              4,
+              4
+            ],
+            "nested_meta": null,
+            "reference_field": "DataLen",
+            "selector": null,
+            "array_capacity_macro": {
+              "name": "ID_MAX_PLAYERDEFINEINFO_LEN",
+              "value": 3200,
+              "hex": "0xc80",
+              "record_file_offset": "0x106b4",
+              "index": 4186
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "consumer_target": {
+    "literal_rva": "0x1f3d520",
+    "encoding": "UTF-16LE",
+    "text": "[easyhong: ] HandleMessage_Response_SetPlayerDefineInfo...",
+    "on_disk_absolute_pointer_refs": [],
+    "needed": "Bounded owned-process code reference, then Result comparison and completion dispatch.",
+    "resolved": "boot25_result_consumer"
+  },
+  "runtime_parent_observation": {
+    "source": "Parent-reported boot24 summary only; no payload opened in this analysis.",
+    "command": "0xA202",
+    "application_bytes": 116,
+    "body_bytes": 108,
+    "after": "Explicit empty A205 response",
+    "inference": "Shape is consistent with current request schema, but DataLen has not been read here and internal data meaning remains opaque."
+  },
+  "boundaries": [
+    "A203 body ResultU16 is forwarded unchanged by the full observed native consumer; downstream completion delegate success handling is still unverified.",
+    "No nonempty customization blob has been decoded, generated or rewritten.",
+    "Potential future account-scoped opaque persistence requires authenticated ownership, bounded length validation and exact echo semantics, separately implemented and tested.",
+    "No security-module payload was opened, analyzed or answered.",
+    "No claim of completed PlayerInfo, role, lobby or gameplay."
+  ],
+  "boot25_result_consumer": {
+    "sample_rva": "0x158C877",
+    "sample_bytes": 256,
+    "sha256": "01f5ef3c92c3a8152a183053b7d00dce650393cf8b5bfb533ed79450887a07cd",
+    "entry_rva": "0x158C8D0",
+    "return_rva": "0x158C91C",
+    "evidence": [
+      "158C8D7 pushes current SetPlayerDefineInfo literal1F3D520.",
+      "158C8ED zero-extends body Result U16, matching current sole-field A203 schema.",
+      "158C8FF selects this+274 delegate;158C90C/158C912 dispatches with originalResult.",
+      "Entire function returns at158C91C without comparing Result to8100 or another constant."
+    ],
+    "conclusion": "Result is forwarded to a completion delegate. Downstream delegate interpretation and persistent save success are not established by this consumer alone."
+  }
+}

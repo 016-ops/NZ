@@ -1,0 +1,63 @@
+{
+  "game_id": 10005,
+  "cores": [
+    {
+      "item_key": "cn2020:103380",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "item_key": "cn2020:103377",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "item_key": "cn2020:103378",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "item_key": "cn2020:103381",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "item_key": "cn2020:103382",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "item_key": "cn2020:103379",
+      "quantity": 1,
+      "expires_at": null
+    },
+    {
+      "item_key": "cn2020:103536",
+      "quantity": 1,
+      "expires_at": null
+    }
+  ],
+  "selected_core": [],
+  "rooms": [
+    {
+      "id": 1,
+      "display_id": 1,
+      "settings": {
+        "Type": 0,
+        "Flags": 12328,
+        "MapId": 168,
+        "Value": 0,
+        "ModeId": 8197,
+        "MapString": "",
+        "SubModeId": 4097,
+        "RecodeType": 0,
+        "RespawnTime": 0,
+        "InitialMoney": 0,
+        "LiveDelaySec": 0
+      },
+      "room__state": "OPEN",
+      "room__match_id": null
+    }
+  ],
+  "inventory_count": 85
+}

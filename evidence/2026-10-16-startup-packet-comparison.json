@@ -1,0 +1,75 @@
+{
+  "sessions": [
+    "manual-online-20261016-012032-748968",
+    "manual-online-20261016-122723-338991"
+  ],
+  "messages": {
+    "0xa001": {
+      "old_count": 1,
+      "current_count": 1,
+      "same_prefix": false,
+      "first_differing_offsets": [
+        24,
+        25
+      ]
+    },
+    "0xa005": {
+      "old_count": 2,
+      "current_count": 2,
+      "same_prefix": true
+    },
+    "0xa006": {
+      "old_count": 494,
+      "current_count": 494,
+      "same_prefix": false,
+      "first_differing_offsets": [
+        238,
+        242,
+        307,
+        308,
+        311,
+        312,
+        353
+      ]
+    },
+    "0xa009": {
+      "old_count": 9,
+      "current_count": 1,
+      "same_prefix": true
+    },
+    "0xa00a": {
+      "old_count": 8,
+      "current_count": 0,
+      "same_prefix": true
+    },
+    "0xa00b": {
+      "old_count": 9,
+      "current_count": 1,
+      "same_prefix": true
+    },
+    "0xa205": {
+      "old_count": 1,
+      "current_count": 1,
+      "same_prefix": true
+    },
+    "0xa358": {
+      "old_count": 1,
+      "current_count": 1,
+      "same_prefix": false,
+      "first_differing_offsets": [
+        44,
+        45
+      ]
+    },
+    "0xff10": {
+      "old_count": 15,
+      "current_count": 12,
+      "same_prefix": true
+    },
+    "0xff13": {
+      "old_count": 1,
+      "current_count": 1,
+      "same_prefix": true
+    }
+  }
+}

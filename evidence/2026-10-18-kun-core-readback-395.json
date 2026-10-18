@@ -1,0 +1,30 @@
+{
+  "game_id": 10005,
+  "core_equipment": [
+    {
+      "slot": "native:5602:94",
+      "inventory__item_key": "cn2020:103380"
+    }
+  ],
+  "inventory_count": 85,
+  "rooms": [
+    {
+      "display_id": 1,
+      "settings": {
+        "Type": 0,
+        "Flags": 12328,
+        "MapId": 168,
+        "Value": 0,
+        "ModeId": 8197,
+        "MapString": "",
+        "SubModeId": 4099,
+        "RecodeType": 0,
+        "RespawnTime": 0,
+        "InitialMoney": 0,
+        "LiveDelaySec": 0
+      },
+      "room__state": "CLOSED",
+      "room__match_id": null
+    }
+  ]
+}

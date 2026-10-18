@@ -1,0 +1,137 @@
+test_http_redirect_is_not_followed_and_error_message_does_not_echo_password (tests.test_email_tools.EmailToolTests.test_http_redirect_is_not_followed_and_error_message_does_not_echo_password)
+真实 HTTP 返回跳转时不转发登录正文，服务端错误 message 也不能回显密码到 CLI。 ... ok
+test_ipc_fields_are_bounded_and_do_not_include_network_server_records (tests.test_email_tools.EmailToolTests.test_ipc_fields_are_bounded_and_do_not_include_network_server_records)
+编码的本地 ID/令牌和偏移均受界限约束；研究格式的服务器列表始终为空。 ... ok
+test_loopback_client_path_obeys_utf16_byte_and_character_limits (tests.test_email_tools.EmailToolTests.test_loopback_client_path_obeys_utf16_byte_and_character_limits)
+包含非 BMP 字符的路径按含终止符的 UTF16 字节数验界，仍保留既有 250 字符限制。 ... ok
+test_loopback_server_primary_endpoint_uses_current_consumed_subfields (tests.test_email_tools.EmailToolTests.test_loopback_server_primary_endpoint_uses_current_consumed_subfields)
+当前游戏消费 sub2/sub3 作为主端点；嵌套表必须有界并把回环地址放在已证位置。 ... ok
+test_native_capture_rejects_over_budget_before_socket_read (tests.test_email_tools.EmailToolTests.test_native_capture_rejects_over_budget_before_socket_read)
+任何超出 64KiB 的后续读取在触碰 socket 前失败，不能扩大诊断缓存。 ... ok
+test_native_capture_retains_rejected_header_and_has_total_deadline (tests.test_email_tools.EmailToolTests.test_native_capture_retains_rejected_header_and_has_total_deadline)
+失败头仍有私人证据；每次分片使用剩余总期限，不能反复重置超时而无限等待。 ... ok
+test_native_dev_fresh_verification_precedes_probe_and_is_reported (tests.test_email_tools.EmailToolTests.test_native_dev_fresh_verification_precedes_probe_and_is_reported)
+成功路径必须实时读取 me、匹配兑换身份后才启动，报告保留核验范围并注销来源会话。 ... FAIL
+test_native_dev_live_account_and_redeemed_identity_must_match (tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match)
+实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。 ... 
+  test_native_dev_live_account_and_redeemed_identity_must_match (tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match) (view_id_matches=False, identity=False)
+实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。 ... FAIL
+  test_native_dev_live_account_and_redeemed_identity_must_match (tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match) (view_id_matches=True, identity=True)
+实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。 ... FAIL
+  test_native_dev_live_account_and_redeemed_identity_must_match (tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match) (view_id_matches=True, identity=False)
+实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。 ... FAIL
+  test_native_dev_live_account_and_redeemed_identity_must_match (tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match) (view_id_matches=True, identity=True)
+实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。 ... FAIL
+test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked)
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。 ... 
+  test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked) (current='bool')
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。 ... FAIL
+  test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked) (current='NoneType')
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。 ... FAIL
+  test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked) (current='int')
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。 ... FAIL
+  test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked) (current='str')
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。 ... FAIL
+  test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked) (current='LoginError')
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。 ... FAIL
+test_remote_urls_credentials_paths_and_implicit_ports_are_rejected (tests.test_email_tools.EmailToolTests.test_remote_urls_credentials_paths_and_implicit_ports_are_rejected)
+启动器只使用明确端口的本机/SSH 隧道，不接受外部 URL、URL 密码或路径。 ... ok
+test_zone_reply_requires_explicit_capture_and_verified_email_before_launch (tests.test_email_tools.EmailToolTests.test_zone_reply_requires_explicit_capture_and_verified_email_before_launch)
+研究登录响应不能由缺失前置模式或匿名 CLI 启用，参数拒绝发生在读凭据与启动游戏之前。 ... ok
+
+======================================================================
+FAIL: test_native_dev_fresh_verification_precedes_probe_and_is_reported (tests.test_email_tools.EmailToolTests.test_native_dev_fresh_verification_precedes_probe_and_is_reported)
+成功路径必须实时读取 me、匹配兑换身份后才启动，报告保留核验范围并注销来源会话。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_tools.py", line 88, in test_native_dev_fresh_verification_precedes_probe_and_is_reported
+    client.request.assert_any_call('/api/views/me', token='fixture-session')
+  File "C:\Users\ZJH\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\unittest\mock.py", line 1020, in assert_any_call
+    raise AssertionError(
+AssertionError: request('/api/views/me', token='fixture-session') call not found
+
+======================================================================
+FAIL: test_native_dev_live_account_and_redeemed_identity_must_match (tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match) (view_id_matches=False, identity=False)
+实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_tools.py", line 77, in test_native_dev_live_account_and_redeemed_identity_must_match
+    self.assertIsInstance(failure, ValueError)
+AssertionError: None is not an instance of <class 'ValueError'>
+
+======================================================================
+FAIL: test_native_dev_live_account_and_redeemed_identity_must_match (tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match) (view_id_matches=True, identity=True)
+实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_tools.py", line 77, in test_native_dev_live_account_and_redeemed_identity_must_match
+    self.assertIsInstance(failure, ValueError)
+AssertionError: None is not an instance of <class 'ValueError'>
+
+======================================================================
+FAIL: test_native_dev_live_account_and_redeemed_identity_must_match (tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match) (view_id_matches=True, identity=False)
+实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_tools.py", line 77, in test_native_dev_live_account_and_redeemed_identity_must_match
+    self.assertIsInstance(failure, ValueError)
+AssertionError: None is not an instance of <class 'ValueError'>
+
+======================================================================
+FAIL: test_native_dev_live_account_and_redeemed_identity_must_match (tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match) (view_id_matches=True, identity=True)
+实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_tools.py", line 77, in test_native_dev_live_account_and_redeemed_identity_must_match
+    self.assertIsInstance(failure, ValueError)
+AssertionError: None is not an instance of <class 'ValueError'>
+
+======================================================================
+FAIL: test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked) (current='bool')
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_tools.py", line 63, in test_native_dev_rebound_email_is_rejected_and_session_revoked
+    self.assertIsNotNone(failure)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked) (current='NoneType')
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_tools.py", line 63, in test_native_dev_rebound_email_is_rejected_and_session_revoked
+    self.assertIsNotNone(failure)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked) (current='int')
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_tools.py", line 63, in test_native_dev_rebound_email_is_rejected_and_session_revoked
+    self.assertIsNotNone(failure)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked) (current='str')
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_tools.py", line 63, in test_native_dev_rebound_email_is_rejected_and_session_revoked
+    self.assertIsNotNone(failure)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked) (current='LoginError')
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_email_tools.py", line 63, in test_native_dev_rebound_email_is_rejected_and_session_revoked
+    self.assertIsNotNone(failure)
+AssertionError: unexpectedly None
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.754s
+
+FAILED (failures=10)

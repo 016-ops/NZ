@@ -1,0 +1,15 @@
+test_candidate_can_only_be_applied_once (tests.test_native_tower_owned_compat.TowerOwnedTests.test_candidate_can_only_be_applied_once)
+已经修改的包和外来文件不接受再次修补，不累积追加逻辑。 ... ok
+test_guard_restores_exact_tower_package_after_interruption (tests.test_native_tower_owned_compat.TowerOwnedTests.test_guard_restores_exact_tower_package_after_interruption)
+8MiB边界只对固定塔防路径放开，恢复读取持久计划并还原原件。 ... ok
+test_original_package_and_other_16532_exports_unchanged (tests.test_native_tower_owned_compat.TowerOwnedTests.test_original_package_and_other_16532_exports_unchanged)
+除一个导出指针和末尾追加函数外，全部原字节、目录尾及其他导出均不变。 ... ok
+test_prefix_refreshes_only_owned_local_player_and_preserves_original (tests.test_native_tower_owned_compat.TowerOwnedTests.test_prefix_refreshes_only_owned_local_player_and_preserves_original)
+本地真实PRI只刷新一次；在线、AI、空PRI和无Player控制器均直接执行原函数。 ... ok
+test_three_debug_conditions_skip_only_original_standalone_gifts (tests.test_native_tower_owned_compat.TowerOwnedTests.test_three_debug_conditions_skip_only_original_standalone_gifts)
+原三段调试条件准确替换为false，父分支地址及其他原字节保持；原VM跨度均38。 ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.318s
+
+OK

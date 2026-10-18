@@ -1,0 +1,33 @@
+{
+  "kind": "CURRENT_DETAILED_CHANNEL_TDR_CODEC_NOT_LOBBY_ACCEPTANCE",
+  "profile": "cn2020-detailed-channel-loopback-research-v1",
+  "normal_channel_type": 2,
+  "single_zone": true,
+  "single_channel": true,
+  "native_passed": true,
+  "cleanup_verified": true,
+  "current_result_macro": 33024,
+  "live_consumer_verified": false,
+  "fixtures": [
+    {
+      "file": "detailed_channel_19001.bin",
+      "port": 19001,
+      "bytes": 61,
+      "sha256": "0bb6ec868701e6a9c5dc090fee2dfe998adee5b483822c6dae10a385c729636e",
+      "host_equal": true,
+      "roundtrip_equal": true,
+      "standalone_body_equal": true,
+      "python_equal": true
+    },
+    {
+      "file": "detailed_channel_45678.bin",
+      "port": 45678,
+      "bytes": 61,
+      "sha256": "2af0fa2520715016020b14e876512a13ddbb3f024f774c4994cdb508a326946f",
+      "host_equal": true,
+      "roundtrip_equal": true,
+      "standalone_body_equal": true,
+      "python_equal": true
+    }
+  ]
+}

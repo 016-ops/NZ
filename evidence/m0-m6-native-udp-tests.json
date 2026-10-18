@@ -1,0 +1,14 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 2,
+  "passed": [
+    "tests.test_native_udp_probe.NativeUdpProbeTests.test_empty_owner_set_never_includes_system_endpoints",
+    "tests.test_native_udp_probe.NativeUdpProbeTests.test_real_owned_loopback_udp_port_detected_without_sending"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.0
+}

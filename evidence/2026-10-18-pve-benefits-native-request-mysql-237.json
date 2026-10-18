@@ -1,0 +1,28 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 16,
+  "passed": [
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_captured_native_seq_and_reward_id_request_grants_then_rejects_active_duplicate",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_multiple_actual_rewards_idempotency_and_receipt",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_tail_failure_rolls_back_reward_and_claim_marker",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_concurrent_different_requests_only_grant_once",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_expired_reward_can_be_reacquired_with_history_and_old_gid_preserved",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_expiry_boundary_unknown_prop_and_bad_growth_are_not_success",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_functional_card_root_slot_cross_account_and_native_roundtrip",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_gm_additional_bags_keep_all_entitlements_and_get_independent_knives",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_gm_existing_4323_entitlements_and_gids_survive_preset",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_prepare_two_accounts_exact_equipment_growth_and_unchanged_wallet",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_replay_is_unchanged_and_new_request_reuses_assets",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_second_account_tail_failure_rolls_back_entire_batch",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_signed_time_projection_boundary_never_expires_permanent_server_right",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_unknown_or_disabled_target_and_duplicate_ids_do_not_modify_assets",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_v11_keeps_every_previous_schema_and_query_failure_keeps_connection",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_vip_query_and_player_info_use_same_real_growth"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 88.578
+}

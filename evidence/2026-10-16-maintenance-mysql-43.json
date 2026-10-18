@@ -1,0 +1,26 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 6,
+  "passed": [
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_failure_is_atomic_and_cross_account_rejected",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_price_replay_and_preserved_state",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_wire_failure_then_success_and_concurrent_replay",
+    "tests.test_native_maintenance.NativeMaintenanceTests.test_sell_wire_response_loss_recovers_without_second_reward"
+  ],
+  "failures": [
+    {
+      "test": "tests.test_native_maintenance.NativeMaintenanceTests.test_sell_default_and_equipped_rejected",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_maintenance.py\", line 100, in test_sell_default_and_equipped_rejected\n    with self.assertRaises(Fault):self.call('inventory.sell',gid=a['gid'])\n         ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fault not raised\n"
+    }
+  ],
+  "errors": [
+    {
+      "test": "tests.test_native_maintenance.NativeMaintenanceTests.test_renew_wire_retains_gid_and_expiry_and_rejects_permanent",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_maintenance.py\", line 112, in test_renew_wire_retains_gid_and_expiry_and_rejects_permanent\n    quote=self.view('shop.quote',lines=[dict(commodity_id=200020,price_index=0)])\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 35, in view\n    return features.query(self.s,self.game,dict(self.base,view=view,**data))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_features.py\", line 186, in query\n    return shop_quote(service,c,account,data)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_actions.py\", line 213, in shop_quote\n    raise Fault('OFFER','商品不存在或未展示',409)\nrevival.service.Fault: 商品不存在或未展示\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 34.688
+}

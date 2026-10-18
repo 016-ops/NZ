@@ -1,0 +1,30 @@
+test_bad_source_missing_map_and_out_of_range_port_are_rejected (tests.test_native_room_server_config.NativeRoomServerConfigTests.test_bad_source_missing_map_and_out_of_range_port_are_rejected)
+任何源位变、缺主图、布尔和越界端口均在安装之前拒绝。 ... ok
+test_private_instance_config_restores_without_touching_shared_pool (tests.test_native_room_server_config.NativeRoomServerConfigTests.test_private_instance_config_restores_without_touching_shared_pool)
+恢复守卫只更改独立实例配置，不创建硬链接、不修改共享资源或客户端原件。 ... ERROR
+test_two_priority_maps_have_exact_variants_and_keep_logging (tests.test_native_room_server_config.NativeRoomServerConfigTests.test_two_priority_maps_have_exact_variants_and_keep_logging)
+地图URL和共享只读目录可读回；原-Suppress减号语义保留，未伪造难度字段。 ... ok
+
+======================================================================
+ERROR: test_private_instance_config_restores_without_touching_shared_pool (tests.test_native_room_server_config.NativeRoomServerConfigTests.test_private_instance_config_restores_without_touching_shared_pool)
+恢复守卫只更改独立实例配置，不创建硬链接、不修改共享资源或客户端原件。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_room_server_config.py", line 45, in test_private_instance_config_restores_without_touching_shared_pool
+    output=Path(directory)/'evidence';guard=NativeConfigGuard(root,output)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tools\native_config_guard.py", line 92, in __init__
+    self._paths(root, output)
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tools\native_config_guard.py", line 103, in _paths
+    self.root, self.output = root.resolve(strict=True), output.resolve(strict=True)
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\pathlib.py", line 1240, in resolve
+    s = self._flavour.realpath(self, strict=strict)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen ntpath>", line 695, in realpath
+FileNotFoundError: [WinError 2] 系统找不到指定的文件。: 'C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\runtime\\test-tmp\\tmpayrjupg5\\evidence'
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.065s
+
+FAILED (errors=1)

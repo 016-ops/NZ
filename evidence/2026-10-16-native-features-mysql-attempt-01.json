@@ -1,0 +1,38 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 22,
+  "passed": [
+    "tests.test_native_features.NativeFeatureTests.test_checkin_disabled_by_default_and_no_repeat_after_rule_change",
+    "tests.test_native_features.NativeFeatureTests.test_clan_invitation_transfer_and_old_owner_permission",
+    "tests.test_native_features.NativeFeatureTests.test_draw_failure_restores_exhausted_material_binding",
+    "tests.test_native_features.NativeFeatureTests.test_friend_delivery_block_and_unrelated_event_ack",
+    "tests.test_native_features.NativeFeatureTests.test_game_api_rejects_player_token_and_changed_retry",
+    "tests.test_native_features.NativeFeatureTests.test_purchase_duplicate_instances_no_capacity_and_idempotency",
+    "tests.test_native_features.NativeFeatureTests.test_purchase_event_failure_rolls_back_money_items_and_receipt",
+    "tests.test_native_features.NativeFeatureTests.test_selected_pool_rejects_unknown_choice_without_consumption",
+    "tests.test_native_features.NativeFeatureTests.test_skin_relationship_and_cross_account_rejected",
+    "tests.test_native_features.NativeFeatureTests.test_swallow_consumes_material_and_persists_host",
+    "tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure",
+    "tests.test_native_inventory.NativeInventoryTests.test_backpack_root_preserves_all_other_bags_and_children",
+    "tests.test_native_inventory.NativeInventoryTests.test_compact_commit_is_atomic_authorized_and_matches_full_snapshot",
+    "tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once",
+    "tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip",
+    "tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once",
+    "tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_maximize_atomic_repeat_and_isolation",
+    "tests.test_native_inventory.NativeInventoryTests.test_hidden_default_knife_replaces_owned_melee_only",
+    "tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity",
+    "tests.test_native_inventory.NativeInventoryTests.test_native_zero_target_unequip_owned_only_and_repeat",
+    "tests.test_native_inventory.NativeInventoryTests.test_pve_role_switch_preserves_factions_and_rejects_other_owner"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_fragment_stack_and_draw_confirmation_are_atomic",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 79, in test_fragment_stack_and_draw_confirmation_are_atomic\n    self.give(102111,3)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 38, in give\n    apply(self.s,c,self.account,[dict(type='item',item_key='cn2020:'+str(item_id),quantity=quantity)],'TEST_FIXTURE')\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_actions.py\", line 34, in apply\n    result = mutate(service, c, {'id':actor_id or account_id, 'role':'player'}, account_id,\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\assets.py\", line 80, in mutate\n    raise Fault('EXCLUSIVE', 'An active exclusive instance already exists', 409)\nrevival.service.Fault: An active exclusive instance already exists\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 127.531
+}

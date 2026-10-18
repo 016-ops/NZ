@@ -1,0 +1,16 @@
+{
+  "kind": "ROOM_ORIGINAL_RESOURCE_HASH_READBACK_NOT_PLAYABLE",
+  "files": 2725,
+  "bytes": 14944962452,
+  "expected_files": 2725,
+  "all_hashes_verified": true,
+  "failures": [],
+  "seconds": 61.5,
+  "node_ready": false,
+  "unresolved_imports": [
+    "EditorMeshes",
+    "Weapon_Manta",
+    "UN_Sky"
+  ],
+  "manifest_sha256": "2936baef0855c75287dca55ac686da093b3b585b2aee272d905384b4c437cdb9"
+}

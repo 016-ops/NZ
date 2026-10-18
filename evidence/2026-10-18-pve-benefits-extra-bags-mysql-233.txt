@@ -1,0 +1,7 @@
+test_gm_additional_bags_keep_all_entitlements_and_get_independent_knives (tests.test_native_pve_benefits.NativePveBenefitTests.test_gm_additional_bags_keep_all_entitlements_and_get_independent_knives)
+已启用六个背包的GM保留4323项权益；额外空刀槽通过新独立默认刀补齐，不复用同一GID。 ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 7.043s
+
+OK

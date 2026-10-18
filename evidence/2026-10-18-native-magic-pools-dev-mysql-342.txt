@@ -1,0 +1,7 @@
+test_sixth_element_set_and_all_kernels_preserve_previous_receipt (tests.test_native_acceptance_extended.ExtendedAcceptanceTests.test_sixth_element_set_and_all_kernels_preserve_previous_receipt)
+追加六号元素及七种核心，旧五套回执不变；资料包按真实库存投影五级。 ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 102.473s
+
+OK

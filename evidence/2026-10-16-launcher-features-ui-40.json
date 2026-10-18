@@ -1,0 +1,12 @@
+{
+  "kind": "BOUNDED_SERVER_MODE_EXPERIMENT_NOT_PLAYABLE",
+  "last_phase": "ERROR",
+  "run": "launcher-20261016-231706-312125",
+  "parent_pipe_eof": true,
+  "source_and_game_revoked": true,
+  "configuration_restored": true,
+  "own_process_cleanup": true,
+  "lobby_verified": false,
+  "graphics_compatibility": null,
+  "raw_transport_files": 0
+}

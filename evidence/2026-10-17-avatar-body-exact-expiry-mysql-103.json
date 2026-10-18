@@ -1,0 +1,17 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 5,
+  "passed": [
+    "tests.test_native_avatar_body.NativeAvatarBodyTests.test_body_tail_failure_rolls_back_new_parts_and_relationships",
+    "tests.test_native_avatar_body.NativeAvatarBodyTests.test_default_parts_enter_native_character_tree_and_reject_wrong_parent",
+    "tests.test_native_avatar_body.NativeAvatarBodyTests.test_old_account_redemption_reuses_owned_parts_and_keeps_old_receipt",
+    "tests.test_native_avatar_body.NativeAvatarBodyTests.test_slow_transaction_keeps_parent_exact_expiry_and_public_grant_cannot_override",
+    "tests.test_native_avatar_body.NativeAvatarBodyTests.test_two_role_instances_keep_independent_parts_and_renew_atomically"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 26.375
+}

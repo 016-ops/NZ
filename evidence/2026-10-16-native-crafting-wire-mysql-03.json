@@ -1,0 +1,13 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 1,
+  "passed": [
+    "tests.test_native_crafting.NativeCraftingTests.test_native_upgrade_failure_then_success_keeps_connection"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 5.625
+}

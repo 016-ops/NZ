@@ -1,0 +1,317 @@
+{
+  "kind": "COMPUTER_USE_NATIVE_INVENTORY_SHOP_ROLE_WALLET",
+  "runs": [
+    {
+      "boot": 69,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "source_and_game_revoked": true,
+      "errors": [
+        {
+          "type": "LoginError",
+          "code": null
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        }
+      ],
+      "equipment_acks": 1,
+      "equipment_changes": 0,
+      "tp_balance_responses": 0
+    },
+    {
+      "boot": 70,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "source_and_game_revoked": true,
+      "errors": [
+        {
+          "type": "ValueError",
+          "code": null
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        }
+      ],
+      "equipment_acks": 2,
+      "equipment_changes": 1,
+      "tp_balance_responses": 0
+    },
+    {
+      "boot": 71,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "source_and_game_revoked": true,
+      "errors": [],
+      "equipment_acks": 2,
+      "equipment_changes": 1,
+      "tp_balance_responses": 0
+    },
+    {
+      "boot": 72,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "source_and_game_revoked": true,
+      "errors": [
+        {
+          "type": "ValueError",
+          "code": null
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        }
+      ],
+      "equipment_acks": 1,
+      "equipment_changes": 0,
+      "tp_balance_responses": 0
+    },
+    {
+      "boot": 73,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "source_and_game_revoked": true,
+      "errors": [
+        {
+          "type": "ValueError",
+          "code": null
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        },
+        {
+          "type": "TransportError",
+          "code": "UNSUPPORTED_COMMAND"
+        }
+      ],
+      "equipment_acks": 1,
+      "equipment_changes": 0,
+      "tp_balance_responses": 0
+    },
+    {
+      "boot": 74,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "source_and_game_revoked": true,
+      "errors": [],
+      "equipment_acks": 3,
+      "equipment_changes": 2,
+      "tp_balance_responses": 0
+    },
+    {
+      "boot": 75,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "source_and_game_revoked": true,
+      "errors": [],
+      "equipment_acks": 5,
+      "equipment_changes": 4,
+      "tp_balance_responses": 2
+    }
+  ],
+  "observations": {
+    "70": [
+      "Soul melee equipped into backpack 2; held model and equipped border changed"
+    ],
+    "71": [
+      "Melee retained after relogin; unload returned owned hidden default knife without business disconnect"
+    ],
+    "72": [
+      "Shop home goods, prices and owned markers visible; weapon category has 18 pages; preview model visible"
+    ],
+    "73": [
+      "Click Chushuang beach role use caused network reconnect overlay"
+    ],
+    "74": [
+      "Same Chushuang role selected and rendered; switched to Adam successfully; GP and MP at 2147483647; TP UI still zero before dedicated query fix"
+    ],
+    "75": [
+      "Adam role retained on relogin; shop GP MP TP all visible as 2147483647 after balance response; repeated refresh unverified after user input guard"
+    ]
+  },
+  "evidence_source": "Agent directly observed current game screenshots using computer-use @oai/sky",
+  "original_client_writes": 0,
+  "actual_purchases_submitted": false,
+  "gameplay_verified": false,
+  "multiplayer_verified": false,
+  "limits": [
+    "Five minute diagnostic sessions only",
+    "Other wallet UIs and special activity currencies not verified",
+    "Shop purchases, role skills, native rooms, hunt and tower defense gameplay remain unimplemented or unverified"
+  ]
+}

@@ -1,0 +1,372 @@
+{
+  "kind": "DEV_READ_ONLY_PVE_CLAIM_GAIN_TYPE_WITH_HISTORY_PRESERVED",
+  "release": "20261018T055449-f7349b93ef09",
+  "checked_hashes": {
+    "revival/native_pve_benefits.py": "f56ca01472f029e324f7c6c8fe81f14a7ef75c0d276ad1cb104310f3a24eb0f9",
+    "revival/native_acceptance_loadout.py": "d330c7cbdcad143bf7dfe56f0237c9ea95289f40734bddf0e40b40e4a62fc639",
+    "revival/native_features.py": "6bd927b147f76792de546c1e51653ceb94945e108801b6350ab370fb951f5f71",
+    "revival/native_inventory.py": "1de2da10e012339956cba34bfa4eaaf78217799cffcb27a37010526660c3c04d",
+    "revival/native_engineering.py": "ffb4dbc4fbb12dcf643913e2c7040b2473b59843c847955df1fc7090a463929b",
+    "config/cn2020-pve-benefits-v1.json": "1469180a8e97bc850d5a3e3689fcac1fe383b513b0c3499cb4286d8db615c51f",
+    "config/cn2020-feature-protocol-v11.json": "a0eaa8a50b850c9bad9c6f4c9b2a958d07ae9a24c2b70b608da59a3f6047f041",
+    "admin/dist/index.html": "ca32a5a00b8898e50a918050b53964254846cb732d094cef19f48c80b8b1cf65"
+  },
+  "mysql_version": "8.0.30-txsql",
+  "accounts": [
+    {
+      "game_id": 10002,
+      "inventory_count": 4325,
+      "distinct_entitlements": 4323,
+      "binding_count": 4325,
+      "equipped_item_ids": [
+        103981,
+        103983,
+        103985,
+        103987,
+        101210,
+        101211,
+        101149
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 100713,
+            "equipped": false
+          },
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 100591,
+            "equipped": false
+          },
+          {
+            "item_id": 100810,
+            "equipped": false
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          }
+        ]
+      },
+      "wallet": [
+        {
+          "currency": "cn2020:EP",
+          "balance": 2147483647
+        },
+        {
+          "currency": "cn2020:GP",
+          "balance": 2147483647
+        },
+        {
+          "currency": "cn2020:HP",
+          "balance": 2147483647
+        },
+        {
+          "currency": "cn2020:MECHA",
+          "balance": 9223372036854775807
+        },
+        {
+          "currency": "cn2020:MP",
+          "balance": 2147483647
+        },
+        {
+          "currency": "cn2020:SP",
+          "balance": 65535
+        },
+        {
+          "currency": "cn2020:TP",
+          "balance": 2147483647
+        }
+      ],
+      "free_claims": []
+    },
+    {
+      "game_id": 10003,
+      "inventory_count": 59,
+      "distinct_entitlements": 58,
+      "binding_count": 59,
+      "equipped_item_ids": [
+        103981,
+        103983,
+        103985,
+        103987,
+        101210,
+        101211,
+        101149
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          },
+          {
+            "item_id": 101211,
+            "equipped": true
+          }
+        ]
+      },
+      "wallet": [
+        {
+          "currency": "cn2020:EP",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:GP",
+          "balance": 1000000
+        },
+        {
+          "currency": "cn2020:HP",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:MECHA",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:MP",
+          "balance": 1000000
+        },
+        {
+          "currency": "cn2020:SP",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:TP",
+          "balance": 957100
+        }
+      ],
+      "free_claims": []
+    },
+    {
+      "game_id": 10004,
+      "inventory_count": 101,
+      "distinct_entitlements": 96,
+      "binding_count": 101,
+      "equipped_item_ids": [
+        103981,
+        103983,
+        103985,
+        103987,
+        101210,
+        101211,
+        101149
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          },
+          {
+            "item_id": 101149,
+            "equipped": true
+          }
+        ]
+      },
+      "wallet": [
+        {
+          "currency": "cn2020:EP",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:GP",
+          "balance": 1000000
+        },
+        {
+          "currency": "cn2020:HP",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:MECHA",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:MP",
+          "balance": 1000000
+        },
+        {
+          "currency": "cn2020:SP",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:TP",
+          "balance": 865700
+        }
+      ],
+      "free_claims": []
+    },
+    {
+      "game_id": 10005,
+      "inventory_count": 48,
+      "distinct_entitlements": 42,
+      "binding_count": 48,
+      "equipped_item_ids": [
+        103981,
+        103983,
+        103985,
+        103987,
+        101210,
+        101211,
+        101149
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          }
+        ]
+      },
+      "wallet": [
+        {
+          "currency": "cn2020:EP",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:GP",
+          "balance": 88188
+        },
+        {
+          "currency": "cn2020:HP",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:MECHA",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:MP",
+          "balance": 9000
+        },
+        {
+          "currency": "cn2020:SP",
+          "balance": 0
+        },
+        {
+          "currency": "cn2020:TP",
+          "balance": 0
+        }
+      ],
+      "free_claims": [
+        {
+          "benefit_id": 10014,
+          "item_id": 100482,
+          "quantity": 1,
+          "duration_seconds": 518400,
+          "gid": 5560,
+          "created_at": 1792298761,
+          "expires_at": 1792817160,
+          "grant_to_receipt_seconds": 1,
+          "currency_entries": 0,
+          "gain_type": 35
+        },
+        {
+          "benefit_id": 10015,
+          "item_id": 100786,
+          "quantity": 1,
+          "duration_seconds": 518400,
+          "gid": 5561,
+          "created_at": 1792298813,
+          "expires_at": 1792817211,
+          "grant_to_receipt_seconds": 2,
+          "currency_entries": 0,
+          "gain_type": 35
+        },
+        {
+          "benefit_id": 10016,
+          "item_id": 100924,
+          "quantity": 1,
+          "duration_seconds": 518400,
+          "gid": 5562,
+          "created_at": 1792299003,
+          "expires_at": 1792817402,
+          "grant_to_receipt_seconds": 1,
+          "currency_entries": 0,
+          "gain_type": 35
+        }
+      ]
+    }
+  ],
+  "health": [
+    {
+      "port": 18765,
+      "status": 200
+    },
+    {
+      "port": 18767,
+      "status": 200
+    }
+  ],
+  "formal_checkin_enabled": 0,
+  "latest_migration": [
+    "0019_native_engineering_progress"
+  ],
+  "at": 1792302941,
+  "native_battle_effects_verified": false,
+  "services": {
+    "current": "active",
+    "current-maintain": "active",
+    "pve": "active",
+    "pve-maintain": "active"
+  }
+}

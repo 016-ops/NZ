@@ -1,0 +1,5 @@
+# 固定本次验证的官方 MSVC Rust 工具链；依赖精确版本另外由 Cargo.lock 管理。
+[toolchain]
+channel = "1.99.1"
+profile = "minimal"
+targets = ["x86_64-pc-windows-msvc"]

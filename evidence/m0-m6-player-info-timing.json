@@ -1,0 +1,16 @@
+{
+  "kind": "DEFERRED_CURRENT_PLAYER_INFO_TIMING_DIAGNOSTIC",
+  "boot": 59,
+  "default_changed": false,
+  "trigger": "A205_AND_OBSERVED_FF05_PLUS_ONE_SECOND_DIAGNOSTIC",
+  "trigger_observed": true,
+  "version_payload_modified": false,
+  "version_response_generated": false,
+  "a005_a006_and_role_refresh_sent": true,
+  "computer_use_observation": "BLACK_CLIENT_AREA_NO_LOBBY",
+  "lobby_verified": false,
+  "configuration_restored": true,
+  "job_cleanup_verified": true,
+  "source_and_game_credentials_rejected": true,
+  "real_emails_sent": 0
+}

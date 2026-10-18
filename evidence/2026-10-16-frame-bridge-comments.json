@@ -1,0 +1,42 @@
+{
+  "kind": "FRAME_BRIDGE_CHINESE_COMMENTS",
+  "files": [
+    {
+      "file": "tools/native_frame_bridge.py",
+      "sha256": "45dbd2fac90d443d672e631f5e08a11ee2a3c0a01d13b49526f3ba88f01e70f9",
+      "objects": 4
+    },
+    {
+      "file": "tools/native_launcher.py",
+      "sha256": "a0c57c2bd4810a0eb25e6f40de1e1df08eaa2aa0ac5757f45664be294cd01e90",
+      "objects": 28
+    },
+    {
+      "file": "tools/native_email_boot.py",
+      "sha256": "a641bad53bc006e608d0a0bcef30cbf6c237b80e6e61dbdf339c032dae469576",
+      "objects": 23
+    },
+    {
+      "file": "tools/generate_d3d9_forwarders.py",
+      "sha256": "7e959f84801f6d8fd48d37c23e131f4f53071481147130c4c8c0239d9e1b3f4d",
+      "objects": 2
+    },
+    {
+      "file": "tools/native_capability_matrix.py",
+      "sha256": "6f862cecad8645547e68236845e4f92a2898a6e6622b52bf6fb8b4dc26a10950",
+      "objects": 3
+    },
+    {
+      "file": "tests/test_native_frame_bridge.py",
+      "sha256": "a3f79f3a37a4e63227d2ed13b4cb37f761875b3f39617db3c34547ddceb62143",
+      "objects": 5
+    },
+    {
+      "file": "tests/test_native_launcher.py",
+      "sha256": "097a39fa485f157471b320fd3645409f203a918bf0c401d312fa23226ed9fd16",
+      "objects": 21
+    }
+  ],
+  "missing": [],
+  "whole_repository_claim": false
+}

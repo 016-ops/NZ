@@ -1,0 +1,11 @@
+test_craft_shortage_wrong_recipe_foreign_gid_and_fault_are_atomic (tests.test_native_crafting.NativeCraftingTests.test_craft_shortage_wrong_recipe_foreign_gid_and_fault_are_atomic)
+不足、错配、跨账号、最后事件失败都保留原仓库；成功后旧请求只能重放。 ... ok
+test_frozen_recipes_all_execute_and_consume_exact_inputs (tests.test_native_crafting.NativeCraftingTests.test_frozen_recipes_all_execute_and_consume_exact_inputs)
+139条配方均走同一正式入口；同物品转化与0额外材料不能丢失或多扣主体。 ... ok
+test_subject_only_custom_recipe_rejects_free_reward (tests.test_native_crafting.NativeCraftingTests.test_subject_only_custom_recipe_rejects_free_reward)
+后台允许消耗主体的0额外材料配方，但拒绝没有任何消耗的空材料配方。 ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 310.587s
+
+OK

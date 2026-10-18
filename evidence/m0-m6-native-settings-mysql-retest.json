@@ -1,0 +1,19 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 7,
+  "passed": [
+    "tests.test_native_settings.NativeSettingsTests.test_audit_and_outbox_failures_roll_back_settings_update",
+    "tests.test_native_settings.NativeSettingsTests.test_binary_roundtrip_restart_and_client_version_isolation",
+    "tests.test_native_settings.NativeSettingsTests.test_concurrent_writes_and_lost_ack_retry_do_not_lose_newer_settings",
+    "tests.test_native_settings.NativeSettingsTests.test_cross_account_and_non_game_credentials_are_isolated",
+    "tests.test_native_settings.NativeSettingsTests.test_database_constraints_reject_wrong_lengths_zero_revision_and_duplicate_scope",
+    "tests.test_native_settings.NativeSettingsTests.test_invalid_base64_boundaries_and_revision_fail_before_changes",
+    "tests.test_native_settings.NativeSettingsTests.test_source_session_revocation_expiry_and_security_change_reject_writes"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 35.828
+}

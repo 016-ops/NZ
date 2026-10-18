@@ -1,0 +1,16 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.0.30-txsql",
+  "tests": 4,
+  "passed": [
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_captured_native_seq_and_reward_id_request_grants_then_rejects_active_duplicate",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_expired_reward_can_be_reacquired_with_history_and_old_gid_preserved",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_claim_tail_failure_rolls_back_reward_and_claim_marker",
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_concurrent_different_requests_only_grant_once"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 64.453
+}

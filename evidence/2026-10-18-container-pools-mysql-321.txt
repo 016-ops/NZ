@@ -1,0 +1,19 @@
+test_all_source_pools_and_lost_random_response_recover_same_receipt (tests.test_native_containers.NativeContainerTests.test_all_source_pools_and_lost_random_response_recover_same_receipt)
+逐池验证原始候选可入库；随机提交后丢响应经新桥接恢复原奖，不再抽取。 ... ok
+test_concurrent_replay_keeps_one_consumption_and_three_rewards (tests.test_native_containers.NativeContainerTests.test_concurrent_replay_keeps_one_consumption_and_three_rewards)
+并发重试同一请求只扣一个礼包、发三张卡；回执保持原始数量和永久期限。 ... ok
+test_existing_card_gets_independent_reward_without_false_capacity_error (tests.test_native_containers.NativeContainerTests.test_existing_card_gets_independent_reward_without_false_capacity_error)
+来源唯一性字段未确认账号独占；沿用既有模型生成独立卡片GID，不合并或误报满仓。 ... ok
+test_protocol_failure_success_and_unknown_commit_recovery (tests.test_native_containers.NativeContainerTests.test_protocol_failure_success_and_unknown_commit_recovery)
+原生失败应答不断开；提交后响应丢失跨桥接重建恢复同一礼包回执，忽略预测奖励。 ... ok
+test_random_concurrent_retry_and_legacy_fixed_recipe (tests.test_native_containers.NativeContainerTests.test_random_concurrent_retry_and_legacy_fixed_recipe)
+随机箱并发同一请求只能抽一次；旧版本307仍按原配方发奖，不能访问新奖池。 ... ok
+test_random_counter_counts_are_increment_only_and_tail_failure_rolls_back (tests.test_native_containers.NativeContainerTests.test_random_counter_counts_are_increment_only_and_tail_failure_rolls_back)
+五碎片候选表示数量而非五小时；三箱发15且原有7个保持，末尾失败不扣箱或留奖。 ... ok
+test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets (tests.test_native_containers.NativeContainerTests.test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets)
+数量不足、过期、他人持箱及末尾事件故障都不能产生半份奖励或遗留回执。 ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 41.064s
+
+OK

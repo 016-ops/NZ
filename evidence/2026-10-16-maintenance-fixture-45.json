@@ -1,0 +1,16 @@
+{
+  "operations": [
+    "8c442b589be74b5daf11046ead8e4aa5"
+  ],
+  "game_id": 10005,
+  "kind": "ISOLATED_FIXTURE_NOT_COMBAT_DURABILITY",
+  "items": 23,
+  "equipment": 21,
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "formal_checkin": 0
+}

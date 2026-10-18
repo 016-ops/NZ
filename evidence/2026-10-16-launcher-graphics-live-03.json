@@ -1,0 +1,24 @@
+{
+  "kind": "DESKTOP_PIPE_GRAPHICS_COMPAT_REAL_GAME",
+  "last_phase": "PROCESS_STARTED",
+  "run": "launcher-20261016-141414-542486",
+  "parent_pipe_eof": true,
+  "source_and_game_revoked": true,
+  "configuration_restored": true,
+  "own_process_cleanup": true,
+  "lobby_verified": false,
+  "graphics_compatibility": {
+    "profile": "cn2020-d3d9ex-flip-v2-diagnostic-log",
+    "release": "v1.9.8700.25",
+    "archive_sha256": "4680618ac5563d2c4042e344402eae76a55192634a3746e8fd672789089067e1",
+    "files": {
+      "Binaries/Win32/d3d9.dll": "b8b878e29c2931d6a8d064665c4c93edb28a0105152e7247f8f543c1603985c3",
+      "Binaries/Win32/dxwrapper.dll": "23a2889e0785a02f17f1ee764254bf22b937fc5bdc6ed6374201a9f50cc7b43d",
+      "Binaries/Win32/NZ-DxWrapper-License.txt": "8a586c8e0299cb3b141d589d9e933f58a5abb781e6c8775793ff21872ffee31c",
+      "Binaries/Win32/dxwrapper.ini": "77ccff7936b33b11bc39eebaa67668c19e62b88a1a0e9be55380f888e371f0f5"
+    },
+    "system_changed": false,
+    "original_client_writes": 0
+  },
+  "raw_transport_files": 0
+}

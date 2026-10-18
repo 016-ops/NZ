@@ -1,0 +1,15 @@
+test_ipv4_and_signed_port_layout_remains_bounded (tests.test_native_room_protocol.NativeRoomProtocolTests.test_ipv4_and_signed_port_layout_remains_bounded)
+地址只做无符号32位编解码；端口是原TDR有符号16位，不允许溢出或任意新字段。 ... ok
+test_maximum_room_array_uses_current_nested_host_size (tests.test_native_room_protocol.NativeRoomProtocolTests.test_maximum_room_array_uses_current_nested_host_size)
+32个房间不能按旧68字节跨度重叠；后续房间ID和地图在各自192字节槽保存。 ... ok
+test_native_password_and_room_count_boundaries (tests.test_native_room_protocol.NativeRoomProtocolTests.test_native_password_and_room_count_boundaries)
+口令最多7个CP936字节；超32房、截断、附加字节和冲突计数都必须拒绝。 ... ok
+test_previous_schemas_and_commands_are_identical (tests.test_native_room_protocol.NativeRoomProtocolTests.test_previous_schemas_and_commands_are_identical)
+v12只增加房间结构；原v11全部字段、命令及常量逐项不变。 ... ok
+test_room_password_packets_are_not_raw_diagnostic_evidence (tests.test_native_room_protocol.NativeRoomProtocolTests.test_room_password_packets_are_not_raw_diagnostic_evidence)
+建房/加入/跟随口令只记录命令及长度，不留正文或可快速猜测的整包摘要。 ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.065s
+
+OK

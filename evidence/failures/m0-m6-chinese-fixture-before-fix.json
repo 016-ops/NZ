@@ -1,0 +1,9 @@
+{
+  "kind": "OFFLINE_FIXTURE_COMPARISON_FAILURE",
+  "cause": "Manual fixture bytes represented Chinese ming rather than the intended ni character; current strict codec returned the correct original text",
+  "evidence_directory": "evidence/private/native-tdr-player-info-02",
+  "native_serializer_roundtrip_passed": true,
+  "native_python_comparison_passed": false,
+  "game_response_sent": false,
+  "fix": "Correct fixed CP936 fixture bytes from C3FB to EAC7 and rerun in a new directory"
+}

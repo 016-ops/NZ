@@ -38,6 +38,12 @@ test_native_capture_rejects_over_budget_before_socket_read (tests.test_email_too
 任何超出 64KiB 的后续读取在触碰 socket 前失败，不能扩大诊断缓存。 ... ok
 test_native_capture_retains_rejected_header_and_has_total_deadline (tests.test_email_tools.EmailToolTests.test_native_capture_retains_rejected_header_and_has_total_deadline)
 失败头仍有私人证据；每次分片使用剩余总期限，不能反复重置超时而无限等待。 ... ok
+test_native_dev_fresh_verification_precedes_probe_and_is_reported (tests.test_email_tools.EmailToolTests.test_native_dev_fresh_verification_precedes_probe_and_is_reported)
+成功路径必须实时读取 me、匹配兑换身份后才启动，报告保留核验范围并注销来源会话。 ... ok
+test_native_dev_live_account_and_redeemed_identity_must_match (tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match)
+实时账号、游戏账号与验收记录必须一致，不能用另一个已验证账号通过启动门禁。 ... ok
+test_native_dev_rebound_email_is_rejected_and_session_revoked (tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked)
+历史验收为真不能覆盖当前换绑后的未验证邮箱，非布尔真和读取失败也必须拒绝并注销。 ... ok
 test_remote_urls_credentials_paths_and_implicit_ports_are_rejected (tests.test_email_tools.EmailToolTests.test_remote_urls_credentials_paths_and_implicit_ports_are_rejected)
 启动器只使用明确端口的本机/SSH 隧道，不接受外部 URL、URL 密码或路径。 ... ok
 test_zone_reply_requires_explicit_capture_and_verified_email_before_launch (tests.test_email_tools.EmailToolTests.test_zone_reply_requires_explicit_capture_and_verified_email_before_launch)
@@ -150,6 +156,18 @@ test_zone_response_matches_independent_current_native_golden (tests.test_native_
 当前DLL probe10独立生成70字节/62字节body；完整字段顺序及六个LoadExts必须精确保持。 ... ok
 test_zone_response_rejects_implicit_profiles_and_invalid_port_types_or_ranges (tests.test_native_geo.NativeGeoZoneResponseTests.test_zone_response_rejects_implicit_profiles_and_invalid_port_types_or_ranges)
 不隐式启用研究回复，拒绝bool、字符串、浮点和特权/溢出端口，避免端口被自动转换。 ... ok
+test_actual_empty_request_digest_and_strict_body (tests.test_native_zone.NativePlayerDefineTests.test_actual_empty_request_digest_and_strict_body)
+8字节请求匹配boot22实收摘要；无body分支不能偷偷接受扩展字段或其他空消息。 ... ok
+test_empty_response_has_no_settings_payload_or_mutable_inputs (tests.test_native_zone.NativePlayerDefineTests.test_empty_response_has_no_settings_payload_or_mutable_inputs)
+响应匹配独立当前DLL黄金摘要，仅含8100和零计数，没有自由文本或持久化设置入口。 ... ok
+test_empty_response_requires_exact_explicit_profile (tests.test_native_zone.NativePlayerDefineTests.test_empty_response_requires_exact_explicit_profile)
+默认、其他版本和隐式类型都不能启用空资料兼容行为。 ... ok
+test_identity_and_nickname_boundaries_do_not_convert_or_truncate (tests.test_native_zone.NativePlayerInfoResearchTests.test_identity_and_nickname_boundaries_do_not_convert_or_truncate)
+拒绝bool/越界ID、隐式编码、NUL和超过含终止符32B容量的昵称；边界字节原样保留。 ... ok
+test_profile_is_explicit_and_compatibility_copy_does_not_enable_assets (tests.test_native_zone.NativePlayerInfoResearchTests.test_profile_is_explicit_and_compatibility_copy_does_not_enable_assets)
+研究资料必须显式启用；修改说明副本不能悄悄启用真实资产或大厅完成标志。 ... ok
+test_two_current_native_full_host_roundtrips_match_exact_wire (tests.test_native_zone.NativePlayerInfoResearchTests.test_two_current_native_full_host_roundtrips_match_exact_wire)
+ID和字符串长度均不同的两套golden防止只固定一个字节串或误用PH短结构。 ... ok
 test_compatibility_is_detached_and_does_not_claim_wallet_or_lobby (tests.test_native_zone.NativeZoneLoginResponseTests.test_compatibility_is_detached_and_does_not_claim_wallet_or_lobby)
 修改展示说明不改变下一次编码；成功分支证据不扩张成角色、钱包和大厅验收。 ... ok
 test_fixed_response_matches_current_native_golden (tests.test_native_zone.NativeZoneLoginResponseTests.test_fixed_response_matches_current_native_golden)
@@ -196,6 +214,6 @@ test_zone_notification_cannot_enable_geo_responses (tests.test_native_tdr_probe.
 通知模式不能同时构造任一种 GEO 响应，且拒绝发生在启动子进程前。 ... ok
 
 ----------------------------------------------------------------------
-Ran 104 tests in 1.988s
+Ran 113 tests in 2.189s
 
 OK

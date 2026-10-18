@@ -1,0 +1,17 @@
+{
+  "kind": "LAUNCHER_LIVE_ACCOUNT_AND_STOP_NOT_LOBBY_ACCEPTANCE",
+  "run": "launcher-20261016-125458-306628",
+  "login_verified": true,
+  "game_process_started": true,
+  "inventory_projected": 4323,
+  "ui_login_page_observed": true,
+  "ui_stop_action_executed": true,
+  "duplicate_open_reused_instance": true,
+  "game_window_blank": true,
+  "lobby_verified": false,
+  "launcher_stop_requested": true,
+  "cleanup_verified": true,
+  "configuration_restored": true,
+  "credentials_rejected_after_logout": true,
+  "raw_auth_transport_recorded": false
+}

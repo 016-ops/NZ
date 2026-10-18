@@ -1,0 +1,29 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 5,
+  "passed": [
+    "tests.test_native_engineering.NativeEngineeringTests.test_decompose_all_types_idempotent_and_batch_atomic",
+    "tests.test_native_engineering.NativeEngineeringTests.test_material_conversion_preserves_quantity_and_rejects_underflow",
+    "tests.test_native_engineering.NativeEngineeringTests.test_paid_batch_failure_rolls_back_currency_parts_progress_and_receipt"
+  ],
+  "failures": [
+    {
+      "test": "tests.test_native_engineering.NativeEngineeringTests.test_all_37_recipes_keep_cost_result_and_progress",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_engineering.py\", line 61, in test_all_37_recipes_keep_cost_result_and_progress\n    self.assertEqual(len(self.view('engineering')['progress']),37)\nAssertionError: 36 != 37\n"
+    }
+  ],
+  "errors": [
+    {
+      "test": "tests.test_native_engineering.NativeEngineeringTests.test_all_37_recipes_keep_cost_result_and_progress (recipe=90002)",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_engineering.py\", line 55, in test_all_37_recipes_keep_cost_result_and_progress\n    self.prepare(recipe)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_engineering.py\", line 32, in prepare\n    apply(self.s,c,self.account,item_rewards(self.s,[dict(m,quantity=m['quantity']*count) for m in recipe['materials']])+\n                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\native_actions.py\", line 59, in item_rewards\n    quantity = integer(reward.get('quantity',1),1,1000,'quantity')\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 46, in integer\n    raise Fault('INVALID', f'{name} must be an integer between {minimum} and {maximum}')\nrevival.service.Fault: quantity must be an integer between 1 and 1000\n"
+    },
+    {
+      "test": "tests.test_native_engineering.NativeEngineeringTests.test_owner_expiry_duplicate_and_rule_version_rejected",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_engineering.py\", line 95, in test_owner_expiry_duplicate_and_rule_version_rejected\n    _,_,other,base=self.player_game('engineering-other')\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 31, in player_game\n    self.command('character.create', {'nickname': 'inventory-'+suffix}, player)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_control_plane.py\", line 64, in command\n    return self.s.command(token or self.owner, action, self.meta(**(data or {})))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 392, in command\n    result = self._account_command(c, actor, action, data)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 460, in _account_command\n    nickname = unicodedata.normalize('NFC', text_field(data.get('nickname'), 'nickname', 24))\n                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 54, in text_field\n    raise Fault('INVALID', f'Invalid {name}')\nrevival.service.Fault: Invalid nickname\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 30.25
+}

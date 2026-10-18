@@ -1,0 +1,11 @@
+test_changed_config_missing_resource_and_unsafe_name_rejected (tests.test_native_server_entry.NativeServerEntryTests.test_changed_config_missing_resource_and_unsafe_name_rejected)
+未知配置先失败；缺少实际地图或带参数注入/路径穿越的名字不能启动。 ... ok
+test_duplicate_logical_map_or_conflicting_mode_rejected (tests.test_native_server_entry.NativeServerEntryTests.test_duplicate_logical_map_or_conflicting_mode_rejected)
+重复逻辑定义与冲突模式都不能由扫描顺序任意选择。 ... ok
+test_map_mode_derived_from_current_config_and_existing_resource (tests.test_native_server_entry.NativeServerEntryTests.test_map_mode_derived_from_current_config_and_existing_resource)
+模式参数精确取当前前缀映射，不能把相似前缀或外部模式静默套入。 ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.033s
+
+OK

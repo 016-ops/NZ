@@ -1,0 +1,49 @@
+{
+  "kind": "OWNED_TOWER_REAL_LOADOUT_READ_ONLY",
+  "run": "launcher-20261018-134728-260912",
+  "pid": 12636,
+  "process_writes": 0,
+  "input_actions": 0,
+  "current_bag": 0,
+  "default_bag": 0,
+  "equipped_functional_item_ids": [
+    101210,
+    101211,
+    101149,
+    100216,
+    100218,
+    100323,
+    300062,
+    300063,
+    100026,
+    103981
+  ],
+  "weapons": [
+    {
+      "identity": "ATD1-Capital_44_Main.TheWorld.PersistentLevel.TGWeap_ZSGDmain_PVE_Content_0",
+      "class_name": "TGWeap_ZSGDmain_PVE_Content"
+    },
+    {
+      "identity": "ATD1-Capital_44_Main.TheWorld.PersistentLevel.TGWeap_ZSGDnu_PVE_Content_0",
+      "class_name": "TGWeap_ZSGDnu_PVE_Content"
+    },
+    {
+      "identity": "ATD1-Capital_44_Main.TheWorld.PersistentLevel.TGWeap_ZSGDhammer_PVE_Content_0",
+      "class_name": "TGWeap_ZSGDhammer_PVE_Content"
+    },
+    {
+      "identity": "validated_inventory_chain@0x68f8d200",
+      "class_name": "TGATDTrapProjector5"
+    }
+  ],
+  "expert_card": true,
+  "cash_card": true,
+  "pve_store_active": true,
+  "pve_store_level": 3,
+  "max_traps": 50,
+  "money": 3000,
+  "playable_map_accepted": false,
+  "all_card_effects_verified": false,
+  "lobby_store_level": 3,
+  "lobby_store_points": 10500
+}

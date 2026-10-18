@@ -1,0 +1,66 @@
+{
+  "kind": "COMPUTER_USE_LIVE_GAME_UI_OBSERVATION",
+  "date": "2026-10-15",
+  "skill": "computer-use",
+  "api": "node_repl @oai/sky",
+  "boot_attempts": [
+    36,
+    37
+  ],
+  "user_observation": "Window flickers; lobby appears not rendered",
+  "observed_initial_state": "MINIMIZED",
+  "observed_after_activation": "BLACK_CLIENT_AREA_WITH_GAME_CURSOR_GLOW",
+  "repeated_observation_same_black_area": true,
+  "alt_enter_recovered_lobby": false,
+  "role_or_nickname_ui_visible": false,
+  "lobby_verified": false,
+  "screenshots": "Displayed natively by get_window_state; payloads not re-saved or re-emitted",
+  "window_text_read_from_process_memory": false,
+  "security_or_authentication_ui_automated": false,
+  "post_a006_observations": {
+    "boot_attempts": [
+      40,
+      41,
+      42
+    ],
+    "observed": "EMBEDDED_ACTIVITY_WEBPAGE_WITH_BLACK_SURROUNDING_AREA",
+    "role_or_lobby_controls_visible": false,
+    "escape_recovered_lobby": false,
+    "real_gameplay_verified": false,
+    "computer_use_api": "node_repl @oai/sky",
+    "screenshots": "Native inline display only; no payload re-emission"
+  },
+  "cursor_glow_origin_verified": false,
+  "cursor_glow_limit": "Glow was also observed on title bar; it is not evidence that the UE3 renderer or game UI is functioning.",
+  "post_role_refresh_observation": {
+    "boot": 52,
+    "observed_twice": "BLACK_CLIENT_AREA_WITHOUT_ACTIVITY_WEBPAGE",
+    "role_info_refresh_sent": true,
+    "lobby_verified": false,
+    "role_model_verified": false
+  },
+  "screen_texture_diagnostic_observation": {
+    "boot": 53,
+    "observed": "BLACK_CLIENT_AREA_WITHOUT_ACTIVITY_WEBPAGE",
+    "configuration_restored": true,
+    "native_consumption_of_option_verified": false,
+    "lobby_verified": false
+  },
+  "subsequent_observations": [
+    {
+      "boot": 54,
+      "observed": "BLACK_CLIENT_AREA",
+      "grave_key_showed_visible_console": false
+    },
+    {
+      "boot": 56,
+      "observed": "BLACK_CLIENT_AREA_AFTER_ZERO_HINT_NOTIFICATION",
+      "lobby_verified": false
+    }
+  ],
+  "deferred_profile_observation": {
+    "boot": 59,
+    "observed": "BLACK_CLIENT_AREA_NO_LOBBY",
+    "diagnostic_trigger_verified": true
+  }
+}

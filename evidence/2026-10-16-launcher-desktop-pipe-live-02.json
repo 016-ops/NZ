@@ -1,0 +1,10 @@
+{
+  "kind": "DESKTOP_PIPE_REAL_GAME_LIFECYCLE",
+  "run": "launcher-20261016-132649-613442",
+  "parent_pipe_eof": true,
+  "source_and_game_revoked": true,
+  "configuration_restored": true,
+  "own_process_cleanup": true,
+  "lobby_verified": false,
+  "raw_transport_files": 0
+}

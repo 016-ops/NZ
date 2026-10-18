@@ -1,0 +1,454 @@
+{
+  "kind": "DEV_FIVE_BAGS_AND_ALL_TRAPS_RECEIPTS_PRESERVED",
+  "release": "20261018T064556-0efe995026b3",
+  "checked_hashes": {
+    "revival/native_acceptance_loadout.py": "4ff34a7addabc978b61f54357bb76e99de03c0235c919312a809f1fccb3f40d9",
+    "revival/native_pve_benefits.py": "b1f7fc67a08fd42642cc7b98e336c2566f5c4c89598ab0f9a23c0f5981246111",
+    "revival/native_inventory.py": "5cfdfce4fc18823c7cf25ab11dcbe864ecff92795564b2d7c1b19e050e2a00f6",
+    "revival/catalogs.py": "eb8c92e9431ef5aba36861d69e6ae6e436d156460998ae9685a59218b7e1091d",
+    "revival/management/commands/prepare_acceptance_loadout.py": "bdb15d7d87de02031da2d3bb6c444ee0706d08b57535774141b76a43f7f9fb35",
+    "admin/dist/index.html": "ca32a5a00b8898e50a918050b53964254846cb732d094cef19f48c80b8b1cf65"
+  },
+  "mysql_version": "8.0.30-txsql",
+  "accounts": [
+    {
+      "game_id": 10002,
+      "inventory_before": 4325,
+      "inventory_after": 4325,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "bags": [
+        {
+          "number": 1,
+          "bag_id": 100026,
+          "gid": 1022,
+          "weapons": [
+            103981,
+            103983,
+            103985,
+            103987
+          ]
+        },
+        {
+          "number": 2,
+          "bag_id": 100063,
+          "gid": 1055,
+          "weapons": [
+            103716,
+            103717,
+            103718,
+            103719
+          ]
+        },
+        {
+          "number": 3,
+          "bag_id": 100035,
+          "gid": 1031,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ]
+        },
+        {
+          "number": 4,
+          "bag_id": 100036,
+          "gid": 1032,
+          "weapons": [
+            102762,
+            102764,
+            102763,
+            102765
+          ]
+        },
+        {
+          "number": 5,
+          "bag_id": 100037,
+          "gid": 1033,
+          "weapons": [
+            102118,
+            102119,
+            102120,
+            102121
+          ]
+        }
+      ],
+      "cards": [
+        101210,
+        101211,
+        101149,
+        102000
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "functional_rule_version": "cn2020-pve-functional-v2",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 100713,
+            "equipped": false
+          },
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 102000,
+            "equipped": true
+          },
+          {
+            "item_id": 100591,
+            "equipped": false
+          },
+          {
+            "item_id": 100810,
+            "equipped": false
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          }
+        ]
+      }
+    },
+    {
+      "game_id": 10003,
+      "inventory_before": 59,
+      "inventory_after": 78,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "bags": [
+        {
+          "number": 1,
+          "bag_id": 100026,
+          "gid": 5537,
+          "weapons": [
+            103981,
+            103983,
+            103985,
+            103987
+          ]
+        },
+        {
+          "number": 2,
+          "bag_id": 100063,
+          "gid": 5563,
+          "weapons": [
+            103716,
+            103717,
+            103718,
+            103719
+          ]
+        },
+        {
+          "number": 3,
+          "bag_id": 100035,
+          "gid": 5568,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ]
+        },
+        {
+          "number": 4,
+          "bag_id": 100036,
+          "gid": 5572,
+          "weapons": [
+            102762,
+            102764,
+            102763,
+            102765
+          ]
+        },
+        {
+          "number": 5,
+          "bag_id": 100037,
+          "gid": 5356,
+          "weapons": [
+            102118,
+            102119,
+            102120,
+            102121
+          ]
+        }
+      ],
+      "cards": [
+        101210,
+        101211,
+        101149,
+        102000
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "functional_rule_version": "cn2020-pve-functional-v2",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 102000,
+            "equipped": true
+          },
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          },
+          {
+            "item_id": 101211,
+            "equipped": true
+          }
+        ]
+      }
+    },
+    {
+      "game_id": 10004,
+      "inventory_before": 101,
+      "inventory_after": 117,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "bags": [
+        {
+          "number": 1,
+          "bag_id": 100026,
+          "gid": 5380,
+          "weapons": [
+            103981,
+            103983,
+            103985,
+            103987
+          ]
+        },
+        {
+          "number": 2,
+          "bag_id": 100063,
+          "gid": 5385,
+          "weapons": [
+            103716,
+            103717,
+            103718,
+            103719
+          ]
+        },
+        {
+          "number": 3,
+          "bag_id": 100035,
+          "gid": 5387,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ]
+        },
+        {
+          "number": 4,
+          "bag_id": 100036,
+          "gid": 5389,
+          "weapons": [
+            102762,
+            102764,
+            102763,
+            102765
+          ]
+        },
+        {
+          "number": 5,
+          "bag_id": 100037,
+          "gid": 5391,
+          "weapons": [
+            102118,
+            102119,
+            102120,
+            102121
+          ]
+        }
+      ],
+      "cards": [
+        101210,
+        101211,
+        101149,
+        102000
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "functional_rule_version": "cn2020-pve-functional-v2",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 102000,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          },
+          {
+            "item_id": 101149,
+            "equipped": true
+          }
+        ]
+      }
+    },
+    {
+      "game_id": 10005,
+      "inventory_before": 48,
+      "inventory_after": 65,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "bags": [
+        {
+          "number": 1,
+          "bag_id": 100026,
+          "gid": 5477,
+          "weapons": [
+            103981,
+            103983,
+            103985,
+            103987
+          ]
+        },
+        {
+          "number": 2,
+          "bag_id": 100063,
+          "gid": 5482,
+          "weapons": [
+            103716,
+            103717,
+            103718,
+            103719
+          ]
+        },
+        {
+          "number": 3,
+          "bag_id": 100035,
+          "gid": 5484,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ]
+        },
+        {
+          "number": 4,
+          "bag_id": 100036,
+          "gid": 5486,
+          "weapons": [
+            102762,
+            102764,
+            102763,
+            102765
+          ]
+        },
+        {
+          "number": 5,
+          "bag_id": 100037,
+          "gid": 5488,
+          "weapons": [
+            102118,
+            102119,
+            102120,
+            102121
+          ]
+        }
+      ],
+      "cards": [
+        101210,
+        101211,
+        101149,
+        102000
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "functional_rule_version": "cn2020-pve-functional-v2",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 102000,
+            "equipped": true
+          },
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          }
+        ]
+      }
+    }
+  ],
+  "all_historical_receipts_preserved": true,
+  "idempotent_replay_equal": true,
+  "request_id": "acceptance-five-bags-20261018-v2",
+  "rule_version": "cn2020-acceptance-five-bags-v2",
+  "formal_checkin_enabled": 0,
+  "health": [
+    {
+      "port": 18765,
+      "status": 200
+    },
+    {
+      "port": 18767,
+      "status": 200
+    }
+  ],
+  "at": 1792306161,
+  "native_live_verified": false,
+  "services": [
+    "active",
+    "active",
+    "active",
+    "active"
+  ]
+}

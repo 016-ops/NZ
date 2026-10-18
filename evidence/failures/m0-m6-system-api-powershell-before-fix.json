@@ -1,0 +1,8 @@
+{
+  "kind": "X86_POWERSHELL_HELPER_COMPILE_FAILURE",
+  "phase": "Initial system API reference helper",
+  "observed_error": "Add-Type C# compile failure: expected class, delegate, enum, interface or struct",
+  "fix": "Write the UTF-8 Chinese-commented script with BOM for Windows PowerShell 5; rerun compiled and resolved fixed system exports",
+  "rerun_evidence": "evidence/private/nickname-system-api-04.json",
+  "game_or_system_modified": false
+}

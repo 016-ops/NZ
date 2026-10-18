@@ -1,0 +1,1 @@
+{"kind":"OWNED_D3D11_GDI_NOT_GAME","backend":"d3d11-warp","x86":true,"create_hr":0,"target_hr":0,"readback_hr":0,"present_hr":142213121,"feature_level":45056,"pixel_matches":true,"frames":3497,"failures":0,"presented_ok":0,"present_other_status":3497,"gdi_paints":60,"game_modified":false}

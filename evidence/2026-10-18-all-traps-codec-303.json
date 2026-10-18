@@ -1,0 +1,9 @@
+{
+  "kind": "OFFLINE_X86_DLL_ALL_TRAPS_NEGATIVE_ROOT_FIXTURES",
+  "passed": true,
+  "exit_code": 0,
+  "cleanup_verified": true,
+  "game_started": false,
+  "network_init_called": false,
+  "feature_fixtures": 154
+}

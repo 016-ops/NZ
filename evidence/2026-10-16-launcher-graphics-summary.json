@@ -1,0 +1,38 @@
+{
+  "kind": "LAUNCHER_GRAPHICS_BATCH_SEPARATE_EVIDENCE",
+  "user_todesk_flip_blue_green_confirmed": true,
+  "game_fixed": false,
+  "user_confirmation_scope": "owned diagnostic only",
+  "runs": [
+    {
+      "run": "launcher-20261016-142347-782974",
+      "source": "2026-10-16-launcher-graphics-live-04.json",
+      "phase": "ERROR",
+      "startup_error": "CLIENT_STARTUP_TIMEOUT",
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "credentials_revoked": true,
+      "inventory_synced": false,
+      "lobby_verified": false
+    },
+    {
+      "run": "launcher-20261016-143024-339169",
+      "source": "2026-10-16-launcher-graphics-standard-05.json",
+      "phase": "INVENTORY_SENT",
+      "startup_error": null,
+      "cleanup_verified": true,
+      "configuration_restored": true,
+      "credentials_revoked": true,
+      "inventory_synced": true,
+      "lobby_verified": false
+    }
+  ],
+  "tests": 203,
+  "tauri_exe_sha256": "67cdca8c6a34e2a231da7b18e087e7e3a6449d246b596a95a407fd481ff2789b",
+  "graphics_default": "system",
+  "graphics_compatibility": "experimental",
+  "ui_screenshot": "2026-10-16-tauri-launcher-graphics.png",
+  "original_client_writes": 0,
+  "dev_release": "20261016T063647-3c9631c0298b",
+  "dev_readback": "2026-10-16-launcher-dev-readback-04.json"
+}

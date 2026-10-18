@@ -1,0 +1,11 @@
+{
+  "kind": "DEV_HTTP_REAL_TIME_LEASE_EXPIRY_NOT_GAME_UI",
+  "renewed": true,
+  "rejected": {
+    "source": true,
+    "game": true,
+    "late_renew": true
+  },
+  "lease_seconds": 180,
+  "assets_changed": false
+}

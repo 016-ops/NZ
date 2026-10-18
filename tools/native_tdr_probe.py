@@ -23,10 +23,15 @@ def main() -> int:
     parser.add_argument("--verify-zone-login", action="store_true")
     parser.add_argument("--verify-zone-login-response", action="store_true")
     parser.add_argument("--verify-player-define-empty-response", action="store_true")
+    parser.add_argument("--verify-player-info-research-response", action="store_true")
+    parser.add_argument("--verify-feature-responses", action="store_true")
     args = parser.parse_args()
+    if args.verify_feature_responses:
+        # 功能夹具使用已验证的当前Zone完整包入口；仍只运行离线DLL，不登录游戏。
+        args.verify_player_info_research_response = True
     # Zone 各专项模式绑定固定捕获样本，互斥且不能混入 GEO 响应构造路径。
     zone_modes = (args.verify_zone_notification, args.verify_zone_login, args.verify_zone_login_response,
-                  args.verify_player_define_empty_response)
+                  args.verify_player_define_empty_response, args.verify_player_info_research_response)
     if sum(zone_modes) > 1:
         parser.error("Select only one captured Zone request mode")
     if any(zone_modes) and (args.verify_research_response or args.verify_zone_research_response):
@@ -35,6 +40,9 @@ def main() -> int:
     output = Path(args.output).resolve()
     output.relative_to(root / "evidence" / "private")
     output.mkdir(parents=True, exist_ok=False)
+    if args.verify_feature_responses:
+        from tools.native_feature_fixtures import write_fixtures
+        write_fixtures(output)
     shell = Path(os.environ["WINDIR"]) / "SysWOW64/WindowsPowerShell/v1.0/powershell.exe"
     command = [str(shell), "-NoProfile", "-NonInteractive", "-ExecutionPolicy", "Bypass", "-File",
                str(root / "tools/native_tdr_probe.ps1"), "-OutputDirectory", str(output.relative_to(root))]
@@ -50,6 +58,8 @@ def main() -> int:
         command.append("-VerifyZoneLoginResponse")
     if args.verify_player_define_empty_response:
         command.append("-VerifyPlayerDefineEmptyResponse")
+    if args.verify_player_info_research_response:
+        command.append("-VerifyPlayerInfoResearchResponse")
     result = {"kind": "CURRENT_TDR_OFFLINE_JOB", "timeout": False, "game_started": False}
     with JobGroup() as job, (output / "worker.log").open("wb") as log:
         process = subprocess.Popen(command, cwd=output, stdout=log, stderr=subprocess.STDOUT,

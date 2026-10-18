@@ -1,0 +1,21 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 9,
+  "passed": [
+    "tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure",
+    "tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once",
+    "tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip",
+    "tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once",
+    "tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_maximize_atomic_repeat_and_isolation",
+    "tests.test_native_inventory.NativeInventoryTests.test_hidden_default_knife_replaces_owned_melee_only",
+    "tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity",
+    "tests.test_native_inventory.NativeInventoryTests.test_native_zero_target_unequip_owned_only_and_repeat",
+    "tests.test_native_inventory.NativeInventoryTests.test_pve_role_switch_preserves_factions_and_rejects_other_owner"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 51.734
+}

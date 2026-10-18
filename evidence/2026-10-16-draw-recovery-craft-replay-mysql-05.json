@@ -1,0 +1,20 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 4,
+  "passed": [
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_native_pool_dates_cost_and_choice_types",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_refund_owned_preserves_material_gid_and_rollback_round",
+    "tests.test_native_draw_round.NativeDrawRoundTests.test_two_choices_freeze_twelve_prizes_and_lock_until_finished"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_crafting.NativeCraftingTests.test_native_upgrade_failure_then_success_keeps_connection",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_crafting.py\", line 83, in test_native_upgrade_failure_then_success_keeps_connection\n    succeeded=bridge.handle(raw)\n              ^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_feature_bridge.py\", line 196, in handle\n    return self.dispatch(command,fields)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_feature_bridge.py\", line 283, in dispatch\n    props=[self.prop(row) for row in result['delta']['items']\n           ^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tools\\native_feature_bridge.py\", line 117, in prop\n    Durability=row.get('state',{}).get('durability',row['durability_max']),DurabilityMax=row['durability_max'],\n                                                    ~~~^^^^^^^^^^^^^^^^^^\nKeyError: 'durability_max'\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 21.593
+}

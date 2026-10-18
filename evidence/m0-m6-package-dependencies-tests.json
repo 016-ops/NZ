@@ -1,0 +1,17 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 5,
+  "passed": [
+    "tests.test_native_package_dependencies.PackageDependenciesTests.test_import_reference_outside_table_rejected",
+    "tests.test_native_package_dependencies.PackageDependenciesTests.test_lzo_declared_output_and_corrupt_stream_rejected",
+    "tests.test_native_package_dependencies.PackageDependenciesTests.test_missing_ambiguous_and_budget_pending_dependencies_remain_visible",
+    "tests.test_native_package_dependencies.PackageDependenciesTests.test_plain_compressed_and_variable_group_resolve_identical_imports",
+    "tests.test_native_package_dependencies.PackageDependenciesTests.test_script_key_is_separate_and_unknown_tag_and_truncation_are_not_guessed"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.047
+}

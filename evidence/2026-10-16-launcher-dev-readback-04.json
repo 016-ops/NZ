@@ -1,0 +1,52 @@
+{
+  "release": "20261016T063647-3c9631c0298b",
+  "hashes": {
+    "revival/launcher.py": "aae895a9a83d61a00d5ff7d3bfad7d20fed25266ef2eea347ef9bedaf5b4b4f7",
+    "revival/models.py": "a9c0b8bea092f30f086c84cb3bce938c194a80150c3c164ebc21f2facfa5895d",
+    "revival/views.py": "342534c6a232a9dd2608de447a1a141f0040325f518e27bb8344a75ef01728dd",
+    "nzproject/urls.py": "617a94cec7748f69756015f94c724eded9bcfa73deb43eebc9f9f1cce2b2fce0",
+    "admin/dist/index.html": "7a49b8f18f9435c656b0e7f3b8879f0f9416eea2ac41066f1a40fe96c12957f7",
+    "admin/dist/assets/index-BJ3bR9yk.js": "3a583e8bc68c467a4200b15da6fb3043e363f30e405ae17ab3e9a1c17ba5362d"
+  },
+  "migrations": [
+    "0001_initial",
+    "0002_invariants",
+    "0003_operations_and_pve",
+    "0004_room_access_and_deliveries",
+    "0005_independent_email_login",
+    "0006_email_verification",
+    "0007_native_player_settings",
+    "0008_native_inventory_entitlements",
+    "0009_native_feature_transactions",
+    "0010_native_presence",
+    "0011_native_sync_cursor",
+    "0012_native_draw_selection",
+    "0013_native_sync_changes",
+    "0014_native_friend_groups",
+    "0015_native_clan_bindings",
+    "0016_launcher_session_lease"
+  ],
+  "inventory": 4323,
+  "bindings": 4323,
+  "enabled_checkin": 0,
+  "units": {
+    "nz-dev-current.service": "active",
+    "nz-dev-current-maintain.service": "active",
+    "nz-dev-pve.service": "active",
+    "nz-dev-pve-maintain.service": "active"
+  },
+  "health": [
+    {
+      "status": "ok",
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    {
+      "status": "ok",
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  ],
+  "lease": "launcher-lease-v1",
+  "source_matches_local": true
+}

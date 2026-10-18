@@ -1,0 +1,32 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 16,
+  "passed": [
+    "tests.test_native_features.NativeFeatureTests.test_checkin_disabled_by_default_and_no_repeat_after_rule_change",
+    "tests.test_native_features.NativeFeatureTests.test_clan_invitation_transfer_and_old_owner_permission",
+    "tests.test_native_features.NativeFeatureTests.test_draw_failure_restores_exhausted_material_binding",
+    "tests.test_native_features.NativeFeatureTests.test_fragment_stack_and_draw_confirmation_are_atomic",
+    "tests.test_native_features.NativeFeatureTests.test_friend_delivery_block_and_unrelated_event_ack",
+    "tests.test_native_features.NativeFeatureTests.test_game_api_rejects_player_token_and_changed_retry",
+    "tests.test_native_features.NativeFeatureTests.test_native_shop_failure_then_commit_and_incremental_cache",
+    "tests.test_native_features.NativeFeatureTests.test_native_skin_and_social_packets_use_current_result_domains",
+    "tests.test_native_features.NativeFeatureTests.test_native_unknown_commit_recovery_survives_bridge_restart",
+    "tests.test_native_features.NativeFeatureTests.test_pagination_rejects_mixed_versions_and_old_limit_is_removed",
+    "tests.test_native_features.NativeFeatureTests.test_purchase_duplicate_instances_no_capacity_and_idempotency",
+    "tests.test_native_features.NativeFeatureTests.test_purchase_event_failure_rolls_back_money_items_and_receipt",
+    "tests.test_native_features.NativeFeatureTests.test_selected_pool_rejects_unknown_choice_without_consumption",
+    "tests.test_native_features.NativeFeatureTests.test_skin_relationship_and_cross_account_rejected",
+    "tests.test_native_features.NativeFeatureTests.test_swallow_consumes_material_and_persists_host"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_checkin_beijing_midnight_boundary",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 288, in test_checkin_beijing_midnight_boundary\n    self.account,self.player_token,self.game,self.base=self.player_game('midnight')\n                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 26, in player_game\n    invitation = self.invitation()\n                 ^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_control_plane.py\", line 68, in invitation\n    return self.command('invite.create', {'max_uses': uses, 'expires_at': self.now + 600})\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_control_plane.py\", line 64, in command\n    return self.s.command(token or self.owner, action, self.meta(**(data or {})))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 358, in command\n    actor = self._actor(c, token, COMMANDS[action])\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 289, in _actor\n    raise Fault('AUTH', 'Session is expired or revoked', 401)\nrevival.service.Fault: Session is expired or revoked\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 85.593
+}

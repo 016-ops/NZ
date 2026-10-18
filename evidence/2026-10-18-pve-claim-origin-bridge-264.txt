@@ -1,0 +1,37 @@
+test_attachment_wrong_parent_fails_without_commit_or_state_change (tests.test_native_inventory_bridge.InventoryBridgeTests.test_attachment_wrong_parent_fails_without_commit_or_state_change)
+核心不能挂在根角色上；失败后下一次合法换装仍可提交。 ... ok
+test_automatic_location_commits_catalog_slot_and_notifies (tests.test_native_inventory_bridge.InventoryBridgeTests.test_automatic_location_commits_catalog_slot_and_notifies)
+真实样式的Location=-1必须归一为目录槽位，并核对持久状态后发送两种应答。 ... ok
+test_automatic_location_rejects_unknown_or_root_component (tests.test_native_inventory_bridge.InventoryBridgeTests.test_automatic_location_rejects_unknown_or_root_component)
+不存在GID或把隐藏角色组件挂到根1时直接拒绝；正常组件需匹配角色父级。 ... ok
+test_backpack_automatic_slot_uses_independent_root_membership (tests.test_native_inventory_bridge.InventoryBridgeTests.test_backpack_automatic_slot_uses_independent_root_membership)
+重放boot78的背包请求结构；确认已有双包仍挂接，隐藏默认包可重复选择且无需全库存回读。 ... ok
+test_calendar_expiration_preserves_absolute_second_across_relogin (tests.test_native_inventory_bridge.InventoryBridgeTests.test_calendar_expiration_preserves_absolute_second_across_relogin)
+原生以获得时刻加小时求期限；接近整小时、跨日及重登均不能延长或变成1970年。 ... ok
+test_committed_ack_without_matching_readback_is_not_notified (tests.test_native_inventory_bridge.InventoryBridgeTests.test_committed_ack_without_matching_readback_is_not_notified)
+即使API声称SAVED，回读未装备也不能向游戏确认成功，供崩溃/重试边界定位。 ... ok
+test_compact_state_rejects_foreign_duplicate_slot_and_partial_corruption (tests.test_native_inventory_bridge.InventoryBridgeTests.test_compact_state_rejects_foreign_duplicate_slot_and_partial_corruption)
+轻量结果不能引入外部GID、重复位置、错父对象或坏钱包；拒绝时缓存完全不变。 ... ok
+test_empty_backpack_business_failure_keeps_bridge_usable (tests.test_native_inventory_bridge.InventoryBridgeTests.test_empty_backpack_business_failure_keeps_bridge_usable)
+实机GID5377→Target0失败必须转换A009；认证失败仍拒绝，普通失败不产生装备通知。 ... ok
+test_equipment_projection_uses_actual_parent_only (tests.test_native_inventory_bridge.InventoryBridgeTests.test_equipment_projection_uses_actual_parent_only)
+角色/背包引用根1、武器引用本人持久背包，其余库存保持未装备。 ... ok
+test_equipment_requires_matching_committed_ack (tests.test_native_inventory_bridge.InventoryBridgeTests.test_equipment_requires_matching_committed_ack)
+API提交失败或回显不符时不能生成A009/A00B，不会将未确认变更发给游戏。 ... ok
+test_full_catalog_bounded_packets_and_exact_last_marker (tests.test_native_inventory_bridge.InventoryBridgeTests.test_full_catalog_bounded_packets_and_exact_last_marker)
+4323权益中2466个0/2类型分片，每片最多5件，只最后一片标记完成，不静默截断。 ... ok
+test_gain_type_projection_rejects_unknown_boolean_and_overflow_without_cache_change (tests.test_native_inventory_bridge.InventoryBridgeTests.test_gain_type_projection_rejects_unknown_boolean_and_overflow_without_cache_change)
+客户端仅接受已知普通48与VIP35；字段损坏不能留下部分库存缓存。 ... ok
+test_pve_role_automatic_slot_is_persisted_and_projected (tests.test_native_inventory_bridge.InventoryBridgeTests.test_pve_role_automatic_slot_is_persisted_and_projected)
+boot73初霜使用自动槽-1，必须解析为根1的64并回读；两阵营默认角色不能盖回PvE选择。 ... ok
+test_snapshot_rejects_wrong_identity_duplicate_gid_and_catalog_change (tests.test_native_inventory_bridge.InventoryBridgeTests.test_snapshot_rejects_wrong_identity_duplicate_gid_and_catalog_change)
+服务端错配或数据漂移立即失败，不把异常实例发给客户端。 ... ok
+test_tp_query_refreshes_real_wallet_and_rejects_foreign_or_failed_read (tests.test_native_inventory_bridge.InventoryBridgeTests.test_tp_query_refreshes_real_wallet_and_rejects_foreign_or_failed_read)
+A50E不使用陈旧快照；读取失败或其他账号查询不能发余额成功，通知不携带资产变更。 ... ok
+test_wallet_maxima_roundtrip_login_and_player_info_and_reject_corruption (tests.test_native_inventory_bridge.InventoryBridgeTests.test_wallet_maxima_roundtrip_login_and_player_info_and_reject_corruption)
+七类币值在各自字段宽度内往返；错版本、负数、布尔和溢出不能进入游戏。 ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.473s
+
+OK

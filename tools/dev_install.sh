@@ -54,7 +54,26 @@ if [[ ! -x "$python" ]]; then
     (cd "$build/Python-3.12.12" && ./configure --prefix="$base/shared/python312" --with-ensurepip=install && make -j2 && make install)
 fi
 "$python" -m venv "$release/.venv"
-"$release/.venv/bin/python" -m pip install --disable-pip-version-check -r "$release/requirements.txt"
+# 可选离线新依赖与整个发布包同摘要交付；只装新release，不写current环境或系统Python。
+if [[ -d "$release/vendor/wheels" ]]; then
+    "$release/.venv/bin/python" - "$release" <<'PY'
+import hashlib,json,pathlib,re,sys
+root=pathlib.Path(sys.argv[1]);manifest=json.loads((root/'config/dev-linux-wheels-v1.json').read_text())
+assert manifest['version']=='dev-linux-crypto-wheels-v1' and len(manifest['files'])==3
+requirements=(root/'requirements.txt').read_text().splitlines();lines=[]
+for row in manifest['files']:
+    assert re.fullmatch(r'[A-Za-z0-9_.-]+\.whl',row['name']) and re.fullmatch('[a-f0-9]{64}',row['sha256'])
+    assert row['package']+'=='+row['version'] in requirements
+    path=root/'vendor/wheels'/row['name']
+    assert path.stat().st_size==row['bytes'] and hashlib.sha256(path.read_bytes()).hexdigest()==row['sha256']
+    lines.append(row['package']+'=='+row['version']+' --hash=sha256:'+row['sha256'])
+(root/'vendor/wheel-lock.txt').write_text('\n'.join(lines)+'\n')
+PY
+    "$release/.venv/bin/python" -m pip install --disable-pip-version-check --no-index --no-deps \
+        --require-hashes --find-links "$release/vendor/wheels" -r "$release/vendor/wheel-lock.txt"
+fi
+# 跨网络下载二进制依赖允许有限重试；失败仍停在切换current之前，保留原运行服务。
+"$release/.venv/bin/python" -m pip install --disable-pip-version-check --progress-bar off --timeout 120 --retries 3 -r "$release/requirements.txt"
 chmod -R a+rX "$release"
 # 环境文件只有服务组可读；凭据从未出现在 shell 参数或日志中。
 install -m 0640 -o root -g nz-revival "$environment" "$base/shared/mysql.env"

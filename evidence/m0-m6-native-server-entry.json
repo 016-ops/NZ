@@ -1,0 +1,54 @@
+{
+  "kind": "TRADITIONAL_ENGINE_SERVER_ENTRY_RESEARCH_NOT_READY_NODE",
+  "runs": [
+    {
+      "boot": 57,
+      "engine_server_arguments_requested": [
+        "server",
+        "SV-Maya_3_Main?game=PVEGame.TGSVGame",
+        "-unattended",
+        "-nosplash"
+      ],
+      "process_job_cleanup_verified": true,
+      "configuration_restored": true,
+      "capture_thread_stopped": true,
+      "udp_samples": 60,
+      "owned_udp_binding_observed": true,
+      "client_zone_login_requests_observed": true,
+      "native_server_mode_verified": false,
+      "native_map_load_verified": false,
+      "native_room_handshake_verified": false,
+      "source_session_cleanup_verified": null
+    },
+    {
+      "boot": 58,
+      "engine_server_arguments_requested": [
+        "server",
+        "SV-Maya_3_Main?game=PVEGame.TGSVGame",
+        "-unattended",
+        "-nosplash"
+      ],
+      "process_job_cleanup_verified": true,
+      "configuration_restored": true,
+      "capture_thread_stopped": true,
+      "udp_samples": 60,
+      "owned_udp_binding_observed": true,
+      "client_zone_login_requests_observed": true,
+      "native_server_mode_verified": false,
+      "native_map_load_verified": false,
+      "native_room_handshake_verified": false,
+      "source_session_cleanup_verified": true
+    }
+  ],
+  "owned_command_line_readback_boot": 57,
+  "server_map_and_independent_q_forwarded_to_actual_tgame": true,
+  "native_engine_internal_command_line_or_globals_read": false,
+  "limits": [
+    "Arguments and UDP bindings do not prove native dedicated-server mode, map load or a game handshake.",
+    "No usable native room node was deployed.",
+    "Boot57 logout failed when local SSH forwarding closed; normal account relogin/logout recovered source revocation separately."
+  ],
+  "source_session_recovery": "evidence/m0-m6-probe-session-recovery.json",
+  "original_client_writes": 0,
+  "new_real_emails_sent": 0
+}

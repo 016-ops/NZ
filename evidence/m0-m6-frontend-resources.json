@@ -1,0 +1,124 @@
+{
+  "kind": "FRONTEND_TOP_LEVEL_RESOURCE_CHECK_NOT_FULL_CLOSURE",
+  "files": [
+    {
+      "path": "TGame/CookedPC/Maps/UTFrontEnd.udk",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 1535715,
+      "sha256": "2905387447d91c2ab99f92ba7c9f2161e49e03d7f787be5de358535a13cc4cdf",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/Maps/EnvyEntry.udk",
+      "exists": false,
+      "archive_entry_exists": false
+    },
+    {
+      "path": "TGame/CookedPC/Core.u",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 101800,
+      "sha256": "08a03a737f35102d9969ce6cb743e436bdbc651f816b838986384f38964ca771",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/Engine.u",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 3951457,
+      "sha256": "d740e4391f4454648e2ea3e6e898241ac1c3634b41d2221268afae9932cc6b15",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/UTGame.u",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 29694029,
+      "sha256": "77b80ac0bc199fa6bfb0d3a2d63f938a90bb75153878b887200c363b6931ba56",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/GFxUI.u",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 59197,
+      "sha256": "c504b2d907398ddc66bb8f24084c1c20285a08d1258a6cddb1d28a931cf0e50d",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/TGameGfxUI.u",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 5511730,
+      "sha256": "cd213dcd3157bb879dcd10a7aecf490151a87bbaa6c711cbdfc3f8d04fafea6f",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/TGameGfxUI_New.u",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 6563752,
+      "sha256": "7c615bcd742bbda102971eb53291b1265b9314c1f8e63bf3f24054d3407ef6d5",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/RadiantUI.u",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 4685,
+      "sha256": "0c1c1e7afac224604145573ad4ad305a0ae3ea12a31d3ad77916ff19129ef415",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/TGRadiantUI.u",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 9280,
+      "sha256": "34c71bf5b60f859a8913fb7741a97859e16caabaaca0068e5fbc498304e0f2a0",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/UI/TGUI_Movies.upk",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 88019183,
+      "sha256": "70a7b171ea1dbda2a3c2e5427121d2c3f1e2a993a4906d3d2cfb9346b6019e5a",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/UI/TGUI_NoFontMovies.upk",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 4413200,
+      "sha256": "d1614571e958137bf9ebcb88a507f0bdec30b140f4de66d76caf0d43d4beddcd",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/UI/DefaultUISkin.upk",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 120639,
+      "sha256": "e7282745ba8d07cc85384bf651a455893df1c91198da3ce9795c6836575c95bb",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/UI/UI_Fonts_Final.upk",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 628325,
+      "sha256": "86f10fefdc37419a389ad2990b836b3bc8007a93bd6bf109b582a70a4ce00984",
+      "archive_matches": true
+    },
+    {
+      "path": "TGame/CookedPC/UI/TGUI_Texture.upk",
+      "exists": true,
+      "archive_entry_exists": true,
+      "bytes": 11318587,
+      "sha256": "607f49464f22ba0ffa799c63a7c7683fbed78d65fe242039a472a9a6edf8f730",
+      "archive_matches": true
+    }
+  ],
+  "full_dependency_closure_verified": false,
+  "client_writes": 0
+}

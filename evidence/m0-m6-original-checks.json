@@ -1,0 +1,21 @@
+{
+  "kind": "FOUR_ORIGINAL_KEY_FILES_NOT_FULL_TREE",
+  "checks": [
+    {
+      "path": "Binaries/Win32/GameLoader.exe",
+      "matches_original_baseline": true
+    },
+    {
+      "path": "Binaries/Win32/TGame.exe",
+      "matches_original_baseline": true
+    },
+    {
+      "path": "Binaries/Win32/TGameBase.dll",
+      "matches_original_baseline": true
+    },
+    {
+      "path": "Binaries/Win32/WebBrowserControl.dll",
+      "matches_original_baseline": true
+    }
+  ]
+}

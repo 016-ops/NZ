@@ -1,0 +1,33 @@
+{
+  "kind": "REAL_NATIVE_A202_MYSQL_COMMIT_AND_A203_NOT_LOBBY_ACCEPTANCE",
+  "boot49": {
+    "loaded_revision": 0,
+    "loaded_bytes": 0,
+    "committed": {
+      "revision": 1,
+      "bytes": 104,
+      "payload_sha256": "de4f803d30dc7b29f1409349f805a298c0234cf7cfca80ec69eb940030d7b028"
+    },
+    "acks": 1,
+    "configuration_restored": true,
+    "cleanup_verified": true,
+    "protocol_error": null
+  },
+  "relogin": {
+    "boot": 50,
+    "loaded_revision": 1,
+    "loaded_bytes": 104,
+    "native_a205_bytes": 118,
+    "original_a202_data_exactly_replayed": true,
+    "data_sha256": "de4f803d30dc7b29f1409349f805a298c0234cf7cfca80ec69eb940030d7b028",
+    "post_login_frames": 64,
+    "protocol_error": null,
+    "cleanup_verified": true,
+    "configuration_restored": true,
+    "individual_settings_widgets_verified": false
+  },
+  "account_identity_values_published": false,
+  "real_emails_sent": 0,
+  "native_lobby_verified": false,
+  "multiplayer_verified": false
+}

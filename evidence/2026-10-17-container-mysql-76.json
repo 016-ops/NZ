@@ -1,0 +1,20 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 4,
+  "passed": [
+    "tests.test_native_containers.NativeContainerTests.test_concurrent_replay_keeps_one_consumption_and_three_rewards",
+    "tests.test_native_containers.NativeContainerTests.test_protocol_failure_success_and_unknown_commit_recovery",
+    "tests.test_native_containers.NativeContainerTests.test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets"
+  ],
+  "failures": [
+    {
+      "test": "tests.test_native_containers.NativeContainerTests.test_exclusive_card_conflict_preserves_box_and_reports_real_reason",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_containers.py\", line 95, in test_exclusive_card_conflict_preserves_box_and_reports_real_reason\n    with self.assertRaises(Fault) as caught:self.call('inventory.open',**self.payload())\n         ^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Fault not raised\n"
+    }
+  ],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 20.891
+}

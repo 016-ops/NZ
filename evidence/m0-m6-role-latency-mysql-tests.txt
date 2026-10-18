@@ -1,0 +1,25 @@
+test_atomic_full_inventory_and_outbox_failure (tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure)
+容量不足和最后审计/outbox故障都回滚整个发放，保留之前已有记录。 ... ok
+test_compact_commit_is_atomic_authorized_and_matches_full_snapshot (tests.test_native_inventory.NativeInventoryTests.test_compact_commit_is_atomic_authorized_and_matches_full_snapshot)
+轻量换装和回读同事务；回读故障回滚换装/审计，错投影与撤销凭据不能走快捷路径。 ... ok
+test_concurrent_grants_commit_once (tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once)
+两连接并发全量补齐由部署事务锁串行，一次发放一次幂等返回。 ... ok
+test_full_catalog_repeat_preserves_gids_and_user_unequip (tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip)
+全4323件永久入库；重试不增加流水/GID，也不恢复玩家已经卸下的默认装备。 ... ok
+test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once (tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once)
+最终outbox故障回滚钱包和流水；双连接重试仅一次补满，旧规则不允许写入。 ... ok
+test_gm_wallet_maximize_atomic_repeat_and_isolation (tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_maximize_atomic_repeat_and_isolation)
+七币种补满共用账本，重复不写新版本或流水；非GM拒绝且其他账号保持零。 ... ok
+test_hidden_default_knife_replaces_owned_melee_only (tests.test_native_inventory.NativeInventoryTests.test_hidden_default_knife_replaces_owned_melee_only)
+实机卸下近战会穿回隐藏默认匕首；原武器释放且重试无重复审计，外部GID仍拒绝。 ... ok
+test_http_equipment_owner_version_revocation_and_atomicity (tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity)
+HTTP只接受游戏Bearer；装备换位/重试持久，跨账号、版本变化、来源撤销及失败写入拒绝。 ... ok
+test_native_zero_target_unequip_owned_only_and_repeat (tests.test_native_inventory.NativeInventoryTests.test_native_zero_target_unequip_owned_only_and_repeat)
+实机Target0卸下仅操作本人实例；未装备重复无写入，穿戴或跨账号引用0仍拒绝。 ... ok
+test_pve_role_switch_preserves_factions_and_rejects_other_owner (tests.test_native_inventory.NativeInventoryTests.test_pve_role_switch_preserves_factions_and_rejects_other_owner)
+猎场角色64在根1独立换装，旧PvE槽释放，两阵营不变；错背包/跨账号仍失败。 ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 57.262s
+
+OK

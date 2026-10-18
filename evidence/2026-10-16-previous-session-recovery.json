@@ -1,0 +1,12 @@
+{
+  "previous_session": "manual-online-20261016-012032-748968",
+  "old_pid": 11976,
+  "old_game_process_absent": true,
+  "configuration_restored": true,
+  "configuration_states": [
+    "RESTORED",
+    "RESTORED",
+    "RESTORED"
+  ],
+  "credential_revocation": "NOT_CLAIMED_OLD_TOKEN_NOT_PERSISTED"
+}

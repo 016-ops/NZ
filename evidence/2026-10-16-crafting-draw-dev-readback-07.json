@@ -1,0 +1,85 @@
+{
+  "release": "20261016T092802-a19cda1240b3",
+  "hashes": {
+    "revival/models.py": "e77a7cad0da678431666973687ffde93cc66636be2750ecad9b2aa5b81ca18fb",
+    "revival/native_actions.py": "71b814fb84d03021687a871c60e9bac59c49c5daf9829568e9611770c417ed74",
+    "revival/native_features.py": "f10416b298a0ca50c833a3b837f2e990466ad83324a116ad9950fda406262f98",
+    "revival/native_rewards.py": "1f26b1c6234acb269998f6b3dc3d68725bebd2777950f0fda1ff6d47c58babde",
+    "revival/native_draw_defaults.py": "475846db8742ed14a5b92d6ac7fe4409829abf64aa8e4dcc1729fe8659393b7e",
+    "revival/native_features_catalog.py": "578343415e334f2fe208c623946f6db69a5afd061465961badf7f7c88f9ec043",
+    "revival/migrations/0017_native_draw_round.py": "ba4f5d6d1692e2874d43f959d268513d8c585f004a85a3c2b19c5c8d1a241620",
+    "config/cn2020-exchange-v1.json": "e48c6530b22ff4efbe7c5467c49d5e74fe56186c690a004930bd1c684d99f902",
+    "config/cn2020-feature-protocol-v7.json": "1a34f07f0e63a8c733432c745ef4c081fed88b09dce978d126d0685fc3fd17ab",
+    "admin/dist/index.html": "f94ede0b708ec50a9d36739a1f301ad6ec3da6831a79b86e9cbeaf64e3b0399a"
+  },
+  "migrations": [
+    "0001_initial",
+    "0002_invariants",
+    "0003_operations_and_pve",
+    "0004_room_access_and_deliveries",
+    "0005_independent_email_login",
+    "0006_email_verification",
+    "0007_native_player_settings",
+    "0008_native_inventory_entitlements",
+    "0009_native_feature_transactions",
+    "0010_native_presence",
+    "0011_native_sync_cursor",
+    "0012_native_draw_selection",
+    "0013_native_sync_changes",
+    "0014_native_friend_groups",
+    "0015_native_clan_bindings",
+    "0016_launcher_session_lease",
+    "0017_native_draw_round"
+  ],
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "fixture_craft": 5,
+  "fixture_selected": [
+    {
+      "selected": [
+        "103907",
+        "103981"
+      ],
+      "pool_keys": [
+        "103907",
+        "103981",
+        "102776",
+        "103462",
+        "103985",
+        "103731",
+        "102775",
+        "103464",
+        "103458",
+        "102108",
+        "101869",
+        "103987"
+      ],
+      "round_id": "50fa9ad40dba439ba00365cc010b3cb2"
+    }
+  ],
+  "enabled_checkin": 0,
+  "units": {
+    "nz-dev-current.service": "active",
+    "nz-dev-current-maintain.service": "active",
+    "nz-dev-pve.service": "active",
+    "nz-dev-pve-maintain.service": "active"
+  },
+  "health": [
+    {
+      "status": "ok",
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    {
+      "status": "ok",
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  ],
+  "lease": "launcher-lease-v1",
+  "source_matches_local": true
+}

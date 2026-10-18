@@ -1,0 +1,29 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 17,
+  "passed": [
+    "tests.test_email_tools.EmailToolTests.test_empty_props_requires_current_inventory_to_be_explicitly_empty",
+    "tests.test_email_tools.EmailToolTests.test_http_redirect_is_not_followed_and_error_message_does_not_echo_password",
+    "tests.test_email_tools.EmailToolTests.test_ipc_fields_are_bounded_and_do_not_include_network_server_records",
+    "tests.test_email_tools.EmailToolTests.test_large_inventory_reads_do_not_expand_authentication_response_limit",
+    "tests.test_email_tools.EmailToolTests.test_loopback_client_path_obeys_utf16_byte_and_character_limits",
+    "tests.test_email_tools.EmailToolTests.test_loopback_server_primary_endpoint_uses_current_consumed_subfields",
+    "tests.test_email_tools.EmailToolTests.test_manual_test_cannot_bypass_owned_session_requirements",
+    "tests.test_email_tools.EmailToolTests.test_native_capture_rejects_over_budget_before_socket_read",
+    "tests.test_email_tools.EmailToolTests.test_native_capture_retains_rejected_header_and_has_total_deadline",
+    "tests.test_email_tools.EmailToolTests.test_native_dev_fresh_verification_precedes_probe_and_is_reported",
+    "tests.test_email_tools.EmailToolTests.test_native_dev_live_account_and_redeemed_identity_must_match",
+    "tests.test_email_tools.EmailToolTests.test_native_dev_rebound_email_is_rejected_and_session_revoked",
+    "tests.test_email_tools.EmailToolTests.test_native_observation_limit_is_rejected_before_credentials_and_launch",
+    "tests.test_email_tools.EmailToolTests.test_player_info_rejects_unbound_character_before_encoding",
+    "tests.test_email_tools.EmailToolTests.test_player_info_uses_same_fresh_identity_and_original_character_nickname",
+    "tests.test_email_tools.EmailToolTests.test_remote_urls_credentials_paths_and_implicit_ports_are_rejected",
+    "tests.test_email_tools.EmailToolTests.test_zone_reply_requires_explicit_capture_and_verified_email_before_launch"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.781
+}

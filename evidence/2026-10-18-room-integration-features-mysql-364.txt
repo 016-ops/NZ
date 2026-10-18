@@ -1,0 +1,15 @@
+test_native_shop_failure_then_commit_and_incremental_cache (tests.test_native_features.NativeFeatureTests.test_native_shop_failure_then_commit_and_incremental_cache)
+余额不足得到商城失败应答，随后同连接付款成功且只增量更新一件；余额不伪造。 ... ok
+test_native_unknown_commit_recovery_survives_bridge_restart (tests.test_native_features.NativeFeatureTests.test_native_unknown_commit_recovery_survives_bridge_restart)
+服务端提交后丢失HTTP响应，重建桥接先查原键，不再购买或扣款。 ... ok
+test_gift_other_session_incremental_sync_and_local_purchase_keeps_all_changes (tests.test_native_features.NativeFeatureTests.test_gift_other_session_incremental_sync_and_local_purchase_keeps_all_changes)
+赠礼入接收者仓库；接收者未轮询前又买东西，连续游标同时补齐礼物和本人购买，不丢变化。 ... ok
+test_native_friend_groups_preserve_remark_and_blacklist (tests.test_native_features.NativeFeatureTests.test_native_friend_groups_preserve_remark_and_blacklist)
+原生分组/删除组/黑名单回放真实关系；单改分组不能抹掉备注，超长消息不能进入事件箱。 ... ok
+test_native_clan_identity_queries_and_review_permissions (tests.test_native_features.NativeFeatureTests.test_native_clan_identity_queries_and_review_permissions)
+创建后查询真实数字ID/队长/成员；原生申请按持久申请ID审核，普通成员无法晋升自己。 ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 30.222s
+
+OK

@@ -1,5 +1,5 @@
 ﻿# 当前版本 TDR 的离线 ABI 验证：仅实例化协议组件并调用元数据/序列化接口，不调用网络 Init。
-param([Parameter(Mandatory=$true)][string]$OutputDirectory, [switch]$VerifyResearchResponse, [switch]$VerifyZoneResearchResponse, [switch]$VerifyZoneNotification, [switch]$VerifyZoneLogin, [switch]$VerifyZoneLoginResponse, [switch]$VerifyPlayerDefineEmptyResponse)
+param([Parameter(Mandatory=$true)][string]$OutputDirectory, [switch]$VerifyResearchResponse, [switch]$VerifyZoneResearchResponse, [switch]$VerifyZoneNotification, [switch]$VerifyZoneLogin, [switch]$VerifyZoneLoginResponse, [switch]$VerifyPlayerDefineEmptyResponse, [switch]$VerifyPlayerInfoResearchResponse)
 $ErrorActionPreference = 'Stop'
 if ([IntPtr]::Size -ne 4) { throw 'Requires x86 Windows PowerShell' }
 $repositoryRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
@@ -11,8 +11,8 @@ $dll = Join-Path $repositoryRoot 'runtime/native-recovery/coherent-2020/nz/Binar
 $tdr = Join-Path $repositoryRoot 'runtime/native-recovery/coherent-2020/nz/TGame/TDR/proto_c2geo.tdr'
 $request = Join-Path $repositoryRoot 'evidence/private/email-native-boot-16/application-00.bin'
 $expectedTdrHash = '6D75E846532BB506A858323B8A1C91FA67D3ED0C8766F1D1682F9A8D8AFBC8E1'
-$zoneLoginMode = $VerifyZoneLogin.IsPresent -or $VerifyZoneLoginResponse.IsPresent
-$zoneModeCount = [int]($VerifyZoneNotification.IsPresent) + [int]($VerifyZoneLogin.IsPresent) + [int]($VerifyZoneLoginResponse.IsPresent) + [int]($VerifyPlayerDefineEmptyResponse.IsPresent)
+$zoneLoginMode = $VerifyZoneLogin.IsPresent -or $VerifyZoneLoginResponse.IsPresent -or $VerifyPlayerInfoResearchResponse.IsPresent
+$zoneModeCount = [int]($VerifyZoneNotification.IsPresent) + [int]($VerifyZoneLogin.IsPresent) + [int]($VerifyZoneLoginResponse.IsPresent) + [int]($VerifyPlayerDefineEmptyResponse.IsPresent) + [int]($VerifyPlayerInfoResearchResponse.IsPresent)
 if ($zoneModeCount -gt 1) { throw 'Select only one captured Zone request mode' }
 if ($VerifyZoneNotification.IsPresent -or $zoneLoginMode -or $VerifyPlayerDefineEmptyResponse.IsPresent) {
     if ($VerifyResearchResponse.IsPresent -or $VerifyZoneResearchResponse.IsPresent) { throw 'Zone request modes cannot construct GEO responses' }
@@ -190,6 +190,22 @@ public static class CurrentGeoTdrProbe {
         if(Sha(wire)!=Sha(again))throw new InvalidOperationException("Login response roundtrip changed");
         File.WriteAllBytes(Path.Combine(output,"zone-login-response-research.bin"),wire);
         result["login_response"]=new Dictionary<string,object>{{"profile","cn2020-zone-login-success-research-v1"},{"bytes",wire.Length},{"body_length",body.Length},{"sha256",Sha(wire)},{"roundtrip_equal",true},{"decoded_host_equal",true},{"header_lengths_equal",true},{"standalone_body_equal",true},{"network_reply_sent",false},{"real_account_assets_used",false},{"file","zone-login-response-research.bin"}};
+        // 只更改64位ServerTime，使用超过2038年的值验证高位和端序；不改零时刻原夹具。
+        Buffer.BlockCopy(BitConverter.GetBytes((long)2208988800),0,host,18,8);
+        wire=Convert(self,meta,pack,host,32768,"login_clock_pack",checks);
+        decoded=Convert(self,meta,unpack,wire,1025331,"login_clock_unpack",checks);
+        again=Convert(self,meta,pack,decoded,32768,"login_clock_repack",checks);
+        if(Sha(host)!=Sha(decoded)||Sha(wire)!=Sha(again)||wire.Length!=41)throw new InvalidOperationException("Login clock differs");
+        File.WriteAllBytes(Path.Combine(output,"zone-login-clock.bin"),wire);
+        result["clock_login_fixture"]=new Dictionary<string,object>{{"bytes",wire.Length},{"sha256",Sha(wire)},{"host_equal",true},{"roundtrip_equal",true}};
+        // NZ/GP为当前有符号32位字段，验证兼容上限不会被截断或变成负数。
+        U32(host,26,int.MaxValue);U32(host,30,int.MaxValue);
+        wire=Convert(self,meta,pack,host,32768,"login_wallet_pack",checks);
+        decoded=Convert(self,meta,unpack,wire,1025331,"login_wallet_unpack",checks);
+        again=Convert(self,meta,pack,decoded,32768,"login_wallet_repack",checks);
+        if(Sha(host)!=Sha(decoded)||Sha(wire)!=Sha(again))throw new InvalidOperationException("Login wallet differs");
+        File.WriteAllBytes(Path.Combine(output,"zone-login-wallet.bin"),wire);
+        result["wallet_login_fixture"]=new Dictionary<string,object>{{"bytes",wire.Length},{"sha256",Sha(wire)},{"host_equal",true},{"roundtrip_equal",true}};
     }
     // A205 的零长度路径已在当前消费者证明；只生成“无自定义数据”，不制造非空版本结构。
     static void ValidateDefineEmptyResponse(IntPtr self,IntPtr lib,ConvertMeta pack,ConvertMeta unpack,string output,Dictionary<string,object> result,List<object> checks) {
@@ -212,7 +228,316 @@ public static class CurrentGeoTdrProbe {
     }
     // 固定工厂创建对象后只调用 TDR 槽：先核对真实请求，再按显式选项检查研究响应。
     // 成功要求状态码零、所有保护哨兵不变、长度一致、完整主机字段及线上字节往返一致。
-    public static Dictionary<string,object> Run(string dll,string tdr,byte[] request,string output,bool verifyResponse,byte[] zoneRequest,bool zoneNotification,bool zoneLogin,bool zoneLoginResponse,bool defineEmptyResponse) {
+    // 对固定的测试身份/ASCII与CP936中文昵称构造资料夹具，不用真实账号，不声明零值是可用游戏规则。
+    // 各夹具独立正文打包、完整host比较和重打包，避免仅靠wire长度或一个常量样本误判。
+    static void ValidatePlayerInfoProfile(IntPtr self,IntPtr lib,IntPtr meta,ConvertMeta pack,ConvertMeta unpack,string output,Dictionary<string,object> result,List<object> checks) {
+        var fixtures=new List<object>();
+        for(int index=0;index<7;index++) {
+            byte[] host=new byte[1025331];U16(host,0,0x3243);U16(host,2,0xA005);U16(host,4,8);U16(host,8,0x8100);
+            byte[] uin=BitConverter.GetBytes((ulong)(10001+index));Buffer.BlockCopy(uin,0,host,10,8);
+            byte[] nickname=index==2?new byte[]{0xd6,0xd0,0xce,0xc4,0xea,0xc7,0xb3,0xc6}:Encoding.ASCII.GetBytes(index==0?"NZResearchA":"NZProfileFixtureB");Buffer.BlockCopy(nickname,0,host,22,nickname.Length);
+            // PlayerInfo host昵称容量32；Level+160只是本夹具值1，角色/币值/时间等未核验字段保持0并披露。
+            U32(host,170,1);
+            // 第六个独立夹具验证PlayerInfo+378的容量字段，宿主包含10字节前缀。
+            if(index==5)U32(host,388,1000000);
+            // 第七个夹具验证64位战队数字ID，不能只验证零值位置。
+            if(index==6)Buffer.BlockCopy(BitConverter.GetBytes((ulong)4294967301),0,host,120,8);
+            // 两个额外夹具验证七类钱包：小值与各字段/数据库交集上限，不修改经验或VIP。
+            if(index>=3) {
+                foreach(int offset in new int[]{54,58,62,66,80})U32(host,offset,index==3?123456:int.MaxValue);
+                U16(host,306,index==3?123:65535);
+                Buffer.BlockCopy(BitConverter.GetBytes(index==3?(ulong)123456789:(ulong)long.MaxValue),0,host,330,8);
+            }
+            IntPtr name=Marshal.StringToHGlobalAnsi("ZN2C_NtfPlayerInfo");IntPtr bodyMeta;
+            try{bodyMeta=Slot<FindMeta>(self,0x58)(self,lib,name);}finally{Marshal.FreeHGlobal(name);}
+            if(bodyMeta==IntPtr.Zero)throw new InvalidOperationException("Missing fixed PlayerInfo schema");
+            byte[] bodyHost=new byte[1412];Buffer.BlockCopy(host,8,bodyHost,0,bodyHost.Length);
+            string label="player_info_fixture_"+index;
+            byte[] body=Convert(self,bodyMeta,pack,bodyHost,32768,label+"_body_pack",checks);U16(host,6,body.Length);
+            byte[] wire=Convert(self,meta,pack,host,32768,label+"_pack",checks);
+            if(wire.Length<8||Be16(wire,0)!=0x3243||Be16(wire,2)!=0xA005||Be16(wire,4)!=8||Be16(wire,6)!=wire.Length-8)throw new InvalidOperationException("PlayerInfo header inconsistent");
+            byte[] framedBody=new byte[wire.Length-8];Buffer.BlockCopy(wire,8,framedBody,0,framedBody.Length);
+            if(Sha(body)!=Sha(framedBody))throw new InvalidOperationException("PlayerInfo standalone body differs");
+            byte[] decoded=Convert(self,meta,unpack,wire,1025331,label+"_unpack",checks);
+            if(Sha(host)!=Sha(decoded))throw new InvalidOperationException("PlayerInfo host differs");
+            byte[] again=Convert(self,meta,pack,decoded,32768,label+"_repack",checks);
+            if(Sha(wire)!=Sha(again))throw new InvalidOperationException("PlayerInfo roundtrip differs");
+            string filename=label+".bin";File.WriteAllBytes(Path.Combine(output,filename),wire);
+            fixtures.Add(new Dictionary<string,object>{{"file",filename},{"bytes",wire.Length},{"body_length",body.Length},{"sha256",Sha(wire)},{"fixture_game_id",10001+index},{"nickname_bytes",nickname.Length},{"nickname_encoding",index==2?"CP936":"ASCII"},{"roundtrip_equal",true},{"decoded_host_equal",true},{"standalone_body_equal",true}});
+        }
+        result["player_info_fixtures"]=fixtures;
+        // 当前A006的355B完整正文host：Result、IsLastPkg、PropCount及5个70B槽。
+        // 这里只构造零道具终包，不创建资源/GID/角色，也不发送网络数据。
+        byte[] propsHost=new byte[1025331];U16(propsHost,0,0x3243);U16(propsHost,2,0xA006);U16(propsHost,4,8);
+        U16(propsHost,8,0x8100);propsHost[10]=1;U16(propsHost,11,0);
+        IntPtr propsName=Marshal.StringToHGlobalAnsi("ZN2C_NtfPlayerProps");IntPtr propsMeta;
+        try{propsMeta=Slot<FindMeta>(self,0x58)(self,lib,propsName);}finally{Marshal.FreeHGlobal(propsName);}
+        if(propsMeta==IntPtr.Zero)throw new InvalidOperationException("Missing fixed PlayerProps schema");
+        byte[] propsBodyHost=new byte[355];Buffer.BlockCopy(propsHost,8,propsBodyHost,0,355);
+        byte[] propsBody=Convert(self,propsMeta,pack,propsBodyHost,32768,"empty_props_body_pack",checks);U16(propsHost,6,propsBody.Length);
+        byte[] propsWire=Convert(self,meta,pack,propsHost,32768,"empty_props_pack",checks);
+        byte[] propsDecoded=Convert(self,meta,unpack,propsWire,1025331,"empty_props_unpack",checks);
+        byte[] propsAgain=Convert(self,meta,pack,propsDecoded,32768,"empty_props_repack",checks);
+        byte[] propsFramedBody=new byte[propsWire.Length-8];Buffer.BlockCopy(propsWire,8,propsFramedBody,0,propsFramedBody.Length);
+        if(Sha(propsHost)!=Sha(propsDecoded)||Sha(propsWire)!=Sha(propsAgain)||Sha(propsBody)!=Sha(propsFramedBody))
+            throw new InvalidOperationException("Empty PlayerProps serialization mismatch");
+        File.WriteAllBytes(Path.Combine(output,"player-props-empty.bin"),propsWire);
+        result["empty_player_props"]=new Dictionary<string,object>{{"profile","cn2020-player-props-empty-research-v1"},{"bytes",propsWire.Length},{"sha256",Sha(propsWire)},{"host_bytes",355},{"roundtrip_equal",true},{"decoded_host_equal",true},{"standalone_body_equal",true}};
+        // 非空数组只验证字段和端序，不声明下面的测试数值构成有效角色或真实拥有的资产。
+        // 使用非零64位标志、负有效期、两件不同GID及不同末包值，发现单条/符号位/步长错误。
+        var nonemptyProps=new List<object>();
+        for(int fixture=0;fixture<2;fixture++) {
+            byte[] host=new byte[1025331];U16(host,0,0x3243);U16(host,2,0xA006);U16(host,4,8);
+            U16(host,8,0x8100);host[10]=(byte)fixture;U16(host,11,2);
+            for(int i=0;i<2;i++) {
+                int at=13+i*70;
+                Buffer.BlockCopy(BitConverter.GetBytes((ulong)10001),0,host,at,8);
+                Buffer.BlockCopy(BitConverter.GetBytes((ulong)(1001+i)),0,host,at+8,8);
+                U32(host,at+16,i==0?100014:100016);
+                Buffer.BlockCopy(BitConverter.GetBytes(0x123456789abcdef0UL),0,host,at+20,8);
+                U32(host,at+28,1);Buffer.BlockCopy(BitConverter.GetBytes((long)12345),0,host,at+32,8);
+                U32(host,at+40,-1);U32(host,at+44,123);U32(host,at+48,456);
+                host[at+60]=(byte)(10+i);U32(host,at+61,876000);U32(host,at+65,17);host[at+69]=48;
+            }
+            byte[] bodyHost=new byte[355];Buffer.BlockCopy(host,8,bodyHost,0,355);
+            string label="nonempty_props_"+fixture;
+            byte[] body=Convert(self,propsMeta,pack,bodyHost,32768,label+"_body_pack",checks);U16(host,6,body.Length);
+            byte[] wire=Convert(self,meta,pack,host,32768,label+"_pack",checks);
+            byte[] decoded=Convert(self,meta,unpack,wire,1025331,label+"_unpack",checks);
+            byte[] again=Convert(self,meta,pack,decoded,32768,label+"_repack",checks);
+            byte[] framed=new byte[wire.Length-8];Buffer.BlockCopy(wire,8,framed,0,framed.Length);
+            if(Sha(host)!=Sha(decoded)||Sha(wire)!=Sha(again)||Sha(body)!=Sha(framed))throw new InvalidOperationException("Nonempty PropInfo fixture differs");
+            string file=label+".bin";File.WriteAllBytes(Path.Combine(output,file),wire);
+            nonemptyProps.Add(new Dictionary<string,object>{{"file",file},{"bytes",wire.Length},{"sha256",Sha(wire)},{"is_last",fixture==1},{"prop_count",2},{"host_equal",true},{"roundtrip_equal",true},{"standalone_body_equal",true}});
+        }
+        result["nonempty_player_props_fixtures"]=nonemptyProps;
+        // 44轮实际A008是Operation0、Subject1001、Target1、Location10。
+        // 本固定A009只验证编码，8100是否成功另由当前消费者判断；不发送网络数据。
+        byte[] equipHost=new byte[1025331];U16(equipHost,0,0x3243);U16(equipHost,2,0xA009);U16(equipHost,4,8);
+        U16(equipHost,8,0x8100);U16(equipHost,10,0);
+        Buffer.BlockCopy(BitConverter.GetBytes((ulong)1001),0,equipHost,12,8);
+        Buffer.BlockCopy(BitConverter.GetBytes((ulong)1),0,equipHost,20,8);equipHost[28]=10;
+        IntPtr equipName=Marshal.StringToHGlobalAnsi("ZN2C_ResPropOperation");IntPtr equipMeta;
+        try{equipMeta=Slot<FindMeta>(self,0x58)(self,lib,equipName);}finally{Marshal.FreeHGlobal(equipName);}
+        if(equipMeta==IntPtr.Zero)throw new InvalidOperationException("Missing fixed PropOperation schema");
+        byte[] equipBodyHost=new byte[21];Buffer.BlockCopy(equipHost,8,equipBodyHost,0,21);
+        byte[] equipBody=Convert(self,equipMeta,pack,equipBodyHost,32768,"equip_body_pack",checks);U16(equipHost,6,equipBody.Length);
+        byte[] equipWire=Convert(self,meta,pack,equipHost,32768,"equip_pack",checks);
+        byte[] equipDecoded=Convert(self,meta,unpack,equipWire,1025331,"equip_unpack",checks);
+        byte[] equipAgain=Convert(self,meta,pack,equipDecoded,32768,"equip_repack",checks);
+        byte[] equipFramed=new byte[equipWire.Length-8];Buffer.BlockCopy(equipWire,8,equipFramed,0,equipFramed.Length);
+        if(Sha(equipHost)!=Sha(equipDecoded)||Sha(equipWire)!=Sha(equipAgain)||Sha(equipBody)!=Sha(equipFramed))throw new InvalidOperationException("PropOperation fixture differs");
+        File.WriteAllBytes(Path.Combine(output,"role-equip-response.bin"),equipWire);
+        result["role_equip_response_fixture"]=new Dictionary<string,object>{{"bytes",equipWire.Length},{"sha256",Sha(equipWire)},{"host_equal",true},{"roundtrip_equal",true},{"standalone_body_equal",true},{"result_success_semantics_verified",false}};
+        // 当前TDR错误码：坏GID=0108、类型不匹配=0109；失败应答仍带原19B请求，绝不发成功通知。
+        var rejectedFixtures=new List<object>();
+        foreach(int failure in new int[]{0x0108,0x0109}) {
+            byte[] host=(byte[])equipHost.Clone();U16(host,8,failure);
+            Buffer.BlockCopy(BitConverter.GetBytes((ulong)3816),0,host,12,8);
+            Buffer.BlockCopy(BitConverter.GetBytes((ulong)3865),0,host,20,8);host[28]=255;
+            string label="equipment-rejected-"+failure;
+            byte[] wire=Convert(self,meta,pack,host,32768,label+"_pack",checks);
+            byte[] decoded=Convert(self,meta,unpack,wire,1025331,label+"_unpack",checks);
+            byte[] again=Convert(self,meta,pack,decoded,32768,label+"_repack",checks);
+            if(Sha(host)!=Sha(decoded)||Sha(wire)!=Sha(again)||wire.Length!=29)throw new InvalidOperationException("Equipment failure fixture differs");
+            File.WriteAllBytes(Path.Combine(output,label+".bin"),wire);
+            rejectedFixtures.Add(new Dictionary<string,object>{{"code",failure},{"bytes",wire.Length},{"sha256",Sha(wire)},{"host_equal",true},{"roundtrip_equal",true}});
+        }
+        result["equipment_rejected_fixtures"]=rejectedFixtures;
+        // 当前A00B无Result；使用真实样式武器/背包GID核对完整19B通知，禁止套用其他区域帧。
+        byte[] notifyHost=new byte[1025331];U16(notifyHost,0,0x3243);U16(notifyHost,2,0xA00B);U16(notifyHost,4,8);
+        U16(notifyHost,6,19);U16(notifyHost,8,0);
+        Buffer.BlockCopy(BitConverter.GetBytes((ulong)5019),0,notifyHost,10,8);
+        Buffer.BlockCopy(BitConverter.GetBytes((ulong)1055),0,notifyHost,18,8);notifyHost[26]=0;
+        byte[] notifyWire=Convert(self,meta,pack,notifyHost,32768,"equip_notify_pack",checks);
+        byte[] notifyDecoded=Convert(self,meta,unpack,notifyWire,1025331,"equip_notify_unpack",checks);
+        byte[] notifyAgain=Convert(self,meta,pack,notifyDecoded,32768,"equip_notify_repack",checks);
+        if(Sha(notifyHost)!=Sha(notifyDecoded)||Sha(notifyWire)!=Sha(notifyAgain)||notifyWire.Length!=27)throw new InvalidOperationException("PropOperation notification differs");
+        File.WriteAllBytes(Path.Combine(output,"equip-notification.bin"),notifyWire);
+        result["equip_notification_fixture"]=new Dictionary<string,object>{{"bytes",notifyWire.Length},{"sha256",Sha(notifyWire)},{"host_equal",true},{"roundtrip_equal",true}};
+        // 当前商城A362使用SHOP_ERR_SUCC=8200；空URL表示无需下载，哈希用有符号边界夹具核对。
+        var shopFixtures=new List<object>();
+        foreach(int shopHash in new int[]{0,0x12345678,-1}) {
+            byte[] host=new byte[1025331];U16(host,0,0x3243);U16(host,2,0xA362);U16(host,4,8);
+            U16(host,8,0x8200);U32(host,10,shopHash);
+            IntPtr shopName=Marshal.StringToHGlobalAnsi("ZN2C_ResShopConfHash");IntPtr shopMeta;
+            try{shopMeta=Slot<FindMeta>(self,0x58)(self,lib,shopName);}finally{Marshal.FreeHGlobal(shopName);}
+            if(shopMeta==IntPtr.Zero)throw new InvalidOperationException("Missing fixed shop schema");
+            byte[] bodyHost=new byte[262];Buffer.BlockCopy(host,8,bodyHost,0,262);
+            string label="shop_hash_"+shopHash;
+            byte[] body=Convert(self,shopMeta,pack,bodyHost,32768,label+"_body_pack",checks);U16(host,6,body.Length);
+            byte[] wire=Convert(self,meta,pack,host,32768,label+"_pack",checks);
+            byte[] decoded=Convert(self,meta,unpack,wire,1025331,label+"_unpack",checks);
+            byte[] again=Convert(self,meta,pack,decoded,32768,label+"_repack",checks);
+            if(Sha(host)!=Sha(decoded)||Sha(wire)!=Sha(again))throw new InvalidOperationException("Shop hash fixture differs");
+            File.WriteAllBytes(Path.Combine(output,label+".bin"),wire);
+            shopFixtures.Add(new Dictionary<string,object>{{"file",label+".bin"},{"bytes",wire.Length},{"sha256",Sha(wire)},{"host_equal",true},{"roundtrip_equal",true}});
+        }
+        result["shop_hash_fixtures"]=shopFixtures;
+        // 当前A50E余额查询对应属性通知：TP标志1、TPBALANCE原因42均来自当前宏表。
+        // 保留全部嵌套计数为0，不附带道具、经验或天赋变更。
+        var balanceFixtures=new List<object>();
+        foreach(int balance in new int[]{0,123456,int.MaxValue}) {
+            byte[] host=new byte[1025331];U16(host,0,0x3243);U16(host,2,0xA00A);U16(host,4,8);
+            U32(host,8,1);U16(host,12,42);U32(host,14,balance);
+            // 当前TDR解码将空TalentSkillInfoEx.Version规范化为3；显式采用该值核对全host，未置天赋变更标志。
+            host[7248]=3;
+            string label="tp_balance_"+balance;
+            byte[] wire=Convert(self,meta,pack,host,32768,label+"_initial_pack",checks);U16(host,6,wire.Length-8);
+            wire=Convert(self,meta,pack,host,32768,label+"_pack",checks);
+            byte[] decoded=Convert(self,meta,unpack,wire,1025331,label+"_unpack",checks);
+            byte[] again=Convert(self,meta,pack,decoded,32768,label+"_repack",checks);
+            var hostDifferences=new List<object>();
+            for(int d=0;d<host.Length&&hostDifferences.Count<20;d++)if(host[d]!=decoded[d])hostDifferences.Add(new Dictionary<string,object>{{"offset",d},{"before",host[d]},{"after",decoded[d]}});
+            result["tp_balance_diagnostic"]=new Dictionary<string,object>{{"host_differences",hostDifferences},{"wire_equal",Sha(wire)==Sha(again)},{"bytes",wire.Length}};
+            if(Sha(host)!=Sha(decoded)||Sha(wire)!=Sha(again)||wire.Length!=70)throw new InvalidOperationException("TP balance notification differs");
+            File.WriteAllBytes(Path.Combine(output,label+".bin"),wire);
+            balanceFixtures.Add(new Dictionary<string,object>{{"file",label+".bin"},{"bytes",wire.Length},{"sha256",Sha(wire)},{"host_equal",true},{"roundtrip_equal",true}});
+        }
+        result["tp_balance_fixtures"]=balanceFixtures;
+        // 当前A358是详细频道数组，不是PH版本的短字符串。只构造一个区服/一个频道的回环夹具。
+        // Normal=2来自当前宏表；容量/人数/显示序号为本地研究值，不是对局人数上限。
+        var detailedChannels=new List<object>();
+        foreach(int port in new int[]{19001,45678}) {
+            byte[] host=new byte[1025331];U16(host,0,0x3243);U16(host,2,0xA358);U16(host,4,8);
+            U16(host,8,0x8100);U16(host,10,1);int detail=12;U16(host,detail,1);U16(host,detail+2,2);
+            byte[] title=Encoding.ASCII.GetBytes("NZ Online");Buffer.BlockCopy(title,0,host,detail+4,title.Length);
+            U32(host,detail+36,100);U32(host,detail+40,1);U16(host,detail+44,1);
+            int zone=detail+46;U32(host,zone,0x0100007f);U16(host,zone+4,port);U16(host,zone+6,1);U16(host,zone+8,1);
+            byte[] prefix=Encoding.ASCII.GetBytes("NZ");Buffer.BlockCopy(prefix,0,host,zone+10,prefix.Length);U32(host,zone+42,1);
+            IntPtr name=Marshal.StringToHGlobalAnsi("ZN2C_ResDetailedMainChnlList");IntPtr bodyMeta;
+            try{bodyMeta=Slot<FindMeta>(self,0x58)(self,lib,name);}finally{Marshal.FreeHGlobal(name);}
+            if(bodyMeta==IntPtr.Zero)throw new InvalidOperationException("Missing fixed detailed main channel schema");
+            byte[] bodyHost=new byte[96604];Buffer.BlockCopy(host,8,bodyHost,0,bodyHost.Length);
+            string label="detailed_channel_"+port;
+            byte[] body=Convert(self,bodyMeta,pack,bodyHost,32768,label+"_body_pack",checks);U16(host,6,body.Length);
+            byte[] wire=Convert(self,meta,pack,host,32768,label+"_pack",checks);
+            byte[] decoded=Convert(self,meta,unpack,wire,1025331,label+"_unpack",checks);
+            byte[] again=Convert(self,meta,pack,decoded,32768,label+"_repack",checks);
+            byte[] framed=new byte[wire.Length-8];Buffer.BlockCopy(wire,8,framed,0,framed.Length);
+            if(Sha(host)!=Sha(decoded)||Sha(wire)!=Sha(again)||Sha(body)!=Sha(framed))throw new InvalidOperationException("Detailed main channel fixture differs");
+            string file=label+".bin";File.WriteAllBytes(Path.Combine(output,file),wire);
+            detailedChannels.Add(new Dictionary<string,object>{{"file",file},{"port",port},{"bytes",wire.Length},{"sha256",Sha(wire)},{"host_equal",true},{"roundtrip_equal",true},{"standalone_body_equal",true}});
+        }
+        result["detailed_main_channel_fixtures"]=detailedChannels;
+        // 设置正文始终不透明；0/104/3200覆盖当前实收长度与上限，不赋予内部版本语义。
+        var defineFixtures=new List<object>();
+        foreach(int count in new int[]{0,104,3200}) {
+            foreach(int command in new int[]{0xA202,0xA205}) {
+                byte[] host=new byte[1025331];U16(host,0,0x3243);U16(host,2,command);U16(host,4,8);
+                bool response=command==0xA205;int offset=response?14:12;
+                if(response)U16(host,8,0x8100);U32(host,response?10:8,count);
+                for(int i=0;i<count;i++)host[offset+i]=(byte)(i%256);
+                string schema=response?"ZN2C_ResGetPlayerDefineInfo":"C2ZN_ReqSetPlayerDefineInfo";
+                IntPtr name=Marshal.StringToHGlobalAnsi(schema);IntPtr bodyMeta;
+                try{bodyMeta=Slot<FindMeta>(self,0x58)(self,lib,name);}finally{Marshal.FreeHGlobal(name);}
+                if(bodyMeta==IntPtr.Zero)throw new InvalidOperationException("Missing fixed settings schema");
+                byte[] bodyHost=new byte[response?3206:3204];Buffer.BlockCopy(host,8,bodyHost,0,bodyHost.Length);
+                string label="player_define_"+command.ToString("x")+"_"+count;
+                byte[] body=Convert(self,bodyMeta,pack,bodyHost,32768,label+"_body_pack",checks);U16(host,6,body.Length);
+                byte[] wire=Convert(self,meta,pack,host,32768,label+"_pack",checks);
+                byte[] decoded=Convert(self,meta,unpack,wire,1025331,label+"_unpack",checks);
+                byte[] again=Convert(self,meta,pack,decoded,32768,label+"_repack",checks);
+                byte[] framed=new byte[wire.Length-8];Buffer.BlockCopy(wire,8,framed,0,framed.Length);
+                if(Sha(host)!=Sha(decoded)||Sha(wire)!=Sha(again)||Sha(body)!=Sha(framed))throw new InvalidOperationException("Opaque settings fixture differs");
+                string file=label+".bin";File.WriteAllBytes(Path.Combine(output,file),wire);
+                defineFixtures.Add(new Dictionary<string,object>{{"file",file},{"command",command},{"data_bytes",count},{"bytes",wire.Length},{"sha256",Sha(wire)},{"host_equal",true},{"roundtrip_equal",true},{"standalone_body_equal",true}});
+            }
+        }
+        byte[] ack=new byte[1025331];U16(ack,0,0x3243);U16(ack,2,0xA203);U16(ack,4,8);U16(ack,6,2);U16(ack,8,0x8100);
+        byte[] ackWire=Convert(self,meta,pack,ack,32768,"define_save_ack_pack",checks);
+        byte[] ackDecoded=Convert(self,meta,unpack,ackWire,1025331,"define_save_ack_unpack",checks);
+        byte[] ackAgain=Convert(self,meta,pack,ackDecoded,32768,"define_save_ack_repack",checks);
+        if(Sha(ack)!=Sha(ackDecoded)||Sha(ackWire)!=Sha(ackAgain))throw new InvalidOperationException("Settings save ack differs");
+        File.WriteAllBytes(Path.Combine(output,"player-define-save-ack.bin"),ackWire);
+        result["opaque_player_define_fixtures"]=defineFixtures;
+        result["player_define_save_ack"]=new Dictionary<string,object>{{"bytes",ackWire.Length},{"sha256",Sha(ackWire)},{"host_equal",true},{"roundtrip_equal",true}};
+        // 当前A005的非零CurRoleGID夹具：只验证已有道具引用的位置，不声明真实资产/角色已加载。
+        byte[] roleHost=new byte[1025331];U16(roleHost,0,0x3243);U16(roleHost,2,0xA005);U16(roleHost,4,8);U16(roleHost,8,0x8100);
+        Buffer.BlockCopy(BitConverter.GetBytes((ulong)10001),0,roleHost,10,8);
+        byte[] roleName=Encoding.ASCII.GetBytes("NZRoleProbe");Buffer.BlockCopy(roleName,0,roleHost,22,roleName.Length);
+        Buffer.BlockCopy(BitConverter.GetBytes((ulong)1001),0,roleHost,104,8);U32(roleHost,170,1);
+        IntPtr roleMetaName=Marshal.StringToHGlobalAnsi("ZN2C_NtfPlayerInfo");IntPtr roleMeta;
+        try{roleMeta=Slot<FindMeta>(self,0x58)(self,lib,roleMetaName);}finally{Marshal.FreeHGlobal(roleMetaName);}
+        if(roleMeta==IntPtr.Zero)throw new InvalidOperationException("Missing fixed role player info schema");
+        byte[] roleBodyHost=new byte[1412];Buffer.BlockCopy(roleHost,8,roleBodyHost,0,1412);
+        byte[] roleBody=Convert(self,roleMeta,pack,roleBodyHost,32768,"role_info_body_pack",checks);U16(roleHost,6,roleBody.Length);
+        byte[] roleWire=Convert(self,meta,pack,roleHost,32768,"role_info_pack",checks);
+        byte[] roleDecoded=Convert(self,meta,unpack,roleWire,1025331,"role_info_unpack",checks);
+        byte[] roleAgain=Convert(self,meta,pack,roleDecoded,32768,"role_info_repack",checks);
+        byte[] roleFramed=new byte[roleWire.Length-8];Buffer.BlockCopy(roleWire,8,roleFramed,0,roleFramed.Length);
+        if(Sha(roleHost)!=Sha(roleDecoded)||Sha(roleWire)!=Sha(roleAgain)||Sha(roleBody)!=Sha(roleFramed))throw new InvalidOperationException("Role player info fixture differs");
+        File.WriteAllBytes(Path.Combine(output,"role-player-info-refresh.bin"),roleWire);
+        result["role_info_refresh_fixture"]=new Dictionary<string,object>{{"bytes",roleWire.Length},{"sha256",Sha(roleWire)},{"host_equal",true},{"roundtrip_equal",true},{"standalone_body_equal",true},{"role_or_inventory_verified",false}};
+        // FF13在当前元数据中只有16位hint，没有Result；零提示为显式研究值。
+        byte[] hints=new byte[1025331];U16(hints,0,0x3243);U16(hints,2,0xFF13);U16(hints,4,8);U16(hints,6,2);
+        IntPtr hintsName=Marshal.StringToHGlobalAnsi("ZN2C_NtfZoneHints");IntPtr hintsMeta;
+        try{hintsMeta=Slot<FindMeta>(self,0x58)(self,lib,hintsName);}finally{Marshal.FreeHGlobal(hintsName);}
+        if(hintsMeta==IntPtr.Zero)throw new InvalidOperationException("Missing current ZoneHints schema");
+        byte[] hintsBody=Convert(self,hintsMeta,pack,new byte[2],32768,"zone_hints_body_pack",checks);
+        byte[] hintsWire=Convert(self,meta,pack,hints,32768,"zone_hints_pack",checks);
+        byte[] hintsDecoded=Convert(self,meta,unpack,hintsWire,1025331,"zone_hints_unpack",checks);
+        byte[] hintsAgain=Convert(self,meta,pack,hintsDecoded,32768,"zone_hints_repack",checks);
+        if(Sha(hints)!=Sha(hintsDecoded)||Sha(hintsWire)!=Sha(hintsAgain)||hintsWire.Length!=10||hintsBody.Length!=2||hintsWire[8]!=hintsBody[0]||hintsWire[9]!=hintsBody[1])throw new InvalidOperationException("ZoneHints fixture differs");
+        File.WriteAllBytes(Path.Combine(output,"zone-no-hints.bin"),hintsWire);
+        result["zone_no_hints_fixture"]=new Dictionary<string,object>{{"bytes",hintsWire.Length},{"sha256",Sha(hintsWire)},{"host_equal",true},{"roundtrip_equal",true},{"standalone_body_equal",true},{"hint_semantics_verified",false}};
+        // 当前自建房间实际触发A355；A356使用MainChnlInfo固定三个IP而非A358的Zone数组。
+        // 心跳A004/FF10各只有一个Padding字节。全host往返确保没有套用其他地区结构。
+        var lobbyFixtures=new List<object>();
+        foreach(int cmd in new int[]{0xA356,0xA004,0xFF10,0xA133}) {
+            byte[] host=new byte[1025331];U16(host,0,0x3243);U16(host,2,cmd);U16(host,4,8);
+            if(cmd==0xA356) {
+                U16(host,8,0x8100);U16(host,10,1);U16(host,12,1);U16(host,14,2);
+                byte[] title=Encoding.ASCII.GetBytes("NZ Online");Buffer.BlockCopy(title,0,host,16,title.Length);
+                U32(host,48,100);U32(host,52,1);U32(host,56,0x0100007f);U32(host,60,0x0100007f);U32(host,64,0x0100007f);
+            }
+            if(cmd==0xA133) {
+                // 当前ZoneChannelListInfo无Result；首末包和计数后为1406B Zone结构。
+                host[8]=1;host[9]=1;U16(host,10,1);int z=12;
+                U32(host,z,1);U32(host,z+4,0x0100007f);U16(host,z+136,19001);U32(host,z+138,1);
+                int c=z+142;U32(host,c,1);byte[] title=Encoding.ASCII.GetBytes("NZ-1");Buffer.BlockCopy(title,0,host,c+4,title.Length);
+                U32(host,c+36,100);U32(host,c+40,1);U32(host,c+52,1);
+            }
+            string label="lobby_"+cmd.ToString("x");
+            byte[] wire=Convert(self,meta,pack,host,32768,label+"_initial_pack",checks);
+            U16(host,6,wire.Length-8);
+            wire=Convert(self,meta,pack,host,32768,label+"_pack",checks);
+            byte[] decoded=Convert(self,meta,unpack,wire,1025331,label+"_unpack",checks);
+            byte[] again=Convert(self,meta,pack,decoded,32768,label+"_repack",checks);
+            if(Sha(host)!=Sha(decoded)||Sha(wire)!=Sha(again))throw new InvalidOperationException("Current lobby fixture differs");
+            string file=label+".bin";File.WriteAllBytes(Path.Combine(output,file),wire);
+            lobbyFixtures.Add(new Dictionary<string,object>{{"file",file},{"bytes",wire.Length},{"sha256",Sha(wire)},{"host_equal",true},{"roundtrip_equal",true}});
+        }
+        result["main_channel_and_heartbeat_fixtures"]=lobbyFixtures;
+        ValidateFeatureFixtures(self,meta,pack,unpack,output,result,checks);
+        result["player_info_scope"]="SERIALIZATION_FIXTURES_ONLY_NO_GAMEPLAY_OR_ROLE_DEFAULTS_VALIDATED";
+        result["network_reply_sent"]=false;result["real_account_data_used"]=false;
+    }
+    // 新功能夹具只来自本次私人目录；完整host、当前DLL线上包和独立Python包必须同时相等。
+    static void ValidateFeatureFixtures(IntPtr self,IntPtr meta,ConvertMeta pack,ConvertMeta unpack,string output,Dictionary<string,object> result,List<object> checks) {
+        string[] paths=Directory.GetFiles(output,"feature_*.host");
+        // 新增频道/房间消息后超过160；逐文件处理仍有256文件及外部30秒Job双重上限。
+        if(paths.Length>256)throw new InvalidOperationException("Too many feature fixtures");
+        Array.Sort(paths);var fixtures=new List<object>();
+        foreach(string path in paths) {
+            string label=Path.GetFileNameWithoutExtension(path);
+            byte[] host=File.ReadAllBytes(path);
+            if(host.Length!=1025331)throw new InvalidOperationException("Invalid feature host length");
+            byte[] python=File.ReadAllBytes(Path.Combine(output,label+".python.bin"));
+            if(python.Length>65543)throw new InvalidOperationException("Invalid feature wire length");
+            byte[] wire=Convert(self,meta,pack,host,131072,label+"_pack",checks);
+            // 即使比对失败也保留无账号夹具的实际DLL输出，便于定位版本字段而不猜测成功形状。
+            File.WriteAllBytes(Path.Combine(output,label+".dll.bin"),wire);
+            if(Sha(python)!=Sha(wire))throw new InvalidOperationException(label+" Python/DLL mismatch");
+            byte[] decoded=Convert(self,meta,unpack,wire,1025331,label+"_unpack",checks);
+            if(Sha(host)!=Sha(decoded))throw new InvalidOperationException(label+" full host mismatch");
+            byte[] again=Convert(self,meta,pack,decoded,131072,label+"_repack",checks);
+            if(Sha(wire)!=Sha(again))throw new InvalidOperationException(label+" repack mismatch");
+            fixtures.Add(new Dictionary<string,object>{{"label",label},{"bytes",wire.Length},{"sha256",Sha(wire)},{"full_host_equal",true},{"python_equal",true},{"repack_equal",true}});
+        }
+        result["feature_fixtures"]=fixtures;
+    }
+    public static Dictionary<string,object> Run(string dll,string tdr,byte[] request,string output,bool verifyResponse,byte[] zoneRequest,bool zoneNotification,bool zoneLogin,bool zoneLoginResponse,bool defineEmptyResponse,bool playerInfoProfile) {
         bool zoneSample=zoneNotification||zoneLogin||defineEmptyResponse;
         var checks=new List<object>();var result=new Dictionary<string,object>{{"kind",zoneSample?"CURRENT_ZONE_NATIVE_TDR_OFFLINE_PROBE":"CURRENT_GEO_NATIVE_TDR_OFFLINE_PROBE"},{"x86",IntPtr.Size==4},{"network_init_called",false},{"game_started",false},{"checks",checks}};
         IntPtr lib=IntPtr.Zero;IntPtr self=IntPtr.Zero;
@@ -267,6 +592,7 @@ public static class CurrentGeoTdrProbe {
                 if(BitConverter.ToUInt16(host,24)!=Be16(request,24))throw new InvalidOperationException("Zone login platform layout mismatch");
                 result["login_request"]=new Dictionary<string,object>{{"name","C2ZN_ReqLogin"},{"command","0xA000"},{"body_length",18},{"field_count",5},{"dword_and_u16_layout_verified",true},{"identity_fields_published",false},{"response_constructed",zoneLoginResponse}};
                 if(zoneLoginResponse)ValidateLoginResponse(self,lib,meta,pack,unpack,output,result,checks);
+                if(playerInfoProfile)ValidatePlayerInfoProfile(self,lib,meta,pack,unpack,output,result,checks);
                 result["passed"]=true;return result;
             }
             // 默认先只验收真实研究请求，响应须显式选择并继续单独核对头长度。
@@ -303,7 +629,7 @@ public static class CurrentGeoTdrProbe {
 }
 '@
 try {
-    $result = [CurrentGeoTdrProbe]::Run($dll,$tdr,$requestBytes,$outputRoot,$VerifyResearchResponse.IsPresent,$zoneRequestBytes,$VerifyZoneNotification.IsPresent,$zoneLoginMode,$VerifyZoneLoginResponse.IsPresent,$VerifyPlayerDefineEmptyResponse.IsPresent)
+    $result = [CurrentGeoTdrProbe]::Run($dll,$tdr,$requestBytes,$outputRoot,$VerifyResearchResponse.IsPresent,$zoneRequestBytes,$VerifyZoneNotification.IsPresent,$zoneLoginMode,$VerifyZoneLoginResponse.IsPresent,$VerifyPlayerDefineEmptyResponse.IsPresent,$VerifyPlayerInfoResearchResponse.IsPresent)
     $result | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath (Join-Path $outputRoot 'worker.json') -Encoding UTF8
 } catch {
     @{passed=$false;error_type=$_.Exception.GetType().FullName;message=$_.Exception.Message} | ConvertTo-Json | Set-Content -LiteralPath (Join-Path $outputRoot 'worker.json') -Encoding UTF8

@@ -1,0 +1,29 @@
+{
+  "kind": "READ_ONLY_DEV_NATIVE_FRIEND_419",
+  "mysql_version": "8.0.30-txsql",
+  "relations": [
+    {
+      "account__game_id": 10004,
+      "peer__game_id": 10005,
+      "status": "ACCEPTED"
+    },
+    {
+      "account__game_id": 10005,
+      "peer__game_id": 10004,
+      "status": "ACCEPTED"
+    }
+  ],
+  "message_event": {
+    "id": 81,
+    "kind": "friend.message",
+    "payload": {
+      "message": "联调验收419：私聊送达检查。",
+      "from_game_id": 10004
+    },
+    "acknowledged": true
+  },
+  "two_native_clients": false,
+  "recipient_native_ui_observed": true,
+  "native_ui_message": "私聊窗口实际显示419测试正文及发送昵称",
+  "native_ui_friend_list": "我的好友[0/1]，API发送端已注销，离线状态与实际一致"
+}

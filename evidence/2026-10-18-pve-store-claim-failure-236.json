@@ -1,0 +1,30 @@
+{
+  "kind": "NATIVE_PVE_STORE_CLAIM_REJECTED_NO_AWARD",
+  "run": "launcher-20261018-122830-624350",
+  "requests": [
+    {
+      "path": "evidence/private/launcher-20261018-122830-624350/application-01-sequence-437.bin",
+      "sha256": "e194020ea040dd5e22be499d1037fbac3ac43a444b428c6fc7ea59420903592d",
+      "command": 13827,
+      "fields": {
+        "Seq": 10014,
+        "PropIdCount": 1,
+        "PropIds": [
+          100482
+        ]
+      }
+    }
+  ],
+  "response": {
+    "command": 13828,
+    "fields": {
+      "Seq": 10014,
+      "Result": 1090
+    },
+    "sha256": "9a9f2cea2530a10ef30e026be96065c7c132cdcb61c7b8fc5c13288822d6f903"
+  },
+  "cause": "Seq is the store privilege ID; PropIds contains real reward item IDs, not privilege IDs.",
+  "corrected_rule": "Validate the exact configured Seq and reward list; active ownership prevents duplicate grants. Original descriptions allow repeat acquisition after expiry.",
+  "fake_success": false,
+  "playable_map_accepted": false
+}

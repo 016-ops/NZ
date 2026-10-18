@@ -70,6 +70,19 @@ class Repository:
                 self.table(name).create(**values)
         return Rows(rowcount=1)
 
+    def insert_many(self, name, values):
+        """在已有事务中批量插入逻辑列，保留模型默认值和数据库约束，不忽略冲突。
+
+        只供已完成整批业务校验的资产路径使用；不创建独立提交，也不允许事务外部分落库。
+        """
+        if not connections[self.alias].in_atomic_block:
+            raise RuntimeError('BULK_INSERT_REQUIRES_TRANSACTION')
+        model = TABLE_MODELS[name]
+        mapping = column_map(model)
+        rows = [model(**{mapping[k]: v for k, v in value.items()}) for value in values]
+        model.objects.using(self.alias).bulk_create(rows, batch_size=1000)
+        return Rows(rowcount=len(rows))
+
     # 只将允许的逻辑列传给 QuerySet.update；版本递增采用 F 表达式，避免读出后再写回旧版本。
     def update(self, name, condition, values):
         """只将允许的逻辑列传给 QuerySet.update；版本递增采用 F 表达式，避免读出后再写回旧版本。"""

@@ -1,0 +1,20 @@
+{
+  "version": [
+    3,
+    12,
+    14
+  ],
+  "pointer_bits": 64,
+  "checked_files": 2305,
+  "checked_bytes": 50214406,
+  "all_hashes_verified": true,
+  "kind": "ROOM_PROJECT_PYTHON_RUNTIME_NOT_GAME_NODE",
+  "source": "BUNDLED_LOCAL_RUNTIME",
+  "target": "C:/NZResearch/runtime/python-host-360",
+  "archive_bytes": 18169299,
+  "archive_sha256": "92367dd72cc15ad2313d338d30443a1e7e67bfeb38e7cbdcd44d19db83abcc88",
+  "system_settings_changed": false,
+  "node_ready": false,
+  "native_started": false,
+  "prior_failure": "360 native -c quote lost P; files retained and independently read back"
+}

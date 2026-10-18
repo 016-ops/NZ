@@ -1,0 +1,23 @@
+test_concurrent_replay_keeps_one_consumption_and_three_rewards (tests.test_native_containers.NativeContainerTests.test_concurrent_replay_keeps_one_consumption_and_three_rewards)
+并发重试同一请求只扣一个礼包、发三张卡；回执保持原始数量和永久期限。 ... ok
+test_exclusive_card_conflict_preserves_box_and_reports_real_reason (tests.test_native_containers.NativeContainerTests.test_exclusive_card_conflict_preserves_box_and_reports_real_reason)
+三张卡均为独占实例；已有卡片导致整单拒绝，不扣箱，也不误报仓库已满。 ... FAIL
+test_protocol_failure_success_and_unknown_commit_recovery (tests.test_native_containers.NativeContainerTests.test_protocol_failure_success_and_unknown_commit_recovery)
+原生失败应答不断开；提交后响应丢失跨桥接重建恢复同一礼包回执，忽略预测奖励。 ... ok
+test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets (tests.test_native_containers.NativeContainerTests.test_shortage_expiry_foreign_account_and_tail_fault_preserve_assets)
+数量不足、过期、他人持箱及末尾事件故障都不能产生半份奖励或遗留回执。 ... ok
+
+======================================================================
+FAIL: test_exclusive_card_conflict_preserves_box_and_reports_real_reason (tests.test_native_containers.NativeContainerTests.test_exclusive_card_conflict_preserves_box_and_reports_real_reason)
+三张卡均为独占实例；已有卡片导致整单拒绝，不扣箱，也不误报仓库已满。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_containers.py", line 95, in test_exclusive_card_conflict_preserves_box_and_reports_real_reason
+    with self.assertRaises(Fault) as caught:self.call('inventory.open',**self.payload())
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fault not raised
+
+----------------------------------------------------------------------
+Ran 4 tests in 20.644s
+
+FAILED (failures=1)

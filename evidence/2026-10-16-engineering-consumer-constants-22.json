@@ -1,0 +1,414 @@
+{
+  "kind": "CURRENT_DRAW_CONSUMER_BYTECODE_CONSTANTS",
+  "source_sha256": "cd213dcd3157bb879dcd10a7aecf490151a87bbaa6c711cbdfc3f8d04fafea6f",
+  "functions": [
+    {
+      "name": "GfxMovie_AvatarRoom.OnDealPropDecomposeByNtfPropChanged",
+      "bytes": 228,
+      "sha256": "dd56d864e9d7b68f9f2ccfc87c188ec4e63c6c556973ae201e209e09624eec0c",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_AvatarRoom.OnEnterProjectDecomposeBtnClicked",
+      "bytes": 483,
+      "sha256": "509c3616cec97c3d3b1cb39ca34b55673ca6c3f2fe5c9aca7c73122a871d4cb3",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_AvatarRoom.OnQuitProjectDecomposeBtnClicked",
+      "bytes": 167,
+      "sha256": "851bae76862d0296499ba1443447a0f4688f68ee80c50aac9ff1e3b49ba64c0d",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_AvatarRoom.OnProjectDecomposeBatchCheckChange",
+      "bytes": 262,
+      "sha256": "e5c217778be0bab7f03d5110aad94e9bfb6d25bc1c75af81b258b82f097fc01f",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_AvatarRoom.OnEnterProjectSynthetic_btnCliked",
+      "bytes": 114,
+      "sha256": "cd6fa9672a7b1e3942c35c5bdd0eabcac3c2b0fb20e868d33bc628b9c7486641",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnStart",
+      "bytes": 72,
+      "sha256": "57be033d682a6abdfc5eef906bb26fc24729e325f156b55a4403df7d9c253f40",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnClose",
+      "bytes": 185,
+      "sha256": "e273d3bbbcd3a1e7ebe00cb18d26bd50949cd0971b4a4ce83b0aa778de3dfa17",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.AddDelegates",
+      "bytes": 252,
+      "sha256": "fd6bf6e55e8fbec9b8685ee8896286b1c8d72f1f7ef32aeb4cb20471f119cea4",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnLoad",
+      "bytes": 523,
+      "sha256": "aee70e7f372c2490fd6b24b09390de0c26866d2f1666ad5b01aa229b1acbaf97",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnUpdateDecomposeData",
+      "bytes": 429,
+      "sha256": "fa893adc2c7e6524f1a5e75d909e978a070f692dd18e84cd6247dc5cb8c703b0",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnInitDecomposeData",
+      "bytes": 1063,
+      "sha256": "14670edc5a99233e18c7b1a0c4833be5eed8656218bac4467fc7db27171fa9e7",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnInitSyntheticData",
+      "bytes": 98,
+      "sha256": "1b83bbe113d2c997af9925a948dae98681d2e876946c15c44bf327f3aeaedcb7",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.GetSyntheticTimesbyProp",
+      "bytes": 316,
+      "sha256": "c13eb92184ae9b05f1cfa50221ef2f88f1f6167747c8365ab8a8e094c040b87a",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.GetSyntheticProficientLevel",
+      "bytes": 256,
+      "sha256": "1332bf17ced26e9f087804088a001e33f07993b431ad58fc72d911302222121c",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.GetProficientTipInfo",
+      "bytes": 986,
+      "sha256": "8cf2b8e54db7b08e9b1a4accc286859985d6305b37c496abf11f59589d75b597",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.GetSyntheticPropList",
+      "bytes": 3377,
+      "sha256": "3a5bcbe7d29ced0de2088797a1b3d88da4930b686b47e0342ff7c817aea9e4c2",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.GetRandSyntheticPropIconPath",
+      "bytes": 132,
+      "sha256": "1b58335f3b6d6ef50adabb910c4570649eec3f6395c251ae122dc385f7e89101",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnGetPropFreezeTime",
+      "bytes": 427,
+      "sha256": "fd19c8cbc6c8342a2565c56ac7dab250ead4e0857fb6b07ba7212ffff5343dc2",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.GetDecomposePartNameTotal",
+      "bytes": 268,
+      "sha256": "4307e0b09ce6a094d36470d751483a47cc20de4ccee03df517ccf64a34fe3e46",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.GetHadDecomposePartInfo",
+      "bytes": 584,
+      "sha256": "0bb1507ba73eb085372f68f2891d71bc19da142db375758a995aaf6d5ec3bb87",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.GetSyntheticTimesName",
+      "bytes": 229,
+      "sha256": "99eabcf1005da5e3dfe509c129fc0ecce43de0e101dd23e95d7ba373566f0df4",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnSyntheticConfirmBtnClicked",
+      "bytes": 138,
+      "sha256": "49ecdfd73a3b1eedf66e019d5ffab59cff09ffe342d110013962875ad3feca69",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnGetPropNameAndTimeInfo",
+      "bytes": 657,
+      "sha256": "1c4d3d43b85272cdfcc2a96d10f04ba83a4cf6dc6fe2ac9c126128a43b1bf594",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnOpenPaySyntheticConfirmUI",
+      "bytes": 1043,
+      "sha256": "b852e5913a1d61997a6c1652ac9a6d1323e124b11c3794a8ca010d98a59d7926",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnPaySyntheticConfirmBtnClicked",
+      "bytes": 96,
+      "sha256": "37d13a46eedebd9fbbbb5bf297dc5f9b7dcb2970f536dc710e98bf1a37fe9a0e",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnNtfUpdatePlayerProperty",
+      "bytes": 210,
+      "sha256": "a90c4656e618d81340ca25d4be234b972972c689d26d2d7d0e8f568d99d1f3bb",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnSyntheticConfirmBtnClicked_All",
+      "bytes": 190,
+      "sha256": "36284b9f4acb90b1c96d3bf8b2b113711dbd543a163fe908b9b7eeebb2079e01",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnDecomposeConfirmBtnClicked",
+      "bytes": 105,
+      "sha256": "47cc63d1f747e548c30031e478e3a08e8ebfcbd81f9c5b1fe984205f4efccd0e",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnViewDataChanged",
+      "bytes": 364,
+      "sha256": "4396c07c94f831040a56d7ed895b48a75b282ae4639bc77c55ac880e7c63d578",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.UpdatePropInfoBySynthetic",
+      "bytes": 740,
+      "sha256": "c4515ed12df0a22bc7993a2ddab169af93c8e415ae189393f455ce59e0ea4fe5",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.UpdateProficientInfo_Total",
+      "bytes": 358,
+      "sha256": "5805fc391ca169cd1897bab5720188dda25684e16d4d0d194097bebbd806ebe9",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnCloseBtnClicked",
+      "bytes": 82,
+      "sha256": "0a5b16af7372294796f286ea93738a89ea69b9f046847c6b48e0fc10410b0b59",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnRechargeBtnClicked",
+      "bytes": 94,
+      "sha256": "1f103b3aed429e8b4d9f481ea1f2dee4f98ec5c3faef92d81811273deb782801",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnBuyBtnClicked",
+      "bytes": 160,
+      "sha256": "156635ea52a9a79b3fc8a0e25974ab6fac920027bde5141132fda4d574a5e7c2",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.EnterKeyFunction",
+      "bytes": 72,
+      "sha256": "989c3259cc303bf906c4398a5345b4fa31f052be06a6c3b4b05d348f56526d97",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.EscKeyFunction",
+      "bytes": 82,
+      "sha256": "cbbf55b6a7462094ff1ff4d2250b64e86263c64d75ce53b8247f90ed1233febc",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "TGUI_ItemList.GetEngineerDecomposeInfo",
+      "bytes": 227,
+      "sha256": "8a5be3567958bf60140d306fedf655493556aebc4367c64feda7b234805104df",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    }
+  ],
+  "boundary": "Constants require branch and real-client confirmation; no script or process mutation"
+}

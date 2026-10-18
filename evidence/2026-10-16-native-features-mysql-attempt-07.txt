@@ -1,0 +1,91 @@
+test_cart_same_material_twice_returns_each_line_and_one_stack (tests.test_native_features.NativeFeatureTests.test_cart_same_material_twice_returns_each_line_and_one_stack)
+购物车两行相同材料返回两行真实GID，不能在已扣费后因重复GID匹配失败而断连。 ... FAIL
+test_checkin_beijing_midnight_boundary (tests.test_native_features.NativeFeatureTests.test_checkin_beijing_midnight_boundary)
+同一UTC日跨北京时间午夜只间隔两秒，两天各领一次且重试不重复。 ... ok
+test_checkin_disabled_by_default_and_no_repeat_after_rule_change (tests.test_native_features.NativeFeatureTests.test_checkin_disabled_by_default_and_no_repeat_after_rule_change)
+正式签到默认停用；同一天改版也不能重复领，次日重新具备资格。 ... ok
+test_clan_invitation_transfer_and_old_owner_permission (tests.test_native_features.NativeFeatureTests.test_clan_invitation_transfer_and_old_owner_permission)
+邀请需对端接受；移交后旧队长不能再解散，成员退出不会误删队伍。 ... ok
+test_default_rules_validate_all_recipes_without_publishing_checkin (tests.test_native_features.NativeFeatureTests.test_default_rules_validate_all_recipes_without_publishing_checkin)
+当前24奖项和155配方都可校验，初始规则只有五类抽奖，不包含正式签到。 ... ok
+test_draw_failure_restores_exhausted_material_binding (tests.test_native_features.NativeFeatureTests.test_draw_failure_restores_exhausted_material_binding)
+耗尽碎片会删除实例与绑定，但最后事件故障须将它们连同数量全部恢复。 ... ok
+test_fragment_stack_and_draw_confirmation_are_atomic (tests.test_native_features.NativeFeatureTests.test_fragment_stack_and_draw_confirmation_are_atomic)
+材料数量累加，开奖扣一次、入库一次；重复确认和并发重试返回同一结果。 ... ok
+test_friend_delivery_block_and_unrelated_event_ack (tests.test_native_features.NativeFeatureTests.test_friend_delivery_block_and_unrelated_event_ack)
+申请与私聊投递给真实对端，第三方不能确认事件，拉黑后私聊拒绝。 ... ok
+test_game_api_rejects_player_token_and_changed_retry (tests.test_native_features.NativeFeatureTests.test_game_api_rejects_player_token_and_changed_retry)
+普通玩家Bearer不能冒充游戏会话；相同幂等键修改载荷必须冲突。 ... ok
+test_gift_other_session_incremental_sync_and_local_purchase_keeps_all_changes (tests.test_native_features.NativeFeatureTests.test_gift_other_session_incremental_sync_and_local_purchase_keeps_all_changes)
+赠礼入接收者仓库；接收者未轮询前又买东西，连续游标同时补齐礼物和本人购买，不丢变化。 ... FAIL
+test_native_selected_pool_persists_and_pending_result_cannot_be_reset (tests.test_native_features.NativeFeatureTests.test_native_selected_pool_persists_and_pending_result_cannot_be_reset)
+原生选池、重连查询、开奖和确认闭环；待确认时换键抽取及重置均不能重复扣材料。 ... ok
+test_native_shop_failure_then_commit_and_incremental_cache (tests.test_native_features.NativeFeatureTests.test_native_shop_failure_then_commit_and_incremental_cache)
+余额不足得到商城失败应答，随后同连接付款成功且只增量更新一件；余额不伪造。 ... ok
+test_native_skin_and_social_packets_use_current_result_domains (tests.test_native_features.NativeFeatureTests.test_native_skin_and_social_packets_use_current_result_domains)
+皮肤落库后按当前布局回放，战队成功码必须使用CLAN域而非ZONE域。 ... ok
+test_native_unknown_commit_recovery_survives_bridge_restart (tests.test_native_features.NativeFeatureTests.test_native_unknown_commit_recovery_survives_bridge_restart)
+服务端提交后丢失HTTP响应，重建桥接先查原键，不再购买或扣款。 ... ok
+test_native_unsupported_reward_rejected_before_consumption (tests.test_native_features.NativeFeatureTests.test_native_unsupported_reward_rejected_before_consumption)
+网页允许货币组合奖励，原生单道具消息必须在开奖前拒绝不可表达配置，保留全部材料。 ... ok
+test_pagination_rejects_mixed_versions_and_old_limit_is_removed (tests.test_native_features.NativeFeatureTests.test_pagination_rejects_mixed_versions_and_old_limit_is_removed)
+超过旧10000槽仍可购买，分页中插入资产会使旧版本明确冲突，不拼接半新半旧快照。 ... ok
+test_purchase_duplicate_instances_no_capacity_and_idempotency (tests.test_native_features.NativeFeatureTests.test_purchase_duplicate_instances_no_capacity_and_idempotency)
+同一永久武器可重复购买形成不同GID；重复提交原请求只能扣款一次。 ... ok
+test_purchase_event_failure_rolls_back_money_items_and_receipt (tests.test_native_features.NativeFeatureTests.test_purchase_event_failure_rolls_back_money_items_and_receipt)
+最终接收事件失败时，购物车不得保留扣款、GID或订单。 ... ok
+test_selected_pool_rejects_unknown_choice_without_consumption (tests.test_native_features.NativeFeatureTests.test_selected_pool_rejects_unknown_choice_without_consumption)
+自选只允许当前奖池中指定数量的奖项，错误选择不能扣材料。 ... ok
+test_skin_relationship_and_cross_account_rejected (tests.test_native_features.NativeFeatureTests.test_skin_relationship_and_cross_account_rejected)
+皮肤仅绑定已定义的主体且必须本人持有；主体和皮肤数量均不减少。 ... ok
+test_swallow_consumes_material_and_persists_host (tests.test_native_features.NativeFeatureTests.test_swallow_consumes_material_and_persists_host)
+已配置吞噬组合消费材料一次并保存主体效果，重复吞噬不能再次消费同效果。 ... ok
+test_sync_more_than_one_page_does_not_skip_instances (tests.test_native_features.NativeFeatureTests.test_sync_more_than_one_page_does_not_skip_instances)
+超过200变化实例分片补取，不直接把第一片标为最终版本而漏掉余下物品。 ... ok
+test_workshop_uses_recipe_material_and_keeps_label_weapon (tests.test_native_features.NativeFeatureTests.test_workshop_uses_recipe_material_and_keeps_label_weapon)
+宝物工坊使用配置首条碎片数量，不消费101518标签枪；重放同原生请求不重复合成。 ... ok
+test_atomic_full_inventory_and_outbox_failure (tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure)
+容量不足和最后审计/outbox故障都回滚整个发放，保留之前已有记录。 ... ok
+test_backpack_root_preserves_all_other_bags_and_children (tests.test_native_inventory.NativeInventoryTests.test_backpack_root_preserves_all_other_bags_and_children)
+boot78背包100037挂到根12；保持双默认包及其武器，重试幂等、回读故障回滚、越权拒绝。 ... ok
+test_compact_commit_is_atomic_authorized_and_matches_full_snapshot (tests.test_native_inventory.NativeInventoryTests.test_compact_commit_is_atomic_authorized_and_matches_full_snapshot)
+轻量换装和回读同事务；回读故障回滚换装/审计，错投影与撤销凭据不能走快捷路径。 ... ok
+test_concurrent_grants_commit_once (tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once)
+两连接并发全量补齐由部署事务锁串行，一次发放一次幂等返回。 ... ok
+test_full_catalog_repeat_preserves_gids_and_user_unequip (tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip)
+全4323件永久入库；重试不增加流水/GID，也不恢复玩家已经卸下的默认装备。 ... ok
+test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once (tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once)
+最终outbox故障回滚钱包和流水；双连接重试仅一次补满，旧规则不允许写入。 ... ok
+test_gm_wallet_maximize_atomic_repeat_and_isolation (tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_maximize_atomic_repeat_and_isolation)
+七币种补满共用账本，重复不写新版本或流水；非GM拒绝且其他账号保持零。 ... ok
+test_hidden_default_knife_replaces_owned_melee_only (tests.test_native_inventory.NativeInventoryTests.test_hidden_default_knife_replaces_owned_melee_only)
+实机卸下近战会穿回隐藏默认匕首；原武器释放且重试无重复审计，外部GID仍拒绝。 ... ok
+test_http_equipment_owner_version_revocation_and_atomicity (tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity)
+HTTP只接受游戏Bearer；装备换位/重试持久，跨账号、版本变化、来源撤销及失败写入拒绝。 ... ok
+test_native_zero_target_unequip_owned_only_and_repeat (tests.test_native_inventory.NativeInventoryTests.test_native_zero_target_unequip_owned_only_and_repeat)
+实机Target0卸下仅操作本人实例；未装备重复无写入，穿戴或跨账号引用0仍拒绝。 ... ok
+test_pve_role_switch_preserves_factions_and_rejects_other_owner (tests.test_native_inventory.NativeInventoryTests.test_pve_role_switch_preserves_factions_and_rejects_other_owner)
+猎场角色64在根1独立换装，旧PvE槽释放，两阵营不变；错背包/跨账号仍失败。 ... ok
+
+======================================================================
+FAIL: test_cart_same_material_twice_returns_each_line_and_one_stack (tests.test_native_features.NativeFeatureTests.test_cart_same_material_twice_returns_each_line_and_one_stack)
+购物车两行相同材料返回两行真实GID，不能在已扣费后因重复GID匹配失败而断连。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_features.py", line 368, in test_cart_same_material_twice_returns_each_line_and_one_stack
+    self.assertIsNotNone(offer)
+AssertionError: unexpectedly None
+
+======================================================================
+FAIL: test_gift_other_session_incremental_sync_and_local_purchase_keeps_all_changes (tests.test_native_features.NativeFeatureTests.test_gift_other_session_incremental_sync_and_local_purchase_keeps_all_changes)
+赠礼入接收者仓库；接收者未轮询前又买东西，连续游标同时补齐礼物和本人购买，不丢变化。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_features.py", line 393, in test_gift_other_session_incremental_sync_and_local_purchase_keeps_all_changes
+    self.assertTrue(offer['bGiveAndAskable'][0])
+AssertionError: False is not true
+
+----------------------------------------------------------------------
+Ran 34 tests in 197.302s
+
+FAILED (failures=2)

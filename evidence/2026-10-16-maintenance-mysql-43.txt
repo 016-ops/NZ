@@ -1,0 +1,45 @@
+test_renew_wire_retains_gid_and_expiry_and_rejects_permanent (tests.test_native_maintenance.NativeMaintenanceTests.test_renew_wire_retains_gid_and_expiry_and_rejects_permanent)
+A509续费有限期SCAR，保留GID且延长原期限；永久物品负应答不影响后续请求。 ... ERROR
+test_repair_batch_failure_is_atomic_and_cross_account_rejected (tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_failure_is_atomic_and_cross_account_rejected)
+事件末尾失败回滚两件耐久和钱包，外账号GID混入整单拒绝。 ... ok
+test_repair_batch_price_replay_and_preserved_state (tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_price_replay_and_preserved_state)
+两件缺损一起扣GP并修满；同键重放不重复扣款，满耐久新请求无新资产操作。 ... ok
+test_repair_wire_failure_then_success_and_concurrent_replay (tests.test_native_maintenance.NativeMaintenanceTests.test_repair_wire_failure_then_success_and_concurrent_replay)
+余额不足后同桥接可继续，随后并发同键只修一次；应答给原生耐久更新原因6。 ... ok
+test_sell_default_and_equipped_rejected (tests.test_native_maintenance.NativeMaintenanceTests.test_sell_default_and_equipped_rejected)
+初始USP和仍装备的可售MP5不得出售；库存、装备和流水保持。 ... FAIL
+test_sell_wire_response_loss_recovers_without_second_reward (tests.test_native_maintenance.NativeMaintenanceTests.test_sell_wire_response_loss_recovers_without_second_reward)
+出售后丢应答，重建桥接恢复同一结果；物品已不存在也不能重复发退款。 ... ok
+
+======================================================================
+ERROR: test_renew_wire_retains_gid_and_expiry_and_rejects_permanent (tests.test_native_maintenance.NativeMaintenanceTests.test_renew_wire_retains_gid_and_expiry_and_rejects_permanent)
+A509续费有限期SCAR，保留GID且延长原期限；永久物品负应答不影响后续请求。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_maintenance.py", line 112, in test_renew_wire_retains_gid_and_expiry_and_rejects_permanent
+    quote=self.view('shop.quote',lines=[dict(commodity_id=200020,price_index=0)])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_features.py", line 35, in view
+    return features.query(self.s,self.game,dict(self.base,view=view,**data))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\native_features.py", line 186, in query
+    return shop_quote(service,c,account,data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ZJH\NZ\2020逆战\repository\revival\native_actions.py", line 213, in shop_quote
+    raise Fault('OFFER','商品不存在或未展示',409)
+revival.service.Fault: 商品不存在或未展示
+
+======================================================================
+FAIL: test_sell_default_and_equipped_rejected (tests.test_native_maintenance.NativeMaintenanceTests.test_sell_default_and_equipped_rejected)
+初始USP和仍装备的可售MP5不得出售；库存、装备和流水保持。
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\ZJH\NZ\2020逆战\repository\tests\test_native_maintenance.py", line 100, in test_sell_default_and_equipped_rejected
+    with self.assertRaises(Fault):self.call('inventory.sell',gid=a['gid'])
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Fault not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 34.392s
+
+FAILED (failures=1, errors=1)

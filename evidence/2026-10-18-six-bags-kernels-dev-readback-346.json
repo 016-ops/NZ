@@ -1,0 +1,601 @@
+{
+  "kind": "DEV_SIX_BAGS_NATIVE_MAGIC_AND_ALL_KERNELS_RECEIPTS_PRESERVED",
+  "release": "20261018T075639-ff141383f896",
+  "checked_hashes": {
+    "revival/native_acceptance_loadout.py": "2694204fdbb1cbdbbcdb918d0cdd3362435c593c592535be2869d46f5512c865",
+    "revival/native_pve_benefits.py": "b1f7fc67a08fd42642cc7b98e336c2566f5c4c89598ab0f9a23c0f5981246111",
+    "revival/native_inventory.py": "5cfdfce4fc18823c7cf25ab11dcbe864ecff92795564b2d7c1b19e050e2a00f6",
+    "revival/native_kun.py": "5a5c1e4e140c57d20d0e174c9d960173a0653e5bb94f567d8d6ce335b827e27c",
+    "revival/native_containers.py": "0a3d188f4c09be89b599f314fb10ceb2ef3b9ae08d35346f378ef677fa0c15ee",
+    "config/cn2020-container-compat-v2.json": "79b724843a9dbc2b700d79e0cd413c90587a2a13f36c08447912fde19846a364",
+    "revival/catalogs.py": "eb8c92e9431ef5aba36861d69e6ae6e436d156460998ae9685a59218b7e1091d",
+    "revival/management/commands/prepare_acceptance_loadout.py": "aaeb16a9deb0d9ea62fe93b76d57834eee724176f20253264f9fb8df9f58c5ee",
+    "admin/dist/index.html": "ca32a5a00b8898e50a918050b53964254846cb732d094cef19f48c80b8b1cf65"
+  },
+  "mysql_version": "8.0.30-txsql",
+  "accounts": [
+    {
+      "game_id": 10002,
+      "inventory_before": 4325,
+      "inventory_after": 4329,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "bags": [
+        {
+          "number": 1,
+          "bag_id": 100026,
+          "gid": 1022,
+          "weapons": [
+            103981,
+            103983,
+            103985,
+            103987
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 2,
+          "bag_id": 100063,
+          "gid": 1055,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ],
+          "native_magic": true
+        },
+        {
+          "number": 3,
+          "bag_id": 100035,
+          "gid": 1031,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 4,
+          "bag_id": 100036,
+          "gid": 1032,
+          "weapons": [
+            102762,
+            102764,
+            102763,
+            102765
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 5,
+          "bag_id": 100037,
+          "gid": 1033,
+          "weapons": [
+            102118,
+            102119,
+            102120,
+            102121
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 6,
+          "bag_id": 100933,
+          "gid": 1780,
+          "weapons": [
+            104259,
+            104261,
+            104263,
+            104265
+          ],
+          "native_magic": false
+        }
+      ],
+      "cards": [
+        101210,
+        101211,
+        101149,
+        102000
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "functional_rule_version": "cn2020-pve-functional-v2",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 100713,
+            "equipped": false
+          },
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 102000,
+            "equipped": true
+          },
+          {
+            "item_id": 100591,
+            "equipped": false
+          },
+          {
+            "item_id": 100810,
+            "equipped": false
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          }
+        ]
+      },
+      "kun": {
+        "rule_version": "cn2020-kun-owned-kernels-v1",
+        "weapons": [
+          103428,
+          103716
+        ],
+        "kernels": [
+          103377,
+          103378,
+          103379,
+          103380,
+          103381,
+          103382,
+          103536
+        ],
+        "level": 5,
+        "suit_license": true,
+        "all_kernels_owned": true
+      }
+    },
+    {
+      "game_id": 10003,
+      "inventory_before": 78,
+      "inventory_after": 98,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "bags": [
+        {
+          "number": 1,
+          "bag_id": 100026,
+          "gid": 5537,
+          "weapons": [
+            103981,
+            103983,
+            103985,
+            103987
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 2,
+          "bag_id": 100063,
+          "gid": 5563,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ],
+          "native_magic": true
+        },
+        {
+          "number": 3,
+          "bag_id": 100035,
+          "gid": 5568,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 4,
+          "bag_id": 100036,
+          "gid": 5572,
+          "weapons": [
+            102762,
+            102764,
+            102763,
+            102765
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 5,
+          "bag_id": 100037,
+          "gid": 5356,
+          "weapons": [
+            102118,
+            102119,
+            102120,
+            102121
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 6,
+          "bag_id": 100933,
+          "gid": 5619,
+          "weapons": [
+            104259,
+            104261,
+            104263,
+            104265
+          ],
+          "native_magic": false
+        }
+      ],
+      "cards": [
+        101210,
+        101211,
+        101149,
+        102000
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "functional_rule_version": "cn2020-pve-functional-v2",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 102000,
+            "equipped": true
+          },
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          },
+          {
+            "item_id": 101211,
+            "equipped": true
+          }
+        ]
+      },
+      "kun": {
+        "rule_version": "cn2020-kun-owned-kernels-v1",
+        "weapons": [
+          103428,
+          103716
+        ],
+        "kernels": [
+          103377,
+          103378,
+          103379,
+          103380,
+          103381,
+          103382,
+          103536
+        ],
+        "level": 5,
+        "suit_license": true,
+        "all_kernels_owned": true
+      }
+    },
+    {
+      "game_id": 10004,
+      "inventory_before": 117,
+      "inventory_after": 135,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "bags": [
+        {
+          "number": 1,
+          "bag_id": 100026,
+          "gid": 5380,
+          "weapons": [
+            103981,
+            103983,
+            103985,
+            103987
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 2,
+          "bag_id": 100063,
+          "gid": 5385,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ],
+          "native_magic": true
+        },
+        {
+          "number": 3,
+          "bag_id": 100035,
+          "gid": 5387,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 4,
+          "bag_id": 100036,
+          "gid": 5389,
+          "weapons": [
+            102762,
+            102764,
+            102763,
+            102765
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 5,
+          "bag_id": 100037,
+          "gid": 5391,
+          "weapons": [
+            102118,
+            102119,
+            102120,
+            102121
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 6,
+          "bag_id": 100933,
+          "gid": 5393,
+          "weapons": [
+            104259,
+            104261,
+            104263,
+            104265
+          ],
+          "native_magic": false
+        }
+      ],
+      "cards": [
+        101210,
+        101211,
+        101149,
+        102000
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "functional_rule_version": "cn2020-pve-functional-v2",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 102000,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          },
+          {
+            "item_id": 101149,
+            "equipped": true
+          }
+        ]
+      },
+      "kun": {
+        "rule_version": "cn2020-kun-owned-kernels-v1",
+        "weapons": [
+          103428,
+          103716
+        ],
+        "kernels": [
+          103377,
+          103378,
+          103379,
+          103380,
+          103381,
+          103382,
+          103536
+        ],
+        "level": 5,
+        "suit_license": true,
+        "all_kernels_owned": true
+      }
+    },
+    {
+      "game_id": 10005,
+      "inventory_before": 65,
+      "inventory_after": 85,
+      "all_prior_assets_preserved": true,
+      "all_prior_gids_preserved": true,
+      "wallet_unchanged": true,
+      "bags": [
+        {
+          "number": 1,
+          "bag_id": 100026,
+          "gid": 5477,
+          "weapons": [
+            103981,
+            103983,
+            103985,
+            103987
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 2,
+          "bag_id": 100063,
+          "gid": 5482,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ],
+          "native_magic": true
+        },
+        {
+          "number": 3,
+          "bag_id": 100035,
+          "gid": 5484,
+          "weapons": [
+            103428,
+            103429,
+            103430,
+            103431
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 4,
+          "bag_id": 100036,
+          "gid": 5486,
+          "weapons": [
+            102762,
+            102764,
+            102763,
+            102765
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 5,
+          "bag_id": 100037,
+          "gid": 5488,
+          "weapons": [
+            102118,
+            102119,
+            102120,
+            102121
+          ],
+          "native_magic": false
+        },
+        {
+          "number": 6,
+          "bag_id": 100933,
+          "gid": 5490,
+          "weapons": [
+            104259,
+            104261,
+            104263,
+            104265
+          ],
+          "native_magic": false
+        }
+      ],
+      "cards": [
+        101210,
+        101211,
+        101149,
+        102000
+      ],
+      "benefits": {
+        "rule_version": "cn2020-pve-benefits-v1",
+        "functional_rule_version": "cn2020-pve-functional-v2",
+        "level": 3,
+        "active": true,
+        "vip_info": {
+          "VipPVEPoint": 10500,
+          "VipPVEEndTime": 2147483647,
+          "VipPVPPoint": 0,
+          "VipPVPEndTime": 0
+        },
+        "functional_items": [
+          {
+            "item_id": 102000,
+            "equipped": true
+          },
+          {
+            "item_id": 101211,
+            "equipped": true
+          },
+          {
+            "item_id": 101149,
+            "equipped": true
+          },
+          {
+            "item_id": 101210,
+            "equipped": true
+          }
+        ]
+      },
+      "kun": {
+        "rule_version": "cn2020-kun-owned-kernels-v1",
+        "weapons": [
+          103428,
+          103716
+        ],
+        "kernels": [
+          103377,
+          103378,
+          103379,
+          103380,
+          103381,
+          103382,
+          103536
+        ],
+        "level": 5,
+        "suit_license": true,
+        "all_kernels_owned": true
+      }
+    }
+  ],
+  "all_historical_receipts_preserved": true,
+  "idempotent_replay_equal": true,
+  "request_id": "acceptance-six-bags-20261018-v3",
+  "rule_version": "cn2020-acceptance-six-bags-v3",
+  "formal_checkin_enabled": 0,
+  "health": [
+    {
+      "port": 18765,
+      "status": 200
+    },
+    {
+      "port": 18767,
+      "status": 200
+    }
+  ],
+  "at": 1792310403,
+  "native_live_verified": false,
+  "services": [
+    "active",
+    "active",
+    "active",
+    "active"
+  ]
+}

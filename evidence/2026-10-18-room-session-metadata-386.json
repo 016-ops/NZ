@@ -1,0 +1,25 @@
+{
+  "sessions": [
+    {
+      "id": 0,
+      "state": 4
+    },
+    {
+      "id": 1,
+      "state": 1
+    },
+    {
+      "id": 2,
+      "state": 4
+    },
+    {
+      "id": 65536,
+      "state": 6
+    },
+    {
+      "id": 65537,
+      "state": 6
+    }
+  ],
+  "credentials_or_window_content_read": false
+}

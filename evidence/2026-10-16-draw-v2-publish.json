@@ -1,0 +1,31 @@
+{
+  "version": "cn2020-draw-compat-v2",
+  "results": [
+    {
+      "namespace": "draw:epic",
+      "status": "PUBLISHED",
+      "revision": 2
+    },
+    {
+      "namespace": "draw:fine",
+      "status": "PUBLISHED",
+      "revision": 2
+    },
+    {
+      "namespace": "draw:rare",
+      "status": "PUBLISHED",
+      "revision": 2
+    },
+    {
+      "namespace": "draw:selected",
+      "status": "PUBLISHED",
+      "revision": 2
+    },
+    {
+      "namespace": "draw:workshop",
+      "status": "PUBLISHED",
+      "revision": 2
+    }
+  ],
+  "checkin_modified": false
+}

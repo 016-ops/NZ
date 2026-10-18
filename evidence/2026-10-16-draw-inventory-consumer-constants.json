@@ -1,0 +1,62 @@
+{
+  "kind": "CURRENT_DRAW_CONSUMER_BYTECODE_CONSTANTS",
+  "source_sha256": "cd213dcd3157bb879dcd10a7aecf490151a87bbaa6c711cbdfc3f8d04fafea6f",
+  "functions": [
+    {
+      "name": "GfxMovie_AvatarRoom.OnStart",
+      "bytes": 562,
+      "sha256": "a2e1ba9b3df3ae00eae115b00a0f16a66c21be8c70437935f5b7a10bc1eeae13",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_FragementExchange.OnStart",
+      "bytes": 479,
+      "sha256": "2f0f6c885cf516f6b7eadb296a6cf7833d984708dece512fede864b3cb288d28",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnStart",
+      "bytes": 74,
+      "sha256": "d5fae6547835efbeabca725f0673217a22458370678558ac01e0e5762e41ae2b",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnPartExchageReturn",
+      "bytes": 278,
+      "sha256": "08f81ea1648b3c9c6e6e5065ab89aa5b0a7c9a9c00571a6da590cff0157b64d1",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnNtfUpdatePlayerProperty",
+      "bytes": 1039,
+      "sha256": "b32977d0f8051171a648f0435d830c763b8032e6313fdca07c32481ab17698e8",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    }
+  ],
+  "boundary": "Constants require branch and real-client confirmation; no script or process mutation"
+}

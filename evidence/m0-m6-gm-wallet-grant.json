@@ -1,0 +1,55 @@
+{
+  "kind": "EXISTING_GM_MYSQL_WALLET_MAXIMIZE",
+  "runs": [
+    {
+      "rules_version": "cn2020-wallet-width-compat-v1",
+      "balances": {
+        "cn2020:TP": 2147483647,
+        "cn2020:GP": 2147483647,
+        "cn2020:MP": 2147483647,
+        "cn2020:HP": 2147483647,
+        "cn2020:EP": 2147483647,
+        "cn2020:SP": 65535,
+        "cn2020:MECHA": 9223372036854775807
+      },
+      "status": "GRANTED",
+      "currencies_changed": 7,
+      "operation_count": 1
+    },
+    {
+      "rules_version": "cn2020-wallet-width-compat-v1",
+      "balances": {
+        "cn2020:TP": 2147483647,
+        "cn2020:GP": 2147483647,
+        "cn2020:MP": 2147483647,
+        "cn2020:HP": 2147483647,
+        "cn2020:EP": 2147483647,
+        "cn2020:SP": 65535,
+        "cn2020:MECHA": 9223372036854775807
+      },
+      "status": "UNCHANGED",
+      "currencies_changed": 0,
+      "operation_count": 0
+    }
+  ],
+  "readback": {
+    "wallet": {
+      "rules_version": "cn2020-wallet-width-compat-v1",
+      "balances": {
+        "cn2020:TP": 2147483647,
+        "cn2020:GP": 2147483647,
+        "cn2020:MP": 2147483647,
+        "cn2020:HP": 2147483647,
+        "cn2020:EP": 2147483647,
+        "cn2020:SP": 65535,
+        "cn2020:MECHA": 9223372036854775807
+      }
+    },
+    "operations": 1,
+    "entries": 7,
+    "audits": 1,
+    "inventory_count": 4323,
+    "mysql_version": "8.0.30-txsql"
+  },
+  "native_ui_verified": false
+}

@@ -1,0 +1,68 @@
+{
+  "kind": "ORIGINAL_INIT_PACKAGE_RELATIVE_PATH_COPY",
+  "files": [
+    {
+      "path": "TGame/CookedPC/EditorMaterials.upk",
+      "bytes": 669269,
+      "sha256": "2bc8f9271699d7851d31587c2cfafddf9054bc366810e499d4b2a8deb43210d2",
+      "created": true
+    },
+    {
+      "path": "TGame/CookedPC/EditorResources.upk",
+      "bytes": 823214,
+      "sha256": "99df45fac2e520de3ca05eb66238fd681605ff5fe6eabe236c7f757f22967f8d",
+      "created": true
+    },
+    {
+      "path": "TGame/CookedPC/EngineDebugMaterials.upk",
+      "bytes": 5817514,
+      "sha256": "7083a411e3664b0b1a49a68af2a5a9fcc929691d584055ccd2056e2fe4044423",
+      "created": true
+    },
+    {
+      "path": "TGame/CookedPC/EngineFonts.upk",
+      "bytes": 123721,
+      "sha256": "7152464978da9fc8c35a27b1673c92186dce474844c64e2ff7ca1ff239b91939",
+      "created": true
+    },
+    {
+      "path": "TGame/CookedPC/EngineMaterials.upk",
+      "bytes": 346009,
+      "sha256": "9c7c767a48a7aa80162c3d57d74aea1a032c197d59ef85969f487444fe0c9253",
+      "created": true
+    },
+    {
+      "path": "TGame/CookedPC/EngineMeshes.upk",
+      "bytes": 45567,
+      "sha256": "d360d27b54f22eba4200aae784e9bb84d5670a53623af77020f5c9f20f541c10",
+      "created": true
+    },
+    {
+      "path": "TGame/CookedPC/EngineResources.upk",
+      "bytes": 89457,
+      "sha256": "2f3ad8ef6b6883fa567bfd61f414040d9946f3bd078fa4d2d5dda446b1a04df2",
+      "created": true
+    },
+    {
+      "path": "TGame/CookedPC/EngineVolumetrics.upk",
+      "bytes": 1344590,
+      "sha256": "93dc9c6bc2774a8b691a7853a71b5beca0979e36cb0af8824869d6dc23fd7193",
+      "created": true
+    },
+    {
+      "path": "TGame/CookedPC/Engine_MI_Shaders.upk",
+      "bytes": 3812297,
+      "sha256": "e7a2a891a03b68f684d2ce3d480e611a89d21d693d919da4b71aad7acc39259f",
+      "created": true
+    },
+    {
+      "path": "TGame/CookedPC/UI/DefaultUISkin.upk",
+      "bytes": 120639,
+      "sha256": "e7282745ba8d07cc85384bf651a455893df1c91198da3ce9795c6836575c95bb",
+      "created": true
+    }
+  ],
+  "bytes": 13192277,
+  "original_client_writes": 0,
+  "node_ready": false
+}

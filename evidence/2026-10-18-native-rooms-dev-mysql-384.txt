@@ -1,0 +1,37 @@
+test_create_retry_keeps_id_and_assets_and_hides_password (tests.test_native_rooms.NativeRoomTests.test_create_retry_keeps_id_and_assets_and_hides_password)
+同一建房并发/重试只生成一个稳定房号，短原生口令慢哈希且不出现在公开快照。 ... ok
+test_game_lease_revoke_releases_and_transfers_without_parent_logout (tests.test_native_rooms.NativeRoomTests.test_game_lease_revoke_releases_and_transfers_without_parent_logout)
+来源玩家会话仍有效，独立游戏被撤销也应释放席位，剩余真实玩家成为房主。 ... ok
+test_last_fighter_seat_is_atomic_and_bad_password_preserves_room (tests.test_native_rooms.NativeRoomTests.test_last_fighter_seat_is_atomic_and_bad_password_preserves_room)
+4人最后一席并发只有一人成功；错误口令不会创建幽灵席位或更改修订。 ... ok
+test_native_bridge_create_list_failure_then_continue_and_allocation (tests.test_native_rooms.NativeRoomTests.test_native_bridge_create_list_failure_then_continue_and_allocation)
+完整原生字节走真实MySQL；建房进房可回读，失败保持连接，未就绪不发假开局地址。 ... ok
+test_native_camp_seats_observer_and_capacity_failure_then_continue (tests.test_native_rooms.NativeRoomTests.test_native_camp_seats_observer_and_capacity_failure_then_continue)
+原生两阵营从0/16开始；满阵营失败不掉线，观战真实移席，返回战斗后保持资格。 ... ok
+test_native_create_unknown_commit_recovers_same_room_after_restart (tests.test_native_rooms.NativeRoomTests.test_native_create_unknown_commit_recovers_same_room_after_restart)
+真实提交后丢响应，重建桥接查询原操作，不能产生第二房号或重复席位。 ... ok
+test_observer_has_no_reward_eligibility_and_owner_can_reconfigure (tests.test_native_rooms.NativeRoomTests.test_observer_has_no_reward_eligibility_and_owner_can_reconfigure)
+原生观战与战斗席位分别计数；观战者进入冻结名单也没有持久奖励资格。 ... ok
+test_password_transfer_is_private_and_bound_to_room_identity (tests.test_native_rooms.NativeRoomTests.test_password_transfer_is_private_and_bound_to_room_identity)
+移交后的新房主可取得原生通知所需口令，其他成员/频道/历史回执仍不能读取。 ... ok
+test_ready_revision_owner_kick_and_cross_room_reference (tests.test_native_rooms.NativeRoomTests.test_ready_revision_owner_kick_and_cross_room_reference)
+准备、房主配置及踢人即时检查权限/修订，引用别房不能误操作本人或别人。 ... ok
+test_rename_transfer_native_replies_and_settings_ack (tests.test_native_rooms.NativeRoomTests.test_rename_transfer_native_replies_and_settings_ack)
+改名和移交有真实原生应答；旧房主权限立即失效，A330失败后仍能继续读取。 ... ok
+test_resize_reflows_legal_native_seats_and_leaving_revokes_reward (tests.test_native_rooms.NativeRoomTests.test_resize_reflows_legal_native_seats_and_leaving_revokes_reward)
+八人房出现空位后缩为四人，只搬失效席且不冲突；已冻结成员离开立即失去奖励资格。 ... ok
+test_room_invitation_delivery_identity_expiry_and_blocking (tests.test_native_rooms.NativeRoomTests.test_room_invitation_delivery_identity_expiry_and_blocking)
+邀请只送接收者，五分钟权限不能跨账号/跨日重用；拉黑立即取消无口令加入资格。 ... ok
+test_room_receiver_events_ack_only_after_encoded_delivery (tests.test_native_rooms.NativeRoomTests.test_room_receiver_events_ack_only_after_encoded_delivery)
+两个独立游戏身份的入房/准备通知真实送到对端桥接，sendall确认前事件保持未送达。 ... ok
+test_settings_are_server_validated_and_missing_map_does_not_allocate (tests.test_native_rooms.NativeRoomTests.test_settings_are_server_validated_and_missing_map_does_not_allocate)
+服务器拒绝错误人数/模式/地图URL/战斗金钱；缺失的古墓主图不能假分配成功。 ... ok
+test_start_reserves_frozen_instance_but_cannot_fake_native_ready (tests.test_native_rooms.NativeRoomTests.test_start_reserves_frozen_instance_but_cannot_fake_native_ready)
+开局只冻结真实房间和装备；未加载节点不能报告已入局，超时后重新开放可再开局。 ... ok
+test_tail_event_fault_rolls_back_whole_creation (tests.test_native_rooms.NativeRoomTests.test_tail_event_fault_rolls_back_whole_creation)
+建房最后接收者事件失败，房号、席位、口令、幂等、审计和资产均回到原状。 ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 500.310s
+
+OK

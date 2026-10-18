@@ -1,0 +1,7 @@
+test_native_pending_reconnect_failure_and_delivery (tests.test_native_workshop.NativeWorkshopTests.test_native_pending_reconnect_failure_and_delivery)
+原生免费开奖后断线，查询重放原奖；传输确认后余额不足有失败应答，仍可查询。 ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 4.847s
+
+OK

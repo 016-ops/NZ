@@ -1,0 +1,19 @@
+{
+  "kind": "FIXED_UI_SCRIPT_DECODED_DIFF",
+  "changes": [
+    [
+      6683142,
+      46,
+      45
+    ],
+    [
+      6683153,
+      46,
+      44
+    ]
+  ],
+  "all_other_decoded_bytes_equal": true,
+  "source_sha256": "cd213dcd3157bb879dcd10a7aecf490151a87bbaa6c711cbdfc3f8d04fafea6f",
+  "variant_sha256": "beada83dfc59b74bcc2048d42378ff5146c046f0876e06749c6f36509518b130",
+  "native_loaded": false
+}

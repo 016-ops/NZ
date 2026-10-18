@@ -1,0 +1,20 @@
+{
+  "kind": "USER_ROOM_SERVER_READ_ONLY_INSPECTION",
+  "connected": true,
+  "exit_code": 0,
+  "inspection": {
+    "os": "Microsoft Windows Server 2025 Datacenter",
+    "version": "10.0.26100",
+    "memory_total_kb": 4193772,
+    "memory_free_kb": 1765076,
+    "logical_cpus": 4,
+    "disks": [
+      {
+        "DeviceID": "C:",
+        "Size": 42842714112,
+        "FreeSpace": 25798864896
+      }
+    ]
+  },
+  "error_type": null
+}

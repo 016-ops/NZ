@@ -1,0 +1,37 @@
+test_cancel_before_ticket_still_logs_out (tests.test_native_launcher.LauncherTests.test_cancel_before_ticket_still_logs_out)
+取消可在创建游戏前生效，且已经登录的来源会话仍会清理。 ... ok
+test_cleanup_failure_is_retryable_without_losing_credentials (tests.test_native_launcher.LauncherTests.test_cleanup_failure_is_retryable_without_losing_credentials)
+断网不等于注销成功；保留内存凭据重试，确认成功后才释放。 ... ok
+test_desktop_pipe_eof_requests_cleanup (tests.test_native_launcher.LauncherTests.test_desktop_pipe_eof_requests_cleanup)
+Tauri 正常关闭或崩溃使管道 EOF，均请求清理；不接受其他管道内容作为执行指令。 ... ok
+test_double_submit_does_not_create_two_workers (tests.test_native_launcher.LauncherTests.test_double_submit_does_not_create_two_workers)
+第一个启动还未结束时第二次点击被拒绝；停止仅设置本轮取消标记。 ... ok
+test_error_text_never_echoes_credentials (tests.test_native_launcher.LauncherTests.test_error_text_never_echoes_credentials)
+底层异常含请求正文时仅返回异常类别，固定业务错误码可供用户排查。 ... ok
+test_failed_identity_read_revokes_just_created_source_session (tests.test_native_launcher.LauncherTests.test_failed_identity_read_revokes_just_created_source_session)
+登录后 me 失败仍撤销刚产生的来源凭据，不能遗留可用登录。 ... ok
+test_graphics_mode_cannot_select_arbitrary_dll_or_change_during_run (tests.test_native_launcher.LauncherTests.test_graphics_mode_cannot_select_arbitrary_dll_or_change_during_run)
+显示模式只接受固定枚举，不能传路径；运行期间第二次切换不会改变当前工作线程。 ... ok
+test_invalid_lease_is_rejected_before_starting_thread (tests.test_native_launcher.LauncherTests.test_invalid_lease_is_rejected_before_starting_thread)
+旧服务或损坏租约不能让启动器假定可续期，布尔值也不能冒充整数时间。 ... ok
+test_login_discards_password_and_keeps_tokens_out_of_status (tests.test_native_launcher.LauncherTests.test_login_discards_password_and_keeps_tokens_out_of_status)
+正常登录后清空输入字典，公开状态只含角色名，不含密码、邮箱或来源令牌。 ... ok
+test_origin_host_capability_and_method_are_required (tests.test_native_launcher.LauncherTests.test_origin_host_capability_and_method_are_required)
+恶意网站、DNS 重绑定和无令牌均不能调用；GET 不能触发启动。 ... ok
+test_oversized_non_json_and_unknown_arguments_fail (tests.test_native_launcher.LauncherTests.test_oversized_non_json_and_unknown_arguments_fail)
+边界请求在派发前拒绝，不能把 UI 变成任意路径/参数执行入口。 ... ok
+test_recovery_preserves_active_process_and_external_edits (tests.test_native_launcher.LauncherTests.test_recovery_preserves_active_process_and_external_edits)
+旧进程仍活跃时不恢复；进程退出后只恢复匹配变体，不覆盖其他工具写入的新内容。 ... ok
+test_revoked_lease_stops_game_without_retry (tests.test_native_launcher.LauncherTests.test_revoked_lease_stops_game_without_retry)
+有效期内服务端撤销也立即停止游戏，不能靠本地缓存继续续期。 ... ok
+test_startup_timeout_is_not_success_and_revokes_both_sessions (tests.test_native_launcher.LauncherTests.test_startup_timeout_is_not_success_and_revokes_both_sessions)
+初始化超时即使已创建进程也必须报错；完成本地清理后撤销来源和游戏凭据。 ... ok
+test_static_traversal_cannot_read_private_files (tests.test_native_launcher.LauncherTests.test_static_traversal_cannot_read_private_files)
+静态路由不能读取 runtime、配置、Python 或其他私人文件。 ... ok
+test_uncertain_redeem_does_not_repeat_and_revokes_source (tests.test_native_launcher.LauncherTests.test_uncertain_redeem_does_not_repeat_and_revokes_source)
+票据兑换应答丢失不重放；撤销来源会话同时废止可能已生成的游戏会话。 ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 0.083s
+
+OK

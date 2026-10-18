@@ -1,0 +1,13 @@
+{
+  "kind": "NATIVE_FEATURE_TDR_OFFLINE_NOT_LIVE",
+  "passed": true,
+  "fixtures": 153,
+  "x86": true,
+  "game_started": false,
+  "network_init_called": false,
+  "cleanup_verified": true,
+  "vip_gain_types": [
+    35,
+    48
+  ]
+}

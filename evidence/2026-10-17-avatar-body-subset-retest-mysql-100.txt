@@ -1,0 +1,9 @@
+test_compact_commit_is_atomic_authorized_and_matches_full_snapshot (tests.test_native_inventory.NativeInventoryTests.test_compact_commit_is_atomic_authorized_and_matches_full_snapshot)
+轻量换装和回读同事务；回读故障回滚换装/审计，错投影与撤销凭据不能走快捷路径。 ... ok
+test_pve_role_switch_preserves_factions_and_rejects_other_owner (tests.test_native_inventory.NativeInventoryTests.test_pve_role_switch_preserves_factions_and_rejects_other_owner)
+猎场角色64在根1独立换装，旧PvE槽释放，两阵营不变；错背包/跨账号仍失败。 ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 13.473s
+
+OK

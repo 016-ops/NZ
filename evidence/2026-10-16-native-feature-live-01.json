@@ -1,0 +1,12 @@
+{
+  "kind": "SINGLE_CLIENT_OBSERVATION_NOT_ACCEPTANCE",
+  "session": "manual-online-20261016-113030-148976",
+  "inventory_projected": 4323,
+  "ui_result": "GAME_TITLE_BAR_CAPTURED_BUT_MAIN_CONTENT_NOT_VISIBLE; EXIT_OPENED_EXTERNAL_ACTIVITY_POPUP",
+  "feature_requests": 9,
+  "heartbeat_responses": 16,
+  "configuration_restored": true,
+  "cleanup_verified": true,
+  "source_and_game_revoked": true,
+  "purchase_skin_signin_social_verified": false
+}

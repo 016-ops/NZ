@@ -1,0 +1,25 @@
+{
+  "kind": "HANDOFF_READ_ONLY_LOOPBACK_HEALTH",
+  "date": "2026-10-15",
+  "profiles": [
+    {
+      "port": 18765,
+      "health_status": "ok",
+      "profile": "cn-current-unverified",
+      "email_ownership_verification": "CONFIGURED",
+      "native_launch_ready": false,
+      "read_only_probe_passed": true
+    },
+    {
+      "port": 18767,
+      "health_status": "ok",
+      "profile": "test-pve-v1",
+      "email_ownership_verification": "CONFIGURED",
+      "native_launch_ready": false,
+      "read_only_probe_passed": true
+    }
+  ],
+  "email_sent": false,
+  "deploy_attempted": false,
+  "business_writes": false
+}

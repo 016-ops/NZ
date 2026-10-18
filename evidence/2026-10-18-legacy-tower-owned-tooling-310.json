@@ -1,0 +1,22 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 10,
+  "passed": [
+    "tests.test_native_tower_owned_compat.TowerOwnedTests.test_candidate_can_only_be_applied_once",
+    "tests.test_native_tower_owned_compat.TowerOwnedTests.test_guard_restores_exact_tower_package_after_interruption",
+    "tests.test_native_tower_owned_compat.TowerOwnedTests.test_original_package_and_other_16532_exports_unchanged",
+    "tests.test_native_tower_owned_compat.TowerOwnedTests.test_prefix_refreshes_only_owned_local_player_and_preserves_original",
+    "tests.test_native_tower_owned_compat.TowerOwnedTests.test_three_debug_conditions_skip_only_original_standalone_gifts",
+    "tests.test_native_legacy_tower_owned_compat.LegacyTowerOwnedTests.test_all_three_original_debug_conditions_and_vm_spans",
+    "tests.test_native_legacy_tower_owned_compat.LegacyTowerOwnedTests.test_interrupted_trial_restores_original_package",
+    "tests.test_native_legacy_tower_owned_compat.LegacyTowerOwnedTests.test_original_online_ai_nil_and_actual_local_player_paths",
+    "tests.test_native_legacy_tower_owned_compat.LegacyTowerOwnedTests.test_original_region_and_all_other_exports_are_preserved",
+    "tests.test_native_legacy_tower_owned_compat.LegacyTowerOwnedTests.test_unknown_alias_changed_source_and_reapply_are_rejected"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.672
+}

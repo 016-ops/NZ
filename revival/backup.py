@@ -1,5 +1,6 @@
 """MySQL 一致性备份：新文件写入、临时库恢复、逐表对账后才报告成功。"""
 import hashlib
+import base64
 import json
 import os
 import re
@@ -15,12 +16,21 @@ from .db import column_map
 from .models import TABLE_MODELS
 
 
+def canonical_row(row):
+    """为对账确定性编码二进制列，保留其类型；设置BLOB不能按UTF8解码或直接交给JSON。
+
+    ORM和恢复验证的原生MySQL游标共用此函数；正文只参与内存摘要，不进入备份结果报告。
+    """
+    values = {key: {'binary_base64': base64.b64encode(bytes(value)).decode('ascii')}
+              if isinstance(value, (bytes, bytearray, memoryview)) else value for key, value in row.items()}
+    return json.dumps(values, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+
+
 def snapshot(repository):
     """将稳定业务列规范化后计算摘要；报告仅含计数与摘要，不输出凭据。"""
     result = {}
     for name in TABLE_MODELS:
-        rows = [json.dumps(dict(row), ensure_ascii=False, sort_keys=True, separators=(',',':'))
-                for row in repository.select(name)]
+        rows = [canonical_row(row) for row in repository.select(name)]
         digest = hashlib.sha256('\n'.join(sorted(rows)).encode()).hexdigest()
         result[name] = {'count': len(rows), 'sha256': digest}
     return result
@@ -59,7 +69,7 @@ def backup(database, destination):
             before = snapshot(repository)
             with target.open('xb') as output:
                 process = subprocess.run([mysql_binary('mysqldump'), *args, '--single-transaction',
-                    '--skip-add-locks', '--no-tablespaces', '--set-gtid-purged=OFF', '--column-statistics=0',
+                    '--skip-add-locks', '--no-tablespaces', '--set-gtid-purged=OFF', '--column-statistics=0', '--hex-blob',
                     config['NAME']], env=env, stdout=output, stderr=subprocess.PIPE, timeout=120)
             if process.returncode:
                 raise RuntimeError('MySQL dump failed; credential-bearing stderr is withheld')
@@ -88,7 +98,7 @@ def backup(database, destination):
                             for column in booleans:
                                 if row[column] is not None:
                                     row[column] = bool(row[column])
-                        rows = sorted(json.dumps(row,ensure_ascii=False,sort_keys=True,separators=(',',':')) for row in values)
+                        rows = sorted(canonical_row(row) for row in values)
                         restored[name] = {'count':len(rows),'sha256':hashlib.sha256('\n'.join(rows).encode()).hexdigest()}
             if restored != before:
                 raise RuntimeError('Restored backup differs from the source snapshot')

@@ -1,0 +1,10 @@
+{
+  "engine": "mysql",
+  "mysql_version": "8.0.30-txsql",
+  "database_is_configured_current": true,
+  "remote_host_non_loopback": true,
+  "entitlements": 4323,
+  "bindings": 4323,
+  "matches_user_mysql_configuration": true,
+  "kind": "REMOTE_DEV_DATABASE_READBACK"
+}

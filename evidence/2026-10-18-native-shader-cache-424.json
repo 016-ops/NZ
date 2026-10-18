@@ -1,0 +1,36 @@
+{
+  "kind": "ORIGINAL_SHADER_CACHE_APPEND_ONLY",
+  "files": [
+    {
+      "target": 0,
+      "path": "TGame/CookedPC/GlobalShaderCache-PC-D3D-SM3.bin",
+      "bytes": 454041,
+      "sha256": "eb31e716843570464beb497f67af6edc90c2f2b512d0dad5fdd70f594c12468d",
+      "created": true
+    },
+    {
+      "target": 1,
+      "path": "TGame/CookedPC/GlobalShaderCache-PC-D3D-SM3.bin",
+      "bytes": 454041,
+      "sha256": "eb31e716843570464beb497f67af6edc90c2f2b512d0dad5fdd70f594c12468d",
+      "created": true
+    },
+    {
+      "target": 0,
+      "path": "TGame/CookedPC/RefShaderCache-PC-D3D-SM3.upk",
+      "bytes": 38515776,
+      "sha256": "f6190cef585003fd95b5318d3b758b459b950f0ad591a2e4a8571e710b71232a",
+      "created": true
+    },
+    {
+      "target": 1,
+      "path": "TGame/CookedPC/RefShaderCache-PC-D3D-SM3.upk",
+      "bytes": 38515776,
+      "sha256": "f6190cef585003fd95b5318d3b758b459b950f0ad591a2e4a8571e710b71232a",
+      "created": true
+    }
+  ],
+  "node_ready": false,
+  "original_client_writes": 0,
+  "archive_sha256": "aade5eb3f54955e9058d4aa14cedc05be99aab52497eb4c325fc556902558e60"
+}

@@ -1,0 +1,21 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 9,
+  "passed": [
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_automatic_location_commits_catalog_slot_and_notifies",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_automatic_location_rejects_unknown_or_hidden_item",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_committed_ack_without_matching_readback_is_not_notified",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_equipment_projection_uses_actual_parent_only",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_equipment_requires_matching_committed_ack",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_full_catalog_bounded_packets_and_exact_last_marker",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_pve_role_automatic_slot_is_persisted_and_projected",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_snapshot_rejects_wrong_identity_duplicate_gid_and_catalog_change",
+    "tests.test_native_inventory_bridge.InventoryBridgeTests.test_wallet_maxima_roundtrip_login_and_player_info_and_reject_corruption"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.204
+}

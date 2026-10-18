@@ -1,0 +1,9 @@
+{
+  "version": "dev-linux-crypto-wheels-v1",
+  "evidence": "372 local download matched official PyPI JSON SHA256 and byte size; Linux CPython 3.12 x86_64",
+  "files": [
+    {"package": "cryptography", "version": "50.0.2", "name": "cryptography-50.0.2-cp311-abi3-manylinux_2_34_x86_64.whl", "bytes": 4752576, "sha256": "9dab55f57c74c3cad24c323bacbbd04be4705ba6eb0d92e920b1fc4837ed5079"},
+    {"package": "cffi", "version": "2.1.1", "name": "cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl", "bytes": 221822, "sha256": "c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf"},
+    {"package": "pycparser", "version": "3.11", "name": "pycparser-3.11-py3-none-any.whl", "bytes": 51178, "sha256": "51d5a8ba2be0bbe440b99d2112604c95bbbc3c2748a64260186c541e1729cd80"}
+  ]
+}

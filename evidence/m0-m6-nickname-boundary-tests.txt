@@ -1,0 +1,13 @@
+test_data_guard_and_noaccess_pages_are_not_read (tests.test_native_login_probe.NicknameCodeBoundaryTests.test_data_guard_and_noaccess_pages_are_not_read)
+可读数据页、guard代码页和noaccess均拒绝；只允许先读取8字节固定函数槽。 ... ok
+test_non_owned_process_never_reads_slots (tests.test_native_login_probe.NicknameCodeBoundaryTests.test_non_owned_process_never_reads_slots)
+进程不属于当前Job时不能读取固定槽，更不能通过外部PID采集代码。 ... ok
+test_owned_code_reads_two_fixed_targets_without_following_relative_jump (tests.test_native_login_probe.NicknameCodeBoundaryTests.test_owned_code_reads_two_fixed_targets_without_following_relative_jump)
+直接E9只换算模块归属；每个固定槽最多128字节且不会进一步读取跳转目标。 ... ok
+test_partial_slot_read_cannot_create_evidence (tests.test_native_login_probe.NicknameCodeBoundaryTests.test_partial_slot_read_cannot_create_evidence)
+固定槽只读到部分字节时不解码残缺指针，不查询页面或创建代码文件。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.006s
+
+OK

@@ -1,0 +1,12 @@
+{
+  "kind": "BACKPACK_AUTOMATIC_SLOT_DISCONNECT_BEFORE_FIX",
+  "boot": 78,
+  "request_sha256": "8f4cda1df6bb6650f758fbd0258a51344bb4601b27f72a848069529a56867b5c",
+  "request_bytes": 27,
+  "item_id": 100037,
+  "catalog_location": 12,
+  "ownership_confirmed_by_read_only_mysql": true,
+  "cause": "Bridge automatic-slot whitelist omitted backpack slot 12; backend also rejected it",
+  "cleanup": "User explicitly approved stopping the one remaining owned GameLoader; parent restored configuration and revoked owned sessions",
+  "tested_repair": "Independent owned backpack memberships preserve other bags and weapon children; transaction then A009/A00B"
+}

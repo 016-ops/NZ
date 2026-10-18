@@ -148,6 +148,9 @@ def test_host_ready(service, match_id):
 def maintain(service):
     """清理没有有效会话的席位，并使超时实例失败、房间重新开放；与注册、制裁、心跳共用部署锁，避免维护和请求互相覆盖。"""
     with service.db.transaction() as c:
+        # 原生席位另绑定游戏租约；来源玩家会话仍有效时，过期游戏也必须释放房间。
+        from .native_rooms import expire as expire_native_rooms
+        expired_native=expire_native_rooms(service,c)
         # Expired sessions cannot retain a seat. This is a local test policy, not a recovered retail rule.
         members = list(c.expired_members(service.clock()))
         for member in members:
@@ -157,7 +160,7 @@ def maintain(service):
             c.update('matches', Q(id=match['id']), {'state': 'FAILED'})
             c.update('rooms', (Q(id=match['room_id']) & ~Q(state='CLOSED')), {'state': 'OPEN', 'match_id': None, 'revision': F('revision') + 1})
             c.update('room_members', Q(room_id=match['room_id']), {'ready': 0})
-        return {'expired_matches': len(expired), 'expired_members': len(members)}
+        return {'expired_matches': len(expired), 'expired_members': len(members), 'expired_native_members':expired_native}
 
 
 # 身份、epoch 与未过期租约核验通过后，仅 ACTIVE 实例可以续租；失联后不能凭旧令牌恢复授权。

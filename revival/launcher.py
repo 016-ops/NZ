@@ -7,6 +7,9 @@ from .service import Fault, identifier, text_field
 from adapters.email_protocol import PROTOCOL
 
 TICKET_SECONDS = 60
+LEASE_VERSION = 'launcher-lease-v1'
+LEASE_SECONDS = 180
+LEASE_MAX_SECONDS = 12 * 3600
 
 
 def capabilities():
@@ -18,6 +21,8 @@ def capabilities():
             'email_verification_required': settings.NZ_EMAIL_VERIFICATION_REQUIRED,
             'password_recovery': 'EMAIL_CODE',
             'one_time_handoff': True, 'native_client_adapter': 'UNIMPLEMENTED',
+            'session_lease': LEASE_VERSION,
+            'native_settings_storage': 'CURRENT_TDR_OPAQUE_V1',
             'native_launch_ready': False, 'qq_required': False}
 
 
@@ -78,6 +83,9 @@ def issue(service, token, data):
 def redeem(service, data):
     """启动器凭票据及原始随机证明兑换独立游戏会话；并发至多成功一次，未知结果不能重放。"""
     require_protocol(data)
+    lease_mode = data.get('session_lease')
+    if lease_mode not in (None, LEASE_VERSION):
+        raise Fault('PROTOCOL', 'Unsupported launcher lease version', 409)
     client_sha = sha256_field(data, 'client_sha256')
     ticket = text_field(data.get('ticket'), 'ticket', 128)
     verifier = data.get('verifier')
@@ -92,29 +100,71 @@ def redeem(service, data):
         account, session = source_session(service, c, row)
         if row['consumed_at'] is not None:
             raise Fault('TICKET_CONSUMED', 'Launch ticket was already redeemed; request a new ticket', 409)
+        # 旧账号可能只有角色与装饰，缺少原生第一人称手臂资源。与本次有效票据兑换
+        # 共用事务向前补齐本人正在使用的角色，不重置初装回执或已有库存。
+        from .native_avatar_body import prepare_equipped
+        prepare_equipped(service, c, account['id'])
         game_token = new_token()
         expires = min(service.clock() + 3600, session['expires_at'])
+        lease_max = None
+        if lease_mode is not None:
+            # 显式租约缩短本轮来源与游戏凭据；崩溃后停止续期，最多三分钟即失效。
+            # 后续续期重新检查制裁/安全版本，单次登录最多十二小时，不允许复活已过期凭据。
+            lease_max = service.clock() + LEASE_MAX_SECONDS
+            expires = min(service.clock() + LEASE_SECONDS, session['expires_at'])
+            c.update('sessions', Q(token_hash=row['session_id']), {'expires_at': expires})
         c.update('game_sessions', Q(account_id=account['id'], revoked=False), {'revoked': True})
         c.insert('game_sessions', {'digest': token_hash(game_token), 'account_id': account['id'],
             'session_id': row['session_id'], 'launch_id': row['digest'], 'security_version': row['security_version'],
-            'profile': row['profile'], 'client_sha256': client_sha, 'created_at': service.clock(), 'expires_at': expires})
+            'profile': row['profile'], 'client_sha256': client_sha, 'created_at': service.clock(), 'expires_at': expires,
+            'lease_max_expires_at': lease_max})
         c.update('launch_tickets', Q(digest=row['digest']), {'consumed_at': service.clock()})
         service._audit(c, account['id'], 'launcher.ticket.redeem', row['id'], identifier(),
                        'independent email handoff', {'protocol': PROTOCOL, 'expires_at': expires})
         return {'protocol': PROTOCOL, 'game_token': game_token, 'launch_id': row['id'], 'expires_at': expires,
-                'native_launch_ready': False}
+                'native_launch_ready': False, 'session_lease': lease_mode, 'lease_max_expires_at': lease_max}
+
+
+def renew(service, game_token, data):
+    """为仍有效的游戏租约续期；来源/游戏同事务更新，过期、封禁、改密、重登均不能续活。"""
+    if data.get('session_lease') != LEASE_VERSION:
+        raise Fault('PROTOCOL', 'Launcher lease version is required', 409)
+    with service.db.transaction() as c:
+        row, account = authorize_game_session(service, c, game_token, data)
+        maximum = row['lease_max_expires_at']
+        if maximum is None:
+            raise Fault('LEASE_NOT_ENABLED', 'This session did not opt into a renewable lease', 409)
+        if maximum <= service.clock():
+            raise Fault('AUTH', 'Launcher login duration limit reached', 401)
+        expires = min(service.clock() + LEASE_SECONDS, maximum)
+        c.update('sessions', Q(token_hash=row['session_id']), {'expires_at': expires})
+        c.update('game_sessions', Q(digest=row['digest']), {'expires_at': expires})
+        service._audit(c, account['id'], 'launcher.lease.renew', row['digest'], identifier(),
+                       'active launcher lease', {'expires_at': expires, 'lease_max_expires_at': maximum})
+        return {'protocol': PROTOCOL, 'session_lease': LEASE_VERSION, 'expires_at': expires,
+                'lease_max_expires_at': maximum}
+
+
+def authorize_game_session(service, c, game_token, data):
+    """在调用方同一事务内重新验证游戏凭据、来源会话、制裁和客户端绑定，返回会话与账号。
+
+    设置读取/写入与身份查询共用本检查；玩家/管理员Bearer不能冒用独立游戏凭据。
+    不在事务外缓存授权结果，避免改密、退出、封禁后仍可写入设置。
+    """
+    require_protocol(data)
+    client_sha = sha256_field(data, 'client_sha256')
+    row = c.select('game_sessions', Q(digest=token_hash(game_token))).fetchone()
+    if (not row or row['revoked'] or row['expires_at'] <= service.clock()
+            or row['profile'] != service.catalog['id'] or row['client_sha256'] != client_sha):
+        raise Fault('AUTH', 'Invalid independent game session', 401)
+    account, _ = source_session(service, c, row)
+    return row, account
 
 
 def identity(service, game_token, data):
     """仅供自建游戏桥解析独立游戏会话，不返回邮箱/密码，不授权管理员命令或可信结算。"""
-    require_protocol(data)
-    client_sha = sha256_field(data, 'client_sha256')
     with service.db.transaction() as c:
-        row = c.select('game_sessions', Q(digest=token_hash(game_token))).fetchone()
-        if (not row or row['revoked'] or row['expires_at'] <= service.clock()
-                or row['profile'] != service.catalog['id'] or row['client_sha256'] != client_sha):
-            raise Fault('AUTH', 'Invalid independent game session', 401)
-        account, _ = source_session(service, c, row)
+        row, account = authorize_game_session(service, c, game_token, data)
         character = c.select('characters', Q(account_id=account['id'])).fetchone()
         return {'protocol': PROTOCOL, 'account_id': account['id'], 'game_id': account['game_id'],
                 'character': {'id': character['id'], 'nickname': character['nickname']} if character else None,

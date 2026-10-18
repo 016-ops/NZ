@@ -1,0 +1,7 @@
+test_native_upgrade_failure_then_success_keeps_connection (tests.test_native_crafting.NativeCraftingTests.test_native_upgrade_failure_then_success_keeps_connection)
+原生A375材料不足返回1799，随后补足材料仍能在同一个桥上成功并增量更新。 ... ok
+
+----------------------------------------------------------------------
+Ran 1 test in 5.322s
+
+OK

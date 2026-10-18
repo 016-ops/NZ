@@ -1,0 +1,36 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 6,
+  "passed": [],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_maintenance.NativeMaintenanceTests.test_renew_wire_retains_gid_and_expiry_and_rejects_permanent",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 24, in setUp\n    super().setUp()\n    ^^^^^^^^^^^^^\nTypeError: super(type, obj): obj must be an instance or subtype of type\n"
+    },
+    {
+      "test": "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_failure_is_atomic_and_cross_account_rejected",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 24, in setUp\n    super().setUp()\n    ^^^^^^^^^^^^^\nTypeError: super(type, obj): obj must be an instance or subtype of type\n"
+    },
+    {
+      "test": "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_batch_price_replay_and_preserved_state",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 24, in setUp\n    super().setUp()\n    ^^^^^^^^^^^^^\nTypeError: super(type, obj): obj must be an instance or subtype of type\n"
+    },
+    {
+      "test": "tests.test_native_maintenance.NativeMaintenanceTests.test_repair_wire_failure_then_success_and_concurrent_replay",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 24, in setUp\n    super().setUp()\n    ^^^^^^^^^^^^^\nTypeError: super(type, obj): obj must be an instance or subtype of type\n"
+    },
+    {
+      "test": "tests.test_native_maintenance.NativeMaintenanceTests.test_sell_default_and_equipped_rejected",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 24, in setUp\n    super().setUp()\n    ^^^^^^^^^^^^^\nTypeError: super(type, obj): obj must be an instance or subtype of type\n"
+    },
+    {
+      "test": "tests.test_native_maintenance.NativeMaintenanceTests.test_sell_wire_response_loss_recovers_without_second_reward",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 24, in setUp\n    super().setUp()\n    ^^^^^^^^^^^^^\nTypeError: super(type, obj): obj must be an instance or subtype of type\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 6.907
+}

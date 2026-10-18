@@ -1,0 +1,24 @@
+{
+  "kind": "NATIVE_INVENTORY_FIRST_LIVE_FAILURE",
+  "probe": 67,
+  "lobby_rendered": true,
+  "weapon_icons_visible": true,
+  "warehouse_verified": false,
+  "inventory_owned": 4323,
+  "projected": 2466,
+  "a006_packets": 494,
+  "automatic_a008": {
+    "operation": 1,
+    "target": 0,
+    "location": 0,
+    "subject_item_id": 102545,
+    "definition_location": 65,
+    "bytes": 27,
+    "sha256": "25d7a534a16740ffafd8392bae92e41f3145fbabfdf3aa66491067b7b89a67c7"
+  },
+  "failure": "API rejected previously unsupported zero-target unequip; probe ended connection and game showed reconnect",
+  "job_cleanup": true,
+  "configuration_restored": true,
+  "source_session_cleanup": true,
+  "online_playable": false
+}

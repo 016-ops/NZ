@@ -1,0 +1,24 @@
+{
+  "kind": "COMPUTER_USE_NATIVE_CHANNEL_AND_CREATE_REQUEST",
+  "probe": 66,
+  "user_operated": false,
+  "lobby_visible": true,
+  "main_channel_visible": "NZ Online",
+  "subchannel_visible": "NZ-1",
+  "room_list_visible": true,
+  "create_dialog_visible": true,
+  "selected_mode": "生存战",
+  "selected_difficulty": "普通",
+  "selected_map": "天际城",
+  "displayed_fighter_capacity": 4,
+  "displayed_observer_capacity": 12,
+  "create_request": {
+    "command": "A10A",
+    "bytes": 103,
+    "sha256": "03a5f8ceb65fbc61710ec85f04001c77574f85567d4884b23e7f18457d35e36a"
+  },
+  "create_response_implemented": false,
+  "battle_loaded": false,
+  "online_playable_delivered": false,
+  "real_emails_sent": 0
+}

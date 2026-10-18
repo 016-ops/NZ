@@ -1,0 +1,12 @@
+{
+  "kind": "LAUNCHER_PRODUCT_FRAME_COPY_REAL_GAME",
+  "last_phase": "ERROR",
+  "run": "launcher-20261018-130352-086812",
+  "parent_pipe_eof": true,
+  "source_and_game_revoked": true,
+  "configuration_restored": true,
+  "own_process_cleanup": true,
+  "lobby_verified": false,
+  "graphics_compatibility": null,
+  "raw_transport_files": 0
+}

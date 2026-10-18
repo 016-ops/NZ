@@ -1,0 +1,43 @@
+{
+  "kind": "REPEATED_NATIVE_LOBBY_OBSERVATION_NOT_ONLINE_PLAYABLE",
+  "runs": [
+    {
+      "probe": 62,
+      "job_cleanup": true,
+      "configuration_restored": true,
+      "session_cleanup": true,
+      "lobby_observed_by_computer_use": false
+    },
+    {
+      "probe": 63,
+      "job_cleanup": true,
+      "configuration_restored": true,
+      "session_cleanup": true,
+      "lobby_observed_by_computer_use": true
+    },
+    {
+      "probe": 64,
+      "job_cleanup": true,
+      "configuration_restored": true,
+      "session_cleanup": true,
+      "lobby_observed_by_computer_use": false
+    },
+    {
+      "probe": 65,
+      "job_cleanup": true,
+      "configuration_restored": true,
+      "session_cleanup": true,
+      "lobby_observed_by_computer_use": true
+    },
+    {
+      "probe": 66,
+      "job_cleanup": true,
+      "configuration_restored": true,
+      "session_cleanup": true,
+      "lobby_observed_by_computer_use": true
+    }
+  ],
+  "native_battle_verified": false,
+  "original_client_writes": 0,
+  "real_emails_sent": 0
+}

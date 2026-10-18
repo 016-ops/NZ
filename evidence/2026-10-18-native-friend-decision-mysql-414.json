@@ -1,0 +1,22 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 6,
+  "passed": [
+    "tests.test_native_features.NativeFeatureTests.test_friend_delivery_block_and_unrelated_event_ack",
+    "tests.test_native_features.NativeFeatureTests.test_native_friend_groups_preserve_remark_and_blacklist",
+    "tests.test_native_session_sync.NativeSessionSyncTests.test_bridge_poll_uses_one_view_and_respects_animation_hold",
+    "tests.test_native_session_sync.NativeSessionSyncTests.test_clan_online_follows_heartbeat_and_logout",
+    "tests.test_native_session_sync.NativeSessionSyncTests.test_snapshot_is_private_and_does_not_ack_events"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_native_friend_decision_matches_live_request_and_preserves_unknown",
+      "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_features.py\", line 493, in test_native_friend_decision_matches_live_request_and_preserves_unknown\n    peer_account,_,game,base=self.player_game('native-decision')\n                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_native_inventory.py\", line 31, in player_game\n    self.command('character.create', {'nickname': 'inventory-'+suffix}, player)\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\tests\\test_control_plane.py\", line 65, in command\n    return self.s.command(token or self.owner, action, self.meta(**(data or {})))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 392, in command\n    result = self._account_command(c, actor, action, data)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 464, in _account_command\n    nickname = unicodedata.normalize('NFC', text_field(data.get('nickname'), 'nickname', 24))\n                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\ZJH\\NZ\\2020逆战\\repository\\revival\\service.py\", line 54, in text_field\n    raise Fault('INVALID', f'Invalid {name}')\nrevival.service.Fault: Invalid nickname\n"
+    }
+  ],
+  "skipped": [],
+  "exit_code": 1,
+  "seconds": 39.641
+}

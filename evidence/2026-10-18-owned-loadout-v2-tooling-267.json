@@ -1,0 +1,18 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 6,
+  "passed": [
+    "tests.test_native_owned_loadout_compat.OwnedFingerprintTests.test_foreign_source_rejected",
+    "tests.test_native_owned_loadout_compat.OwnedFingerprintTests.test_ut_limit_and_restart_restore",
+    "tests.test_native_owned_loadout_compat.OwnedLoadoutTests.test_character_read_precedes_original_restart_and_card_initialization",
+    "tests.test_native_owned_loadout_compat.OwnedLoadoutTests.test_independent_vm_and_online_bot_isolation",
+    "tests.test_native_owned_loadout_compat.OwnedLoadoutTests.test_original_package_retained_except_export_pointer",
+    "tests.test_native_owned_loadout_compat.OwnedLoadoutTests.test_second_patch_rejected"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 12.656
+}

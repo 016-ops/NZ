@@ -1,0 +1,66 @@
+{
+  "release": "20261016T112506-9c649210841a",
+  "hashes": {
+    "revival/native_starter.py": "825380cd06e0b8b7da2090138371554df174ee87f0c6cba35a0c61b22b58de6f",
+    "revival/native_actions.py": "55bf8a02ec36d1310f4eb2041a24eef00357741a6fe17e94bb8fcb57623e6626",
+    "revival/native_inventory.py": "bbc2e43dac90466061a2f87559f3b87a1777e538a6f5fce7b7dad32131e0bb54",
+    "revival/service.py": "15065ec8c94e40f5fb57efaede7bbd916952a0f082bdae0273dc5d8e3a1f015d",
+    "revival/catalogs.py": "8d8c2d779c2f2225bf83ac365a902e4ab2e265a89423b80586da607ecc619dff",
+    "revival/native_engineering.py": "2adf512405a4b9cde77d852b75090379f831e3798e4a42f0619066ed6d55d88d",
+    "revival/native_features.py": "6afc6bf1b9367041688cbda76a5478dc71564e59611f68df998eca28006ab1ef",
+    "revival/native_features_catalog.py": "c879e2bbf7bf86071028bec2eebfce85b97acde5b618c6ab645d8bd358b90981",
+    "revival/models.py": "9452990025a7022517905dda57bfa59085fb4a6ac54a33f0a5b23e1920a687a8",
+    "revival/migrations/0019_native_engineering_progress.py": "c88cc26da1e427249803570318f5f2bfd0d35e81d6bd08948922c91d71dd7cc7",
+    "adapters/cn_current/features.py": "375d2c1d20c264acf53dac70aef4d55b7e98d2da9ef36e5c94f9673838641ea0",
+    "config/cn2020-feature-protocol-v9.json": "7b71df00215892a492d9d334063fe9dbd11f09efed2eaac6fdcfc6283619dec4",
+    "config/cn2020-engineering-v1.json": "e04bd1b45a3d8f8ccd2563f34dcd492be0b4018db4bb98f2630a05d0afc896a5",
+    "admin/dist/index.html": "a28d9d66cf2fa72438cb9131dd574537269ae693ae252cd7cccce8bf65e4cccb"
+  },
+  "migrations": [
+    "0001_initial",
+    "0002_invariants",
+    "0003_operations_and_pve",
+    "0004_room_access_and_deliveries",
+    "0005_independent_email_login",
+    "0006_email_verification",
+    "0007_native_player_settings",
+    "0008_native_inventory_entitlements",
+    "0009_native_feature_transactions",
+    "0010_native_presence",
+    "0011_native_sync_cursor",
+    "0012_native_draw_selection",
+    "0013_native_sync_changes",
+    "0014_native_friend_groups",
+    "0015_native_clan_bindings",
+    "0016_launcher_session_lease",
+    "0017_native_draw_round",
+    "0018_native_workshop_state",
+    "0019_native_engineering_progress"
+  ],
+  "gm_inventory": [
+    4323
+  ],
+  "gm_bindings": [
+    4323
+  ],
+  "enabled_checkin": 0,
+  "units": {
+    "nz-dev-current.service": "active",
+    "nz-dev-current-maintain.service": "active",
+    "nz-dev-pve.service": "active",
+    "nz-dev-pve-maintain.service": "active"
+  },
+  "health": [
+    {
+      "status": "ok",
+      "profile": "cn-current-unverified",
+      "retail_compatible": false
+    },
+    {
+      "status": "ok",
+      "profile": "test-pve-v1",
+      "retail_compatible": false
+    }
+  ],
+  "source_matches_local": true
+}

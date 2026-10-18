@@ -1,0 +1,238 @@
+{
+  "kind": "CURRENT_DRAW_CONSUMER_BYTECODE_CONSTANTS",
+  "source_sha256": "cd213dcd3157bb879dcd10a7aecf490151a87bbaa6c711cbdfc3f8d04fafea6f",
+  "functions": [
+    {
+      "name": "GfxMovie_AllPVEScoreboard.OnNtfUpdatePlayerProperty",
+      "bytes": 76,
+      "sha256": "1ce9a0ce0bc0ba7e2faea5377466948edaa35126258c0148d6f692928b99d5ad",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_Avatar.OnNtfUpdatePlayerProperty",
+      "bytes": 531,
+      "sha256": "964312161d988bcd8d085202f22299c4ada50fcd45a25f0af45e90cb60e3427e",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_BagList.OnNtfUpdatePlayerProperty",
+      "bytes": 123,
+      "sha256": "304f98ae799c9e8e1e7f1e643324c6bc9af2025fc9eb4f6d62d5dc3bdbf0323d",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_Chat.OnNtfUpdatePlayerProperty",
+      "bytes": 924,
+      "sha256": "04e6d1eac60655d3c33aa225b00a1c7fe6a7344c22607e87799fc644ba8d76c4",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_ShopRoom.OnNtfUpdatePlayerProperty",
+      "bytes": 364,
+      "sha256": "88bf6cc11f7aa89b84a8ee929cec63d79a54b097a9a3d3738bda304d58cc0b11",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LittleShopRoom.OnNtfUpdatePlayerProperty",
+      "bytes": 108,
+      "sha256": "09fbcad4689c09f8e215660f87f5cb8f885ea07919643896f35a68e031ddda2f",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LoginLobby.OnNtfUpdatePlayerProperty",
+      "bytes": 342,
+      "sha256": "192f2d68ae5623f32f2d44c724628db64583220fc1292b795bc5f3cb51245a5f",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PersonalCardBase.OnNtfUpdatePlayerProperty",
+      "bytes": 66,
+      "sha256": "6f0a089c2e3c8d7aad6a68a62f1dfb8f3c9d9e0738b81e9cfb6c9058cc63e037",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_LotteryUI.OnNtfUpdatePlayerProperty",
+      "bytes": 1039,
+      "sha256": "b32977d0f8051171a648f0435d830c763b8032e6313fdca07c32481ab17698e8",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_MainCityPray.OnNtfUpdatePlayerProperty",
+      "bytes": 515,
+      "sha256": "48bd6b9d6879662cd4e59eeca2a050fde0c3ab31ef820837e4b7ed1731ae5474",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PersonalListScoreboard.OnNtfUpdatePlayerProperty",
+      "bytes": 76,
+      "sha256": "4c9e8207dac5d83ff4e684b88825c13899a7e1046dce62df829d8353a1067686",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PlayerExp.OnNtfUpdatePlayerProperty",
+      "bytes": 447,
+      "sha256": "4ff6d9293515827a0bdaf62da39b33a2b735a5177b5ea9fcfff9d376253d50e5",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PMMatchScoreboard.OnNtfUpdatePlayerProperty",
+      "bytes": 76,
+      "sha256": "74d6f590d3bdf84f3683ba08b386c1655f1dfd3f96c41263674bac5adf795932",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PropProcessMovie.OnNtfUpdatePlayerProperty",
+      "bytes": 210,
+      "sha256": "a90c4656e618d81340ca25d4be234b972972c689d26d2d7d0e8f568d99d1f3bb",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PVEEncouragement.OnNtfUpdatePlayerProperty",
+      "bytes": 228,
+      "sha256": "2049e406d5898aff4b0c68ab3e4f6cbbe5d8c2eef9d9bf64b0a78056d41392bf",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_PVPScoreboard.OnNtfUpdatePlayerProperty",
+      "bytes": 76,
+      "sha256": "34d15fd7aa4fd78732cad4b706077be6c08da65766d56e74f801ec43cc8d2a40",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_RenewSecretConstract.OnNtfUpdatePlayerProperty",
+      "bytes": 188,
+      "sha256": "2fcfbb2b18b83c1183500ecce5367c07e687eeab23221439e7b1c5b6f67d2f39",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_TeamDonateFund.OnNtfUpdatePlayerProperty",
+      "bytes": 429,
+      "sha256": "5795967463ccb1901cc1bbf8a21b6cdeb94b082410f50b04653c61747e6ea020",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_TWMMatchScoreboard.OnNtfUpdatePlayerProperty",
+      "bytes": 76,
+      "sha256": "aad0c9fd189ae687f20aa018cf485045ec8b4d6ac3f876897ab49f3080cbcb1d",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "GfxMovie_WeaponSkin.OnNtfUpdatePlayerProperty",
+      "bytes": 544,
+      "sha256": "d0c2dcf3a5aacbf8c3a7448814543d21c5e5971ed820aa1229970a4f1f338bf2",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    },
+    {
+      "name": "TGUI_ModeGuide.OnNtfUpdatePlayerProperty",
+      "bytes": 120,
+      "sha256": "e02dda254f29fa242fdcd653bf168ace17aa2835e0b61b0acce38c10c68fed28",
+      "constant_offsets": {
+        "0x8100": [],
+        "0x2501": [],
+        "0x2507": [],
+        "0x250b": []
+      }
+    }
+  ],
+  "boundary": "Constants require branch and real-client confirmation; no script or process mutation"
+}

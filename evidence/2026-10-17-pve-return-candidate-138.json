@@ -1,0 +1,9 @@
+{
+  "kind": "PVE_RETURN_V2_OFFLINE_CANDIDATE_NOT_EXECUTED",
+  "profile": "cn2020-standalone-pve-return-v2-candidate",
+  "bytes": 16529261,
+  "sha256": "3667b4168913d64a95fce3ac04131bbd4f10dca809363f3c327296608f5310df",
+  "native_verified": false,
+  "live_execution": "AUTO_REVIEW_REJECTED_PENDING_EXPLICIT_AUTHORIZATION",
+  "changed": "EndGame原逻辑保留；仅Standalone条件下新增既有5秒返厅调用；头尾目录同步更新"
+}

@@ -1,0 +1,15 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 3,
+  "passed": [
+    "tests.test_native_crafting.NativeCraftingTests.test_craft_shortage_wrong_recipe_foreign_gid_and_fault_are_atomic",
+    "tests.test_native_crafting.NativeCraftingTests.test_frozen_recipes_all_execute_and_consume_exact_inputs",
+    "tests.test_native_crafting.NativeCraftingTests.test_subject_only_custom_recipe_rejects_free_reward"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 310.875
+}

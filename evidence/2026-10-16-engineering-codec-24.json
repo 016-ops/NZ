@@ -1,0 +1,9 @@
+{
+  "kind": "CURRENT_DLL_FEATURE_CODEC_NOT_GAMEPLAY",
+  "passed": true,
+  "fixture_count": 133,
+  "all_full_host_equal": true,
+  "all_python_equal": true,
+  "all_repack_equal": true,
+  "cleanup_verified": true
+}

@@ -1,0 +1,33 @@
+{
+  "kind": "CURRENT_TDR_NONEMPTY_PROPINFO_CODEC_NOT_BUSINESS_DEFAULTS",
+  "profile": "cn2020-player-props-codec-research-v1",
+  "metadata_sha256": "c7050a5d78edb68eb66b2b1e00e68640a762398b1d7c7f9b9072e4c74f915dba",
+  "native_passed": true,
+  "cleanup_verified": true,
+  "network_sent": false,
+  "actual_role_or_inventory_verified": false,
+  "fixtures": [
+    {
+      "file": "nonempty_props_0.bin",
+      "bytes": 153,
+      "sha256": "f7b2c6bed19690cc6c48934db06ade5b100c03f15fb3c46c833ddb0e4761288a",
+      "is_last": false,
+      "prop_count": 2,
+      "host_equal": true,
+      "roundtrip_equal": true,
+      "standalone_body_equal": true,
+      "python_equal": true
+    },
+    {
+      "file": "nonempty_props_1.bin",
+      "bytes": 153,
+      "sha256": "bdbe09ab1cdc6c7b02f0fcd750a9475750e8784c94bb353f00fd308f292c6500",
+      "is_last": true,
+      "prop_count": 2,
+      "host_equal": true,
+      "roundtrip_equal": true,
+      "standalone_body_equal": true,
+      "python_equal": true
+    }
+  ]
+}

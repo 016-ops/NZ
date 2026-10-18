@@ -1,0 +1,14 @@
+{
+  "files": 342,
+  "all_private_hashes_verified": true,
+  "shared_resource_immutable": true,
+  "node_ready": false,
+  "native_started": false,
+  "kind": "PARTIAL_NATIVE_ENTRY_RESOURCE_STAGE_NOT_READY",
+  "map_id": 168,
+  "archive_sha256": "c9d3174ab6e5f42263911ce6311a78dc3e965824cf76a8cb91213cca8f21de5b",
+  "archive_bytes": 91163657,
+  "private_workspace": "C:/NZResearch/client-workspaces/room-entry-371",
+  "original_client_writes": 0,
+  "hardlinks": false
+}

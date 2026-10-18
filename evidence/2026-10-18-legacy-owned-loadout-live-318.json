@@ -1,0 +1,54 @@
+{
+  "kind": "OWNED_TOWER_REAL_LOADOUT_READ_ONLY",
+  "run": "launcher-20261018-150144-356677",
+  "pid": 7788,
+  "process_writes": 0,
+  "input_actions": 0,
+  "current_bag": 1,
+  "default_bag": 1,
+  "equipped_functional_item_ids": [
+    101210,
+    101211,
+    101149,
+    102000,
+    100216,
+    100218,
+    100323,
+    300062,
+    300063,
+    100063,
+    103716
+  ],
+  "weapons": [
+    {
+      "identity": "ATD-Capital_34_Main.TheWorld.PersistentLevel.TGWeap_KUNupzhuti_PVE_Content_0",
+      "class_name": "TGWeap_KUNupzhuti_PVE_Content"
+    },
+    {
+      "identity": "ATD-Capital_34_Main.TheWorld.PersistentLevel.TGWeap_KUNsqup_PVE_Content_0",
+      "class_name": "TGWeap_KUNsqup_PVE_Content"
+    },
+    {
+      "identity": "ATD-Capital_34_Main.TheWorld.PersistentLevel.TGWeap_KUNjzup_PVE_Content_0",
+      "class_name": "TGWeap_KUNjzup_PVE_Content"
+    },
+    {
+      "identity": "validated_inventory_chain@0x57292800",
+      "class_name": "TGATDBaseTrapGrenade"
+    }
+  ],
+  "expert_card": true,
+  "cash_card": true,
+  "pve_store_active": true,
+  "pve_store_level": 3,
+  "max_traps": 60,
+  "money": 3000,
+  "playable_map_accepted": false,
+  "all_card_effects_verified": false,
+  "lobby_store_level": 3,
+  "lobby_store_points": 10500,
+  "chest_extra_traps": 10,
+  "chest_can_sell_anytime": true,
+  "all_traps_card": true,
+  "unowned_projector5": false
+}

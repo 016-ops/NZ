@@ -1,0 +1,84 @@
+{
+  "kind": "HUNT_SPAWN_GUARD_STRUCTURAL_AND_CONTROL_FLOW_ONLY",
+  "tests": 6,
+  "passed": 6,
+  "original_body_vm_addresses_unchanged": true,
+  "independently_decoded_virtual_bytes": 600,
+  "cases": [
+    {
+      "case": "online",
+      "result": "PASS",
+      "events": [
+        [
+          "super"
+        ]
+      ]
+    },
+    {
+      "case": "existing_pawn",
+      "result": "PASS",
+      "events": [
+        [
+          "super"
+        ]
+      ]
+    },
+    {
+      "case": "wait_for_floor",
+      "result": "PASS",
+      "events": [
+        [
+          "find_start"
+        ],
+        [
+          "trace"
+        ],
+        [
+          "retry",
+          0.25,
+          true,
+          "ServerRestartPlayer"
+        ]
+      ]
+    },
+    {
+      "case": "ready_floor",
+      "result": "PASS",
+      "events": [
+        [
+          "find_start"
+        ],
+        [
+          "trace"
+        ],
+        [
+          "clear",
+          "ServerRestartPlayer"
+        ],
+        [
+          "super"
+        ]
+      ]
+    },
+    {
+      "case": "missing_spawn_preserves_original_failure",
+      "result": "PASS",
+      "events": [
+        [
+          "find_start"
+        ],
+        [
+          "clear",
+          "ServerRestartPlayer"
+        ],
+        [
+          "super"
+        ]
+      ]
+    }
+  ],
+  "interrupted_guard_restore": true,
+  "native_live_verified": false,
+  "playable_map_accepted": false,
+  "candidate_sha256": "f6741534475f1c07d743407b535d8b947dffe06958b479c89b311b3934a68c2b"
+}

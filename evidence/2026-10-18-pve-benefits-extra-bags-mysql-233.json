@@ -1,0 +1,13 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "8.4.6",
+  "tests": 1,
+  "passed": [
+    "tests.test_native_pve_benefits.NativePveBenefitTests.test_gm_additional_bags_keep_all_entitlements_and_get_independent_knives"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 7.297
+}

@@ -1,0 +1,15 @@
+test_import_reference_outside_table_rejected (tests.test_native_package_dependencies.PackageDependenciesTests.test_import_reference_outside_table_rejected)
+不存在的外层导入索引不能变成缺失包名或读取其他数据。 ... ok
+test_lzo_declared_output_and_corrupt_stream_rejected (tests.test_native_package_dependencies.PackageDependenciesTests.test_lzo_declared_output_and_corrupt_stream_rejected)
+压缩器错误输出大小与损坏块必须失败，不能用截断数据继续构建目录。 ... ok
+test_missing_ambiguous_and_budget_pending_dependencies_remain_visible (tests.test_native_package_dependencies.PackageDependenciesTests.test_missing_ambiguous_and_budget_pending_dependencies_remain_visible)
+缺失、重名、遍历限额均保留；不会静默缩小依赖分母或宣布完整闭包。 ... ok
+test_plain_compressed_and_variable_group_resolve_identical_imports (tests.test_native_package_dependencies.PackageDependenciesTests.test_plain_compressed_and_variable_group_resolve_identical_imports)
+完整AES块、None及其他长度分组、末描述符不完整大小均由独立块头严格校验。 ... ok
+test_script_key_is_separate_and_unknown_tag_and_truncation_are_not_guessed (tests.test_native_package_dependencies.PackageDependenciesTests.test_script_key_is_separate_and_unknown_tag_and_truncation_are_not_guessed)
+脚本资源常量独立；错误标签/错用另一格式的密钥/截断分别拒绝，不猜明文。 ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.041s
+
+OK
