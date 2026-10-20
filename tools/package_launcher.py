@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -73,17 +74,20 @@ def smoke_service(output):
     """Windows实际启动冻结服务并发送close；不登录或连接API，只确认资源/依赖/管道可用。
 
     临时AppData只属于该验收进程，stdout中的随机本机能力仅在内存解析，不写清单。
-    失败使用固定错误码，不能把原始管道应答或用户目录回显到构建产物。
+    失败使用固定错误码；仅输出退出码、解析状态、安全日志码和缺失模块名，
+    不能把原始管道能力、完整 stderr 或用户目录回显到构建产物。
     """
     import os
     with tempfile.TemporaryDirectory(prefix='nz-launcher-smoke-') as directory:
         environment = dict(os.environ, LOCALAPPDATA=directory)
         started = time.monotonic()
+        result, bootstrap_parsed = None, False
         try:
             result = subprocess.run([str(output / 'service/NZLauncherService.exe'), '--desktop'],
                 cwd=output, input=b'close\n', stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                 timeout=45, check=False, env=environment)
             message = json.loads(result.stdout.decode('utf-8-sig').splitlines()[0])
+            bootstrap_parsed = isinstance(message, dict)
             address = urlsplit(message['url'])
             access = address.fragment.removeprefix('access=')
             if (result.returncode != 0 or message.get('version') != 'cn2020-launcher-v1'
@@ -93,9 +97,40 @@ def smoke_service(output):
                     or any(not (value.isascii() and (value.isalnum() or value in '_-')) for value in access)):
                 raise ValueError('Invalid bootstrap')
         except (OSError, ValueError, TypeError, KeyError, IndexError, subprocess.TimeoutExpired):
+            # 诊断只从严格白名单字段构造；保留随机能力的 stdout 绝不输出。
+            print(json.dumps({'frozen_service_smoke': smoke_failure_details(
+                Path(directory), result, bootstrap_parsed)}, ensure_ascii=True), file=sys.stderr)
             raise RuntimeError('FROZEN_SERVICE_BOOTSTRAP_SMOKE_FAILED') from None
     return {'bootstrap_close_passed': True, 'api_login_executed': False,
             'seconds': round(time.monotonic() - started, 3)}
+
+
+def smoke_failure_details(directory, process, bootstrap_parsed):
+    """从进程与私有临时日志提取固定诊断；拒绝路径、URL、异常全文和过大日志。"""
+    details = {'exit_code': None, 'bootstrap_parsed': bool(bootstrap_parsed),
+               'startup_error_code': None, 'stderr_missing_module': None}
+    if process is not None:
+        if type(process.returncode) is int:
+            details['exit_code'] = process.returncode
+        raw = process.stderr
+        if isinstance(raw, bytes):
+            raw = raw.decode('utf-8', errors='replace')
+        if isinstance(raw, str):
+            # 只匹配标准异常末行的单一模块标识符，不能回显别的 stderr 内容。
+            missing = re.search(r"(?m)^ModuleNotFoundError: No module named '"
+                                r"([A-Za-z_][A-Za-z_0-9]*(?:\.[A-Za-z_][A-Za-z_0-9]*)*)'\r?$", raw)
+            if missing and len(missing.group(1)) <= 192:
+                details['stderr_missing_module'] = missing.group(1)
+    path = directory / 'NZRevivalLauncher/runtime/native-launcher-error.log'
+    if path.is_file() and path.stat().st_size <= 256:
+        try:
+            code = path.read_text(encoding='utf-8')
+        except (OSError, UnicodeError):
+            code = ''
+        if re.fullmatch(r'(?:[A-Z][A-Z_0-9]{0,63}|IMPORT_MISSING_'
+                        r'[A-Za-z_][A-Za-z_0-9]*(?:\.[A-Za-z_][A-Za-z_0-9]*)*)', code):
+            details['startup_error_code'] = code
+    return details
 
 
 def build(output, config, *, skip_frontend=False):

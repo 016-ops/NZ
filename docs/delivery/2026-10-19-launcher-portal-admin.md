@@ -108,3 +108,6 @@
 - 首次综合CI `39374115400` 在真正MySQL回归前失败：`mysqladmin ping`误把初始化中临时server/认证拒绝当作就绪，随后建库1045；Windows独立测试在输出中文跳过原因时被cp1252编码异常中断，且原依赖步骤漏装Launcher控制器测试所需Django。旧MySQL artifact来自仓库历史报告，不作为本轮执行证据。
 - 已修复：就绪以带密码的TCP `SELECT 1`为准；Windows依赖复用固定Launcher构建依赖（不安装MySQL/SSH）；终端JSON摘要使用ASCII转义，完整磁盘证据仍UTF8；两个job均输出到新的 `evidence/ci/`，失败也上传实际当轮文件，不复用历史报告。
 - 编码修复由真实子进程强制cp1252验证，1/1通过，见 `evidence/2026-10-19-ci-console-fix-tests.json`；CI配置已检查空白与固定依赖一致性。未跳过或降低原有业务测试，替换CI结果另行追加。
+- 第二轮综合CI `39374574189` 的MySQL已完成认证就绪及React构建/测试，继续执行数据库回归；Windows新生成报告暴露测试环境漏装固定 `paramiko` / `lzokay` 依赖，以及一套原件测试直接读取未随Git提供的私有游戏文件。两个测试job现安装既有固定开发/研究依赖，发行依赖不变。Bag套件仅在私有原件缺失时明确Skip，与相邻原件套件一致；存在原件时仍执行固定摘要和内容断言，不能解释为已验证真实原包。
+- 本机相关工具回归34项通过，缺Bag原件明确1个套件Skip；证据 `evidence/2026-10-19-ci-tooling-environment-fix-tests.json`，没有把Skip记为通过。
+- 首轮Windows便携包CI `39374115588`：Rust release编译、安全测试和PyInstaller冻结均完成，最终冻结服务启动smoke失败，未生成/上传可交付包。已补安全诊断：只记录进程退出码、bootstrap是否解析、安全错误码、严格校验的公共模块名，不回显本机能力、URL、完整异常或stderr。异常路径不再重导入可能失败的Launcher模块；新回归11/11通过，见 `evidence/2026-10-19-launcher-smoke-diagnostic-tests.json`。启动门槛未放宽，等待新CI定位原因。

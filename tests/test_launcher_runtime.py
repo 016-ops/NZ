@@ -1,5 +1,6 @@
 """便携Launcher基础的独立测试；不连接DEV、不启动游戏、不执行Windows编译。"""
 import json
+import io
 from pathlib import Path
 import tempfile
 import unittest
@@ -7,7 +8,7 @@ from unittest.mock import Mock, patch
 
 from tools import launcher_runtime as runtime
 from tools.email_launcher import LoginError
-from tools.package_launcher import package_plan, verify_payload, smoke_service
+from tools.package_launcher import package_plan, verify_payload, smoke_service, smoke_failure_details
 
 
 class LauncherRuntimeTests(unittest.TestCase):
@@ -121,6 +122,42 @@ class LauncherRuntimeTests(unittest.TestCase):
         self.assertFalse(report['api_login_executed'])
         self.assertEqual(run.call_args.kwargs['input'], b'close\n')
         process.stdout = json.dumps(dict(message, url=message['url'].replace('127.0.0.1', 'other.invalid'))).encode()
-        with patch('tools.package_launcher.subprocess.run', return_value=process):
+        with patch('tools.package_launcher.subprocess.run', return_value=process), \
+                patch('tools.package_launcher.sys.stderr', io.StringIO()):
             with self.assertRaisesRegex(RuntimeError, 'FROZEN_SERVICE_BOOTSTRAP_SMOKE_FAILED'):
                 smoke_service(Path('/package'))
+
+    def test_startup_diagnostic_keeps_only_safe_code_or_public_module_name(self):
+        """导入失败的模块元数据可诊断；带路径/URL/能力的异常正文不能写入日志。"""
+        error = ModuleNotFoundError('private exception text', name='django.db.backends.dummy')
+        self.assertEqual(runtime.startup_error_code(error), 'IMPORT_MISSING_django.db.backends.dummy')
+        self.assertEqual(runtime.startup_error_code(RuntimeError('PUBLIC_LAUNCHER_CONFIG_MISSING')),
+                         'PUBLIC_LAUNCHER_CONFIG_MISSING')
+        for error in (RuntimeError('https://private.invalid/?access=secret'),
+                      ModuleNotFoundError('/private/user/secret', name='../private/secret')):
+            code = runtime.startup_error_code(error)
+            self.assertNotIn('secret', code)
+            self.assertNotIn('/', code)
+
+    def test_failed_smoke_never_echoes_bootstrap_or_full_stderr(self):
+        """失败报告只返回固定四字段，管道能力、异常正文和临时路径均不可外泄。"""
+        process = Mock(returncode=1, stdout=b'private-bootstrap-capability',
+                       stderr=b"private-stderr-password\nModuleNotFoundError: No module named 'django.example'\n")
+        console = io.StringIO()
+        with patch('tools.package_launcher.subprocess.run', return_value=process), \
+                patch('tools.package_launcher.sys.stderr', console):
+            with self.assertRaisesRegex(RuntimeError, 'FROZEN_SERVICE_BOOTSTRAP_SMOKE_FAILED'):
+                smoke_service(Path('/private/package'))
+        details = json.loads(console.getvalue())['frozen_service_smoke']
+        self.assertEqual(details, {'exit_code': 1, 'bootstrap_parsed': False,
+                                  'startup_error_code': None, 'stderr_missing_module': 'django.example'})
+        self.assertNotIn('private-', console.getvalue())
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            log = root / 'NZRevivalLauncher/runtime/native-launcher-error.log'
+            log.parent.mkdir(parents=True)
+            log.write_text('IMPORT_MISSING_django.example', encoding='utf-8')
+            self.assertEqual(smoke_failure_details(root, process, False)['startup_error_code'],
+                             'IMPORT_MISSING_django.example')
+            log.write_text('secret/path?access=private', encoding='utf-8')
+            self.assertIsNone(smoke_failure_details(root, process, False)['startup_error_code'])

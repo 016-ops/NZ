@@ -178,6 +178,23 @@ def configured_connection():
     yield client
 
 
+def startup_error_code(error):
+    """启动失败仅保留业务码或导入模块名，不依赖可能正好导入失败的 Launcher 模块。
+
+    模块名属于公共代码元数据，严格限制点分标识符；异常正文可能含 URL、账号、
+    本机路径或临时能力，不能直接记录，也不能用作缺失模块名的回退来源。
+    """
+    module = getattr(error, 'name', None)
+    if (isinstance(error, ModuleNotFoundError) and isinstance(module, str) and len(module) <= 192
+            and re.fullmatch(r'[A-Za-z_][A-Za-z_0-9]*(?:\.[A-Za-z_][A-Za-z_0-9]*)*', module)):
+        return 'IMPORT_MISSING_' + module
+    value = str(error)
+    if isinstance(error, (ValueError, RuntimeError)) and re.fullmatch(r'[A-Z][A-Z_0-9]{0,63}', value):
+        return value
+    category = type(error).__name__.upper()
+    return category if re.fullmatch(r'[A-Z][A-Z_0-9]{0,63}', category) else 'STARTUP_FAILED'
+
+
 def main():
     """PyInstaller 专用服务入口；准备用户目录后复用原父管道握手及清理生命周期。"""
     root = state_root(create=True)
@@ -186,8 +203,7 @@ def main():
         from tools.native_launcher import main as serve
         serve()
     except Exception as error:
-        from tools.native_launcher import safe_error
-        (root / 'runtime/native-launcher-error.log').write_text(safe_error(error), encoding='utf-8')
+        (root / 'runtime/native-launcher-error.log').write_text(startup_error_code(error), encoding='utf-8')
         raise SystemExit(1) from None
 
 
