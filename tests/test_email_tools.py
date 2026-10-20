@@ -141,7 +141,10 @@ class EmailToolTests(TestCase):
                 '--serve-geo-zone', '--capture-zone-sequence', '--serve-zone-login',
                 '--serve-player-define', '--dev-email-state']
         failure = None
-        with patch.object(sys, 'argv', argv), patch.object(Path, 'read_text', return_value=json.dumps(state)), \
+        # 整条客户端身份/注销分支必须独立于 SSH/MySQL 部署入口；即便本机装有
+        # 驱动也主动阻止借用远端验收模块，防止 Windows 无驱动环境漏测。
+        with patch.dict(sys.modules, {'tools.verify_email_dev': None, 'MySQLdb': None}), \
+                patch.object(sys, 'argv', argv), patch.object(Path, 'read_text', return_value=json.dumps(state)), \
                 patch.object(Path, 'write_text'), patch.object(email_launcher, 'Client', return_value=client), \
                 patch.object(email_launcher, 'fingerprint', return_value=('a' * 64, {})), \
                 patch.object(native_email_boot, 'probe', return_value={}) as launch, \

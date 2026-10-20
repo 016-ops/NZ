@@ -1,0 +1,26 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 14,
+  "passed": [
+    "tests.test_launcher_hook.LauncherDjangoHookTests.test_debug_engine_dynamic_libraries_are_explicit_public_hidden_imports",
+    "tests.test_launcher_hook.LauncherDjangoHookTests.test_debug_templates_are_covered_by_public_data_pattern",
+    "tests.test_launcher_hook.LauncherDjangoHookTests.test_minimal_wsgi_startup_has_no_project_settings_or_database_backend",
+    "tests.test_launcher_runtime.LauncherRuntimeTests.test_failed_smoke_never_echoes_bootstrap_or_full_stderr",
+    "tests.test_launcher_runtime.LauncherRuntimeTests.test_frozen_resources_and_state_are_separate_and_native_start_is_blocked",
+    "tests.test_launcher_runtime.LauncherRuntimeTests.test_https_uses_verified_context_and_keeps_dict_envelope",
+    "tests.test_launcher_runtime.LauncherRuntimeTests.test_oversized_response_and_private_payload_are_rejected",
+    "tests.test_launcher_runtime.LauncherRuntimeTests.test_package_smoke_checks_private_pipe_and_never_contacts_api",
+    "tests.test_launcher_runtime.LauncherRuntimeTests.test_plan_declares_blocked_native_mode_without_build_side_effects",
+    "tests.test_launcher_runtime.LauncherRuntimeTests.test_public_config_rejects_cleartext_external_addresses_credentials_and_unknown_fields",
+    "tests.test_launcher_runtime.LauncherRuntimeTests.test_redirects_and_absolute_request_targets_are_never_followed",
+    "tests.test_launcher_runtime.LauncherRuntimeTests.test_repository_mode_preserves_existing_workspace",
+    "tests.test_launcher_runtime.LauncherRuntimeTests.test_startup_diagnostic_keeps_only_safe_code_or_public_module_name",
+    "tests.test_run_tests.ConsoleReport.test_chinese_skip_reason_survives_cp1252_stdout"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.183
+}

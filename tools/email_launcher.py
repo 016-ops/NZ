@@ -19,6 +19,15 @@ class LoginError(Exception):
     """只携带安全错误码，避免 CLI 异常回显含密码、会话或票据的请求正文。"""
 
 
+def metadata(**values):
+    """生成独立探针命令标识；纯客户端共用，不导入 SSH、MySQL 或远端验收入口。
+
+    保留既有请求/幂等标识和审计原因合同；每次调用使用新标识，失败不会隐式重试。
+    """
+    return dict(request_id=uuid.uuid4().hex, idempotency_key=uuid.uuid4().hex,
+                reason='DEV independent email acceptance probe', **values)
+
+
 class Client:
     """回环 HTTP 客户端；不接受 URL 凭据、查询参数或跳转，不将密码发到重定向目标。"""
     def __init__(self, url, *, host_port=None):

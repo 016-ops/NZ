@@ -111,3 +111,12 @@
 - 第二轮综合CI `39374574189` 的MySQL已完成认证就绪及React构建/测试，继续执行数据库回归；Windows新生成报告暴露测试环境漏装固定 `paramiko` / `lzokay` 依赖，以及一套原件测试直接读取未随Git提供的私有游戏文件。两个测试job现安装既有固定开发/研究依赖，发行依赖不变。Bag套件仅在私有原件缺失时明确Skip，与相邻原件套件一致；存在原件时仍执行固定摘要和内容断言，不能解释为已验证真实原包。
 - 本机相关工具回归34项通过，缺Bag原件明确1个套件Skip；证据 `evidence/2026-10-19-ci-tooling-environment-fix-tests.json`，没有把Skip记为通过。
 - 首轮Windows便携包CI `39374115588`：Rust release编译、安全测试和PyInstaller冻结均完成，最终冻结服务启动smoke失败，未生成/上传可交付包。已补安全诊断：只记录进程退出码、bootstrap是否解析、安全错误码、严格校验的公共模块名，不回显本机能力、URL、完整异常或stderr。异常路径不再重导入可能失败的Launcher模块；新回归11/11通过，见 `evidence/2026-10-19-launcher-smoke-diagnostic-tests.json`。启动门槛未放宽，等待新CI定位原因。
+- 对固定Django源码的独立导入追踪确认：`views.debug` 的 `DEBUG_ENGINE` 在启动时通过字符串动态导入 `django.templatetags.i18n`，原冻结hook未明确收集。已仅补该公共模块，并将3项AST/资源/内存WSGI回归纳入默认tooling；不扫描项目设置或私有配置，不凭猜测增加数据库backend。此源码推断与Windows实际失败原因分别记录，后续以冻结smoke为准；细节见 `docs/delivery/2026-10-19-launcher-django-hook.md`。
+- 最新Windows工具回归 `39375100024` 已消除LZO/paramiko依赖缺口，剩余邮箱CLI失败的共同原因是只借用 `verify_email_dev.metadata` 却连带加载远端SSH/MySQL部署入口。现将原样元数据帮助函数移到纯 `email_launcher`，远端验收模块保持兼容导入，原生HTTP CLI直接取纯客户端函数；不为Windows独立测试安装MySQL驱动。新增夹具主动阻止远端模块/MySQLdb导入，原身份一致性与注销断言保留，17/17通过，证据 `evidence/2026-10-19-email-tooling-import-isolation-tests.json`。冻结hook/启动诊断/编码联检14/14通过，证据 `evidence/2026-10-19-launcher-dynamic-import-tests.json`。
+
+## 独立测试账号
+
+- 依用户新增要求，在 `nz_fix_portal_demo` 创建玩家 `test-player@example.invalid` 与管理员 `nz-test-admin`（Owner）。仅对应本机 `http://127.0.0.1:8875/player` / `/admin`，不代表公网或生产账号已创建。
+- 玩家通过邀请注册、审批、隔离库邮箱验证与角色创建，含5000 GP、1件M4A1测试道具；不发送真实邮件。管理员通过已有Owner正常MFA登录及新的TOTP时间步创建，保留正常MFA，未增加免码或固定码例外。
+- 两账号使用不同随机密码。密码、MFA种子/otpauth URI和8个恢复码仅在被Git忽略的 `runtime/test-access-2026-10-19.txt` / `.json`，权限均0600；不进入证据、Excel或发布包。
+- 实际HTTP登录、玩家库存与管理员只读权限查询均通过，验证会话已退出并再次确认401。脱敏证据 `evidence/2026-10-19-test-account-verification.json`；不把该验证视为Windows游戏或公网部署验收。

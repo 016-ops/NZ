@@ -15,6 +15,9 @@ hiddenimports = [
     'django.http.request', 'django.http.response', 'django.core.serializers.json',
     'django.urls', 'django.urls.converters', 'django.urls.resolvers',
     'django.views.defaults', 'django.views.debug', 'django.utils.log',
+    # views.debug在模块导入时构造DEBUG_ENGINE，并按字符串动态加载i18n模板库。
+    # PyInstaller静态分析看不到该导入，故只补Django公共模块，不扫描项目设置。
+    'django.templatetags.i18n',
     'django.template.backends.django', 'django.template.defaultfilters',
     'django.template.defaulttags', 'django.template.loader_tags',
 ]

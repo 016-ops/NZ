@@ -7,15 +7,9 @@ import time
 import uuid
 from tools.dev_remote import connect, execute
 from tools.verify_dev import UNITS, wait_health
-from tools.email_launcher import Client, LoginError, fingerprint, handshake
+from tools.email_launcher import Client, LoginError, fingerprint, handshake, metadata
 from tools.native_email_probe import probe
 from revival.security import otp
-
-
-def metadata(**values):
-    """每次实际探针命令使用独立业务标识，失败不自动重复资产或账号操作。"""
-    return dict(request_id=uuid.uuid4().hex, idempotency_key=uuid.uuid4().hex,
-                reason='DEV independent email acceptance probe', **values)
 
 
 def command(client, token, action, **values):

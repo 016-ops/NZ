@@ -1097,8 +1097,8 @@ def main():
     if args.defer_player_info_after_version and not args.serve_player_info:
         parser.error('--defer-player-info-after-version requires --serve-player-info')
     if args.dev_email_state:
-        from tools.email_launcher import Client, fingerprint
-        from tools.verify_email_dev import metadata
+        # 只复用纯客户端命令标识，不为已受控的 HTTP 诊断加载 SSH/MySQL 部署工具。
+        from tools.email_launcher import Client, fingerprint, metadata
         from revival.security import token_hash
         from adapters.email_protocol import PROTOCOL
         import secrets
