@@ -77,7 +77,7 @@
 | Django/迁移 | `manage.py check`、`makemigrations --check --dry-run`；隔离demo迁移0001–0023 | 系统检查通过、无模型漂移、全迁移通过 | 目标生产MySQL版本与权限待确认 |
 | 已登录UI | Safari + 8875隔离Web | MFA、发放/回收、封禁/解封后登录、商城上下架、白名单保存、草稿新建编辑、签到/领奖到账、1–8/1–4分组均实际操作 | 发布确认点击被自动审批拒绝；详见UI记录 |
 | 监控真实采集 | 修复后的本机Agent向隔离8875服务上报 | ONLINE、CPU/内存、带宽差值、真实多点趋势、磁盘已实见；截图 `evidence/portal-ui/admin-monitoring-live.png` | 未配置服务名，无服务健康采集；远端采集器未安装 |
-| Excel | Artifact Tool导出、逐表渲染、公式错误扫描 | 四本/26个worksheet已渲染；摘要 `design-workbooks-verification.json` | 不把预览当原生游戏验收 |
+| Excel | Artifact Tool导出、逐表渲染、公式错误扫描 | 四本/27个worksheet；最终重渲染13张受影响页，其余沿用此前逐表审查预览，四本公式扫描0错误；摘要 `design-workbooks-verification.json` | 不把预览当原生游戏验收 |
 | 代码和注释 | 逐模块审查、`git diff --check` | 本批新增模块、关键事务/幂等/权限/恢复路径及测试有中文说明，空白检查通过 | 既有全仓中文注释未专项整改 |
 
 测试过程注意：一次子任务未带专用库参数，重建了默认可销毁 `nz_unittest` 并因创建触发器权限不足停止；已确认与current/synthetic/pve业务库不同，没有改业务库或MySQL全局参数。随后统一显式专用库与项目隔离root测试身份；失败事实见 `evidence/failures/2026-10-19-backup-profile-fix-attempt-01.json`。不要使用该初次失败状态宣称通过。
@@ -91,3 +91,10 @@
 - **配置/数据**：SMTP/数据库/Owner MFA/监控令牌仅外部受保护文件；包没有游戏原件、SSH配置、运行库或测试凭据。隔离UI文件不用于生产发布。
 - **应用回退**：停新maintain，切回旧release重启；新增表保留，不删除发奖/审计历史。业务数据恢复另行对账，不能以旧备份覆盖发布后新增资产。
 - **下一步**：收到Web目标配置后完成真实部署和线上只读/专用账号验收；原生游戏接口、军衔和完整Windows分发另按阻塞逐项协调。
+
+## 交付封存状态
+
+- 主实现本地提交 `eca962cf7e184af984a1e4280344aea433e6b532`；监控服务异常隔离补丁本地提交 `5b61b61d2a2a104f9bf0c8c553ed40821ba35598`。后者为本批Web包的源码基线，manifest显式保留 `WORKING_TREE` 标记及逐文件摘要，不伪装为纯Git归档。
+- 实际Web包 `outputs/01a15734-c809-7ff2-8313-f617805a4441/nz-web-platform-2026-10-19.tar.gz`：3,297,902字节、164个运行文件另加 `RELEASE.json`；SHA256 `7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9`。逐文件摘要、普通文件边界和私有夹具排除检查通过，见 `evidence/2026-10-19-web-package-verification.json`。
+- 推送到既有 `https://github.com/016-ops/NZ.git` 的 `fix/launcher-portal-admin` 被自动审批拒绝。原因为用户已授权分支开发，但没有明确授权向该具体外部目的地导出整批源码及含QA账号/环境元数据的证据。未通过其他方式重试；等待用户确认是否允许推送。
+- 因未推送，新增Windows构建workflow未运行；本批没有Windows可执行归档，没有远端Web部署。本地Web验收地址 `http://127.0.0.1:8875/` 仅为专用隔离演示库。

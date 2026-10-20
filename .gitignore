@@ -24,3 +24,4 @@ launcher/gen/
 outputs/**/*.inspect.ndjson
 outputs/**/design-sources.json
 outputs/**/previews/
+outputs/**/node_modules

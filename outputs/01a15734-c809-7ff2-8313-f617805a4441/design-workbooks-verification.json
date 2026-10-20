@@ -1,0 +1,322 @@
+{
+  "asOf": "2026-10-19 America/Los_Angeles",
+  "baselineCommit": "5b61b61d2a2a104f9bf0c8c553ed40821ba35598",
+  "workbooks": [
+    {
+      "file": "outputs/01a15734-c809-7ff2-8313-f617805a4441/表设计.xlsx",
+      "sheets": [
+        {
+          "sheet": "设计概览",
+          "rows": 10,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/表设计-设计概览.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "表目录",
+          "rows": 68,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/表设计-表目录.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "字段定义",
+          "rows": 407,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/表设计-字段定义.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "约束与索引",
+          "rows": 54,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/表设计-约束与索引.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "外键关系",
+          "rows": 76,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/表设计-外键关系.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "迁移与数据保护",
+          "rows": 23,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/表设计-迁移与数据保护.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        }
+      ],
+      "inspection": "{\"kind\":\"table\",\"sheet\":\"设计概览\",\"address\":\"A5:D12\",\"rows\":8,\"cols\":4,\"values\":[[\"项目\",\"设计\",\"状态或版本\",\"说明\"],[\"文档版本\",\"本批开发设计 v1\",\"2026-10-19 America/Los_Angeles\",\"本地实现提交及设计书源码快照；部署状态单独记录\"],[\"源码基线\",\"5b61b61d2a2a104f9bf0c8c553ed40821ba35598\",\"当前分支 fix/launcher-portal-admin\",\"Git HEAD；不代表已部署版本\"],[\"数据库\",\"MySQL / Django ORM\",\"迁移仅向前\",\"现有数据、GID、钱包、账本和安全状态保持\"],[\"模型覆盖\",\"全量 revival 应用模型\",68,\"含既有原生业务、活动5表和监控3表\"],[\"字段覆盖\",\"具体字段逐行列出\",407,\"字段类型由Django MySQL映射推导，非运行库DDL回读\"],[\"新增活动\",\"campaigns / campaign_days / campaign_claims / campaign_results / campaign_board_freezes\",\"migration 0022_campaigns\",\"签到、Launcher登录、结算进度和封榜隔离\"],[\"新增监控\",\"monitor_nodes / monitor_samples / monitor_minutes\",\"migration 0023（以当前迁移清单为准）\",\"采样凭据独立于玩家、管理员和游戏节点\"]]}",
+      "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
+    },
+    {
+      "file": "outputs/01a15734-c809-7ff2-8313-f617805a4441/游戏服务端接口设计.xlsx",
+      "sheets": [
+        {
+          "sheet": "接口概览",
+          "rows": 6,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/游戏服务端接口设计-接口概览.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "HTTP路由",
+          "rows": 37,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/游戏服务端接口设计-HTTP路由.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "命令权限",
+          "rows": 52,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/游戏服务端接口设计-命令权限.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "新增请求合同",
+          "rows": 19,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/游戏服务端接口设计-新增请求合同.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "既有请求合同",
+          "rows": 69,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/游戏服务端接口设计-既有请求合同.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "原生消息目录",
+          "rows": 386,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/游戏服务端接口设计-原生消息目录.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "原生结构字段",
+          "rows": 2082,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/游戏服务端接口设计-原生结构字段.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "验收与错误",
+          "rows": 7,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/游戏服务端接口设计-验收与错误.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        }
+      ],
+      "inspection": "{\"kind\":\"table\",\"sheet\":\"接口概览\",\"address\":\"A5:D12\",\"rows\":8,\"cols\":4,\"values\":[[\"接口层\",\"用途\",\"认证边界\",\"当前状态\"],[\"HTTP控制面\",\"账号、资产、运营、活动、榜单、监控\",\"玩家/管理员/游戏/节点/监控令牌互不通用\",\"本批实现；Web上线待环境\"],[\"本机Launcher\",\"受限本机API、启动/停止/恢复与玩家功能代理\",\"随机本机操作能力，经父子管道传输\",\"现有Tauri路径复用\"],[\"原生Zone\",\"已固定构建的登录、资料、仓库、社交和频道房间\",\"当前会话transport/challenge/换钥\",\"单端部分功能实机通过\"],[\"原生业务消息\",\"386个已固定命令与2082个结构字段（数量以表为准）\",\"固定元数据摘要及严格编解码\",\"结构确认不等于全部实机通过\"],[\"原生DS\",\"目标世界、玩家入场、自然胜负与结算\",\"实例/epoch/租约待原生接通\",\"未通过；禁止伪造READY\"],[\"可信成绩\",\"成功通关、Boss、时长和冻结人数\",\"单局节点独立Bearer\",\"正式关闭；合成独立分榜\"],[null,null,null,null]]}",
+      "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
+    },
+    {
+      "file": "outputs/01a15734-c809-7ff2-8313-f617805a4441/Web端设计书.xlsx",
+      "sheets": [
+        {
+          "sheet": "页面架构",
+          "rows": 8,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/Web端设计书-页面架构.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "角色与权限",
+          "rows": 4,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/Web端设计书-角色与权限.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "业务流程",
+          "rows": 9,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/Web端设计书-业务流程.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "七图与排行规则",
+          "rows": 7,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/Web端设计书-七图与排行规则.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "交互与状态",
+          "rows": 8,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/Web端设计书-交互与状态.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        },
+        {
+          "sheet": "验收清单",
+          "rows": 10,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/Web端设计书-验收清单.png",
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前渲染并目视审查通过的预览"
+        }
+      ],
+      "inspection": "{\"kind\":\"table\",\"sheet\":\"页面架构\",\"address\":\"A5:D12\",\"rows\":8,\"cols\":4,\"values\":[[\"路由\",\"页面\",\"用户\",\"主要内容和操作\"],[\"/\",\"官网首页\",\"所有访客\",\"首屏视觉、玩法与开放地图、加入指南\"],[\"/guide\",\"上手指南\",\"所有访客\",\"邮箱注册、角色准备、Windows开发版Launcher与限制说明\"],[\"/player\",\"玩家中心\",\"已认证玩家\",\"角色资料、仓库、商城、活动、排行榜\"],[\"/admin\",\"管理中心\",\"各角色管理员\",\"用户、库存、制裁、商城、开放地图、活动、监控\"],[\"/activities\",\"开服活动\",\"访客与玩家\",\"活动奖励、北京时间累计进度、签到与普通奖励领取\"],[\"/leaderboards\",\"先锋榜\",\"所有访客\",\"活动/地图/难度/实际人数筛选，毫秒通关时间\"],[\"/launcher\",\"Tauri专用页面\",\"本机启动器\",\"DreadHunger参考布局、启动/恢复、本人仓库/商城/活动\"]]}",
+      "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
+    },
+    {
+      "file": "outputs/01a15734-c809-7ff2-8313-f617805a4441/部署手册及打包清单.xlsx",
+      "sheets": [
+        {
+          "sheet": "部署总览",
+          "rows": 8,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-部署总览.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "环境配置",
+          "rows": 11,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-环境配置.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "发布与回退步骤",
+          "rows": 10,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-发布与回退步骤.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "打包文件清单",
+          "rows": 18,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-打包文件清单.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "实际归档文件",
+          "rows": 165,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-实际归档文件.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "监控与运维",
+          "rows": 10,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-监控与运维.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        },
+        {
+          "sheet": "交付与阻塞",
+          "rows": 8,
+          "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-交付与阻塞.png",
+          "renderedThisRun": true,
+          "verification": "本轮渲染并目视审查通过"
+        }
+      ],
+      "inspection": "{\"kind\":\"table\",\"sheet\":\"部署总览\",\"address\":\"A5:D12\",\"rows\":8,\"cols\":4,\"values\":[[\"项目\",\"本次选择\",\"当前状态\",\"执行要求\"],[\"部署对象\",\"仅current Web前后端、maintenance及可选监控Agent\",\"待用户提供环境\",\"不安装synthetic/PvE服务；不得自动覆盖原DEV或远端Windows\"],[\"Web技术栈\",\"React/TypeScript/shadcn + Django + MySQL\",\"代码已具备\",\"使用锁定依赖与向前迁移\"],[\"Launcher\",\"保留React+Tauri，新增自包含开发包脚本\",\"Mac未生成Windows归档；正式安装未验收\",\"玩家包用HTTPS网关或已存在的本机隧道，不附私人SSH配置\"],[\"新数据库迁移\",\"0022_campaigns.py, 0023_server_monitoring.py\",\"新增活动与监控表\",\"发布前备份；不恢复旧库覆盖新写入\"],[\"正式游戏节点\",\"不在本次Web部署范围\",\"指定节点原生世界/入局/可信结算未通过\",\"不得标记READY或声称可玩完成\"],[\"版本识别\",\"5b61b61d2a2a104f9bf0c8c553ed40821ba35598\",\"本地已提交实现；包manifest标记WORKING_TREE\",\"不将工作树归档描述为某个提交原样构建\"],[\"发布产物SHA\",\"7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9\",\"已从实际归档计算SHA256\",\"发布前核对归档字节与清单，不等于已部署\"]]}",
+      "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
+    }
+  ],
+  "renderMode": {
+    "changedSheets": [
+      "设计概览",
+      "命令权限",
+      "新增请求合同",
+      "既有请求合同",
+      "角色与权限",
+      "业务流程",
+      "部署总览",
+      "环境配置",
+      "发布与回退步骤",
+      "打包文件清单",
+      "实际归档文件",
+      "监控与运维",
+      "交付与阻塞"
+    ]
+  },
+  "export_checks": [
+    {
+      "file": "outputs/01a15734-c809-7ff2-8313-f617805a4441/表设计.xlsx",
+      "bytes": 47828,
+      "sha256": "01e8cf9c82f215577174424267bc54a6d83cc22e3f86b1d4013ddd97d34e08ad",
+      "sheets": 6,
+      "tables": 6,
+      "autoFilters": 6,
+      "frozen_header_rows": 5,
+      "cached_formula_errors": 0,
+      "formulas": [
+        {
+          "sheet_xml": "xl/worksheets/sheet1.xml",
+          "cell": "C9",
+          "formula": "COUNTA('表目录'!A6:A73)",
+          "cached_value": "68"
+        },
+        {
+          "sheet_xml": "xl/worksheets/sheet1.xml",
+          "cell": "C10",
+          "formula": "COUNTA('字段定义'!A6:A412)",
+          "cached_value": "407"
+        }
+      ],
+      "retired_package_identifiers_absent": true
+    },
+    {
+      "file": "outputs/01a15734-c809-7ff2-8313-f617805a4441/游戏服务端接口设计.xlsx",
+      "bytes": 131681,
+      "sha256": "dfb7802aabd3b25e48439a2c57e6b146cab7d1eba0a509d02a29d560f3e0d1f0",
+      "sheets": 8,
+      "tables": 8,
+      "autoFilters": 8,
+      "frozen_header_rows": 5,
+      "cached_formula_errors": 0,
+      "formulas": [],
+      "retired_package_identifiers_absent": true
+    },
+    {
+      "file": "outputs/01a15734-c809-7ff2-8313-f617805a4441/Web端设计书.xlsx",
+      "bytes": 20059,
+      "sha256": "223aa7c1077ad0b0404e72d842e40de7e6bac196145aea1c6400006f558eca48",
+      "sheets": 6,
+      "tables": 6,
+      "autoFilters": 6,
+      "frozen_header_rows": 5,
+      "cached_formula_errors": 0,
+      "formulas": [],
+      "retired_package_identifiers_absent": true
+    },
+    {
+      "file": "outputs/01a15734-c809-7ff2-8313-f617805a4441/部署手册及打包清单.xlsx",
+      "bytes": 38381,
+      "sha256": "e9afa586538fe94fef9a105ca0be9ad8bed52f54fd2f2a1040f7c156cd370046",
+      "sheets": 7,
+      "tables": 7,
+      "autoFilters": 7,
+      "frozen_header_rows": 5,
+      "cached_formula_errors": 0,
+      "formulas": [],
+      "retired_package_identifiers_absent": true
+    }
+  ],
+  "visual_review": {
+    "total_sheets": 27,
+    "re_rendered_final_run": 13,
+    "previously_reviewed_unchanged": 14,
+    "result": "各表已完成可视渲染审查；最终受影响13页复核，表头与文字未见截断，未出现####。较宽工程数据表通过冻结与筛选横向阅读。",
+    "limitation": "渲染与ZIP/XML结构校验不等于Excel桌面实开验收，亦不代表原生游戏验收。"
+  },
+  "web_archive": {
+    "file": "nz-web-platform-2026-10-19.tar.gz",
+    "sha256": "7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9",
+    "bytes": 3297902,
+    "source_commit": "5b61b61d2a2a104f9bf0c8c553ed40821ba35598",
+    "source_state": "WORKING_TREE",
+    "manifest_files": 164,
+    "release_json_extra": 1,
+    "all_ordinary_files": true,
+    "every_manifest_digest_verified": true,
+    "deployed": false
+  }
+}
