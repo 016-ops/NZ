@@ -1,5 +1,6 @@
 """显示桥发布边界：拒绝未知二进制，恢复仅移除本轮组件，不把模拟测试作为图形验收。"""
 from pathlib import Path
+import os
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -21,8 +22,8 @@ class FrameBridgeTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'COMPONENT_MISMATCH'):
                 bridge.bundle(path)
 
-    def test_conflict_is_not_overwritten_and_restart_restores_owned_file(self):
-        """外部组件不覆盖；本轮成功添加后即使守卫对象消失，也能从计划安全恢复。"""
+    def test_conflict_is_not_overwritten(self):
+        """外部组件冲突在平台安装动作之前拒绝；此纯文件门禁可跨平台验证。"""
         with tempfile.TemporaryDirectory() as directory:
             base = Path(directory); root = base/'client'; output = base/'evidence'
             target = root/bridge.TARGET
@@ -34,7 +35,16 @@ class FrameBridgeTests(unittest.TestCase):
                     bridge.install(guard)
                 self.assertEqual(target.read_bytes(), b'external')
                 self.assertEqual(guard.records, [])
-                target.unlink()
+
+    @unittest.skipUnless(os.name == 'nt', 'Requires Windows atomic no-replace overlay integration')
+    def test_restart_restores_only_owned_file(self):
+        """真实Windows原子添加后重建守卫，仅删除本轮拥有文件；不宣称图形呈现已验证。"""
+        with tempfile.TemporaryDirectory() as directory:
+            base = Path(directory); root = base/'client'; output = base/'evidence'
+            target = root/bridge.TARGET
+            target.parent.mkdir(parents=True); output.mkdir()
+            guard = NativeConfigGuard(root, output)
+            with patch.object(bridge, 'bundle', return_value=b'owned'):
                 result = bridge.install(guard)
             self.assertEqual(result['profile'], bridge.PROFILE)
             self.assertEqual(target.read_bytes(), b'owned')

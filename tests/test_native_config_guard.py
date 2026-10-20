@@ -245,6 +245,7 @@ class NativeConfigGuardTests(unittest.TestCase):
         outside = self.base / 'outside'
         outside.mkdir()
         linked = self.root / 'link'
+        junction = False
         try:
             linked.symlink_to(outside, target_is_directory=True)
         except OSError as error:
@@ -255,13 +256,17 @@ class NativeConfigGuardTests(unittest.TestCase):
                                      capture_output=True, timeout=10)
             if created.returncode:
                 self.skipTest('Operating system cannot create a directory reparse point: ' + type(error).__name__)
-        self.addCleanup(linked.rmdir)
+            junction = True
+        # 目录符号链接是链接文件，POSIX 与 Windows 均使用 unlink；只有 Windows
+        # mklink /J 回退产生的目录联接使用 rmdir，二者都不能删除外部目标目录。
+        self.addCleanup(linked.rmdir if junction else linked.unlink)
         plan = json.loads(self.guard.plan_path.read_text(encoding='utf-8'))
         plan['records'][0]['relative'] = 'link/outside.ini'
         self.guard.plan_path.write_text(json.dumps(plan), encoding='utf-8')
         with self.assertRaises(ValueError):
             NativeConfigGuard.from_plan(self.root, self.output)
 
+    @unittest.skipUnless(os.name == 'nt', 'Requires Windows atomic no-replace overlay integration')
     def test_additive_files_recover_after_restart_without_touching_originals(self):
         """兼容DLL仅作为新文件加入，进程重建后移除它，已有配置恢复原值；重复恢复安全。"""
         self.guard.apply('first.ini', b'variant')
@@ -272,6 +277,7 @@ class NativeConfigGuardTests(unittest.TestCase):
         self.assertEqual((self.root/'first.ini').read_bytes(), self.originals['first.ini'])
         self.assertTrue(NativeConfigGuard.from_plan(self.root, self.output).restore()['configuration_restored'])
 
+    @unittest.skipUnless(os.name == 'nt', 'Requires Windows atomic no-replace overlay integration')
     def test_additive_external_file_and_install_race_are_preserved(self):
         """旧文件、暂存期间竞争创建、运行中外部替换均不能覆盖或误删。"""
         with self.assertRaises(RuntimeError):
@@ -293,6 +299,7 @@ class NativeConfigGuardTests(unittest.TestCase):
         self.assertEqual((self.root/'racing.dll').read_bytes(), b'external')
         self.assertEqual((self.root/'renderer.dll').read_bytes(), b'external replacement')
 
+    @unittest.skipUnless(os.name == 'nt', 'Requires Windows atomic no-replace overlay integration')
     def test_additive_prepared_plan_survives_post_install_failure(self):
         """安装后落盘状态失败时PREPARED计划仍可恢复；禁止把旧版本计划伪装为可删除文件。"""
         persist = self.guard._persist

@@ -1,5 +1,6 @@
 """图形组件包与工作副本安装边界，不以模拟测试代替GPU/真实大厅验收。"""
 from pathlib import Path
+import os
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -35,6 +36,7 @@ class GraphicsCompatibilityTests(unittest.TestCase):
             self.assertEqual(existing.read_bytes(), b'external')
             self.assertEqual(guard.records, [])
 
+    @unittest.skipUnless(os.name == 'nt', 'Requires Windows atomic no-replace overlay integration')
     def test_partial_install_failure_removes_only_owned_files_on_recovery(self):
         """第二项写入失败后保留计划；重新创建守卫可恢复已添加的第一项及未动原件。"""
         with tempfile.TemporaryDirectory() as directory:

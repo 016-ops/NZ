@@ -113,6 +113,7 @@
 - 首轮Windows便携包CI `39374115588`：Rust release编译、安全测试和PyInstaller冻结均完成，最终冻结服务启动smoke失败，未生成/上传可交付包。已补安全诊断：只记录进程退出码、bootstrap是否解析、安全错误码、严格校验的公共模块名，不回显本机能力、URL、完整异常或stderr。异常路径不再重导入可能失败的Launcher模块；新回归11/11通过，见 `evidence/2026-10-19-launcher-smoke-diagnostic-tests.json`。启动门槛未放宽，等待新CI定位原因。
 - 对固定Django源码的独立导入追踪确认：`views.debug` 的 `DEBUG_ENGINE` 在启动时通过字符串动态导入 `django.templatetags.i18n`，原冻结hook未明确收集。已仅补该公共模块，并将3项AST/资源/内存WSGI回归纳入默认tooling；不扫描项目设置或私有配置，不凭猜测增加数据库backend。此源码推断与Windows实际失败原因分别记录，后续以冻结smoke为准；细节见 `docs/delivery/2026-10-19-launcher-django-hook.md`。
 - 最新Windows工具回归 `39375100024` 已消除LZO/paramiko依赖缺口，剩余邮箱CLI失败的共同原因是只借用 `verify_email_dev.metadata` 却连带加载远端SSH/MySQL部署入口。现将原样元数据帮助函数移到纯 `email_launcher`，远端验收模块保持兼容导入，原生HTTP CLI直接取纯客户端函数；不为Windows独立测试安装MySQL驱动。新增夹具主动阻止远端模块/MySQLdb导入，原身份一致性与注销断言保留，17/17通过，证据 `evidence/2026-10-19-email-tooling-import-isolation-tests.json`。冻结hook/启动诊断/编码联检14/14通过，证据 `evidence/2026-10-19-launcher-dynamic-import-tests.json`。
+- `37b7598` 综合CI `39375681704` 的真实Windows工具及React job已成功：工具245项、244通过，另有真实会话/私有原件缺失的显式Skip；0失败/错误。旧 `ae14996` MySQL8.4.11实测557项、531通过、740.252秒，业务类无失败；剩余平台工具失败含已修依赖/私有原件分类，以及Linux误执行Windows原子覆盖/UDP表集成测试和纯mock缺WinDLL属性。现仅调整5个测试文件的平台边界，Windows集成在Windows继续跑，纯guard/冲突门禁保留跨平台验证，symlink/junction分别正确清理；不放宽生产原子/重解析保护，不跳过业务/MySQL测试。本机Mac定向31项：25通过、6个明确Windows集成Skip、0失败/错误，见 `evidence/2026-10-19-linux-tooling-platform-isolation-tests.json`；真实Linux与最终MySQL以新CI为准。
 
 ## 独立测试账号
 

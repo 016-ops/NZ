@@ -1,0 +1,62 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 31,
+  "passed": [
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_atomic_replace_failure_leaves_original_and_cleans_temporary_file",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_bounded_script_restore_after_restart",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_corrupt_backup_and_missing_target_are_reported_independently",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_directory_reparse_point_in_plan_is_rejected",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_durable_plan_precedes_mutation_and_fresh_instance_restores",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_external_change_is_preserved_while_other_files_restore",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_external_write_during_staging_is_rechecked_before_replace",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_hardlinked_target_is_rejected_before_backup_or_mutation",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_one_restore_failure_does_not_stop_other_files_or_report",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_plan_persistence_failure_during_restore_still_restores_all_files",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_plan_rejects_path_escape_backup_escape_and_wrong_root",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_plan_write_failure_never_mutates_target",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_post_restore_digest_mismatch_is_reported_and_external_bytes_kept",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_prepared_disk_plan_recovers_when_post_write_recording_fails",
+    "tests.test_native_config_guard.NativeConfigGuardTests.test_variant_flush_failure_never_replaces_original",
+    "tests.test_native_frame_bridge.FrameBridgeTests.test_conflict_is_not_overwritten",
+    "tests.test_native_frame_bridge.FrameBridgeTests.test_missing_or_changed_component_rejected",
+    "tests.test_native_frame_bridge.FrameBridgeTests.test_modes_rejected_before_process_or_client_access",
+    "tests.test_native_graphics_compat.GraphicsCompatibilityTests.test_foreign_file_rejected_before_any_install",
+    "tests.test_native_graphics_compat.GraphicsCompatibilityTests.test_invalid_archive_is_rejected_before_reading_or_installing",
+    "tests.test_native_login_probe.NicknameCodeBoundaryTests.test_data_guard_and_noaccess_pages_are_not_read",
+    "tests.test_native_login_probe.NicknameCodeBoundaryTests.test_non_owned_process_never_reads_slots",
+    "tests.test_native_login_probe.NicknameCodeBoundaryTests.test_owned_code_reads_two_fixed_targets_without_following_relative_jump",
+    "tests.test_native_login_probe.NicknameCodeBoundaryTests.test_partial_slot_read_cannot_create_evidence",
+    "tests.test_native_udp_probe.NativeUdpProbeTests.test_empty_owner_set_never_includes_system_endpoints"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [
+    {
+      "test": "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_external_file_and_install_race_are_preserved",
+      "reason": "Requires Windows atomic no-replace overlay integration"
+    },
+    {
+      "test": "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_files_recover_after_restart_without_touching_originals",
+      "reason": "Requires Windows atomic no-replace overlay integration"
+    },
+    {
+      "test": "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_prepared_plan_survives_post_install_failure",
+      "reason": "Requires Windows atomic no-replace overlay integration"
+    },
+    {
+      "test": "tests.test_native_frame_bridge.FrameBridgeTests.test_restart_restores_only_owned_file",
+      "reason": "Requires Windows atomic no-replace overlay integration"
+    },
+    {
+      "test": "tests.test_native_graphics_compat.GraphicsCompatibilityTests.test_partial_install_failure_removes_only_owned_files_on_recovery",
+      "reason": "Requires Windows atomic no-replace overlay integration"
+    },
+    {
+      "test": "tests.test_native_udp_probe.NativeUdpProbeTests.test_real_owned_loopback_udp_port_detected_without_sending",
+      "reason": "Requires the real Windows UDP endpoint table"
+    }
+  ],
+  "exit_code": 0,
+  "seconds": 0.085
+}
