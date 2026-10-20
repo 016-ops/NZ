@@ -8,7 +8,6 @@ from django.db import connections, DatabaseError
 from revival.db import Repository
 from revival.importer import IMPORT_ORDER, import_sqlite
 from revival.models import DeploymentLock, SchemaVersion, TABLE_MODELS
-from revival.security import otp
 from revival.service import Service, Fault
 from .test_control_plane import Base
 
@@ -53,7 +52,7 @@ class MigrationTests(Base):
         self.assertEqual(self.s.query(player,'me')['character']['nickname'],'迁移测试角色')
         with self.assertRaises(Fault): self.s.login('blocked-user',self.password)
         self.now += 30
-        self.assertTrue(self.s.login('owner',self.password,kind='admin',otp_code=otp(self.admin['otp_secret'],self.now//30))['token'])
+        self.assertTrue(self.admin_login()['token'])
         self.assertTrue(self.s.login('migrated-user',self.password)['token'])
 
     def test_dry_run_and_duplicate_import_are_safe(self):

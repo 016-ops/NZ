@@ -352,3 +352,61 @@ class CampaignTests(Base):
         for map_id in (155, 219, 160):
             with self.assertRaises(Fault):
                 self.board(campaign, map_id=map_id)
+
+    def test_independent_presentation_slug_cas_and_frozen_rewards(self):
+        """展示标题/主题可独立修订，发布后的slug与奖励快照都不能被展示保存覆盖。"""
+        campaign = self.campaign(publish=False)
+        self.assertEqual(campaign['presentation']['slug'], campaign['id'])
+        data = {'campaign_id': campaign['id'], 'expected_revision': 1, 'presentation': {
+            'slug': 'opening-event', 'title': '新的活动页面标题', 'summary': '独立专题说明',
+            'theme': 'tactical', 'sections': [{'key': 'rules', 'kind': 'text', 'title': '活动规则', 'body': '规则纯文本'}]}}
+        saved = self.command('campaign.presentation.save', data)
+        self.assertEqual(saved['revision'], 2)
+        with self.assertRaises(Fault) as error:
+            self.command('campaign.presentation.save', data)
+        self.assertEqual(error.exception.code, 'VERSION_CONFLICT')
+        with self.s.db.transaction() as c, self.assertRaises(Fault):
+            campaigns.view(self.s, c, {'kind': 'public'}, 'campaign-detail', {'slug': 'opening-event'})
+        published = self.command('campaign.publish', {'campaign_id': campaign['id']})
+        changed = self.command('campaign.presentation.save', {'campaign_id': campaign['id'], 'expected_revision': 2,
+            'presentation': {'title': '已发布页面更新', 'theme': 'anniversary'}})
+        self.assertEqual(changed['revision'], 3)
+        with self.assertRaises(Fault) as error:
+            self.command('campaign.presentation.save', {'campaign_id': campaign['id'], 'expected_revision': 3,
+                'presentation': {'slug': 'changed-url'}})
+        self.assertEqual(error.exception.code, 'SLUG_LOCKED')
+        with self.s.db.transaction() as c:
+            detail = campaigns.view(self.s, c, {'kind': 'public'}, 'campaign-detail', {'slug': 'opening-event'})
+        self.assertEqual(detail['definition'], published['definition'])
+        self.assertEqual(detail['presentation']['title'], '已发布页面更新')
+        self.assertNotIn('progress', detail)
+
+    def test_presentation_rejects_slug_collision_private_cover_and_invalid_sections(self):
+        """专题地址唯一，封面只允许公共media，任意区块奖励和路径型slug均被拒绝。"""
+        first, second = self.campaign(publish=False), self.campaign(publish=False)
+        for presentation in ({'slug': first['id']}, {'slug': '../admin'}, {'cover_id': identifier()},
+                             {'sections': [{'key': 'x', 'kind': 'arbitrary-reward', 'title': '假奖'}]},
+                             {'sections': [{'key': 'x', 'kind': 'text', 'title': '标题', 'changes': []}]}):
+            with self.subTest(presentation=presentation), self.assertRaises(Fault):
+                self.command('campaign.presentation.save', {'campaign_id': second['id'], 'expected_revision': 1,
+                    'presentation': presentation})
+        resources = self.extra_admin('resources')
+        saved = self.command('campaign.presentation.save', {'campaign_id': second['id'], 'expected_revision': 1,
+            'presentation': {'slug': 'second-event'}}, resources)
+        self.assertEqual(saved['slug'], 'second-event')
+
+    def test_legacy_campaign_presentation_backfill_preserves_rules(self):
+        """独立回填函数对没有展示行的旧活动补ID路径，重复运行不改写原奖励或展示修订。"""
+        import importlib
+        from types import SimpleNamespace
+        from django.apps import apps
+        migration = importlib.import_module('revival.migrations.0025_feedback_and_campaign_presentation')
+        campaign = self.campaign()
+        with self.s.db.transaction() as c:
+            c.delete('campaign_presentations', Q(campaign_id=campaign['id']))
+        migration.backfill_presentation(apps, SimpleNamespace(connection=SimpleNamespace(alias='default')))
+        migration.backfill_presentation(apps, SimpleNamespace(connection=SimpleNamespace(alias='default')))
+        with self.s.db.transaction() as c:
+            detail = campaigns.view(self.s, c, {'kind': 'public'}, 'campaign-detail', {'slug': campaign['id']})
+        self.assertEqual(detail['presentation']['revision'], 1)
+        self.assertEqual(detail['definition'], campaign['definition'])

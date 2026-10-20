@@ -135,6 +135,7 @@ class LauncherTests(unittest.TestCase):
     def test_uncertain_redeem_does_not_repeat_and_revokes_source(self):
         """票据兑换应答丢失不重放；撤销来源会话同时废止可能已生成的游戏会话。"""
         self.controller.session = 'source'
+        self.controller.account = {'character_id': 'character', 'nickname': '玩家'}
         self.controller.client.request.side_effect = [{'ticket': 'one-use-ticket'}, TimeoutError()]
         with patch.object(launcher, 'recover_configurations'), patch.object(launcher, 'fingerprint', return_value=('a'*64, {})), \
                 patch('tools.native_email_boot.revoke_owned_dev_session', return_value={'verified': True}) as revoke:
@@ -147,6 +148,7 @@ class LauncherTests(unittest.TestCase):
     def test_cancel_before_ticket_still_logs_out(self):
         """取消可在创建游戏前生效，且已经登录的来源会话仍会清理。"""
         self.controller.session = 'source'
+        self.controller.account = {'character_id': 'character', 'nickname': '玩家'}
         self.controller.stop.set()
         with patch.object(launcher, 'recover_configurations'), patch.object(launcher, 'fingerprint', return_value=('a'*64, {})), \
                 patch('tools.native_email_boot.revoke_owned_dev_session', return_value={'verified': True}):
@@ -157,7 +159,7 @@ class LauncherTests(unittest.TestCase):
     def test_startup_timeout_is_not_success_and_revokes_both_sessions(self):
         """初始化超时即使已创建进程也必须报错；完成本地清理后撤销来源和游戏凭据。"""
         self.controller.session = 'source'
-        self.controller.account = {'id': 'fixture', 'nickname': '测试'}
+        self.controller.account = {'id': 'fixture', 'character_id': 'character', 'nickname': '测试'}
         self.controller.client.request.side_effect = [{'ticket': 'fixture'}, {'game_token': 'game'}, {'game_id': 10001}]
         with patch.object(launcher, 'recover_configurations'), patch.object(launcher, 'fingerprint', return_value=('a'*64, {})), \
                 patch('tools.native_email_boot.current_dev_player_info', return_value=({}, b'fixture')), \
@@ -204,8 +206,8 @@ class LauncherTests(unittest.TestCase):
         for blocker,expected in [('D3D9_UNAVAILABLE_IN_LAUNCH_CONTEXT','D3D9_UNAVAILABLE_IN_LAUNCH_CONTEXT'),
                                  ('password=not-a-public-error','CLIENT_DID_NOT_START')]:
             with self.subTest(blocker=blocker):
-                controller=launcher.LauncherController(Mock());controller.session='source'
-                controller.account={'id':'fixture','nickname':'测试'}
+                controller=launcher.LauncherController(Mock());controller.session='source';controller.account={'character_id':'character'}
+                controller.account={'id':'fixture','character_id':'character','nickname':'测试'}
                 controller.client.request.side_effect=[{'ticket':'fixture'},{'game_token':'game'},{'game_id':10001}]
                 with patch.object(launcher,'recover_configurations'),patch.object(launcher,'fingerprint',return_value=('a'*64,{})), \
                      patch('tools.native_email_boot.current_dev_player_info',return_value=({},b'fixture')), \

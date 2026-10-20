@@ -3,10 +3,7 @@ from __future__ import annotations
 
 from django.db.models import F, Q
 
-import base64
 import json
-import os
-import hmac
 import secrets
 from django.db import IntegrityError
 from django.db import connections
@@ -16,7 +13,7 @@ import uuid
 from pathlib import Path
 
 from .db import Database
-from .security import email_registration_proof, new_token, normalize_email, normalize_login, password_hash, token_hash, verify_otp, verify_password
+from .security import email_registration_proof, new_token, normalize_email, normalize_login, password_hash, token_hash, verify_password
 
 
 class Fault(Exception):
@@ -57,12 +54,14 @@ def text_field(value, name, limit=200):
 
 PERMISSIONS = {
     'owner': {'*'},
-    'users': {'user.read', 'user.approve', 'user.reset', 'invite.create', 'session.revoke', 'sanction.create', 'audit.read'},
+    'users': {'user.read', 'user.approve', 'user.reset', 'invite.create', 'session.revoke', 'sanction.create', 'audit.read', 'feedback.read', 'feedback.manage'},
     'resources': {'user.read', 'asset.read', 'asset.grant', 'asset.remove', 'asset.preview', 'audit.read', 'shop.read', 'shop.manage', 'campaign.read', 'campaign.manage'},
-    'auditor': {'user.read', 'asset.read', 'audit.read', 'shop.read', 'campaign.read'},
+    'auditor': {'user.read', 'asset.read', 'audit.read', 'shop.read', 'campaign.read', 'feedback.read'},
 }
 
 COMMANDS = {
+    'feedback.create': 'player', 'feedback.reply': None, 'feedback.status': 'feedback.manage',
+    'campaign.presentation.save': 'campaign.manage',
     # 运营发布与玩家领取复用统一命令事务；玩家不能借此入口取得管理员权限。
     'shop.offer.save': 'shop.manage', 'play-policy.save': '*', 'asset.remove': 'asset.remove',
     'player.shop.quote': 'player', 'player.shop.purchase': 'player',
@@ -72,7 +71,6 @@ COMMANDS = {
     'monitor.node.enroll': '*', 'monitor.node.update': '*',
     'native.rules.preview': '*', 'native.rules.publish': '*',
     'admin.create': '*', 'admin.update': '*', 'admin.password.reset': '*',
-    'admin.mfa.reset': '*', 'admin.recovery.rotate': '*',
     'asset.batch.preview': '*', 'asset.batch.enqueue': '*', 'asset.batch.retry': '*', 'asset.review.resolve': '*',
     'node.enroll': '*', 'pve.revive': 'player',
     'invite.create': 'invite.create', 'invite.revoke': 'invite.create',
@@ -90,30 +88,6 @@ COMMANDS = {
 
 class Service:
     """组织账号、权限、幂等和审计事务；账号、房间、资产共享同一 MySQL 部署锁。"""
-    def _password_only_test_admin(self, admin):
-        """仅登录时允许指定测试账号省略 MFA；账号 ID、数据库名和合成模式缺一不可。
-
-        该例外由本地命令写入私有环境配置，客户端不能通过请求参数启用。
-        高风险业务再认证不调用本例外，因此不会顺带放宽全部管理员操作的认证规则。
-        """
-        return (self.test_profile and admin['id']==os.environ.get('NZ_PASSWORD_ONLY_TEST_ADMIN_ID')
-                and connections[self.db.alias].settings_dict['NAME']==os.environ.get('NZ_PASSWORD_ONLY_TEST_ADMIN_DATABASE'))
-
-    def _fixed_test_otp(self, admin, code):
-        """用户明确要求的单账号测试例外：ID、库名、合成 profile 三重限定，验证码只比对摘要。
-
-        配置缺失、账号不同、切到当前客户端库或验证码错误时均不放行；正常 MFA 校验不受影响。
-        固定码不消费 TOTP 时间步，因而允许该测试账号重复登录和再次确认高风险合成操作。
-        """
-        if not self.test_profile or admin['id'] != os.environ.get('NZ_FIXED_TEST_ADMIN_ID'):
-            return False
-        if connections[self.db.alias].settings_dict['NAME'] != os.environ.get('NZ_FIXED_TEST_ADMIN_DATABASE'):
-            return False
-        expected = os.environ.get('NZ_FIXED_TEST_ADMIN_OTP_HASH', '')
-        if not isinstance(code, str) or len(code)!=6 or not code.isascii() or not code.isdigit():
-            return False
-        return bool(expected) and hmac.compare_digest(token_hash(code), expected)
-
     def __init__(self, database='default', *, test_profile=False, clock=None, test_pve=False):
         """初始化当前对象依赖和状态；参数仅保存在对象中，具体持久化由显式事务入口处理。"""
         self.db = Database(database)
@@ -138,28 +112,26 @@ class Service:
                 raise Fault('PROFILE_CONFLICT', 'Test and current-client databases must be separate', 409)
             c.insert('deployment_metadata', {'key': 'profile', 'value': self.catalog['id']}, ignore=True)
 
-    # 仅允许空管理员表创建首个 Owner；密码与随机 MFA 密钥生成后，在同一锁定事务写入账号和审计，密钥只在返回值中展示一次。
+    # 仅允许空管理员表创建首个Owner；密码和固定邮箱认证策略在同一锁定事务写入账号及审计。
     def bootstrap_admin(self, login, password, role='owner'):
-        """仅允许空管理员表创建首个 Owner；密码与随机 MFA 密钥生成后，在同一锁定事务写入账号和审计，密钥只在返回值中展示一次。"""
+        """仅允许空管理员表创建首个Owner；密码和固定邮箱认证策略在同一锁定事务写入账号及审计。"""
         if role not in PERMISSIONS:
             raise ValueError('Unknown role')
         hashed = password_hash(password)
-        secret = base64.b32encode(secrets.token_bytes(20)).decode('ascii')
         admin_id = identifier()
         with self.db.transaction() as c:
             if c.select('admins', Q()).fetchone():
                 raise Fault('BOOTSTRAPPED', 'Only the initial Owner can be bootstrapped', 409)
             if role != 'owner':
                 raise Fault('FORBIDDEN', 'Initial administrator must be Owner', 403)
-            c.insert('admins', {'id': admin_id, 'login': normalize_login(login), 'password_hash': hashed, 'otp_secret': secret, 'role': role})
-            from .administration import recovery_codes
-            codes = recovery_codes(c, admin_id)
+            # 旧列暂留用于数据库向后读取；新账号不生成TOTP或恢复码，认证只走固定邮箱。
+            c.insert('admins', {'id': admin_id, 'login': normalize_login(login), 'password_hash': hashed, 'otp_secret': '', 'role': role})
             self._audit(c, admin_id, 'admin.bootstrap', admin_id, 'local-bootstrap', 'initial Owner', {})
-        return {'admin_id': admin_id, 'otp_secret': secret, 'recovery_codes': codes}
+        return {'admin_id': admin_id, 'authentication': 'FIXED_EMAIL_CODE'}
 
-    # 校验独立密码；管理员额外校验未消费的 TOTP 时间步，玩家校验批准状态与有效制裁。会话撤销、席位释放、新会话和审计必须一起提交。
-    def login(self, login, password, *, kind='player', otp_code=None, launcher=False):
-        """校验独立密码；管理员额外校验未消费的 TOTP 时间步，玩家校验批准状态与有效制裁。会话撤销、席位释放、新会话和审计必须一起提交。"""
+    # 独立账号认证；管理员邮件码与会话同事务，玩家保留状态及制裁边界。
+    def login(self, login, password, *, kind='player', otp_code=None, launcher=False, challenge_id=None, code=None):
+        """密码与一次邮件码共同登录管理员；玩家保留邮箱、状态及制裁校验，首次无角色允许引导。"""
         if kind not in ('player', 'admin'):
             raise Fault('INVALID', 'Unknown login kind')
         try:
@@ -167,6 +139,10 @@ class Service:
             normalized = normalize_email(login) if email_login else normalize_login(login)
         except ValueError:
             raise Fault('AUTH', 'Invalid credentials', 401)
+        authentication = {'password': password, 'challenge_id': challenge_id, 'code': code}
+        if kind == 'admin':
+            from .admin_email_auth import check
+            check(self, authentication, login=normalized)
         with self.db.transaction() as c:
             table = 'admins' if kind == 'admin' else 'accounts'
             if email_login:
@@ -182,14 +158,12 @@ class Service:
             if not verify_password(password, encoded) or row is None:
                 raise Fault('AUTH', 'Invalid credentials', 401)
             if kind == 'admin':
-                step = verify_otp(row['otp_secret'], otp_code, self.clock(), row['last_otp_step'])
-                fixed_test_code = self._fixed_test_otp(row, otp_code)
-                password_only_test = self._password_only_test_admin(row)
-                if not row['active'] or (step is None and not fixed_test_code and not password_only_test):
+                if not row['active']:
                     raise Fault('AUTH', 'Invalid credentials', 401)
-                if not fixed_test_code and not password_only_test:
-                    c.update('admins', Q(id=row['id']), {'last_otp_step': step})
+                from .admin_email_auth import consume
+                consume(self, c, authentication, admin=row)
             else:
+                # 仅新邮箱注册直接ACTIVE；历史待审仍须管理员批准，登录不能隐式改变管理状态。
                 self._active(c, row)
                 c.update('sessions', (Q(subject_id=row['id']) & Q(kind=kind)), {'revoked': 1})
                 self._detach(c, row['id'])
@@ -201,11 +175,12 @@ class Service:
                 # 专用 Launcher 认证入口成功时才累计登录资格；请求不能用普通 Web 登录的字段自行标记。
                 from .campaigns import record_launcher_login
                 record_launcher_login(self, c, row['id'])
-            return {'token': token, 'subject_id': row['id'], 'kind': kind, 'expires_in': 900 if kind == 'admin' else 3600}
+            return {'token': token, 'subject_id': row['id'], 'kind': kind, 'expires_in': 900 if kind == 'admin' else 3600,
+                    'character_required': kind == 'player' and not bool(c.select('characters', Q(account_id=row['id'])).fetchone())}
 
-    # 邀请次数检查、玩家映射分配、账号创建与幂等结果共用部署锁。先检查同键结果，确保响应丢失重试不会再次消耗邀请。
+    # 邮箱验证、角色及初装与账号创建原子提交；旧邀请仅存在显式合成兼容夹具。
     def register(self, data):
-        """邀请次数检查、玩家映射分配、账号创建与幂等结果共用部署锁。先检查同键结果，确保响应丢失重试不会再次消耗邀请。"""
+        """生产邮箱验证即开通并初始化角色；同键重放不重复消费验证码或分配身份/资产。"""
         request_id, key, reason = self._metadata(data)
         try:
             email = normalize_email(data['email']) if 'email' in data else None
@@ -217,14 +192,20 @@ class Service:
             hashed = password_hash(data.get('password'))
         except ValueError as e:
             raise Fault('INVALID', str(e))
-        invitation = text_field(data.get('invitation'), 'invitation', 128)
+        from django.conf import settings
+        verification = email is not None and (not self.test_profile or settings.NZ_EMAIL_VERIFICATION_REQUIRED)
+        if email is None and (not self.test_profile or settings.NZ_EMAIL_VERIFICATION_REQUIRED):
+            raise Fault('EMAIL_REQUIRED', '新用户必须通过邮箱验证码注册', 403)
+        # 只有显式合成旧夹具保留邀请注册；邮箱自助注册不检查、不消费邀请。
+        invitation = data.get('invitation') if verification else text_field(data.get('invitation'), 'invitation', 128)
         # 邮箱新路径使用服务端 HMAC；旧注册摘要保留原格式以保证历史幂等重放，不影响既有账号。
         password_proof = email_registration_proof(data['password']) if email is not None else token_hash(data['password'])
-        summary = {'login': login, 'password_digest': password_proof, 'invite_hash': token_hash(invitation)}
+        summary = {'login': login, 'password_digest': password_proof,
+                   'invite_hash': token_hash(invitation) if isinstance(invitation, str) else 'OPEN_EMAIL_REGISTRATION'}
         if email is not None:
             summary['email'] = email
-        from django.conf import settings
-        verification = email is not None and settings.NZ_EMAIL_VERIFICATION_REQUIRED
+        if 'nickname' in data:
+            summary['nickname'] = data['nickname']
         if verification:
             from .email_verification import check_code
             summary['challenge_id'] = text_field(data.get('challenge_id'), 'challenge_id', 32)
@@ -248,9 +229,11 @@ class Service:
             previous = self._prior(c, scope, key, summary)
             if previous is not None:
                 return previous
-            invite = c.select('invitations', Q(token_hash=token_hash(invitation))).fetchone()
-            if not invite or invite['revoked'] or invite['expires_at'] <= self.clock() or invite['uses'] >= invite['max_uses']:
-                raise Fault('INVITATION', 'Invitation is invalid, expired, revoked, or exhausted', 403)
+            invite = None
+            if not verification:
+                invite = c.select('invitations', Q(token_hash=token_hash(invitation))).fetchone()
+                if not invite or invite['revoked'] or invite['expires_at'] <= self.clock() or invite['uses'] >= invite['max_uses']:
+                    raise Fault('INVITATION', 'Invitation is invalid, expired, revoked, or exhausted', 403)
             if verification:
                 from .email_verification import consume
                 consume(self, c, data, email, 'register')
@@ -268,17 +251,25 @@ class Service:
                 else:
                     raise Fault('REGISTRATION_UNAVAILABLE', '暂时无法分配账号标识，请稍后重试', 503)
             try:
-                c.insert('accounts', {'id': account_id, 'game_id': game_id, 'login': account_login, 'password_hash': hashed, 'status': 'PENDING_REVIEW', 'created_at': self.clock()})
+                c.insert('accounts', {'id': account_id, 'game_id': game_id, 'login': account_login, 'password_hash': hashed,
+                         'status': 'ACTIVE' if verification else 'PENDING_REVIEW', 'created_at': self.clock()})
                 if email is not None:
                     c.insert('player_emails', {'account_id': account_id, 'email': email, 'created_at': self.clock(),
                                              'verified_at': self.clock() if verification else None})
             except IntegrityError:
                 raise Fault('CONFLICT', 'Login is already registered', 409)
-            c.update('invitations', Q(id=invite['id']), {'uses': F('uses') + 1})
-            result = {'account_id': account_id, 'status': 'PENDING_REVIEW', 'game_id': game_id, 'mapping_evidence': 'LOCAL_EQUIVALENT'}
+            if invite:
+                c.update('invitations', Q(id=invite['id']), {'uses': F('uses') + 1})
+            result = {'account_id': account_id, 'status': 'ACTIVE' if verification else 'PENDING_REVIEW',
+                      'game_id': game_id, 'mapping_evidence': 'LOCAL_EQUIVALENT'}
+            if verification:
+                # 昵称冲突、初装/审计失败必须同时回滚账号、验证码消费与所有资产，不能留下半注册。
+                character = self._initialize_character(c, account_id, data.get('nickname'))
+                result.update(character_id=character['character_id'], character_required=False)
             if email is not None:
                 result.update(email=email, email_verified=verification, identity_provider='nz-email-v1')
-            self._audit(c, account_id, 'account.register', account_id, request_id, reason, {'invitation_id': invite['id']})
+            self._audit(c, account_id, 'account.register', account_id, request_id, reason,
+                        {'invitation_id': invite['id'] if invite else None, 'self_service': verification})
             self._remember(c, scope, key, summary, result)
             return result
 
@@ -286,7 +277,7 @@ class Service:
     def _active(self, c, row):
         """每次授权重新检查账号状态与所有未过期制裁；某条封禁撤销不等于其他封禁也失效。"""
         if row['status'] != 'ACTIVE':
-            raise Fault('ACCOUNT_STATE', 'Account must be approved and active', 403)
+            raise Fault('ACCOUNT_STATE', '该历史账号仍待管理员批准' if row['status'] == 'PENDING_REVIEW' else '账号当前不可用，请联系管理员', 403)
         if c.select('sanctions', (((Q(account_id=row['id']) & Q(revoked=0)) & Q(starts_at__lte=self.clock())) & (Q(expires_at__isnull=True) | Q(expires_at__gt=self.clock())))).fetchone():
             raise Fault('SANCTION', 'Account has an active sanction', 403)
 
@@ -353,32 +344,43 @@ class Service:
             for match_id in match_ids:
                 c.insert('node_deliveries', {'event_id': event['id'], 'match_id': match_id})
 
-    # 先认证授权，再读取幂等结果；高风险命令消耗新的 MFA 时间步，随后分派账号、房间或资产业务，最终一起写审计和幂等结果。
+    # 先认证授权、平台禁用门禁及幂等检查；高风险一次邮件码与业务、审计共同提交。
     def command(self, token, action, data):
-        """先认证授权，再读取幂等结果；高风险命令消耗新的 MFA 时间步，随后分派账号、房间或资产业务，最终一起写审计和幂等结果。"""
+        """先认证授权、平台禁用门禁及幂等检查；高风险一次邮件码与业务、审计共同提交。"""
         if not isinstance(action, str) or action not in COMMANDS:
             raise Fault('NOT_FOUND', 'Unknown command', 404)
         request_id, key, reason = self._metadata(data)
-        summary = {k: v for k, v in data.items() if k not in ('request_id', 'idempotency_key')}
-        # Passwords are never persisted in an idempotency result or audit.
-        summary = dict(summary, action=action)
-        if action == 'user.email.set':
-            # 再认证材料不是业务目标：不让持久化摘要形成可离线猜测的管理员密码校验器。
-            summary = {k: v for k, v in summary.items() if k not in ('current_password', 'otp_code')}
+        from .admin_email_auth import business_summary, check
+        summary = business_summary(action, data)
+        high_risk = self.high_risk(action, data)
+        if high_risk:
+            # 成功同键重试先恢复结果；未提交请求的错误次数则在独立预检事务持久化。
+            with self.db.transaction() as c:
+                actor = self._actor(c, token, COMMANDS[action])
+                previous = self._prior(c, actor['kind'] + ':' + actor['id'], key, summary)
+                if previous is not None:
+                    return previous
+            if actor['kind'] == 'admin' and actor['role'] == 'owner':
+                check(self, data, token=token, action=action)
         with self.db.transaction() as c:
             actor = self._actor(c, token, COMMANDS[action])
+            # 仅关闭平台三个动作，且在幂等前拒绝；原生game分派和共享shop_commit不变。
+            if action in ('shop.purchase', 'player.shop.quote', 'player.shop.purchase'):
+                raise Fault('PLATFORM_SHOP_CLOSED', '网页和启动器商城暂不开放，请在游戏内查看商城', 403)
+            if action == 'feedback.reply' and actor['kind'] != 'player':
+                # 跨身份回复没有统一COMMANDS权限值；管理员角色变化后，缓存回执也不能绕过写权限。
+                from .feedback import permitted
+                permitted(actor, write=True)
             scope = actor['kind'] + ':' + actor['id']
             previous = self._prior(c, scope, key, summary)
             if previous is not None:
                 return previous
-            changes = data.get('changes') if isinstance(data.get('changes'), list) else []
-            high_risk = action.startswith('admin.') or action in ('user.email.set', 'node.enroll', 'asset.batch', 'asset.compensate', 'asset.batch.enqueue', 'asset.batch.retry', 'asset.review.resolve') or (
-                action == 'asset.grant' and sum(abs(x['delta']) for x in changes
-                                              if isinstance(x, dict) and x.get('type') == 'currency'
-                                              and type(x.get('delta')) is int) > 10000)
             if high_risk and actor['kind'] == 'admin' and actor['role'] == 'owner':
-                self._step_up(c, actor, data)
-            if action.startswith('monitor.node.'):
+                self._step_up(c, actor, data, token=token, action=action)
+            if action.startswith('feedback.'):
+                from .feedback import command
+                result = command(self, c, actor, action, data)
+            elif action.startswith('monitor.node.'):
                 from .monitoring import command
                 result = command(self, c, actor, action, data)
             elif action.startswith(('campaign.', 'leaderboard.')):
@@ -416,16 +418,22 @@ class Service:
             self._remember(c, scope, key, summary, safe_detail)
             return result
 
-    # Owner 大额发放、批量与补偿必须再次提供当前密码和新 TOTP；消费时间步与业务共享事务，失败不会留下半完成状态。
-    def _step_up(self, c, actor, data):
-        """Owner 大额发放、批量与补偿必须再次提供当前密码和新 TOTP；消费时间步与业务共享事务，失败不会留下半完成状态。"""
+    @staticmethod
+    def high_risk(action, data):
+        """取码和提交共用高风险分类，客户端不能通过参数降级认证要求。"""
+        if not isinstance(action, str):
+            return False
+        changes = data.get('changes') if isinstance(data.get('changes'), list) else []
+        return action.startswith('admin.') or action in ('user.email.set', 'node.enroll', 'asset.batch',
+            'asset.compensate', 'asset.batch.enqueue', 'asset.batch.retry', 'asset.review.resolve') or (
+            action == 'asset.grant' and sum(abs(item['delta']) for item in changes if isinstance(item, dict)
+                and item.get('type') == 'currency' and type(item.get('delta')) is int) > 10000)
+
+    def _step_up(self, c, actor, data, *, token, action):
+        """Owner原密码及绑定当前会话/操作的一次邮件码，消费与业务同事务。"""
+        from .admin_email_auth import consume
         admin = c.select('admins', Q(id=actor['id'])).fetchone()
-        step = verify_otp(admin['otp_secret'], data.get('otp_code'), self.clock(), admin['last_otp_step'])
-        fixed_test_code = self._fixed_test_otp(admin, data.get('otp_code'))
-        if (step is None and not fixed_test_code) or not verify_password(data.get('current_password'), admin['password_hash']):
-            raise Fault('REAUTH_REQUIRED', 'High-risk operation requires current Owner password and a fresh MFA code', 403)
-        if not fixed_test_code:
-            c.update('admins', Q(id=actor['id']), {'last_otp_step': step})
+        consume(self, c, data, admin=admin, token=token, action=action)
 
     # HTTP 拒绝发生在业务事务回滚之后，用独立事务追加脱敏拒绝审计，不记录令牌、密码或驱动异常文本。
     def record_rejection(self, action, request_id, code):
@@ -467,6 +475,38 @@ class Service:
             changed(self,c,member['room_id'])
 
     # 实现邀请、角色初始化、审批、停用、重置和制裁；保留原状态转换和权限边界，外层负责统一幂等和审计。
+    def _initialize_character(self, c, account_id, nickname):
+        """在调用方事务内初始化昵称、钱包及初装；重复同昵称幂等，不覆盖已有角色。"""
+        if not isinstance(nickname, str) or not nickname.strip():
+            raise Fault('INVALID', '请输入角色昵称')
+        nickname = unicodedata.normalize('NFC', nickname.strip())
+        if len(nickname) > 24:
+            raise Fault('INVALID', '角色昵称最多24个字符，且UTF-8编码不得超过48字节')
+        if len(nickname.encode('utf-8')) > 48 or any(unicodedata.category(x).startswith('C') or x in '<>"\'' for x in nickname):
+            raise Fault('INVALID', '角色昵称UTF-8编码不得超过48字节，且不能包含控制字符、尖括号或引号')
+        old = c.select('characters', Q(account_id=account_id)).fetchone()
+        if old:
+            if old['nickname'] != nickname:
+                raise Fault('CONFLICT', '此账号已创建角色，不能重复设置不同昵称', 409)
+            return {'character_id': old['id'], 'state': 'READY', 'evidence': 'LOCAL_EQUIVALENT'}
+        from django.conf import settings
+        if not self.test_profile or settings.NZ_EMAIL_VERIFICATION_REQUIRED:
+            identity = c.select('player_emails', Q(account_id=account_id)).fetchone()
+            if not identity or identity['verified_at'] is None:
+                raise Fault('EMAIL_UNVERIFIED', '请先验证当前绑定邮箱，再创建角色', 403)
+        character_id = identifier()
+        try:
+            c.insert('characters', {'id': character_id, 'account_id': account_id, 'nickname': nickname, 'init_state': 'READY', 'profile': self.catalog['id']})
+        except IntegrityError:
+            raise Fault('CONFLICT', '该角色昵称已被使用，请更换昵称', 409)
+        for currency in self.catalog['currencies']:
+            c.insert('wallets', {'account_id': account_id, 'currency': currency, 'balance': 0})
+        starter='NONE'
+        if self.catalog.get('native_assets') and getattr(settings,'NZ_STARTER_EQUIPMENT_ENABLED',True):
+            from .native_starter import ensure
+            starter=ensure(self,c,account_id)
+        return {'character_id': character_id, 'state': 'READY', 'evidence': 'LOCAL_EQUIVALENT', 'starter_assets': starter}
+
     def _account_command(self, c, actor, action, data):
         """实现邀请、角色初始化、审批、停用、重置和制裁；保留原状态转换和权限边界，外层负责统一幂等和审计。"""
         if action == 'invite.create':
@@ -481,27 +521,7 @@ class Service:
                 raise Fault('NOT_FOUND', 'Invitation does not exist', 404)
             return {'invitation_id': data['invitation_id'], 'revoked': True}
         if action == 'character.create':
-            nickname = unicodedata.normalize('NFC', text_field(data.get('nickname'), 'nickname', 24))
-            if len(nickname.encode('utf-8')) > 48 or any(unicodedata.category(x).startswith('C') or x in '<>"\'' for x in nickname):
-                raise Fault('INVALID', 'Nickname violates local web rules; retail nickname rules remain unknown')
-            old = c.select('characters', Q(account_id=actor['id'])).fetchone()
-            if old:
-                if old['nickname'] != nickname:
-                    raise Fault('CONFLICT', 'Character already initialized with a different nickname', 409)
-                return {'character_id': old['id'], 'state': 'READY', 'evidence': 'LOCAL_EQUIVALENT'}
-            character_id = identifier()
-            try:
-                c.insert('characters', {'id': character_id, 'account_id': actor['id'], 'nickname': nickname, 'init_state': 'READY', 'profile': self.catalog['id']})
-            except IntegrityError:
-                raise Fault('CONFLICT', 'Nickname is already used', 409)
-            for currency in self.catalog['currencies']:
-                c.insert('wallets', {'account_id': actor['id'], 'currency': currency, 'balance': 0})
-            from django.conf import settings
-            starter='NONE'
-            if self.catalog.get('native_assets') and getattr(settings,'NZ_STARTER_EQUIPMENT_ENABLED',True):
-                from .native_starter import ensure
-                starter=ensure(self,c,actor['id'])
-            return {'character_id': character_id, 'state': 'READY', 'evidence': 'LOCAL_EQUIVALENT', 'starter_assets': starter}
+            return self._initialize_character(c, actor['id'], data.get('nickname'))
         if action == 'sanction.revoke':
             row = c.select('sanctions', Q(id=data.get('sanction_id'))).fetchone()
             if row is None:
@@ -559,17 +579,23 @@ class Service:
     def query(self, token, view, **filters):
         """按视图执行服务端权限检查和有界分页；只暴露旧接口允许的逻辑列，资源/用户管理员只读自己的审计记录。"""
         with self.db.transaction() as c:
+            if view in ('feedback', 'feedback-admin', 'feedback-detail'):
+                from .feedback import view as feedback_view
+                actor = self._actor(c, token, 'player' if view == 'feedback' else 'feedback.read' if view == 'feedback-admin' else None)
+                return feedback_view(self, c, actor, view, filters)
             if view == 'monitoring':
                 from .monitoring import query
                 actor = self._actor(c, token, 'audit.read')
                 return query(self, c, actor, filters)
-            if view in ('campaigns', 'campaign-admin', 'leaderboards'):
+            if view in ('campaigns', 'campaign-admin', 'campaign-detail', 'leaderboards'):
                 from .campaigns import view as campaign_view
                 actor = self._actor(c, token, 'campaign.read' if view == 'campaign-admin' else None)
                 return campaign_view(self, c, actor, view, filters)
             if view in ('shop-admin', 'play-policy', 'player-shop', 'player-inventory'):
                 from .portal_operations import query
                 actor = self._actor(c, token, 'shop.read' if view == 'shop-admin' else 'player' if view.startswith('player-') else None)
+                if view == 'player-shop':
+                    raise Fault('PLATFORM_SHOP_CLOSED', '网页和启动器商城暂不开放，请在游戏内查看商城', 403)
                 return query(self, c, actor, view, filters)
             if view == 'native-rules':
                 self._actor(c,token,'*')

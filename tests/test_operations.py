@@ -3,7 +3,6 @@ import json
 from django.db.models import Q
 from revival.administration import recover_mfa
 from revival.batching import run_batches
-from revival.security import otp
 from revival.service import Fault, Service
 from .test_control_plane import Base
 
@@ -11,9 +10,8 @@ from .test_control_plane import Base
 class OperationsTests(Base):
     """复用真实账号与时钟，测试安全及重启场景而非仅检查字段存在。"""
     def step(self, **data):
-        """为下一次高风险命令提供新 TOTP，避免测试绕过真实再认证。"""
-        self.now += 30
-        return dict(data, current_password=self.password, otp_code=otp(self.admin['otp_secret'], self.now // 30))
+        """标记真实邮件再认证，由通用夹具按最终业务参数申请一次性操作码。"""
+        return dict(data, current_password=self.password)
 
     def test_last_owner_and_permission_are_enforced(self):
         """最后 Owner 的停用/降权回滚，玩家不能通过直接调用创建管理员。"""
@@ -28,32 +26,27 @@ class OperationsTests(Base):
 
     def test_admin_secrets_are_one_time_and_role_change_revokes_sessions(self):
         """创建响应丢失重试不泄漏 MFA；角色改变后旧管理员会话立即失效。"""
-        data = self.meta(**self.step(login='second-owner', role='owner', new_password=self.password))
+        data = self.authorize('admin.create', self.meta(**self.step(login='second-owner', role='owner', new_password=self.password)))
         created = self.s.command(self.owner, 'admin.create', data)
         replay = self.s.command(self.owner, 'admin.create', data)
         self.assertNotIn('otp_secret', replay)
         self.assertNotIn('recovery_codes', replay)
-        token = self.s.login('second-owner', self.password, kind='admin', otp_code=otp(created['otp_secret'], self.now // 30))['token']
+        token = self.admin_login('second-owner')['token']
         self.command('admin.update', self.step(admin_id=created['admin_id'], role='auditor', active=True))
         with self.assertRaises(Fault):
             self.s.query(token, 'me')
         with self.s.db.transaction() as c:
             serialized = json.dumps(list(c.select('audit_events')) + list(c.select('requests')))
-        self.assertNotIn(created['otp_secret'], serialized)
-        self.assertNotIn(created['recovery_codes'][0], serialized)
+        self.assertNotIn(data['code'], serialized)
+        self.assertNotIn(data['challenge_id'], serialized)
+        self.assertNotIn(self.password, serialized)
 
-    def test_recovery_consumes_code_and_revokes_old_session(self):
-        """密码加恢复码可恢复 MFA；旧码、旧会话及旧验证码均不再生效。"""
-        code = self.admin['recovery_codes'][0]
-        with self.assertRaises(Fault):
-            recover_mfa(self.s, 'owner', 'wrong-password', code)
-        result = recover_mfa(self.s, 'owner', self.password, code)
-        with self.assertRaises(Fault):
-            recover_mfa(self.s, 'owner', self.password, code)
-        with self.assertRaises(Fault):
-            self.s.query(self.owner, 'me')
-        token = self.s.login('owner', self.password, kind='admin', otp_code=otp(result['otp_secret'], self.now // 30))['token']
-        self.assertEqual(self.s.query(token, 'me')['role'], 'owner')
+    def test_recovery_path_is_retired_without_changing_session(self):
+        """旧恢复码立即拒绝，不能修改认证方式或撤销当前有效邮件会话。"""
+        with self.assertRaises(Fault) as caught:
+            recover_mfa(self.s, 'owner', self.password, 'legacy-recovery-code')
+        self.assertEqual(caught.exception.code, 'AUTH_METHOD_RETIRED')
+        self.assertEqual(self.s.query(self.owner, 'me')['role'], 'owner')
 
     def test_batch_preview_restart_partial_failure_and_failed_only_retry(self):
         """预览无资产变更；中途重启只处理未完成目标，重试不能扩大到成功目标。"""
@@ -95,7 +88,7 @@ class OperationsTests(Base):
         """已花费发放的人工复核只追加决定，不能改原账本或制造负余额。"""
         account, token = self.player()
         grant = self.grant(account, [{'type': 'currency', 'code': 'GP', 'delta': 500}])
-        self.command('shop.purchase', {'offer_key': 'test-rifle-gp', 'catalog_version': self.s.catalog['id']}, token)
+        self.legacy_purchase_fixture(token, offer_key='test-rifle-gp', catalog_version=self.s.catalog['id'])
         review = self.command('asset.compensate', self.step(operation_id=grant['operation_id'], catalog_version=self.s.catalog['id']))
         self.command('asset.review.resolve', self.step(operation_id=review['operation_id'], resolution='KEEP_ASSETS'))
         self.assertEqual(self.balance(account), 0)

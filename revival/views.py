@@ -3,7 +3,9 @@ import logging
 import mimetypes
 from pathlib import Path
 from django.conf import settings
+from django.core.exceptions import RequestDataTooBig, SuspiciousOperation
 from django.http import HttpResponse
+from django.http.multipartparser import MultiPartParserError
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.gzip import gzip_page
 from django.db.models import Q
@@ -25,12 +27,20 @@ def token(request):
 
 @csrf_exempt
 # Django HTTP 适配层只负责读取参数、调业务服务和编码结果；业务事务保留在领域层，错误响应不泄露驱动异常。
-def endpoint(request, view=None):
+def endpoint(request, view=None, ticket_id=None, attachment_id=None, media_id=None):
     """Django HTTP 适配层只负责读取参数、调业务服务和编码结果；业务事务保留在领域层，错误响应不泄露驱动异常。"""
     try:
         service = Service(test_profile=settings.NZ_PROFILE == 'synthetic')
         path = request.path
         if request.method == 'GET':
+            if attachment_id is not None or media_id is not None:
+                # 私图必须逐次带Bearer鉴权；公共封面只查独立表，不提供可切换可见性的参数。
+                from .media import read_feedback_attachment, read_public_cover
+                payload, mime = (read_feedback_attachment(service, token(request), attachment_id)
+                                 if attachment_id is not None else read_public_cover(service, media_id))
+                result = HttpResponse(payload, content_type=mime)
+                result['Cache-Control'] = 'private, no-store' if attachment_id is not None else 'no-store'
+                return result
             if path == '/health':
                 return response({'status': 'ok', 'profile': service.catalog['id'], 'retail_compatible': False})
             if path == '/api/status':
@@ -53,8 +63,22 @@ def endpoint(request, view=None):
                 return response(service.query(token(request), view, **filters))
         elif request.method == 'POST':
             data = request.nz_data
-            if path == '/api/login':
-                result = service.login(data.get('login'), data.get('password'), kind=data.get('kind', 'player'), otp_code=data.get('otp_code'))
+            if getattr(request, 'nz_image_upload', False):
+                # 中间件已在读取FILES之前认证；严格限制一张图片与一个幂等上传标识。
+                from .media import upload_feedback, upload_public_cover
+                if (set(request.POST) != {'upload_key'} or len(request.POST.getlist('upload_key')) != 1
+                        or set(request.FILES) != {'file'} or len(request.FILES.getlist('file')) != 1):
+                    raise Fault('INVALID', '一次只能提交一张图片和上传标识')
+                uploaded = request.FILES['file']
+                result = (upload_feedback(service, token(request), ticket_id, uploaded, request.POST['upload_key'])
+                          if ticket_id is not None else upload_public_cover(service, token(request), uploaded, request.POST['upload_key']))
+            elif path in ('/api/admin/login-code', '/api/admin/step-up-code'):
+                from .admin_email_auth import request_login_code, request_step_up_code
+                result = (request_login_code(service, data, client_address(request)) if path.endswith('/login-code')
+                          else request_step_up_code(service, token(request), data, client_address(request)))
+            elif path == '/api/login':
+                result = service.login(data.get('login'), data.get('password'), kind=data.get('kind', 'player'),
+                                       challenge_id=data.get('challenge_id'), code=data.get('code'))
             elif path == '/api/register':
                 if settings.NZ_EMAIL_VERIFICATION_REQUIRED and ('email' not in data or 'login' in data):
                     raise Fault('EMAIL_REQUIRED', '新用户必须通过验证码注册邮箱账号', 403)
@@ -68,13 +92,20 @@ def endpoint(request, view=None):
                 result = service.login(email, data.get('password'), kind='player', launcher=path == '/api/launcher/login')
             elif path == '/api/player/view':
                 # 本机桥客户端要求对象信封；权限仍由网页玩家会话逐请求验证，不接受游戏凭据冒充。
-                allowed = {'me', 'player-inventory', 'player-shop', 'campaigns', 'leaderboards'}
+                allowed = {'me', 'player-inventory', 'campaigns', 'campaign-detail', 'leaderboards', 'feedback', 'feedback-detail'}
                 if data.get('view') not in allowed or not isinstance(data.get('query', {}), dict):
                     raise Fault('FORBIDDEN', '玩家读取视图不在允许范围', 403)
                 current = token(request)
                 with service.db.transaction() as c:
                     service._actor(c, current, 'player')
-                result = {'data': service.query(current, data['view'], **data.get('query', {}))}
+                query = dict(data.get('query', {}))
+                # Launcher从URLSearchParams传递字符串；复用GET的整数合同，不把bool强转成1。
+                for key in ('limit', 'offset', 'map_id', 'difficulty', 'player_count', 'after_gid', 'revision'):
+                    if key in query:
+                        if isinstance(query[key], bool):
+                            raise Fault('INVALID', '分页或筛选参数不正确')
+                        query[key] = int(query[key])
+                result = {'data': service.query(current, data['view'], **query)}
             elif path == '/api/player/register':
                 if 'email' not in data or 'login' in data:
                     raise Fault('INVALID', '邮箱注册必须提供 email，不能指定旧登录名')
@@ -138,6 +169,11 @@ def endpoint(request, view=None):
         raise Fault('NOT_FOUND', 'Route not found', 404)
     except Fault as error:
         return failure(error)
+    except RequestDataTooBig:
+        # multipart文件本身单独限5MiB；超大的文本字段仍受Django原64KiB预算保护。
+        return failure(Fault('BODY_SIZE', '表单文字字段超过允许大小', 413))
+    except (SuspiciousOperation, MultiPartParserError):
+        return failure(Fault('INVALID', '上传表单格式不正确'))
     except (ValueError, TypeError, KeyError):
         return failure(Fault('INVALID', 'Invalid request structure'))
     except Exception:
@@ -157,8 +193,8 @@ def public_data(service, name, filters):
             query[key] = int(query[key])
     with service.db.transaction() as c:
         actor = {'kind': 'public'}
-        if name == 'campaigns':
-            return campaign_view(service, c, actor, 'campaigns', query)
+        if name in ('campaigns', 'campaign-detail'):
+            return campaign_view(service, c, actor, name, query)
         if name == 'leaderboards':
             if not query.get('campaign_id'):
                 return {'entries': [], 'finalized': False, 'test_only': service.test_profile, 'native_results_enabled': False}

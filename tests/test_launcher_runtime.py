@@ -18,6 +18,27 @@ class LauncherRuntimeTests(unittest.TestCase):
         """返回仅含公开URL的测试配置，使用保留域名避免误发真实登录请求。"""
         return {'schema_version': runtime.PACKAGE_VERSION, 'api_base_url': url}
 
+    def test_packaged_feedback_uses_verified_tls_and_fixed_binary_contract(self):
+        """真实发行客户端具备媒体方法；只使用预设HTTPS并拒绝跳转及错误图片类型。"""
+        connection = Mock()
+        response = connection.getresponse.return_value
+        response.status = 200
+        response.read.return_value = b'{"id":"safe"}'
+        client = runtime.PublicApiClient(self.config())
+        with patch.object(runtime.ssl, 'create_default_context', return_value='verified') as context, patch.object(runtime.http.client, 'HTTPSConnection', return_value=connection) as factory:
+            self.assertEqual(client.feedback_upload('a'*32, b'png', 'image/png', 'upload-key', 'private'), {'id':'safe'})
+            self.assertEqual(factory.call_args.kwargs['context'], 'verified')
+            self.assertEqual(connection.request.call_args.args[1], '/api/feedback/'+'a'*32+'/attachments')
+            self.assertEqual(connection.request.call_args.args[3]['Authorization'], 'Bearer private')
+            response.read.return_value = b'webp'
+            response.getheader.return_value = 'image/webp'
+            self.assertEqual(client.feedback_image('b'*32, 'private'), (b'webp', 'image/webp'))
+            response.status = 302; response.read.return_value = b'{}'
+            with self.assertRaises(LoginError):
+                client.feedback_image('b'*32, 'private')
+            self.assertEqual(connection.request.call_count, 3)
+            self.assertEqual(context.call_count, 3)
+
     def test_frozen_resources_and_state_are_separate_and_native_start_is_blocked(self):
         """发行资源不可充当运行数据目录，原生游戏缺少完整交付时明确停止。"""
         with tempfile.TemporaryDirectory() as directory:

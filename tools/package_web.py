@@ -70,7 +70,7 @@ def main():
     """默认把Web归档放入本批交付目录；--output只指定产物位置，不改变收集白名单。"""
     root=Path(__file__).resolve().parents[1]
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output',type=Path,default=root/'outputs/01a15734-c809-7ff2-8313-f617805a4441/nz-web-platform-2026-10-19.tar.gz')
+    parser.add_argument('--output',type=Path,default=root/'outputs/portal-v2-2026-10-20/nz-web-platform-2026-10-20.tar.gz')
     args=parser.parse_args()
     print(json.dumps(package(root,args.output.resolve()),ensure_ascii=False))
 

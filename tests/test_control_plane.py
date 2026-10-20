@@ -13,7 +13,7 @@ from pathlib import Path
 
 from revival.assets import deliver_outbox, preview, settle
 from revival.rooms import heartbeat, maintain, test_host_ready
-from revival.security import otp, token_hash
+from revival.security import token_hash
 from revival.service import Fault, Service, identifier
 
 
@@ -41,6 +41,11 @@ class Base(TransactionTestCase):
         self.email_fixture_settings = override_settings(NZ_EMAIL_VERIFICATION_REQUIRED=False,NZ_STARTER_EQUIPMENT_ENABLED=False)
         self.email_fixture_settings.enable()
         self.addCleanup(self.email_fixture_settings.disable)
+        # 只替换投递端；所有管理员测试仍经过生产随机挑战、密码和一次性事务，不提供免码后门。
+        configured = patch('revival.mailing.configured', return_value=True)
+        configured.start(); self.addCleanup(configured.stop)
+        sender = patch('revival.mailing.send_code')
+        sender.start(); self.addCleanup(sender.stop)
         DeploymentLock.objects.get_or_create(pk=1)
         SchemaVersion.objects.get_or_create(version=1)
         self.directory = tempfile.TemporaryDirectory()
@@ -49,7 +54,7 @@ class Base(TransactionTestCase):
         self.s = Service(self.path, test_profile=True, clock=lambda: self.now, test_pve=getattr(self, 'pve_profile', False))
         self.password = 'local-test-password-123'
         self.admin = self.s.bootstrap_admin('owner', self.password)
-        self.owner = self.s.login('owner', self.password, kind='admin', otp_code=otp(self.admin['otp_secret'], self.now // 30))['token']
+        self.owner = self.admin_login('owner')['token']
 
     def tearDown(self):
         """释放本例服务、连接和临时资源；清理由测试生命周期完成，不影响当前业务库。"""
@@ -62,7 +67,35 @@ class Base(TransactionTestCase):
 
     def command(self, action, data=None, token=None):
         """生成请求元数据并经真实业务服务提交指定命令，返回结果或抛出业务异常。"""
-        return self.s.command(token or self.owner, action, self.meta(**(data or {})))
+        payload = self.meta(**(data or {}))
+        if 'current_password' in payload and 'challenge_id' not in payload:
+            payload = self.authorize(action, payload, token)
+        return self.s.command(token or self.owner, action, payload)
+
+    def admin_login(self, login='owner', password=None):
+        """通过真实取码/确认合同登录；仅从SMTP替身取随机码，未向真实邮箱发送。"""
+        from revival.admin_email_auth import request_login_code
+        from revival import mailing
+        self.now += 61
+        password = password or self.password
+        challenge = request_login_code(self.s, {'login':login, 'password':password}, 'test-admin-source')
+        code = mailing.send_code.call_args.args[1]
+        return self.s.login(login, password, kind='admin', challenge_id=challenge['challenge_id'], code=code)
+
+    def authorize(self, action, data, token=None):
+        """以最终业务内容申请操作绑定邮件码；夹具不能把一个确认复用到不同动作或参数。"""
+        from revival.admin_email_auth import request_step_up_code, AUTH_FIELDS
+        from revival import mailing
+        # 非限流专项沿用既有游戏时钟；仅把历史挑战的发送时间设为一小时前，避免
+        # 领取新操作邮件码时人为推进61秒而使并行房间租约到期。码的过期/消费仍真实校验。
+        # 限流专项直接调用request_*，不经此夹具，因此不会绕过实际的发送额度断言。
+        with self.s.db.transaction() as c:
+            c.table('admin_auth_challenges').filter(purpose='STEP_UP').update(created_at=self.now-3601)
+        metadata = {name:data[name] for name in ('request_id','idempotency_key','reason')}
+        payload = {key:value for key,value in data.items() if key not in AUTH_FIELDS | set(metadata)}
+        challenge = request_step_up_code(self.s, token or self.owner,
+            {'action':action,'payload':payload,'metadata':metadata,'current_password':data['current_password']}, 'test-admin-source')
+        return dict(data, challenge_id=challenge['challenge_id'], code=mailing.send_code.call_args.args[1])
 
     def invitation(self, uses=1):
         """用 Owner 创建指定次数和短期限邀请，返回一次性展示的测试令牌。"""
@@ -71,11 +104,15 @@ class Base(TransactionTestCase):
     def player(self, login='player-a', character=True):
         """注册并审批合成玩家，返回账号 ID 与会话；按参数决定是否初始化本地角色。"""
         invite = self.invitation()
-        result = self.s.register(self.meta(login=login, password=self.password, invitation=invite['invitation_token']))
+        # 该助手只构造历史合成身份；公开邮箱专项调用真实register而不是此夹具。
+        with override_settings(NZ_EMAIL_VERIFICATION_REQUIRED=False):
+            result = self.s.register(self.meta(login=login, password=self.password, invitation=invite['invitation_token']))
         self.command('user.approve', {'target_account_id': result['account_id']})
         token = self.s.login(login, self.password)['token']
         if character:
-            self.command('character.create', {'nickname': login}, token)
+            # 此助手构造历史合成角色；正式/onboarding邮箱门禁由注册专项真实验证。
+            with override_settings(NZ_EMAIL_VERIFICATION_REQUIRED=False):
+                self.command('character.create', {'nickname': login}, token)
         return result['account_id'], token
 
     def grant(self, account_id, changes, key=None):
@@ -89,9 +126,19 @@ class Base(TransactionTestCase):
         return next(w['balance'] for w in self.s.query(self.owner, 'user', account_id=account_id)['wallets'] if w['currency'] == code)
 
     def step_up(self):
-        """推进测试时钟一个 TOTP 时间步并构造新鲜的高风险再认证参数。"""
-        self.now += 30
-        return {'current_password': self.password, 'otp_code': otp(self.admin['otp_secret'], self.now // 30)}
+        """标记需要再认证；command夹具在得到最终业务参数后申请真正的操作绑定码。"""
+        return {'current_password': self.password}
+
+    def legacy_purchase_fixture(self, token, **data):
+        """仅从领域层构造旧购物账本夹具；公开平台入口仍必须拒绝此动作。
+
+        补偿和并发资产测试需要保留历史购买后已消费余额的状态，不能为夹具重新开放API。
+        原生游戏购物车另有独立真实命令专项验证。
+        """
+        from revival.assets import asset_command
+        with self.s.db.transaction() as c:
+            actor = self.s._actor(c, token, 'player')
+            return asset_command(self.s, c, actor, 'shop.purchase', self.meta(**data))
 
     def extra_admin(self, role):
         """为权限测试创建指定角色管理员并登录，返回该角色会话。"""
@@ -100,7 +147,7 @@ class Base(TransactionTestCase):
             original = c.select('admins', limit=1).fetchone()
             c.insert('admins', {'id':admin_id, 'login':role, 'password_hash':original['password_hash'],
                                'otp_secret':original['otp_secret'], 'role':role})
-        return self.s.login(role, self.password, kind='admin', otp_code=otp(self.admin['otp_secret'], self.now // 30))['token']
+        return self.admin_login(role)['token']
 
     def match(self):
         """建立两名已准备玩家的合成对局，返回参与者、房间 ID 和冻结开始结果。"""
@@ -159,9 +206,9 @@ class Accounts(Base):
         with self.assertRaises(Fault): self.s.login('nonexistent', self.password)
 
     def test_admin_mfa_required_and_cannot_replay(self):
-        """验证场景：普通管理员必须提交 MFA，已使用时间步拒绝重放。"""
+        """管理员必须提交独立邮件挑战，旧TOTP参数不能恢复登录。"""
         with self.assertRaises(Fault): self.s.login('owner', self.password, kind='admin')
-        with self.assertRaises(Fault): self.s.login('owner', self.password, kind='admin', otp_code=otp(self.admin['otp_secret'], self.now // 30))
+        with self.assertRaises(Fault): self.s.login('owner', self.password, kind='admin', otp_code='123456')
         with self.assertRaises(Fault): self.s.bootstrap_admin('another', self.password)
 
     def test_character_and_assets_are_independent_and_initialize_once(self):
@@ -242,7 +289,7 @@ class Accounts(Base):
         resource = self.extra_admin('resources')
         with self.assertRaises(Fault): self.command('user.reset', {'target_account_id': a, 'new_password': self.password}, resource)
         exported = json.dumps(self.s.query(self.owner, 'user', account_id=a)) + json.dumps(self.s.query(self.owner, 'audit'))
-        for sensitive in (self.password, self.owner, ta, self.admin['otp_secret'], 'password_hash', 'token_hash'):
+        for sensitive in (self.password, self.owner, ta, 'otp_secret', 'password_hash', 'token_hash'):
             self.assertNotIn(sensitive, exported)
 
 
@@ -284,7 +331,7 @@ class Assets(Base):
         a, ta=self.player();self.grant(a,[{'type':'currency','code':'GP','delta':1000}])
         def change(i):
             """在并发工作线程提交资产变更，检验共享部署锁下不会丢失更新。"""
-            if i==0:return self.command('shop.purchase',{'catalog_version':self.s.catalog['id'],'offer_key':'test-rifle-gp'},ta)
+            if i==0:return self.legacy_purchase_fixture(ta,catalog_version=self.s.catalog['id'],offer_key='test-rifle-gp')
             return self.grant(a,[{'type':'currency','code':'GP','delta':100}])
         with ThreadPoolExecutor(max_workers=10) as pool:list(pool.map(change,range(10)))
         self.assertEqual(self.balance(a),1400);self.assertEqual(len(self.s.query(ta,'me')['inventory']),1)
@@ -346,7 +393,7 @@ class Assets(Base):
     def test_spent_compensation_is_review_not_negative(self):
         """验证场景：已消费资产的补偿转人工审核，不能造成负余额。"""
         a,ta=self.player();original=self.grant(a,[{'type':'currency','code':'GP','delta':600}])
-        self.command('shop.purchase',{'catalog_version':self.s.catalog['id'],'offer_key':'test-rifle-gp'},ta)
+        self.legacy_purchase_fixture(ta,catalog_version=self.s.catalog['id'],offer_key='test-rifle-gp')
         result=self.command('asset.compensate',{'operation_id':original['operation_id'],'catalog_version':self.s.catalog['id'],**self.step_up()})
         self.assertEqual(result['status'],'MANUAL_REVIEW');self.assertEqual(self.balance(a),100)
 
@@ -361,6 +408,7 @@ class Assets(Base):
         """验证场景：批量冻结目标，子项失败独立回滚，重放不重复成功子项。"""
         a,ta=self.player();b,tb=self.player('player-b')
         data=self.meta(target_account_ids=[a,b,'missing'],catalog_version=self.s.catalog['id'],changes=[{'type':'currency','code':'GP','delta':10}],**self.step_up())
+        data=self.authorize('asset.batch',data)
         first=self.s.command(self.owner,'asset.batch',data)
         self.assertEqual([r['status'] for r in first['results']],['COMMITTED','COMMITTED','REJECTED'])
         self.assertEqual(first,self.s.command(self.owner,'asset.batch',data));self.assertEqual(self.balance(a),10);self.assertEqual(self.balance(b),10)

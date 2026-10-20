@@ -167,6 +167,38 @@ class PublicApiClient:
         finally:
             connection.close()
 
+    def feedback_upload(self, ticket_id, payload, mime, upload_key, token):
+        """发行包复用同一固定附件合同；图片不是JSON请求，不能通过request偷换远端路径。"""
+        from tools.email_launcher import Client
+        return Client.feedback_upload(self, ticket_id, payload, mime, upload_key, token)
+
+    def feedback_image(self, attachment_id, token):
+        """发行包按已鉴权的附件ID读取私图；不会把远端Bearer返回WebView。"""
+        from tools.email_launcher import Client
+        return Client.feedback_image(self, attachment_id, token)
+
+    def public_cover_image(self, media_id):
+        """公共活动封面复用固定ID/有界WebP合同，不向网关发送玩家Bearer。"""
+        from tools.email_launcher import Client
+        return Client.public_cover_image(self, media_id)
+
+    def _feedback_media(self, method, path, token, body=None, content_type=None):
+        """共享有界编码、错误、MIME及禁止重定向规则，连接目标仍由本类公开配置决定。"""
+        from tools.email_launcher import Client
+        return Client._feedback_media(self, method, path, token, body, content_type)
+
+    def _feedback_connection(self):
+        """与普通发行请求相同的TLS/回环边界；只允许系统证书验证，没有不安全降级开关。"""
+        if self.url.scheme == 'https':
+            connection = http.client.HTTPSConnection(self.url.hostname, self.url.port or 443,
+                timeout=20, context=ssl.create_default_context())
+        else:
+            connection = http.client.HTTPConnection(self.url.hostname, self.url.port, timeout=20)
+        headers = {'X-NZ-Request': '1'}
+        if self.config.get('loopback_host_port') is not None:
+            headers['Host'] = '127.0.0.1:' + str(self.config['loopback_host_port'])
+        return connection, headers
+
 
 @contextmanager
 def configured_connection():

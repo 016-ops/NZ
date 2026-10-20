@@ -29,17 +29,18 @@ class EmailAliasTests(Base):
         self.sender = sender.start()
         self.addCleanup(sender.stop)
 
-    def registration(self, email, invitation, password=None):
+    def registration(self, email, invitation, password=None, nickname=None):
         """申请生产挑战并读取本例 SMTP 替身中的随机码，构造可重放的完整注册请求。"""
         challenge = request_code(self.s, {'email': email, 'purpose': 'register', 'invitation': invitation}, '127.0.0.1')
         return self.meta(email=email, password=password or self.password, invitation=invitation,
+                         nickname=nickname or '邮箱玩家'+secrets.token_hex(5),
                          challenge_id=challenge['challenge_id'], code=self.sender.call_args.args[1])
 
     def test_released_legacy_email_can_register_without_rewriting_old_account(self):
         """旧哈希隐藏名保留时，换绑后的旧邮箱仍可注册；历史重放、角色、资产和旧身份保持隔离。"""
         old_email = 'released@example.test'
         invitation = self.invitation(uses=2)['invitation_token']
-        old_request = self.registration(old_email, invitation)
+        old_request = self.registration(old_email, invitation, nickname='换绑保留角色')
         original = self.s.register(old_request)
         legacy_login = 'm_' + token_hash(old_email)[:30]
         # 只在独立测试库模拟升级前已经存在的哈希隐藏名；生产实现禁止重写这些历史列。
@@ -51,7 +52,7 @@ class EmailAliasTests(Base):
         self.grant(original['account_id'], [{'type': 'currency', 'code': 'GP', 'delta': 7}])
         before = self.s.query(old_token, 'me')
         self.command('user.email.set', {'target_account_id': original['account_id'], 'email': 'retained@example.test', **self.step_up()})
-        self.now += 31
+        self.now += 61
         new_password = 'new-owner-password-456'
         new_request = self.registration(old_email, invitation, new_password)
         replacement = self.s.register(new_request)
@@ -65,15 +66,16 @@ class EmailAliasTests(Base):
         self.assertEqual(retained['login'], legacy_login)
         self.command('user.approve', {'target_account_id': replacement['account_id']})
         fresh = self.s.query(self.s.login(old_email, new_password)['token'], 'me')
-        self.assertIsNone(fresh['character'])
-        self.assertEqual(fresh['wallets'], [])
+        self.assertNotEqual(fresh['character']['id'], before['character']['id'])
+        self.assertTrue(all(row['balance'] == 0 for row in fresh['wallets']))
         self.assertNotEqual(fresh['login'], legacy_login)
-        self.assertEqual(self.s.query(self.owner, 'invitations')[0]['uses'], 2)
+        self.assertEqual(self.s.query(self.owner, 'invitations')[0]['uses'], 0)
         for hidden in (legacy_login, fresh['login']):
             with self.assertRaises(Fault):
                 self.s.login(hidden, self.password if hidden == legacy_login else new_password)
         self.sender.assert_called()
-        self.assertEqual(self.sender.call_count, 2)
+        # 两次注册及一次Owner换绑确认，共三次真正的随机邮件挑战。
+        self.assertEqual(self.sender.call_count, 3)
 
     def test_random_alias_retries_collision_and_public_login_still_requires_email(self):
         """随机名碰到旧用户名时重新取名，公开登录不能凭隐藏名绕过邮箱身份。"""
@@ -107,7 +109,7 @@ class EmailAliasTests(Base):
         with self.s.db.transaction() as c:
             self.assertEqual(c.count('accounts')[0][0], 1)
             self.assertEqual(c.count('player_emails')[0][0], 1)
-        self.assertEqual(self.s.query(self.owner, 'invitations')[0]['uses'], 1)
+        self.assertEqual(self.s.query(self.owner, 'invitations')[0]['uses'], 0)
         self.sender.assert_called_once()
 
     def test_registration_replay_when_peer_commits_before_code_precheck(self):
@@ -142,4 +144,4 @@ class EmailAliasTests(Base):
         with self.s.db.transaction() as c:
             self.assertEqual(c.count('accounts')[0][0], 1)
             self.assertEqual(c.table('audit_events').filter(action='account.register').count(), 1)
-        self.assertEqual(self.s.query(self.owner, 'invitations')[0]['uses'], 1)
+        self.assertEqual(self.s.query(self.owner, 'invitations')[0]['uses'], 0)

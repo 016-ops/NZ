@@ -20,8 +20,8 @@ HUNT_MAPS = {113, 164, 191}
 TOWER_MAPS = {141, 140, 168, 96}
 MAPS = HUNT_MAPS | TOWER_MAPS
 COMMANDS = {'campaign.save', 'campaign.publish', 'campaign.pause', 'campaign.end',
-            'campaign.checkin', 'campaign.claim', 'leaderboard.finalize'}
-VIEWS = {'campaigns', 'campaign-admin', 'leaderboards'}
+            'campaign.checkin', 'campaign.claim', 'campaign.presentation.save', 'leaderboard.finalize'}
+VIEWS = {'campaigns', 'campaign-admin', 'campaign-detail', 'leaderboards'}
 
 
 def _owner(actor):
@@ -248,6 +248,9 @@ def _finalize(service, c, row):
 
 def command(service, c, actor, action, data):
     """在调用方事务内执行资源运营/Owner封榜或本人领取；唯一键补充通用幂等保护。"""
+    from .activitypresentation import serialize, command as save_presentation
+    if action == 'campaign.presentation.save':
+        return save_presentation(service, c, actor, data)
     if action not in COMMANDS:
         raise Fault('NOT_FOUND', '未知活动命令', 404)
     if action == 'leaderboard.finalize':
@@ -272,7 +275,8 @@ def command(service, c, actor, action, data):
             campaign_id = identifier()
             c.insert('campaigns', {'id': campaign_id, 'title': title, 'definition': definition,
                      'test_only': service.test_profile, 'created_at': service.clock(), 'updated_at': service.clock()})
-        return _base(_campaign(service, c, campaign_id))
+        saved = _campaign(service, c, campaign_id)
+        return _base(saved) | {'presentation': serialize(service, c, saved)}
     row = _campaign(service, c, data.get('campaign_id'))
     if action == 'campaign.publish':
         if row['state'] not in ('DRAFT', 'PAUSED', 'PUBLISHED') or service.clock() >= _definition(row)['ends_at']:
@@ -320,16 +324,20 @@ def command(service, c, actor, action, data):
         c.insert('campaign_claims', {'id': identifier(), 'campaign_id': row['id'], 'account_id': actor['id'],
                  'claim_key': claim_key, 'reward_key': reward_key, 'operation_id': operation_id, 'created_at': service.clock()})
         return {'campaign_id': row['id'], 'reward_key': reward_key, 'operation_id': operation_id, 'claimed': True}
-    return _base(_campaign(service, c, row['id']))
+    saved = _campaign(service, c, row['id'])
+    return _base(saved) | {'presentation': serialize(service, c, saved)}
 
 
 def view(service, c, actor, name, query):
     """返回活动、个人资格或一张分榜；正式与合成分区始终由服务环境决定而非查询参数。"""
+    from .activitypresentation import serialize, detail
+    if name == 'campaign-detail':
+        return detail(service, c, actor, query)
     if name == 'campaign-admin':
         _manage(actor, read=True)
         rows = []
         for row in c.select('campaigns', Q(test_only=service.test_profile), order=('-created_at', 'id')):
-            value = _base(row)
+            value = _base(row) | {'presentation': serialize(service, c, row)}
             frozen = _freeze(c, row['id'])
             awards = frozen['awards'].values() if frozen else []
             statuses = [award.get('status', 'PENDING') for award in awards]
@@ -342,7 +350,7 @@ def view(service, c, actor, name, query):
         rows = c.select('campaigns', Q(test_only=service.test_profile, published_definition__isnull=False), order=('-created_at', 'id'))
         result = []
         for row in rows:
-            value = _base(row)
+            value = _base(row) | {'presentation': serialize(service, c, row)}
             if actor.get('kind') == 'player':
                 value['progress'] = _progress(service, c, row, actor['id'])
                 value['rewards'] = _eligibility(service, c, row, actor['id'], value['progress'])

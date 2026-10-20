@@ -74,4 +74,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 USE_TZ = True
 TIME_ZONE = 'UTC'
 DATA_UPLOAD_MAX_MEMORY_SIZE = 65536
+# 图片由专用multipart路由接收；大文件溢出到受控临时文件，不扩大普通JSON请求限制。
+FILE_UPLOAD_MAX_MEMORY_SIZE = 262144
+NZ_MEDIA_ROOT = Path(os.environ.get('NZ_MEDIA_ROOT', BASE_DIR / 'runtime/media'))
 NZ_PORT = int(os.environ.get('NZ_PORT', '8765'))

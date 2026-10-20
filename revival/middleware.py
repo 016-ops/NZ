@@ -1,12 +1,14 @@
 """请求边界中间件：校验来源、正文和限流，统一 JSON 错误及安全响应头。"""
 import json
 import logging
+import re
 import threading
 import time
 from ipaddress import ip_address
 from collections import OrderedDict
 
 from django.conf import settings
+from django.core.exceptions import RequestDataTooBig, SuspiciousOperation
 from django.http import JsonResponse
 from .service import Fault, identifier
 
@@ -102,23 +104,47 @@ class ControlPlaneMiddleware:
                 raise Fault('ORIGIN', 'Cross-origin requests are rejected', 403)
             if request.method == 'POST':
                 auth = request.path in ('/api/login', '/api/register', '/api/player/login', '/api/launcher/login', '/api/player/register',
-                    '/api/player/email-code', '/api/player/password-reset', '/api/player/email-verify', '/api/launcher/redeem')
+                    '/api/player/email-code', '/api/player/password-reset', '/api/player/email-verify', '/api/launcher/redeem',
+                    '/api/admin/login-code', '/api/admin/step-up-code')
                 if not self.limits.allow((client_address(request), request.path), 20 if auth else 120, 300 if auth else 60):
                     raise Fault('RATE_LIMIT', 'Request limit reached; retry later', 429)
-                if request.content_type != 'application/json' or request.headers.get('X-NZ-Request') != '1':
+                image_upload = request.path == '/api/admin/media' or re.fullmatch(r'/api/feedback/[a-f0-9]{32}/attachments', request.path)
+                expected_type = 'multipart/form-data' if image_upload else 'application/json'
+                if request.content_type != expected_type or request.headers.get('X-NZ-Request') != '1':
                     raise Fault('CSRF', 'JSON content type and X-NZ-Request: 1 are required', 403)
                 if request.headers.get('Transfer-Encoding'):
                     raise Fault('INVALID', 'Transfer encoding is not accepted')
                 size = int(request.META.get('CONTENT_LENGTH') or '0')
-                if not 1 <= size <= 65536:
-                    raise Fault('BODY_SIZE', 'Request body limit is 64 KiB', 413)
-                request.nz_data = json.loads(request.body, object_pairs_hook=unique_pairs,
-                    parse_constant=lambda _: (_ for _ in ()).throw(ValueError('Non-finite number')))
-                if not isinstance(request.nz_data, dict):
-                    raise Fault('INVALID', 'JSON object required')
+                maximum = 5 * 1024 * 1024 + 65536 if image_upload else 65536
+                if not 1 <= size <= maximum:
+                    raise Fault('BODY_SIZE', '图片最大5 MiB；普通请求最大64 KiB', 413)
+                if image_upload:
+                    # 上传认证必须早于FILES解析，防止匿名请求先消耗解码和临时文件资源。
+                    from .views import token
+                    from .service import Service
+                    service = Service(test_profile=settings.NZ_PROFILE == 'synthetic')
+                    with service.db.transaction() as c:
+                        actor = service._actor(c, token(request))
+                        if request.path == '/api/admin/media':
+                            from .media import _cover_permission
+                            _cover_permission(actor)
+                        else:
+                            from .feedback import ticket
+                            ticket(c, actor, request.path.split('/')[3], write=True)
+                    request.nz_image_upload = True
+                    request.nz_data = {}
+                else:
+                    request.nz_data = json.loads(request.body, object_pairs_hook=unique_pairs,
+                        parse_constant=lambda _: (_ for _ in ()).throw(ValueError('Non-finite number')))
+                    if not isinstance(request.nz_data, dict):
+                        raise Fault('INVALID', 'JSON object required')
             result = self.get_response(request)
         except Fault as error:
             result = failure(error)
+        except RequestDataTooBig:
+            result = failure(Fault('BODY_SIZE', '请求正文或表单字段过大', 413))
+        except SuspiciousOperation:
+            result = failure(Fault('INVALID', '请求或上传表单格式不正确'))
         except (ValueError, TypeError, KeyError, json.JSONDecodeError, UnicodeDecodeError):
             result = failure(Fault('INVALID', 'Invalid request structure'))
         except Exception:
@@ -133,8 +159,9 @@ class ControlPlaneMiddleware:
                     Service(test_profile=settings.NZ_PROFILE == 'synthetic').record_rejection(request.path, identifier(), body.get('error', 'INTERNAL'))
             except Exception:
                 LOG.error('Rejection audit failed')
-        result['Cache-Control'] = 'no-store'
+        if 'Cache-Control' not in result:
+            result['Cache-Control'] = 'no-store'
         result['X-Content-Type-Options'] = 'nosniff'
         result['Referrer-Policy'] = 'no-referrer'
-        result['Content-Security-Policy'] = "default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+        result['Content-Security-Policy'] = "default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
         return result

@@ -11,13 +11,18 @@ import { createHash } from 'node:crypto'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const outputDir = path.join(root, 'outputs/01a15734-c809-7ff2-8313-f617805a4441')
+// 第二轮导入首轮工作簿再定向修改，旧输出和历史发行归档保持原字节不覆盖。
+const roundV2 = process.argv.includes('--round=portal-v2')
+const outputArgument = process.argv.find(value => value.startsWith('--output-dir='))
+const legacyDir = path.join(root, 'outputs/01a15734-c809-7ff2-8313-f617805a4441')
+const outputDir = path.resolve(root, outputArgument ? outputArgument.slice('--output-dir='.length) : roundV2 ? 'outputs/portal-v2-2026-10-20' : legacyDir)
+if (!outputDir.startsWith(root + path.sep)) throw new Error('设计书输出必须位于当前项目目录中')
 const packages = process.env.NZ_ARTIFACT_NODE_MODULES || '/Users/zjh/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules'
 await fs.mkdir(outputDir, { recursive: true })
 const moduleLink = path.join(outputDir, 'node_modules')
 try { await fs.symlink(packages, moduleLink, 'dir') } catch (error) { if (error.code !== 'EEXIST') throw error }
 const resolveArtifact = createRequire(path.join(outputDir, 'artifact-authoring.mjs'))
-const { Workbook, SpreadsheetFile } = await import(pathToFileURL(resolveArtifact.resolve('@oai/artifact-tool')).href)
+const { Workbook, SpreadsheetFile, FileBlob } = await import(pathToFileURL(resolveArtifact.resolve('@oai/artifact-tool')).href)
 const sources = JSON.parse(await fs.readFile(path.join(outputDir, 'design-sources.json'), 'utf8'))
 // 发布记录与业务源码快照分开维护；仅更新部署状态时无需重提模型或重写其他三本。
 const releaseStatus = JSON.parse(await fs.readFile(path.join(root, 'tools/design_release_status.json'), 'utf8'))
@@ -48,7 +53,8 @@ verification.releaseStatus = releaseStatus
 verification.incrementalRun = selectedBooks ? { workbooks: [...selectedBooks], preservedOtherFiles: true } : null
 // 最终仅复核改变内容的页；未改变页保留此前已经逐张审查的预览，不重复耗时渲染。
 const renderArgument = process.argv.find(value => value.startsWith('--render-only='))
-const renderOnly = renderArgument ? new Set(renderArgument.slice('--render-only='.length).split(',')) : null
+const v2ChangedSheets = ['设计概览', '表目录', '字段定义', '约束与索引', '外键关系', '迁移与数据保护', '接口概览', 'HTTP路由', '命令权限', '新增请求合同', '既有请求合同', '页面架构', '角色与权限', '业务流程', '交互与状态', '验收清单', '部署总览', '环境配置', '发布与回退步骤', '打包文件清单', '实际归档文件', '交付与阻塞', '第二轮变更', '第二轮接口合同', '第二轮页面流程', '媒体与邮箱部署']
+const renderOnly = renderArgument ? new Set(renderArgument.slice('--render-only='.length).split(',')) : roundV2 ? new Set(v2ChangedSheets) : null
 verification.renderMode = renderOnly ? { changedSheets: [...renderOnly] } : 'all'
 let tableCount = 0
 
@@ -127,7 +133,7 @@ async function finish(book, basename, sheets) {
     }
     if (refreshed) {
       // 发布状态和实际归档摘要位于清单后半段，局部更新时完整呈现这三张说明页。
-      const completePage = ['部署总览', '打包文件清单', '交付与阻塞'].includes(sheet.name)
+      const completePage = ['部署总览', '打包文件清单', '交付与阻塞', '第二轮变更', '第二轮接口合同', '第二轮页面流程', '媒体与邮箱部署'].includes(sheet.name)
       const renderRows = completePage ? sheet.lastRow : Math.min(sheet.lastRow, 13)
       const blob = await book.render({ sheetName: sheet.name, range: `A1:${sheet.lastCol}${renderRows}`, scale: 1, format: 'png' })
       await fs.writeFile(target, new Uint8Array(await blob.arrayBuffer()))
@@ -146,6 +152,216 @@ async function finish(book, basename, sheets) {
   // 新导出的文件必须重新检查，其他未改工作簿的摘要/冻结/筛选验证原样保留。
   if (verification.export_checks) verification.export_checks = verification.export_checks.filter(value => value.file !== relativeTarget)
   console.log(JSON.stringify({ file: target, sheets: sheets.length, rows: sheets.reduce((sum, sheet) => sum + sheet.rows, 0) }))
+}
+
+/** 第二轮在导入的原工作簿上追加/修订；旧原生消息、历史归档和未关联格式不重新生成。 */
+async function buildPortalV2() {
+  const names = ['表设计', '游戏服务端接口设计', 'Web端设计书', '部署手册及打包清单']
+  const newTables = new Set(['admin_auth_challenges', 'feedback_tickets', 'feedback_messages', 'feedback_attachments', 'public_media', 'campaign_presentations'])
+  const registry = JSON.parse(await fs.readFile(path.join(root, 'admin/src/lib/item-presentation.json'), 'utf8'))
+  const artwork = Object.values(registry.items || {})
+  const exactImages = artwork.filter(value => value.image_status === 'exact').length
+  verification.asOf = '2026-10-20 America/Los_Angeles'
+  verification.currentRound = { name: 'portal-v2', status: '待本轮QA', deployed: false, exactImages, totalItems: artwork.length }
+  verification.releaseStatus = { historicalV1: releaseStatus, currentRound: '未部署，未生成本轮发行包，待本轮QA' }
+  verification.scopePreservation = []
+  const overviewRows = [
+    ['版本与日期', '第二轮设计 v2，2026-10-20', '保留首轮证据与旧发行归档。当前工作树不冒充已部署版本。', '待本轮QA', '本轮用户确认'],
+    ['部署决定', '暂不部署，仅本机预览与代码开发', '不连接远端，不把首轮包摘要当作本轮发行证明。', '未部署', '本轮用户确认'],
+    ['认证策略', '新注册玩家无邀请/审批，邮箱验证后ACTIVE并创建角色。管理员密码与邮箱挑战。', '旧PENDING仍需管理员批准，迁移/登录/补验/恢复均不改变其状态。TOTP/恢复码退休，旧管理员会话由0024撤销。', '待本轮QA', 'revival/service.py；revival/migrations/0024_email_admin_auth.py'],
+    ['反馈与活动展示', '反馈四态、鉴权截图、公共封面、独立活动slug和受控模板', '0025新增五表。奖励冻结快照与展示配置分离。', '待本轮QA', 'revival/feedback.py；revival/activitypresentation.py'],
+    ['视觉与配图', '深蓝灰与暖金。艾米/芭比双人同框二次元主视觉。', '已核实道具配图 ' + exactImages + '/' + artwork.length + '，其他图明确标记分类示意。', '待本轮QA', 'admin/src/blossom.css；admin/src/lib/item-presentation.json'],
+    ['证据边界', '首轮记录维持原日期。本轮验收须重新记录。', '旧CI、旧截图和旧包不代表新邮箱认证、截图上传或当前UI已验收。', '待本轮QA', 'docs/delivery/2026-10-20-frontend-account-activities-feedback.md'],
+  ]
+  const interfaceRows = [
+    ['玩家发码', 'POST /api/player/email-code', '匿名，同源JSON', 'email,purpose=register/reset/verify；不传invitation', 'challenge_id,expires_in=600,retry_after=60；持久限流', 'revival/email_verification.py'],
+    ['玩家注册', 'POST /api/player/register', '邮箱验证码与完整幂等元数据', 'email,password,nickname,challenge_id,code,request_id,idempotency_key,reason', '事务内ACTIVE+verified+角色初装；前端成功后调用login自动登录', 'revival/service.py'],
+    ['旧账号补角色', 'POST /api/player/login；character.create', '本人Session，旧ACTIVE且邮箱verified，character_required=true可补建', 'character.create={nickname,...元数据}', '旧ACTIVE verified无角色可登录补建；邮箱未验证时character.create返回EMAIL_UNVERIFIED 403', 'revival/service.py；admin/src/components/character-onboarding.tsx'],
+    ['旧玩家状态', '0024迁移；login / email-verify / password-reset', '旧账号沿用原状态与制裁', '邮箱验证或密码恢复不作为管理员批准', 'verified或未验证的PENDING_REVIEW都保持待审；DISABLED与sanctions保持，不批量激活、不隐式批准', 'revival/migrations/0024_email_admin_auth.py；revival/service.py'],
+    ['管理员发码', 'POST /api/admin/login-code', '先校验login/password，固定管理员收件邮箱', 'login,password', 'challenge_id,expires_in=300,retry_after=60,recipient_hint；无SMTP则拒绝', 'revival/admin_email_auth.py'],
+    ['管理员登录', 'POST /api/login', '密码与一次邮箱挑战', 'kind=admin,login,password,challenge_id,code', 'Session只驻内存；不接受旧otp_code作为验证', 'revival/service.py'],
+    ['Owner再验证', 'POST /api/admin/step-up-code', '管理员Bearer，敏感动作额外校验', 'action,payload,metadata,current_password', '挑战绑定Session/安全版本/原业务正文及幂等键。返回operation_summary动作及12位指纹供弹窗与邮件核对；最终command补current_password/challenge_id/code', 'revival/admin_email_auth.py；admin/src/lib/api.ts'],
+    ['商城边界', 'shop.purchase / player.shop.quote / player.shop.purchase / player-shop', '先鉴权后关闭平台玩家入口', '不提供前端购买表单或代理白名单', 'PLATFORM_SHOP_CLOSED 403；管理员商城运营与原生游戏商城仍保留', 'revival/service.py；tools/native_launcher.py'],
+    ['反馈列表', 'GET /api/views/feedback；feedback-admin', '玩家仅本人。Owner/users处理，auditor只读，resources拒绝', 'offset,limit,state', '{tickets,total,offset,limit}；OPEN/IN_PROGRESS/RESOLVED/CLOSED', 'revival/feedback.py'],
+    ['反馈详情', 'GET /api/views/feedback-detail', '本人或具反馈权限管理员', 'ticket_id', '工单平铺+messages+attachments。其他玩家工单404；resources角色403；未登录401。', 'revival/feedback.py'],
+    ['反馈写入', 'feedback.create/reply/status，经/api/command', 'create仅玩家；status仅Owner/users', 'create:{title,body}；reply:{ticket_id,expected_revision,body}；status:{ticket_id,expected_revision,state}', '正文最多5000字；CAS冲突409；已解决后回复重开OPEN；CLOSED终态只读，禁回复/上传/改状态', 'revival/feedback.py'],
+    ['反馈截图上传', 'POST /api/feedback/{ticket_id}/attachments', '当前Bearer+同源multipart', 'file,upload_key；整单最多3张，原图及重编码输出均不超过5MiB', 'PNG/JPEG/WebP解码后清理元数据转WebP；返回metadata+ticket_revision；同原图同键幂等，同键换图409', 'revival/media.py'],
+    ['私图读取', 'GET /api/feedback/attachments/{id}', '必须Bearer且具工单归属/管理员权限', '附件id；不得由静态目录公开读取', '鉴权二进制；前端取Blob并及时撤销object URL', 'revival/media.py；admin/src/components/feedback-pages.tsx'],
+    ['活动封面', 'POST /api/admin/media；GET /api/media/{id}', '上传Owner/resources。公共媒体GET可匿名。', '上传multipart(file,upload_key)，单图5MiB', '返回id/url/mime/width/height/bytes；公共封面与私有反馈图隔离', 'revival/media.py'],
+    ['活动页面保存', 'campaign.presentation.save', 'Owner/resources；expected_revision针对展示修订', 'campaign_id,expected_revision,presentation:{slug,title,summary,theme,cover_id,sections}', 'slug发布后锁定；最多12模块，kind=text/rewards/leaderboards；纯文本存储，不解释HTML', 'revival/activitypresentation.py'],
+    ['活动详情读取', 'GET /api/public/campaign-detail；/api/views/campaign-detail', '游客不见草稿/个人进度；玩家读本人资格', 'slug（或受控查询campaign_id）', '单个Campaign+presentation；已登录玩家另含progress/rewards', 'revival/activitypresentation.py'],
+    ['桌面账号与图片', 'POST /launcher/api/account / feedback-upload / feedback-image', '随机本机操作能力；不下发业务Session到React', 'account固定operation+payload；图片有界base64及稳定upload_key', '缺cap仅布局表单预览，禁提交；远端仍multipart/binary，不提供任意URL代理', 'tools/native_launcher.py；admin/src/components/native-launcher.tsx'],
+    ['桌面公共封面', 'POST /launcher/api/campaign-cover-image', '固定本机能力与公共媒体ID；远端公共GET不带业务Bearer', 'media_id为32位小写十六进制；受限base64输出', '只读取/api/media/{id}的5MiB内WebP；三张本地模板图严格白名单可直显，其他地址不代理', 'tools/native_launcher.py；admin/src/lib/campaign-cover.ts'],
+    ['认证错误', 'REAUTH_REQUIRED / ADMIN_EMAIL_CODE / MAIL_NOT_CONFIGURED / MAIL_DELIVERY_FAILED', '分别403/403/503/503', '不显示验证码、原始SMTP错误或管理员真实邮箱', '失败不降级TOTP、不启用免码、不自动重放写操作', 'revival/admin_email_auth.py；revival/mailing.py'],
+  ]
+  const pageRows = [
+    ['01', '玩家注册', '/player与Launcher首页的创建账号', '新注册邮箱、密码、昵称、验证码，成功后自动登录。旧ACTIVE且邮箱verified无角色可补昵称；旧PENDING仍待管理员批准。', '待本轮QA', 'admin/src/components/email-access.tsx'],
+    ['02', '管理员认证', '/admin与旧console管理员入口', '密码校验后发送邮箱码，Owner敏感动作独立邮箱再验证弹窗。', '待本轮QA', 'admin/src/components/admin-step-up.tsx'],
+    ['03', '玩家商城关闭', '玩家Web、Launcher、legacy console', '移除导航、快捷卡、页面与购买调用；管理员运营保持。', '待本轮QA', 'admin/src/portal-app.tsx；admin/src/App.tsx'],
+    ['04', '双人主视觉', '官网与Launcher场景', '艾米、芭比同框二次元，沿用深蓝灰暖金。粉白方案已取消。', '待本轮QA', 'admin/src/blossom.css；admin/public/assets/'],
+    ['05', '中文显示', '玩家道具、状态、错误、后台选择器', '名称与资源键分开，普通界面中文化，技术信息折叠。', '待本轮QA', 'admin/src/components/catalog-item-picker.tsx'],
+    ['06', '操作反馈', '两端共享提示与结果弹窗', '成功/失败明确，页面刷新不丢回执；幂等失败重试保留键。', '待本轮QA', 'admin/src/components/action-feedback.tsx'],
+    ['07', '动态景深', '官网与Launcher公共背景', '限制位移，后台停止；触屏和prefers-reduced-motion静态降级。', '待本轮QA', 'admin/src/components/ambient-backdrop.tsx'],
+    ['08', '道具配图', '仓库、奖励、后台资源', '准确图 ' + exactImages + '/' + artwork.length + '，其余分类示意明确标注，不伪装为原图。', '待本轮QA', 'admin/src/lib/item-presentation.json'],
+    ['09', '活动专题', '/activities及/activities/<slug>', '导航统一活动。汇总/详情/后台预览共用三种模板预置封面，自定义公共封面优先；真实奖励/榜单模块，发布后奖励不变。', '待本轮QA', 'admin/src/components/platform-pages.tsx；admin/src/lib/campaign-cover.ts'],
+    ['10', '反馈工单', '玩家/Launcher反馈中心；管理员玩家反馈', '新建/列表/详情/回复/四态/每单3张5MiB私图，严格当前身份。', '待本轮QA', 'admin/src/components/feedback-pages.tsx'],
+  ]
+  const deploymentRows = [
+    ['当前决定', '暂不部署', '只更新代码、设计书和本机预览，不更新远端服务或旧发行包。', '待本轮QA', '本轮用户确认'],
+    ['SMTP前置', '真实管理员收件必须先验证', 'NZ_MAIL_PROVIDER/HOST/PORT/FROM/USERNAME/PASSWORD/SENDER_NAME通过受保护NZ_MAIL_ENV_FILE注入；不把值写入文档。', '未提供投递证据时不得宣称完成', 'revival/mailing.py；revival/admin_email_auth.py'],
+    ['邮箱认证切换', '0024_email_admin_auth', '新增挑战表；清空旧TOTP/恢复码，提升管理员安全版本并撤销旧会话。不批量改变任何玩家状态：旧PENDING/停用/制裁均保持。', '先备份并确认邮件可达再安排部署', 'revival/migrations/0024_email_admin_auth.py'],
+    ['业务媒体迁移', '0025_feedback_and_campaign_presentation', '新增反馈/私图/公共媒体/活动展示五表，旧活动按id回填slug，不改奖励快照。', '迁移按Django依赖向前，不反迁移删新数据', 'revival/migrations/0025_feedback_and_campaign_presentation.py'],
+    ['媒体存储', 'NZ_MEDIA_ROOT，私有可写目录', '默认仅本机runtime/media；生产独立持久卷，限制服务用户权限，同步备份数据库与文件。禁止Nginx直接暴露私图目录。', '目录路径与权限待目标环境确认', 'revival/media.py；nzproject/settings.py'],
+    ['上传限制', '仅固定multipart路由允许5MiB图片', '反馈单总数3，PNG/JPEG/WebP，最多1600万像素/单边8192；清理元数据转WebP。一般JSON请求继续维持64KiB。', '代理体积限定只配置指定路由，不放宽全站', 'revival/media.py；revival/middleware.py'],
+    ['图片权限', '反馈私有，活动封面公共', '私图GET必须Bearer+工单权限；公开封面仅/api/media/{id}；上传键绑定操作者与内容。', '需越权404、未登录、关闭工单与幂等测试', 'revival/media.py'],
+    ['新依赖', 'requirements.txt中的Pillow固定版本', '图片解码/重编码依赖随服务包安装；前端assets包含本轮主视觉与展示目录。', '打包验收待本轮QA，不沿用旧包摘要', 'requirements.txt；admin/public/assets/'],
+    ['Launcher限制', 'Tauri平台功能包，无cap时不可提交', '图片经受限本机base64桥；无私有SSH/完整仓库/服务端密钥分发。Mac只布局预览。', 'Windows冻结包和实玩分别验收', 'tools/native_launcher.py；tools/package_launcher.py'],
+    ['回退注意', '认证策略迁移不可复活旧秘密', '保留0024/0025和新媒体数据。旧TOTP页面与新邮箱API不能混搭。应用回退需先验证兼容，不恢复旧会话。', '回退计划须在实际发布前演练', 'revival/migrations/0024_email_admin_auth.py'],
+    ['本轮验收', '设计书暂记待本轮QA', '新测试、浏览器截图、SMTP真实收件和包摘要由本轮结果补充。保留首轮证据的原日期与范围。', '待本轮QA', 'docs/delivery/2026-10-20-frontend-account-activities-feedback.md'],
+  ]
+  for (const basename of names) {
+    const original = path.join(legacyDir, basename + '.xlsx')
+    const originalBytes = await fs.readFile(original)
+    const book = await SpreadsheetFile.importXlsx(await FileBlob.load(original))
+    const inventory = await book.inspect({ kind: 'sheet', include: 'id,name', maxChars: 12000 })
+    const originalNames = inventory.ndjson.split('\n').filter(Boolean).map(line => JSON.parse(line)).filter(row => row.kind === 'sheet').map(row => row.name)
+    const before = new Map()
+    const changed = new Set(['第二轮变更'])
+    for (const sheetName of originalNames) {
+      const sheet = book.worksheets.getItem(sheetName)
+      before.set(sheet.name, JSON.stringify({ values: sheet.getUsedRange().values, formulas: sheet.getUsedRange().formulas }))
+    }
+    /** 精确改动已匹配的业务行；只更改不同单元格，其他值、公式和样式不重建。 */
+    function patchRows(sheetName, predicate, replace) {
+      const sheet = book.worksheets.getItem(sheetName)
+      const rows = sheet.getUsedRange().values
+      rows.forEach((row, index) => {
+        if (index < 5 || !predicate(row)) return
+        const next = replace([...row])
+        next.forEach((value, column) => { if (value !== row[column]) sheet.getCell(index, column).values = [[cell(value)]] })
+        sheet.getRangeByIndexes(index, 0, 1, row.length).format.autofitRows()
+        changed.add(sheetName)
+      })
+    }
+    /** 只追加缺失的稳定标识行，扩展已有Excel Table，保留原筛选和冻结设置。 */
+    function appendRows(sheetName, rows, keyColumns) {
+      const sheet = book.worksheets.getItem(sheetName)
+      const existing = sheet.getUsedRange().values
+      const key = row => keyColumns.map(column => String(row[column])).join('\u001f')
+      const keys = new Set(existing.slice(5).map(key))
+      const added = rows.filter(row => !keys.has(key(row))).map(row => row.map(cell))
+      if (!added.length) return
+      sheet.tables.items[0].rows.add(null, added)
+      const area = sheet.getRangeByIndexes(existing.length, 0, added.length, added[0].length)
+      area.format.font = { name: FONT, size: 10, color: INK }; area.format.wrapText = true; area.format.verticalAlignment = 'center'; area.format.autofitRows()
+      changed.add(sheetName)
+    }
+    if (basename === '表设计') {
+      patchRows('设计概览', row => row[0] === '文档版本', row => [row[0], '第二轮设计 v2', '2026-10-20 America/Los_Angeles', '向前合并0024/0025；本轮验收待补，未部署'])
+      patchRows('设计概览', row => row[0] === '源码基线', row => [row[0], sources.baseline_commit, '本轮工作树父提交，含尚未提交的修改', '当前模型元数据不等于该提交已包含本轮全部代码。'])
+      patchRows('设计概览', row => row[0] === '模型覆盖', row => [row[0], '当前74个持久模型', row[2], '新增管理员挑战1表、反馈/媒体/展示5表。数量由表目录计算。'])
+      patchRows('设计概览', row => row[0] === '字段覆盖', row => [row[0], '当前字段逐行定义', row[2], '本轮新增62个字段；源自模型注册表，非运行库DDL回读。'])
+      appendRows('表目录', sources.tables.map(row => [row.table, row.model, row.description, row.field_count, row.constraint_count, row.index_count, row.source]), [0])
+      appendRows('字段定义', sources.fields.map(row => [row.table, row.column, row.field, row.sql_type, row.nullable ? '是' : '否', row.primary_key ? '是' : '否', row.unique ? '是' : '否', row.default, row.collation, row.source]), [0, 1])
+      appendRows('约束与索引', sources.constraints.map(row => [row.table, row.kind, row.name, row.definition, row.source]), [0, 2])
+      appendRows('外键关系', sources.relations.map(row => [row.table, row.column, row.target_table, row.target_column, row.on_delete, row.nullable ? '是' : '否', row.source]), [0, 1])
+      appendRows('迁移与数据保护', sources.migrations.map((name, index) => [index + 1, name, name.startsWith('0024') ? '新增挑战并切换邮箱认证，撤销旧管理员会话；不改变玩家状态、批准或制裁。' : name.startsWith('0025') ? '新增五表并回填旧活动slug，保留奖励快照。' : '按Django依赖向前执行；不覆盖旧数据库', 'revival/migrations/' + name]), [1])
+      // 新模型插入导致原声明行号移动，仅刷新来源定位，原SQL类型、默认值和约束内容不重写。
+      const tableSources = new Map(sources.tables.map(row => [row.table, row.source]))
+      const fieldSources = new Map(sources.fields.map(row => [row.table + '/' + row.column, row.source]))
+      const constraintSources = new Map(sources.constraints.map(row => [row.table + '/' + row.name, row.source]))
+      const relationSources = new Map(sources.relations.map(row => [row.table + '/' + row.column, row.source]))
+      patchRows('表目录', row => tableSources.has(row[0]), row => { row[6] = tableSources.get(row[0]); return row })
+      // 管理员认证职责本轮发生变化，刷新对应模型说明；旧TOTP列仅为历史结构兼容。
+      patchRows('表目录', row => row[0] === 'admins', row => { row[2] = sources.tables.find(value => value.table === 'admins').description; return row })
+      patchRows('字段定义', row => fieldSources.has(row[0] + '/' + row[1]), row => { row[9] = fieldSources.get(row[0] + '/' + row[1]); return row })
+      patchRows('约束与索引', row => constraintSources.has(row[0] + '/' + row[2]), row => { row[4] = constraintSources.get(row[0] + '/' + row[2]); return row })
+      patchRows('外键关系', row => relationSources.has(row[0] + '/' + row[1]), row => { row[6] = relationSources.get(row[0] + '/' + row[1]); return row })
+      patchRows('表目录', row => row[0] === 'admin_recovery', row => { row[2] = '历史恢复码表。0024清空，在线邮箱认证不再读写此表。'; return row })
+      book.worksheets.getItem('设计概览').getRange('C9').formulas = [["=COUNTA('表目录'!A6:A" + (sources.tables.length + 5) + ')']]
+      book.worksheets.getItem('设计概览').getRange('C10').formulas = [["=COUNTA('字段定义'!A6:A" + (sources.fields.length + 5) + ')']]
+    } else if (basename === '游戏服务端接口设计') {
+      patchRows('接口概览', row => row[0] === 'HTTP控制面', row => { row[3] = '第二轮账号/反馈/活动展示已接入，待本轮QA；当前不部署。'; return row })
+      patchRows('HTTP路由', row => row[1] === '/api/login', row => ['POST', row[1], '管理员邮箱挑战登录', '匿名，先密码后邮箱验证码', 'kind=admin,login,password,challenge_id,code', '内存Bearer会话', '旧TOTP不作为登录验证', 'revival/service.py'])
+      patchRows('HTTP路由', row => String(row[1]).includes('/register'), row => ['POST', row[1], '邮箱注册与角色创建', '邮箱验证码，无邀请或人工批准', 'email,password,nickname,challenge_id,code及幂等元数据', 'ACTIVE+verified+character标识；前端继续login', '昵称1至24字符且UTF8不超过48字节', 'revival/service.py'])
+      patchRows('HTTP路由', row => row[1] === '/api/player/view', row => { row[4] = 'me/player-inventory/campaigns/campaign-detail/leaderboards/feedback/feedback-detail'; row[6] = '商城视图关闭；玩家仅本人；无管理员通道'; return row })
+      appendRows('HTTP路由', [
+        ['POST', '/api/admin/login-code', '管理员密码校验及邮件挑战', '匿名，先校验密码', 'login,password', 'challenge_id/recipient_hint/300秒有效/60秒冷却', '固定管理员收件，失败不降级', 'revival/admin_email_auth.py'],
+        ['POST', '/api/admin/step-up-code', 'Owner敏感操作再验证', '管理员Bearer', 'action,payload,metadata,current_password', '绑定当前身份和原操作的邮箱挑战', '成功幂等重试不再次消耗验证码', 'revival/admin_email_auth.py'],
+        ['POST', '/api/admin/media', '活动公共封面上传', 'Owner/resources', 'multipart(file,upload_key)', '公共媒体metadata与id', '5MiB图片，去元数据转WebP', 'revival/media.py'],
+        ['POST', '/api/feedback/<str:ticket_id>/attachments', '反馈私有截图上传', '本人或具反馈写权限管理员', 'multipart(file,upload_key)', '附件metadata+ticket_revision', '整单3张、单图5MiB，CLOSED拒绝', 'revival/media.py'],
+        ['GET', '/api/feedback/attachments/<str:attachment_id>', '读取私有反馈截图', 'Bearer及工单归属/管理权限', '附件id', '鉴权图片二进制', '其他玩家404、resources角色403、未登录401；不挂公开静态目录', 'revival/media.py'],
+        ['GET', '/api/media/<str:media_id>', '读取活动公共封面', '匿名', '公共媒体id', 'image/webp二进制', '不读取反馈私有附件', 'revival/media.py'],
+      ], [1])
+      patchRows('新增请求合同', row => row[0] === '商城购买', row => ['平台商城关闭', 'shop.purchase/player.shop.quote/player.shop.purchase/player-shop', '不提供购买表单', 'PLATFORM_SHOP_CLOSED 403', '先鉴权后关闭；管理员运营与原生游戏商城保留。', 'revival/service.py'])
+      patchRows('既有请求合同', row => /MFA|otp_code|PENDING_REVIEW|invitation/.test(row.join(' ')) && /register|注册|登录|login|再认证|Owner/.test(row.join(' ')), row => { row[2] = '新注册邮箱验证后直接ACTIVE；管理员改邮箱挑战，详见第二轮接口合同。'; row[3] = '新注册不再要求邀请/审批。历史PENDING仍须批准，登录/补验/恢复均不改变状态。旧TOTP认证退休。'; return row })
+      patchRows('命令权限', row => ['admin.mfa.reset', 'admin.recovery.rotate'].includes(row[0]), row => [row[0], '已退休', '不提供在线入口', '当前COMMANDS移除，调用NOT_FOUND 404；历史记录保留。', 'revival/service.py'])
+      appendRows('命令权限', sources.commands.map(row => [row.action, row.permission, row.permission === 'player' ? '仅本人玩家会话' : row.permission === '*' ? 'Owner专属' : '按服务端权限矩阵', '完整幂等元数据，敏感Owner动作额外邮箱挑战。', row.source]), [0])
+    } else if (basename === 'Web端设计书') {
+      patchRows('页面架构', row => row[0] === '/player', row => { row[3] = '角色资料、仓库、活动、排行榜、反馈；旧账号缺角色先补昵称。'; return row })
+      patchRows('页面架构', row => row[0] === '/launcher', row => { row[3] = '参考导航轨/顶栏/主舞台/启动区，注册、角色、仓库、活动、榜单、反馈，无玩家商城。'; return row })
+      patchRows('页面架构', row => row[0] === '/activities', row => { row[1] = '活动中心'; row[3] = '真实活动汇总卡片，点击独立slug详情。'; return row })
+      appendRows('页面架构', [['/activities/<slug>', '独立活动专题', '访客与已认证玩家', '模板、封面、规则说明、真实奖励与当前赛季榜单；本人进度仅登录可见。', '/api/public/campaign-detail 或 /api/views/campaign-detail', 'admin/src/components/platform-pages.tsx']], [0])
+      patchRows('角色与权限', row => ['owner', 'users', 'auditor'].includes(row[0]), row => { row[2] = row[0] === 'owner' ? '全部管理及反馈处理，敏感动作邮箱再认证。' : row[0] === 'users' ? '账号管理与反馈回复/状态处理。' : '管理只读，反馈只读，不允许写入。'; return row })
+      patchRows('业务流程', row => row[0] === '玩家购买', row => ['玩家商城关闭', '导航、快捷卡和购买表单全部移除。', '后端PLATFORM_SHOP_CLOSED 403', '管理员商城运营不受此入口关闭影响。', '不保留旧console购买后门。', 'revival/service.py'])
+      patchRows('验收清单', row => /WEB-01|WEB-03/.test(String(row[0])), row => { row[2] = row[0] === 'WEB-01' ? '无邀请注册自动登录，管理员密码/邮箱挑战，缺角色onboard。' : '管理员运营保持，所有平台玩家购买入口和调用关闭。'; row[3] = '待本轮QA'; return row })
+      patchRows('验收清单', row => !['WEB-01', 'WEB-03', 'GAME-01', 'REL-01'].includes(row[0]), row => { row[3] = '首轮记录：' + row[3] + '。当前待本轮QA。'; return row })
+      patchRows('验收清单', row => row[0] === 'REL-01', row => { row[3] = '用户本轮决定暂不部署。'; return row })
+      patchRows('交互与状态', row => /视觉|美术|主题/.test(row.join(' ')), row => { row[2] = '深蓝灰/暖金，艾米芭比双人主视觉，动态景深和减少动画降级。'; return row })
+    } else {
+      patchRows('部署总览', row => row[0] === '部署对象', row => [row[0], '暂不部署，仅本机预览与代码开发', '用户本轮决定，不执行远端发布', '旧Web包、CI和Windows包保留为首轮历史证据', '本轮用户确认'])
+      patchRows('部署总览', row => row[0] === '新数据库迁移', row => [row[0], '0024_email_admin_auth.py；0025_feedback_and_campaign_presentation.py', '认证策略切换与六个新增表', '未来发布前先验证真实邮件收件、备份并向前迁移。', 'revival/migrations/'])
+      patchRows('部署总览', row => row[0] === 'Launcher', row => { row[2] = '首轮历史包（2026-10-19）：' + row[2] + '。本轮更新尚未重新验收冻结包。'; return row })
+      patchRows('部署总览', row => row[0] === '版本识别', row => { row[2] = '首轮历史归档的源码标识，本轮代码尚未生成新归档。'; return row })
+      patchRows('部署总览', row => row[0] === '发布产物SHA', row => { row[2] = '首轮历史归档摘要，不含本轮变更。'; row[3] = '本轮尚未打包或部署，不将此SHA作为当前交付包。'; return row })
+      patchRows('部署总览', row => row[0] === '远端与CI', row => { row[1] = '首轮历史记录（2026-10-19）：' + row[1]; row[2] = '首轮历史CI：' + row[2]; row[3] = '本轮暂不部署；旧CI不证明新邮箱认证、媒体和页面已验收。'; return row })
+      patchRows('环境配置', row => row[0] === '邮件配置', row => [row[0], '受保护SMTP环境文件，真实收件为认证前置。', '保持固定TLS/465、发件身份与持久额度；收件固定管理员邮箱。', '玩家邮箱验证/恢复、管理员登录与Owner再验证。', 'revival/mailing.py；revival/admin_email_auth.py'])
+      patchRows('环境配置', row => row[0] === '管理员', row => [row[0], '密码与邮箱挑战', 'TOTP/恢复码在线认证已退休，邮件失败时不降级。', 'bootstrap仅建立邮箱认证管理员，不输出TOTP种子。', 'revival/migrations/0024_email_admin_auth.py'])
+      patchRows('发布与回退步骤', () => true, row => row.map(value => typeof value === 'string' ? value.replace(/管理员MFA/g, '管理员邮箱挑战').replace(/资产、MFA/g, '资产与认证状态').replace(/0022\/0023/g, '0024/0025') : value))
+      patchRows('交付与阻塞', row => row[0] === 'Web部署', row => [row[0], '用户决定暂不部署', '仅本机预览，未来发布须先验证SMTP与媒体权限。', '待本轮QA，不沿用历史CI当作本轮证据。', '本轮用户确认'])
+      patchRows('交付与阻塞', row => row[0] === 'Windows开发包', row => { row[1] = '首轮历史记录（2026-10-19）：' + row[1]; row[2] = '本轮页面、认证与媒体更新后尚未重新验收冻结包。'; return row })
+      patchRows('交付与阻塞', row => /Git提交与推送|CI|本机演示账号/.test(String(row[0])), row => { row[1] = '首轮历史记录（2026-10-19）：' + row[1]; row[2] = '仅历史范围。本轮新认证、页面、图片与冻结包待本轮QA。'; return row })
+      book.worksheets.getItem('实际归档文件').getRange('A2').values = [['首轮历史 Web 归档逐文件清单']]
+      changed.add('实际归档文件')
+      patchRows('打包文件清单', row => row[0] === 'Web归档产物', row => { row[0] = '首轮历史Web归档'; row[4] = '不含本轮0024/0025、邮箱认证、媒体与新UI，不能作为本轮发布包。'; return row })
+      patchRows('打包文件清单', row => row[0] === '文档包', row => { row[5] = path.relative(root, outputDir) + '/'; return row })
+      patchRows('打包文件清单', row => row[0] === 'Launcher实际归档', row => { row[0] = '首轮历史Launcher归档'; row[4] = '2026-10-19历史包校验。本轮新认证、媒体与页面尚未重新打包验收。'; return row })
+      patchRows('打包文件清单', row => row[0] === 'GitHub下载包装层', row => { row[0] = '首轮历史GitHub包装层'; row[4] = '2026-10-19历史artifact包装层，不代表本轮发行包。'; return row })
+    }
+    tableCount = 1000
+    const extras = [addTable(book, '第二轮变更', '第二轮变更与验收边界', ['项目', '本轮设计', '行为与边界', '当前状态', '依据'], overviewRows, [25, 74, 95, 22, 80], '2026-10-20。保留首轮历史，当前暂不部署，验收状态待本轮补证据。')]
+    if (basename === '游戏服务端接口设计') extras.push(addTable(book, '第二轮接口合同', '邮箱认证、反馈与活动专题接口', ['业务', '入口', '认证与权限', '请求', '响应或约束', '依据'], interfaceRows, [25, 75, 70, 103, 110, 82], '新增接口与旧冲突字段以本页为准。所有新验收状态均待本轮QA。'))
+    if (basename === 'Web端设计书') extras.push(addTable(book, '第二轮页面流程', '第二轮十项页面与交互', ['编号', '模块', '入口', '设计与行为', '验收状态', '依据'], pageRows, [12, 28, 67, 113, 22, 88], '用户已取消粉白，保留深蓝灰暖金。准确配图数量从当前公开展示目录读取。'))
+    if (basename === '部署手册及打包清单') extras.push(addTable(book, '媒体与邮箱部署', '邮箱认证与媒体持久化准备', ['项目', '配置或选择', '要求与操作', '当前状态', '依据'], deploymentRows, [28, 67, 125, 65, 90], '当前不部署。以下是未来发布前置条件，不能解读为已配置或已投递成功。'))
+    const sheets = []
+    const unchanged = []
+    await fs.mkdir(path.join(outputDir, 'previews'), { recursive: true })
+    for (const sheetName of [...originalNames, ...extras.map(row => row.name)]) {
+      const sheet = book.worksheets.getItem(sheetName)
+      const values = sheet.getUsedRange().values
+      const width = Math.max(...values.map(row => row.length))
+      sheets.push({ sheet, name: sheet.name, rows: Math.max(0, values.length - 5), lastRow: values.length, lastCol: col(width - 1) })
+      if (before.has(sheet.name) && !changed.has(sheet.name)) {
+        const after = JSON.stringify({ values, formulas: sheet.getUsedRange().formulas })
+        if (after !== before.get(sheet.name)) throw new Error('未授权工作表发生数值或公式变化：' + basename + '/' + sheet.name)
+        unchanged.push(sheet.name)
+        try { await fs.copyFile(path.join(legacyDir, 'previews', basename + '-' + sheet.name + '.png'), path.join(outputDir, 'previews', basename + '-' + sheet.name + '.png')) } catch (error) { if (error.code !== 'ENOENT') throw error }
+      }
+    }
+    verification.scopePreservation.push({ workbook: basename, originalSha256: createHash('sha256').update(originalBytes).digest('hex'), unchangedValueAndFormulaSheets: unchanged, changedSheets: [...changed, ...extras.map(row => row.name)] })
+    await finish(book, basename, sheets)
+    if (basename === '表设计') {
+      const preview = await book.render({ sheetName: '字段定义', range: 'A408:J474', scale: 1, format: 'png' })
+      await fs.writeFile(path.join(outputDir, 'previews/表设计-新增字段完整区.png'), new Uint8Array(await preview.arrayBuffer()))
+    }
+  }
+  await fs.writeFile(verificationPath, JSON.stringify(verification, null, 2))
+  console.log(JSON.stringify({ round: 'portal-v2', workbooks: verification.workbooks.length, verification: verificationPath, newTables: [...newTables] }))
+}
+
+if (roundV2) {
+  await buildPortalV2()
+  process.exit(0)
 }
 
 // 表设计：完整模型、字段、关系和约束采用注册表自动提取，避免手抄遗漏新活动或监控表。
@@ -273,7 +489,7 @@ if (shouldBuild('Web端设计书')) {
     ['/guide', '上手指南', '所有访客', '邮箱注册、角色准备、Windows开发版Launcher与限制说明', '静态指南与实际能力', await source('admin/src/portal-app.tsx', 'function Guide')],
     ['/player', '玩家中心', '已认证玩家', '角色资料、仓库、商城、活动、排行榜', '/api/views/me 及本人视图', await source('admin/src/portal-app.tsx', 'function PlayerWorkspace')],
     ['/admin', '管理中心', '各角色管理员', '用户、库存、制裁、商城、开放地图、活动、监控', '/api/views/* 与 /api/command', await source('admin/src/components/operations-center.tsx')],
-    ['/activities', '开服活动', '访客与玩家', '活动奖励、北京时间累计进度、签到与普通奖励领取', '公开或本人campaigns', await source('admin/src/components/platform-pages.tsx', 'CampaignsPage')],
+    ['/activities', '活动', '访客与玩家', '活动奖励、北京时间累计进度、签到与普通奖励领取', '公开或本人campaigns', await source('admin/src/components/platform-pages.tsx', 'CampaignsPage')],
     ['/leaderboards', '先锋榜', '所有访客', '活动/地图/难度/实际人数筛选，毫秒通关时间', '公开或认证leaderboards', await source('admin/src/components/platform-pages.tsx', 'LeaderboardsPage')],
     ['/launcher', 'Tauri专用页面', '本机启动器', 'DreadHunger参考布局、启动/恢复、本人仓库/商城/活动', '受限本机 /launcher/api/*', await source('admin/src/components/native-launcher.tsx')],
     ['/console', '原控制台', '现有管理用户', '保留兼容管理工作流', '原有视图和命令', await source('admin/src/main.tsx')],

@@ -12,9 +12,9 @@ class DeploymentLock(models.Model):
         """指定稳定业务表名和持久化约束；Django 依照这些元数据生成迁移。"""
         db_table = 'deployment_lock'
 
-# 独立管理员与 MFA 防重放状态；不映射为 Django 默认密码体系，确保旧凭据迁移后仍可验证。
+# 独立管理员密码/安全版本；旧TOTP列保留为空值仅兼容历史结构，不再参与认证。
 class Admin(models.Model):
-    """独立管理员与 MFA 防重放状态；不映射为 Django 默认密码体系，确保旧凭据迁移后仍可验证。"""
+    """独立管理员密码及角色；迁移后认证仅使用固定收件邮箱的单次邮件码。"""
     id = models.CharField(max_length=32, primary_key=True, db_collation='utf8mb4_0900_bin')
     login = models.CharField(max_length=32, db_collation='utf8mb4_0900_bin')
     password_hash = models.CharField(max_length=256, db_collation='utf8mb4_0900_bin')
@@ -28,7 +28,34 @@ class Admin(models.Model):
         db_table = 'admins'
         constraints = [models.UniqueConstraint(fields=['login'], name='uq_admins_0'), models.CheckConstraint(condition=Q(role__in=['owner','users','resources','auditor']) & Q(active__in=[0,1]), name='ck_admins')]
 
-# 玩家业务账号；game_id 保留本地整数映射，安全版本决定旧会话与冻结对局资格是否有效。
+# 管理员邮件挑战与玩家邮箱挑战独立，避免共享固定收件邮箱导致用途或额度混淆。
+class AdminAuthChallenge(models.Model):
+    """管理员登录/高风险邮件挑战；仅保存HMAC及会话/操作绑定，绝不保存明文验证码或密码。"""
+    id = models.CharField(max_length=32, primary_key=True)
+    admin = models.ForeignKey(Admin, null=True, on_delete=models.DO_NOTHING)
+    subject_digest = models.CharField(max_length=64)
+    purpose = models.CharField(max_length=16)
+    session_hash = models.CharField(max_length=64, default='')
+    operation_hash = models.CharField(max_length=64, default='')
+    security_version = models.BigIntegerField(null=True)
+    digest = models.CharField(max_length=64, default='')
+    ip_digest = models.CharField(max_length=64)
+    created_at = models.BigIntegerField()
+    expires_at = models.BigIntegerField()
+    status = models.CharField(max_length=16, default='PENDING')
+    attempts = models.PositiveSmallIntegerField(default=0)
+    consumed_at = models.BigIntegerField(null=True)
+    error_code = models.CharField(max_length=32, default='')
+
+    class Meta:
+        """独立来源与管理员窗口，不与所有玩家/固定收件邮箱共享发送额度。"""
+        db_table = 'admin_auth_challenges'
+        indexes = [models.Index(fields=['ip_digest', 'created_at'], name='ix_admin_auth_source'),
+                   models.Index(fields=['subject_digest', 'purpose', 'created_at'], name='ix_admin_auth_subject')]
+        constraints = [models.CheckConstraint(condition=Q(purpose__in=['LOGIN', 'STEP_UP']) &
+            Q(status__in=['PENDING', 'SENT', 'FAILED', 'SUPERSEDED', 'REJECTED']), name='ck_admin_auth_challenge')]
+
+
 class Account(models.Model):
     """玩家业务账号；game_id 保留本地整数映射，安全版本决定旧会话与冻结对局资格是否有效。"""
     id = models.CharField(max_length=32, primary_key=True, db_collation='utf8mb4_0900_bin')
@@ -417,7 +444,7 @@ class RoomInvitation(models.Model):
 
 
 class AdminRecovery(models.Model):
-    """高熵恢复码只保存摘要，一次使用后失效；重置 MFA 同事务撤销全部旧会话。"""
+    """仅保留历史恢复码表映射；0024清空旧记录，业务与CLI均不再生成或消费恢复码。"""
     digest = models.CharField(max_length=64, primary_key=True, db_collation='utf8mb4_0900_bin')
     admin = models.ForeignKey(Admin, on_delete=models.DO_NOTHING)
     used_at = models.BigIntegerField(null=True)
@@ -826,6 +853,7 @@ class NativeRoomPresence(models.Model):
 
 
 TABLE_MODELS = {
+    'admin_auth_challenges': AdminAuthChallenge,
     'native_room_bindings':NativeRoomBinding,
     'native_room_presence':NativeRoomPresence,
     'native_workshop_states': NativeWorkshopState,
@@ -892,3 +920,7 @@ from .campaign_models import CAMPAIGN_MODELS
 TABLE_MODELS.update(CAMPAIGN_MODELS)
 from .monitor_models import MONITOR_MODELS
 TABLE_MODELS.update(MONITOR_MODELS)
+
+# 反馈私有截图与活动公共展示独立注册，避免图片URL参与不可变奖励或资产规则。
+from .feedback_models import FEEDBACK_MODELS
+TABLE_MODELS.update(FEEDBACK_MODELS)

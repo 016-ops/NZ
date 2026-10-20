@@ -2,7 +2,6 @@
 import getpass
 import json
 import time
-from urllib.parse import quote
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import close_old_connections, connections
@@ -30,10 +29,7 @@ class LocalCommand(BaseCommand):
             password = getpass.getpass('New Owner password (12+ characters): ')
             if password != getpass.getpass('Repeat password: '): raise CommandError('Passwords do not match')
             result = service.bootstrap_admin(options['login'], password)
-            self.stdout.write('Store this MFA URI privately; it is shown once:')
-            self.stdout.write(f"otpauth://totp/NZRevival:{quote(options['login'])}?secret={result['otp_secret']}&issuer=NZRevival")
-            self.stdout.write('Store these one-time recovery codes privately:')
-            self.stdout.write('\n'.join(result['recovery_codes']))
+            self.stdout.write('Owner已创建；登录及高风险确认均使用原密码和固定管理员邮箱验证码。')
         elif self.operation=='serve':
             from revival.server import local_server
             from nzproject.wsgi import application

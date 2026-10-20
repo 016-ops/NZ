@@ -64,7 +64,7 @@ def main():
                              'tests.test_native_legacy_tower_owned_compat','tests.test_native_bag_compat',
                              'tests.test_native_room_protocol','tests.test_native_room_journal',
                              'tests.test_native_room_server_config','tests.test_run_tests',
-                             'tests.test_launcher_hook']
+                             'tests.test_launcher_hook','tests.test_launcher_portal_proxy','tests.test_launcher_portal_v2']
         selected=[name for name in independent_modules if fnmatch.fnmatch(name.rsplit('.',1)[-1]+'.py',args.pattern)]
         business_matches=[path for path in (root/'tests').glob(args.pattern)
                           if 'tests.'+path.stem not in independent_modules]

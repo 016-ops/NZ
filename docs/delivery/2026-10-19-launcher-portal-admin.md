@@ -4,7 +4,7 @@
 
 - 日期：2026-10-20（北京时间）；本地开发批次文件日期为2026-10-19。
 - 用户范围：Launcher布局与已实现功能集成、管理员用户/仓库/商城/地图管理、开服活动、分组排行榜、Excel设计书及服务器监控。
-- 最新部署约束：**本次只部署Web，用户稍后提供Web服务器配置**；不自动使用旧DEV或操作远端Windows。
+- 最新部署约束：**用户已确认Web目标配置，随后明确要求停止部署，先审阅Launcher与Web页面再修改**；当前仅保留本机预览，不恢复远端工作，不操作Windows游戏主机。
 - 分支：`fix/launcher-portal-admin`，从实际最新 `origin/main` 的 `57ed0beffa0adcc91a704883d9a0bbe41f73b4e5` 建立。远程无master，已按确认使用main。原 `feature/portal-activity-ui` 分支保留，未混入其0007迁移。
 - 技术栈：React + TypeScript + shadcn/ui、Django、MySQL；桌面沿用原React + Tauri + 受控Python服务。使用nz-development、frontend-design、imagegen及Spreadsheets流程；DreadHunger本地仓库布局作为结构参考，原创美术见 `admin/public/assets/expedition-hero.png`。
 - 主要模块：`admin/src/portal-app.tsx`、`components/platform-pages.tsx`、`components/operations-center.tsx`、`platform.css`；`revival/portal_operations.py`、`campaigns.py`、`monitoring.py`；`tools/native_launcher.py`、`launcher_runtime.py`、`package_launcher.py`、`package_web.py`；迁移0022/0023；四本Excel。
@@ -56,7 +56,7 @@
 
 | 阻塞 | 证据 / 影响 | 解除条件与下一步 |
 |---|---|---|
-| Web目标配置尚未提供 | 用户最新说明只部署Web并稍后提供服务器配置；未执行任何远程部署 | 提供地址/系统/目录/域名与受保护配置位置，继续按Web手册部署；不在聊天传密钥 |
+| Web部署由用户暂缓 | 目标配置已确认；用户随后要求停止部署、先看页面。仅做过无凭据网络握手，SSH在认证前关闭；未执行远端部署或数据库写入 | 等用户审阅并明确后续修改；本轮不恢复远端操作 |
 | Windows干净机器及游戏实机环境缺失 | CI已证明构建、冻结、服务bootstrap/close及归档完整性；尚未证明实际API、干净安装或游戏启动 | 准备实际公开网关及干净Windows实机，执行安装/升级/退出恢复和原生游戏验收；本次不部署远端Windows |
 | 原生可信战斗/结算源尚未通过 | 正式成绩入口 `COMPATIBILITY_BLOCKED`；沿用主分支节点世界/入局未完成结论 | 原生真实开局、boss/任务成功、稳定成员和结算事件映射后再开启正式累计与榜单 |
 | 军衔原生字段缺失 | `level=null` 与 `PENDING_NATIVE_SOURCE` | 核实持久等级字段和变更路径，绑定真实游戏读回 |
@@ -130,3 +130,11 @@
 - 玩家通过邀请注册、审批、隔离库邮箱验证与角色创建，含5000 GP、1件M4A1测试道具；不发送真实邮件。管理员通过已有Owner正常MFA登录及新的TOTP时间步创建，保留正常MFA，未增加免码或固定码例外。
 - 两账号使用不同随机密码。密码、MFA种子/otpauth URI和8个恢复码仅在被Git忽略的 `runtime/test-access-2026-10-19.txt` / `.json`，权限均0600；不进入证据、Excel或发布包。
 - 实际HTTP登录、玩家库存与管理员只读权限查询均通过，验证会话已退出并再次确认401。脱敏证据 `evidence/2026-10-19-test-account-verification.json`；不把该验证视为Windows游戏或公网部署验收。
+
+## 页面审阅预览（用户要求暂不部署）
+
+- 本机Web维持 `http://127.0.0.1:8875/`，活动 `/activities`、榜单 `/leaderboards`、玩家 `/player`、管理员 `/admin` 均可访问；玩家/管理员仍按正常账号及MFA认证。Safari原验收玩家会话仍在，可直接通过页内导航审阅。
+- 本机Vite恢复 `http://127.0.0.1:5174/launcher`，只展示当前Launcher布局与设置；Mac浏览器缺少本机能力时登录、恢复和启动禁用，不为预览绕过能力验证。Django的8875不提供 `/launcher` 路由。
+- 官网首页及Launcher已在浏览器实际打开并验证可见；现有页面截图在 `evidence/portal-ui/`。此轮没有修改页面、样式或业务源码，没有重跑已通过的完整测试，也没有发布远端变更。
+- 部署停止核对：Web SSH在协议banner前EOF，未认证；数据库子任务尚未建立目标连接或执行SQL。没有部署进程或数据库预检会话继续运行，用户提供的连接资料仍仅在忽略的私密文件。
+- 本节只更新交接状态；先前四本Excel、Web归档及Windows归档保持原封存内容，待页面修改和部署安排明确后再同步下一批交付。
