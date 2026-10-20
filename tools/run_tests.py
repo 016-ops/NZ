@@ -63,7 +63,7 @@ def main():
                              'tests.test_native_owned_loadout_compat','tests.test_native_tower_owned_compat',
                              'tests.test_native_legacy_tower_owned_compat','tests.test_native_bag_compat',
                              'tests.test_native_room_protocol','tests.test_native_room_journal',
-                             'tests.test_native_room_server_config']
+                             'tests.test_native_room_server_config','tests.test_run_tests']
         selected=[name for name in independent_modules if fnmatch.fnmatch(name.rsplit('.',1)[-1]+'.py',args.pattern)]
         business_matches=[path for path in (root/'tests').glob(args.pattern)
                           if 'tests.'+path.stem not in independent_modules]
@@ -96,7 +96,10 @@ def main():
                 'skipped':[{'test':t.id(),'reason':reason}for t,reason in result.skipped],
                 'exit_code':0 if result.wasSuccessful() else 1,'seconds':round(time.monotonic()-start,3)}
     output.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
-    print(json.dumps({k:v for k,v in report.items()if k not in ('passed','failures','errors')},ensure_ascii=False))
+    # Windows CI 的重定向 stdout 可能仍是 cp1252；终端摘要使用 JSON 的 ASCII 转义，
+    # 避免中文 skip reason 导致已经完成的测试在打印阶段报 UnicodeEncodeError。
+    # 完整证据文件继续使用上方显式 UTF-8 写入，保留原始中文便于人工复核。
+    print(json.dumps({k:v for k,v in report.items()if k not in ('passed','failures','errors')},ensure_ascii=True))
     if not args.upstream and not result.wasSuccessful():
         print(json.dumps({'failing_tests':[t.id()for t,_ in result.failures+result.errors]}))
     raise SystemExit(report['exit_code'])

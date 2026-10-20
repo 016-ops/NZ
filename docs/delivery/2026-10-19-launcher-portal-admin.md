@@ -57,7 +57,6 @@
 | 阻塞 | 证据 / 影响 | 解除条件与下一步 |
 |---|---|---|
 | Web目标配置尚未提供 | 用户最新说明只部署Web并稍后提供服务器配置；未执行任何远程部署 | 提供地址/系统/目录/域名与受保护配置位置，继续按Web手册部署；不在聊天传密钥 |
-| GitHub写入权限不足 | 用户已明确允许推送；实际HTTPS推送返回403，远端仍无fix分支，gh尚未登录 | 用户在本机恢复016-ops/NZ仓库写权限或登录可写GitHub身份后继续推送，不在聊天发送token |
 | 无本机Windows构建/原生运行环境 | Mac只完成Launcher布局预览；未证明Windows可执行包和实际游戏启动 | 独立Windows构建/CI及干净Windows验收；本次不部署远端Windows |
 | 原生可信战斗/结算源尚未通过 | 正式成绩入口 `COMPATIBILITY_BLOCKED`；沿用主分支节点世界/入局未完成结论 | 原生真实开局、boss/任务成功、稳定成员和结算事件映射后再开启正式累计与榜单 |
 | 军衔原生字段缺失 | `level=null` 与 `PENDING_NATIVE_SOURCE` | 核实持久等级字段和变更路径，绑定真实游戏读回 |
@@ -99,5 +98,13 @@
 - 实际Web包 `outputs/01a15734-c809-7ff2-8313-f617805a4441/nz-web-platform-2026-10-19.tar.gz`：3,297,902字节、164个运行文件另加 `RELEASE.json`；SHA256 `7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9`。逐文件摘要、普通文件边界和私有夹具排除检查通过，见 `evidence/2026-10-19-web-package-verification.json`。
 - 首轮推送因外部目的地尚未明确授权被自动审批拒绝；随后用户已明确回复“允许推送该分支”，该授权问题已解除。
 - 2026-10-19（America/Los_Angeles）按授权执行 `git push -u origin fix/launcher-portal-admin`，GitHub实际返回 `Permission to 016-ops/NZ.git denied to 016-ops` / HTTP403，退出128。只读 `git ls-remote --heads origin fix/launcher-portal-admin` 无结果，公开精确分支API亦404，确认远端未新建分支。
-- 认证核对：Git使用osxkeychain；`gh auth status`确认未登录任何GitHub主机；默认SSH身份文件未发现，SSH22连接被关闭。没有读取或输出token，没有改远程URL或清除已有凭据。等待本机可写身份配置后继续，不再请求推送授权。
-- 因未推送，新增Windows构建workflow未运行；本批没有Windows可执行归档，没有远端Web部署。本地Web验收地址 `http://127.0.0.1:8875/` 仅为专用隔离演示库。
+- 首次认证核对：Git使用osxkeychain，gh未登录、默认SSH身份文件未发现，SSH22连接关闭；未输出或提交凭据，未修改远程URL。以上是首次403时的历史状态。
+- 随后用户明确批准GitHub CLI授权，在官方浏览器流程登录016-ops并批准实际权限页，本机CLI认证完成。2026-10-19（America/Los_Angeles）再次推送成功，`git ls-remote`核对远端 `refs/heads/fix/launcher-portal-admin` 为 `f0080bfdf681db5aad89d73d5e3b38fbfdc04988`，与推送时本地HEAD一致；该认证阻塞已解除。用户提供的登录资料未写入仓库/发布包，认证截图仅留忽略的runtime。
+- 推送已触发Windows便携包构建 `https://github.com/016-ops/NZ/actions/runs/39374115588` 与综合回归 `https://github.com/016-ops/NZ/actions/runs/39374115400`。启动时均in_progress；最终结果以CI记录和后续验收补充为准。Web发布包的代码基线和摘要保持不变。
+- 没有远端Web或Windows部署。本地Web验收地址 `http://127.0.0.1:8875/` 仅为专用隔离演示库，继续等待Web服务器配置。
+
+## 推送后CI续验
+
+- 首次综合CI `39374115400` 在真正MySQL回归前失败：`mysqladmin ping`误把初始化中临时server/认证拒绝当作就绪，随后建库1045；Windows独立测试在输出中文跳过原因时被cp1252编码异常中断，且原依赖步骤漏装Launcher控制器测试所需Django。旧MySQL artifact来自仓库历史报告，不作为本轮执行证据。
+- 已修复：就绪以带密码的TCP `SELECT 1`为准；Windows依赖复用固定Launcher构建依赖（不安装MySQL/SSH）；终端JSON摘要使用ASCII转义，完整磁盘证据仍UTF8；两个job均输出到新的 `evidence/ci/`，失败也上传实际当轮文件，不复用历史报告。
+- 编码修复由真实子进程强制cp1252验证，1/1通过，见 `evidence/2026-10-19-ci-console-fix-tests.json`；CI配置已检查空白与固定依赖一致性。未跳过或降低原有业务测试，替换CI结果另行追加。

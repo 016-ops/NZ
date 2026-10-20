@@ -34,11 +34,13 @@ jobs:
           docker run -d --name nz-ci-mysql -p 127.0.0.1:3307:3306 -e MYSQL_ROOT_PASSWORD="$NZ_DB_PASSWORD" mysql:8.4
           ready=0
           for attempt in $(seq 1 60); do
-            if docker exec -e MYSQL_PWD="$NZ_DB_PASSWORD" nz-ci-mysql mysqladmin ping -uroot --silent; then ready=1; break; fi
+            # 官方镜像初始化时有仅监听 socket 的临时 mysqld；mysqladmin ping
+            # 即使认证失败也可报告服务存活，必须等待最终 TCP 服务通过真实认证。
+            if docker exec -e MYSQL_PWD="$NZ_DB_PASSWORD" nz-ci-mysql mysql --protocol=TCP -h127.0.0.1 --connect-timeout=2 -uroot -e 'SELECT 1' >/dev/null 2>&1; then ready=1; break; fi
             sleep 2
           done
           test "$ready" = 1
-          docker exec -e MYSQL_PWD="$NZ_DB_PASSWORD" nz-ci-mysql mysql -uroot -e 'CREATE DATABASE nz_current; CREATE DATABASE nz_synthetic;'
+          docker exec -e MYSQL_PWD="$NZ_DB_PASSWORD" nz-ci-mysql mysql --protocol=TCP -h127.0.0.1 --connect-timeout=2 -uroot -e 'CREATE DATABASE nz_current; CREATE DATABASE nz_synthetic;'
       - name: Build and test frontend
         working-directory: admin
         run: |
@@ -49,14 +51,14 @@ jobs:
         run: |
           python manage.py check
           python manage.py makemigrations --check --dry-run
-          python tools/run_tests.py
+          python tools/run_tests.py --output evidence/ci/mysql-tests.json
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: mysql-test-results
           path: |
-            evidence/stack-refactor-tests.json
-            evidence/stack-refactor-tests.txt
+            evidence/ci/mysql-tests.json
+            evidence/ci/mysql-tests.txt
   windows:
     runs-on: windows-latest
     steps:
@@ -69,13 +71,23 @@ jobs:
           node-version: '22'
           cache: npm
           cache-dependency-path: admin/package-lock.json
-      - name: Install isolated catalogue decoder dependency
-        run: python -m pip install -r requirements-catalog.txt -r requirements-recovery.txt
+      # 独立 Launcher 测试使用 Django 的本机请求工厂；复用固定构建依赖，
+      # 同时保留目录解码/归档库，不为 Windows 安装 MySQL 或 SSH 工具。
+      - name: Install independent Launcher and catalogue test dependencies
+        run: python -m pip install -r requirements-launcher-build.txt
       - name: Independent inventory and catalogue tooling
-        run: python tools/run_tests.py --tooling --output evidence/windows-tooling-tests.json
+        run: python tools/run_tests.py --tooling --output evidence/ci/windows-tooling-tests.json
       - name: Frontend build and tests
         working-directory: admin
         run: |
           npm ci
           npm run build
           npm test
+      # 报告仅在本轮测试实际运行后生成；失败也上传以保留断言及编码错误证据。
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: windows-tooling-test-results
+          path: |
+            evidence/ci/windows-tooling-tests.json
+            evidence/ci/windows-tooling-tests.txt
