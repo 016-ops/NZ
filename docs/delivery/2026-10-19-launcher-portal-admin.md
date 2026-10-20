@@ -34,7 +34,7 @@
 2. 序号/载荷去重、防回退；首次或重启网络速率未知，计数器复位不产生负速率。采样和收到时间都新鲜才ONLINE，60秒后STALE并清空实时值。短窗口/分钟/小时加权趋势；原始7天、分钟30天，维护器全局清理包括离线节点。
 3. Web服务默认回环。公网必须设置精确 `NZ_PUBLIC_ORIGIN` 和至少32字符私有 `NZ_SECRET_KEY`；已有环境保留旧key。可显式信任本机Nginx覆盖的 `X-Real-IP` 用于登录/邮件限流，其他peer/Host或默认配置忽略转发头。
 4. `tools/package_web.py` 输出白名单tar、逐文件摘要和SHA256，拒绝链接及私密材料。配套独立current Web/maintenance systemd与Nginx模板；不使用旧双profile安装脚本。详情见 `docs/WEB_DEPLOYMENT.md`。
-5. Windows自包含开发包脚本/PowerShell入口/CI：Tauri窗口+PyInstaller onedir服务+公开目录+React，状态在LocalAppData，无开发仓库/系统Python依赖。当前包不含游戏客户端，启动明确 `PACKAGE_NATIVE_CLIENT_UNAVAILABLE`；不能把平台开发包称为完整游戏发行包。
+5. Windows自包含开发包脚本/PowerShell入口/CI：Tauri窗口+PyInstaller onedir服务+公开目录+React，状态在LocalAppData，无开发仓库/系统Python依赖。已完成真实Windows CI构建、冻结服务bootstrap/close验收和归档逐文件摘要核对；当前包不含游戏客户端，启动明确 `PACKAGE_NATIVE_CLIENT_UNAVAILABLE`，不能把平台开发包称为完整游戏发行包。
 6. 四本Excel：`表设计.xlsx`、`游戏服务端接口设计.xlsx`、`Web端设计书.xlsx`、`部署手册及打包清单.xlsx`。从当前模型/路由/原生协议提取；最终产物在 `outputs/01a15734-c809-7ff2-8313-f617805a4441/`，预览和提取中间件留本机。部署书以实际tar摘要为准。
 
 ### 相关基础修复
@@ -47,7 +47,7 @@
 ## 未实现内容
 
 1. **远端Web部署与域名/证书/SMTP/实际主机监控验收**：代码、包和模板已准备，待目标配置后执行备份、迁移、切换和外部验收。
-2. **Windows归档及干净机器验收**：已提供固定构建和服务bootstrap smoke步骤；本机为Mac，不把布局预览或计划输出当Windows执行证据。是否实际产包以CI/Windows报告为准，签名/升级/安装卸载未验收。
+2. **Windows正式分发验收**：实际Windows CI已生成归档并通过冻结服务bootstrap/close及逐文件摘要检查；正式网关的API登录、签名、干净机器安装/升级/卸载与实际游戏未验收。本机Mac布局预览不是这些实机证据。
 3. **可信原生结果、真实游玩时长/通关数、正式榜单和榜奖**：合成合同已验证，正式profile的 `/api/runtime/results` 明确拒绝，等待原生世界/多人/结算独立验收。禁止向正式榜灌入模拟成绩。
 4. **真实军衔等级**：没有已核实持久字段/更新来源，页面显示待接入，不能从研究占位等级或资产推算。
 5. **浏览器活动“发布确认”点击**未完成：自动审批将隔离QA发布误判为违背首期草稿要求，已取消且未重试。发布/领取合同已由真实MySQL自动化覆盖；玩家签到/领取使用事先存在的隔离已发布活动。
@@ -57,14 +57,14 @@
 | 阻塞 | 证据 / 影响 | 解除条件与下一步 |
 |---|---|---|
 | Web目标配置尚未提供 | 用户最新说明只部署Web并稍后提供服务器配置；未执行任何远程部署 | 提供地址/系统/目录/域名与受保护配置位置，继续按Web手册部署；不在聊天传密钥 |
-| 无本机Windows构建/原生运行环境 | Mac只完成Launcher布局预览；未证明Windows可执行包和实际游戏启动 | 独立Windows构建/CI及干净Windows验收；本次不部署远端Windows |
+| Windows干净机器及游戏实机环境缺失 | CI已证明构建、冻结、服务bootstrap/close及归档完整性；尚未证明实际API、干净安装或游戏启动 | 准备实际公开网关及干净Windows实机，执行安装/升级/退出恢复和原生游戏验收；本次不部署远端Windows |
 | 原生可信战斗/结算源尚未通过 | 正式成绩入口 `COMPATIBILITY_BLOCKED`；沿用主分支节点世界/入局未完成结论 | 原生真实开局、boss/任务成功、稳定成员和结算事件映射后再开启正式累计与榜单 |
 | 军衔原生字段缺失 | `level=null` 与 `PENDING_NATIVE_SOURCE` | 核实持久等级字段和变更路径，绑定真实游戏读回 |
 | 自动审批拒绝QA发布点击 | 明确理由为首期仅草稿；已停止操作 | 该可选浏览器验收不影响自动化发布合同，正式发布需配置具体活动后执行 |
 
 ## 验证记录
 
-测试用项目独立MySQL `127.0.0.1:3307`（实际版本26.7.0），专用可销毁库 `nz_fix_platform_tests`；数据库测试不是SQLite。UI用另建 `nz_fix_portal_demo`，所有账号/道具为隔离夹具，无真实玩家数据。凭据仅在忽略的runtime私有文件，未入库或归档。
+本机测试用项目独立MySQL `127.0.0.1:3307`（实际版本26.7.0），专用可销毁库 `nz_fix_platform_tests`；最终GitHub CI另用一次性MySQL8.4.11容器，数据库测试不是SQLite。UI用另建 `nz_fix_portal_demo`，所有账号/道具为隔离夹具，无真实玩家数据。凭据仅在忽略的runtime私有文件，未入库或归档。
 
 | 验证项 | 命令 / 环境 | 实际结果 | 未验证范围 |
 |---|---|---|---|
@@ -73,6 +73,8 @@
 | HTTP最终复验 | http/node_http/portal_http/proxy_address | 13/13通过，无线程关闭异常；`evidence/2026-10-19-http-final-tests.json` | 公网真实Nginx未部署 |
 | 备份定向 | Deployment + backup_encoding | 4/4通过；`evidence/2026-10-19-backup-profile-fix-tests.json` | 真实线上数据备份待目标配置 |
 | 工具与发布安全 | launcher_runtime/portal_proxy/frozen_config/native_launcher/package_web/public_settings/proxy_address/monitor_agent | 40/40通过；`evidence/2026-10-19-launcher-tooling-tests.json` | 不连接业务库，不代表Windows实机 |
+| Windows CI与实际归档 | Actions 39375681700；独立下载并核对754个payload摘要及manifest | 构建、冻结bootstrap/close、归档检查通过；`evidence/2026-10-19-windows-package-verification.json` | 默认回环网关；实际API、干净安装、签名和游戏未验证 |
+| 最终远程完整回归 | Actions 39375957208，运行提交6f12054；Linux MySQL8.4.11及Windows | 两job均success；MySQL579项/565通过/14测试内Skip，Windows246项/245通过/1测试内Skip；均0失败/错误，另各6个缺原件套件Skip单列；`evidence/2026-10-19-remote-ci-verification.json` | 跳过项不算通过，CI不代表原生实玩或远端部署 |
 | 前端 | `npm --prefix admin run typecheck`、`npm --prefix admin test`、`npm --prefix admin run build` | 类型通过、5/5测试、Vite构建通过 | 尚无Windows WebView2实机和完整移动端矩阵 |
 | Django/迁移 | `manage.py check`、`makemigrations --check --dry-run`；隔离demo迁移0001–0023 | 系统检查通过、无模型漂移、全迁移通过 | 目标生产MySQL版本与权限待确认 |
 | 已登录UI | Safari + 8875隔离Web | MFA、发放/回收、封禁/解封后登录、商城上下架、白名单保存、草稿新建编辑、签到/领奖到账、1–8/1–4分组均实际操作 | 发布确认点击被自动审批拒绝；详见UI记录 |
@@ -87,7 +89,7 @@
 - **Web发布**：按 `docs/WEB_DEPLOYMENT.md`；备份实际业务库，安装固定依赖，向前迁移，原子切换新release，仅current Web+maintain，精确HTTPS来源。`NZ_SECRET_KEY`沿用已有受保护配置，不能任意换key导致房间密文不可读。
 - **维护任务**：必须常驻 `manage.py maintain` 才会逐人发放榜奖、重试和清理过期监控。待发不等于已到账。
 - **迁移**：0022新增活动五表，0023新增监控三表；不覆盖玩家旧资产/规则/流水，不采用旧功能分支的冲突迁移。
-- **Windows构建**：`python -m tools.package_launcher --api-base-url <公开HTTPS或已准备隧道>`；独立Windows执行。Mac可 `--plan` 审查，不能标记Windows通过。首次CI默认公开配置为回环18765，未配置真实玩家网关。
+- **Windows构建**：`python -m tools.package_launcher --api-base-url <公开HTTPS或已准备隧道>`；独立Windows执行。CI已实际产包并通过冻结bootstrap/close；Mac可 `--plan` 审查但不是Windows验收。当前归档公开配置仍为回环18765占位，正式网关确定后需明确配置及验证。
 - **配置/数据**：SMTP/数据库/Owner MFA/监控令牌仅外部受保护文件；包没有游戏原件、SSH配置、运行库或测试凭据。隔离UI文件不用于生产发布。
 - **应用回退**：停新maintain，切回旧release重启；新增表保留，不删除发奖/审计历史。业务数据恢复另行对账，不能以旧备份覆盖发布后新增资产。
 - **下一步**：收到Web目标配置后完成真实部署和线上只读/专用账号验收；原生游戏接口、军衔和完整Windows分发另按阻塞逐项协调。
@@ -114,6 +116,13 @@
 - 对固定Django源码的独立导入追踪确认：`views.debug` 的 `DEBUG_ENGINE` 在启动时通过字符串动态导入 `django.templatetags.i18n`，原冻结hook未明确收集。已仅补该公共模块，并将3项AST/资源/内存WSGI回归纳入默认tooling；不扫描项目设置或私有配置，不凭猜测增加数据库backend。此源码推断与Windows实际失败原因分别记录，后续以冻结smoke为准；细节见 `docs/delivery/2026-10-19-launcher-django-hook.md`。
 - 最新Windows工具回归 `39375100024` 已消除LZO/paramiko依赖缺口，剩余邮箱CLI失败的共同原因是只借用 `verify_email_dev.metadata` 却连带加载远端SSH/MySQL部署入口。现将原样元数据帮助函数移到纯 `email_launcher`，远端验收模块保持兼容导入，原生HTTP CLI直接取纯客户端函数；不为Windows独立测试安装MySQL驱动。新增夹具主动阻止远端模块/MySQLdb导入，原身份一致性与注销断言保留，17/17通过，证据 `evidence/2026-10-19-email-tooling-import-isolation-tests.json`。冻结hook/启动诊断/编码联检14/14通过，证据 `evidence/2026-10-19-launcher-dynamic-import-tests.json`。
 - `37b7598` 综合CI `39375681704` 的真实Windows工具及React job已成功：工具245项、244通过，另有真实会话/私有原件缺失的显式Skip；0失败/错误。旧 `ae14996` MySQL8.4.11实测557项、531通过、740.252秒，业务类无失败；剩余平台工具失败含已修依赖/私有原件分类，以及Linux误执行Windows原子覆盖/UDP表集成测试和纯mock缺WinDLL属性。现仅调整5个测试文件的平台边界，Windows集成在Windows继续跑，纯guard/冲突门禁保留跨平台验证，symlink/junction分别正确清理；不放宽生产原子/重解析保护，不跳过业务/MySQL测试。本机Mac定向31项：25通过、6个明确Windows集成Skip、0失败/错误，见 `evidence/2026-10-19-linux-tooling-platform-isolation-tests.json`；真实Linux与最终MySQL以新CI为准。
+- 最终平台隔离提交 `6f12054997e32258e807980265dad04a4afe914e` 的综合CI `39375957208`：Windows job `118474030815` 成功，246项/245通过、0失败/错误、2.748秒；1项测试内Skip及6个缺私有原件的套件Skip单列，React构建与测试成功。fresh artifact `12243705393`，计数方法见 `evidence/2026-10-19-remote-ci-verification.json`。
+- Launcher实际构建提交 `37b759841caec31408d4e3d01a47db409400e399`，CI `39375681700` / job `118473162664` 已成功：Rust测试/编译、PyInstaller冻结、bootstrap/close烟测及上传全部通过，原模板库失败已由i18n hook补丁消除。下载后独立核对内部 `NZLauncher-DEV.zip`：25,974,212字节，SHA256 `139c84de2b034d33be4f5079be6821d582112c02d4552b375733f02494102993`；754个payload文件逐项摘要、集合、路径与私密材料排除、内外manifest一致检查全部通过。证据 `evidence/2026-10-19-windows-package-verification.json`。
+- Windows产物位于GitHub Actions artifact `12243650799`，本机副本在忽略的 `runtime/launcher-ci-artifact-37b7598/NZLauncher-DEV.zip`，未把25MB二进制另推Git。GitHub artifact外层包装摘要 `d92596490ed233ea21c7102c221449430f2a787d70ee9bf464623e7b71bb25c4` 与内部发行ZIP摘要不同，不可混用。该包默认公开API仍为回环18765占位；尚未验证实际API登录、干净Windows安装/升级、原生游戏实玩或正式签名，不能作为正式玩家分发已验收。
+- **最终回归已通过**：`6f12054` 综合CI `39375957208` 两job均success。MySQL job `118474030677` / fresh artifact `12243727463`：MySQL8.4.11，579项、565通过、14项测试内Skip、0失败/错误、582.514秒，另有6个缺私有原件的套件Skip不计入testsRun。Windows246项/245通过、1测试内Skip、0失败/错误，另6个缺原件套件Skip；React构建与测试均成功。此前失败运行保留其真实失败状态及修复分类，不能用最终绿色覆盖历史。原生客户端缺失与Windows平台Skip的边界见脱敏摘要。
+- 已独立 `ls-remote` 核对代码分支为 `6f12054997e32258e807980265dad04a4afe914e`，与该次本地HEAD一致。最终设计书/状态证据封存提交只涉及文档和设计书生成源，不改变本轮Web运行代码；Web归档仍保持 `7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9`，没有远程部署。
+- 部署书已同步最终成功状态、实际Windows内部ZIP及包装层摘要和本机测试入口；7张表冻结/筛选通过、公式错误0项。最终部署书39,631字节，SHA256 `87311a55c6f8853ccd5a7919376c3a4b16d557c945ba584a657fd25ab392f12a`；其他三本及Web tar前后摘要完全一致，详见 `evidence/2026-10-19-design-book-update-verification.json`。
+- 封存时工作区新增 `服务器数据库配置.txt`，尚未读取；已加入根级精确忽略规则，防止连接资料进入Git。已向用户确认其对应本次Web目标还是数据库参考，部署书仍以目标待确认记录；未擅自执行任何远程部署。该私密文件不属于Web打包白名单。
 
 ## 独立测试账号
 

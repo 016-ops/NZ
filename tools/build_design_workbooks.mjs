@@ -2,6 +2,7 @@
  * 用内置 artifact-tool 生成四份中文工程设计书。
  * 先运行 python -m tools.extract_design_sources；不访问业务数据库、不读取环境凭据。
  * 数据来自当前源码注册表，导出后逐张渲染并记录检查结果，便于后续改动重新生成。
+ * 仅发布状态变化时：--workbooks=部署手册及打包清单 --render-only=部署总览,打包文件清单,交付与阻塞。
  */
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -18,6 +19,16 @@ try { await fs.symlink(packages, moduleLink, 'dir') } catch (error) { if (error.
 const resolveArtifact = createRequire(path.join(outputDir, 'artifact-authoring.mjs'))
 const { Workbook, SpreadsheetFile } = await import(pathToFileURL(resolveArtifact.resolve('@oai/artifact-tool')).href)
 const sources = JSON.parse(await fs.readFile(path.join(outputDir, 'design-sources.json'), 'utf8'))
+// 发布记录与业务源码快照分开维护；仅更新部署状态时无需重提模型或重写其他三本。
+const releaseStatus = JSON.parse(await fs.readFile(path.join(root, 'tools/design_release_status.json'), 'utf8'))
+const selectedArgument = process.argv.find(value => value.startsWith('--workbooks='))
+const selectedBooks = selectedArgument ? new Set(selectedArgument.slice('--workbooks='.length).split(',')) : null
+const shouldBuild = name => !selectedBooks || selectedBooks.has(name)
+const verificationPath = path.join(outputDir, 'design-workbooks-verification.json')
+let previousVerification = {}
+if (selectedBooks) {
+  try { previousVerification = JSON.parse(await fs.readFile(verificationPath, 'utf8')) } catch (error) { if (error.code !== 'ENOENT') throw error }
+}
 let webPackage = null
 const webArchive = path.join(outputDir, 'nz-web-platform-2026-10-19.tar.gz')
 try {
@@ -31,7 +42,10 @@ const FONT = 'Arial'
 const NAVY = '#16283F'
 const INK = '#223349'
 const FAINT = '#EDF2F7'
-const verification = { asOf: sources.as_of, baselineCommit: sources.baseline_commit, workbooks: [] }
+const verification = { ...previousVerification, asOf: sources.as_of, baselineCommit: sources.baseline_commit,
+  workbooks: selectedBooks ? [...(previousVerification.workbooks || [])] : [] }
+verification.releaseStatus = releaseStatus
+verification.incrementalRun = selectedBooks ? { workbooks: [...selectedBooks], preservedOtherFiles: true } : null
 // 最终仅复核改变内容的页；未改变页保留此前已经逐张审查的预览，不重复耗时渲染。
 const renderArgument = process.argv.find(value => value.startsWith('--render-only='))
 const renderOnly = renderArgument ? new Set(renderArgument.slice('--render-only='.length).split(',')) : null
@@ -112,7 +126,10 @@ async function finish(book, basename, sheets) {
       try { await fs.access(target) } catch { refreshed = true }
     }
     if (refreshed) {
-      const blob = await book.render({ sheetName: sheet.name, range: `A1:${sheet.lastCol}${Math.min(sheet.lastRow, 13)}`, scale: 1, format: 'png' })
+      // 发布状态和实际归档摘要位于清单后半段，局部更新时完整呈现这三张说明页。
+      const completePage = ['部署总览', '打包文件清单', '交付与阻塞'].includes(sheet.name)
+      const renderRows = completePage ? sheet.lastRow : Math.min(sheet.lastRow, 13)
+      const blob = await book.render({ sheetName: sheet.name, range: `A1:${sheet.lastCol}${renderRows}`, scale: 1, format: 'png' })
       await fs.writeFile(target, new Uint8Array(await blob.arrayBuffer()))
     }
     rendered.push({ sheet: sheet.name, rows: sheet.rows, preview: path.relative(root, target),
@@ -121,12 +138,19 @@ async function finish(book, basename, sheets) {
   const target = path.join(outputDir, `${basename}.xlsx`)
   const xlsx = await SpreadsheetFile.exportXlsx(book)
   await xlsx.save(target)
-  verification.workbooks.push({ file: path.relative(root, target), sheets: rendered, inspection: check.ndjson, errorScan: errors.ndjson })
+  const relativeTarget = path.relative(root, target)
+  const entry = { file: relativeTarget, sheets: rendered, inspection: check.ndjson, errorScan: errors.ndjson }
+  const existing = verification.workbooks.findIndex(value => value.file === relativeTarget)
+  if (existing >= 0) verification.workbooks[existing] = entry
+  else verification.workbooks.push(entry)
+  // 新导出的文件必须重新检查，其他未改工作簿的摘要/冻结/筛选验证原样保留。
+  if (verification.export_checks) verification.export_checks = verification.export_checks.filter(value => value.file !== relativeTarget)
   console.log(JSON.stringify({ file: target, sheets: sheets.length, rows: sheets.reduce((sum, sheet) => sum + sheet.rows, 0) }))
 }
 
 // 表设计：完整模型、字段、关系和约束采用注册表自动提取，避免手抄遗漏新活动或监控表。
-{
+if (shouldBuild('表设计')) {
+  tableCount = 0
   const book = Workbook.create(); const sheets = []
   const overview = [
     ['文档版本', '本批开发设计 v1', '2026-10-19 America/Los_Angeles', '本地实现提交及设计书源码快照；部署状态单独记录'],
@@ -185,7 +209,8 @@ const routeDescriptions = {
 }
 
 // 游戏服务端设计：把HTTP控制面合同和原生消息元数据分别列出，未知DS字段保持未验收。
-{
+if (shouldBuild('游戏服务端接口设计')) {
+  tableCount = 6
   const book = Workbook.create(); const sheets = []
   sheets.push(addTable(book, '接口概览', 'NZ 游戏服务端接口设计', ['接口层', '用途', '认证边界', '当前状态', '来源'], [
     ['HTTP控制面', '账号、资产、运营、活动、榜单、监控', '玩家/管理员/游戏/节点/监控令牌互不通用', '本批实现；Web上线待环境', 'revival/views.py:1'],
@@ -240,7 +265,8 @@ const routeDescriptions = {
 }
 
 // Web设计书：页面、权限、流程和七图规则直接对应当前实现，区分门户体验和游戏验收。
-{
+if (shouldBuild('Web端设计书')) {
+  tableCount = 14
   const book = Workbook.create(); const sheets = []
   sheets.push(addTable(book, '页面架构', 'NZ Web 端设计书', ['路由', '页面', '用户', '主要内容和操作', '数据入口', '源码位置'], [
     ['/', '官网首页', '所有访客', '首屏视觉、玩法与开放地图、加入指南', '/api/public/portal', await source('admin/src/portal-app.tsx', 'function PortalHome')],
@@ -297,17 +323,18 @@ const routeDescriptions = {
 }
 
 // 部署手册：本次只部署Web，环境待用户提供；Windows继续开发包，不自动使用历史DEV。
-{
+if (shouldBuild('部署手册及打包清单')) {
+  tableCount = 20
   const book = Workbook.create(); const sheets = []
   sheets.push(addTable(book, '部署总览', 'NZ 部署手册及打包清单', ['项目', '本次选择', '当前状态', '执行要求', '来源'], [
     ['部署对象', '仅current Web前后端、maintenance及可选监控Agent', '待用户提供环境', '不安装synthetic/PvE服务；不得自动覆盖原DEV或远端Windows', 'docs/WEB_DEPLOYMENT.md:1'],
     ['Web技术栈', 'React/TypeScript/shadcn + Django + MySQL', '代码已具备', '使用锁定依赖与向前迁移', 'pyproject.toml:1'],
-    ['Launcher', '保留React+Tauri，新增自包含开发包脚本', 'Mac未生成Windows归档；正式安装未验收', '玩家包用HTTPS网关或已存在的本机隧道，不附私人SSH配置', 'tools/package_launcher.py:1'],
+    ['Launcher', '保留React+Tauri，新增自包含开发包脚本', releaseStatus.launcher.package_status, '玩家包用HTTPS网关或已存在的本机隧道，不附私人SSH配置', 'tools/package_launcher.py:1'],
     ['新数据库迁移', sources.migrations.filter(name => name.startsWith('0022') || name.startsWith('0023')).join(', '), '新增活动与监控表', '发布前备份；不恢复旧库覆盖新写入', 'revival/migrations/'],
     ['正式游戏节点', '不在本次Web部署范围', '指定节点原生世界/入局/可信结算未通过', '不得标记READY或声称可玩完成', 'docs/delivery/2026-10-19-code-checkpoint.md:1'],
     ['版本识别', webPackage?.manifest.source_commit || sources.baseline_commit, '本地已提交实现；包manifest标记WORKING_TREE', '不将工作树归档描述为某个提交原样构建', 'git rev-parse HEAD / RELEASE.json'],
     ['发布产物SHA', webPackage?.sha256 || '待实际打包后读取', webPackage ? '已从实际归档计算SHA256' : '尚未生成归档', '发布前核对归档字节与清单，不等于已部署', 'tools/package_web.py:1'],
-    ['远端与CI', 'Git远端未更新；WindowsCI未执行', '推送被自动审批拒绝，待明确目的地授权', '当前未进行远端Web或Windows部署，不在本任务重试推送', 'docs/delivery/2026-10-19-launcher-portal-admin.md:1'],
+    ['远端与CI', releaseStatus.git.summary, releaseStatus.ci.summary, '当前未进行远端Web或Windows部署；CI构建不等于安装或游戏验收', releaseStatus.evidence],
   ], [25, 87, 66, 88, 66]))
   sheets.push(addTable(book, '环境配置', '待确认环境与最小配置', ['配置项目', '需要填写的值', '要求', '用途', '来源'], [
     ['目标主机和系统', '待用户提供', '确认操作系统、CPU、内存、磁盘及独立目录', '本手册Linux示例使用systemd/Nginx，其他系统单独适配', 'docs/WEB_DEPLOYMENT.md:1'],
@@ -346,9 +373,17 @@ const routeDescriptions = {
     ['Web归档产物', webPackage?.file || 'nz-web-platform-2026-10-19.tar.gz（待生成）', webPackage ? `${webPackage.bytes} bytes；SHA256 ${webPackage.sha256}` : '实际文件生成前不填写摘要', '单独manifest.json与.sha256', '交付包已生成不代表目标Web环境已部署', 'tools/package_web.py:1'],
     ['文档包', '四份xlsx、交接Markdown、运行说明', '设计与部署交接', '必需', '不附私人配置或原始传输包', 'outputs/01a15734-c809-7ff2-8313-f617805a4441/'],
     ['监控包', 'tools/monitor_agent.py及独立依赖说明', '采样与重试，默认15秒', '按部署节点选择', 'NZ_MONITOR_TOKEN通过环境注入，不放入玩家安装包', 'tools/monitor_agent.py:1'],
-    ['Launcher开发包', 'NZLauncher.exe / launcher-config.json', 'Tauri窗口与公开API设置', 'Windows实际构建后生成', '未生成Windows zip；配置不允许包含私人SSH/数据库秘密', 'tools/package_launcher.py:1'],
+    ['Launcher开发包', 'NZLauncher.exe / launcher-config.json', 'Tauri窗口与公开API设置', releaseStatus.launcher.file_status, '配置不允许包含私人SSH/数据库秘密；实际CI产物状态见交付与阻塞页', 'tools/package_launcher.py:1'],
     ['Launcher开发包', 'service/NZLauncherService.exe 与 _internal/', 'PyInstaller onedir服务及Python依赖、admin/dist、config', '自包含开发包需要', '冻结服务先执行无账号bootstrap/close烟测，不代表登录/游戏验收', 'tools/package_launcher.py:1'],
-    ['Launcher开发包', 'package-manifest.json / licenses / 使用说明.txt', '文件字节/摘要、依赖许可、使用边界', 'Windows实际构建后生成', 'manifest内native_start_available=false，PACKAGE_NATIVE_CLIENT_UNAVAILABLE', 'tools/package_launcher.py:1'],
+    ['Launcher开发包', 'package-manifest.json / licenses / 使用说明.txt', '文件字节/摘要、依赖许可、使用边界', releaseStatus.launcher.file_status, 'manifest内native_start_available=false，PACKAGE_NATIVE_CLIENT_UNAVAILABLE', 'tools/package_launcher.py:1'],
+    ['Launcher实际归档', releaseStatus.launcher.inner_zip.file,
+      `${releaseStatus.launcher.inner_zip.bytes} bytes；SHA256 ${releaseStatus.launcher.inner_zip.sha256}`,
+      'CI产物已独立核验', `${releaseStatus.launcher.inner_zip.payload_files}个payload另加manifest；${releaseStatus.launcher.inner_zip.verification}`,
+      releaseStatus.launcher.inner_zip.evidence],
+    ['GitHub下载包装层', releaseStatus.launcher.inner_zip.artifact_url,
+      `${releaseStatus.ci.windows.artifact_wrapper.bytes} bytes；SHA256 ${releaseStatus.ci.windows.artifact_wrapper.sha256}`,
+      'artifact wrapper单独摘要', '此摘要属于下载包装层，不能代替NZLauncher-DEV.zip内部发行归档摘要',
+      releaseStatus.launcher.inner_zip.evidence],
     ['原生研究工作区', 'launcher/bin/components/d3d9-frame-copy.dll', '已有本机原生研究路径的固定摘要x86显示桥', '非本次自包含门户包必要组件', '自包含包未带原生客户端，不能声明可以完整游戏启动', 'tools/native_frame_bridge.py:1'],
     ['Launcher构建入口', 'python -m tools.package_launcher --api-base-url https://公开API', '生成NZLauncher-DEV目录及同级zip', 'Windows执行；--plan可静态审查', '已存在输出拒绝覆盖；归档SHA只在实际生成后报告', 'tools/package_launcher.py:1'],
     ['排除', 'runtime/、evidence/private/、.env*、*.pem、*.key', '凭据、缓存及私人证据', '必须排除', '不把排除目录作为游戏安装包依赖分发', '.gitignore:1'],
@@ -377,16 +412,21 @@ const routeDescriptions = {
   ], [26, 72, 97, 39, 47]))
   sheets.push(addTable(book, '交付与阻塞', '发布前状态与真实游戏边界', ['事项', '当前结果', '阻塞或下一步', '验收证据要求', '来源'], [
     ['Web部署', '本次未部署；仅current Web+maintain已备模板', '等待用户提供服务器配置', '发布包摘要、两项服务、HTTPS、MySQL迁移和在线冒烟', 'docs/WEB_DEPLOYMENT.md:1'],
-    ['Windows开发包', '继续现有Tauri构建，不部署远端Windows', '正式签名、干净安装和受限玩家网关另验', '安装/卸载/升级/退出恢复及无秘密分发', 'docs/native-launcher.md:1'],
+    ['Windows开发包', releaseStatus.launcher.package_status, releaseStatus.launcher.next_step, '安装/卸载/升级/退出恢复及无秘密分发；CI不代替实际安装验收', 'docs/native-launcher.md:1'],
     ['游戏房间节点', '世界/入局/可信结算未通过', '纹理加载与初始化停点继续研究', '实际世界、网络和玩家进入，不能仅靠资源哈希', 'docs/delivery/2026-10-19-code-checkpoint.md:1'],
     ['正式榜单与游玩奖励', '正式受信来源保持关闭', '原生结果和多人数据独立验收', '真实开始/结算时刻、人数、Boss与成功状态', 'revival/campaigns.py:1'],
     ['军衔等级', '待可信持久字段', '不得用研究等级1绕过战队或伪装玩家进度', '字段映射、更新来源和原生画面一致', 'docs/delivery/2026-10-19-code-checkpoint.md:1'],
     ['Excel设计书', '从当前源码提取并渲染', '生成预览不代表原生游戏验收', '四本可打开、每sheet已渲染、公式错误扫描无异常', 'tools/build_design_workbooks.mjs:1'],
-    ['Git提交与推送', '实现已本地提交；远端未更新', '自动审批拒绝外部GitHub推送，目的地待用户明确授权', '不得把本地提交说成远端已更新；不重试未获授权推送', 'docs/delivery/2026-10-19-launcher-portal-admin.md:1'],
-    ['WindowsCI', '未执行', '本机Mac仅验证脚本/界面与Linux兼容工具', '实际Windows产包、签名、安装/升级与干净机器验收另记', 'docs/delivery/2026-10-19-launcher-portal-admin.md:1'],
+    ['Git提交与推送', releaseStatus.git.summary, releaseStatus.git.detail, releaseStatus.git.remote_commit, releaseStatus.evidence],
+    ['Launcher构建CI', releaseStatus.ci.windows.status, releaseStatus.ci.windows.detail, releaseStatus.ci.windows.url, releaseStatus.evidence],
+    ['Windows工具/前端CI', releaseStatus.ci.windows_checks.status, releaseStatus.ci.windows_checks.detail, releaseStatus.ci.windows_checks.url, releaseStatus.evidence],
+    ['综合CI', releaseStatus.ci.regression.status, releaseStatus.ci.regression.detail, releaseStatus.ci.regression.url, releaseStatus.evidence],
+    ['本机演示账号', `${releaseStatus.local_demo.player} / ${releaseStatus.local_demo.admin}`,
+      releaseStatus.local_demo.authentication, `${releaseStatus.local_demo.player_url} / ${releaseStatus.local_demo.admin_url}；${releaseStatus.local_demo.status}`,
+      await source('docs/delivery/2026-10-19-launcher-portal-admin.md', '## 独立测试账号')],
   ], [28, 72, 87, 98, 74]))
   await finish(book, '部署手册及打包清单', sheets)
 }
 
-await fs.writeFile(path.join(outputDir, 'design-workbooks-verification.json'), JSON.stringify(verification, null, 2))
+await fs.writeFile(verificationPath, JSON.stringify(verification, null, 2))
 console.log(JSON.stringify({ verification: path.join(outputDir, 'design-workbooks-verification.json'), workbooks: verification.workbooks.length }))

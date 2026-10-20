@@ -171,69 +171,58 @@
           "rows": 8,
           "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-部署总览.png",
           "renderedThisRun": true,
-          "verification": "本轮渲染并目视审查通过"
+          "verification": "本轮完整页面渲染并目视审查通过"
         },
         {
           "sheet": "环境配置",
           "rows": 11,
           "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-环境配置.png",
-          "renderedThisRun": true,
-          "verification": "本轮渲染并目视审查通过"
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前已审查预览"
         },
         {
           "sheet": "发布与回退步骤",
           "rows": 10,
           "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-发布与回退步骤.png",
-          "renderedThisRun": true,
-          "verification": "本轮渲染并目视审查通过"
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前已审查预览"
         },
         {
           "sheet": "打包文件清单",
-          "rows": 18,
+          "rows": 20,
           "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-打包文件清单.png",
-          "renderedThisRun": true,
-          "verification": "本轮渲染并目视审查通过"
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前已审查预览"
         },
         {
           "sheet": "实际归档文件",
           "rows": 165,
           "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-实际归档文件.png",
-          "renderedThisRun": true,
-          "verification": "本轮渲染并目视审查通过"
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前已审查预览"
         },
         {
           "sheet": "监控与运维",
           "rows": 10,
           "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-监控与运维.png",
-          "renderedThisRun": true,
-          "verification": "本轮渲染并目视审查通过"
+          "renderedThisRun": false,
+          "verification": "内容未改变，沿用此前已审查预览"
         },
         {
           "sheet": "交付与阻塞",
-          "rows": 8,
+          "rows": 11,
           "preview": "outputs/01a15734-c809-7ff2-8313-f617805a4441/previews/部署手册及打包清单-交付与阻塞.png",
           "renderedThisRun": true,
-          "verification": "本轮渲染并目视审查通过"
+          "verification": "本轮完整页面渲染并目视审查通过"
         }
       ],
-      "inspection": "{\"kind\":\"table\",\"sheet\":\"部署总览\",\"address\":\"A5:D12\",\"rows\":8,\"cols\":4,\"values\":[[\"项目\",\"本次选择\",\"当前状态\",\"执行要求\"],[\"部署对象\",\"仅current Web前后端、maintenance及可选监控Agent\",\"待用户提供环境\",\"不安装synthetic/PvE服务；不得自动覆盖原DEV或远端Windows\"],[\"Web技术栈\",\"React/TypeScript/shadcn + Django + MySQL\",\"代码已具备\",\"使用锁定依赖与向前迁移\"],[\"Launcher\",\"保留React+Tauri，新增自包含开发包脚本\",\"Mac未生成Windows归档；正式安装未验收\",\"玩家包用HTTPS网关或已存在的本机隧道，不附私人SSH配置\"],[\"新数据库迁移\",\"0022_campaigns.py, 0023_server_monitoring.py\",\"新增活动与监控表\",\"发布前备份；不恢复旧库覆盖新写入\"],[\"正式游戏节点\",\"不在本次Web部署范围\",\"指定节点原生世界/入局/可信结算未通过\",\"不得标记READY或声称可玩完成\"],[\"版本识别\",\"5b61b61d2a2a104f9bf0c8c553ed40821ba35598\",\"本地已提交实现；包manifest标记WORKING_TREE\",\"不将工作树归档描述为某个提交原样构建\"],[\"发布产物SHA\",\"7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9\",\"已从实际归档计算SHA256\",\"发布前核对归档字节与清单，不等于已部署\"]]}",
+      "inspection": "{\"kind\":\"table\",\"sheet\":\"部署总览\",\"address\":\"A5:D12\",\"rows\":8,\"cols\":4,\"values\":[[\"项目\",\"本次选择\",\"当前状态\",\"执行要求\"],[\"部署对象\",\"仅current Web前后端、maintenance及可选监控Agent\",\"待用户提供环境\",\"不安装synthetic/PvE服务；不得自动覆盖原DEV或远端Windows\"],[\"Web技术栈\",\"React/TypeScript/shadcn + Django + MySQL\",\"代码已具备\",\"使用锁定依赖与向前迁移\"],[\"Launcher\",\"保留React+Tauri，新增自包含开发包脚本\",\"37b7598 Windows开发包已构建，冻结bootstrap/close烟测通过；实际API/干净安装/实玩未验收\",\"玩家包用HTTPS网关或已存在的本机隧道，不附私人SSH配置\"],[\"新数据库迁移\",\"0022_campaigns.py, 0023_server_monitoring.py\",\"新增活动与监控表\",\"发布前备份；不恢复旧库覆盖新写入\"],[\"正式游戏节点\",\"不在本次Web部署范围\",\"指定节点原生世界/入局/可信结算未通过\",\"不得标记READY或声称可玩完成\"],[\"版本识别\",\"5b61b61d2a2a104f9bf0c8c553ed40821ba35598\",\"本地已提交实现；包manifest标记WORKING_TREE\",\"不将工作树归档描述为某个提交原样构建\"],[\"发布产物SHA\",\"7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9\",\"已从实际归档计算SHA256\",\"发布前核对归档字节与清单，不等于已部署\"]]}",
       "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
     }
   ],
   "renderMode": {
     "changedSheets": [
-      "设计概览",
-      "命令权限",
-      "新增请求合同",
-      "既有请求合同",
-      "角色与权限",
-      "业务流程",
       "部署总览",
-      "环境配置",
-      "发布与回退步骤",
-      "打包文件清单",
-      "实际归档文件",
-      "监控与运维",
       "交付与阻塞"
     ]
   },
@@ -289,15 +278,16 @@
     },
     {
       "file": "outputs/01a15734-c809-7ff2-8313-f617805a4441/部署手册及打包清单.xlsx",
-      "bytes": 38381,
-      "sha256": "e9afa586538fe94fef9a105ca0be9ad8bed52f54fd2f2a1040f7c156cd370046",
+      "bytes": 39631,
+      "sha256": "87311a55c6f8853ccd5a7919376c3a4b16d557c945ba584a657fd25ab392f12a",
       "sheets": 7,
       "tables": 7,
       "autoFilters": 7,
       "frozen_header_rows": 5,
       "cached_formula_errors": 0,
       "formulas": [],
-      "retired_package_identifiers_absent": true
+      "retired_package_identifiers_absent": true,
+      "mysql_final_pending": false
     }
   ],
   "visual_review": {
@@ -305,7 +295,17 @@
     "re_rendered_final_run": 13,
     "previously_reviewed_unchanged": 14,
     "result": "各表已完成可视渲染审查；最终受影响13页复核，表头与文字未见截断，未出现####。较宽工程数据表通过冻结与筛选横向阅读。",
-    "limitation": "渲染与ZIP/XML结构校验不等于Excel桌面实开验收，亦不代表原生游戏验收。"
+    "limitation": "渲染与ZIP/XML结构校验不等于Excel桌面实开验收，亦不代表原生游戏验收。",
+    "latest_incremental": {
+      "workbook": "部署手册及打包清单.xlsx",
+      "complete_pages_reviewed": [
+        "部署总览",
+        "交付与阻塞"
+      ],
+      "other_workbooks_byte_identical": true,
+      "mysql_final_pending": false,
+      "all_sheets_reviewed_across_delivery": 27
+    }
   },
   "web_archive": {
     "file": "nz-web-platform-2026-10-19.tar.gz",
@@ -318,5 +318,94 @@
     "all_ordinary_files": true,
     "every_manifest_digest_verified": true,
     "deployed": false
+  },
+  "releaseStatus": {
+    "as_of": "2026-10-19 America/Los_Angeles",
+    "evidence": "docs/delivery/2026-10-19-launcher-portal-admin.md",
+    "git": {
+      "summary": "已推送 origin/fix/launcher-portal-admin",
+      "remote_commit": "6f12054997e32258e807980265dad04a4afe914e",
+      "detail": "用户已明确授权并完成GitHub认证；推送成功，ls-remote与本地推送提交一致"
+    },
+    "ci": {
+      "summary": "Windows工具/前端及MySQL综合检查成功；Launcher构建与冻结烟测成功",
+      "windows": {
+        "status": "success：构建与冻结bootstrap/close烟测通过",
+        "detail": "37b7598；artifact12243650799已上传，innerZip的754个payload及manifest路径/摘要/排除私密/外置清单一致性已独立核验。未连接实际API、未干净Windows安装、未实玩；默认回环18765仍为占位网关",
+        "url": "https://github.com/016-ops/NZ/actions/runs/39375681700",
+        "artifact_id": 12243650799,
+        "artifact_wrapper": {
+          "bytes": 25777855,
+          "sha256": "d92596490ed233ea21c7102c221449430f2a787d70ee9bf464623e7b71bb25c4",
+          "layer": "GitHub artifact wrapper；不能当作内部Launcher发行zip的摘要"
+        }
+      },
+      "regression": {
+        "status": "success：MySQL及Windows两个job成功",
+        "detail": "6f12054，MySQL8.4.11：579项、565通过、0失败/错误、582.514秒；14项测试内Skip及6个缺原件suite Skip单列，不计为通过；未据此声称Windows-only场景全部已验证",
+        "url": "https://github.com/016-ops/NZ/actions/runs/39375957208",
+        "commit": "6f12054997e32258e807980265dad04a4afe914e",
+        "mysql_job_id": 118474030677,
+        "artifact_id": 12243727463,
+        "tests": 579,
+        "passed": 565,
+        "failures": 0,
+        "errors": 0,
+        "test_skips": 14,
+        "missing_original_suite_skips": 6,
+        "seconds": 582.514,
+        "evidence": "evidence/2026-10-19-remote-ci-verification.json"
+      },
+      "windows_checks": {
+        "status": "工具/前端job成功",
+        "detail": "6f12054：246项、245通过、0失败/错误、2.748秒；1项测试内skip及6个缺原件suite skip另列，不混进实际通过数；前端成功",
+        "url": "https://github.com/016-ops/NZ/actions/runs/39375957208/job/118474030815",
+        "commit": "6f12054997e32258e807980265dad04a4afe914e",
+        "artifact_id": 12243705393,
+        "evidence": "evidence/2026-10-19-remote-ci-verification.json"
+      },
+      "history": [
+        {
+          "commit": "77813a0",
+          "url": "https://github.com/016-ops/NZ/actions/runs/39375099947",
+          "status": "failure",
+          "diagnostic": "冻结服务exit_code=1，bootstrap_parsed=false，startup_error_code=INVALIDTEMPLATELIBRARY；Rust/PyInstaller构建成功，未产生可宣称通过的最终包"
+        }
+      ]
+    },
+    "launcher": {
+      "package_status": "37b7598 Windows开发包已构建，冻结bootstrap/close烟测通过；实际API/干净安装/实玩未验收",
+      "file_status": "Windows CI已产包；754个payload和manifest独立核验通过",
+      "next_step": "默认回环18765占位需改正式网关；API登录、正式签名、干净Windows安装及实玩另验",
+      "inner_zip": {
+        "file": "NZLauncher-DEV.zip",
+        "bytes": 25974212,
+        "sha256": "139c84de2b034d33be4f5079be6821d582112c02d4552b375733f02494102993",
+        "payload_files": 754,
+        "manifest_extra": 1,
+        "verification": "逐文件SHA、路径、排除私密及外置manifest一致性独立核验通过",
+        "artifact_url": "https://github.com/016-ops/NZ/actions/runs/39375681700/artifacts/12243650799",
+        "evidence": "evidence/2026-10-19-windows-package-verification.json"
+      }
+    },
+    "web_release": {
+      "source_commit": "5b61b61d2a2a104f9bf0c8c553ed40821ba35598",
+      "sha256": "7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9",
+      "status": "本次未重包、未远程部署"
+    },
+    "local_demo": {
+      "status": "隔离演示账号已创建，仅供本机验证",
+      "player": "test-player@example.invalid",
+      "admin": "nz-test-admin",
+      "player_url": "http://127.0.0.1:8875/player",
+      "admin_url": "http://127.0.0.1:8875/admin",
+      "authentication": "Owner使用正常MFA；凭据仅存本机runtime私密文件，未写入Excel或发布包"
+    }
+  },
+  "incrementalRun": {
+    "workbooks": [
+      "部署手册及打包清单"
+    ],
+    "preservedOtherFiles": true
   }
 }
