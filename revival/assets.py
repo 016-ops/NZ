@@ -118,7 +118,10 @@ def mutate(service, c, actor, account_id, changes, reason, source, linked=None):
         elif kind in ('consume', 'remove'):
             instance_id = change.get('instance_id')
             item = c.select('inventory', (Q(id=instance_id) & Q(account_id=account_id))).fetchone()
-            if not item or (item['expires_at'] is not None and item['expires_at'] <= service.clock()):
+            # 后台回收允许清理已过期的本人实例；玩家消耗/删除仍需有效期限。
+            # 该豁免不绕过归属、预期版本和下方装备/皮肤/吞噬引用保护。
+            admin_remove = kind == 'remove' and source == 'ADMIN_REMOVE' and actor.get('kind') == 'admin'
+            if not item or (not admin_remove and item['expires_at'] is not None and item['expires_at'] <= service.clock()):
                 raise Fault('INVENTORY', 'Active owned instance required', 409)
             definition = service.catalog['items'].get(item['item_key'])
             if not definition or (kind == 'consume' and not definition.get('consumable')) or (kind == 'remove' and not definition.get('native')):

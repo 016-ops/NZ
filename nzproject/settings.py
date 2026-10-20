@@ -1,6 +1,7 @@
 """本地 Django 配置：读取环境中的 MySQL 与 profile 配置，凭据不写入源码。"""
 import os
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from dotenv import load_dotenv
 
@@ -25,6 +26,22 @@ NZ_MAIL_SENDER_NAME = os.environ.get('NZ_MAIL_SENDER_NAME', 'NZ Revival')
 SECRET_KEY = os.environ.get('NZ_SECRET_KEY', 'local-control-plane-no-cookie-sessions')
 DEBUG = False
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '[::1]', 'testserver']
+# 公网 Web 只接受部署者明确设置的单一来源；默认仍保持原 SSH 回环部署边界。
+NZ_PUBLIC_ORIGIN = os.environ.get('NZ_PUBLIC_ORIGIN', '').rstrip('/')
+NZ_PUBLIC_HOST = ''
+# 仅显式信任本机HTTPS反代的X-Real-IP；默认忽略，避免公网请求自行伪造限流身份。
+NZ_TRUST_LOOPBACK_PROXY = os.environ.get('NZ_TRUST_LOOPBACK_PROXY', '0') == '1'
+if NZ_PUBLIC_ORIGIN:
+    # 房间口令密文使用此密钥派生；公网部署必须提供私有强度足够的值，不能沿用本机默认。
+    if SECRET_KEY == 'local-control-plane-no-cookie-sessions' or len(SECRET_KEY) < 32:
+        raise ValueError('Public Web deployment requires a private NZ_SECRET_KEY of at least 32 characters')
+    public = urlsplit(NZ_PUBLIC_ORIGIN)
+    if (not public.hostname or public.username or public.password or public.path or public.query or public.fragment
+            or public.scheme not in ('http', 'https')
+            or public.scheme == 'http' and public.hostname not in ('127.0.0.1', 'localhost', '::1')):
+        raise ValueError('NZ_PUBLIC_ORIGIN must be one HTTPS origin or a loopback HTTP origin')
+    NZ_PUBLIC_HOST = public.netloc
+    ALLOWED_HOSTS.append(public.hostname)
 ROOT_URLCONF = 'nzproject.urls'
 WSGI_APPLICATION = 'nzproject.wsgi.application'
 INSTALLED_APPS = ['revival.apps.RevivalConfig']
@@ -57,4 +74,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 USE_TZ = True
 TIME_ZONE = 'UTC'
 DATA_UPLOAD_MAX_MEMORY_SIZE = 65536
+# 图片由专用multipart路由接收；大文件溢出到受控临时文件，不扩大普通JSON请求限制。
+FILE_UPLOAD_MAX_MEMORY_SIZE = 262144
+NZ_MEDIA_ROOT = Path(os.environ.get('NZ_MEDIA_ROOT', BASE_DIR / 'runtime/media'))
 NZ_PORT = int(os.environ.get('NZ_PORT', '8765'))

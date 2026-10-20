@@ -52,6 +52,31 @@ fn repository() -> Result<PathBuf, &'static str> {
     Err("LAUNCHER_WORKSPACE_MISSING")
 }
 
+/// 发行目录只启动随包本机服务；没有发行标记时才沿用原仓库虚拟环境入口。
+/// 不从PATH、当前工作目录或网页参数寻找Python，避免便携包依赖开发机安装。
+struct ServiceLaunch {
+    executable: PathBuf,
+    arguments: Vec<&'static str>,
+    directory: PathBuf,
+}
+
+fn service_launch() -> Result<ServiceLaunch, &'static str> {
+    let executable = std::env::current_exe().map_err(|_| "EXECUTABLE_PATH_UNAVAILABLE")?;
+    let folder = executable.parent().ok_or("EXECUTABLE_PATH_UNAVAILABLE")?;
+    if folder.join("launcher-config.json").is_file() || folder.join("service").is_dir() {
+        let service = folder.join("service/NZLauncherService.exe");
+        if !service.is_file() || !folder.join("launcher-config.json").is_file()
+            || !folder.join("service/_internal/admin/dist/index.html").is_file() {
+            return Err("LAUNCHER_PACKAGE_INCOMPLETE");
+        }
+        return Ok(ServiceLaunch { executable: service, arguments: vec!["--desktop"],
+            directory: folder.to_path_buf() });
+    }
+    let root = repository()?;
+    Ok(ServiceLaunch { executable: root.join(".venv/Scripts/python.exe"),
+        arguments: vec!["-u", "-m", "tools.native_launcher", "--desktop"], directory: root })
+}
+
 /// 校验 URL 的全部组成部分，不允许子服务应答转向外网或把能力放进查询字符串。
 fn bootstrap_url(line: &str) -> Result<tauri::Url, &'static str> {
     let message: Bootstrap = serde_json::from_str(line).map_err(|_| "BOOTSTRAP_INVALID")?;
@@ -87,10 +112,10 @@ fn show_failure(app: &tauri::AppHandle, bridge: &DesktopBridge, code: &str) {
 
 /// 启动唯一受控子服务；使用无控制台进程和继承管道，父进程崩溃时 EOF 也触发服务清理。
 fn run_service(app: tauri::AppHandle, bridge: Arc<DesktopBridge>) -> Result<(), &'static str> {
-    let root = repository()?;
-    let mut child = Command::new(root.join(".venv/Scripts/python.exe"))
-        .args(["-u", "-m", "tools.native_launcher", "--desktop"])
-        .current_dir(&root).stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null())
+    let launch = service_launch()?;
+    let mut child = Command::new(&launch.executable)
+        .args(&launch.arguments)
+        .current_dir(&launch.directory).stdin(Stdio::piped()).stdout(Stdio::piped()).stderr(Stdio::null())
         .creation_flags(0x08000000) // CREATE_NO_WINDOW：仅显示 Tauri 及用户启动的游戏窗口。
         .spawn().map_err(|_| "LOCAL_SERVICE_START_FAILED")?;
     *bridge.input.lock().map_err(|_| "CONTROL_PIPE_FAILED")? = child.stdin.take();
@@ -128,7 +153,7 @@ fn run_service(app: tauri::AppHandle, bridge: Arc<DesktopBridge>) -> Result<(), 
     if !status.success() {
         // 运行中失败时载入内置页，确保不会因 React 页面缺少错误元素而静默丢失诊断。
         if let Some(window) = app.get_webview_window("main") {
-            let _ = window.eval("document.body.innerHTML='<main style=\"padding:48px;font-family:sans-serif\"><h1>启动器服务已停止</h1><p>请查看 runtime/native-launcher-error.log 并重新打开 Launcher。</p></main>'");
+            let _ = window.eval("document.body.innerHTML='<main style=\"padding:48px;font-family:sans-serif\"><h1>启动器服务已停止</h1><p>请查看当前用户 AppData/NZRevivalLauncher/runtime 或研究仓库 runtime 中的错误记录，然后重新打开 Launcher。</p></main>'");
         }
         return Ok(());
     }

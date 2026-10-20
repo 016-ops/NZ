@@ -1,22 +1,13 @@
-"""管理员失去验证器后的本机恢复入口；不通过命令行参数或 HTTP 传递恢复凭据。"""
-import getpass
-from urllib.parse import quote
-from django.conf import settings
-from django.core.management.base import BaseCommand
-from revival.administration import recover_mfa
-from revival.service import Service
+"""保留旧命令名给出退役提示，不读取恢复码、配置或数据库。"""
+from django.core.management.base import BaseCommand, CommandError
 
 
 class Command(BaseCommand):
-    """要求交互输入密码及未使用的恢复码，成功后仅展示一次新 MFA 和恢复码。"""
+    """旧TOTP恢复不再能够签发会话或重置管理员认证。"""
     def add_arguments(self, parser):
-        """只接收非敏感登录名，凭据从终端的隐藏输入读取。"""
+        """保留原登录名参数以便旧脚本得到明确退出原因。"""
         parser.add_argument('login')
 
     def handle(self, *args, **options):
-        """原子恢复后提示私下保存；旧会话和旧恢复码全部失效。"""
-        result = recover_mfa(Service(test_profile=settings.NZ_PROFILE == 'synthetic'), options['login'],
-                             getpass.getpass('Administrator password: '), getpass.getpass('Unused recovery code: '))
-        self.stdout.write(f"otpauth://totp/NZRevival:{quote(options['login'])}?secret={result['otp_secret']}&issuer=NZRevival")
-        self.stdout.write('Store these new recovery codes privately; they are shown once:')
-        self.stdout.write('\n'.join(result['recovery_codes']))
+        """直接失败，不提示输入旧凭据，也不初始化业务服务。"""
+        raise CommandError('TOTP恢复已退役；管理员认证使用原密码及固定邮箱验证码。')

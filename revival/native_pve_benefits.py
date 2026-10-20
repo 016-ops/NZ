@@ -52,7 +52,9 @@ def gain_types(c,account_id,instance_ids):
 @lru_cache(maxsize=1)
 def catalog():
     """核对原配置派生规则摘要，禁止服务运行时静默替换等级区间或功能卡槽。"""
-    raw=(Path(__file__).resolve().parents[1]/'config/cn2020-pve-benefits-v1.json').read_bytes()
+    from .frozen_config import frozen_bytes
+    raw=frozen_bytes(Path(__file__).resolve().parents[1]/'config/cn2020-pve-benefits-v1.json',
+        '1469180a8e97bc850d5a3e3689fcac1fe383b513b0c3499cb4286d8db615c51f')
     if hashlib.sha256(raw).hexdigest()!='1469180a8e97bc850d5a3e3689fcac1fe383b513b0c3499cb4286d8db615c51f':
         raise ValueError('PVE_BENEFITS_CATALOG_MISMATCH')
     return json.loads(raw)

@@ -1,0 +1,3 @@
+# 独立主机 Agent 依赖，不进入 Django Web 服务；版本与官方 PyPI 发布对应。
+# 来源：https://pypi.org/project/psutil/7.2.2/
+psutil==7.2.2

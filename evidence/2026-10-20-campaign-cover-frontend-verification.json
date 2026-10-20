@@ -1,0 +1,29 @@
+{
+  "kind": "FRONTEND_AUTOMATED_NOT_WINDOWS_OR_BROWSER_ACCEPTANCE",
+  "date": "2026-10-20",
+  "tests": {
+    "command": "npm test -- --reporter=dot",
+    "exit_code": 0,
+    "test_files": 5,
+    "tests": 15,
+    "passed": 15,
+    "seconds": 0.762
+  },
+  "build": {
+    "command": "npm run build",
+    "exit_code": 0,
+    "typecheck": true,
+    "vite": "6.4.4",
+    "modules": 1721,
+    "seconds": 1.98,
+    "large_chunk_warning": true
+  },
+  "scope": "公共封面固定ID与有界base64/Blob；共享Web/Launcher组件编译；全套前端相邻回归",
+  "not_verified": [
+    "真实浏览器/WebView渲染",
+    "Windows重新冻结构建",
+    "远端部署",
+    "真实SMTP投递",
+    "游戏实玩"
+  ]
+}

@@ -44,6 +44,7 @@ class NodeHttpTests(Base):
             self.assertEqual(request('/api/node/ack', ack)[0], 200)
         finally:
             server.task_dispatcher.shutdown()
-            server.close()
+            # 通过事件触发器在同一线程关socket，不在select等待期间跨线程关fd。
+            server.trigger.pull_trigger(server.close)
             thread.join(timeout=5)
             override.disable()

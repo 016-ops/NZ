@@ -1,0 +1,14 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "26.7.0",
+  "tests": 2,
+  "passed": [
+    "tests.test_feedback.FeedbackTests.test_http_multipart_retry_private_get_and_player_view_envelope",
+    "tests.test_feedback.FeedbackTests.test_http_upload_auth_precedes_decode_and_strict_multipart"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 4.969
+}

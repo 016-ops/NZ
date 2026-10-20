@@ -1,0 +1,89 @@
+{
+  "kind": "LOCAL_UI_PREVIEW_NOT_REMOTE_DEPLOYMENT",
+  "runtime_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+  "preview_web": "http://127.0.0.1:8876/",
+  "preview_launcher": "http://127.0.0.1:5174/launcher",
+  "database": "isolated local demo database",
+  "deployed": false,
+  "theme": "original dark navy, steel blue, warm gold",
+  "verified": [
+    "player existing-account login",
+    "Chinese inventory labels and marked category illustrations",
+    "duplicate check-in centered result dialog",
+    "activity list and stable detail URL",
+    "feedback text and authenticated screenshot visible after actual local upload",
+    "Web and Launcher registration confirmation field present",
+    "admin login-code request rejected visibly when SMTP unconfigured",
+    "Web and Launcher 390x844 scrollWidth equals clientWidth 390"
+  ],
+  "verification_limits": {
+    "smtp_delivery": "NOT_VERIFIED_NO_CONFIGURATION",
+    "admin_real_email_login": "NOT_VERIFIED_NO_CONFIGURATION",
+    "launcher_mac": "FORM_PREVIEW_ONLY_NO_CAPABILITY_BYPASS",
+    "native_game_login_and_play": "NOT_VERIFIED",
+    "clean_windows_machine": "NOT_VERIFIED",
+    "reduced_motion_and_blur": "SOURCE_REVIEW_ONLY_NOT_OS_END_TO_END"
+  },
+  "screenshots": [
+    {
+      "path": "evidence/portal-ui-v2/activity-detail-dark.png",
+      "bytes": 67880,
+      "sha256": "211880e76fcaf1d68e9b8faebada123095796571676b1f192086a5185fc4397c"
+    },
+    {
+      "path": "evidence/portal-ui-v2/admin-email-unconfigured-dark.png",
+      "bytes": 96004,
+      "sha256": "b7eff6f3046f0fd0360e17cc6a1547c8f9d6ef97c74753705e25e5ae3300105a"
+    },
+    {
+      "path": "evidence/portal-ui-v2/checkin-result-dark.png",
+      "bytes": 33464,
+      "sha256": "d6bd69c91dfec9120868d74bd1ef6b3dd53c59037d95d42da22c29d83ae18262"
+    },
+    {
+      "path": "evidence/portal-ui-v2/feedback-private-image-dark.png",
+      "bytes": 50143,
+      "sha256": "2412209ca5c35e4b7bddd47550ffcf501e4442f2784469934798d902f2ee0c6b"
+    },
+    {
+      "path": "evidence/portal-ui-v2/inventory-dark.png",
+      "bytes": 50303,
+      "sha256": "c4b34e7df21e84a9ac5423b54a8076d97be7f102f939f8be65eb755c2a99e36f"
+    },
+    {
+      "path": "evidence/portal-ui-v2/launcher-home-dark.png",
+      "bytes": 106006,
+      "sha256": "60abc3ce289e4545882dcae93fa19a44fd27e418c8f730af9f0492f15cf846fa"
+    },
+    {
+      "path": "evidence/portal-ui-v2/launcher-home-mobile-dark.png",
+      "bytes": 46765,
+      "sha256": "697dba24fdd25ef6e168bdb1e0b4190fbdc82625ff4767935c2eaf9d0c7e1da4"
+    },
+    {
+      "path": "evidence/portal-ui-v2/launcher-register-dark.png",
+      "bytes": 111054,
+      "sha256": "91227dd5a59c506336a1203807cce68124b2a495dda34eff953937bc56cf783d"
+    },
+    {
+      "path": "evidence/portal-ui-v2/web-hero-preview-dark.png",
+      "bytes": 155507,
+      "sha256": "31ab0ff45b196f19a742514a44b462e7d09b45de62bda68de0eb43110518fb3f"
+    },
+    {
+      "path": "evidence/portal-ui-v2/web-home-dark.png",
+      "bytes": 264780,
+      "sha256": "9eeef06130597242e33dfe5df62eecd6dbc30aade36e12f1440c80194335624d"
+    },
+    {
+      "path": "evidence/portal-ui-v2/web-home-mobile-dark.png",
+      "bytes": 119207,
+      "sha256": "0f306a1b7ae4cb8334eb913d6a2a667e9e38eb55126579a5eebe61128e5895cc"
+    },
+    {
+      "path": "evidence/portal-ui-v2/web-register-dark.png",
+      "bytes": 100840,
+      "sha256": "c7039fc99443518e9f1fdbeef44ca4c28dcf63d73ef9875011cb2399dbfb0f40"
+    }
+  ]
+}

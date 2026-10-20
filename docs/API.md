@@ -6,18 +6,20 @@
 
 原生期限使用`ObtainTime + AvailbilityHour*3600`精确保留数据库到期秒数，不在重登时续期。NZ余额额外使用Reason42独立通知，不改变材料/制造通知的原因码。
 
-这是自有研究控制面的接口，不是逆战原生协议。默认地址 `http://127.0.0.1:8765`，只有 loopback 可以监听。所有 POST 要求 `Content-Type: application/json` 和 `X-NZ-Request: 1`；认证后携带 `Authorization: Bearer <session>`。无 Cookie/CORS 会话。
+这是自有控制面的HTTP接口，不是逆战原生协议。默认地址 `http://127.0.0.1:8765`，服务仅监听回环；显式公网Origin及HTTPS反代可开放Web。普通POST要求 `Content-Type: application/json` 和 `X-NZ-Request: 1`；专用图片上传路由使用受限multipart，见末尾媒体合同。认证后携带 `Authorization: Bearer <session>`，无Cookie会话。
 
 ## 路由
 
 | 路由 | 用途 | 授权 |
 |---|---|---|
 | `GET /health`、`GET /api/status` | 服务与能力状态 | 公开只读，无凭据 |
-| `POST /api/login` | `{kind,login,password,otp_code}` | admin 要 MFA；player 需已批准/未制裁 |
-| `POST /api/register` | 兼容注册入口；默认必须提供邮箱及验证码，拒绝 login 字段 | 同邮箱注册规则，PENDING_REVIEW |
-| `POST /api/player/register` | `{email,password,invitation,challenge_id,code,...元数据}`；邮箱大小写统一，审批前不可登录 | 有效邀请及 register 邮件验证码；不接受 login 字段 |
-| `POST /api/player/login` | `{email,password}`；独立邮箱密码，不读取 QQ 凭据 | 已批准邮箱玩家；kind 参数不能提升为管理员 |
-| `POST /api/player/email-code` | `{email,purpose}`；purpose 为 register/reset/verify，register 另需 invitation | 同源公开入口，持久发送额度与邀请校验 |
+| `POST /api/admin/login-code` | `{login,password}`，只发固定管理员邮箱 | 密码正确后申请独立登录邮件码，失败关闭 |
+| `POST /api/admin/step-up-code` | `{action,payload,metadata,current_password}` | 当前Owner Bearer；绑定操作的独立邮件码 |
+| `POST /api/login` | `{kind,login,password,challenge_id,code}` | admin需原密码和登录邮件码；player需ACTIVE且未制裁，旧otp_code无效 |
+| `POST /api/register` | 邮箱注册兼容入口，拒绝login字段 | 同自助邮箱规则，验证即ACTIVE并初始化角色 |
+| `POST /api/player/register` | `{email,password,nickname,challenge_id,code,...元数据}` | register邮件码；免邀请/免审批，原子创建ACTIVE账号、角色、钱包及配置初装 |
+| `POST /api/player/login` | `{email,password}`；独立邮箱密码，不读取QQ凭据 | ACTIVE且未制裁；kind不能提权；character_required提示历史无角色补建 |
+| `POST /api/player/email-code` | `{email,purpose}`；purpose为register/reset/verify | 同源公开入口，持久发送额度；register不需要邀请码 |
 | `POST /api/player/password-reset` | `{email,password,challenge_id,code,...可选完整元数据}`；password 为新密码 | reset 邮件验证码；消费与改密/撤销会话同事务 |
 | `POST /api/player/email-verify` | `{email,challenge_id,code,...可选完整元数据}` | verify 邮件验证码，只验证既有绑定邮箱 |
 | `GET /api/launcher/status` | 独立登录与原生适配实际能力 | 公开只读，原生启动仍 false |
@@ -43,21 +45,29 @@ Owner 有全部权限；users 角色可邀请/审核/重置/制裁，不能发�
 
 ## 命令
 
-`user.email.set` 接受 target_account_id/email 及命令元数据，权限为 user.reset；Owner 必须当前密码和新 MFA 再认证。保留账号、game_id、角色和资产，撤销旧会话并禁用该玩家的旧用户名登录入口。邮箱唯一、统一小写；不合并加号或点别名。管理员绑定邮箱不代表所有权验证，verified_at 保持空；玩家可用 verify 邮件码补验，也可在持有 reset 邮件码时找回密码并完成验证。改变绑定邮箱或安全版本会使此前恢复码失效。
+`user.email.set` 接受 target_account_id/email 及命令元数据，权限为 user.reset；Owner必须原密码和独立操作绑定邮件码再认证。保留账号、game_id、角色和资产，撤销旧会话并禁用该玩家的旧用户名登录入口。邮箱唯一、统一小写；不合并加号或点别名。管理员绑定邮箱不代表所有权验证，verified_at 保持空；玩家可用 verify 邮件码补验，也可在持有 reset 邮件码时找回密码并完成验证。改变绑定邮箱或安全版本会使此前恢复码失效。
+
+### 管理员邮件认证合同（2026-10-20）
+
+收件地址固定为 `2633034921@qq.com`，请求字段及环境变量不能覆盖。登录取码仅接受正确管理员密码；高风险取码只允许当前Owner会话，并绑定最终 `action/payload/metadata`。`metadata`准确包含request_id/idempotency_key/reason，业务payload不能夹带认证、action或元数据字段。提交时仍提供原密码与challenge_id/code，登录码和高风险码不能互换。
+
+六位码有效300秒，冷却60秒，最多5次错误，登录错密码与错码共用当前所属挑战额度，其他login不能消耗该挑战；来源20次/5分钟与60次/小时、每管理员每用途10次/小时、业务库发送100次/小时独立持久化。SMTP在部署锁外执行，失败关闭、不自动重发。返回challenge_id/expires_in/retry_after/recipient_hint，高风险另有operation_summary:{action,confirmation:12位十六进制指纹}，邮件显示相同动作及指纹，不包含业务正文/密码。挑战安全版本、Session和操作绑定使角色/密码变化、换会话、改动作/参数/键全部失效；消费与业务/Session、审计同事务，错误次数独立持久化。成功同键重试仍验证当前权限后恢复回执。
+
+缺挑战为REAUTH_REQUIRED/403，无效/过期/已用/超次为ADMIN_EMAIL_CODE/403，额度RATE_LIMIT/429，未配置MAIL_NOT_CONFIGURED/503，投递失败MAIL_DELIVERY_FAILED/503。验证码/挑战ID/当前密码不进入管理员命令的审计或幂等业务摘要；新密码用服务端HMAC参与摘要。SMTP mock仅验证程序路径，不代表固定QQ收件箱已收到；真实投递仍需配置与人工验收。
 
 ### 邮件验证码合同
 
-发码返回 challenge_id、expires_in=600、retry_after=60 和通用提示；六位验证码只发到请求邮箱，数据库仅保存带服务端密钥的 HMAC 摘要。每个码绑定邮箱、用途及挑战 ID，恢复/补验另绑定账号与安全版本。最多五次错误验证，失败计数持久保存；同用途重新申请使旧码失效。码过期、已用或无效统一返回 EMAIL_CODE/403。成功注册的原幂等请求可重读结果，不会二次消费邀请或创建账号。
+发码返回 challenge_id、expires_in=600、retry_after=60 和通用提示；六位验证码只发到请求邮箱，数据库仅保存带服务端密钥的 HMAC 摘要。每个码绑定邮箱、用途及挑战 ID，恢复/补验另绑定账号与安全版本。最多五次错误验证，失败计数持久保存；同用途重新申请使旧码失效。码过期、已用或无效统一返回 EMAIL_CODE/403。成功注册的原幂等请求可重读结果，不会二次消费验证码、创建账号/角色或发初装。
 
 密码恢复和旧邮箱补验可携带完整 `request_id`、`idempotency_key`、`reason`；若提供其中任意字段，三项都必须合法。相同用途/邮箱、同键和相同业务内容重读已提交结果，包括响应丢失、服务重启或并发消费后，不再次改密或撤销会话；同键改内容返回 IDEMPOTENCY_CONFLICT。验证码和新密码仅以服务端 HMAC 参与持久幂等摘要，不记录明文。不带元数据的旧调用仍为一次性消费，成功后重复提交返回 EMAIL_CODE；不要为重试临时换键。页面已携带完整元数据，并在请求期间锁定输入、身份和用途切换，防止旧响应覆盖新表单。
 
 新邮箱账号的内部登录别名使用随机值，不再由邮箱确定；已换绑释放的邮箱可重新注册一个独立账号。历史账号内部别名、原 ID/game_id、角色和资产不重写，历史注册幂等标识保持兼容；内部别名不能用于公开登录绕过邮箱认证。
 
-注册同键并发时，即使另一请求在首个幂等查询之后、验证码预检之前已经提交，也应读回原成功结果；验证码预检失败后会再次查验已提交幂等结果，无原结果则仍拒绝。此交错已用真实 MySQL 固定调度复现和回归。当前 DEV 发布 `20261015T061412-1cfd594907ca` 已包含上述合同。
+注册同键并发时，即使另一请求在首个幂等查询之后、验证码预检之前已经提交，也应读回原成功结果；验证码预检失败后再次查验已提交回执，无结果则仍拒绝。此交错已用真实MySQL固定调度回归；历史DEV发布不代表2026-10-20新增功能已部署。
 
 每邮箱跨用途 60 秒冷却、每小时 5 次，每来源每小时 20 次，每独立业务库每小时 100 次；额度在 SMTP 前持久预留，发送失败也不释放。配置缺失返回 MAIL_NOT_CONFIGURED/503；超过额度返回 RATE_LIMIT/429。SMTP 拒收/超时留固定运维错误码，公开响应仍为通用提示，客户端不应自动重发。未知邮箱的 reset/verify 请求同样投递邮件并返回相同形状，但无绑定账号时不能消费为恢复或新账号。
 
-新注册默认启用 NZ_EMAIL_VERIFICATION_REQUIRED=1，完成验证后仍为 PENDING_REVIEW。找回密码采用正常密码强度与慢哈希，原子撤销旧 Web/游戏会话；不改变审核、停用、制裁、管理员权限、角色或资产。补验旧邮箱仅更新 verified_at，不更改密码。邮件入口沿用 Host/Origin、JSON 和 X-NZ-Request 保护，不使用 Cookie 或 URL 凭据。
+新注册默认启用NZ_EMAIL_VERIFICATION_REQUIRED=1，邮箱验证后即ACTIVE并原子初始化角色/钱包/配置初装，不需邀请码或审批。0024不改变任何既有玩家状态，不批量激活待审、停用或封禁账号；旧PENDING即使已验证邮箱，登录仍拒绝；补验/找回密码不改变状态，须管理员显式批准。ACTIVE无角色可登录后补建，但character.create要求当前绑定邮箱已验证，否则EMAIL_UNVERIFIED/403。昵称NFC后1–24字符且UTF-8最多48字节，冲突/失败不消耗验证码或留下半注册。找回密码使用正常强度与慢哈希，原子撤销旧Web/游戏会话；补验/恢复不改变旧待审、停用、制裁状态或角色资产。只有显式合成旧测试夹具可以保留邀请路径，正常profile不能用关闭验证配置绕过邮箱。所有入口保留Host/Origin及X-NZ-Request保护。
 
 独立交接协议为 `nz-email-v1`，不等于现有客户端原生网络帧。所有游戏身份采用本地账号命名空间，无 QQ 号码映射。票据、证明和游戏令牌均只存 SHA256，票据绑定原玩家会话、安全版本、profile 和客户端声明指纹；该指纹是请求绑定，不是二进制来源认证。新票据替换未消费票据，兑换时撤销旧游戏会话。兑换并发至多一次，已消费返回 TICKET_CONSUMED/409，网络结果未知需申请新票据，不重放原始令牌。票据/兑换响应的秘密不写入通用幂等结果；这些路由不自动重试。
 
@@ -85,17 +95,17 @@ Owner 有全部权限；users 角色可邀请/审核/重置/制裁，不能发�
 | `asset.grant` | target_account_id, catalog_version, changes | asset.grant |
 | `asset.batch` | target_account_ids (冻结 1–20 个唯一 ID), catalog_version, changes | Owner + 再认证 |
 | `asset.compensate` | operation_id, catalog_version | Owner + 再认证 |
-| `shop.purchase` | catalog_version, offer_key | 玩家本人，服务端定价 |
+| `shop.purchase` | 旧平台购买动作 | 已关闭，鉴权后幂等前PLATFORM_SHOP_CLOSED/403；原生game命令不受影响 |
 | `inventory.consume` | catalog_version, instance_id, quantity | 玩家本人，已确认可消耗类型 |
 | `inventory.equip` | catalog_version, instance_id, slot | 玩家本人，按目录槽与期限 |
 
 货币变化为 `{type:"currency",code:"GP",delta:100}`，物品为 `{type:"item",item_key:"test-token",quantity:2,duration_seconds:3600}`；省略 duration_seconds 表示目录允许的永久实例。默认当前国服目录为空，只在 test-only-v1 模式可使用这些示例。
 
-大额发放（单次请求所有币种绝对增量之和 >10,000）、批量和补偿另带 `current_password`、新的 `otp_code`。资源管理员超限拒绝。不要把凭据写到命令行或公开示例；通过受保护的本地程序交互获取。同键成功重试不需要重新消费 MFA，但仍需有效会话和权限。
+Owner大额发放（币种绝对增量和>10,000）、批量、补偿、管理员生命周期、邮箱换绑和节点发证另带 `current_password/challenge_id/code`，先申请独立操作邮件码。资源管理员超限拒绝。凭据不放命令行、URL或日志。同键已提交请求可重读结果而不二次消费码，仍验证当前会话和权限。
 
-2026-10-14 用户另行要求单个测试管理员使用永久固定测试验证码：只有配置明确匹配的账号 ID、合成数据库名且处于 TEST_PROFILE 时，其登录与再认证允许重复该六位码。其他账号、其他库及当前客户端模式保持正常 TOTP 防重放；密码和权限校验不变。会话仍为 900 秒。固定码仅保存摘要，凭据不进入本接口文档或公开证据。
+2026-10-20策略替代历史测试例外：所有管理员均使用原密码和固定邮箱邮件码，无固定码、免码、TOTP或本地恢复码后门。0024清除旧TOTP/恢复码、提升管理员安全版本并撤销全部旧管理员会话；Session仍为900秒。
 
-用户还要求另一个指定测试管理员登录时免动态验证码：例外同样绑定唯一账号 ID、合成数据库名和 TEST_PROFILE，仅用于登录；停用、密码、会话、安全版本及权限仍校验，高风险业务再认证不继承此例外。六位测试密码只由受控本地创建命令允许，普通 HTTP 注册/重置继续要求十二位以上。
+旧create_test_admin/create_demo_admin/recover_admin_mfa和DEV自动认证工具已退役，在读取私有状态/密码或连接前拒绝。bootstrap_owner仍可交互创建初始Owner；新密码统一12–128字符，旧密码哈希保持验证兼容。
 
 ## 状态与错误
 
@@ -113,14 +123,14 @@ Owner 有全部权限；users 角色可邀请/审核/重置/制裁，不能发�
 
 ## 2026-10-15 增量合同
 
-以下命令继续使用 `/api/command` 和既有元数据、错误格式。管理员命令、批次入队/重试、复核和节点发证均需 Owner 密码及新的 TOTP；批次预览不消费 TOTP。
+以下命令继续使用 `/api/command` 和既有元数据、错误格式。管理员命令、批次入队/重试、复核和节点发证需Owner原密码和本次操作绑定邮件码；批次预览不消费码。
 
 | action | 字段与约束 |
 |---|---|
-| `admin.create` | login/new_password/role；首次响应含 MFA 密钥、八个恢复码 |
+| `admin.create` | login/new_password/role；返回admin_id/role/authentication=FIXED_EMAIL_CODE，不生成密钥或恢复码 |
 | `admin.update` | admin_id/role/active（布尔）；保护最后一位启用 Owner |
 | `admin.password.reset` | admin_id/new_password；撤销旧会话 |
-| `admin.mfa.reset`、`admin.recovery.rotate` | admin_id；首次响应显示新密钥或恢复码，幂等重试不再返回秘密 |
+| `admin.mfa.reset`、`admin.recovery.rotate` | 已从命令分派删除，NOT_FOUND/404；旧本机恢复函数AUTH_METHOD_RETIRED/403 |
 | `asset.batch.preview`、`asset.batch.enqueue` | target_account_ids（1–500 唯一 ID）/catalog_version/changes；只允许 currency/item 增量 |
 | `asset.batch.retry` | batch_id，可选 target_account_ids；必须是原批失败目标 |
 | `asset.review.resolve` | operation_id/resolution（KEEP_ASSETS 或 EXTERNAL_RESOLUTION）；只追加决定 |
@@ -286,3 +296,182 @@ session.sync可选择include_room获得本人房间增量；room.changed/room.le
 初始化失败，仍拒绝宣称可入局。详情见`docs/delivery/2026-10-18-native-channel-rooms.md`。
 
 原生好友决定码补充（2026-10-19）：A307的Result必须为SNS_ADDFRID_AGREE=33537或SNS_ADDFRID_REFUSE=769；SNS_ERR_SUCC=33536不是玩家决定。未知决定返回业务失败且保留申请，连接继续。A308事件通知使用相同专用决定码；持久关系提交、接收事件及传输后确认合同保持不变。API发送端加原生接收端已实机验证，尚不代表双原生客户端通过。
+
+## Launcher / 门户运营平台（2026-10-19）
+
+本节为本批新增合同。普通命令继续走 `POST /api/command`，使用 Bearer、`request_id`、`idempotency_key`、`reason`；权限、幂等回执、资产、审计在既有 MySQL 事务内处理。管理员登录与Owner高风险确认统一要求原密码和独立固定邮箱邮件码。owner、users、resources、auditor 的入口依实际权限显示；审计员只有读权限。所有版本冲突须先刷新，不能自动覆盖其他管理员的修改。
+
+### 门户与受控 Launcher
+
+| 接口 | 身份 / 请求 | 返回与约束 |
+|---|---|---|
+| `GET /api/public/portal` | 匿名 | 首发地图、政策版本、已发布活动和能力状态；`native_gameplay=false`、正式成绩能力仍关闭 |
+| `GET /api/public/campaigns` | 匿名 | 已发布活动，不包含个人进度或未发布草稿 |
+| `GET /api/public/leaderboards` | 匿名；`campaign_id,map_id,difficulty,player_count` | 各地图/难度/实际战斗人数榜；公开成员昵称，不公开账号ID |
+| `POST /api/launcher/login` | 与玩家邮箱登录相同字段 | 专用 Launcher 登录渠道成功记当日登录；Web `/api/player/login` 不累计此奖励 |
+| `POST /api/player/view` | 玩家 Bearer；`{view,query}` | `me,player-inventory,campaigns,campaign-detail,leaderboards,feedback,feedback-detail`固定白名单；player-shop已移除，统一返回 `{data:...}` |
+| `GET /api/views/<view>` | 已登录的对应身份 | 下述运营视图；查询字符串中的分页和地图数字严格转换，不接受任意模型查询 |
+
+Web `/`、`/player`、`/activities`、`/leaderboards`、`/guide` 提供同源门户，`/admin` 提供管理员工作台。`me` 与用户管理中的 `level=null,level_status=PENDING_NATIVE_SOURCE` 表示尚缺原生军衔来源，不按余额或装备推算等级。
+
+桌面本机新增 `POST /launcher/api/view`、`POST /launcher/api/command`，使用已有随机能力头和精确 Origin。Python 服务保存远程会话；渲染器只传白名单 view/action，不传远程URL、数据库连接或业务 Bearer。可读本人仓库、活动/专题、榜单和反馈；商城读取及player.shop.quote/player.shop.purchase已关闭，命令仅允许签到/奖励领取、补建角色及本人反馈等显式白名单。专用登录 API 表示服务端渠道分类，不是桌面二进制远程证明。
+
+### 用户、商城与地图
+
+| 命令 / 视图 | 主要字段 | 合同 |
+|---|---|---|
+| `users` / `user`、既有发放/制裁命令 | 既有账号ID、资产变更和制裁字段 | 沿用真实玩家资产、审计和撤销会话；军衔保持待接入状态 |
+| `player-inventory` | `limit,after_gid,revision` | 原生实例分页；revision锁定后继续游标，变化需重新加载，不能把4323目录当作本人已持有 |
+| `asset.remove` | `target_account_id,instance_id,quantity,expected_version` | 管理员删除本人目标账号的准确实例；库存并发版本冲突拒绝，装备/皮肤/吞噬依赖需先解除；过期实例可由管理员清理 |
+| `shop-admin` | `limit,offset`等过滤 | 管理员返回revision/total/items及冻结目录或已发布覆盖 |
+| `player-shop` | 原玩家商品视图 | Service层PLATFORM_SHOP_CLOSED/403；POST玩家view及本机代理白名单也移除 |
+| `shop.offer.save` | `commodity_id,expected_revision,enabled,sort_order`；可选 `prices,period_hours` | 发布已有商品的运营覆盖；不修改原始目录，价格/期限数组需匹配；全局版本冲突拒绝 |
+| `player.shop.quote` / `player.shop.purchase` | 原平台报价/购买动作 | 已关闭；鉴权后幂等前PLATFORM_SHOP_CLOSED/403，历史成功回执不能绕过 |
+| `play-policy` | 无 | 返回55张原始房间目录及实际启用状态、合法难度 |
+| `play-policy.save` | `expected_revision,maps:[{map_id,enabled,submodes}]` | Owner发布白名单，省略项关闭。创建/加入/改图/开始均校验最新政策，拒绝时沿既有原生负应答返回警告 |
+
+默认七图：猎场大都会113、黑暗复活节164、丛林魅影191；塔防沙漠神殿141、蔷薇庄园140、空间站168、联盟大厦96。同名联盟大厦160默认关闭，Owner可在合法目录中自行启用。白名单开放仅表示运营允许选择，不能据此认定原生节点或地图已验收。原生商城的静态展示资源保留；实际报价/购买也服从已发布商品策略。
+
+### 活动、榜单与奖励
+
+`campaign.save` 接收 `title,definition`，修改草稿另需 `campaign_id,expected_revision`。definition包括 `starts_at,ends_at,timezone,rewards`；每个奖励具有稳定 `key`、`title`、`type`、道具 `changes`，普通奖励含正整数 `threshold`。五种类型：`CHECKIN_DAYS`、`LAUNCHER_LOGIN_DAYS`、`PLAYTIME_SECONDS`、`CLEAR_COUNT`、`LEADERBOARD`；榜奖另有 `priority,rank_from,rank_to` 与可选 `map_ids,difficulties,player_counts`。道具与期限必须符合服务目录，不能由玩家指定发奖内容。
+
+`campaign.publish/pause/end` 使用 `campaign_id`。已发布规则冻结；草稿不产生玩家权益。`campaign.checkin` 为北京时间/配置时区当日签到，`campaign.claim` 接收 `campaign_id,reward_key`；普通奖励须达标且点击领取，唯一回执防重复发放。网页登录不累计 Launcher 登录天数。
+
+`campaigns` 返回可参与活动与本人进度；`campaign-admin` 返回规则和 `payouts:{pending,failed,succeeded}`。`leaderboards` 按 `campaign_id,map_id,difficulty,player_count` 查询。榜以**地图 × 难度 × 实际战斗人数**分区，猎场1–8人，塔防1–4人；观战席不计入人数，同一成员集合只保留最快一次。通关毫秒升序，平局按结算时间与记录ID稳定排序。猎场要求任务成功，塔防要求击杀boss且成功结算；中途成员变化不入榜。
+
+Owner执行 `leaderboard.finalize` 冻结快照。每名玩家在一个活动中只获得最高优先级一份榜奖；后台 `maintain` 逐人自动发放、失败单独重试，成功目标不重发。榜奖不接受手动claim。奖励读视图用 `delivery=AUTOMATIC/CLAIM`、`delivery_status` 区分领取方式与到账状态。
+
+`POST /api/runtime/results` 的合成合同校验节点令牌、实例/epoch、冻结地图/难度/成员及完整结算字段，成绩与游玩时长只接受服务端证据。当前正式profile明确返回拒绝，只有隔离测试profile可验证该合同；尚未接入可信原生战斗结算，不能用浏览器上报或手工模拟填充正式榜单。
+
+### 服务器监控
+
+Owner命令 `monitor.node.enroll` 接收 `name,platform`、可选阈值，返回只显示一次的 `node_token`；`monitor.node.update` 使用 `node_id,expected_revision,enabled/thresholds`。节点令牌在数据库仅保存摘要；不进入命令回执或审计详情。监控读视图要求 `audit.read`，登记/修改要求Owner。
+
+`POST /api/monitoring/samples` 使用独立节点 Bearer，接收同层字段 `node_id,boot_id,sequence,measured_at,cpu_percent,memory_total,memory_used,rx_bytes,tx_bytes,disks,services`（没有嵌套metrics）。有限数值、时间窗口、序列与载荷哈希严格校验。同序列同载荷回放不重复计数，异载荷冲突；重启/计数器复位的带宽为未知。
+
+`monitoring` 视图返回节点、告警和历史；可传 `node_id,hours`（1–720）。实时ONLINE同时校验采样和收到时间，60秒后为STALE且不显示旧值为健康实时值；短窗口原始样本、24小时内分钟聚合、更长窗口按数据库小时加权聚合。原始数据保留7天、分钟30天，维护任务定时清理离线节点历史。链路占用告警仅在配置 `link_mbps` 时计算。
+
+公网仅在显式 `NZ_PUBLIC_ORIGIN` 后启用精确Host/Origin。使用本机Nginx时另设 `NZ_TRUST_LOOPBACK_PROXY=1`，只在回环peer+精确公网Host下信任校验后的 `X-Real-IP`，用于请求和邮件限流；默认忽略所有转发头。实际Web发布步骤见 `docs/WEB_DEPLOYMENT.md`，服务器配置未提供前不连接或替换既有服务。
+
+## 反馈、私有截图与活动独立页面（2026-10-20）
+
+本节是当前工作树的增量合同。新增结构为 `0025_feedback_and_campaign_presentation`，依赖 `0024_email_admin_auth`；新增反馈工单、消息、附件、公共媒体、活动展示五表。只追加新表和旧活动展示元数据，不改活动的已发布奖励快照。浏览器/Windows实机、真实SMTP收件、发行包与部署状态以本轮交接证据为准，不能沿用首轮包或CI结果。
+
+### 通用身份与请求边界
+
+- 反馈创建仅限有效玩家会话，工单始终属于当前玩家，客户端不能指定账号或消息作者。玩家只能列出、读取、回复及上传自己的反馈。
+- Owner/users可读取、回复和处理全部反馈；auditor只读；resources无反馈读取或处理权限。反馈权限与活动运营权限独立。
+- 普通命令使用 `POST /api/command` 的 Bearer、`X-NZ-Request: 1` 和 JSON 正文，包含 `action,request_id,idempotency_key,reason` 及业务字段。相同操作者、幂等键和业务内容重放原结果，不重复创建工单或追加消息；同键不同业务内容409。管理员降权后仍先校验写权限，不能靠历史回执恢复处理权。
+- 读取沿用 `GET /api/views/<view>`；桌面桥可用玩家 Bearer 调用 `POST /api/player/view`，正文 `{view,query}`，返回 `{data:...}`。该白名单已包括 `feedback,feedback-detail,campaigns,campaign-detail,leaderboards`；反馈分页的URL整数文本会规范为整数，布尔值拒绝。资源查询不是任意模型过滤器。
+- 未登录401；其他玩家工单或附件统一404；resources反馈访问与auditor写入403。失效、撤销或制裁会话仍受统一会话校验。
+
+### 反馈命令与四态
+
+| action | 业务字段 | 成功结果 |
+|---|---|---|
+| `feedback.create` | `title`：1–120字符；`body`：1–5000字符 | `{ticket_id,revision:1,state:"OPEN"}` |
+| `feedback.reply` | `ticket_id,expected_revision,body` | `{ticket_id,message_id,revision,state}` |
+| `feedback.status` | `ticket_id,expected_revision,state`；仅Owner/users | `{ticket_id,revision,state}` |
+
+正文保存纯文本，允许换行和制表符，拒绝空正文、NUL等控制字符；不会解释HTML。初始正文与工单在同一事务提交。正文不进入业务响应、通用命令回执或审计详情，消息只从授权工单详情读取。
+
+状态为 `OPEN,IN_PROGRESS,RESOLVED,CLOSED`。非关闭工单可由Owner/users设置这四种状态。`RESOLVED`收到玩家或有处理权管理员的新回复后自动变回`OPEN`；其他非关闭状态回复后保持原状态。`CLOSED`为终态，只读，拒绝新增回复、状态变更和截图上传。已成功请求重放不产生新内容。
+
+回复与状态修改必须提供当前正整数 `expected_revision`，版本不一致返回`VERSION_CONFLICT`409并要求刷新；不自动覆盖其他人的更新。每次回复、状态修改、成功新增附件都会增加工单revision。附件不是普通命令，不使用旧revision提交；上传后以前端回读的最新revision继续回复。消息按服务端单调序列排序，秒内多条消息不会按随机ID倒序。
+
+### 反馈读取结构
+
+| view | query | 返回 |
+|---|---|---|
+| `feedback` | 可选`offset,limit,state` | 本人`{tickets,total,offset,limit}` |
+| `feedback-admin` | 同上；Owner/users/auditor | 全部工单，信封同上 |
+| `feedback-detail` | `ticket_id` | 工单字段平铺，另加`messages,attachments` |
+
+分页默认offset=0、limit=25，limit范围1–100；列表按更新时间降序、工单ID稳定排序。state只接受四态之一。
+
+```json
+{
+  "id": "服务端32位工单ID",
+  "account_id": "所属账号ID",
+  "title": "反馈标题",
+  "state": "OPEN",
+  "revision": 1,
+  "created_at": 0,
+  "updated_at": 0,
+  "message_count": 1,
+  "attachment_count": 0,
+  "messages": [{"id": "消息ID", "body": "纯文本", "author_kind": "player", "created_at": 0}],
+  "attachments": []
+}
+```
+
+上例时间0仅示意Unix秒字段，不是生产记录。列表ticket不带messages/attachments。消息作者只返回`player/admin`类别，不返回管理员登录名、邮箱或作者内部路径。
+
+### 私有截图与公共封面
+
+上传必须是同源 `multipart/form-data`，带 `X-NZ-Request: 1` 和当前Bearer；表单恰好一个`file`及一个`upload_key`，重复同名字段、多文件、额外字段均拒绝。中间件在读取FILES/解码图片前完成会话与工单权限校验。
+
+| HTTP | 身份 | 返回 |
+|---|---|---|
+| `POST /api/feedback/{ticket_id}/attachments` | 本人或Owner/users；工单未关闭 | `{id,url,mime,width,height,bytes,created_at,ticket_revision}` |
+| `GET /api/feedback/attachments/{id}` | 每次Bearer与工单权限校验；auditor可读 | 重编码后的图片二进制 |
+| `POST /api/admin/media` | 仅Owner/resources | 公共封面`{id,url,mime,width,height,bytes}` |
+| `GET /api/media/{id}` | 公共封面可匿名 | 公共图片二进制；不能用私有附件ID读取 |
+
+约束如下：
+
+- 每份反馈**总共最多3张**，包含玩家和管理员上传。输入原图及重编码输出各不超过5MiB，最多1600万像素且单边最多8192；拒绝动画。
+- 只按真实文件解码接受PNG/JPEG/WebP，不相信扩展名或浏览器MIME。图片验证、旋转校正后重新构建像素图，去除EXIF等元数据并统一编码为`image/webp`；原图不永久落盘。
+- `upload_key`为1–128位安全ASCII标识，只接受字母、数字、点、下划线、冒号、连字符。私图按工单+当前操作者隔离；同原图同键返回既有附件，不占第二名额；同键换原图返回`IDEMPOTENCY_CONFLICT`409。公共封面按上传管理员+key隔离。不能根据“看起来相同”跨不同原文件重用key。
+- 每次新增私图增加工单revision，重放返回当前`ticket_revision`。正文先独立提交，图片失败后可保留正文并以同key重试失败图片。三图额度由同一部署事务锁保护，并发上传不能超限。
+- 私图URL为`/api/feedback/attachments/{id}`，不含token；浏览器认证fetch后转Blob或走受限本机代理，及时撤销object URL。私图响应`Cache-Control: private, no-store`、`X-Content-Type-Options: nosniff`。公共封面URL固定`/api/media/{id}`。
+- 图片记录与磁盘分区固定，客户端不能选择路径或把私有附件改为公共图。文件缺失或摘要不匹配返回404，不返回内部路径。普通事务失败清理新文件；提交应答未知先回读引用，避免删掉已提交附件。数据库也不可用时保留不可直接访问的待对账文件。
+
+常见错误：`INVALID`400（字段或multipart结构）、`INVALID_IMAGE`400、`IMAGE_SIZE/IMAGE_DIMENSIONS`413、`ATTACHMENT_LIMIT`409、`FEEDBACK_CLOSED`409、`MEDIA_STORAGE`503。大文本表单字段触发Django正文门禁时413，损坏multipart或可预期请求结构异常400；不会以500代替这些请求拒绝。普通JSON仍限制64KiB，不能因图片入口放宽整个API。
+
+领域入口位于 `revival/media.py`：`upload_feedback`、`upload_public_cover`拥有上传事务；HTTP层不要再包外部业务事务。`read_feedback_attachment`、`read_public_cover`返回`(bytes,mime)`。本机Launcher图片桥只接受固定工单/附件操作和有界图片数据，不提供任意URL代理；业务Bearer留在本机服务中，不交给React渲染器。
+
+Launcher公共活动封面使用 `POST /launcher/api/campaign-cover-image`，正文只收`{media_id}`，仍要求精确本机Host/Origin、随机能力头与已登录控制器。Python客户端只匿名GET固定`/api/media/{32位小写hex ID}`，不附加玩家Bearer，不跟随跳转，限制5MiB且只接受WebP。响应为`{content_base64,content_type}`；`RuntimeApi.readCampaignCover(mediaId)`转换为有界Blob，`CampaignCover`组件只接受严格公共媒体路径，切换或卸载时撤销object URL。Web入口沿用同源图片src，不让Launcher浏览器直接请求本机不存在的`/api/media`，也不开放任意URL代理。
+
+### 活动展示配置与独立地址
+
+活动规则继续使用既有`campaign.save/publish/pause/end`；展示信息放独立`campaign_presentations`，使用独立revision，不改变冻结的奖励条件、内容、领取状态或封榜快照。旧活动迁移回填`slug=campaign.id`，新草稿初始规则相同。
+
+`campaign.presentation.save`仅Owner/resources可写，命令字段：
+
+```json
+{
+  "action": "campaign.presentation.save",
+  "campaign_id": "活动ID",
+  "expected_revision": 1,
+  "presentation": {
+    "slug": "opening-season",
+    "title": "开服活动",
+    "summary": "活动简介",
+    "theme": "default",
+    "cover_id": null,
+    "sections": [{"key": "intro", "kind": "text", "title": "活动说明", "body": "纯文本正文"}]
+  },
+  "request_id": "独立请求ID",
+  "idempotency_key": "独立幂等键",
+  "reason": "更新活动展示"
+}
+```
+
+展示对象允许部分字段更新。slug为1–96位小写字母/数字及内部连字符、全局唯一；**首次发布后永久锁定**，暂停或结束也不能改。title非空最多120字符，summary最多500且不带控制字符；theme为`default/tactical/anniversary`。cover_id只能引用管理员已上传的公共媒体，null或空字符串清除，不能填外链或私图ID。
+
+sections最多12个。每项只接受`key,kind,title,body?`，key为唯一的1–32位ASCII字母/数字/下划线/连字符；kind为`text/rewards/leaderboards`。title最多120，body可空、最多5000字符且只作纯文本；奖励/榜单模块展示服务端规则，不接受客户端自定义发奖内容。未知展示字段拒绝。
+
+成功返回 `{slug,title,summary,theme,cover_id,cover_url,sections,revision}`；revision增加1，cover_url为空或`/api/media/{id}`。陈旧展示修订`VERSION_CONFLICT`409；重复slug为`SLUG_CONFLICT`409；发布后改slug为`SLUG_LOCKED`409。该expected_revision针对presentation，而非活动草稿revision。
+
+`campaigns/campaign-admin`的每个活动追加上述presentation。`GET /api/public/campaign-detail?slug=...`与认证`GET /api/views/campaign-detail?slug=...`返回单个活动与presentation，也接受`campaign_id`查询。游客/玩家看不到草稿，返回404；Owner/resources/auditor可读草稿。游客只读公开定义，不包含个人progress或领取资格；有效玩家读到本人的progress/rewards。网页独立地址为`/activities/{slug}`，不是奖励领取接口。
+
+### 本轮媒体部署增量
+
+当前开发阶段不因此自动部署或覆盖已有发行包。实际发布前以本轮测试、包清单与目标环境再确认：
+
+1. 安装`requirements.txt`固定的Pillow依赖，按Django依赖向前执行0024/0025。0024撤销旧管理员会话且退出旧TOTP；先确认新邮箱认证可用，不能把旧认证页面与新API混搭。
+2. 生产设置`NZ_MEDIA_ROOT=/var/lib/nz-web/media`等绝对、独立可写的持久目录，运行用户可写且只给予必要权限。该路径处于现有Web unit的`ReadWritePaths=/var/lib/nz-web`范围。数据库与图片同步备份，源码目录和发行包不收录私图。
+3. Nginx只对`/api/admin/media`及32位工单ID的`/api/feedback/{id}/attachments`设置约6m传输上限以容纳5MiB图片及multipart开销；普通路由保持64k。应用继续校验真正的5MiB文件、格式、像素和权限；不要把`private_feedback`目录配置为静态资源。
+4. 应用回退保留0024/0025、新媒体目录及业务数据；不反向删除表、不复活旧管理员秘密或会话。提交应答未知保留的潜在孤儿文件需离线按数据库引用对账清理，不能直接删除仍被引用图片。

@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-19",
+  "timezone": "America/Los_Angeles",
+  "kind": "CI_FIRST_ATTEMPT_FAILURE_NOT_NATIVE_ACCEPTANCE",
+  "head": "f0080bfdf681db5aad89d73d5e3b38fbfdc04988",
+  "run": "https://github.com/016-ops/NZ/actions/runs/39374115400",
+  "mysql": {
+    "job": 118468283809,
+    "database_tests_started": false,
+    "failure": "Readiness mysqladmin ping accepted initialization window; authenticated CREATE DATABASE failed with ERROR 1045",
+    "uploaded_historical_report_valid_for_this_run": false
+  },
+  "windows": {
+    "job": 118468284112,
+    "failure": "cp1252 UnicodeEncodeError while printing Chinese skip reasons",
+    "dependency_gap": "Launcher controller tooling imports Django but the old isolated dependency step did not install it"
+  },
+  "fixes": [
+    "Authenticated TCP SELECT 1 readiness with connect timeout",
+    "Fixed Launcher tooling dependencies on Windows without database driver",
+    "ASCII-escaped terminal JSON; full UTF-8 reports retained",
+    "Fresh evidence/ci output paths and always-upload actual reports"
+  ],
+  "tests_skipped_to_avoid_failure": false,
+  "local_encoding_regression": "1/1 PASS"
+}

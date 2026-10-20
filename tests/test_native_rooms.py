@@ -159,6 +159,12 @@ class NativeRoomTests(Base):
             with self.assertRaises(Fault):self.room(**values)
             self.assertIsNone(self.view())
         missing=catalog()['maps']['128'];self.assertIsNone(missing['main_resource'])
+        with self.assertRaises(Fault) as blocked:
+            self.room(settings=dict(ModeId=259,MapId=128,SubModeId=4097))
+        self.assertEqual(blocked.exception.code,'PLAY_DISABLED')
+        # 首发白名单与物理资源验证是两层门禁；本例显式开放缺资源图后，仍应拒绝启动。
+        self.command('play-policy.save', {'expected_revision':0,
+            'maps':[{'map_id':128,'enabled':True,'submodes':missing['submodes']}]})
         self.room(settings=dict(ModeId=259,MapId=128,SubModeId=4097))
         with self.assertRaises(Fault) as error:self.call('room.start')
         self.assertEqual(error.exception.code,'UNVERIFIED_RESOURCE');self.assertEqual(self.view()['state'],'OPEN')

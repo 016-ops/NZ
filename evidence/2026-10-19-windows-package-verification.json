@@ -1,0 +1,29 @@
+{
+  "kind": "WINDOWS_CI_DISTRIBUTION_ARCHIVE_INDEPENDENT_VERIFICATION",
+  "source_commit": "37b759841caec31408d4e3d01a47db409400e399",
+  "run": "https://github.com/016-ops/NZ/actions/runs/39375681700",
+  "artifact_id": 12243650799,
+  "artifact_wrapper": {
+    "bytes": 25777855,
+    "sha256": "d92596490ed233ea21c7102c221449430f2a787d70ee9bf464623e7b71bb25c4"
+  },
+  "distribution": {
+    "file": "NZLauncher-DEV.zip",
+    "bytes": 25974212,
+    "sha256": "139c84de2b034d33be4f5079be6821d582112c02d4552b375733f02494102993",
+    "payload_files": 754,
+    "manifest_files": 754,
+    "uncompressed_payload_bytes": 58418898
+  },
+  "per_file_sha256_verified": true,
+  "duplicate_and_path_boundaries_passed": true,
+  "external_manifest_matches_archive": true,
+  "private_path_exclusion_passed": true,
+  "bootstrap_close_passed": true,
+  "api_login_executed": false,
+  "native_start_available": false,
+  "clean_windows_install_verified": false,
+  "gameplay_verified": false,
+  "public_api_configured": false,
+  "note": "默认公开配置为回环18765；这是平台DEV构建，实际网关、干净安装与原生实玩另验。"
+}

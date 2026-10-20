@@ -4,6 +4,8 @@
 客户端目录和服务器入口均由受控本机代码选择，HTTP 输入不能选择程序或服务地址。
 """
 import ctypes
+import base64
+import binascii
 from datetime import datetime
 import hashlib
 import hmac
@@ -145,11 +147,102 @@ class LauncherController:
     def status(self):
         """只返回界面所需状态，不返回邮箱、服务器地址、账号 ID 或任何凭据。"""
         with self.lock:
+            from tools.launcher_runtime import native_start_status
             return dict(version=VERSION, phase=self.phase, busy=self.busy, error=self.error,
                 authenticated=self.session is not None, nickname=(self.account or {}).get('nickname'),
+                character_required=self.session is not None and not (self.account or {}).get('character_id'),
                 cleanup_pending=self.cleanup_pending, graphics_mode=self.graphics_mode, run=self.output.name if self.output else None,
                 events=list(self.events), game_active=self.busy and self.phase not in (
-                    'LOGGING_IN', 'CONNECTING', 'RECOVERING'), lobby_verified=False)
+                    'LOGGING_IN', 'CONNECTING', 'RECOVERING'), lobby_verified=False, native_start=native_start_status())
+
+    def portal(self, operation, data):
+        """受限玩家业务代理；页面只指定枚举动作，不指定远端路径、账号令牌或管理员命令。"""
+        with self.lock:
+            if self.close_requested.is_set() or self.cleanup_pending or not self.session or self.client is None:
+                raise RuntimeError('LOGIN_REQUIRED')
+            client, session = self.client, self.session
+        if operation == 'view':
+            allowed = {'me', 'player-inventory', 'campaigns', 'campaign-detail', 'leaderboards', 'feedback', 'feedback-detail', 'portal', 'public-portal', 'public-leaderboards', 'public-campaign-detail'}
+            if set(data) - {'view', 'query'} or data.get('view') not in allowed or not isinstance(data.get('query', {}), dict):
+                raise ValueError('VIEW_NOT_ALLOWED')
+            query = data.get('query', {})
+            if set(query) - {'limit', 'offset', 'search', 'after_gid', 'revision', 'campaign_id', 'map_id', 'difficulty', 'player_count', 'slug', 'ticket_id', 'state'}:
+                raise ValueError('QUERY_NOT_ALLOWED')
+            if data['view'] == 'portal':
+                return client.request('/api/public/portal')
+            if data['view'].startswith('public-'):
+                from urllib.parse import urlencode
+                route = '/api/public/' + data['view'][7:]
+                return client.request(route + ('?' + urlencode(query) if query else ''))
+            return client.request('/api/player/view', {'view': data['view'], 'query': query}, session)['data']
+        if operation != 'command' or set(data) != {'action', 'payload', 'metadata'}:
+            raise ValueError('COMMAND_NOT_ALLOWED')
+        if data['action'] not in {'character.create', 'campaign.checkin', 'campaign.claim', 'feedback.create', 'feedback.reply'}:
+            raise ValueError('COMMAND_NOT_ALLOWED')
+        if (not isinstance(data['payload'], dict) or not isinstance(data['metadata'], dict)
+                or set(data['metadata']) != {'request_id', 'idempotency_key', 'reason'}):
+            raise ValueError('INVALID_COMMAND')
+        payload = dict(data['payload'], **data['metadata'], action=data['action'])
+        result = client.request('/api/command', payload, session)
+        if data['action'] == 'character.create':
+            # 补建角色后回读真实身份并解除启动门槛，不从用户输入伪造昵称/角色ID。
+            current = client.request('/api/views/me', token=session)
+            character = current.get('character')
+            if isinstance(character, dict):
+                with self.lock:
+                    if self.session == session:
+                        self.account = dict(account_id=current['id'], game_id=current['game_id'], character_id=character['id'], nickname=character['nickname'])
+        return result
+
+    def account_access(self, data):
+        """未登录账号代理仅接受四种固定操作；密码和验证码不保存、不进入状态或日志。"""
+        operations = {
+            'email-code': ({'email', 'purpose'}, '/api/player/email-code'),
+            'register': ({'email', 'password', 'nickname', 'challenge_id', 'code', 'request_id', 'idempotency_key', 'reason'}, '/api/player/register'),
+            'password-reset': ({'email', 'password', 'challenge_id', 'code', 'request_id', 'idempotency_key', 'reason'}, '/api/player/password-reset'),
+            'email-verify': ({'email', 'challenge_id', 'code', 'request_id', 'idempotency_key', 'reason'}, '/api/player/email-verify'),
+        }
+        if (set(data) != {'operation', 'payload'} or not isinstance(data.get('operation'), str)
+                or data['operation'] not in operations or not isinstance(data.get('payload'), dict)):
+            raise ValueError('ACCOUNT_OPERATION_NOT_ALLOWED')
+        allowed, route = operations[data['operation']]
+        payload = data['payload']
+        if set(payload) - allowed:
+            raise ValueError('ACCOUNT_OPERATION_NOT_ALLOWED')
+        with self.lock:
+            if self.busy or self.close_requested.is_set() or self.cleanup_pending:
+                raise RuntimeError('LAUNCHER_BUSY')
+            self._connect()
+            try:
+                return self.client.request(route, payload)
+            finally:
+                payload.clear()
+
+    def feedback_media(self, operation, data):
+        """本机只传有界base64；远端转换为固定multipart/二进制接口，令牌始终留在Python。"""
+        with self.lock:
+            if not self.session or not self.client or self.close_requested.is_set() or self.cleanup_pending:
+                raise RuntimeError('LOGIN_REQUIRED')
+            client, session = self.client, self.session
+        if operation == 'campaign-cover-image' and set(data) == {'media_id'}:
+            # 公共媒体在远端匿名读取，本机仍必须经过能力头和已登录控制器，不能变成URL代理。
+            if not isinstance(data['media_id'], str) or not re.fullmatch(r'[a-f0-9]{32}', data['media_id']):
+                raise ValueError('INVALID_ATTACHMENT')
+            image, mime = client.public_cover_image(data['media_id'])
+            return {'content_base64': base64.b64encode(image).decode('ascii'), 'content_type': mime}
+        if operation == 'feedback-image' and set(data) == {'attachment_id'}:
+            image, mime = client.feedback_image(data['attachment_id'], session)
+            return {'content_base64': base64.b64encode(image).decode('ascii'), 'content_type': mime}
+        if operation != 'feedback-upload' or set(data) != {'ticket_id', 'file_name', 'content_type', 'content_base64', 'upload_key'}:
+            raise ValueError('INVALID_ATTACHMENT')
+        encoded = data['content_base64']
+        if not isinstance(encoded, str) or len(encoded) > 6990508:
+            raise ValueError('INVALID_ATTACHMENT')
+        try:
+            payload = base64.b64decode(encoded, validate=True)
+        except (ValueError, binascii.Error):
+            raise ValueError('INVALID_ATTACHMENT') from None
+        return client.feedback_upload(data['ticket_id'], payload, data['content_type'], data['upload_key'], session)
 
     def submit(self, action, data):
         """校验请求后在后台执行；停止仅设置本轮 Event，重复点击不生成第二个任务。"""
@@ -186,6 +279,9 @@ class LauncherController:
 
     def _connect(self):
         """创建到已登记 DEV 的专属 SSH 隧道；无法验证连接时不退回本机测试服务。"""
+        # 构造器显式注入的客户端用于纯本机测试；真实入口不注入，仍创建受控服务器连接。
+        if self.client is not None:
+            return
         if self.connection is None:
             self.update('CONNECTING')
             connection = launcher_connection()
@@ -199,17 +295,20 @@ class LauncherController:
                 self._connect()
                 self.update('LOGGING_IN')
                 try:
-                    self.session = self.client.request('/api/player/login', data)['token']
+                    self.session = self.client.request('/api/launcher/login', data)['token']
                 finally:
                     data.clear()
                 current = self.client.request('/api/views/me', token=self.session)
                 character = current.get('character')
-                if current.get('email_verified') is not True or not isinstance(character, dict):
+                if current.get('email_verified') is not True:
                     raise RuntimeError('VERIFIED_ACCOUNT_AND_CHARACTER_REQUIRED')
                 self.account = dict(account_id=current['id'], game_id=current['game_id'],
-                    character_id=character['id'], nickname=character['nickname'])
+                    character_id=character['id'] if isinstance(character, dict) else None,
+                    nickname=character['nickname'] if isinstance(character, dict) else None)
                 self.update('LOGGED_IN')
             elif action == 'start':
+                if not (self.account or {}).get('character_id'):
+                    raise RuntimeError('CHARACTER_REQUIRED')
                 self._run_game()
             elif action == 'recover':
                 self.update('RECOVERING')
@@ -254,6 +353,8 @@ class LauncherController:
 
     def _run_game(self):
         """固定启动合同：先验证副本和身份，再兑换票据并运行，最终必经配置与凭据清理。"""
+        from tools.launcher_runtime import require_native_client
+        require_native_client()
         from adapters.email_protocol import PROTOCOL
         from tools.native_email_boot import current_dev_player_info, probe
         from tools.native_settings_bridge import NativeSettingsBridge
@@ -360,24 +461,34 @@ def endpoint(request, resource=''):
         elif request.method == 'POST' and request.headers.get('Content-Type', '').split(';')[0] == 'application/json':
             try:
                 # 在访问 body 前拒绝过大长度，Django 全局上限进一步约束缺失/伪造长度。
-                if int(request.META.get('CONTENT_LENGTH') or 0) > 8192:
+                maximum = 7 * 1024 * 1024 if action == 'feedback-upload' else 65536 if action == 'command' else 8192
+                if not 1 <= int(request.META.get('CONTENT_LENGTH') or 0) <= maximum:
                     raise ValueError('REQUEST_TOO_LARGE')
                 data = json.loads(request.body)
                 if not isinstance(data, dict):
                     raise ValueError('INVALID_REQUEST')
-                controller.submit(action, data)
-                response = JsonResponse({'accepted': True}, status=202)
-            except (ValueError, RuntimeError) as error:
+                if action in ('view', 'command'):
+                    result = controller.portal(action, data)
+                    response = JsonResponse(result, safe=isinstance(result, dict))
+                elif action == 'account':
+                    response = JsonResponse(controller.account_access(data))
+                elif action in ('feedback-upload', 'feedback-image', 'campaign-cover-image'):
+                    response = JsonResponse(controller.feedback_media(action, data))
+                else:
+                    controller.submit(action, data)
+                    response = JsonResponse({'accepted': True}, status=202)
+            except (ValueError, RuntimeError, LoginError) as error:
                 response = JsonResponse({'error': safe_error(error)}, status=409)
         else:
             response = JsonResponse({'error': 'METHOD_REJECTED'}, status=405)
     elif request.method == 'GET':
-        dist = ROOT/'admin/dist'
+        from tools.launcher_runtime import resource_root
+        dist = resource_root()/'admin/dist'
         if resource in ('', '/'):
             target = dist/'index.html'
         elif resource.startswith('assets/'):
             target = (dist/resource).resolve()
-            if not target.is_relative_to((dist/'assets').resolve()) or target.suffix not in ('.js', '.css', '.woff2'):
+            if not target.is_relative_to((dist/'assets').resolve()) or target.suffix.lower() not in ('.js', '.css', '.woff2', '.png', '.jpg', '.jpeg', '.webp'):
                 return HttpResponse(status=404)
         else:
             return HttpResponse(status=404)
@@ -389,7 +500,7 @@ def endpoint(request, resource=''):
     response['Cache-Control'] = 'no-store'
     response['Referrer-Policy'] = 'no-referrer'
     response['X-Content-Type-Options'] = 'nosniff'
-    response['Content-Security-Policy'] = "default-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'; style-src 'self' 'unsafe-inline'"
+    response['Content-Security-Policy'] = "default-src 'self'; img-src 'self' data: blob:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'; style-src 'self' 'unsafe-inline'"
     return response
 
 
@@ -434,7 +545,7 @@ def main():
                    re_path(r'^(?P<resource>assets/.*)$', endpoint)]
     if not settings.configured:
         settings.configure(DEBUG=False, SECRET_KEY=secrets.token_urlsafe(32), ALLOWED_HOSTS=['127.0.0.1'],
-            ROOT_URLCONF=__name__, INSTALLED_APPS=[], MIDDLEWARE=[], DATA_UPLOAD_MAX_MEMORY_SIZE=8192)
+            ROOT_URLCONF=__name__, INSTALLED_APPS=[], MIDDLEWARE=[], DATA_UPLOAD_MAX_MEMORY_SIZE=7 * 1024 * 1024)
     os.chdir(ROOT)
     (ROOT/'runtime').mkdir(exist_ok=True)
     window_record = ROOT/'runtime/native-launcher-window.bin'

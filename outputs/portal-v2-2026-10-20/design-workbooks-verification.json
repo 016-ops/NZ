@@ -1,0 +1,808 @@
+{
+  "asOf": "2026-10-20 America/Los_Angeles",
+  "baselineCommit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+  "workbooks": [
+    {
+      "file": "outputs/portal-v2-2026-10-20/表设计.xlsx",
+      "sheets": [
+        {
+          "sheet": "设计概览",
+          "rows": 10,
+          "preview": "outputs/portal-v2-2026-10-20/previews/表设计-设计概览.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "表目录",
+          "rows": 74,
+          "preview": "outputs/portal-v2-2026-10-20/previews/表设计-表目录.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "字段定义",
+          "rows": 469,
+          "preview": "outputs/portal-v2-2026-10-20/previews/表设计-字段定义.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "约束与索引",
+          "rows": 64,
+          "preview": "outputs/portal-v2-2026-10-20/previews/表设计-约束与索引.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "外键关系",
+          "rows": 83,
+          "preview": "outputs/portal-v2-2026-10-20/previews/表设计-外键关系.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "迁移与数据保护",
+          "rows": 25,
+          "preview": "outputs/portal-v2-2026-10-20/previews/表设计-迁移与数据保护.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "第二轮变更",
+          "rows": 6,
+          "preview": "outputs/portal-v2-2026-10-20/previews/表设计-第二轮变更.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "最终验收",
+          "rows": 18,
+          "preview": "outputs/portal-v2-2026-10-20/previews/表设计-最终验收.png",
+          "renderedThisRun": true,
+          "verification": "最终同一源码证据已渲染并目视复核"
+        }
+      ],
+      "inspection": "{\"kind\":\"table\",\"sheet\":\"设计概览\",\"address\":\"A5:D12\",\"rows\":8,\"cols\":4,\"values\":[[\"项目\",\"设计\",\"状态或版本\",\"说明\"],[\"文档版本\",\"第二轮设计 v2\",\"2026-10-20 America/Los_Angeles\",\"向前合并0024/0025；指定验收已记录，未部署。\"],[\"源码基线\",\"138c66e4677fc6475626bcede083f920ba7f15e4\",\"冻结运行源码提交，已推送\",\"设计书后续提交与运行源码分开；原生玩法/正式SMTP限制见最终验收。\"],[\"数据库\",\"MySQL / Django ORM\",\"迁移仅向前\",\"现有数据、GID、钱包、账本和安全状态保持\"],[\"模型覆盖\",\"当前74个持久模型\",74,\"新增管理员挑战1表、反馈/媒体/展示5表。数量由表目录计算。\"],[\"字段覆盖\",\"当前字段逐行定义\",469,\"本轮新增62个字段；源自模型注册表，非运行库DDL回读。\"],[\"新增活动\",\"campaigns / campaign_days / campaign_claims / campaign_results / campaign_board_freezes\",\"migration 0022_campaigns\",\"签到、Launcher登录、结算进度和封榜隔离\"],[\"新增监控\",\"monitor_nodes / monitor_samples / monitor_minutes\",\"migration 0023（以当前迁移清单为准）\",\"采样凭据独立于玩家、管理员和游戏节点\"]]}",
+      "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
+    },
+    {
+      "file": "outputs/portal-v2-2026-10-20/游戏服务端接口设计.xlsx",
+      "sheets": [
+        {
+          "sheet": "接口概览",
+          "rows": 6,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-接口概览.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "HTTP路由",
+          "rows": 43,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-HTTP路由.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "命令权限",
+          "rows": 56,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-命令权限.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "新增请求合同",
+          "rows": 19,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-新增请求合同.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "既有请求合同",
+          "rows": 69,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-既有请求合同.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "原生消息目录",
+          "rows": 386,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-原生消息目录.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "原生结构字段",
+          "rows": 2082,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-原生结构字段.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "验收与错误",
+          "rows": 7,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-验收与错误.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "第二轮变更",
+          "rows": 6,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-第二轮变更.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "最终验收",
+          "rows": 18,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-最终验收.png",
+          "renderedThisRun": true,
+          "verification": "最终同一源码证据已渲染并目视复核"
+        },
+        {
+          "sheet": "第二轮接口合同",
+          "rows": 19,
+          "preview": "outputs/portal-v2-2026-10-20/previews/游戏服务端接口设计-第二轮接口合同.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        }
+      ],
+      "inspection": "{\"kind\":\"table\",\"sheet\":\"接口概览\",\"address\":\"A5:D12\",\"rows\":8,\"cols\":4,\"values\":[[\"接口层\",\"用途\",\"认证边界\",\"当前状态\"],[\"HTTP控制面\",\"账号、资产、运营、活动、榜单、监控\",\"玩家/管理员/游戏/节点/监控令牌互不通用\",\"第二轮接口已接入；分层证据见最终验收，真实SMTP与实玩未验，当前不部署。\"],[\"本机Launcher\",\"受限本机API、启动/停止/恢复与玩家功能代理\",\"随机本机操作能力，经父子管道传输\",\"现有Tauri路径复用\"],[\"原生Zone\",\"已固定构建的登录、资料、仓库、社交和频道房间\",\"当前会话transport/challenge/换钥\",\"单端部分功能实机通过\"],[\"原生业务消息\",\"386个已固定命令与2082个结构字段（数量以表为准）\",\"固定元数据摘要及严格编解码\",\"结构确认不等于全部实机通过\"],[\"原生DS\",\"目标世界、玩家入场、自然胜负与结算\",\"实例/epoch/租约待原生接通\",\"未通过；禁止伪造READY\"],[\"可信成绩\",\"成功通关、Boss、时长和冻结人数\",\"单局节点独立Bearer\",\"正式关闭；合成独立分榜\"],[null,null,null,null]]}",
+      "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
+    },
+    {
+      "file": "outputs/portal-v2-2026-10-20/Web端设计书.xlsx",
+      "sheets": [
+        {
+          "sheet": "页面架构",
+          "rows": 9,
+          "preview": "outputs/portal-v2-2026-10-20/previews/Web端设计书-页面架构.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "角色与权限",
+          "rows": 4,
+          "preview": "outputs/portal-v2-2026-10-20/previews/Web端设计书-角色与权限.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "业务流程",
+          "rows": 9,
+          "preview": "outputs/portal-v2-2026-10-20/previews/Web端设计书-业务流程.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "七图与排行规则",
+          "rows": 7,
+          "preview": "outputs/portal-v2-2026-10-20/previews/Web端设计书-七图与排行规则.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "交互与状态",
+          "rows": 8,
+          "preview": "outputs/portal-v2-2026-10-20/previews/Web端设计书-交互与状态.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "验收清单",
+          "rows": 10,
+          "preview": "outputs/portal-v2-2026-10-20/previews/Web端设计书-验收清单.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "第二轮变更",
+          "rows": 6,
+          "preview": "outputs/portal-v2-2026-10-20/previews/Web端设计书-第二轮变更.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "最终验收",
+          "rows": 18,
+          "preview": "outputs/portal-v2-2026-10-20/previews/Web端设计书-最终验收.png",
+          "renderedThisRun": true,
+          "verification": "最终同一源码证据已渲染并目视复核"
+        },
+        {
+          "sheet": "第二轮页面流程",
+          "rows": 10,
+          "preview": "outputs/portal-v2-2026-10-20/previews/Web端设计书-第二轮页面流程.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        }
+      ],
+      "inspection": "{\"kind\":\"table\",\"sheet\":\"页面架构\",\"address\":\"A5:D12\",\"rows\":8,\"cols\":4,\"values\":[[\"路由\",\"页面\",\"用户\",\"主要内容和操作\"],[\"/\",\"官网首页\",\"所有访客\",\"首屏视觉、玩法与开放地图、加入指南\"],[\"/guide\",\"上手指南\",\"所有访客\",\"邮箱注册、角色准备、Windows开发版Launcher与限制说明\"],[\"/player\",\"玩家中心\",\"已认证玩家\",\"角色资料、仓库、活动、排行榜、反馈；旧账号缺角色先补昵称。\"],[\"/admin\",\"管理中心\",\"各角色管理员\",\"用户、库存、制裁、商城、开放地图、活动、监控\"],[\"/activities\",\"活动中心\",\"访客与玩家\",\"真实活动汇总卡片，点击独立slug详情。\"],[\"/leaderboards\",\"先锋榜\",\"所有访客\",\"活动/地图/难度/实际人数筛选，毫秒通关时间\"],[\"/launcher\",\"Tauri专用页面\",\"本机启动器\",\"参考导航轨/顶栏/主舞台/启动区，注册、角色、仓库、活动、榜单、反馈，无玩家商城。\"]]}",
+      "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
+    },
+    {
+      "file": "outputs/portal-v2-2026-10-20/部署手册及打包清单.xlsx",
+      "sheets": [
+        {
+          "sheet": "部署总览",
+          "rows": 8,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-部署总览.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "环境配置",
+          "rows": 11,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-环境配置.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "发布与回退步骤",
+          "rows": 10,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-发布与回退步骤.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "打包文件清单",
+          "rows": 20,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-打包文件清单.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "实际归档文件",
+          "rows": 165,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-实际归档文件.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "监控与运维",
+          "rows": 10,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-监控与运维.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "交付与阻塞",
+          "rows": 11,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-交付与阻塞.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "第二轮变更",
+          "rows": 6,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-第二轮变更.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "最终验收",
+          "rows": 18,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-最终验收.png",
+          "renderedThisRun": true,
+          "verification": "最终同一源码证据已渲染并目视复核"
+        },
+        {
+          "sheet": "媒体与邮箱部署",
+          "rows": 11,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-媒体与邮箱部署.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "本轮包清单",
+          "rows": 3,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-本轮包清单.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        },
+        {
+          "sheet": "本轮归档文件",
+          "rows": 941,
+          "preview": "outputs/portal-v2-2026-10-20/previews/部署手册及打包清单-本轮归档文件.png",
+          "renderedThisRun": false,
+          "verification": "未改内容，保留此前已审查预览"
+        }
+      ],
+      "inspection": "{\"kind\":\"table\",\"sheet\":\"部署总览\",\"address\":\"A5:D12\",\"rows\":8,\"cols\":4,\"values\":[[\"项目\",\"本次选择\",\"当前状态\",\"执行要求\"],[\"部署对象\",\"暂不部署，仅本机预览与代码开发\",\"用户本轮决定，不执行远端发布\",\"旧Web包、CI和Windows包保留为首轮历史证据\"],[\"Web技术栈\",\"React/TypeScript/shadcn + Django + MySQL\",\"代码已具备\",\"使用锁定依赖与向前迁移\"],[\"Launcher\",\"保留React+Tauri，新增自包含开发包脚本\",\"本轮CI/冻结包证据见最终验收；Mac仅无capability布局预览。\",\"Windows干净安装、真实API/SMTP与游戏实玩分别待验。\"],[\"新数据库迁移\",\"0024_email_admin_auth.py；0025_feedback_and_campaign_presentation.py\",\"认证策略切换与六个新增表\",\"未来发布前先验证真实邮件收件、备份并向前迁移。\"],[\"正式游戏节点\",\"不在本次Web部署范围\",\"指定节点原生世界/入局/可信结算未通过\",\"不得标记READY或声称可玩完成\"],[\"版本识别\",\"138c66e4677fc6475626bcede083f920ba7f15e4\",\"最终冻结运行源码，已推送；文档后续提交分开。\",\"本轮Web与Windows包摘要见本轮包清单；未部署。\"],[\"发布产物SHA\",\"见本轮包清单\",\"对当前文件逐项重算SHA256及大小；首轮摘要仅作历史。\",\"包校验不等于正式部署、SMTP或干净机器游戏验收。\"]]}",
+      "errorScan": "{\"kind\":\"notice\",\"message\":\"Cell search matched 0 entries.\"}"
+    }
+  ],
+  "releaseStatus": {
+    "historicalV1": {
+      "as_of": "2026-10-19 America/Los_Angeles",
+      "evidence": "docs/delivery/2026-10-19-launcher-portal-admin.md",
+      "git": {
+        "summary": "已推送 origin/fix/launcher-portal-admin",
+        "remote_commit": "6f12054997e32258e807980265dad04a4afe914e",
+        "detail": "用户已明确授权并完成GitHub认证；推送成功，ls-remote与本地推送提交一致"
+      },
+      "ci": {
+        "summary": "Windows工具/前端及MySQL综合检查成功；Launcher构建与冻结烟测成功",
+        "windows": {
+          "status": "success：构建与冻结bootstrap/close烟测通过",
+          "detail": "37b7598；artifact12243650799已上传，innerZip的754个payload及manifest路径/摘要/排除私密/外置清单一致性已独立核验。未连接实际API、未干净Windows安装、未实玩；默认回环18765仍为占位网关",
+          "url": "https://github.com/016-ops/NZ/actions/runs/39375681700",
+          "artifact_id": 12243650799,
+          "artifact_wrapper": {
+            "bytes": 25777855,
+            "sha256": "d92596490ed233ea21c7102c221449430f2a787d70ee9bf464623e7b71bb25c4",
+            "layer": "GitHub artifact wrapper；不能当作内部Launcher发行zip的摘要"
+          }
+        },
+        "regression": {
+          "status": "success：MySQL及Windows两个job成功",
+          "detail": "6f12054，MySQL8.4.11：579项、565通过、0失败/错误、582.514秒；14项测试内Skip及6个缺原件suite Skip单列，不计为通过；未据此声称Windows-only场景全部已验证",
+          "url": "https://github.com/016-ops/NZ/actions/runs/39375957208",
+          "commit": "6f12054997e32258e807980265dad04a4afe914e",
+          "mysql_job_id": 118474030677,
+          "artifact_id": 12243727463,
+          "tests": 579,
+          "passed": 565,
+          "failures": 0,
+          "errors": 0,
+          "test_skips": 14,
+          "missing_original_suite_skips": 6,
+          "seconds": 582.514,
+          "evidence": "evidence/2026-10-19-remote-ci-verification.json"
+        },
+        "windows_checks": {
+          "status": "工具/前端job成功",
+          "detail": "6f12054：246项、245通过、0失败/错误、2.748秒；1项测试内skip及6个缺原件suite skip另列，不混进实际通过数；前端成功",
+          "url": "https://github.com/016-ops/NZ/actions/runs/39375957208/job/118474030815",
+          "commit": "6f12054997e32258e807980265dad04a4afe914e",
+          "artifact_id": 12243705393,
+          "evidence": "evidence/2026-10-19-remote-ci-verification.json"
+        },
+        "history": [
+          {
+            "commit": "77813a0",
+            "url": "https://github.com/016-ops/NZ/actions/runs/39375099947",
+            "status": "failure",
+            "diagnostic": "冻结服务exit_code=1，bootstrap_parsed=false，startup_error_code=INVALIDTEMPLATELIBRARY；Rust/PyInstaller构建成功，未产生可宣称通过的最终包"
+          }
+        ]
+      },
+      "launcher": {
+        "package_status": "37b7598 Windows开发包已构建，冻结bootstrap/close烟测通过；实际API/干净安装/实玩未验收",
+        "file_status": "Windows CI已产包；754个payload和manifest独立核验通过",
+        "next_step": "默认回环18765占位需改正式网关；API登录、正式签名、干净Windows安装及实玩另验",
+        "inner_zip": {
+          "file": "NZLauncher-DEV.zip",
+          "bytes": 25974212,
+          "sha256": "139c84de2b034d33be4f5079be6821d582112c02d4552b375733f02494102993",
+          "payload_files": 754,
+          "manifest_extra": 1,
+          "verification": "逐文件SHA、路径、排除私密及外置manifest一致性独立核验通过",
+          "artifact_url": "https://github.com/016-ops/NZ/actions/runs/39375681700/artifacts/12243650799",
+          "evidence": "evidence/2026-10-19-windows-package-verification.json"
+        }
+      },
+      "web_release": {
+        "source_commit": "5b61b61d2a2a104f9bf0c8c553ed40821ba35598",
+        "sha256": "7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9",
+        "status": "本次未重包、未远程部署"
+      },
+      "local_demo": {
+        "status": "隔离演示账号已创建，仅供本机验证",
+        "player": "test-player@example.invalid",
+        "admin": "nz-test-admin",
+        "player_url": "http://127.0.0.1:8875/player",
+        "admin_url": "http://127.0.0.1:8875/admin",
+        "authentication": "Owner使用正常MFA；凭据仅存本机runtime私密文件，未写入Excel或发布包"
+      }
+    },
+    "currentRound": "本轮包摘要已复核，暂不部署；限制见最终验收"
+  },
+  "incrementalRun": null,
+  "renderMode": {
+    "changedSheets": [
+      "最终验收"
+    ]
+  },
+  "currentRound": {
+    "name": "portal-v2",
+    "status": "指定验收已记录，正式环境与实玩限制保留",
+    "deployed": false,
+    "exactImages": 4,
+    "totalItems": 4323
+  },
+  "scopePreservation": [
+    {
+      "workbook": "表设计",
+      "originalSha256": "01e8cf9c82f215577174424267bc54a6d83cc22e3f86b1d4013ddd97d34e08ad",
+      "unchangedValueAndFormulaSheets": [],
+      "changedSheets": [
+        "第二轮变更",
+        "设计概览",
+        "表目录",
+        "字段定义",
+        "约束与索引",
+        "外键关系",
+        "迁移与数据保护",
+        "第二轮变更",
+        "最终验收"
+      ]
+    },
+    {
+      "workbook": "游戏服务端接口设计",
+      "originalSha256": "dfb7802aabd3b25e48439a2c57e6b146cab7d1eba0a509d02a29d560f3e0d1f0",
+      "unchangedValueAndFormulaSheets": [
+        "原生消息目录",
+        "原生结构字段",
+        "验收与错误"
+      ],
+      "changedSheets": [
+        "第二轮变更",
+        "接口概览",
+        "HTTP路由",
+        "新增请求合同",
+        "既有请求合同",
+        "命令权限",
+        "第二轮变更",
+        "最终验收",
+        "第二轮接口合同"
+      ]
+    },
+    {
+      "workbook": "Web端设计书",
+      "originalSha256": "223aa7c1077ad0b0404e72d842e40de7e6bac196145aea1c6400006f558eca48",
+      "unchangedValueAndFormulaSheets": [
+        "七图与排行规则"
+      ],
+      "changedSheets": [
+        "第二轮变更",
+        "页面架构",
+        "角色与权限",
+        "业务流程",
+        "验收清单",
+        "交互与状态",
+        "第二轮变更",
+        "最终验收",
+        "第二轮页面流程"
+      ]
+    },
+    {
+      "workbook": "部署手册及打包清单",
+      "originalSha256": "87311a55c6f8853ccd5a7919376c3a4b16d557c945ba584a657fd25ab392f12a",
+      "unchangedValueAndFormulaSheets": [
+        "监控与运维"
+      ],
+      "changedSheets": [
+        "第二轮变更",
+        "部署总览",
+        "环境配置",
+        "发布与回退步骤",
+        "交付与阻塞",
+        "实际归档文件",
+        "打包文件清单",
+        "第二轮变更",
+        "最终验收",
+        "媒体与邮箱部署",
+        "本轮包清单",
+        "本轮归档文件"
+      ]
+    }
+  ],
+  "runtimeCommit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+  "finalEvidence": {
+    "format": "nz-portal-v2-evidence-v1",
+    "finalized": true,
+    "as_of": "2026-10-20 America/Los_Angeles",
+    "runtime_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+    "source_evidence": "docs/delivery/2026-10-20-launcher-web-v2.md",
+    "deployed": false,
+    "frontend": {
+      "files": 6,
+      "tests": 21,
+      "modules": 1721,
+      "evidence": "evidence/2026-10-20-final-frontend-verification.json"
+    },
+    "ui": {
+      "summary": "隔离玩家实际登录、签到/重复签到弹窗、仓库中文分类图、独立活动、反馈文字与鉴权截图；官网及Launcher在390×844视口scrollWidth=clientWidth=390",
+      "limitations": "本机隔离演示库；没有正式SMTP收件或管理员邮箱登录成功。Mac无capability仅布局；减少动态效果为源码边界核对，不冒称系统设置端到端验证。",
+      "evidence": [
+        "docs/delivery/2026-10-20-launcher-web-v2.md",
+        "evidence/portal-ui-v2/checkin-result-dark.png",
+        "evidence/portal-ui-v2/inventory-dark.png",
+        "evidence/portal-ui-v2/activity-detail-dark.png",
+        "evidence/portal-ui-v2/feedback-private-image-dark.png"
+      ]
+    },
+    "launcher_preview_evidence": "evidence/portal-ui-v2/launcher-home-dark.png；docs/delivery/2026-10-20-launcher-web-v2.md",
+    "admin_mail_evidence": "docs/delivery/2026-10-20-launcher-web-v2.md；evidence/portal-ui-v2/admin-email-unconfigured-dark.png",
+    "automated": [
+      {
+        "name": "MySQL完整回归",
+        "tested_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+        "summary": "MySQL8.4.11；138c66e；620项，606通过、14测试skip，另6组缺原件suite skip；0失败/错误；703.111秒",
+        "status": "最终同一源码CI通过",
+        "limitations": "14测试skip与另6组suite skip单列，不把suite计入620，不把跳过计为通过。真实SMTP、干净Windows与原生游戏仍未验。",
+        "evidence": "evidence/2026-10-20-final-ci-verification.json；https://github.com/016-ops/NZ/actions/runs/39402348358/job/118559893282；artifact12255778201"
+      },
+      {
+        "name": "Windows工具/前端CI",
+        "summary": "138c66e；254项，253通过、1测试skip，另6组缺原件suite skip；0失败/错误；3.146秒",
+        "status": "CI通过",
+        "limitations": "跳过项不计通过；CI测试/构建不代表干净Windows安装、真实API或原生实玩。",
+        "evidence": "evidence/2026-10-20-final-ci-verification.json；https://github.com/016-ops/NZ/actions/runs/39402348358/job/118559893054；artifact12255635724",
+        "tested_commit": "138c66e4677fc6475626bcede083f920ba7f15e4"
+      },
+      {
+        "name": "Windows条件用例覆盖",
+        "tested_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+        "summary": "MySQL中12个Windows-only skip ID逐项在最终Windows passed中覆盖，交集12，差集[]；错密码五次预算用例位于passed",
+        "status": "跨平台用例ID核对通过",
+        "limitations": "不改变MySQL原始skip计数，不把仍缺原件suite、干净机器安装或真实游戏实玩视为通过。",
+        "evidence": "evidence/2026-10-20-final-ci-verification.json"
+      },
+      {
+        "name": "Launcher工具专项",
+        "summary": "53/53通过，0skip；独立工具合同",
+        "status": "专项通过",
+        "limitations": "无数据库/Windows实机声明；与完整CI及相邻22项有重叠，不简单相加。",
+        "evidence": "evidence/2026-10-20-launcher-v2-tests.json"
+      },
+      {
+        "name": "公共封面桥专项",
+        "summary": "22/22通过，0skip；含真实PublicClient回环HTTP",
+        "status": "专项通过",
+        "limitations": "与前组存在重叠；回环HTTP/编译不等于Windows/WebView图片显示验收。",
+        "evidence": "evidence/2026-10-20-campaign-cover-bridge-tests.json"
+      },
+      {
+        "name": "Windows portable冻结烟测",
+        "summary": "138c66e run39402348645/job118559893775 success；bootstrap_close=true，2.272秒；761payload+manifest摘要/路径/集合/私密排除全核验",
+        "status": "CI冻结烟测通过",
+        "limitations": "api_login_executed=false；native_start_available=false；clean_machine_verified=false。仅平台功能包，不含完整游戏客户端。",
+        "evidence": "evidence/2026-10-20-launcher-package-verification.json；https://github.com/016-ops/NZ/actions/runs/39402348645/job/118559893775"
+      }
+    ],
+    "packages": [
+      {
+        "label": "本轮Web归档",
+        "file": "outputs/portal-v2-2026-10-20/nz-web-platform-2026-10-20.tar.gz",
+        "bytes": 4241785,
+        "sha256": "9bec06bc99bcd6a086c70b9903a31eb3a7e7361133eb29321fb7fd432581b67a",
+        "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+        "manifest_file": "outputs/portal-v2-2026-10-20/nz-web-platform-2026-10-20.tar.gz.manifest.json",
+        "payload_files": 178,
+        "release": {
+          "bytes": 30232,
+          "sha256": "d995232438f8eefea56accededfed2cf09cc1b3f254b469017f2a897f1f2f099"
+        },
+        "limitations": "178 payload+RELEASE.json；未部署。WORKING_TREE为打包器读取工作目录的标记，源码及逐文件摘要已冻结；不含游戏服务或凭据。",
+        "evidence": "evidence/2026-10-20-web-package-verification.json",
+        "kind": "web"
+      },
+      {
+        "kind": "launcher_inner",
+        "label": "Windows内部发行ZIP",
+        "file": "outputs/portal-v2-2026-10-20/NZLauncher-DEV.zip",
+        "bytes": 26934988,
+        "sha256": "640f97b8e43ed11e4da71a58353bc4cbae20b3d8671ddd690cb0aa8d1de14628",
+        "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+        "manifest_file": "outputs/portal-v2-2026-10-20/NZLauncher-DEV.package-manifest.json",
+        "payload_files": 761,
+        "limitations": "761payload+manifest；bootstrap/close烟测2.272秒通过。默认回环18765仍为占位，真实API登录、干净Windows及游戏实玩未验。",
+        "evidence": "evidence/2026-10-20-launcher-package-verification.json"
+      }
+    ],
+    "external_layers": [
+      {
+        "kind": "github_artifact_wrapper",
+        "label": "GitHub包装层（不交付）",
+        "display_name": "artifact12256681134；留runtime，不属于输出文件",
+        "bytes": 26737783,
+        "sha256": "53e5b9efa9054e129859dfd326b82dd6c73bcdc1d69095d2f90295a76b164b6b",
+        "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+        "limitations": "外层下载包装ZIP，仅引用独立验包记录，不当作内部NZLauncher-DEV.zip发行摘要；本设计书生成器未读取runtime包装层。",
+        "evidence": "evidence/2026-10-20-launcher-package-verification.json"
+      }
+    ],
+    "latest_mysql_pending": false
+  },
+  "finalPackages": [
+    {
+      "label": "本轮Web归档",
+      "file": "outputs/portal-v2-2026-10-20/nz-web-platform-2026-10-20.tar.gz",
+      "bytes": 4241785,
+      "sha256": "9bec06bc99bcd6a086c70b9903a31eb3a7e7361133eb29321fb7fd432581b67a",
+      "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+      "manifest_file": "outputs/portal-v2-2026-10-20/nz-web-platform-2026-10-20.tar.gz.manifest.json",
+      "payload_files": 178,
+      "release": {
+        "bytes": 30232,
+        "sha256": "d995232438f8eefea56accededfed2cf09cc1b3f254b469017f2a897f1f2f099"
+      },
+      "limitations": "178 payload+RELEASE.json；未部署。WORKING_TREE为打包器读取工作目录的标记，源码及逐文件摘要已冻结；不含游戏服务或凭据。",
+      "evidence": "evidence/2026-10-20-web-package-verification.json",
+      "kind": "web",
+      "manifestSha256": "d995232438f8eefea56accededfed2cf09cc1b3f254b469017f2a897f1f2f099",
+      "manifestSize": 30232,
+      "payloadFiles": 178
+    },
+    {
+      "kind": "launcher_inner",
+      "label": "Windows内部发行ZIP",
+      "file": "outputs/portal-v2-2026-10-20/NZLauncher-DEV.zip",
+      "bytes": 26934988,
+      "sha256": "640f97b8e43ed11e4da71a58353bc4cbae20b3d8671ddd690cb0aa8d1de14628",
+      "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+      "manifest_file": "outputs/portal-v2-2026-10-20/NZLauncher-DEV.package-manifest.json",
+      "payload_files": 761,
+      "limitations": "761payload+manifest；bootstrap/close烟测2.272秒通过。默认回环18765仍为占位，真实API登录、干净Windows及游戏实玩未验。",
+      "evidence": "evidence/2026-10-20-launcher-package-verification.json",
+      "manifestSha256": "a7a8d0c0947764252f34ed8a8769c01056ff1ed252977ceed64ab86a9932409c",
+      "manifestSize": 144209,
+      "payloadFiles": 761
+    }
+  ],
+  "externalArtifactLayers": [
+    {
+      "kind": "github_artifact_wrapper",
+      "label": "GitHub包装层（不交付）",
+      "display_name": "artifact12256681134；留runtime，不属于输出文件",
+      "bytes": 26737783,
+      "sha256": "53e5b9efa9054e129859dfd326b82dd6c73bcdc1d69095d2f90295a76b164b6b",
+      "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+      "limitations": "外层下载包装ZIP，仅引用独立验包记录，不当作内部NZLauncher-DEV.zip发行摘要；本设计书生成器未读取runtime包装层。",
+      "evidence": "evidence/2026-10-20-launcher-package-verification.json"
+    }
+  ],
+  "export_checks": [
+    {
+      "file": "outputs/portal-v2-2026-10-20/表设计.xlsx",
+      "bytes": 60137,
+      "sha256": "5ee65c0dab9e0b67d76a0633fb11b0fe85e441ac6774b1922d7bffb4eb02005e",
+      "sheetCount": 8,
+      "originalSheetOrderPreserved": true,
+      "freezePanesPreserved": [
+        "设计概览",
+        "表目录",
+        "字段定义",
+        "约束与索引",
+        "外键关系",
+        "迁移与数据保护"
+      ],
+      "existingTableFiltersAndStylesPreserved": 6,
+      "formulaCount": 2,
+      "formulaErrorCells": [],
+      "cachedModelCounts": {
+        "C9": "74",
+        "C10": "469"
+      },
+      "originalFileShaUnchanged": true,
+      "finalRuntimeCommitPresent": true,
+      "legacyPendingAutoActivationTextAbsent": true,
+      "historicalMysqlPreviewTextAbsent": true
+    },
+    {
+      "file": "outputs/portal-v2-2026-10-20/游戏服务端接口设计.xlsx",
+      "bytes": 146239,
+      "sha256": "683f3aa2bf3ac830b88f3e866347be913ed338851f7bf9b04aaf16b24768b55e",
+      "sheetCount": 11,
+      "originalSheetOrderPreserved": true,
+      "freezePanesPreserved": [
+        "接口概览",
+        "HTTP路由",
+        "命令权限",
+        "新增请求合同",
+        "既有请求合同",
+        "原生消息目录",
+        "原生结构字段",
+        "验收与错误"
+      ],
+      "existingTableFiltersAndStylesPreserved": 8,
+      "formulaCount": 0,
+      "formulaErrorCells": [],
+      "cachedModelCounts": null,
+      "originalFileShaUnchanged": true,
+      "finalRuntimeCommitPresent": true,
+      "legacyPendingAutoActivationTextAbsent": true,
+      "historicalMysqlPreviewTextAbsent": true
+    },
+    {
+      "file": "outputs/portal-v2-2026-10-20/Web端设计书.xlsx",
+      "bytes": 32347,
+      "sha256": "d46907574bf56e3dc759bda1268079631a6535e11ff4b3499186be5efe2d622f",
+      "sheetCount": 9,
+      "originalSheetOrderPreserved": true,
+      "freezePanesPreserved": [
+        "页面架构",
+        "角色与权限",
+        "业务流程",
+        "七图与排行规则",
+        "交互与状态",
+        "验收清单"
+      ],
+      "existingTableFiltersAndStylesPreserved": 6,
+      "formulaCount": 0,
+      "formulaErrorCells": [],
+      "cachedModelCounts": null,
+      "originalFileShaUnchanged": true,
+      "finalRuntimeCommitPresent": true,
+      "legacyPendingAutoActivationTextAbsent": true,
+      "historicalMysqlPreviewTextAbsent": true
+    },
+    {
+      "file": "outputs/portal-v2-2026-10-20/部署手册及打包清单.xlsx",
+      "bytes": 121112,
+      "sha256": "12893eb3bc13e94536b17afea77cdfc06a433dfd60f9d46dfc0d92f6c26ce602",
+      "sheetCount": 12,
+      "originalSheetOrderPreserved": true,
+      "freezePanesPreserved": [
+        "部署总览",
+        "环境配置",
+        "发布与回退步骤",
+        "打包文件清单",
+        "实际归档文件",
+        "监控与运维",
+        "交付与阻塞"
+      ],
+      "existingTableFiltersAndStylesPreserved": 7,
+      "formulaCount": 0,
+      "formulaErrorCells": [],
+      "cachedModelCounts": null,
+      "originalFileShaUnchanged": true,
+      "finalRuntimeCommitPresent": true,
+      "legacyPendingAutoActivationTextAbsent": true,
+      "historicalMysqlPreviewTextAbsent": true
+    }
+  ],
+  "ciReference": {
+    "file": "evidence/2026-10-20-final-ci-verification.json",
+    "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+    "all_workflows_success": true,
+    "windowsOnlyCandidateCount": 12,
+    "windowsOnlyMissingIds": [],
+    "finalPasswordBudgetTestPassed": true,
+    "remainingUnverified": {
+      "email_native_windows_test": true,
+      "fixed_original_fixture_test": true,
+      "fixed_original_fixture_suites": 6,
+      "real_smtp_delivery": true,
+      "clean_windows_install": true,
+      "native_gameplay": true
+    }
+  },
+  "visual_review": {
+    "asOf": "2026-10-20",
+    "reviewed": [
+      "四本最终验收完整页",
+      "第二轮变更/接口合同/页面流程/媒体邮箱页",
+      "本轮三层包清单",
+      "Web清单开头及Windows字段区",
+      "此前改变页与62个新增字段完整区"
+    ],
+    "result": "渲染检查通过；文字换行及表格清晰，无裁切。长文件表按manifest全量机器核对，预览抽查首段及Windows段。正常字号保留，宽工程表需水平滚动。",
+    "historicalPreviews": "未改页保留首轮预览；原值/公式/冻结/表筛选样式已机器比较。"
+  },
+  "artifactOperation": {
+    "kind": "edit",
+    "expectedOutputCount": 4,
+    "outputFormat": "xlsx",
+    "markerRunsThisRound": 1
+  },
+  "cleanup": {
+    "removedUnreferencedIntermediateFiles": [
+      "outputs/portal-v2-2026-10-20/游戏服务端接口设计.xlsx.inspect.ndjson",
+      "outputs/portal-v2-2026-10-20/Web端设计书.xlsx.inspect.ndjson",
+      "outputs/portal-v2-2026-10-20/表设计.xlsx.inspect.ndjson",
+      "outputs/portal-v2-2026-10-20/部署手册及打包清单.xlsx.inspect.ndjson",
+      "outputs/portal-v2-2026-10-20/baseline-previews/部署手册及打包清单.png",
+      "outputs/portal-v2-2026-10-20/baseline-previews/Web端设计书.png",
+      "outputs/portal-v2-2026-10-20/baseline-previews/表设计.png",
+      "outputs/portal-v2-2026-10-20/baseline-previews/游戏服务端接口设计.png"
+    ],
+    "keptPublicMetadata": [
+      "design-sources.json",
+      "final-evidence.json",
+      "design-workbooks-verification.json"
+    ],
+    "ignoredDependencyLink": "node_modules"
+  }
+}

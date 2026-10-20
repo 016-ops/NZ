@@ -1,0 +1,29 @@
+{
+  "date": "2026-10-19",
+  "url": "http://127.0.0.1:8875",
+  "database": "nz_fix_portal_demo",
+  "player": {
+    "email": "test-player@example.invalid",
+    "status": "ACTIVE",
+    "email_verified": true,
+    "character_created": true,
+    "gp": 5000,
+    "inventory_count": 1,
+    "item_quantity": 1,
+    "http_login": "PASS"
+  },
+  "administrator": {
+    "login": "nz-test-admin",
+    "role": "owner",
+    "normal_mfa": true,
+    "http_login": "PASS",
+    "readonly_user_query_count": 1
+  },
+  "verification_sessions_revoked": true,
+  "boundaries": [
+    "仅本机隔离库",
+    "未调用真实邮件",
+    "未修改全局设置或关闭MFA",
+    "未验证公网DEV或Windows实玩"
+  ]
+}

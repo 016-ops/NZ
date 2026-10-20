@@ -1,0 +1,13 @@
+test_backup_integrity_and_profile_isolation (tests.test_control_plane.Deployment.test_backup_integrity_and_profile_isolation)
+验证场景：实际备份恢复一致，数据库不能跨 profile 复用。 ... ok
+test_default_profile_refuses_guessed_resources_and_native_host (tests.test_control_plane.Deployment.test_default_profile_refuses_guessed_resources_and_native_host)
+当前环境允许已冻结兼容钱包/物品，仍拒绝未知/合成资源及未验收原生节点。 ... ok
+test_date_binary_and_null_preserve_values_during_canonical_encoding (tests.test_backup_encoding.BackupEncodingTests.test_date_binary_and_null_preserve_values_during_canonical_encoding)
+真实DateField可参与摘要，BLOB不同容器等价；日期或字节改变不能被吞掉。 ... ok
+test_json_text_boolean_and_scalar_match_orm_without_ignoring_changed_values (tests.test_backup_encoding.BackupEncodingTests.test_json_text_boolean_and_scalar_match_orm_without_ignoring_changed_values)
+恢复JSON文本/布尔数值后与ORM相同；修改嵌套内容仍必须产生不同摘要正文。 ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.597s
+
+OK

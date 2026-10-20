@@ -25,6 +25,7 @@ class EmptyGroup:
 class NativeUdpProbeTests(unittest.TestCase):
     """真实绑定应被正确解码，空所属集合始终为空；两者不证明任何游戏握手。"""
 
+    @unittest.skipUnless(os.name == 'nt', 'Requires the real Windows UDP endpoint table')
     def test_real_owned_loopback_udp_port_detected_without_sending(self):
         """使用临时回环端口，校验网络字节序和端点PID，finally由上下文关闭socket。"""
         with socket.socket(socket.AF_INET,socket.SOCK_DGRAM) as owned:

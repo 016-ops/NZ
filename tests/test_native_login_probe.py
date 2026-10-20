@@ -46,7 +46,8 @@ class NicknameCodeBoundaryTests(unittest.TestCase):
         kernel = self.kernel()
         group = Mock()
         group.pids.return_value = [10]
-        with tempfile.TemporaryDirectory() as directory, patch('tools.native_login_probe.ctypes.WinDLL', return_value=kernel):
+        # 这是纯内存API夹具；非Windows的ctypes没有WinDLL属性，测试临时创建后自动恢复。
+        with tempfile.TemporaryDirectory() as directory, patch('tools.native_login_probe.ctypes.WinDLL', return_value=kernel, create=True):
             locate = Mock(return_value={'module': 'fixture.dll', 'rva': '0x10'})
             result = sample_nickname_thunks(group, 10, 20, 0x400000, Path(directory), locate)
             self.assertEqual(len(result), 2)
@@ -61,7 +62,7 @@ class NicknameCodeBoundaryTests(unittest.TestCase):
         kernel = self.kernel()
         group = Mock()
         group.pids.return_value = []
-        with patch('tools.native_login_probe.ctypes.WinDLL', return_value=kernel):
+        with patch('tools.native_login_probe.ctypes.WinDLL', return_value=kernel, create=True):
             self.assertEqual(sample_nickname_thunks(group, 10, 20, 0x400000, Path('.'), Mock()), [])
             kernel.ReadProcessMemory.assert_not_called()
 
@@ -71,7 +72,7 @@ class NicknameCodeBoundaryTests(unittest.TestCase):
         group.pids.return_value = [10]
         for protection in (0x04, 0x120, 0x01):
             kernel = self.kernel(protection)
-            with self.subTest(protection=protection), patch('tools.native_login_probe.ctypes.WinDLL', return_value=kernel):
+            with self.subTest(protection=protection), patch('tools.native_login_probe.ctypes.WinDLL', return_value=kernel, create=True):
                 result = sample_nickname_thunks(group, 10, 20, 0x400000, Path('.'), Mock())
                 self.assertEqual(kernel.ReadProcessMemory.call_count, 1)
                 self.assertTrue(all(row['executable'] is False for row in result))
@@ -81,7 +82,7 @@ class NicknameCodeBoundaryTests(unittest.TestCase):
         kernel = self.kernel(partial=True)
         group = Mock()
         group.pids.return_value = [10]
-        with patch('tools.native_login_probe.ctypes.WinDLL', return_value=kernel):
+        with patch('tools.native_login_probe.ctypes.WinDLL', return_value=kernel, create=True):
             self.assertEqual(sample_nickname_thunks(group, 10, 20, 0x400000, Path('.'), Mock()), [])
             kernel.VirtualQueryEx.assert_not_called()
 

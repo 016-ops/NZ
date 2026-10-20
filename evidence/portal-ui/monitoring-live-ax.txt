@@ -1,0 +1,202 @@
+Window: "管理中心 · NZ Revival", App: Safari浏览器.
+0 标准窗口 管理中心 · NZ Revival, ID: SafariWindow?IsSecure=false&UUID=999768BC-DACF-405F-AC09-F21DF065B3C8, Secondary Actions: Raise
+	1 分离组
+		2 标签组
+			3 滚动区
+				4 HTML内容 Description: 管理中心 · NZ Revival, URL: 127.0.0.1:8875/admin
+					5 container
+						6 link NZ 逆战新生 NZ Revival, Value: 127.0.0.1:8875/
+						7 container 官网导航
+							8 link 首页, Value: 127.0.0.1:8875/
+							9 link 开服活动, Value: 127.0.0.1:8875/activities
+							10 link 先锋榜, Value: 127.0.0.1:8875/leaderboards
+							11 link 上手指南, Value: 127.0.0.1:8875/guide
+						12 文本 qa-portal-owner
+						13 按钮 退出当前账号
+						14 link 管理中心, Value: 127.0.0.1:8875/admin
+					15 container
+						16 标签组 (selectable) 运营管理
+							17 标签 (selectable) 运营概览
+							18 标签 (selectable) 玩家管理
+							19 标签 (selectable) 商城管理
+							20 标签 (selectable) 地图与模式
+							21 标签 (selectable) 开服活动
+							22 标签 (selected) 服务器监控
+							23 link 完整工作台, Value: 127.0.0.1:8875/console
+						24 标题 服务器监控, Value: 1
+							25 文本 服务器监控
+						26 文本 实时观察资源与服务状态。离线与缺失数据始终明确显示。
+						27 按钮 立即刷新
+						28 按钮 本机隔离验收节点 darwin
+						29 标题 本机隔离验收节点, Value: 2
+							30 文本 本机隔离验收节点
+						31 text 在线 最后采集  2026/10/19 20:43:04 CPU 使用率 10.8% darwin 内存使用率 59.8% 14.4 GiB / 24.0 GiB 网络接收 29.5 KiB/s 接收速率 网络发送 236.7 KiB/s 发送速率
+						32 标题 CPU 趋势, Value: 4
+							33 文本 CPU 趋势
+						34 图像 CPU 趋势，4 个真实采样点
+						35 标题 内存趋势, Value: 4
+							36 文本 内存趋势
+						37 图像 内存趋势，4 个真实采样点
+						38 文本 磁盘状态
+						39 表格
+							40 row (selectable) name
+used
+total
+percent
+更多
+							41 row (selectable)
+								42 单元格 (selectable) /
+								43 单元格 (selectable) 12,631,781,376
+								44 单元格 (selectable) 994,610,155,520
+								45 单元格 (selectable) 1.27
+								46 单元格 (selectable) 详情
+									47 摘要 详情, Value: off
+										48 文本 详情
+							49 row (selectable)
+								50 单元格 (selectable) /System/Volumes/VM
+								51 单元格 (selectable) 20,480
+								52 单元格 (selectable) 994,610,155,520
+								53 单元格 (selectable) 0
+								54 单元格 (selectable) 详情
+									55 摘要 详情, Value: off
+										56 文本 详情
+							57 row (selectable)
+								58 单元格 (selectable) /System/Volumes/Preboot
+								59 单元格 (selectable) 9,094,520,832
+								60 单元格 (selectable) 994,610,155,520
+								61 单元格 (selectable) 0.91
+								62 单元格 (selectable) 详情
+									63 摘要 详情, Value: off
+										64 文本 详情
+							65 row (selectable)
+								66 单元格 (selectable) /System/Volumes/Update
+								67 单元格 (selectable) 50,835,456
+								68 单元格 (selectable) 994,610,155,520
+								69 单元格 (selectable) 0.01
+								70 单元格 (selectable) 详情
+									71 摘要 详情, Value: off
+										72 文本 详情
+							73 row (selectable)
+								74 单元格 (selectable) /System/Volumes/xarts
+								75 单元格 (selectable) 6,311,936
+								76 单元格 (selectable) 576,716,800
+								77 单元格 (selectable) 1.09
+								78 单元格 (selectable) 详情
+									79 摘要 详情, Value: off
+										80 文本 详情
+							81 row (selectable)
+								82 单元格 (selectable) /System/Volumes/iSCPreboot
+								83 单元格 (selectable) 6,107,136
+								84 单元格 (selectable) 576,716,800
+								85 单元格 (selectable) 1.06
+								86 单元格 (selectable) 详情
+									87 摘要 详情, Value: off
+										88 文本 详情
+							89 row (selectable)
+								90 单元格 (selectable) /System/Volumes/Hardware
+								91 单元格 (selectable) 8,380,416
+								92 单元格 (selectable) 576,716,800
+								93 单元格 (selectable) 1.45
+								94 单元格 (selectable) 详情
+									95 摘要 详情, Value: off
+										96 文本 详情
+							97 row (selectable)
+								98 单元格 (selectable) /System/Volumes/Data
+								99 单元格 (selectable) 153,111,781,376
+								100 单元格 (selectable) 994,610,155,520
+								101 单元格 (selectable) 15.39
+								102 单元格 (selectable) 详情
+									103 摘要 详情, Value: off
+										104 文本 详情
+						105 text 服务健康 等待服务健康采样。 原始采样保留  7  天，聚合采样保留  30  天。 调整告警阈值 CPU 告警阈值（%）
+						106 数字栏 (settable) CPU 告警阈值（%）
+							107 步进器 0
+								108 未知
+								109 未知
+						110 文本 内存告警阈值（%）
+						111 数字栏 (settable) 内存告警阈值（%）
+							112 步进器 0
+								113 未知
+								114 未知
+						115 文本 磁盘告警阈值（%） 选填
+						116 数字栏 (settable) 磁盘告警阈值（%） 选填
+							117 步进器 0
+								118 未知
+								119 未知
+						120 文本 链路带宽（Mbps，选填） 选填
+						121 数字栏 (settable) 链路带宽（Mbps，选填） 选填
+							122 步进器 0
+								123 未知
+								124 未知
+						125 文本 调整原因
+						126 文本栏 (settable) 调整原因
+						127 按钮 提交
+						128 text 登记监控节点 登记节点 节点名称
+						129 文本栏 (settable) 节点名称
+						130 文本 系统类型
+						131 组合框 (collapsed, settable) 系统类型, Secondary Actions: Expand, Value: Linux
+
+							132 文本 Linux
+						133 文本 登记原因
+						134 文本栏 (settable) 登记原因
+						135 按钮 提交
+						136 文本 节点令牌仅首次返回。请在受限位置配置采集器，不要分享截图或复制到公开文档。
+					137 container
+						138 link NZ Revival, Value: 127.0.0.1:8875/
+						139 文本 再一次，与战友并肩。
+						140 link 上手指南, Value: 127.0.0.1:8875/guide
+						141 link 管理入口, Value: 127.0.0.1:8875/admin
+						142 link 完整工作台, Value: 127.0.0.1:8875/console
+						143 文本 独立社区 · 开发测试阶段
+				144 滚动条 (settable, float) 0
+	145 图像 WindowControlShadowView._shadowImageView
+	146 工具栏
+		147 container Secondary Actions: 移到下一项, 从工具栏移除
+			148 按钮 Description: 显示边栏, ID: SidebarButton
+			149 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		150 container BackForwardSegmentedControl
+			151 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			152 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		153 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			154 按钮 页面菜单, ID: AssistantButton
+			155 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			156 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8875/admin, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			157 按钮 翻译可用, ID: TranslationButton
+			158 按钮 重新载入此页面, ID: ReloadButton
+		159 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		160 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		161 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	162 标签组 Description: 标签页栏，7个标签页, ID: TabBar?isSeparate=false
+		163 标签 016-ops/NZ, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: 关闭标签页
+			164 图像 FaviconImageView
+			165 文本 Value: 016-ops/NZ, ID: UnifiedTabBarButton._titleTextField
+		166 标签 阿里云 - 搜索, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: 关闭标签页
+			167 图像 FaviconImageView
+			168 文本 Value: 阿里云 - 搜索, ID: UnifiedTabBarButton._titleTextField
+		169 标签 登录 - 腾讯云, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: 关闭标签页
+			170 图像 FaviconImageView
+			171 文本 Value: 登录 - 腾讯云, ID: UnifiedTabBarButton._titleTextField
+		172 标签 阿里云-计算，为了无法计算的价值, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: 关闭标签页
+			173 图像 FaviconImageView
+			174 文本 Value: 阿里云-计算，为了无法计算的价值, ID: UnifiedTabBarButton._titleTextField
+		175 标签 管理中心 · NZ Revival, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=true, Secondary Actions: 关闭标签页
+			176 图像 FaviconImageView
+			177 文本 Value: 管理中心 · NZ Revival, ID: UnifiedTabBarButton._titleTextField
+		178 标签 玩家中心 · NZ Revival, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: 关闭标签页
+			179 图像 FaviconImageView
+			180 文本 Value: 玩家中心 · NZ Revival, ID: UnifiedTabBarButton._titleTextField
+		181 标签 逆战 · Launcher, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: 关闭标签页
+			182 图像 FaviconImageView
+			183 文本 Value: 逆战 · Launcher, ID: UnifiedTabBarButton._titleTextField
+	184 关闭按钮
+	185 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	186 最小化按钮
+187 menu bar
+	188 Safari浏览器
+	189 文件
+	190 编辑
+	191 显示, ID: SafariViewMenu
+	192 历史记录
+	193 书签, ID: SafariBookmarksMenu
+	194 窗口, ID: SafariWindowMenu
+	195 帮助, ID: SafariHelpMenu

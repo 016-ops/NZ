@@ -5,7 +5,7 @@ description = "Local research control plane for the user-provided NZ client"
 requires-python = ">=3.12"
 # 原生房主移交需要可验证的口令密文，AES-GCM采用与验收环境一致的标准库版本。
 dependencies = ["Django==5.2.18", "mysqlclient==2.3.0", "waitress==3.0.2", "python-dotenv==1.2.4",
-                "cryptography==50.0.2", "cffi==2.1.1", "pycparser==3.11"]
+                "cryptography==50.0.2", "cffi==2.1.1", "pycparser==3.11", "Pillow==13.0.0"]
 
 [tool.nz-revival]
 default-profile = "cn-current-unverified"

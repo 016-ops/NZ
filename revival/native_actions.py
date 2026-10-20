@@ -222,7 +222,9 @@ def shop_quote(service, c, account, data, *, renew_gid=None):
     date = int(now.strftime('%Y%m%d'))
     for line in lines:
         offer_id = integer(line.get('commodity_id'),1,2**31-1,'commodity_id')
-        offer = feature_catalog()['offers'].get(str(offer_id))
+        # 运营上下架、价格与期限覆盖同时作用于原生和门户购买，不能从旧客户端绕过。
+        from .portal_operations import resolve_shop_offer, shop_revision
+        offer = resolve_shop_offer(service,c,offer_id,allow_hidden=bool(renewal_offers))
         if renewal_offers and offer_id not in renewal_offers:
             raise Fault('RENEW','续费商品与原物品不匹配',409)
         if not offer or (not offer['bShowCommodity'] and offer_id not in renewal_offers and offer_id not in restored['offer_ids']):
@@ -272,7 +274,7 @@ def shop_quote(service, c, account, data, *, renew_gid=None):
         result.append({'commodity_id':offer_id,'price_index':index,'quantity':count,'currency':code,
                        'price':price,'rewards':rewards,'giftable':bool((offer['bGiveAndAskable'] or [False])[0])})
     return {'version':FEATURE_VERSION,'shop_rule_version':'cn2020-shop-package-period-v2',
-            'restored_offer_rule':restored['version'],'lines':result,'totals':totals}
+            'restored_offer_rule':restored['version'],'shop_revision':shop_revision(c),'lines':result,'totals':totals}
 
 
 def shop_commit(service, c, account, action, data):

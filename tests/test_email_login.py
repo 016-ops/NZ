@@ -251,8 +251,10 @@ class EmailHttpTests(Base):
     def tearDown(self):
         """关闭本例 HTTP 服务及独立数据库连接，不操作已有本机或 DEV 实例。"""
         self.server.task_dispatcher.shutdown()
-        self.server.close()
+        # 与通用HTTP夹具一致，在事件线程关闭fd，避免另一线程仍select该fd而输出EBADF。
+        self.server.trigger.pull_trigger(self.server.close)
         self.thread.join(timeout=5)
+        self.assertFalse(self.thread.is_alive())
         self.overrides.disable()
         super().tearDown()
 

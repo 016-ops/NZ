@@ -1,0 +1,106 @@
+{
+  "kind": "LOCAL_MYSQL_FULL_SUITE_ATTEMPTS_NOT_NATIVE_LIVE",
+  "database_isolation": "dedicated disposable test database; no preview or remote database writes",
+  "attempts": [
+    {
+      "report": "2026-10-20-full-mysql-tests-attempt-1.json",
+      "state": "COMPLETE_WITH_ENVIRONMENT_ERROR",
+      "tests": 611,
+      "passed": 596,
+      "failures": 0,
+      "errors": 1,
+      "skipped_tests": 14,
+      "skipped_suites": 6,
+      "error_module": "rarfile",
+      "error_class": "ModuleNotFoundError",
+      "policy_revision": "before_player_state_migration_correction"
+    },
+    {
+      "report": "2026-10-20-full-mysql-tests-interrupted-before-policy-fix.json",
+      "state": "INTERRUPTED_PARTIAL_NOT_FULL",
+      "tests": 37,
+      "passed": 37,
+      "failures": 0,
+      "errors": 0,
+      "reason": "Agent SIGINT before player-state migration policy correction; Django stopped after active case and exited0. This is not a full suite pass."
+    },
+    {
+      "report": "2026-10-20-full-mysql-tests-interrupted-before-pending-auth-fix.json",
+      "state": "INTERRUPTED_PARTIAL_NOT_FULL",
+      "tests": 80,
+      "passed": 80,
+      "failures": 0,
+      "errors": 0,
+      "reason": "Agent SIGINT before removal of implicit legacy PENDING login/reset/verify activation; not full suite evidence."
+    },
+    {
+      "report": "2026-10-20-full-mysql-tests.json",
+      "state": "COMPLETE_PASS_BEFORE_FINAL_LOGIN_PASSWORD_BUDGET_FIX",
+      "policy_baseline": "after_pending_preservation_and_verified_onboarding_fix; before_login_wrong_password_budget_fix",
+      "git_head_at_baseline_recording": "d9457771d079d75ba6db8b509da058d48a208796",
+      "workspace_auth_files_sha256_before_budget_fix": {
+        "revival/admin_email_auth.py": "ebca776466f510b3e2ce2952f30982697b30b0d88b7715de980776a9af27be63",
+        "revival/service.py": "ecdf911a430cbc27e0a3a661e4be0be4627d21306f206efdd0160ea9dc6e59c6",
+        "revival/email_verification.py": "9a20b34b509d0997fe3ab2f3eb55d880d2c7b9e8c51d7c9ded0888a6cdd6c67a",
+        "revival/migrations/0024_email_admin_auth.py": "8f3f02d82b271838b6d32cfa3eb55ede0424c9ce2f49f45ec0e8f625e5edf7df",
+        "tests/test_admin_email_auth.py": "77b6e7688c57826a573d387317bff97f25f8320a2326c520980f3d25e9503d91"
+      },
+      "baseline_recorded_at_utc": "2026-10-20T08:52:04.712239+00:00",
+      "started_at_utc": "2026-10-20T08:39:17+00:00",
+      "tests": 619,
+      "passed": 605,
+      "failures": 0,
+      "errors": 0,
+      "skipped_tests": 14,
+      "skipped_suites": 6,
+      "seconds": 823.358,
+      "scope_note": "Full suite includes final preservation of all legacy PENDING states and verified-only onboarding. It does not include the subsequently added login wrong-password failure-budget test; final targeted report and final GitHub full suite are separate evidence.",
+      "source_baseline_note": "Repository HEAD is base metadata; authentication files were uncommitted at full-run startup. Relevant source SHA256 fingerprints were captured before the subsequent login-budget patch."
+    }
+  ],
+  "environment_fix": {
+    "requirement": "requirements-recovery.txt",
+    "package": "rarfile==4.2",
+    "report": "2026-10-20-rarfile-environment-fix-tests.json",
+    "tests": 5,
+    "passed": 4,
+    "skipped_tests": 1
+  },
+  "pending_policy_validation": {
+    "report": "2026-10-20-pending-policy-fix-tests.json",
+    "tests": 27,
+    "passed": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped_tests": 0
+  },
+  "final_login_password_budget_validation": {
+    "report": "2026-10-20-admin-password-budget-final-tests.json",
+    "tests": 14,
+    "passed": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped_tests": 0,
+    "seconds": 43.062,
+    "source_files_sha256": {
+      "revival/admin_email_auth.py": "847abe1df8627f1436a94ba0e0e8bd98152bb36ccbba2db5a426ad02416afccb",
+      "revival/service.py": "ecdf911a430cbc27e0a3a661e4be0be4627d21306f206efdd0160ea9dc6e59c6",
+      "revival/email_verification.py": "9a20b34b509d0997fe3ab2f3eb55d880d2c7b9e8c51d7c9ded0888a6cdd6c67a",
+      "revival/migrations/0024_email_admin_auth.py": "8f3f02d82b271838b6d32cfa3eb55ede0424c9ce2f49f45ec0e8f625e5edf7df",
+      "tests/test_admin_email_auth.py": "2445a40820af2bb2a7e6fd58029b9ffa4eeec63e85147036dd7c02696754ebad"
+    },
+    "full_final_source_ci": "pending root source commit and GitHub full suite"
+  },
+  "final_exact_source_ci": {
+    "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+    "report": "evidence/2026-10-20-final-ci-verification.json",
+    "tests_run": 39402348358,
+    "mysql_tests": 620,
+    "mysql_passed": 606,
+    "mysql_skipped_tests": 14,
+    "mysql_skipped_suites": 6,
+    "failures": 0,
+    "errors": 0,
+    "note": "Earlier pending status is historical. This exact-source CI includes the final login wrong-password budget test."
+  }
+}

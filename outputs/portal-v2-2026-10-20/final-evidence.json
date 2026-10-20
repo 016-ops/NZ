@@ -1,0 +1,117 @@
+{
+  "format": "nz-portal-v2-evidence-v1",
+  "finalized": true,
+  "as_of": "2026-10-20 America/Los_Angeles",
+  "runtime_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+  "source_evidence": "docs/delivery/2026-10-20-launcher-web-v2.md",
+  "deployed": false,
+  "frontend": {
+    "files": 6,
+    "tests": 21,
+    "modules": 1721,
+    "evidence": "evidence/2026-10-20-final-frontend-verification.json"
+  },
+  "ui": {
+    "summary": "隔离玩家实际登录、签到/重复签到弹窗、仓库中文分类图、独立活动、反馈文字与鉴权截图；官网及Launcher在390×844视口scrollWidth=clientWidth=390",
+    "limitations": "本机隔离演示库；没有正式SMTP收件或管理员邮箱登录成功。Mac无capability仅布局；减少动态效果为源码边界核对，不冒称系统设置端到端验证。",
+    "evidence": [
+      "docs/delivery/2026-10-20-launcher-web-v2.md",
+      "evidence/portal-ui-v2/checkin-result-dark.png",
+      "evidence/portal-ui-v2/inventory-dark.png",
+      "evidence/portal-ui-v2/activity-detail-dark.png",
+      "evidence/portal-ui-v2/feedback-private-image-dark.png"
+    ]
+  },
+  "launcher_preview_evidence": "evidence/portal-ui-v2/launcher-home-dark.png；docs/delivery/2026-10-20-launcher-web-v2.md",
+  "admin_mail_evidence": "docs/delivery/2026-10-20-launcher-web-v2.md；evidence/portal-ui-v2/admin-email-unconfigured-dark.png",
+  "automated": [
+    {
+      "name": "MySQL完整回归",
+      "tested_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+      "summary": "MySQL8.4.11；138c66e；620项，606通过、14测试skip，另6组缺原件suite skip；0失败/错误；703.111秒",
+      "status": "最终同一源码CI通过",
+      "limitations": "14测试skip与另6组suite skip单列，不把suite计入620，不把跳过计为通过。真实SMTP、干净Windows与原生游戏仍未验。",
+      "evidence": "evidence/2026-10-20-final-ci-verification.json；https://github.com/016-ops/NZ/actions/runs/39402348358/job/118559893282；artifact12255778201"
+    },
+    {
+      "name": "Windows工具/前端CI",
+      "summary": "138c66e；254项，253通过、1测试skip，另6组缺原件suite skip；0失败/错误；3.146秒",
+      "status": "CI通过",
+      "limitations": "跳过项不计通过；CI测试/构建不代表干净Windows安装、真实API或原生实玩。",
+      "evidence": "evidence/2026-10-20-final-ci-verification.json；https://github.com/016-ops/NZ/actions/runs/39402348358/job/118559893054；artifact12255635724",
+      "tested_commit": "138c66e4677fc6475626bcede083f920ba7f15e4"
+    },
+    {
+      "name": "Windows条件用例覆盖",
+      "tested_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+      "summary": "MySQL中12个Windows-only skip ID逐项在最终Windows passed中覆盖，交集12，差集[]；错密码五次预算用例位于passed",
+      "status": "跨平台用例ID核对通过",
+      "limitations": "不改变MySQL原始skip计数，不把仍缺原件suite、干净机器安装或真实游戏实玩视为通过。",
+      "evidence": "evidence/2026-10-20-final-ci-verification.json"
+    },
+    {
+      "name": "Launcher工具专项",
+      "summary": "53/53通过，0skip；独立工具合同",
+      "status": "专项通过",
+      "limitations": "无数据库/Windows实机声明；与完整CI及相邻22项有重叠，不简单相加。",
+      "evidence": "evidence/2026-10-20-launcher-v2-tests.json"
+    },
+    {
+      "name": "公共封面桥专项",
+      "summary": "22/22通过，0skip；含真实PublicClient回环HTTP",
+      "status": "专项通过",
+      "limitations": "与前组存在重叠；回环HTTP/编译不等于Windows/WebView图片显示验收。",
+      "evidence": "evidence/2026-10-20-campaign-cover-bridge-tests.json"
+    },
+    {
+      "name": "Windows portable冻结烟测",
+      "summary": "138c66e run39402348645/job118559893775 success；bootstrap_close=true，2.272秒；761payload+manifest摘要/路径/集合/私密排除全核验",
+      "status": "CI冻结烟测通过",
+      "limitations": "api_login_executed=false；native_start_available=false；clean_machine_verified=false。仅平台功能包，不含完整游戏客户端。",
+      "evidence": "evidence/2026-10-20-launcher-package-verification.json；https://github.com/016-ops/NZ/actions/runs/39402348645/job/118559893775"
+    }
+  ],
+  "packages": [
+    {
+      "label": "本轮Web归档",
+      "file": "outputs/portal-v2-2026-10-20/nz-web-platform-2026-10-20.tar.gz",
+      "bytes": 4241785,
+      "sha256": "9bec06bc99bcd6a086c70b9903a31eb3a7e7361133eb29321fb7fd432581b67a",
+      "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+      "manifest_file": "outputs/portal-v2-2026-10-20/nz-web-platform-2026-10-20.tar.gz.manifest.json",
+      "payload_files": 178,
+      "release": {
+        "bytes": 30232,
+        "sha256": "d995232438f8eefea56accededfed2cf09cc1b3f254b469017f2a897f1f2f099"
+      },
+      "limitations": "178 payload+RELEASE.json；未部署。WORKING_TREE为打包器读取工作目录的标记，源码及逐文件摘要已冻结；不含游戏服务或凭据。",
+      "evidence": "evidence/2026-10-20-web-package-verification.json",
+      "kind": "web"
+    },
+    {
+      "kind": "launcher_inner",
+      "label": "Windows内部发行ZIP",
+      "file": "outputs/portal-v2-2026-10-20/NZLauncher-DEV.zip",
+      "bytes": 26934988,
+      "sha256": "640f97b8e43ed11e4da71a58353bc4cbae20b3d8671ddd690cb0aa8d1de14628",
+      "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+      "manifest_file": "outputs/portal-v2-2026-10-20/NZLauncher-DEV.package-manifest.json",
+      "payload_files": 761,
+      "limitations": "761payload+manifest；bootstrap/close烟测2.272秒通过。默认回环18765仍为占位，真实API登录、干净Windows及游戏实玩未验。",
+      "evidence": "evidence/2026-10-20-launcher-package-verification.json"
+    }
+  ],
+  "external_layers": [
+    {
+      "kind": "github_artifact_wrapper",
+      "label": "GitHub包装层（不交付）",
+      "display_name": "artifact12256681134；留runtime，不属于输出文件",
+      "bytes": 26737783,
+      "sha256": "53e5b9efa9054e129859dfd326b82dd6c73bcdc1d69095d2f90295a76b164b6b",
+      "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+      "limitations": "外层下载包装ZIP，仅引用独立验包记录，不当作内部NZLauncher-DEV.zip发行摘要；本设计书生成器未读取runtime包装层。",
+      "evidence": "evidence/2026-10-20-launcher-package-verification.json"
+    }
+  ],
+  "latest_mysql_pending": false
+}

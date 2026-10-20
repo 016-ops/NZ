@@ -35,25 +35,23 @@ class EmailVerification(Base):
         return {'email':address, 'challenge_id':result['challenge_id'], 'code':self.sender.call_args.args[1]}
 
     def register_verified(self):
-        """用有效随机邮件码注册并批准，保留正常邀请消费和玩家会话行为。"""
-        data = self.meta(**self.challenge(), password=self.password, invitation=self.invite)
+        """有效邮箱码即可开通并初始化角色，旧邀请字段即使存在也不消耗名额。"""
+        data = self.meta(**self.challenge(), password=self.password, invitation=self.invite, nickname='邮箱恢复角色')
         account = self.s.register(data)
         self.command('user.approve', {'target_account_id':account['account_id']})
         token = self.s.login(self.email, self.password)['token']
         return account, token, data
 
-    def test_registration_requires_code_replays_and_preserves_approval(self):
-        """无验证禁止注册，成功只消费一次码/邀请；同键可重放，批准前不得登录。"""
+    def test_registration_requires_code_replays_and_opens_without_approval(self):
+        """无验证禁止注册；成功一次性建角色即登录，同键不重建且不消耗旧邀请。"""
         with self.assertRaises(Fault):
             self.s.register(self.meta(email=self.email, password=self.password, invitation=self.invite))
-        data = self.meta(**self.challenge(), password=self.password, invitation=self.invite)
+        data = self.meta(**self.challenge(), password=self.password, invitation=self.invite, nickname='验证码玩家')
         first = self.s.register(data)
         self.assertTrue(first['email_verified'])
         self.assertEqual(first, self.s.register(data))
-        self.assertEqual(self.s.query(self.owner, 'invitations')[0]['uses'], 1)
-        with self.assertRaises(Fault) as caught:
-            self.s.login(self.email, self.password)
-        self.assertEqual(caught.exception.code, 'ACCOUNT_STATE')
+        self.assertEqual(self.s.query(self.owner, 'invitations')[0]['uses'], 0)
+        self.assertFalse(self.s.login(self.email, self.password)['character_required'])
         with self.assertRaises(Fault):
             self.s.register(self.meta(**{k:v for k,v in data.items() if k not in ('idempotency_key','request_id','reason')}))
 

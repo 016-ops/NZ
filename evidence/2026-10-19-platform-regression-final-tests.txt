@@ -1,0 +1,163 @@
+test_admin_mfa_required_and_cannot_replay (tests.test_control_plane.Accounts.test_admin_mfa_required_and_cannot_replay)
+验证场景：普通管理员必须提交 MFA，已使用时间步拒绝重放。 ... ok
+test_character_and_assets_are_independent_and_initialize_once (tests.test_control_plane.Accounts.test_character_and_assets_are_independent_and_initialize_once)
+验证场景：账号与角色分开初始化，重复初始化不能重置资产。 ... ok
+test_concurrent_invitation_use_is_atomic (tests.test_control_plane.Accounts.test_concurrent_invitation_use_is_atomic)
+验证场景：并发消费最后一个邀请名额，只允许一个账号成功。 ... ok
+test_disable_approve_does_not_bypass_disabled (tests.test_control_plane.Accounts.test_disable_approve_does_not_bypass_disabled)
+验证场景：审批操作不能绕过已停用状态。 ... ok
+test_expired_and_revoked_invitations_are_rejected (tests.test_control_plane.Accounts.test_expired_and_revoked_invitations_are_rejected)
+验证场景：过期及已撤销邀请均拒绝注册。 ... ok
+test_local_nickname_validation_uniqueness_and_chinese (tests.test_control_plane.Accounts.test_local_nickname_validation_uniqueness_and_chinese)
+验证场景：中文昵称合法，非法字符及重复昵称被拒绝。 ... ok
+test_pending_and_wrong_password_do_not_authenticate (tests.test_control_plane.Accounts.test_pending_and_wrong_password_do_not_authenticate)
+验证场景：待审批账号和错误密码均不能产生有效会话。 ... ok
+test_permission_matrix_and_no_credentials_in_read_models (tests.test_control_plane.Accounts.test_permission_matrix_and_no_credentials_in_read_models)
+验证场景：角色权限按矩阵拒绝越权，读模型不暴露凭据。 ... ok
+test_registration_replay_does_not_consume_invite_again (tests.test_control_plane.Accounts.test_registration_replay_does_not_consume_invite_again)
+验证场景：重复注册幂等请求返回原账号，不再次消耗邀请。 ... ok
+test_reset_revokes_old_credentials_and_session (tests.test_control_plane.Accounts.test_reset_revokes_old_credentials_and_session)
+验证场景：重置密码撤销旧凭据和旧会话。 ... ok
+test_restart_preserves_mapping_character_ban_and_assets (tests.test_control_plane.Accounts.test_restart_preserves_mapping_character_ban_and_assets)
+验证场景：重建业务服务后账号映射、角色、制裁及资产保持一致。 ... ok
+test_session_replacement_and_expiry_remove_old_seat (tests.test_control_plane.Accounts.test_session_replacement_and_expiry_remove_old_seat)
+验证场景：会话替换和到期后旧会话不能继续保留有效席位。 ... ok
+test_stacked_sanctions_and_expiry (tests.test_control_plane.Accounts.test_stacked_sanctions_and_expiry)
+验证场景：叠加制裁独立生效，全部到期后才恢复资格。 ... ok
+test_atomic_audit_failure_and_immutable_ledger (tests.test_control_plane.Assets.test_atomic_audit_failure_and_immutable_ledger)
+验证场景：审计失败回滚业务，数据库拒绝改写或删除历史流水。 ... ok
+test_batch_freezes_targets_partial_failure_and_replay (tests.test_control_plane.Assets.test_batch_freezes_targets_partial_failure_and_replay)
+验证场景：批量冻结目标，子项失败独立回滚，重放不重复成功子项。 ... ok
+test_compensation_success_and_no_double_reversal (tests.test_control_plane.Assets.test_compensation_success_and_no_double_reversal)
+验证场景：补偿追加关联流水，重复请求不会双重撤销。 ... ok
+test_concurrent_grants_and_purchase_preserve_balance (tests.test_control_plane.Assets.test_concurrent_grants_and_purchase_preserve_balance)
+验证场景：并发发放和购买保持余额与流水一致。 ... ok
+test_consumption_equipment_expiry_and_limit (tests.test_control_plane.Assets.test_consumption_equipment_expiry_and_limit)
+验证场景：消费数量、装备到期和库存上限依规则执行。 ... ok
+test_large_owner_grants_require_fresh_mfa (tests.test_control_plane.Assets.test_large_owner_grants_require_fresh_mfa)
+验证场景：大额 Owner 发放必须重新验证新鲜 MFA。 ... ok
+test_outbox_retry_never_repeats_assets (tests.test_control_plane.Assets.test_outbox_retry_never_repeats_assets)
+验证场景：通知重试只发送事件，不重复执行资产变更。 ... ok
+test_post_commit_reply_loss_and_restart_replay (tests.test_control_plane.Assets.test_post_commit_reply_loss_and_restart_replay)
+验证场景：提交后响应丢失，重启重试返回原结果而不重复发放。 ... ok
+test_preview_is_read_only_and_commit_revalidates (tests.test_control_plane.Assets.test_preview_is_read_only_and_commit_revalidates)
+验证场景：预览无持久化写入，确认提交重新校验当前状态。 ... ok
+test_purchase_failure_rolls_back_wallet_and_outbox (tests.test_control_plane.Assets.test_purchase_failure_rolls_back_wallet_and_outbox)
+验证场景：购买失败后钱包、流水和 outbox 全部回滚。 ... ok
+test_replay_and_payload_conflict (tests.test_control_plane.Assets.test_replay_and_payload_conflict)
+验证场景：相同幂等键和内容返回原结果，内容改变时报冲突。 ... ok
+test_spent_compensation_is_review_not_negative (tests.test_control_plane.Assets.test_spent_compensation_is_review_not_negative)
+验证场景：已消费资产的补偿转人工审核，不能造成负余额。 ... ok
+test_unknown_negative_overflow_invalid_duration_and_cross_account (tests.test_control_plane.Assets.test_unknown_negative_overflow_invalid_duration_and_cross_account)
+验证场景：未知资产、负余额、溢出、非法期限和跨账号装备均拒绝。 ... ok
+test_backup_integrity_and_profile_isolation (tests.test_control_plane.Deployment.test_backup_integrity_and_profile_isolation)
+验证场景：实际备份恢复一致，数据库不能跨 profile 复用。 ... ok
+test_default_profile_refuses_guessed_resources_and_native_host (tests.test_control_plane.Deployment.test_default_profile_refuses_guessed_resources_and_native_host)
+当前环境允许已冻结兼容钱包/物品，仍拒绝未知/合成资源及未验收原生节点。 ... ok
+test_allocation_timeout_and_twenty_cancel_cycles (tests.test_control_plane.Rooms.test_allocation_timeout_and_twenty_cancel_cycles)
+验证场景：节点分配超时释放状态，多轮取消不残留席位和租约。 ... ok
+test_ban_during_match_preserves_other_player_and_no_reward_for_revoked (tests.test_control_plane.Rooms.test_ban_during_match_preserves_other_player_and_no_reward_for_revoked)
+验证场景：对局中封禁只撤销目标资格，其他玩家继续且目标不得奖励。 ... ok
+test_concurrent_last_seat_and_one_room_per_player (tests.test_control_plane.Rooms.test_concurrent_last_seat_and_one_room_per_player)
+验证场景：并发争抢最后席位只成功一次，玩家不能同时加入两房。 ... ok
+test_configuration_revision_readiness_and_start_freeze (tests.test_control_plane.Rooms.test_configuration_revision_readiness_and_start_freeze)
+验证场景：配置修订清除准备状态，开始时核对版本并冻结快照。 ... ok
+test_room_replays_and_host_transfer (tests.test_control_plane.Rooms.test_room_replays_and_host_transfer)
+验证场景：房间命令可幂等重放，房主退出按规则移交。 ... ok
+test_stale_node_lease_and_epoch_rejected (tests.test_control_plane.Rooms.test_stale_node_lease_and_epoch_rejected)
+验证场景：旧节点租约和 epoch 不得续租或提交结算。 ... ok
+test_trusted_synthetic_settlement_and_client_forgery (tests.test_control_plane.Rooms.test_trusted_synthetic_settlement_and_client_forgery)
+验证场景：仅可信合成节点可以结算，客户端伪造结果被拒绝。 ... ok
+test_two_rooms_are_isolated (tests.test_control_plane.Rooms.test_two_rooms_are_isolated)
+验证场景：两间房间的准备、启动、结算和资产互相隔离。 ... ok
+test_admin_secrets_are_one_time_and_role_change_revokes_sessions (tests.test_operations.OperationsTests.test_admin_secrets_are_one_time_and_role_change_revokes_sessions)
+创建响应丢失重试不泄漏 MFA；角色改变后旧管理员会话立即失效。 ... ok
+test_batch_author_revocation_prevents_pending_grants (tests.test_operations.OperationsTests.test_batch_author_revocation_prevents_pending_grants)
+排队后撤销操作者安全版本，尚未执行子项拒绝发放。 ... ok
+test_batch_preview_restart_partial_failure_and_failed_only_retry (tests.test_operations.OperationsTests.test_batch_preview_restart_partial_failure_and_failed_only_retry)
+预览无资产变更；中途重启只处理未完成目标，重试不能扩大到成功目标。 ... ok
+test_last_owner_and_permission_are_enforced (tests.test_operations.OperationsTests.test_last_owner_and_permission_are_enforced)
+最后 Owner 的停用/降权回滚，玩家不能通过直接调用创建管理员。 ... ok
+test_manual_review_is_closed_without_rewriting_history (tests.test_operations.OperationsTests.test_manual_review_is_closed_without_rewriting_history)
+已花费发放的人工复核只追加决定，不能改原账本或制造负余额。 ... ok
+test_recovery_consumes_code_and_revokes_old_session (tests.test_operations.OperationsTests.test_recovery_consumes_code_and_revokes_old_session)
+密码加恢复码可恢复 MFA；旧码、旧会话及旧验证码均不再生效。 ... ok
+test_worker_audit_failure_rolls_back_and_restart_resumes_once (tests.test_operations.OperationsTests.test_worker_audit_failure_rolls_back_and_restart_resumes_once)
+子项审计失败必须同时回滚资产和任务结果，重启后可以安全继续该子项。 ... ok
+test_atomic_full_inventory_and_outbox_failure (tests.test_native_inventory.NativeInventoryTests.test_atomic_full_inventory_and_outbox_failure)
+容量不足和最后审计/outbox故障都回滚整个发放，保留之前已有记录。 ... ok
+test_backpack_root_preserves_all_other_bags_and_children (tests.test_native_inventory.NativeInventoryTests.test_backpack_root_preserves_all_other_bags_and_children)
+boot78背包100037挂到根12；保持双默认包及其武器，重试幂等、回读故障回滚、越权拒绝。 ... ok
+test_compact_commit_is_atomic_authorized_and_matches_full_snapshot (tests.test_native_inventory.NativeInventoryTests.test_compact_commit_is_atomic_authorized_and_matches_full_snapshot)
+轻量换装和回读同事务；回读故障回滚换装/审计，错投影与撤销凭据不能走快捷路径。 ... ok
+test_concurrent_grants_commit_once (tests.test_native_inventory.NativeInventoryTests.test_concurrent_grants_commit_once)
+两连接并发全量补齐由部署事务锁串行，一次发放一次幂等返回。 ... ok
+test_full_catalog_repeat_preserves_gids_and_user_unequip (tests.test_native_inventory.NativeInventoryTests.test_full_catalog_repeat_preserves_gids_and_user_unequip)
+全4323件永久入库；重试不增加流水/GID，也不恢复玩家已经卸下的默认装备。 ... ok
+test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once (tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_failure_rolls_back_and_concurrent_topup_commits_once)
+最终outbox故障回滚钱包和流水；双连接重试仅一次补满，旧规则不允许写入。 ... ok
+test_gm_wallet_maximize_atomic_repeat_and_isolation (tests.test_native_inventory.NativeInventoryTests.test_gm_wallet_maximize_atomic_repeat_and_isolation)
+七币种补满共用账本，重复不写新版本或流水；非GM拒绝且其他账号保持零。 ... ok
+test_hidden_default_knife_replaces_owned_melee_only (tests.test_native_inventory.NativeInventoryTests.test_hidden_default_knife_replaces_owned_melee_only)
+实机卸下近战会穿回隐藏默认匕首；原武器释放且重试无重复审计，外部GID仍拒绝。 ... ok
+test_http_equipment_owner_version_revocation_and_atomicity (tests.test_native_inventory.NativeInventoryTests.test_http_equipment_owner_version_revocation_and_atomicity)
+HTTP只接受游戏Bearer；装备换位/重试持久，跨账号、版本变化、来源撤销及失败写入拒绝。 ... ok
+test_native_zero_target_unequip_owned_only_and_repeat (tests.test_native_inventory.NativeInventoryTests.test_native_zero_target_unequip_owned_only_and_repeat)
+实机Target0卸下仅操作本人实例；未装备重复无写入，穿戴或跨账号引用0仍拒绝。 ... ok
+test_pve_role_switch_preserves_factions_and_rejects_other_owner (tests.test_native_inventory.NativeInventoryTests.test_pve_role_switch_preserves_factions_and_rejects_other_owner)
+猎场角色64在根1独立换装，旧PvE槽释放，两阵营不变；错背包/跨账号仍失败。 ... ok
+test_password_invitation_binding_expiry_and_no_hash_leak (tests.test_room_access.RoomAccessTests.test_password_invitation_binding_expiry_and_no_hash_leak)
+邀请不能转交另一账号，错误口令/过期邀请不能占席，读模型不泄漏哈希。 ... ok
+test_password_only_room_requires_password_and_invalid_difficulty_rolls_back (tests.test_room_access.RoomAccessTests.test_password_only_room_requires_password_and_invalid_difficulty_rolls_back)
+公开受密码保护房间按服务端校验，未知难度不能产生半配置的房间。 ... ok
+test_rejects_unknown_endpoint_and_plaintext (tests.test_email_verification.AliyunTransport.test_rejects_unknown_endpoint_and_plaintext)
+错误区域或明文端口在任何认证材料发出前被拒绝。 ... ok
+test_tls_single_recipient_and_failure_redaction (tests.test_email_verification.AliyunTransport.test_tls_single_recipient_and_failure_redaction)
+生产路径显式启用主机名和证书验证，连接异常只返回固定码，不含邮件或密码。 ... ok
+test_attempts_expiry_purpose_address_and_resend_persist (tests.test_email_verification.EmailVerification.test_attempts_expiry_purpose_address_and_resend_persist)
+错误次数重建服务后仍保留；目的和地址隔离；重发旧码及过期码均失效。 ... ok
+test_backup_with_boolean_game_session_roundtrips (tests.test_email_verification.EmailVerification.test_backup_with_boolean_game_session_roundtrips)
+有真实布尔列值的启动票据及游戏会话必须能在临时 MySQL 库恢复并逐表一致。 ... ok
+test_concurrent_reset_consumes_once_and_audit_rollback (tests.test_email_verification.EmailVerification.test_concurrent_reset_consumes_once_and_audit_rollback)
+并发恢复只成功一次；审计失败不能留密码/消费半事务，失败后原码仍能重试。 ... ok
+test_concurrent_send_reserves_only_one_quota_slot (tests.test_email_verification.EmailVerification.test_concurrent_send_reserves_only_one_quota_slot)
+两个工作线程同时发码只有一个获准投递，持久冷却不依赖单进程内存。 ... ok
+test_delivery_failure_quota_and_no_plaintext_persistence (tests.test_email_verification.EmailVerification.test_delivery_failure_quota_and_no_plaintext_persistence)
+失败也占冷却额度；服务商异常不入库，重启不能绕过额度，验证码正文不持久化。 ... ok
+test_existing_binding_verify_and_email_replacement_invalidate_old_reset (tests.test_email_verification.EmailVerification.test_existing_binding_verify_and_email_replacement_invalidate_old_reset)
+迁移前邮箱可以补验；管理员换绑提升安全版本，旧邮箱码不能重置新身份。 ... ok
+test_http_boundary_rejects_legacy_bypass_and_missing_provider (tests.test_email_verification.EmailVerification.test_http_boundary_rejects_legacy_bypass_and_missing_provider)
+公共旧注册接口不能绕过邮箱；发信服务缺失必须明确失败，不能假称已发送。 ... ok
+test_recovery_does_not_activate_disabled_account_and_unknown_has_same_response (tests.test_email_verification.EmailVerification.test_recovery_does_not_activate_disabled_account_and_unknown_has_same_response)
+恢复不解除停用；未知邮箱同样投递但无可恢复账号，响应结构不泄露存在性。 ... ok
+test_registration_requires_code_replays_and_preserves_approval (tests.test_email_verification.EmailVerification.test_registration_requires_code_replays_and_preserves_approval)
+无验证禁止注册，成功只消费一次码/邀请；同键可重放，批准前不得登录。 ... ok
+test_reset_response_replay_survives_service_restart_without_reapplying (tests.test_email_verification.EmailVerification.test_reset_response_replay_survives_service_restart_without_reapplying)
+同键相同请求恢复丢失响应，不二次撤销会话；换密码或验证码同键冲突，新键不能复用旧码。 ... ok
+test_reset_revokes_web_and_game_preserves_character_assets (tests.test_email_verification.EmailVerification.test_reset_revokes_web_and_game_preserves_character_assets)
+恢复密码同事务撤销旧 Web/游戏授权，角色映射与账本不变，重登使用新密码。 ... ok
+test_same_key_concurrent_reset_returns_one_durable_result (tests.test_email_verification.EmailVerification.test_same_key_concurrent_reset_returns_one_durable_result)
+同键并发均取得同一成功结果，密码、安全版本及审计只有一次实际变化。 ... ok
+test_bounded_rate_limiter (tests.test_http.HttpTests.test_bounded_rate_limiter)
+验证场景：限流窗口拒绝超额请求，客户端桶数量始终有界。 ... ok
+test_csrf_origin_dns_rebinding_and_bad_body (tests.test_http.HttpTests.test_csrf_origin_dns_rebinding_and_bad_body)
+验证场景：跨 Origin、错误 Host、重复 JSON 字段、非有限数字和超限体被拒绝。 ... ok
+test_health_security_headers_and_static_page (tests.test_http.HttpTests.test_health_security_headers_and_static_page)
+验证场景：健康接口及前端静态页真实可访问，响应携带安全头。 ... ok
+test_public_bind_and_untrusted_node_results_rejected (tests.test_http.HttpTests.test_public_bind_and_untrusted_node_results_rejected)
+验证场景：公共监听地址及非可信节点结算均被拒绝。 ... ok
+test_real_http_auth_permissions_command_and_logout (tests.test_http.HttpTests.test_real_http_auth_permissions_command_and_logout)
+验证场景：真实 HTTP 下玩家不能越权发放资产，退出后会话失效。 ... ok
+test_transfer_encoding_is_rejected_before_wsgi_and_size_boundary_is_exact (tests.test_http.HttpTests.test_transfer_encoding_is_rejected_before_wsgi_and_size_boundary_is_exact)
+实际发出分块传输，防止 Waitress 解码并删除头后绕过中间件；64 KiB 边界保持一致。 ... ok
+test_native_contract_routes_and_acknowledgement_scope (tests.test_node_http.NodeHttpTests.test_native_contract_routes_and_acknowledgement_scope)
+节点可重放就绪/事件并确认自己的通知；玩家不能替代节点提交或确认。 ... ok
+test_date_binary_and_null_preserve_values_during_canonical_encoding (tests.test_backup_encoding.BackupEncodingTests.test_date_binary_and_null_preserve_values_during_canonical_encoding)
+真实DateField可参与摘要，BLOB不同容器等价；日期或字节改变不能被吞掉。 ... ok
+test_json_text_boolean_and_scalar_match_orm_without_ignoring_changed_values (tests.test_backup_encoding.BackupEncodingTests.test_json_text_boolean_and_scalar_match_orm_without_ignoring_changed_values)
+恢复JSON文本/布尔数值后与ORM相同；修改嵌套内容仍必须产生不同摘要正文。 ... ok
+
+----------------------------------------------------------------------
+Ran 79 tests in 73.517s
+
+OK

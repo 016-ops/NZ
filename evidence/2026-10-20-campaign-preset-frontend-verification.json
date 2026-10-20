@@ -1,0 +1,22 @@
+{
+  "date": "2026-10-20",
+  "scope": "活动入口命名与三主题预置封面前端回归",
+  "checks": {
+    "typecheck": { "command": "npm --prefix admin run typecheck", "status": "passed" },
+    "tests": { "command": "npm --prefix admin test", "status": "passed", "files": 5, "passed": 17, "new_preset_cases": 2 },
+    "build": { "command": "npm --prefix admin run build", "status": "passed", "modules": 1721, "warning": "主块约1.04MB，Vite提示超过500kB；不是构建失败。" },
+    "diff_check": { "command": "git diff --check", "status": "passed" }
+  },
+  "implemented": [
+    "官网、玩家、Launcher及后台泛用导航入口统一为活动，实际活动标题继续来自接口。",
+    "活动列表、详情与后台预览共用主题封面选择，自定义公共封面优先。",
+    "默认、战术、庆典模板分别使用已打包的三张固定WebP。",
+    "Launcher仅对三张完整匹配的本地预置资源直接显示；其他未知地址不直连或代理，公共媒体继续走固定ID桥。",
+    "纯helper测试覆盖主题切换、缺省回退、自定义优先、白名单及URL/路径变体拒绝。"
+  ],
+  "not_verified": [
+    "本证据不代表Windows/WebView实机图片显示或原生游戏实玩通过。",
+    "不代表SMTP真实投递、已登录浏览器工单或媒体全流程通过。",
+    "未部署远端服务。"
+  ]
+}

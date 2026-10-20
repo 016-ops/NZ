@@ -222,6 +222,8 @@ def command(service,c,account,session,action,data):
     if action=='room.create':
         if c.select('room_members',Q(account_id=account['id'])):raise Fault('ALREADY_IN_ROOM','请先退出当前房间',409)
         value,rule,fighters,observers=settings(data)
+        from .portal_operations import check_play_policy
+        check_play_policy(service,c,value['MapId'],value['ModeId'],value['SubModeId'])
         name=native_text(data.get('name'),32,empty=False);hashed=password_digest(data.get('password',''))
         channel=integer(data.get('sub_channel',1),1,1,'sub_channel')
         used=set(c.table('native_room_bindings').exclude(room__state='CLOSED').filter(sub_channel=channel).values_list('display_id',flat=True))
@@ -242,6 +244,8 @@ def command(service,c,account,session,action,data):
         binding=c.select('native_room_bindings',Q(id=number)).fetchone()
         room=c.select('rooms',Q(id=binding['room_id'])).fetchone() if binding else None
         if not room or room['state']=='CLOSED':raise Fault('NOT_FOUND','房间不存在',404)
+        from .portal_operations import check_play_policy
+        check_play_policy(service,c,binding['settings']['MapId'],binding['settings']['ModeId'],binding['settings']['SubModeId'])
         if room['state']!='OPEN':raise Fault('ROOM_STATE','房间正在分配或游戏中',409)
         access=c.select('room_settings',Q(room_id=room['id'])).fetchone()
         password=native_text(data.get('password',''),8)
@@ -320,6 +324,8 @@ def command(service,c,account,session,action,data):
         return snapshot(c,rid)
     elif action=='room.configure':
         value,rule,fighters,observers=settings(dict(data,fighter_capacity=data.get('fighter_capacity',binding['fighter_capacity']),observer_capacity=data.get('observer_capacity',binding['observer_capacity'])))
+        from .portal_operations import check_play_policy
+        check_play_policy(service,c,value['MapId'],value['ModeId'],value['SubModeId'])
         current=snapshot(c,rid)
         if sum(not p['observer'] for p in current['players'])>fighters or sum(p['observer'] for p in current['players'])>observers:
             raise Fault('ROOM_FULL','新配置不能容纳当前成员',409)
@@ -331,6 +337,8 @@ def command(service,c,account,session,action,data):
         c.update('room_members',Q(account_id=account['id']),dict(ready=1))
     elif action=='room.start':
         current=snapshot(c,rid);rule=catalog()['maps'][str(binding['settings']['MapId'])]
+        from .portal_operations import check_play_policy
+        policy=check_play_policy(service,c,binding['settings']['MapId'],binding['settings']['ModeId'],binding['settings']['SubModeId'])
         if not rule['main_resource']:raise Fault('UNVERIFIED_RESOURCE','当前构建缺少主地图资源',409)
         players=[p for p in current['players'] if not p['observer']]
         # 原生开始按钮属于房主，房主不另按准备；分配超时后也可直接重试下一局。
@@ -342,7 +350,7 @@ def command(service,c,account,session,action,data):
             roster.append(dict(account_id=who['id'],game_id=who['game_id'],security_version=who['security_version'],
                 slot=entry['slot'],observer=presence['observer'],equipment=list(c.equipment_snapshot(who['id'],service.clock()))))
         frozen=dict(catalog=service.catalog['id'],map_key=room['map_key'],revision=room['revision'],players=roster,
-            native_room_rule=VERSION,native_settings=binding['settings'],map=rule,reward={},evidence='NATIVE_ALLOCATION_PENDING')
+            native_room_rule=VERSION,native_settings=binding['settings'],play_policy_revision=policy['revision'],map=rule,reward={},evidence='NATIVE_ALLOCATION_PENDING')
         c.insert('matches',dict(id=match_id,room_id=rid,instance_id=instance,epoch=epoch,state='STARTING',
             snapshot=json.dumps(frozen,sort_keys=True,separators=(',',':')),node_token_hash='',created_at=service.clock(),lease_until=service.clock()+180))
         for who in roster:c.insert('match_players',dict(match_id=match_id,account_id=who['account_id'],security_version=who['security_version'],eligible=int(not who['observer'])))
@@ -355,7 +363,9 @@ def command(service,c,account,session,action,data):
 def query(service,c,account,session,view,data):
     """公开频道列表有界分页；本人当前房间必须经过会话绑定，不把任意房号当本人权限。"""
     scope(data);expire(service,c)
-    if view=='room.catalog':return catalog()
+    if view=='room.catalog':
+        from .portal_operations import filter_play_catalog
+        return filter_play_catalog(service,c,catalog())
     if view=='room.invitation':
         number=integer(data.get('native_room_id'),1,2**63-1,'native_room_id')
         binding=c.select('native_room_bindings',Q(id=number)).fetchone()

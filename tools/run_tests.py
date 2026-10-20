@@ -63,12 +63,16 @@ def main():
                              'tests.test_native_owned_loadout_compat','tests.test_native_tower_owned_compat',
                              'tests.test_native_legacy_tower_owned_compat','tests.test_native_bag_compat',
                              'tests.test_native_room_protocol','tests.test_native_room_journal',
-                             'tests.test_native_room_server_config']
+                             'tests.test_native_room_server_config','tests.test_run_tests',
+                             'tests.test_launcher_hook','tests.test_launcher_portal_proxy','tests.test_launcher_portal_v2']
         selected=[name for name in independent_modules if fnmatch.fnmatch(name.rsplit('.',1)[-1]+'.py',args.pattern)]
         business_matches=[path for path in (root/'tests').glob(args.pattern)
                           if 'tests.'+path.stem not in independent_modules]
         if args.tooling or (selected and not business_matches):
-            suite=unittest.defaultTestLoader.loadTestsFromNames(selected)
+            # 显式指定工具标签时只运行这些独立用例，便于记录本批相关控制器/打包测试。
+            # 默认仍保留原完整工具集合；不能把工具测试报告称为MySQL验证。
+            modules = args.labels if args.tooling and args.labels != ['tests'] else selected
+            suite=unittest.defaultTestLoader.loadTestsFromNames(modules)
         else:
             os.environ.setdefault('DJANGO_SETTINGS_MODULE','nzproject.settings')
             import django
@@ -93,7 +97,10 @@ def main():
                 'skipped':[{'test':t.id(),'reason':reason}for t,reason in result.skipped],
                 'exit_code':0 if result.wasSuccessful() else 1,'seconds':round(time.monotonic()-start,3)}
     output.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
-    print(json.dumps({k:v for k,v in report.items()if k not in ('passed','failures','errors')},ensure_ascii=False))
+    # Windows CI 的重定向 stdout 可能仍是 cp1252；终端摘要使用 JSON 的 ASCII 转义，
+    # 避免中文 skip reason 导致已经完成的测试在打印阶段报 UnicodeEncodeError。
+    # 完整证据文件继续使用上方显式 UTF-8 写入，保留原始中文便于人工复核。
+    print(json.dumps({k:v for k,v in report.items()if k not in ('passed','failures','errors')},ensure_ascii=True))
     if not args.upstream and not result.wasSuccessful():
         print(json.dumps({'failing_tests':[t.id()for t,_ in result.failures+result.errors]}))
     raise SystemExit(report['exit_code'])

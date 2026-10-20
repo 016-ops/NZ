@@ -1,0 +1,26 @@
+# 根据实际域名与证书路径替换占位值；Django的NZ_PUBLIC_ORIGIN必须与此HTTPS来源精确一致。
+server {
+    listen 443 ssl;
+    server_name example.invalid;
+    ssl_certificate /etc/ssl/nz/fullchain.pem;
+    ssl_certificate_key /etc/ssl/nz/privkey.pem;
+    client_max_body_size 64k;
+    # 仅固定图片上传路径放宽正文；反馈图片始终由应用鉴权，禁止映射私有媒体目录。
+    location ~ "^/api/(feedback/[a-f0-9]{32}/attachments|admin/media)$" {
+        client_max_body_size 6m;
+        proxy_pass http://127.0.0.1:18765;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 30s;
+    }
+    location / {
+        proxy_pass http://127.0.0.1:18765;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_connect_timeout 5s;
+        proxy_read_timeout 30s;
+    }
+}

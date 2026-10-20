@@ -1,0 +1,40 @@
+{
+  "kind": "EXACT_GITHUB_WINDOWS_ARTIFACT_VERIFICATION_NOT_GAME_ACCEPTANCE",
+  "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+  "run_id": 39402348645,
+  "run_url": "https://github.com/016-ops/NZ/actions/runs/39402348645",
+  "job_id": 118559893775,
+  "job_url": "https://github.com/016-ops/NZ/actions/runs/39402348645/job/118559893775",
+  "artifact_id": 12256681134,
+  "wrapper": {
+    "bytes": 26737783,
+    "sha256": "53e5b9efa9054e129859dfd326b82dd6c73bcdc1d69095d2f90295a76b164b6b"
+  },
+  "archive": {
+    "path": "/Users/zjh/NZ/outputs/portal-v2-2026-10-20/NZLauncher-DEV.zip",
+    "bytes": 26934988,
+    "sha256": "640f97b8e43ed11e4da71a58353bc4cbae20b3d8671ddd690cb0aa8d1de14628"
+  },
+  "manifest_sidecar": "/Users/zjh/NZ/outputs/portal-v2-2026-10-20/NZLauncher-DEV.package-manifest.json",
+  "payload_files": 761,
+  "archive_files": 762,
+  "checks": {
+    "wrapper_digest": true,
+    "normal_paths_no_symlinks": true,
+    "private_path_boundary": true,
+    "exact_payload_set": true,
+    "every_file_size_sha256": true,
+    "external_manifest_matches": true,
+    "required_entries": true,
+    "updated_platform_readme": true,
+    "delivery_copy_sha256": true
+  },
+  "service_smoke": {
+    "bootstrap_close_passed": true,
+    "api_login_executed": false,
+    "seconds": 2.272
+  },
+  "native_start_available": false,
+  "clean_machine_verified": false,
+  "public_api_configuration_state": "DEFAULT_LOOPBACK_PLACEHOLDER_NOT_SERVER_LOGIN_TESTED"
+}

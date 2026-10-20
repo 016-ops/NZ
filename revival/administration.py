@@ -1,24 +1,19 @@
-"""Owner 管理管理员及一次性 MFA 恢复；高风险授权由统一命令入口再次认证。"""
-import base64
-import secrets
+"""Owner管理员生命周期；固定邮箱高风险授权由统一命令入口负责，旧恢复入口明确退役。"""
 from django.db.models import F, Q
-from .security import normalize_login, password_hash, token_hash, verify_password
+from .security import normalize_login, password_hash
 from .service import Fault, PERMISSIONS, identifier, text_field
 
 
 def recovery_codes(c, admin_id):
-    """替换恢复码并仅返回一次明文；随机码具备高熵，数据库只保留 SHA256。"""
-    codes = [secrets.token_urlsafe(24) for _ in range(8)]
-    c.delete('admin_recovery', Q(admin_id=admin_id))
-    for code in codes:
-        c.insert('admin_recovery', {'digest': token_hash(code), 'admin_id': admin_id})
-    return codes
+    """旧恢复码生成入口已退役，不产生可绕过邮件的凭据。"""
+    raise Fault('AUTH_METHOD_RETIRED', '管理员恢复码已退役，请使用固定邮箱认证', 403)
 
 
 def revoke(c, admin_id):
-    """管理员角色、密码或 MFA 变化后立即使旧会话失效。"""
+    """管理员角色或密码变化后撤销旧会话及未消费的邮件挑战。"""
     c.update('admins', Q(id=admin_id), {'security_version': F('security_version') + 1})
     c.update('sessions', Q(subject_id=admin_id, kind='admin'), {'revoked': 1})
+    c.update('admin_auth_challenges', Q(admin_id=admin_id, consumed_at__isnull=True), {'status': 'SUPERSEDED'})
 
 
 def admin_command(service, c, actor, action, data):
@@ -33,9 +28,9 @@ def admin_command(service, c, actor, action, data):
             raise Fault('INVALID', 'Unknown administrator role')
         if c.select('admins', Q(login=login)).fetchone():
             raise Fault('CONFLICT', 'Administrator already exists', 409)
-        admin_id, secret = identifier(), base64.b32encode(secrets.token_bytes(20)).decode('ascii')
-        c.insert('admins', {'id': admin_id, 'login': login, 'password_hash': hashed, 'otp_secret': secret, 'role': role})
-        return {'admin_id': admin_id, 'role': role, 'otp_secret': secret, 'recovery_codes': recovery_codes(c, admin_id)}
+        admin_id = identifier()
+        c.insert('admins', {'id': admin_id, 'login': login, 'password_hash': hashed, 'otp_secret': '', 'role': role})
+        return {'admin_id': admin_id, 'role': role, 'authentication': 'FIXED_EMAIL_CODE'}
     target = c.select('admins', Q(id=data.get('admin_id'))).fetchone()
     if not target:
         raise Fault('NOT_FOUND', 'Administrator does not exist', 404)
@@ -57,32 +52,9 @@ def admin_command(service, c, actor, action, data):
         c.update('admins', Q(id=target['id']), {'password_hash': hashed})
         revoke(c, target['id'])
         return {'admin_id': target['id'], 'sessions_revoked': True}
-    if action in ('admin.mfa.reset', 'admin.recovery.rotate'):
-        result = {'admin_id': target['id'], 'recovery_codes': recovery_codes(c, target['id'])}
-        if action == 'admin.mfa.reset':
-            secret = base64.b32encode(secrets.token_bytes(20)).decode('ascii')
-            c.update('admins', Q(id=target['id']), {'otp_secret': secret, 'last_otp_step': -1})
-            result['otp_secret'] = secret
-            revoke(c, target['id'])
-        return result
     raise Fault('NOT_FOUND', 'Unknown administrator action', 404)
 
 
 def recover_mfa(service, login, password, code):
-    """仅本机管理命令调用：密码和未用恢复码共同核验，恢复后替换 MFA 与全部恢复码。"""
-    try:
-        login = normalize_login(login)
-    except ValueError:
-        raise Fault('AUTH', 'Invalid recovery credentials', 401)
-    code = text_field(code, 'recovery_code', 128)
-    with service.db.transaction() as c:
-        admin = c.select('admins', Q(login=login, active=1)).fetchone()
-        recovery = c.select('admin_recovery', Q(digest=token_hash(code), used_at__isnull=True)).fetchone()
-        if not admin or not recovery or recovery['admin_id'] != admin['id'] or not verify_password(password, admin['password_hash']):
-            raise Fault('AUTH', 'Invalid recovery credentials', 401)
-        secret = base64.b32encode(secrets.token_bytes(20)).decode('ascii')
-        c.update('admins', Q(id=admin['id']), {'otp_secret': secret, 'last_otp_step': -1})
-        revoke(c, admin['id'])
-        codes = recovery_codes(c, admin['id'])
-        service._audit(c, admin['id'], 'admin.mfa.recover', admin['id'], identifier(), 'Local password and one-time recovery code', {})
-        return {'admin_id': admin['id'], 'otp_secret': secret, 'recovery_codes': codes}
+    """旧本机恢复函数明确失败；保留名称便于旧调用方获得安全错误。"""
+    raise Fault('AUTH_METHOD_RETIRED', 'TOTP及本地恢复码入口已退役，请使用固定邮箱认证', 403)

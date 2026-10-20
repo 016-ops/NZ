@@ -8,6 +8,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { RetryEnvelope, type Metadata } from '@/lib/api'
+import { assetCodeLabel } from '@/lib/platform'
+import { itemName } from './item-artwork'
 
 export interface Field { name: string; label: string; type?: string; optional?: boolean; options?: [string, string][] }
 export type Values = Record<string, string>
@@ -65,7 +67,7 @@ const fieldLabels: Record<string, string> = {
   email:'邮箱', email_verified:'邮箱已验证', login:'账号', game_id:'游戏映射', status:'状态', created_at:'创建时间', last_login:'最近登录',
   character:'角色', nickname:'昵称', init_state:'初始化状态', profile:'环境', wallets:'钱包',
   currency:'币种', balance:'余额', inventory:'库存', equipment:'装备', sanctions:'制裁', room:'当前房间',
-  slot:'槽位', item_key:'物品', quantity:'数量', expires_at:'有效期', bound:'绑定状态',
+  slot:'槽位', equipment_slot:'装备槽位', item_key:'物品', quantity:'数量', expires_at:'有效期', bound:'绑定状态',
   max_uses:'可用次数', uses:'已使用', revoked:'撤销状态', capacity:'席位上限', map_key:'地图',
   state:'状态', type:'事件类型', attempts:'重试次数', last_error:'最近错误', time:'时间',
   action:'操作', result:'结果', reason:'原因', detail:'详情', role:'权限角色', kind:'身份',
@@ -84,7 +86,9 @@ const valueLabels: Record<string,string> = { ACTIVE:'正常', PENDING_REVIEW:'�
   resources:'资源管理员',auditor:'审计员',player:'玩家',admin:'管理员',primary:'主武器',
   'test-rifle':'测试步枪','test-token':'测试道具','test-arena':'测试竞技场',
 }
-const technical = new Set(['id','account_id','subject_id','target','actor','request_id','inventory_id','match_id','instance_id','epoch','revision','version','security_version','linked_operation'])
+const technical = new Set(['id','account_id','subject_id','target','actor','request_id','inventory_id','match_id','instance_id','item_id','gid','map_id','mode_id','difficulty','submode','submodes','available_submodes','rules_version','epoch','revision','version','security_version','linked_operation'])
+// 已翻译的资源值仍可在折叠诊断中核对原码；默认行不直接显示未知资源键、币种或状态枚举。
+const codedFields = new Set(['item_key','currency','slot','equipment_slot','status','state','result','sync_status'])
 
 /** 时间、枚举和空值采用用户可读格式；服务端原值在技术详情中保留，金额不凭空转换币种。 */
 function DisplayValue({ name, value }: { name: string; value: unknown }) {
@@ -92,12 +96,14 @@ function DisplayValue({ name, value }: { name: string; value: unknown }) {
   if (Array.isArray(value)) return value.length ? <Records value={value} /> : <span className="muted-value">暂无记录</span>
   if (typeof value === 'object') return <Details value={value} />
   if (typeof value === 'boolean') return <span>{value ? '是' : '否'}</span>
+  if (name === 'item_key') return <span>{itemName(String(value))}</span>
+  if (name === 'currency' || name === 'slot' || name === 'equipment_slot') return <span>{assetCodeLabel(name, value)}</span>
+  if (['status','state','result','sync_status'].includes(name)) return <span className={`status-chip ${['ACTIVE','COMMITTED','READY','OPEN','DELIVERED'].includes(String(value)) ? 'positive' : 'muted'}`}>{valueLabels[String(value)] || '状态待确认'}</span>
   if (typeof value === 'number') {
     if (name.endsWith('_at') || name==='time' || name==='last_login') return <span>{new Date(value*1000).toLocaleString('zh-CN',{hour12:false})}</span>
     if (name==='revoked' || name==='bound') return <span>{value ? '是' : '否'}</span>
     return <span className="numeric-value">{value.toLocaleString('zh-CN')}</span>
   }
-  if (['status','state','result','sync_status'].includes(name) && valueLabels[String(value)]) return <span className={`status-chip ${['ACTIVE','COMMITTED','READY','OPEN','DELIVERED'].includes(String(value)) ? 'positive' : 'muted'}`}>{valueLabels[String(value)]}</span>
   return <span className="break-all">{valueLabels[String(value)] || String(value)}</span>
 }
 
@@ -108,7 +114,7 @@ export function Details({ value }: { value: unknown }) {
   if (Array.isArray(value)) return <Records value={value} />
   const entries=Object.entries(value)
   const visible=entries.filter(([key]) => !technical.has(key))
-  const hidden=entries.filter(([key]) => technical.has(key))
+  const hidden=entries.filter(([key]) => technical.has(key) || codedFields.has(key))
   return <div className="record-details"><dl className="detail-grid">{visible.map(([key,item]) => <div key={key} className={typeof item==='object' && item!==null ? 'detail-group' : 'detail-item'}><dt>{fieldLabels[key] || key}</dt><dd><DisplayValue name={key} value={item} /></dd></div>)}</dl>
     {hidden.length>0 && <details className="technical-details"><summary>查看技术信息</summary><dl>{hidden.map(([key,item]) => <div key={key}><dt>{key}</dt><dd>{String(item ?? '暂无')}</dd></div>)}</dl></details>}
   </div>

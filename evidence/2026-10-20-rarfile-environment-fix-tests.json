@@ -1,0 +1,21 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 5,
+  "passed": [
+    "tests.test_native_images.ImageTests.test_architecture_conflict_zero_image_and_unbounded_headers",
+    "tests.test_native_images.ImageTests.test_archive_paths_and_crc_reject_corruption_and_escape",
+    "tests.test_native_images.ImageTests.test_missing_disk_section_is_rejected_but_virtual_zero_fill_is_allowed",
+    "tests.test_native_images.ImageTests.test_recovery_receipt_detects_changed_target_and_backup"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [
+    {
+      "test": "tests.test_native_images.ImageTests.test_job_keeps_and_cleans_child_after_root_exits",
+      "reason": "Windows Job Object integration"
+    }
+  ],
+  "exit_code": 0,
+  "seconds": 0.013
+}

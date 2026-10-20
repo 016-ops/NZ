@@ -1,0 +1,508 @@
+{
+  "schema_version": "nz-remote-ci-verification-v1",
+  "observed_at_utc": "2026-10-20T05:52:03+00:00",
+  "repository": "https://github.com/016-ops/NZ",
+  "branch": "fix/launcher-portal-admin",
+  "scope": "GitHub Actions公开元数据与本轮新生成报告的脱敏摘要；未读取或输出账号、令牌、私有配置或原始堆栈路径。",
+  "counting_notes": [
+    "tests为unittest.testsRun，passed为成功测试ID数量。",
+    "failures/errors为报告条目数，包含subTest条目，不能直接与tests相加。",
+    "setUpClass缺私有夹具的Skip单独计为suite_entries，不计入testsRun；测试内Skip计为test_entries。",
+    "MySQL job运行所有发现测试，包含独立平台工具；业务失败与工具环境/系统平台失败分别列出。"
+  ],
+  "deployment": {
+    "web": "本次仅Web部署；等待用户环境配置，CI不是远端部署。",
+    "native": "原生游戏实玩单独验收；缺私有客户端夹具明确未验证。",
+    "launcher": "编译/冻结成功不等于启动或干净Windows机器验收成功；失败smoke不会上传坏包。"
+  },
+  "latest_observed_commit": "6f12054997e32258e807980265dad04a4afe914e",
+  "runs": [
+    {
+      "commit": "f0080bfdf681db5aad89d73d5e3b38fbfdc04988",
+      "run_id": 39374115400,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39374115400",
+      "workflow": "Django MySQL and React checks",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "name": "mysql",
+          "job_id": 118468283809,
+          "conclusion": "failure",
+          "tests": null,
+          "classification": "CI_DATABASE_READINESS",
+          "reason": "mysqladmin ping提前报告存活，初始化临时服务仍拒绝root认证；数据库回归尚未启动。",
+          "artifact": {
+            "id": 12242249990,
+            "accepted_as_current_evidence": false,
+            "reason": "旧工作流上传仓库已有历史报告，不能代表该次未运行的测试。"
+          }
+        },
+        {
+          "name": "windows",
+          "job_id": 118468284112,
+          "conclusion": "failure",
+          "tests": null,
+          "classification": "CI_STDOUT_ENCODING",
+          "reason": "报告已写入后，cp1252 stdout打印中文摘要发生UnicodeEncodeError；本次没有可读取的新报告artifact。"
+        }
+      ]
+    },
+    {
+      "commit": "f0080bfdf681db5aad89d73d5e3b38fbfdc04988",
+      "run_id": 39374115588,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39374115588",
+      "workflow": "Build Windows DEV Launcher package",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "name": "portable",
+          "job_id": 118468284510,
+          "conclusion": "failure",
+          "classification": "FROZEN_SERVICE_STARTUP",
+          "checks": {
+            "rust_release_tests": {
+              "tests": 1,
+              "passed": 1
+            },
+            "rust_release_build": "success",
+            "pyinstaller_onedir_build": "success",
+            "frozen_service_bootstrap_close": "failure"
+          },
+          "reason": "FROZEN_SERVICE_BOOTSTRAP_SMOKE_FAILED；当时尚未加入安全细分诊断。",
+          "artifact": null
+        }
+      ]
+    },
+    {
+      "commit": "ae1499634fee7cd599eed9622296ba0a72a19381",
+      "run_id": 39374574189,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39374574189",
+      "workflow": "Django MySQL and React checks",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "name": "mysql",
+          "job_id": 118469713763,
+          "conclusion": "failure",
+          "artifact": {
+            "id": 12243287716,
+            "name": "mysql-test-results",
+            "fresh": true
+          },
+          "stats": {
+            "tests": 557,
+            "passed": 531,
+            "skipped": {
+              "test_entries": 8,
+              "suite_entries": 5,
+              "total_entries": 13
+            },
+            "failures": 5,
+            "errors": 23,
+            "seconds": 740.252,
+            "mysql_version": "8.4.11"
+          },
+          "business_failure_entries": 0,
+          "business_error_entries": 0,
+          "classification": "TOOL_ENVIRONMENT_AND_PLATFORM_ISOLATION",
+          "categories": [
+            "旧提交缺paramiko/lzokay及其连锁错误。",
+            "缺固定私有Bag原件，旧测试未显式标记未验。",
+            "Linux运行真实Windows原子覆盖/UDP系统表测试。",
+            "纯WinDLL mock未使用create=True。",
+            "目录符号链接清理误用rmdir。"
+          ],
+          "note": "已解析的失败/错误均在工具测试或工具导入；没有业务测试失败条目。已按类别完成后续最小修复，不能将该整轮标记通过。"
+        },
+        {
+          "name": "windows",
+          "job_id": 118469713007,
+          "conclusion": "failure",
+          "artifact": {
+            "id": 12242498499,
+            "name": "windows-tooling-test-results",
+            "fresh": true
+          },
+          "stats": {
+            "tests": 229,
+            "passed": 222,
+            "skipped": {
+              "test_entries": 1,
+              "suite_entries": 5,
+              "total_entries": 6
+            },
+            "failures": 5,
+            "errors": 9,
+            "seconds": 1.895,
+            "mysql_version": null
+          },
+          "classification": "TOOL_ENVIRONMENT",
+          "categories": [
+            "缺paramiko/lzokay及其连锁错误。",
+            "固定私有Bag原件缺失。"
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "77813a0e1dca952eb7441cb02ac530c7bea77bff",
+      "run_id": 39375100024,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39375100024",
+      "workflow": "Django MySQL and React checks",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "name": "mysql",
+          "job_id": 118471368993,
+          "status": "completed",
+          "stats": {
+            "tests": 575,
+            "passed": 556,
+            "skipped": {
+              "test_entries": 8,
+              "suite_entries": 6,
+              "total_entries": 14
+            },
+            "failures": 0,
+            "errors": 13,
+            "seconds": 731.059,
+            "mysql_version": "8.4.11"
+          },
+          "conclusion": "failure",
+          "artifact": {
+            "id": 12242589142,
+            "name": "mysql-test-results",
+            "fresh": true
+          },
+          "business_failure_entries": 0,
+          "business_error_entries": 0,
+          "classification": "TOOL_PLATFORM_ISOLATION",
+          "categories": [
+            "真实Windows原子覆盖/UDP系统表测试在Linux运行。",
+            "纯WinDLL mock未使用create=True。",
+            "目录符号链接清理误用rmdir。"
+          ],
+          "note": "该旧提交的依赖问题已解决，剩余13个错误条目均为已在6f12054修复的平台工具隔离；整轮仍为失败，业务错误条目为0。"
+        },
+        {
+          "name": "windows",
+          "job_id": 118471369348,
+          "status": "completed",
+          "conclusion": "failure",
+          "artifact": {
+            "id": 12242569176,
+            "name": "windows-tooling-test-results",
+            "fresh": true
+          },
+          "stats": {
+            "tests": 242,
+            "passed": 238,
+            "skipped": {
+              "test_entries": 1,
+              "suite_entries": 6,
+              "total_entries": 7
+            },
+            "failures": 5,
+            "errors": 5,
+            "seconds": 2.486,
+            "mysql_version": null
+          },
+          "classification": "TOOL_IMPORT_COUPLING",
+          "categories": [
+            "native_email_boot借用verify_email_dev.metadata，间接导入SSH/数据库维护工具，Windows缺MySQLdb导致身份/注销测试连锁错误。"
+          ],
+          "resolution": "metadata移至纯email_launcher模块；原身份和注销断言保留，并主动屏蔽MySQLdb/verify_email_dev导入证明隔离。"
+        }
+      ]
+    },
+    {
+      "commit": "77813a0e1dca952eb7441cb02ac530c7bea77bff",
+      "run_id": 39375099947,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39375099947",
+      "workflow": "Build Windows DEV Launcher package",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "name": "portable",
+          "job_id": 118471368800,
+          "conclusion": "failure",
+          "classification": "FROZEN_SERVICE_STARTUP",
+          "safe_smoke_diagnostic": {
+            "exit_code": 1,
+            "bootstrap_parsed": false,
+            "startup_error_code": "INVALIDTEMPLATELIBRARY",
+            "stderr_missing_module": null
+          },
+          "artifact": null,
+          "note": "安全诊断未输出本机能力、完整stderr或路径；后续i18n hook修复仍需新Windows构建验证。"
+        }
+      ]
+    },
+    {
+      "commit": "37b759841caec31408d4e3d01a47db409400e399",
+      "run_id": 39375681704,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39375681704",
+      "workflow": "Django MySQL and React checks",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "name": "mysql",
+          "job_id": 118473162865,
+          "status": "completed",
+          "stats": {
+            "tests": 578,
+            "passed": 559,
+            "skipped": {
+              "test_entries": 8,
+              "suite_entries": 6,
+              "total_entries": 14
+            },
+            "failures": 0,
+            "errors": 13,
+            "seconds": 666.786,
+            "mysql_version": "8.4.11"
+          },
+          "conclusion": "failure",
+          "artifact": {
+            "id": 12243268007,
+            "name": "mysql-test-results",
+            "fresh": true
+          },
+          "business_failure_entries": 0,
+          "business_error_entries": 0,
+          "classification": "TOOL_PLATFORM_ISOLATION",
+          "categories": [
+            "真实Windows原子覆盖/UDP系统表测试在Linux运行。",
+            "纯WinDLL mock未使用create=True。",
+            "目录符号链接清理误用rmdir。"
+          ],
+          "note": "与77813旧提交相同的13个平台工具错误条目；6f12054已修，最新完整MySQL验证仍等待，不把本轮标为通过。"
+        },
+        {
+          "name": "windows",
+          "job_id": 118473163079,
+          "status": "completed",
+          "conclusion": "success",
+          "artifact": {
+            "id": 12243307669,
+            "name": "windows-tooling-test-results",
+            "fresh": true
+          },
+          "stats": {
+            "tests": 245,
+            "passed": 244,
+            "skipped": {
+              "test_entries": 1,
+              "suite_entries": 6,
+              "total_entries": 7
+            },
+            "failures": 0,
+            "errors": 0,
+            "seconds": 3.11,
+            "mysql_version": null
+          },
+          "frontend_build_and_tests": "success",
+          "classification": "INDEPENDENT_TOOLING_PASSED",
+          "skipped_details": [
+            {
+              "kind": "test",
+              "test": "tests.test_native_pve_compat.PveCompatTests.test_real_candidate_preserves_original_function_and_recovers_after_restart",
+              "reason": "固定本地客户端夹具缺失，真实包未验证。"
+            },
+            {
+              "kind": "suite",
+              "suite": "HuntCompatTests",
+              "reason": "固定私有客户端或原始配置夹具缺失，明确未验证。"
+            },
+            {
+              "kind": "suite",
+              "suite": "OwnedLoadoutTests",
+              "reason": "固定私有客户端或原始配置夹具缺失，明确未验证。"
+            },
+            {
+              "kind": "suite",
+              "suite": "TowerOwnedTests",
+              "reason": "固定私有客户端或原始配置夹具缺失，明确未验证。"
+            },
+            {
+              "kind": "suite",
+              "suite": "LegacyTowerOwnedTests",
+              "reason": "固定私有客户端或原始配置夹具缺失，明确未验证。"
+            },
+            {
+              "kind": "suite",
+              "suite": "NativeBagTests",
+              "reason": "固定私有客户端或原始配置夹具缺失，明确未验证。"
+            },
+            {
+              "kind": "suite",
+              "suite": "NativeRoomServerConfigTests",
+              "reason": "固定私有客户端或原始配置夹具缺失，明确未验证。"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "commit": "37b759841caec31408d4e3d01a47db409400e399",
+      "run_id": 39375681700,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39375681700",
+      "workflow": "Build Windows DEV Launcher package",
+      "status": "completed",
+      "conclusion": "success",
+      "note": "内层NZLauncher-DEV.zip已独立核对集合、逐文件SHA与manifest；公开API仍默认回环18765占位。干净Windows机器与原生游戏实玩仍未验收。",
+      "artifact": {
+        "id": 12243650799,
+        "name": "NZLauncher-DEV-Windows",
+        "wrapper_bytes": 25777855,
+        "wrapper_sha256": "d92596490ed233ea21c7102c221449430f2a787d70ee9bf464623e7b71bb25c4",
+        "wrapper_is_distribution_archive": false,
+        "distribution_archive_sha256": "139c84de2b034d33be4f5079be6821d582112c02d4552b375733f02494102993",
+        "distribution_archive_name": "NZLauncher-DEV.zip",
+        "distribution_archive_bytes": 25974212,
+        "verification_evidence": "evidence/2026-10-19-windows-package-verification.json"
+      },
+      "jobs": [
+        {
+          "name": "portable",
+          "job_id": 118473162664,
+          "status": "completed",
+          "conclusion": "success",
+          "checks": {
+            "rust_release_tests": "success",
+            "rust_release_build": "success",
+            "pyinstaller_onedir_build": "success",
+            "frozen_service_bootstrap_close": "success",
+            "artifact_upload": "success"
+          }
+        }
+      ],
+      "delivery_verification": {
+        "payload_files": 754,
+        "manifest_and_file_sha256": "passed",
+        "ordinary_paths_and_no_symlinks": "passed",
+        "private_path_boundary": "passed",
+        "external_manifest_matches": "passed",
+        "bootstrap_close": true,
+        "api_login_executed": false,
+        "native_start_available": false,
+        "clean_windows_install_verified": false,
+        "api_base_url_is_placeholder_loopback": true
+      }
+    },
+    {
+      "commit": "6f12054997e32258e807980265dad04a4afe914e",
+      "run_id": 39375957208,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39375957208",
+      "workflow": "Django MySQL and React checks",
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        {
+          "name": "mysql",
+          "job_id": 118474030677,
+          "status": "completed",
+          "stats": {
+            "tests": 579,
+            "passed": 565,
+            "skipped": {
+              "test_entries": 14,
+              "suite_entries": 6,
+              "total_entries": 20
+            },
+            "failures": 0,
+            "errors": 0,
+            "seconds": 582.514,
+            "mysql_version": "8.4.11"
+          },
+          "conclusion": "success",
+          "artifact": {
+            "id": 12243727463,
+            "name": "mysql-test-results",
+            "fresh": true
+          },
+          "business_failure_entries": 0,
+          "business_error_entries": 0,
+          "classification": "MYSQL_FULL_REGRESSION_PASSED",
+          "frontend_build_and_tests": "success",
+          "skip_categories": {
+            "windows_integration_tests": 12,
+            "private_client_tests": 2,
+            "private_fixture_suites": 6
+          },
+          "note": "完整业务/MySQL发现集合通过；12项Windows-only skip已逐个test.id与最终Windows passed集合比对，交集12、差集为空。2项真实客户端测试及6个固定私有原件套件仍明确未验。"
+        },
+        {
+          "name": "windows",
+          "job_id": 118474030815,
+          "status": "completed",
+          "stats": {
+            "tests": 246,
+            "passed": 245,
+            "skipped": {
+              "test_entries": 1,
+              "suite_entries": 6,
+              "total_entries": 7
+            },
+            "failures": 0,
+            "errors": 0,
+            "seconds": 2.748,
+            "mysql_version": null
+          },
+          "conclusion": "success",
+          "artifact": {
+            "id": 12243705393,
+            "name": "windows-tooling-test-results",
+            "fresh": true
+          },
+          "frontend_build_and_tests": "success",
+          "classification": "INDEPENDENT_TOOLING_PASSED"
+        }
+      ],
+      "note": "仅修正测试平台隔离；未跳过业务/MySQL或放宽生产Windows原子文件门禁。"
+    }
+  ],
+  "pending": [
+    "Windows便携包干净机器/API登录验收，以及独立原生游戏实玩验收；当前公开地址仍回环占位。"
+  ],
+  "conclusion": {
+    "combined_ci_run_id": 39375957208,
+    "verified_commit": "6f12054997e32258e807980265dad04a4afe914e",
+    "mysql": "success",
+    "windows": "success",
+    "launcher_run_id": 39375681700,
+    "launcher_source_commit": "37b759841caec31408d4e3d01a47db409400e399",
+    "launcher_build_and_bootstrap": "success",
+    "native_gameplay_verified": false,
+    "clean_windows_install_verified": false,
+    "web_deployed": false
+  },
+  "cross_job_windows_skip_verification": {
+    "method": "exact test.id set membership in final Windows passed list",
+    "mysql_artifact_id": 12243727463,
+    "windows_artifact_id": 12243705393,
+    "mysql_windows_only_skip_count": 12,
+    "intersection_count": 12,
+    "difference_ids": [],
+    "verified_test_ids": [
+      "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_external_file_and_install_race_are_preserved",
+      "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_files_recover_after_restart_without_touching_originals",
+      "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_prepared_plan_survives_post_install_failure",
+      "tests.test_native_frame_bridge.FrameBridgeTests.test_restart_restores_only_owned_file",
+      "tests.test_native_graphics_compat.GraphicsCompatibilityTests.test_partial_install_failure_removes_only_owned_files_on_recovery",
+      "tests.test_native_images.ImageTests.test_job_keeps_and_cleans_child_after_root_exits",
+      "tests.test_native_job.NativeJobCleanupTests.test_observer_error_waits_for_owned_file_holder_before_restore",
+      "tests.test_native_job.NativeJobCleanupTests.test_parent_exit_does_not_leave_unobserved_owned_child_running",
+      "tests.test_native_room_journal.NativeRoomJournalTests.test_corrupted_protected_journal_is_preserved_and_rejected",
+      "tests.test_native_room_journal.NativeRoomJournalTests.test_previous_passwordless_journal_remains_compatible",
+      "tests.test_native_room_journal.NativeRoomJournalTests.test_secret_is_protected_and_same_user_can_resume",
+      "tests.test_native_udp_probe.NativeUdpProbeTests.test_real_owned_loopback_udp_port_detected_without_sending"
+    ]
+  }
+}

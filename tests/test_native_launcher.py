@@ -27,6 +27,13 @@ class LauncherTests(unittest.TestCase):
         """每个用例拥有独立控制器、假凭据和请求工厂，不写玩家状态。"""
         self.controller = launcher.LauncherController(Mock())
         self.factory = RequestFactory()
+        # 本组验证控制器的错误/清理逻辑，Win32代码页属于外部依赖；在非Windows主机
+        # 显式模拟它，不能让缺少ctypes.WinDLL掩盖要验证的超时和图形失败路径。
+        # 这不执行真实Windows API，也不构成安装、图形或游戏验收。
+        if not hasattr(launcher.ctypes, 'WinDLL'):
+            codepage = patch.object(launcher.ctypes, 'WinDLL', create=True)
+            codepage.start().return_value.GetACP.return_value = 936
+            self.addCleanup(codepage.stop)
 
     def call(self, action='status', method='get', **headers):
         """调用真实 Django 入口，默认仅提供正确 Host 和本机能力。"""
@@ -128,6 +135,7 @@ class LauncherTests(unittest.TestCase):
     def test_uncertain_redeem_does_not_repeat_and_revokes_source(self):
         """票据兑换应答丢失不重放；撤销来源会话同时废止可能已生成的游戏会话。"""
         self.controller.session = 'source'
+        self.controller.account = {'character_id': 'character', 'nickname': '玩家'}
         self.controller.client.request.side_effect = [{'ticket': 'one-use-ticket'}, TimeoutError()]
         with patch.object(launcher, 'recover_configurations'), patch.object(launcher, 'fingerprint', return_value=('a'*64, {})), \
                 patch('tools.native_email_boot.revoke_owned_dev_session', return_value={'verified': True}) as revoke:
@@ -140,6 +148,7 @@ class LauncherTests(unittest.TestCase):
     def test_cancel_before_ticket_still_logs_out(self):
         """取消可在创建游戏前生效，且已经登录的来源会话仍会清理。"""
         self.controller.session = 'source'
+        self.controller.account = {'character_id': 'character', 'nickname': '玩家'}
         self.controller.stop.set()
         with patch.object(launcher, 'recover_configurations'), patch.object(launcher, 'fingerprint', return_value=('a'*64, {})), \
                 patch('tools.native_email_boot.revoke_owned_dev_session', return_value={'verified': True}):
@@ -150,7 +159,7 @@ class LauncherTests(unittest.TestCase):
     def test_startup_timeout_is_not_success_and_revokes_both_sessions(self):
         """初始化超时即使已创建进程也必须报错；完成本地清理后撤销来源和游戏凭据。"""
         self.controller.session = 'source'
-        self.controller.account = {'id': 'fixture', 'nickname': '测试'}
+        self.controller.account = {'id': 'fixture', 'character_id': 'character', 'nickname': '测试'}
         self.controller.client.request.side_effect = [{'ticket': 'fixture'}, {'game_token': 'game'}, {'game_id': 10001}]
         with patch.object(launcher, 'recover_configurations'), patch.object(launcher, 'fingerprint', return_value=('a'*64, {})), \
                 patch('tools.native_email_boot.current_dev_player_info', return_value=({}, b'fixture')), \
@@ -197,8 +206,8 @@ class LauncherTests(unittest.TestCase):
         for blocker,expected in [('D3D9_UNAVAILABLE_IN_LAUNCH_CONTEXT','D3D9_UNAVAILABLE_IN_LAUNCH_CONTEXT'),
                                  ('password=not-a-public-error','CLIENT_DID_NOT_START')]:
             with self.subTest(blocker=blocker):
-                controller=launcher.LauncherController(Mock());controller.session='source'
-                controller.account={'id':'fixture','nickname':'测试'}
+                controller=launcher.LauncherController(Mock());controller.session='source';controller.account={'character_id':'character'}
+                controller.account={'id':'fixture','character_id':'character','nickname':'测试'}
                 controller.client.request.side_effect=[{'ticket':'fixture'},{'game_token':'game'},{'game_id':10001}]
                 with patch.object(launcher,'recover_configurations'),patch.object(launcher,'fingerprint',return_value=('a'*64,{})), \
                      patch('tools.native_email_boot.current_dev_player_info',return_value=({},b'fixture')), \

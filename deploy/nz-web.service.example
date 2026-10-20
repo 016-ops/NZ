@@ -1,0 +1,29 @@
+# Web服务模板：仅current环境，按部署目标修改路径；受保护配置不放入发布目录。
+[Unit]
+Description=NZ Web portal (current profile)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nz-revival
+Group=nz-revival
+WorkingDirectory=/opt/nz-web/current
+Environment=NZ_ENV_FILE=/etc/nz-web/web.env
+Environment=NZ_MAIL_ENV_FILE=/etc/nz-web/mail.env
+Environment=NZ_PROFILE=current
+Environment=NZ_PVE_TEST_PROFILE=0
+Environment=NZ_PORT=18765
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/nz-web/current/.venv/bin/python /opt/nz-web/current/manage.py serve --port 18765
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/nz-web
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

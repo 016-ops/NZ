@@ -1,0 +1,46 @@
+{
+  "scope": "最终发布状态增量：仅部署书；综合CI两job成功",
+  "before": {
+    "表设计.xlsx": "01e8cf9c82f215577174424267bc54a6d83cc22e3f86b1d4013ddd97d34e08ad",
+    "游戏服务端接口设计.xlsx": "dfb7802aabd3b25e48439a2c57e6b146cab7d1eba0a509d02a29d560f3e0d1f0",
+    "Web端设计书.xlsx": "223aa7c1077ad0b0404e72d842e40de7e6bac196145aea1c6400006f558eca48",
+    "部署手册及打包清单.xlsx": "e9afa586538fe94fef9a105ca0be9ad8bed52f54fd2f2a1040f7c156cd370046",
+    "nz-web-platform-2026-10-19.tar.gz": "7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9"
+  },
+  "preliminary_deployment_sha256": "82543914ffb9abde57382c48d7ecbe1a5ee6a9d5ed6ab9a733f19d26e2f3779d",
+  "after": {
+    "表设计.xlsx": "01e8cf9c82f215577174424267bc54a6d83cc22e3f86b1d4013ddd97d34e08ad",
+    "游戏服务端接口设计.xlsx": "dfb7802aabd3b25e48439a2c57e6b146cab7d1eba0a509d02a29d560f3e0d1f0",
+    "Web端设计书.xlsx": "223aa7c1077ad0b0404e72d842e40de7e6bac196145aea1c6400006f558eca48",
+    "部署手册及打包清单.xlsx": "87311a55c6f8853ccd5a7919376c3a4b16d557c945ba584a657fd25ab392f12a",
+    "nz-web-platform-2026-10-19.tar.gz": "7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9"
+  },
+  "preserved": {
+    "表设计.xlsx": true,
+    "游戏服务端接口设计.xlsx": true,
+    "Web端设计书.xlsx": true,
+    "nz-web-platform-2026-10-19.tar.gz": true
+  },
+  "other_three_verification_records_unchanged": true,
+  "deployment": {
+    "file": "outputs/01a15734-c809-7ff2-8313-f617805a4441/部署手册及打包清单.xlsx",
+    "bytes": 39631,
+    "sha256": "87311a55c6f8853ccd5a7919376c3a4b16d557c945ba584a657fd25ab392f12a",
+    "sheets": 7,
+    "tables": 7,
+    "autoFilters": 7,
+    "frozen_header_rows": 5,
+    "cached_formula_errors": 0,
+    "formulas": [],
+    "retired_package_identifiers_absent": true,
+    "mysql_final_pending": false
+  },
+  "rendered_pages": [
+    "部署总览",
+    "交付与阻塞"
+  ],
+  "preview_verified": true,
+  "windows_package_inner_zip_sha256": "139c84de2b034d33be4f5079be6821d582112c02d4552b375733f02494102993",
+  "mysql_final_pending": false,
+  "ci_evidence": "evidence/2026-10-19-remote-ci-verification.json"
+}

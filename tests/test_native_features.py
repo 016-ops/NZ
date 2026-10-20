@@ -318,9 +318,9 @@ class NativeFeatureTests(Base):
 
     def test_checkin_beijing_midnight_boundary(self):
         """同一UTC日跨北京时间午夜只间隔两秒，两天各领一次且重试不重复。"""
-        self.now=int(datetime(2027,1,15,15,59,59,tzinfo=timezone.utc).timestamp())
-        from revival.security import otp
-        self.owner=self.s.login('owner',self.password,kind='admin',otp_code=otp(self.admin['otp_secret'],self.now//30))['token']
+        # 在目标午夜前61秒完成邮件登录，避免登录夹具的发送冷却跨过被测日期边界。
+        self.now=int(datetime(2027,1,15,15,58,58,tzinfo=timezone.utc).timestamp())
+        self.owner=self.admin_login()['token']
         # 原票据已过期，使用新测试身份，不通过修改会话期限绕过真实鉴权。
         self.account,self.player_token,self.game,self.base=self.player_game('midnight')
         self.base['feature_version']=FEATURE_VERSION

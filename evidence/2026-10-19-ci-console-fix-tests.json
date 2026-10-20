@@ -1,0 +1,13 @@
+{
+  "kind": "INDEPENDENT_TOOLING",
+  "mysql_version": null,
+  "tests": 1,
+  "passed": [
+    "tests.test_run_tests.ConsoleReport.test_chinese_skip_reason_survives_cp1252_stdout"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 0.035
+}

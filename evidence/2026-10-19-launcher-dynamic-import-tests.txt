@@ -1,0 +1,33 @@
+test_debug_engine_dynamic_libraries_are_explicit_public_hidden_imports (tests.test_launcher_hook.LauncherDjangoHookTests.test_debug_engine_dynamic_libraries_are_explicit_public_hidden_imports)
+Django views.debug导入期间加载i18n；hook须包含其公共动态模块。 ... ok
+test_debug_templates_are_covered_by_public_data_pattern (tests.test_launcher_hook.LauncherDjangoHookTests.test_debug_templates_are_covered_by_public_data_pattern)
+保留上游异常页目录及technical_500文本/HTML资源，验证相对收集模式命中。 ... ok
+test_minimal_wsgi_startup_has_no_project_settings_or_database_backend (tests.test_launcher_hook.LauncherDjangoHookTests.test_minimal_wsgi_startup_has_no_project_settings_or_database_backend)
+隔离子进程仅在内存配置Launcher同等设置，验证WSGI初始化与默认dummy配置。 ... ok
+test_failed_smoke_never_echoes_bootstrap_or_full_stderr (tests.test_launcher_runtime.LauncherRuntimeTests.test_failed_smoke_never_echoes_bootstrap_or_full_stderr)
+失败报告只返回固定四字段，管道能力、异常正文和临时路径均不可外泄。 ... ok
+test_frozen_resources_and_state_are_separate_and_native_start_is_blocked (tests.test_launcher_runtime.LauncherRuntimeTests.test_frozen_resources_and_state_are_separate_and_native_start_is_blocked)
+发行资源不可充当运行数据目录，原生游戏缺少完整交付时明确停止。 ... ok
+test_https_uses_verified_context_and_keeps_dict_envelope (tests.test_launcher_runtime.LauncherRuntimeTests.test_https_uses_verified_context_and_keeps_dict_envelope)
+HTTPS使用系统验证上下文；新玩家view的data信封原样保留，不传游戏凭据到页面。 ... ok
+test_oversized_response_and_private_payload_are_rejected (tests.test_launcher_runtime.LauncherRuntimeTests.test_oversized_response_and_private_payload_are_rejected)
+损坏网关响应有界，打包审查会拒绝私有.env文件；不写真实账户或配置。 ... ok
+test_package_smoke_checks_private_pipe_and_never_contacts_api (tests.test_launcher_runtime.LauncherRuntimeTests.test_package_smoke_checks_private_pipe_and_never_contacts_api)
+模拟冻结进程的退出握手以检查验收器边界；此测试本身不宣称Windows可执行已通过。 ... ok
+test_plan_declares_blocked_native_mode_without_build_side_effects (tests.test_launcher_runtime.LauncherRuntimeTests.test_plan_declares_blocked_native_mode_without_build_side_effects)
+任何主机都可审查包合同，但计划本身不能声称已有Windows构建或客户端验收。 ... ok
+test_public_config_rejects_cleartext_external_addresses_credentials_and_unknown_fields (tests.test_launcher_runtime.LauncherRuntimeTests.test_public_config_rejects_cleartext_external_addresses_credentials_and_unknown_fields)
+发行配置只接受HTTPS/明确IPv4回环，不允许URL凭据或未知字段携带SSH秘密。 ... ok
+test_redirects_and_absolute_request_targets_are_never_followed (tests.test_launcher_runtime.LauncherRuntimeTests.test_redirects_and_absolute_request_targets_are_never_followed)
+302保持单次失败，登录信息不能发往Location；请求路径不能另选外部目标。 ... ok
+test_repository_mode_preserves_existing_workspace (tests.test_launcher_runtime.LauncherRuntimeTests.test_repository_mode_preserves_existing_workspace)
+源代码模式继续使用既有登记研究副本，不要求迁移当前客户端或秘密配置。 ... ok
+test_startup_diagnostic_keeps_only_safe_code_or_public_module_name (tests.test_launcher_runtime.LauncherRuntimeTests.test_startup_diagnostic_keeps_only_safe_code_or_public_module_name)
+导入失败的模块元数据可诊断；带路径/URL/能力的异常正文不能写入日志。 ... ok
+test_chinese_skip_reason_survives_cp1252_stdout (tests.test_run_tests.ConsoleReport.test_chinese_skip_reason_survives_cp1252_stdout)
+中文跳过原因写入 UTF-8 报告，并在 ASCII 安全的终端摘要中保留含义。 ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.183s
+
+OK

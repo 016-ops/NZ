@@ -5,7 +5,8 @@ import { ActionButton, BusinessForm, Details, Records, type Field } from '@/comp
 import { Api, type Catalog, type Data, type Json } from '@/lib/api'
 
 const reason: Field = { name: 'reason', label: '操作原因' }
-const reauth: Field[] = [{ name: 'current_password', label: '当前 Owner 密码', type: 'password' }, { name: 'otp_code', label: '新的 MFA 验证码' }]
+// 邮箱再认证由 Api 的统一弹窗执行，业务表单不再收集或拼接动态口令。
+const reauth: Field[] = []
 const roles: [string, string][] = [['resources', '资源管理员'], ['users', '用户管理员'], ['auditor', '审计只读'], ['owner', 'Owner']]
 type Props = { api: Api; records: Data[]; report: (value: unknown) => void; refresh: () => Promise<void>; owner: boolean }
 
@@ -15,15 +16,13 @@ async function committed(result: Json, refresh: () => Promise<void>, report: Pro
   return result
 }
 
-/** 管理员生命周期要求 Owner 再认证；MFA 和恢复码只在首次响应中展示，不持久化到浏览器。 */
+/** 管理员生命周期要求 Owner 再认证；邮箱挑战只用于当前操作，不持久化到浏览器。 */
 export function Administrators({ api, records, report, refresh }: Props) {
-  return <div className="space-y-5"><p>创建或重置 MFA 后，请私下保存首次显示的密钥和恢复码。失去验证器可使用本机恢复命令。</p>
+  return <div className="space-y-5"><p>管理员登录与高风险操作均使用密码和邮箱验证码。</p>
     <BusinessForm title="创建管理员" fields={[{ name: 'login', label: '管理员账号' }, { name: 'new_password', label: '独立密码（至少 12 字符）', type: 'password' }, { name: 'role', label: '角色', options: roles }, ...reauth, reason]} report={report} submit={async (values, meta) => committed(await api.command('admin.create', values, meta), refresh, report)} />
     {records.map(admin => <Card key={String(admin.id)}><CardHeader><CardTitle>{String(admin.login)}</CardTitle></CardHeader><CardContent className="space-y-4"><Details value={admin} /><details><summary>管理操作</summary><div className="grid gap-4 pt-4 lg:grid-cols-2">
       <BusinessForm title="调整角色与状态" fields={[{ name: 'role', label: '角色', options: [...roles.filter(([value]) => value === admin.role), ...roles.filter(([value]) => value !== admin.role)] }, { name: 'active', label: '账号状态', options: admin.active ? [['true', '启用'], ['false', '停用']] : [['false', '停用'], ['true', '启用']] }, ...reauth, reason]} report={report} submit={async (values, meta) => committed(await api.command('admin.update', { ...values, admin_id: admin.id, active: values.active === 'true' }, meta), refresh, report)} />
       <BusinessForm title="重置管理员密码" fields={[{ name: 'new_password', label: '新密码（至少 12 字符）', type: 'password' }, ...reauth, reason]} report={report} submit={async (values, meta) => committed(await api.command('admin.password.reset', { ...values, admin_id: admin.id }, meta), refresh, report)} />
-      <BusinessForm title="重置 MFA 并撤销旧会话" fields={[...reauth, reason]} report={report} submit={async (values, meta) => committed(await api.command('admin.mfa.reset', { ...values, admin_id: admin.id }, meta), refresh, report)} />
-      <BusinessForm title="替换一次性恢复码" fields={[...reauth, reason]} report={report} submit={async (values, meta) => committed(await api.command('admin.recovery.rotate', { ...values, admin_id: admin.id }, meta), refresh, report)} />
     </div></details></CardContent></Card>)}
   </div>
 }

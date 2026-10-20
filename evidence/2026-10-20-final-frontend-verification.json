@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-20",
+  "runtime_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+  "scope": "最终共享前端回归与构建，包含确认密码修复",
+  "checks": {
+    "tests": { "command": "npm --prefix admin test", "files": 6, "passed": 21, "new_cases": 2, "status": "passed" },
+    "build": { "command": "npm --prefix admin run build", "modules": 1721, "status": "passed", "warning": "主JS块约1.04MB（gzip约144.32kB），超过Vite默认500kB提示阈值。构建成功；该警告提示可继续拆分静态目录块，不等于构建失败，也不代表Windows实机性能已验证。" },
+    "diff_check": { "command": "git diff --check", "status": "passed" }
+  },
+  "implemented": [
+    "注册与找回密码显示必填确认密码输入，模式切换卸载或成功后清空。",
+    "共享请求函数在确认空缺或不一致时拒绝且零API调用；一致才发送原有HTTP/本机桥合同。",
+    "确认密码不进入请求、业务元数据或本机持久存储。"
+  ],
+  "not_verified": ["不代表SMTP真实投递或Windows/WebView实机注册完成。", "未部署远端服务。"]
+}

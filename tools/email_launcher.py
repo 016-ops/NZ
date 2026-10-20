@@ -19,6 +19,15 @@ class LoginError(Exception):
     """只携带安全错误码，避免 CLI 异常回显含密码、会话或票据的请求正文。"""
 
 
+def metadata(**values):
+    """生成独立探针命令标识；纯客户端共用，不导入 SSH、MySQL 或远端验收入口。
+
+    保留既有请求/幂等标识和审计原因合同；每次调用使用新标识，失败不会隐式重试。
+    """
+    return dict(request_id=uuid.uuid4().hex, idempotency_key=uuid.uuid4().hex,
+                reason='DEV independent email acceptance probe', **values)
+
+
 class Client:
     """回环 HTTP 客户端；不接受 URL 凭据、查询参数或跳转，不将密码发到重定向目标。"""
     def __init__(self, url, *, host_port=None):
@@ -49,8 +58,8 @@ class Client:
             result = connection.getresponse()
             headers_at = time.perf_counter()
             # 全目录账号的本人库存快照可达数MiB；仅这两个已鉴权读入口扩大上限，认证响应仍64KiB。
-            limit = (8 * 1024 * 1024 if path in ('/api/views/me', '/api/game/inventory/get') else
-                     1024 * 1024 if path in ('/api/game/view','/api/game/command') else 65536)
+            limit = (8 * 1024 * 1024 if path in ('/api/views/me', '/api/game/inventory/get', '/api/player/view') else
+                     2 * 1024 * 1024 if path in ('/api/game/view','/api/game/command','/api/command') or path.startswith('/api/public/') else 65536)
             body = result.read(limit + 1)
             body_at = time.perf_counter()
             if len(body) > limit:
@@ -75,6 +84,69 @@ class Client:
             return value
         finally:
             connection.close()
+
+    def feedback_upload(self, ticket_id, payload, mime, upload_key, token):
+        """只向固定反馈附件路由发送一张有界图片；不接受客户端指定URL或文件路径。"""
+        if (not isinstance(ticket_id, str) or not re.fullmatch(r'[a-f0-9]{32}', ticket_id)
+                or not isinstance(upload_key, str) or not re.fullmatch(r'[A-Za-z0-9_-]{8,128}', upload_key)):
+            raise LoginError('INVALID_ATTACHMENT')
+        if mime not in ('image/png', 'image/jpeg', 'image/webp') or not 1 <= len(payload) <= 5 * 1024 * 1024:
+            raise LoginError('INVALID_ATTACHMENT')
+        boundary = 'NZUpload' + secrets.token_hex(24)
+        body = (f'--{boundary}\r\nContent-Disposition: form-data; name="upload_key"\r\n\r\n{upload_key}\r\n'
+                f'--{boundary}\r\nContent-Disposition: form-data; name="file"; filename="screenshot"\r\n'
+                f'Content-Type: {mime}\r\n\r\n').encode() + payload + f'\r\n--{boundary}--\r\n'.encode()
+        return self._feedback_media('POST', '/api/feedback/' + ticket_id + '/attachments', token, body,
+                                    'multipart/form-data; boundary=' + boundary)
+
+    def feedback_image(self, attachment_id, token):
+        """私图每次带本人Bearer读取；返回字节与已验证MIME，不能经URL参数泄露令牌。"""
+        if not isinstance(attachment_id, str) or not re.fullmatch(r'[a-f0-9]{32}', attachment_id):
+            raise LoginError('INVALID_ATTACHMENT')
+        return self._feedback_media('GET', '/api/feedback/attachments/' + attachment_id, token)
+
+    def public_cover_image(self, media_id):
+        """公共封面只按32位媒体ID访问固定路径，不携带玩家Bearer或接受外部URL。"""
+        if not isinstance(media_id, str) or not re.fullmatch(r'[a-f0-9]{32}', media_id):
+            raise LoginError('INVALID_ATTACHMENT')
+        return self._feedback_media('GET', '/api/media/' + media_id, None)
+
+    def _feedback_media(self, method, path, token, body=None, content_type=None):
+        """固定媒体传输保留原回环连接边界，无跳转、重试、日志或磁盘凭据。"""
+        connection, headers = self._feedback_connection()
+        # 公共封面明确不发送玩家会话；私有反馈读取/上传仍由调用方传入本人Bearer。
+        if token is not None:
+            headers['Authorization'] = 'Bearer ' + token
+        if content_type:
+            headers['Content-Type'] = content_type
+        try:
+            connection.request(method, path, body, headers)
+            result = connection.getresponse()
+            limit = 5 * 1024 * 1024 if method == 'GET' and result.status == 200 else 65536
+            payload = result.read(limit + 1)
+            if len(payload) > limit:
+                raise LoginError('RESPONSE_TOO_LARGE')
+            if result.status != 200:
+                try:
+                    code = json.loads(payload).get('error')
+                except (ValueError, AttributeError):
+                    code = None
+                raise LoginError(code if isinstance(code, str) and re.fullmatch('[A-Z][A-Z_0-9]{0,63}', code) else 'REQUEST_REJECTED')
+            if method == 'GET':
+                if result.getheader('Content-Type', '').split(';')[0] != 'image/webp':
+                    raise LoginError('INVALID_ATTACHMENT')
+                return payload, 'image/webp'
+            value = json.loads(payload)
+            if not isinstance(value, dict):
+                raise LoginError('INVALID_RESPONSE')
+            return value
+        finally:
+            connection.close()
+
+    def _feedback_connection(self):
+        """研究客户端沿用其已建立回环隧道；发行客户端覆盖此工厂保留HTTPS证书验证。"""
+        return (http.client.HTTPConnection(self.host, self.port, timeout=20),
+                {'X-NZ-Request': '1', 'Host': f'{self.host}:{self.host_port}'})
 
 
 def fingerprint(workspace):

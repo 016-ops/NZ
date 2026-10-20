@@ -7,3 +7,5 @@
 *.json text eol=lf
 *.yml text eol=lf
 *.txt text eol=lf
+# Windows发行侧清单参与字节摘要核对，必须保留CI下载的原始CRLF，不能套用普通JSON的LF转换。
+outputs/portal-v2-2026-10-20/NZLauncher-DEV.package-manifest.json binary

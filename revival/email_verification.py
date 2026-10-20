@@ -1,4 +1,4 @@
-"""邮箱所有权验证码与玩家密码恢复；邀请码/审批继续保留，验证码状态同业务事务提交。"""
+"""邮箱所有权验证码与玩家密码恢复；自助注册免邀请审批，验证码状态同业务事务提交。"""
 import hashlib
 import hmac
 import re
@@ -76,11 +76,7 @@ def request_code(service, data, remote_addr):
                 or query.filter(ip_digest=ip_digest, created_at__gt=now-3600).count() >= 20
                 or query.filter(created_at__gt=now-3600).count() >= 100):
             raise Fault('RATE_LIMIT', '验证码请求过于频繁，请稍后再试', 429)
-        if purpose == 'register':
-            invitation = text_field(data.get('invitation'), 'invitation', 128)
-            invite = c.select('invitations', Q(token_hash=token_hash(invitation))).fetchone()
-            if not invite or invite['revoked'] or invite['expires_at'] <= now or invite['uses'] >= invite['max_uses']:
-                raise Fault('INVITATION', 'Invitation is invalid, expired, revoked, or exhausted', 403)
+        # 自助注册只要求邮箱所有权，不再要求邀请或人工审批；额度仍在SMTP前持久预留。
         identity = c.select('player_emails', Q(email=email)).fetchone()
         account = c.select('accounts', Q(id=identity['account_id'])).fetchone() if identity else None
         # 禁用和封禁不靠密码恢复解除；仍发送所有权证明，恢复后仍受原状态与制裁约束。
@@ -94,7 +90,8 @@ def request_code(service, data, remote_addr):
     try:
         mailing.send_code(email, code, purpose)
     except mailing.MailUnavailable as caught:
-        error = str(caught)
+        # 即使供应商适配器意外带入异常原文，也只持久化已知错误码，避免泄露地址或凭据。
+        error = str(caught) if str(caught) in ('MAIL_NOT_CONFIGURED', 'MAIL_DELIVERY_FAILED', 'MAIL_REJECTED') else 'MAIL_DELIVERY_FAILED'
     with service.db.transaction() as c:
         # 新申请可能已取代正在投递的挑战，不得重新激活旧码；SMTP 超时状态不自动重试。
         c.update('email_challenges', Q(id=challenge_id, status='PENDING'),
@@ -135,7 +132,7 @@ def recover(service, data, *, verify_only=False):
                     return previous
         raise
     result = {'email_verified': True, 'password_reset': not verify_only,
-              'message': '邮箱已验证' if verify_only else '密码已更新，请重新登录；账号审批和封禁状态保持不变。'}
+              'message': '邮箱已验证；账号原待审、停用和封禁状态保持不变。' if verify_only else '密码已更新，请重新登录；账号原待审、停用和封禁状态保持不变。'}
     with service.db.transaction() as c:
         if metadata:
             previous = service._prior(c,scope,metadata[1],summary)
@@ -143,6 +140,7 @@ def recover(service, data, *, verify_only=False):
                 return previous
         row = consume(service, c, data, email, purpose)
         c.update('player_emails', Q(account_id=row['account_id']), {'verified_at': service.clock()})
+        # 补验与找回密码只证明邮箱归属，不能替代管理员对旧待审账号的批准或解除停用/制裁。
         if not verify_only:
             c.update('accounts', Q(id=row['account_id']), {'password_hash': hashed})
             service._revoke(c, row['account_id'], identifier())

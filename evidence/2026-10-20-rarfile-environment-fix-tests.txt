@@ -1,0 +1,15 @@
+test_architecture_conflict_zero_image_and_unbounded_headers (tests.test_native_images.ImageTests.test_architecture_conflict_zero_image_and_unbounded_headers)
+不能把不匹配的 PE32+、全零文件或越界节表显示为可运行 x86。 ... ok
+test_archive_paths_and_crc_reject_corruption_and_escape (tests.test_native_images.ImageTests.test_archive_paths_and_crc_reject_corruption_and_escape)
+归档只接纳独立 nz 树和普通文件，解包后同大小内容损坏也必须由 CRC 检出。 ... ok
+test_job_keeps_and_cleans_child_after_root_exits (tests.test_native_images.ImageTests.test_job_keeps_and_cleans_child_after_root_exits)
+真实父进程退出 0 后子进程仍在 Job 内，到期统一结束，不误判原生实例已退出。 ... skipped 'Windows Job Object integration'
+test_missing_disk_section_is_rejected_but_virtual_zero_fill_is_allowed (tests.test_native_images.ImageTests.test_missing_disk_section_is_rejected_but_virtual_zero_fill_is_allowed)
+合法 BSS 变大不要求文件增长，原始磁盘数据越界则必须报告缺失字节。 ... ok
+test_recovery_receipt_detects_changed_target_and_backup (tests.test_native_images.ImageTests.test_recovery_receipt_detects_changed_target_and_backup)
+恢复凭据只允许固定入口文件，修改目标或备份后不能再获准启动。 ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.013s
+
+OK (skipped=1)

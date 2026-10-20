@@ -1,0 +1,744 @@
+Window: "管理中心 · NZ Revival", App: Safari浏览器.
+0 标准窗口 管理中心 · NZ Revival, ID: SafariWindow?IsSecure=false&UUID=999768BC-DACF-405F-AC09-F21DF065B3C8, Secondary Actions: Raise
+	1 分离组
+		2 标签组
+			3 滚动区
+				4 HTML内容 Description: 管理中心 · NZ Revival, URL: 127.0.0.1:8875/admin
+					5 container
+						6 link NZ 逆战新生 NZ Revival, Value: 127.0.0.1:8875/
+						7 container 官网导航
+							8 link 首页, Value: 127.0.0.1:8875/
+							9 link 开服活动, Value: 127.0.0.1:8875/activities
+							10 link 先锋榜, Value: 127.0.0.1:8875/leaderboards
+							11 link 上手指南, Value: 127.0.0.1:8875/guide
+						12 文本 qa-portal-owner
+						13 按钮 退出当前账号
+						14 link 管理中心, Value: 127.0.0.1:8875/admin
+					15 container
+						16 标签组 (selectable) 运营管理
+							17 标签 (selectable) 运营概览
+							18 标签 (selectable) 玩家管理
+							19 标签 (selectable) 商城管理
+							20 标签 (selected) 地图与模式, Value: on
+							21 标签 (selectable) 开服活动
+							22 标签 (selectable) 服务器监控
+							23 link 完整工作台, Value: 127.0.0.1:8875/console
+						24 标题 地图与模式, Value: 1
+							25 文本 地图与模式
+						26 文本 设置开放挑战。未开放的组合无法创建房间，玩家会收到明确提示。
+						27 按钮 保存开放策略
+						28 文本 survival
+						29 复选框 开放, Value: 0
+						30 文本 开放
+						31 标题 祭坛, Value: 3
+							32 文本 祭坛
+						33 text 地图  47  · 模式  8193
+						34 复选框 (disabled) 难度 4101, Value: 1
+						35 text 难度  4101
+						36 复选框 (disabled) 难度 4097, Value: 1
+						37 text 难度  4097
+						38 复选框 (disabled) 难度 4099, Value: 1
+						39 text 难度  4099
+						40 复选框 (disabled) 难度 4100, Value: 1
+						41 text 难度  4100 defense
+						42 复选框 开放, Value: 0
+						43 文本 开放
+						44 标题 星海虫影, Value: 3
+							45 文本 星海虫影
+						46 text 地图  95  · 模式  8194
+						47 复选框 (disabled) 难度 4101, Value: 1
+						48 text 难度  4101
+						49 复选框 (disabled) 难度 4097, Value: 1
+						50 text 难度  4097
+						51 复选框 (disabled) 难度 4099, Value: 1
+						52 text 难度  4099
+						53 复选框 (disabled) 难度 4100, Value: 1
+						54 text 难度  4100 tower_defense
+						55 复选框 开放, Value: 1
+						56 文本 开放
+						57 标题 联盟大厦, Value: 3
+							58 文本 联盟大厦
+						59 text 地图  96  · 模式  8197
+						60 复选框 难度 4101, Value: 1
+						61 text 难度  4101
+						62 复选框 难度 4097, Value: 1
+						63 text 难度  4097
+						64 复选框 难度 4099, Value: 1
+						65 text 难度  4099
+						66 复选框 难度 4100, Value: 1
+						67 text 难度  4100 hunt
+						68 复选框 开放, Value: 1
+						69 文本 开放
+						70 标题 大都会, Value: 3
+							71 文本 大都会
+						72 text 地图  113  · 模式  260
+						73 复选框 难度 4097, Value: 1
+						74 text 难度  4097
+						75 复选框 难度 4101, Value: 1
+						76 text 难度  4101
+						77 复选框 难度 4099, Value: 1
+						78 text 难度  4099
+						79 复选框 难度 4102, Value: 1
+						80 text 难度  4102 survival
+						81 复选框 开放, Value: 0
+						82 文本 开放
+						83 标题 古墓尸变, Value: 3
+							84 文本 古墓尸变
+						85 text 地图  128  · 模式  259
+						86 复选框 (disabled) 难度 4097, Value: 1
+						87 text 难度  4097
+						88 复选框 (disabled) 难度 4098, Value: 1
+						89 text 难度  4098
+						90 复选框 (disabled) 难度 4099, Value: 1
+						91 text 难度  4099 tower_defense
+						92 复选框 开放, Value: 1
+						93 文本 开放
+						94 标题 蔷薇庄园, Value: 3
+							95 文本 蔷薇庄园
+						96 text 地图  140  · 模式  8197
+						97 复选框 难度 4101, Value: 1
+						98 text 难度  4101
+						99 复选框 难度 4097, Value: 1
+						100 text 难度  4097
+						101 复选框 难度 4099, Value: 1
+						102 text 难度  4099
+						103 复选框 难度 4100, Value: 1
+						104 text 难度  4100 tower_defense
+						105 复选框 开放, Value: 1
+						106 文本 开放
+						107 标题 沙漠神殿, Value: 3
+							108 文本 沙漠神殿
+						109 text 地图  141  · 模式  8197
+						110 复选框 难度 4101, Value: 1
+						111 text 难度  4101
+						112 复选框 难度 4097, Value: 1
+						113 text 难度  4097
+						114 复选框 难度 4099, Value: 1
+						115 text 难度  4099
+						116 复选框 难度 4100, Value: 1
+						117 text 难度  4100 tower_defense
+						118 复选框 开放, Value: 0
+						119 文本 开放
+						120 标题 沙漠神殿, Value: 3
+							121 文本 沙漠神殿
+						122 text 地图  155  · 模式  8197
+						123 复选框 (disabled) 难度 4101, Value: 1
+						124 text 难度  4101
+						125 复选框 (disabled) 难度 4097, Value: 1
+						126 text 难度  4097
+						127 复选框 (disabled) 难度 4099, Value: 1
+						128 text 难度  4099
+						129 复选框 (disabled) 难度 4100, Value: 1
+						130 text 难度  4100 survival
+						131 复选框 开放, Value: 0
+						132 文本 开放
+						133 标题 天际城, Value: 3
+							134 文本 天际城
+						135 text 地图  156  · 模式  8193
+						136 复选框 (disabled) 难度 4101, Value: 1
+						137 text 难度  4101
+						138 复选框 (disabled) 难度 4097, Value: 1
+						139 text 难度  4097
+						140 复选框 (disabled) 难度 4099, Value: 1
+						141 text 难度  4099
+						142 复选框 (disabled) 难度 4100, Value: 1
+						143 text 难度  4100 tower_defense
+						144 复选框 开放, Value: 0
+						145 文本 开放
+						146 标题 联盟大厦, Value: 3
+							147 文本 联盟大厦
+						148 text 同名变体 · 首发默认关闭 地图  160  · 模式  8197
+						149 复选框 (disabled) 难度 4101, Value: 1
+						150 text 难度  4101
+						151 复选框 (disabled) 难度 4097, Value: 1
+						152 text 难度  4097
+						153 复选框 (disabled) 难度 4099, Value: 1
+						154 text 难度  4099
+						155 复选框 (disabled) 难度 4100, Value: 1
+						156 text 难度  4100 hunt
+						157 复选框 开放, Value: 1
+						158 文本 开放
+						159 标题 黑暗复活节, Value: 3
+							160 文本 黑暗复活节
+						161 text 地图  164  · 模式  260
+						162 复选框 难度 4097, Value: 1
+						163 text 难度  4097
+						164 复选框 难度 4101, Value: 1
+						165 text 难度  4101
+						166 复选框 难度 4099, Value: 1
+						167 text 难度  4099
+						168 复选框 难度 4102, Value: 1
+						169 text 难度  4102 tower_defense
+						170 复选框 开放, Value: 1
+						171 文本 开放
+						172 标题 空间站, Value: 3
+							173 文本 空间站
+						174 text 地图  168  · 模式  8197
+						175 复选框 难度 4101, Value: 1
+						176 text 难度  4101
+						177 复选框 难度 4097, Value: 1
+						178 text 难度  4097
+						179 复选框 难度 4099, Value: 1
+						180 text 难度  4099
+						181 复选框 难度 4100, Value: 1
+						182 text 难度  4100 tower_defense
+						183 复选框 开放, Value: 0
+						184 文本 开放
+						185 标题 恐惧海湾, Value: 3
+							186 文本 恐惧海湾
+						187 text 地图  186  · 模式  8197
+						188 复选框 (disabled) 难度 4101, Value: 1
+						189 text 难度  4101
+						190 复选框 (disabled) 难度 4097, Value: 1
+						191 text 难度  4097
+						192 复选框 (disabled) 难度 4099, Value: 1
+						193 text 难度  4099
+						194 复选框 (disabled) 难度 4100, Value: 1
+						195 text 难度  4100 hunt
+						196 复选框 开放, Value: 1
+						197 文本 开放
+						198 标题 丛林魅影, Value: 3
+							199 文本 丛林魅影
+						200 text 地图  191  · 模式  260
+						201 复选框 难度 4097, Value: 1
+						202 text 难度  4097
+						203 复选框 难度 4099, Value: 1
+						204 text 难度  4099
+						205 复选框 难度 4102, Value: 1
+						206 text 难度  4102 hunt
+						207 复选框 开放, Value: 0
+						208 文本 开放
+						209 标题 樱之城, Value: 3
+							210 文本 樱之城
+						211 text 地图  210  · 模式  260
+						212 复选框 (disabled) 难度 4097, Value: 1
+						213 text 难度  4097
+						214 复选框 (disabled) 难度 4101, Value: 1
+						215 text 难度  4101
+						216 复选框 (disabled) 难度 4099, Value: 1
+						217 text 难度  4099
+						218 复选框 (disabled) 难度 4102, Value: 1
+						219 text 难度  4102 tower_defense
+						220 复选框 开放, Value: 0
+						221 文本 开放
+						222 标题 火之深渊, Value: 3
+							223 文本 火之深渊
+						224 text 地图  213  · 模式  8197
+						225 复选框 (disabled) 难度 4101, Value: 1
+						226 text 难度  4101
+						227 复选框 (disabled) 难度 4097, Value: 1
+						228 text 难度  4097
+						229 复选框 (disabled) 难度 4099, Value: 1
+						230 text 难度  4099
+						231 复选框 (disabled) 难度 4100, Value: 1
+						232 text 难度  4100 tower_defense
+						233 复选框 开放, Value: 0
+						234 文本 开放
+						235 标题 塔防新手关, Value: 3
+							236 文本 塔防新手关
+						237 text 地图  217  · 模式  8197
+						238 复选框 (disabled) 难度 4101, Value: 1
+						239 text 难度  4101
+						240 复选框 (disabled) 难度 4097, Value: 1
+						241 text 难度  4097
+						242 复选框 (disabled) 难度 4099, Value: 1
+						243 text 难度  4099
+						244 复选框 (disabled) 难度 4100, Value: 1
+						245 text 难度  4100 tower_defense
+						246 复选框 开放, Value: 0
+						247 文本 开放
+						248 标题 空间站, Value: 3
+							249 文本 空间站
+						250 text 地图  219  · 模式  8197
+						251 复选框 (disabled) 难度 4101, Value: 1
+						252 text 难度  4101
+						253 复选框 (disabled) 难度 4097, Value: 1
+						254 text 难度  4097
+						255 复选框 (disabled) 难度 4099, Value: 1
+						256 text 难度  4099
+						257 复选框 (disabled) 难度 4100, Value: 1
+						258 text 难度  4100 hunt
+						259 复选框 开放, Value: 0
+						260 文本 开放
+						261 标题 雪域迷踪, Value: 3
+							262 文本 雪域迷踪
+						263 text 地图  231  · 模式  260
+						264 复选框 (disabled) 难度 4097, Value: 1
+						265 text 难度  4097
+						266 复选框 (disabled) 难度 4099, Value: 1
+						267 text 难度  4099
+						268 复选框 (disabled) 难度 4102, Value: 1
+						269 text 难度  4102 tower_defense
+						270 复选框 开放, Value: 0
+						271 文本 开放
+						272 标题 古墓魔影, Value: 3
+							273 文本 古墓魔影
+						274 text 地图  244  · 模式  8197
+						275 复选框 (disabled) 难度 4101, Value: 1
+						276 text 难度  4101
+						277 复选框 (disabled) 难度 4097, Value: 1
+						278 text 难度  4097
+						279 复选框 (disabled) 难度 4099, Value: 1
+						280 text 难度  4099
+						281 复选框 (disabled) 难度 4100, Value: 1
+						282 text 难度  4100 tower_defense
+						283 复选框 开放, Value: 0
+						284 文本 开放
+						285 标题 狂沙圣殿, Value: 3
+							286 文本 狂沙圣殿
+						287 text 地图  273  · 模式  8197
+						288 复选框 (disabled) 难度 4101, Value: 1
+						289 text 难度  4101
+						290 复选框 (disabled) 难度 4097, Value: 1
+						291 text 难度  4097
+						292 复选框 (disabled) 难度 4099, Value: 1
+						293 text 难度  4099
+						294 复选框 (disabled) 难度 4100, Value: 1
+						295 text 难度  4100 hunt
+						296 复选框 开放, Value: 0
+						297 文本 开放
+						298 标题 禁魔岛, Value: 3
+							299 文本 禁魔岛
+						300 text 地图  282  · 模式  260
+						301 复选框 (disabled) 难度 4097, Value: 1
+						302 text 难度  4097
+						303 复选框 (disabled) 难度 4099, Value: 1
+						304 text 难度  4099
+						305 复选框 (disabled) 难度 4102, Value: 1
+						306 text 难度  4102 hunt
+						307 复选框 开放, Value: 0
+						308 文本 开放
+						309 标题 沙漠迷城, Value: 3
+							310 文本 沙漠迷城
+						311 text 地图  289  · 模式  260
+						312 复选框 (disabled) 难度 4097, Value: 1
+						313 text 难度  4097
+						314 复选框 (disabled) 难度 4099, Value: 1
+						315 text 难度  4099
+						316 复选框 (disabled) 难度 4102, Value: 1
+						317 text 难度  4102 tower_defense
+						318 复选框 开放, Value: 0
+						319 文本 开放
+						320 标题 遗落星宫, Value: 3
+							321 文本 遗落星宫
+						322 text 地图  295  · 模式  8197
+						323 复选框 (disabled) 难度 4101, Value: 1
+						324 text 难度  4101
+						325 复选框 (disabled) 难度 4097, Value: 1
+						326 text 难度  4097
+						327 复选框 (disabled) 难度 4099, Value: 1
+						328 text 难度  4099
+						329 复选框 (disabled) 难度 4100, Value: 1
+						330 text 难度  4100 hunt
+						331 复选框 开放, Value: 0
+						332 文本 开放
+						333 标题 樱之谷, Value: 3
+							334 文本 樱之谷
+						335 text 地图  303  · 模式  260
+						336 复选框 (disabled) 难度 4097, Value: 1
+						337 text 难度  4097
+						338 复选框 (disabled) 难度 4101, Value: 1
+						339 text 难度  4101
+						340 复选框 (disabled) 难度 4099, Value: 1
+						341 text 难度  4099
+						342 复选框 (disabled) 难度 4102, Value: 1
+						343 text 难度  4102 hunt
+						344 复选框 开放, Value: 0
+						345 文本 开放
+						346 标题 九州龙陵, Value: 3
+							347 文本 九州龙陵
+						348 text 地图  311  · 模式  260
+						349 复选框 (disabled) 难度 4097, Value: 1
+						350 text 难度  4097
+						351 复选框 (disabled) 难度 4101, Value: 1
+						352 text 难度  4101
+						353 复选框 (disabled) 难度 4099, Value: 1
+						354 text 难度  4099
+						355 复选框 (disabled) 难度 4102, Value: 1
+						356 text 难度  4102 tower_defense
+						357 复选框 开放, Value: 0
+						358 文本 开放
+						359 标题 星门要塞, Value: 3
+							360 文本 星门要塞
+						361 text 地图  319  · 模式  8206
+						362 复选框 (disabled) 难度 4097, Value: 1
+						363 text 难度  4097
+						364 复选框 (disabled) 难度 4099, Value: 1
+						365 text 难度  4099 tower_defense
+						366 复选框 开放, Value: 0
+						367 文本 开放
+						368 标题 阎龙冰城, Value: 3
+							369 文本 阎龙冰城
+						370 text 地图  333  · 模式  8197
+						371 复选框 (disabled) 难度 4101, Value: 1
+						372 text 难度  4101
+						373 复选框 (disabled) 难度 4097, Value: 1
+						374 text 难度  4097
+						375 复选框 (disabled) 难度 4099, Value: 1
+						376 text 难度  4099
+						377 复选框 (disabled) 难度 4100, Value: 1
+						378 text 难度  4100 hunt
+						379 复选框 开放, Value: 0
+						380 文本 开放
+						381 标题 精绝古城, Value: 3
+							382 文本 精绝古城
+						383 text 地图  340  · 模式  260
+						384 复选框 (disabled) 难度 4097, Value: 1
+						385 text 难度  4097
+						386 复选框 (disabled) 难度 4101, Value: 1
+						387 text 难度  4101
+						388 复选框 (disabled) 难度 4099, Value: 1
+						389 text 难度  4099
+						390 复选框 (disabled) 难度 4102, Value: 1
+						391 text 难度  4102 tower_defense
+						392 复选框 开放, Value: 0
+						393 文本 开放
+						394 标题 风车小镇, Value: 3
+							395 文本 风车小镇
+						396 text 地图  341  · 模式  8206
+						397 复选框 (disabled) 难度 4097, Value: 1
+						398 text 难度  4097
+						399 复选框 (disabled) 难度 4099, Value: 1
+						400 text 难度  4099 tower_defense
+						401 复选框 开放, Value: 0
+						402 文本 开放
+						403 标题 幽冥古堡, Value: 3
+							404 文本 幽冥古堡
+						405 text 地图  342  · 模式  8197
+						406 复选框 (disabled) 难度 4101, Value: 1
+						407 text 难度  4101
+						408 复选框 (disabled) 难度 4097, Value: 1
+						409 text 难度  4097
+						410 复选框 (disabled) 难度 4099, Value: 1
+						411 text 难度  4099
+						412 复选框 (disabled) 难度 4100, Value: 1
+						413 text 难度  4100 hunt
+						414 复选框 开放, Value: 0
+						415 文本 开放
+						416 标题 猎场11, Value: 3
+							417 文本 猎场11
+						418 text 地图  343  · 模式  260
+						419 复选框 (disabled) 难度 4097, Value: 1
+						420 text 难度  4097
+						421 复选框 (disabled) 难度 4099, Value: 1
+						422 text 难度  4099
+						423 复选框 (disabled) 难度 4102, Value: 1
+						424 text 难度  4102 hunt
+						425 复选框 开放, Value: 0
+						426 文本 开放
+						427 标题 捧月沟, Value: 3
+							428 文本 捧月沟
+						429 text 地图  344  · 模式  260
+						430 复选框 (disabled) 难度 4097, Value: 1
+						431 text 难度  4097
+						432 复选框 (disabled) 难度 4099, Value: 1
+						433 text 难度  4099
+						434 复选框 (disabled) 难度 4102, Value: 1
+						435 text 难度  4102 tower_defense
+						436 复选框 开放, Value: 0
+						437 文本 开放
+						438 标题 怒海巨轮, Value: 3
+							439 文本 怒海巨轮
+						440 text 地图  347  · 模式  8197
+						441 复选框 (disabled) 难度 4101, Value: 1
+						442 text 难度  4101
+						443 复选框 (disabled) 难度 4097, Value: 1
+						444 text 难度  4097
+						445 复选框 (disabled) 难度 4099, Value: 1
+						446 text 难度  4099
+						447 复选框 (disabled) 难度 4100, Value: 1
+						448 text 难度  4100 hunt
+						449 复选框 开放, Value: 0
+						450 文本 开放
+						451 标题 暮光古堡, Value: 3
+							452 文本 暮光古堡
+						453 text 地图  350  · 模式  260
+						454 复选框 (disabled) 难度 4097, Value: 1
+						455 text 难度  4097
+						456 复选框 (disabled) 难度 4099, Value: 1
+						457 text 难度  4099
+						458 复选框 (disabled) 难度 4102, Value: 1
+						459 text 难度  4102 tower_defense
+						460 复选框 开放, Value: 0
+						461 文本 开放
+						462 标题 时光遗迹, Value: 3
+							463 文本 时光遗迹
+						464 text 地图  351  · 模式  8206
+						465 复选框 (disabled) 难度 4097, Value: 1
+						466 text 难度  4097
+						467 复选框 (disabled) 难度 4099, Value: 1
+						468 text 难度  4099 hunt
+						469 复选框 开放, Value: 0
+						470 文本 开放
+						471 标题 猎场8小地图, Value: 3
+							472 文本 猎场8小地图
+						473 text 地图  365  · 模式  260
+						474 复选框 (disabled) 难度 4097, Value: 1
+						475 text 难度  4097
+						476 复选框 (disabled) 难度 4099, Value: 1
+						477 text 难度  4099
+						478 复选框 (disabled) 难度 4102, Value: 1
+						479 text 难度  4102 tower_defense
+						480 复选框 开放, Value: 0
+						481 文本 开放
+						482 标题 星门堡垒, Value: 3
+							483 文本 星门堡垒
+						484 text 地图  366  · 模式  8197
+						485 复选框 (disabled) 难度 4101, Value: 1
+						486 text 难度  4101
+						487 复选框 (disabled) 难度 4097, Value: 1
+						488 text 难度  4097
+						489 复选框 (disabled) 难度 4099, Value: 1
+						490 text 难度  4099
+						491 复选框 (disabled) 难度 4100, Value: 1
+						492 text 难度  4100 hunt
+						493 复选框 开放, Value: 0
+						494 文本 开放
+						495 标题 刀锋无双樱之谷, Value: 3
+							496 文本 刀锋无双樱之谷
+						497 text 地图  372  · 模式  260
+						498 复选框 (disabled) 难度 4097, Value: 1
+						499 text 难度  4097
+						500 复选框 (disabled) 难度 4099, Value: 1
+						501 text 难度  4099
+						502 复选框 (disabled) 难度 4102, Value: 1
+						503 text 难度  4102 tower_defense
+						504 复选框 开放, Value: 0
+						505 文本 开放
+						506 标题 星门要塞-铁壁, Value: 3
+							507 文本 星门要塞-铁壁
+						508 text 地图  373  · 模式  8206
+						509 复选框 (disabled) 难度 4097, Value: 1
+						510 text 难度  4097
+						511 复选框 (disabled) 难度 4099, Value: 1
+						512 text 难度  4099 tower_defense
+						513 复选框 开放, Value: 0
+						514 文本 开放
+						515 标题 星空遗迹, Value: 3
+							516 文本 星空遗迹
+						517 text 地图  378  · 模式  8197
+						518 复选框 (disabled) 难度 4101, Value: 1
+						519 text 难度  4101
+						520 复选框 (disabled) 难度 4097, Value: 1
+						521 text 难度  4097
+						522 复选框 (disabled) 难度 4099, Value: 1
+						523 text 难度  4099
+						524 复选框 (disabled) 难度 4100, Value: 1
+						525 text 难度  4100 hunt
+						526 复选框 开放, Value: 0
+						527 文本 开放
+						528 标题 试炼之塔, Value: 3
+							529 文本 试炼之塔
+						530 text 地图  379  · 模式  266
+						531 复选框 (disabled) 难度 4097, Value: 1
+						532 text 难度  4097
+						533 复选框 (disabled) 难度 4099, Value: 1
+						534 text 难度  4099 hunt
+						535 复选框 开放, Value: 0
+						536 文本 开放
+						537 标题 再临大都会, Value: 3
+							538 文本 再临大都会
+						539 text 地图  380  · 模式  260
+						540 复选框 (disabled) 难度 4097, Value: 1
+						541 text 难度  4097
+						542 复选框 (disabled) 难度 4099, Value: 1
+						543 text 难度  4099 tower_defense
+						544 复选框 开放, Value: 0
+						545 文本 开放
+						546 标题 繁星都市, Value: 3
+							547 文本 繁星都市
+						548 text 地图  383  · 模式  8197
+						549 复选框 (disabled) 难度 4101, Value: 1
+						550 text 难度  4101
+						551 复选框 (disabled) 难度 4097, Value: 1
+						552 text 难度  4097
+						553 复选框 (disabled) 难度 4099, Value: 1
+						554 text 难度  4099
+						555 复选框 (disabled) 难度 4100, Value: 1
+						556 text 难度  4100 hunt
+						557 复选框 开放, Value: 0
+						558 文本 开放
+						559 标题 猎场13炼狱, Value: 3
+							560 文本 猎场13炼狱
+						561 text 地图  386  · 模式  260
+						562 复选框 (disabled) 难度 4097, Value: 1
+						563 text 难度  4097
+						564 复选框 (disabled) 难度 4099, Value: 1
+						565 text 难度  4099
+						566 复选框 (disabled) 难度 4102, Value: 1
+						567 text 难度  4102 hunt
+						568 复选框 开放, Value: 0
+						569 文本 开放
+						570 标题 樱之都, Value: 3
+							571 文本 樱之都
+						572 text 地图  387  · 模式  260
+						573 复选框 (disabled) 难度 4097, Value: 1
+						574 text 难度  4097
+						575 复选框 (disabled) 难度 4099, Value: 1
+						576 text 难度  4099
+						577 复选框 (disabled) 难度 4102, Value: 1
+						578 text 难度  4102 tower_defense
+						579 复选框 开放, Value: 0
+						580 文本 开放
+						581 标题 银河战舰, Value: 3
+							582 文本 银河战舰
+						583 text 地图  388  · 模式  8197
+						584 复选框 (disabled) 难度 4101, Value: 1
+						585 text 难度  4101
+						586 复选框 (disabled) 难度 4097, Value: 1
+						587 text 难度  4097
+						588 复选框 (disabled) 难度 4099, Value: 1
+						589 text 难度  4099
+						590 复选框 (disabled) 难度 4100, Value: 1
+						591 text 难度  4100 tower_defense
+						592 复选框 开放, Value: 0
+						593 文本 开放
+						594 标题 丛林圣殿, Value: 3
+							595 文本 丛林圣殿
+						596 text 地图  391  · 模式  8197
+						597 复选框 (disabled) 难度 4101, Value: 1
+						598 text 难度  4101
+						599 复选框 (disabled) 难度 4097, Value: 1
+						600 text 难度  4097
+						601 复选框 (disabled) 难度 4099, Value: 1
+						602 text 难度  4099
+						603 复选框 (disabled) 难度 4100, Value: 1
+						604 text 难度  4100 hunt
+						605 复选框 开放, Value: 0
+						606 文本 开放
+						607 标题 长白天境, Value: 3
+							608 文本 长白天境
+						609 text 地图  392  · 模式  260
+						610 复选框 (disabled) 难度 4097, Value: 1
+						611 text 难度  4097
+						612 复选框 (disabled) 难度 4099, Value: 1
+						613 text 难度  4099
+						614 复选框 (disabled) 难度 4102, Value: 1
+						615 text 难度  4102 tower_defense
+						616 复选框 开放, Value: 0
+						617 文本 开放
+						618 标题 核能电站, Value: 3
+							619 文本 核能电站
+						620 text 地图  393  · 模式  8197
+						621 复选框 (disabled) 难度 4101, Value: 1
+						622 text 难度  4101
+						623 复选框 (disabled) 难度 4097, Value: 1
+						624 text 难度  4097
+						625 复选框 (disabled) 难度 4099, Value: 1
+						626 text 难度  4099
+						627 复选框 (disabled) 难度 4100, Value: 1
+						628 text 难度  4100 hunt
+						629 复选框 开放, Value: 0
+						630 文本 开放
+						631 标题 雪山传说, Value: 3
+							632 文本 雪山传说
+						633 text 地图  398  · 模式  260
+						634 复选框 (disabled) 难度 4097, Value: 1
+						635 text 难度  4097
+						636 复选框 (disabled) 难度 4099, Value: 1
+						637 text 难度  4099
+						638 复选框 (disabled) 难度 4102, Value: 1
+						639 text 难度  4102 tower_defense
+						640 复选框 开放, Value: 0
+						641 文本 开放
+						642 标题 科林亚斯, Value: 3
+							643 文本 科林亚斯
+						644 text 地图  400  · 模式  8197
+						645 复选框 (disabled) 难度 4101, Value: 1
+						646 text 难度  4101
+						647 复选框 (disabled) 难度 4097, Value: 1
+						648 text 难度  4097
+						649 复选框 (disabled) 难度 4099, Value: 1
+						650 text 难度  4099
+						651 复选框 (disabled) 难度 4100, Value: 1
+						652 text 难度  4100 tower_defense
+						653 复选框 开放, Value: 0
+						654 文本 开放
+						655 标题 虚空要塞, Value: 3
+							656 文本 虚空要塞
+						657 text 地图  401  · 模式  8197
+						658 复选框 (disabled) 难度 4101, Value: 1
+						659 text 难度  4101
+						660 复选框 (disabled) 难度 4097, Value: 1
+						661 text 难度  4097
+						662 复选框 (disabled) 难度 4099, Value: 1
+						663 text 难度  4099
+						664 复选框 (disabled) 难度 4100, Value: 1
+						665 text 难度  4100 hunt
+						666 复选框 开放, Value: 0
+						667 文本 开放
+						668 标题 暮光之境, Value: 3
+							669 文本 暮光之境
+						670 text 地图  403  · 模式  260
+						671 复选框 (disabled) 难度 4097, Value: 1
+						672 text 难度  4097
+						673 复选框 (disabled) 难度 4099, Value: 1
+						674 text 难度  4099
+						675 复选框 (disabled) 难度 4102, Value: 1
+						676 text 难度  4102 tower_defense
+						677 复选框 开放, Value: 0
+						678 文本 开放
+						679 标题 命运之城, Value: 3
+							680 文本 命运之城
+						681 text 地图  405  · 模式  8197
+						682 复选框 (disabled) 难度 4101, Value: 1
+						683 text 难度  4101
+						684 复选框 (disabled) 难度 4097, Value: 1
+						685 text 难度  4097
+						686 复选框 (disabled) 难度 4099, Value: 1
+						687 text 难度  4099
+						688 复选框 (disabled) 难度 4100, Value: 1
+						689 text 难度  4100
+					690 container
+						691 link NZ Revival, Value: 127.0.0.1:8875/
+						692 文本 再一次，与战友并肩。
+						693 link 上手指南, Value: 127.0.0.1:8875/guide
+						694 link 管理入口, Value: 127.0.0.1:8875/admin
+						695 link 完整工作台, Value: 127.0.0.1:8875/console
+						696 文本 独立社区 · 开发测试阶段
+				697 滚动条 (settable, float) 0
+	698 图像 WindowControlShadowView._shadowImageView
+	699 工具栏
+		700 container Secondary Actions: 移到下一项, 从工具栏移除
+			701 按钮 Description: 显示边栏, ID: SidebarButton
+			702 菜单按钮 Description: 标签页组选择器, ID: TabGroupPickerButton?TabGroup=
+		703 container BackForwardSegmentedControl
+			704 按钮 Description: 返回, Help: 显示上一页, ID: BackButton
+			705 按钮 (disabled) Description: 前进, Help: 显示下一页, ID: ForwardButton
+		706 container Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+			707 按钮 页面菜单, ID: AssistantButton
+			708 按钮 将页面添加到阅读列表, ID: OneStepBookmarkingButton
+			709 文本栏 (settable) Description: 智能搜索栏, Value: 127.0.0.1:8875/admin, ID: WEB_BROWSER_ADDRESS_AND_SEARCH_FIELD
+			710 按钮 翻译可用, ID: TranslationButton
+			711 按钮 重新载入此页面, ID: ReloadButton
+		712 按钮 Description: 共享, ID: ShareButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		713 按钮 Description: 新建标签页, ID: NewTabButton, Secondary Actions: 移到上一项, 移到下一项, 从工具栏移除
+		714 按钮 Description: 标签页概览, ID: TabOverviewButton, Secondary Actions: 移到上一项, 从工具栏移除
+	715 标签组 Description: 标签页栏，5个标签页, ID: TabBar?isSeparate=false
+		716 标签 016-ops/NZ, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: 关闭标签页
+			717 图像 FaviconImageView
+			718 文本 Value: 016-ops/NZ, ID: UnifiedTabBarButton._titleTextField
+		719 标签 阿里云 - 搜索, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: 关闭标签页
+			720 图像 FaviconImageView
+			721 文本 Value: 阿里云 - 搜索, ID: UnifiedTabBarButton._titleTextField
+		722 标签 登录 - 腾讯云, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: 关闭标签页
+			723 图像 FaviconImageView
+			724 文本 Value: 登录 - 腾讯云, ID: UnifiedTabBarButton._titleTextField
+		725 标签 阿里云-计算，为了无法计算的价值, Value: off, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=false, Secondary Actions: 关闭标签页
+			726 图像 FaviconImageView
+			727 文本 Value: 阿里云-计算，为了无法计算的价值, ID: UnifiedTabBarButton._titleTextField
+		728 标签 管理中心 · NZ Revival, Help: 若要与此按钮中的项目交互，请按下Control-Option-Shift-下箭头键。, Value: on, ID: TabBarTab?isPinned=false&isNarrow=false&isActive=true, Secondary Actions: 关闭标签页
+			729 图像 FaviconImageView
+			730 文本 Value: 管理中心 · NZ Revival, ID: UnifiedTabBarButton._titleTextField
+	731 关闭按钮
+	732 全屏幕按钮 Help: 此按钮也可以执行缩放窗口的操作, Secondary Actions: 缩放窗口
+	733 最小化按钮
+734 menu bar
+	735 Safari浏览器
+	736 文件
+	737 编辑
+	738 显示, ID: SafariViewMenu
+	739 历史记录
+	740 书签, ID: SafariBookmarksMenu
+	741 窗口, ID: SafariWindowMenu
+	742 帮助, ID: SafariHelpMenu

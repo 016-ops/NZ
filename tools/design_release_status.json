@@ -1,0 +1,83 @@
+{
+  "as_of": "2026-10-19 America/Los_Angeles",
+  "evidence": "docs/delivery/2026-10-19-launcher-portal-admin.md",
+  "git": {
+    "summary": "已推送 origin/fix/launcher-portal-admin",
+    "remote_commit": "6f12054997e32258e807980265dad04a4afe914e",
+    "detail": "用户已明确授权并完成GitHub认证；推送成功，ls-remote与本地推送提交一致"
+  },
+  "ci": {
+    "summary": "Windows工具/前端及MySQL综合检查成功；Launcher构建与冻结烟测成功",
+    "windows": {
+      "status": "success：构建与冻结bootstrap/close烟测通过",
+      "detail": "37b7598；artifact12243650799已上传，innerZip的754个payload及manifest路径/摘要/排除私密/外置清单一致性已独立核验。未连接实际API、未干净Windows安装、未实玩；默认回环18765仍为占位网关",
+      "url": "https://github.com/016-ops/NZ/actions/runs/39375681700",
+      "artifact_id": 12243650799,
+      "artifact_wrapper": {
+        "bytes": 25777855,
+        "sha256": "d92596490ed233ea21c7102c221449430f2a787d70ee9bf464623e7b71bb25c4",
+        "layer": "GitHub artifact wrapper；不能当作内部Launcher发行zip的摘要"
+      }
+    },
+    "regression": {
+      "status": "success：MySQL及Windows两个job成功",
+      "detail": "6f12054，MySQL8.4.11：579项、565通过、0失败/错误、582.514秒；14项测试内Skip及6个缺原件suite Skip单列，不计为通过；未据此声称Windows-only场景全部已验证",
+      "url": "https://github.com/016-ops/NZ/actions/runs/39375957208",
+      "commit": "6f12054997e32258e807980265dad04a4afe914e",
+      "mysql_job_id": 118474030677,
+      "artifact_id": 12243727463,
+      "tests": 579,
+      "passed": 565,
+      "failures": 0,
+      "errors": 0,
+      "test_skips": 14,
+      "missing_original_suite_skips": 6,
+      "seconds": 582.514,
+      "evidence": "evidence/2026-10-19-remote-ci-verification.json"
+    },
+    "windows_checks": {
+      "status": "工具/前端job成功",
+      "detail": "6f12054：246项、245通过、0失败/错误、2.748秒；1项测试内skip及6个缺原件suite skip另列，不混进实际通过数；前端成功",
+      "url": "https://github.com/016-ops/NZ/actions/runs/39375957208/job/118474030815",
+      "commit": "6f12054997e32258e807980265dad04a4afe914e",
+      "artifact_id": 12243705393,
+      "evidence": "evidence/2026-10-19-remote-ci-verification.json"
+    },
+    "history": [
+      {
+        "commit": "77813a0",
+        "url": "https://github.com/016-ops/NZ/actions/runs/39375099947",
+        "status": "failure",
+        "diagnostic": "冻结服务exit_code=1，bootstrap_parsed=false，startup_error_code=INVALIDTEMPLATELIBRARY；Rust/PyInstaller构建成功，未产生可宣称通过的最终包"
+      }
+    ]
+  },
+  "launcher": {
+    "package_status": "37b7598 Windows开发包已构建，冻结bootstrap/close烟测通过；实际API/干净安装/实玩未验收",
+    "file_status": "Windows CI已产包；754个payload和manifest独立核验通过",
+    "next_step": "默认回环18765占位需改正式网关；API登录、正式签名、干净Windows安装及实玩另验",
+    "inner_zip": {
+      "file": "NZLauncher-DEV.zip",
+      "bytes": 25974212,
+      "sha256": "139c84de2b034d33be4f5079be6821d582112c02d4552b375733f02494102993",
+      "payload_files": 754,
+      "manifest_extra": 1,
+      "verification": "逐文件SHA、路径、排除私密及外置manifest一致性独立核验通过",
+      "artifact_url": "https://github.com/016-ops/NZ/actions/runs/39375681700/artifacts/12243650799",
+      "evidence": "evidence/2026-10-19-windows-package-verification.json"
+    }
+  },
+  "web_release": {
+    "source_commit": "5b61b61d2a2a104f9bf0c8c553ed40821ba35598",
+    "sha256": "7d61de07bf52581318fa797a56f3c627827f22de2337acc9b507dd345c1f7cb9",
+    "status": "本次未重包、未远程部署"
+  },
+  "local_demo": {
+    "status": "隔离演示账号已创建，仅供本机验证",
+    "player": "test-player@example.invalid",
+    "admin": "nz-test-admin",
+    "player_url": "http://127.0.0.1:8875/player",
+    "admin_url": "http://127.0.0.1:8875/admin",
+    "authentication": "Owner使用正常MFA；凭据仅存本机runtime私密文件，未写入Excel或发布包"
+  }
+}

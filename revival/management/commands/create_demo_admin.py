@@ -1,22 +1,16 @@
-"""免登录 MFA 测试管理员入口；密码交互或标准输入传入，不接受命令行明文密码参数。"""
-import getpass
-import sys
-from django.core.management.base import BaseCommand
-from revival.test_accounts import create_local_test_admin
+"""旧固定码/免码管理员命令已退役；不读取标准输入、私有配置或生成例外凭据。"""
+from django.core.management.base import BaseCommand, CommandError
 
 
 class Command(BaseCommand):
-    """Django 管理命令入口；复用本模块业务处理，参数校验失败以 CommandError 终止。"""
-    help='Create a synthetic-only password-login test administrator'
+    """保留命令名及参数兼容，在读取密码或连接数据库前明确拒绝。"""
+    help = 'Retired: administrators require password and fixed-mailbox email code'
 
-    def add_arguments(self,parser):
-        """标准输入开关方便本地受控配置，账号名仍按正常登录规则验证。"""
+    def add_arguments(self, parser):
+        """识别旧调用形式；标准输入开关不再消费任何密码内容。"""
         parser.add_argument('login')
-        parser.add_argument('--password-stdin',action='store_true')
+        parser.add_argument('--password-stdin', action='store_true')
 
-    def handle(self,*args,**options):
-        """合成模式、唯一账号和文件回退都由共享创建入口校验，成功后只返回私有文件路径。"""
-        password=sys.stdin.readline().rstrip('\r\n') if options['password_stdin'] else getpass.getpass('Test administrator password: ')
-        target=create_local_test_admin(options['login'],password=password,password_only=True)
-        self.stdout.write(f'TEST_PROFILE password-only administrator created. Private credentials: {target}')
-        self.stdout.write('Restart the service to load the account-scoped configuration.')
+    def handle(self, *args, **options):
+        """合成模式与正式模式统一邮件认证，不再保留固定码或免码路径。"""
+        raise CommandError('AUTH_METHOD_RETIRED: use bootstrap_admin and email authentication')

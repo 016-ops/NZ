@@ -5,7 +5,6 @@ from revival.assets import settle
 from revival.nodes import ready, pending, acknowledge
 from revival.pve import events, recover_timeouts
 from revival.rooms import heartbeat
-from revival.security import otp
 from revival.service import Fault, Service, identifier
 from .support import DatabasePool
 from .test_control_plane import Base
@@ -32,8 +31,7 @@ class PveTests(Base):
         self.now += 30
         revision = self.s.query(self.ta, 'rooms')[0]['revision']
         allocation = self.command('room.start', {'room_id': self.room_id, 'expected_revision': revision}, self.ta)
-        self.node = self.command('node.enroll', {'match_id': allocation['match_id'], 'current_password': self.password,
-                                 'otp_code': otp(self.admin['otp_secret'], self.now // 30)})
+        self.node = self.command('node.enroll', {'match_id': allocation['match_id'], 'current_password': self.password})
         request = {key: self.node[key] for key in ('match_id', 'instance_id', 'epoch', 'snapshot_hash', 'map_key')}
         request['health'] = {'map_loaded': True, 'world_ready': True, 'network_ready': True}
         self.ready_data = request
@@ -267,8 +265,7 @@ class PveTests(Base):
                 self.command('room.ready', {'room_id': self.room_id, 'ready': True}, token)
             revision = self.s.query(self.ta, 'rooms')[0]['revision']
             allocation = self.command('room.start', {'room_id': self.room_id, 'expected_revision': revision}, self.ta)
-            self.node = self.command('node.enroll', {'match_id': allocation['match_id'], 'current_password': self.password,
-                                     'otp_code': otp(self.admin['otp_secret'], self.now // 30)})
+            self.node = self.command('node.enroll', {'match_id': allocation['match_id'], 'current_password': self.password})
             body = {key: self.node[key] for key in ('match_id', 'instance_id', 'epoch', 'snapshot_hash', 'map_key')}
             body['health'] = {'map_loaded': True, 'world_ready': True, 'network_ready': True}
             self.state = ready(self.s, self.node['node_token'], body)['pve']
@@ -292,9 +289,8 @@ class PveTests(Base):
             self.command('room.ready', {'room_id': second_room, 'ready': True}, token)
         revision = next(row for row in self.s.query(second_accounts[0][1], 'rooms') if row['id'] == second_room)['revision']
         match = self.command('room.start', {'room_id': second_room, 'expected_revision': revision}, second_accounts[0][1])
-        # 使用正常窗口内下一枚未消费 TOTP，不推进测试时钟使第一份租约意外过期。
-        second = self.command('node.enroll', {'match_id': match['match_id'], 'current_password': self.password,
-                              'otp_code': otp(self.admin['otp_secret'], self.now // 30 + 1)})
+        # 通过真实操作绑定邮件码确认，不推进对局时钟导致另一份节点租约过期。
+        second = self.command('node.enroll', {'match_id': match['match_id'], 'current_password': self.password})
         body = {key: second[key] for key in ('match_id', 'instance_id', 'epoch', 'snapshot_hash', 'map_key')}
         body['health'] = {'map_loaded': True, 'world_ready': True, 'network_ready': True}
         second_state = ready(self.s, second['node_token'], body)['pve']

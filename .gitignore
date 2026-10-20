@@ -2,6 +2,7 @@ nz/
 upstream/
 repository/
 .venv/
+.zcode/
 __pycache__/
 *.pyc
 runtime/
@@ -13,9 +14,16 @@ evidence/private/
 *.key
 .env.local
 .env.local.*
+# 操作者本机提供的服务器/数据库连接资料不进入源码或发布物。
+/服务器数据库配置.txt
 node_modules/
 admin/dist/
 launcher/target/
 launcher/bin/
 launcher/gen/
 .pytest_cache/
+# Excel渲染/检查中间件留本机；最终工作簿、发布包及验证摘要进入交付。
+outputs/**/*.inspect.ndjson
+outputs/**/design-sources.json
+outputs/**/previews/
+outputs/**/node_modules

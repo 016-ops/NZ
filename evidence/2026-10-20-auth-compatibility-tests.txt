@@ -1,0 +1,101 @@
+test_login_requires_mail_and_consumes_once_even_concurrently (tests.test_admin_email_auth.AdminEmailAuthentication.test_login_requires_mail_and_consumes_once_even_concurrently)
+旧TOTP及免码配置无效，同一邮件挑战并发最多签发一个会话。 ... ok
+test_old_recovery_and_every_platform_shop_entry_are_closed_before_replay (tests.test_admin_email_auth.AdminEmailAuthentication.test_old_recovery_and_every_platform_shop_entry_are_closed_before_replay)
+旧恢复接口明确退役；平台三动作即使有历史成功回执也拒绝，管理员目录保留。 ... ok
+test_smtp_fail_closed_and_failed_password_source_budget_is_durable (tests.test_admin_email_auth.AdminEmailAuthentication.test_smtp_fail_closed_and_failed_password_source_budget_is_durable)
+投递失败不激活挑战；错误密码的来源额度持久保存且不读取真实SMTP。 ... ok
+test_step_up_audit_failure_rolls_back_consumption_and_state (tests.test_admin_email_auth.AdminEmailAuthentication.test_step_up_audit_failure_rolls_back_consumption_and_state)
+业务审计失败不能消费邮件码或留下管理员；修复后同码同操作可重试。 ... ok
+test_step_up_binds_session_action_payload_and_replays_only_committed_result (tests.test_admin_email_auth.AdminEmailAuthentication.test_step_up_binds_session_action_payload_and_replays_only_committed_result)
+操作改变/换会话均不能借码授权；成功同键重试不二次消费或新建管理员。 ... ok
+test_wrong_code_budget_expiry_and_resend_survive_restart (tests.test_admin_email_auth.AdminEmailAuthentication.test_wrong_code_budget_expiry_and_resend_survive_restart)
+五次错码、过期、重发替代均持久生效，重建Service不能恢复旧码。 ... ok
+test_nickname_or_audit_failure_rolls_back_code_and_account (tests.test_admin_email_auth.OpenEmailRegistration.test_nickname_or_audit_failure_rolls_back_code_and_account)
+昵称冲突或审计失败不留下账号，不消耗验证码；保持原邮箱和角色完整。 ... ok
+test_registration_creates_active_verified_character_without_invitation (tests.test_admin_email_auth.OpenEmailRegistration.test_registration_creates_active_verified_character_without_invitation)
+成功即可登录且有角色，同键重试不增加账号、角色或钱包。 ... ok
+test_verified_pending_onboarding_and_disabled_are_distinct (tests.test_admin_email_auth.OpenEmailRegistration.test_verified_pending_onboarding_and_disabled_are_distinct)
+已验证历史待审自动开通，无角色引导；停用账号不因邮箱证明被激活。 ... ok
+test_admin_mfa_required_and_cannot_replay (tests.test_control_plane.Accounts.test_admin_mfa_required_and_cannot_replay)
+管理员必须提交独立邮件挑战，旧TOTP参数不能恢复登录。 ... ok
+test_character_and_assets_are_independent_and_initialize_once (tests.test_control_plane.Accounts.test_character_and_assets_are_independent_and_initialize_once)
+验证场景：账号与角色分开初始化，重复初始化不能重置资产。 ... ok
+test_concurrent_invitation_use_is_atomic (tests.test_control_plane.Accounts.test_concurrent_invitation_use_is_atomic)
+验证场景：并发消费最后一个邀请名额，只允许一个账号成功。 ... ok
+test_disable_approve_does_not_bypass_disabled (tests.test_control_plane.Accounts.test_disable_approve_does_not_bypass_disabled)
+验证场景：审批操作不能绕过已停用状态。 ... ok
+test_expired_and_revoked_invitations_are_rejected (tests.test_control_plane.Accounts.test_expired_and_revoked_invitations_are_rejected)
+验证场景：过期及已撤销邀请均拒绝注册。 ... ok
+test_local_nickname_validation_uniqueness_and_chinese (tests.test_control_plane.Accounts.test_local_nickname_validation_uniqueness_and_chinese)
+验证场景：中文昵称合法，非法字符及重复昵称被拒绝。 ... ok
+test_pending_and_wrong_password_do_not_authenticate (tests.test_control_plane.Accounts.test_pending_and_wrong_password_do_not_authenticate)
+验证场景：待审批账号和错误密码均不能产生有效会话。 ... ok
+test_permission_matrix_and_no_credentials_in_read_models (tests.test_control_plane.Accounts.test_permission_matrix_and_no_credentials_in_read_models)
+验证场景：角色权限按矩阵拒绝越权，读模型不暴露凭据。 ... ok
+test_registration_replay_does_not_consume_invite_again (tests.test_control_plane.Accounts.test_registration_replay_does_not_consume_invite_again)
+验证场景：重复注册幂等请求返回原账号，不再次消耗邀请。 ... ok
+test_reset_revokes_old_credentials_and_session (tests.test_control_plane.Accounts.test_reset_revokes_old_credentials_and_session)
+验证场景：重置密码撤销旧凭据和旧会话。 ... ok
+test_restart_preserves_mapping_character_ban_and_assets (tests.test_control_plane.Accounts.test_restart_preserves_mapping_character_ban_and_assets)
+验证场景：重建业务服务后账号映射、角色、制裁及资产保持一致。 ... ok
+test_session_replacement_and_expiry_remove_old_seat (tests.test_control_plane.Accounts.test_session_replacement_and_expiry_remove_old_seat)
+验证场景：会话替换和到期后旧会话不能继续保留有效席位。 ... ok
+test_stacked_sanctions_and_expiry (tests.test_control_plane.Accounts.test_stacked_sanctions_and_expiry)
+验证场景：叠加制裁独立生效，全部到期后才恢复资格。 ... ok
+test_atomic_audit_failure_and_immutable_ledger (tests.test_control_plane.Assets.test_atomic_audit_failure_and_immutable_ledger)
+验证场景：审计失败回滚业务，数据库拒绝改写或删除历史流水。 ... ok
+test_batch_freezes_targets_partial_failure_and_replay (tests.test_control_plane.Assets.test_batch_freezes_targets_partial_failure_and_replay)
+验证场景：批量冻结目标，子项失败独立回滚，重放不重复成功子项。 ... ok
+test_compensation_success_and_no_double_reversal (tests.test_control_plane.Assets.test_compensation_success_and_no_double_reversal)
+验证场景：补偿追加关联流水，重复请求不会双重撤销。 ... ok
+test_concurrent_grants_and_purchase_preserve_balance (tests.test_control_plane.Assets.test_concurrent_grants_and_purchase_preserve_balance)
+验证场景：并发发放和购买保持余额与流水一致。 ... ok
+test_consumption_equipment_expiry_and_limit (tests.test_control_plane.Assets.test_consumption_equipment_expiry_and_limit)
+验证场景：消费数量、装备到期和库存上限依规则执行。 ... ok
+test_large_owner_grants_require_fresh_mfa (tests.test_control_plane.Assets.test_large_owner_grants_require_fresh_mfa)
+验证场景：大额 Owner 发放必须重新验证新鲜 MFA。 ... ok
+test_outbox_retry_never_repeats_assets (tests.test_control_plane.Assets.test_outbox_retry_never_repeats_assets)
+验证场景：通知重试只发送事件，不重复执行资产变更。 ... ok
+test_post_commit_reply_loss_and_restart_replay (tests.test_control_plane.Assets.test_post_commit_reply_loss_and_restart_replay)
+验证场景：提交后响应丢失，重启重试返回原结果而不重复发放。 ... ok
+test_preview_is_read_only_and_commit_revalidates (tests.test_control_plane.Assets.test_preview_is_read_only_and_commit_revalidates)
+验证场景：预览无持久化写入，确认提交重新校验当前状态。 ... ok
+test_purchase_failure_rolls_back_wallet_and_outbox (tests.test_control_plane.Assets.test_purchase_failure_rolls_back_wallet_and_outbox)
+验证场景：购买失败后钱包、流水和 outbox 全部回滚。 ... ok
+test_replay_and_payload_conflict (tests.test_control_plane.Assets.test_replay_and_payload_conflict)
+验证场景：相同幂等键和内容返回原结果，内容改变时报冲突。 ... ok
+test_spent_compensation_is_review_not_negative (tests.test_control_plane.Assets.test_spent_compensation_is_review_not_negative)
+验证场景：已消费资产的补偿转人工审核，不能造成负余额。 ... ok
+test_unknown_negative_overflow_invalid_duration_and_cross_account (tests.test_control_plane.Assets.test_unknown_negative_overflow_invalid_duration_and_cross_account)
+验证场景：未知资产、负余额、溢出、非法期限和跨账号装备均拒绝。 ... ok
+test_admin_secrets_are_one_time_and_role_change_revokes_sessions (tests.test_operations.OperationsTests.test_admin_secrets_are_one_time_and_role_change_revokes_sessions)
+创建响应丢失重试不泄漏 MFA；角色改变后旧管理员会话立即失效。 ... ok
+test_batch_author_revocation_prevents_pending_grants (tests.test_operations.OperationsTests.test_batch_author_revocation_prevents_pending_grants)
+排队后撤销操作者安全版本，尚未执行子项拒绝发放。 ... ok
+test_batch_preview_restart_partial_failure_and_failed_only_retry (tests.test_operations.OperationsTests.test_batch_preview_restart_partial_failure_and_failed_only_retry)
+预览无资产变更；中途重启只处理未完成目标，重试不能扩大到成功目标。 ... ok
+test_last_owner_and_permission_are_enforced (tests.test_operations.OperationsTests.test_last_owner_and_permission_are_enforced)
+最后 Owner 的停用/降权回滚，玩家不能通过直接调用创建管理员。 ... ok
+test_manual_review_is_closed_without_rewriting_history (tests.test_operations.OperationsTests.test_manual_review_is_closed_without_rewriting_history)
+已花费发放的人工复核只追加决定，不能改原账本或制造负余额。 ... ok
+test_recovery_path_is_retired_without_changing_session (tests.test_operations.OperationsTests.test_recovery_path_is_retired_without_changing_session)
+旧恢复码立即拒绝，不能修改认证方式或撤销当前有效邮件会话。 ... ok
+test_worker_audit_failure_rolls_back_and_restart_resumes_once (tests.test_operations.OperationsTests.test_worker_audit_failure_rolls_back_and_restart_resumes_once)
+子项审计失败必须同时回滚资产和任务结果，重启后可以安全继续该子项。 ... ok
+test_fixed_cli_is_retired_before_any_account_or_file_write (tests.test_fixed_test_mfa.FixedTestMfaTests.test_fixed_cli_is_retired_before_any_account_or_file_write)
+旧命令保留清晰错误，不能重新安装固定码账号。 ... ok
+test_old_fixed_environment_cannot_authenticate_or_authorize (tests.test_fixed_test_mfa.FixedTestMfaTests.test_old_fixed_environment_cannot_authenticate_or_authorize)
+数据库和账号完全匹配仍拒绝旧码；权限检查不能由本地环境变量绕过。 ... ok
+test_normal_password_policy_remains_strong (tests.test_password_only_admin.PasswordOnlyAdminTests.test_normal_password_policy_remains_strong)
+邮件验证不会放宽普通注册或管理员创建的密码强度。 ... ok
+test_old_creation_paths_have_no_side_effects_or_password_read (tests.test_password_only_admin.PasswordOnlyAdminTests.test_old_creation_paths_have_no_side_effects_or_password_read)
+退役发生在读取标准输入、私有配置、写文件或插入管理员之前。 ... ok
+test_password_only_environment_cannot_authenticate (tests.test_password_only_admin.PasswordOnlyAdminTests.test_password_only_environment_cannot_authenticate)
+旧合成账号白名单即使完整匹配，也必须提交真正的一次性邮件码。 ... ok
+test_native_shop_failure_then_commit_and_incremental_cache (tests.test_native_features.NativeFeatureTests.test_native_shop_failure_then_commit_and_incremental_cache)
+余额不足得到商城失败应答，随后同连接付款成功且只增量更新一件；余额不伪造。 ... ok
+
+----------------------------------------------------------------------
+Ran 48 tests in 71.210s
+
+OK

@@ -1,0 +1,31 @@
+test_bounded_rate_limiter (tests.test_http.HttpTests.test_bounded_rate_limiter)
+验证场景：限流窗口拒绝超额请求，客户端桶数量始终有界。 ... ok
+test_csrf_origin_dns_rebinding_and_bad_body (tests.test_http.HttpTests.test_csrf_origin_dns_rebinding_and_bad_body)
+验证场景：跨 Origin、错误 Host、重复 JSON 字段、非有限数字和超限体被拒绝。 ... ok
+test_health_security_headers_and_static_page (tests.test_http.HttpTests.test_health_security_headers_and_static_page)
+验证场景：健康接口及前端静态页真实可访问，响应携带安全头。 ... ok
+test_public_bind_and_untrusted_node_results_rejected (tests.test_http.HttpTests.test_public_bind_and_untrusted_node_results_rejected)
+验证场景：公共监听地址及非可信节点结算均被拒绝。 ... ok
+test_real_http_auth_permissions_command_and_logout (tests.test_http.HttpTests.test_real_http_auth_permissions_command_and_logout)
+验证场景：真实 HTTP 下玩家不能越权发放资产，退出后会话失效。 ... ok
+test_transfer_encoding_is_rejected_before_wsgi_and_size_boundary_is_exact (tests.test_http.HttpTests.test_transfer_encoding_is_rejected_before_wsgi_and_size_boundary_is_exact)
+实际发出分块传输，防止 Waitress 解码并删除头后绕过中间件；64 KiB 边界保持一致。 ... ok
+test_native_contract_routes_and_acknowledgement_scope (tests.test_node_http.NodeHttpTests.test_native_contract_routes_and_acknowledgement_scope)
+节点可重放就绪/事件并确认自己的通知；玩家不能替代节点提交或确认。 ... ok
+test_configured_https_origin_is_exact_and_cross_origin_remains_rejected (tests.test_portal_http.PortalHttpTests.test_configured_https_origin_is_exact_and_cross_origin_remains_rejected)
+仅部署配置中的HTTPS Host和Origin被接受，其他子域或HTTP来源仍拒绝。 ... ok
+test_player_envelope_rejects_admin_view_and_only_reads_own_inventory (tests.test_portal_http.PortalHttpTests.test_player_envelope_rejects_admin_view_and_only_reads_own_inventory)
+对象信封给桌面用，仍需玩家身份；不能用 view 参数越权读取用户和主机。 ... ok
+test_public_portal_contains_exact_seven_maps_without_admin_or_player_data (tests.test_portal_http.PortalHttpTests.test_public_portal_contains_exact_seven_maps_without_admin_or_player_data)
+匿名可读首发七图与空活动，联盟变体160关闭；不能借公开路由读取监控。 ... ok
+test_invalid_proxy_address_is_rejected (tests.test_proxy_address.ProxyAddressTests.test_invalid_proxy_address_is_rejected)
+受信代理头必须是单个规范IP，不能使用任意字符串或逗号列表绕过桶限制。 ... ok
+test_trusted_proxy_distinguishes_clients (tests.test_proxy_address.ProxyAddressTests.test_trusted_proxy_distinguishes_clients)
+模板中的本机反代明确覆盖头后，不同公网用户不再共享登录/邮件限流桶。 ... ok
+test_untrusted_peer_host_or_disabled_setting_ignores_forwarded_header (tests.test_proxy_address.ProxyAddressTests.test_untrusted_peer_host_or_disabled_setting_ignores_forwarded_header)
+外部peer、本机私有入口或未授权反代均以连接IP限流，不能自行换桶。 ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 6.103s
+
+OK
