@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { RetryEnvelope, type Session } from '@/lib/api'
+import { RetryEnvelope, type Metadata, type Session } from '@/lib/api'
 
 /** Web 直连与启动器受限桥均实现此接口；表单不依赖业务令牌或服务器地址。 */
 export interface AccountApi { request<T = unknown>(path: string, data?: object): Promise<T> }
@@ -16,6 +16,15 @@ const titles: Record<Mode, string> = { login: '登录', register: '创建账号'
 export function playerAccessPayload(mode: Exclude<Mode, 'login'>, values: { email: string; password: string; nickname: string; code: string; challenge_id: string }) {
   return { email: values.email.trim(), ...(mode === 'verify' ? {} : { password: values.password }),
     ...(mode === 'register' ? { nickname: values.nickname.trim() } : {}), code: values.code, challenge_id: values.challenge_id }
+}
+
+/** 注册/重置先校验本机确认密码，再请求既有接口；确认值不进入HTTP、本机桥或幂等正文。 */
+export async function submitPlayerEmailRequest(api: AccountApi, mode: Exclude<Mode, 'login'>, values: ReturnType<typeof playerAccessPayload>, confirmation: string, metadata: Metadata) {
+  if (mode === 'register' || mode === 'reset') {
+    if (!confirmation) throw new Error('请再次输入密码以确认。')
+    if (values.password !== confirmation) throw new Error('两次输入的密码不一致，请重新确认。')
+  }
+  return api.request('/api/player/' + (mode === 'register' ? 'register' : mode === 'reset' ? 'password-reset' : 'email-verify'), { ...values, ...metadata })
 }
 
 /** 可重发倒计时由组件管理；真实发送额度、有效期和验证码判断始终由服务端决定。 */
@@ -37,6 +46,7 @@ function PlayerEmailForm({ api, mode, busy, setBusy, report, signedIn, completed
 }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmation, setConfirmation] = useState('')
   const [nickname, setNickname] = useState('')
   const [code, setCode] = useState('')
   const [challenge, setChallenge] = useState('')
@@ -66,20 +76,21 @@ function PlayerEmailForm({ api, mode, busy, setBusy, report, signedIn, completed
       if (mode === 'login') await login()
       else {
         const values = playerAccessPayload(mode, { email, password, nickname, code, challenge_id: challenge })
-        await api.request('/api/player/' + (mode === 'register' ? 'register' : mode === 'reset' ? 'password-reset' : 'email-verify'), { ...values, ...retry.current.prepare(values, titles[mode]) })
+        await submitPlayerEmailRequest(api, mode, values, confirmation, retry.current.prepare(values, titles[mode]))
         retry.current.success(); registered = mode === 'register'; completed()
         if (mode === 'register') {
           report('账号与角色已创建，正在为你登录。')
           await login()
         } else report(mode === 'reset' ? '密码已更新，请使用新密码登录。' : '邮箱验证完成，请登录。')
       }
-      setPassword(''); setCode('')
+      setPassword(''); setConfirmation(''); setCode('')
     } catch (error) { const message = error instanceof Error ? error.message : '操作未完成，请重试。'; report(registered ? `账号已创建，自动登录尚未完成。请在登录页重试。${message}` : message) }
     finally { setBusy(false) }
   }}>
     <div className="grid gap-2"><Label htmlFor={id + '-email'}>邮箱地址</Label><Input id={id + '-email'} type="email" autoComplete="email" required disabled={busy || disabled} value={email} maxLength={254} onChange={event => { setEmail(event.target.value); setChallenge(''); setCode('') }} /></div>
     {mode === 'register' && <div className="grid gap-2"><Label htmlFor={id + '-nickname'}>游戏昵称</Label><Input id={id + '-nickname'} required minLength={1} maxLength={24} disabled={busy || disabled} value={nickname} onChange={event => setNickname(event.target.value)} placeholder="给战友一个熟悉的称呼" /></div>}
     {mode !== 'verify' && <div className="grid gap-2"><Label htmlFor={id + '-password'}>{mode === 'login' ? '密码' : '新密码（12–128 字符）'}</Label><Input id={id + '-password'} type="password" required minLength={mode === 'login' ? undefined : 12} maxLength={128} autoComplete={mode === 'login' ? 'current-password' : 'new-password'} disabled={busy || disabled} value={password} onChange={event => setPassword(event.target.value)} /></div>}
+    {(mode === 'register' || mode === 'reset') && <div className="grid gap-2"><Label htmlFor={id + '-confirmation'}>确认密码</Label><Input id={id + '-confirmation'} type="password" required minLength={12} maxLength={128} autoComplete="new-password" disabled={busy || disabled} value={confirmation} onChange={event => setConfirmation(event.target.value)} /></div>}
     {mode !== 'login' && <div className="grid gap-2"><Label htmlFor={id + '-code'}>邮箱验证码</Label><Input id={id + '-code'} required inputMode="numeric" pattern="[0-9]{6}" maxLength={6} autoComplete="one-time-code" disabled={busy || disabled} value={code} onChange={event => setCode(event.target.value)} /><Button type="button" variant="outline" disabled={busy || disabled || cooldown > 0 || !email} onClick={() => void sendCode()}>{cooldown ? `${cooldown} 秒后可重发` : '发送验证码'}</Button></div>}
     <Button type="submit" disabled={busy || disabled || (mode !== 'login' && !challenge)}>{busy ? '处理中…' : mode === 'register' ? '注册并登录' : titles[mode]}</Button>
   </form></CardContent></Card>
