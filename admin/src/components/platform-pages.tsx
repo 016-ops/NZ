@@ -61,7 +61,7 @@ export function CommandButton({ api, action, data, children, reason, confirm, di
     }
     finally { submitting.current = false; setBusy(false) }
   }
-  return <div className="nz-command"><Button variant={variant} disabled={busy || (disabled && !unavailableReason)} aria-disabled={disabled || busy} onClick={() => confirm && !disabled ? setOpen(true) : void execute()}>{busy ? <LoaderCircle className="animate-spin" size={15} /> : null}{children}</Button>
+  return <div className="nz-command"><Button variant={variant} disabled={busy || (disabled && !unavailableReason)} aria-disabled={busy || (disabled && !unavailableReason)} onClick={() => confirm && !disabled ? setOpen(true) : void execute()}>{busy ? <LoaderCircle className="animate-spin" size={15} /> : null}{children}</Button>
     <Dialog open={open} onOpenChange={value => { if (!busy) setOpen(value) }}><DialogContent className="nz-dialog"><DialogHeader><DialogTitle>确认本次操作</DialogTitle><DialogDescription>{confirm}</DialogDescription></DialogHeader><DialogFooter><Button variant="outline" disabled={busy} onClick={() => setOpen(false)}>取消</Button><Button disabled={busy} onClick={() => void execute()}>{busy ? '处理中…' : '确认执行'}</Button></DialogFooter></DialogContent></Dialog>
   </div>
 }

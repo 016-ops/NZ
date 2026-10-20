@@ -188,7 +188,7 @@ def build(output, config, *, skip_frontend=False):
     instructions = ('逆战 Launcher DEV 便携包\n\n双击 NZLauncher.exe，使用自己的邮箱登录。\n'
                     '此包无需开发仓库或系统 Python。Windows 需安装 Microsoft Edge WebView2 Runtime。\n'
                     'launcher-config.json 仅存公开 HTTPS 地址或操作者预建的回环隧道；不包含 SSH 凭据。\n'
-                    '当前包用于平台登录、仓库、商城与活动；完整游戏客户端和原生实玩另行验收，启动会明确阻塞。\n'
+                    '当前包用于邮箱注册登录、仓库、活动与意见反馈；玩家商城不开放。完整游戏客户端和原生实玩另行验收，启动会明确阻塞。\n'
                     '运行记录位于 %LOCALAPPDATA%\\NZRevivalLauncher\\runtime。\n'
                     '此包未签名；真正 Windows 构建与干净机器验收以交付记录为准。\n')
     (output / '使用说明.txt').write_text(instructions, encoding='utf-8')
