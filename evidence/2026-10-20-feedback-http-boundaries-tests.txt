@@ -1,0 +1,9 @@
+test_http_multipart_retry_private_get_and_player_view_envelope (tests.test_feedback.FeedbackTests.test_http_multipart_retry_private_get_and_player_view_envelope)
+真实HTTP上传可重试；私图仅归属会话可读，并保持no-store/nosniff与桥接对象信封。 ... ok
+test_http_upload_auth_precedes_decode_and_strict_multipart (tests.test_feedback.FeedbackTests.test_http_upload_auth_precedes_decode_and_strict_multipart)
+匿名先拒绝且不解码；伪图片、额外字段、重复上传键和多文件都不能留下附件。 ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 4.838s
+
+OK

@@ -1,0 +1,117 @@
+{
+  "kind": "FINAL_EXACT_SOURCE_CI_VERIFICATION_NOT_SMTP_OR_NATIVE_ACCEPTANCE",
+  "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+  "all_workflows_success": true,
+  "runs": {
+    "tests": {
+      "id": 39402348358,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39402348358",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "launcher": {
+      "id": 39402348645,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39402348645",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  },
+  "jobs": {
+    "mysql": {
+      "id": 118559893282,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39402348358/job/118559893282",
+      "status": "completed",
+      "conclusion": "success",
+      "artifact_id": 12255778201,
+      "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+      "mysql_version": "8.4.11",
+      "tests": 620,
+      "passed": 606,
+      "failures": 0,
+      "errors": 0,
+      "skipped_tests": 14,
+      "skipped_suites": 6,
+      "exit_code": 0,
+      "seconds": 703.111
+    },
+    "windows": {
+      "id": 118559893054,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39402348358/job/118559893054",
+      "status": "completed",
+      "conclusion": "success",
+      "artifact_id": 12255635724,
+      "kind": "INDEPENDENT_TOOLING",
+      "mysql_version": null,
+      "tests": 254,
+      "passed": 253,
+      "failures": 0,
+      "errors": 0,
+      "skipped_tests": 1,
+      "skipped_suites": 6,
+      "exit_code": 0,
+      "seconds": 3.146
+    },
+    "portable": {
+      "id": 118559893775,
+      "url": "https://github.com/016-ops/NZ/actions/runs/39402348645/job/118559893775",
+      "status": "completed",
+      "conclusion": "success",
+      "artifact_id": 12256681134
+    }
+  },
+  "final_password_budget_test_passed": true,
+  "windows_only_skips_verified": {
+    "candidate_count": 12,
+    "exact_passed_intersection": 12,
+    "missing_ids": [],
+    "matched_ids": [
+      "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_external_file_and_install_race_are_preserved",
+      "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_files_recover_after_restart_without_touching_originals",
+      "tests.test_native_config_guard.NativeConfigGuardTests.test_additive_prepared_plan_survives_post_install_failure",
+      "tests.test_native_frame_bridge.FrameBridgeTests.test_restart_restores_only_owned_file",
+      "tests.test_native_graphics_compat.GraphicsCompatibilityTests.test_partial_install_failure_removes_only_owned_files_on_recovery",
+      "tests.test_native_images.ImageTests.test_job_keeps_and_cleans_child_after_root_exits",
+      "tests.test_native_job.NativeJobCleanupTests.test_observer_error_waits_for_owned_file_holder_before_restore",
+      "tests.test_native_job.NativeJobCleanupTests.test_parent_exit_does_not_leave_unobserved_owned_child_running",
+      "tests.test_native_room_journal.NativeRoomJournalTests.test_corrupted_protected_journal_is_preserved_and_rejected",
+      "tests.test_native_room_journal.NativeRoomJournalTests.test_previous_passwordless_journal_remains_compatible",
+      "tests.test_native_room_journal.NativeRoomJournalTests.test_secret_is_protected_and_same_user_can_resume",
+      "tests.test_native_udp_probe.NativeUdpProbeTests.test_real_owned_loopback_udp_port_detected_without_sending"
+    ]
+  },
+  "remaining_unverified": {
+    "email_native_windows_test": true,
+    "fixed_original_fixture_test": true,
+    "fixed_original_fixture_suites": 6,
+    "real_smtp_delivery": true,
+    "clean_windows_install": true,
+    "native_gameplay": true
+  },
+  "package_verification": "evidence/2026-10-20-launcher-package-verification.json",
+  "launcher_inner": {
+    "path": "/Users/zjh/NZ/outputs/portal-v2-2026-10-20/NZLauncher-DEV.zip",
+    "bytes": 26934988,
+    "sha256": "640f97b8e43ed11e4da71a58353bc4cbae20b3d8671ddd690cb0aa8d1de14628"
+  },
+  "launcher_wrapper": {
+    "bytes": 26737783,
+    "sha256": "53e5b9efa9054e129859dfd326b82dd6c73bcdc1d69095d2f90295a76b164b6b"
+  },
+  "service_smoke": {
+    "bootstrap_close_passed": true,
+    "api_login_executed": false,
+    "seconds": 2.272
+  },
+  "historical_baselines": [
+    {
+      "source_commit": "1c78c54568c5dca1af30db0e3367cecba1226272",
+      "mysql_report": "runtime/launcher-v2-ci-1c78c54/mysql-verification.json",
+      "purpose": "Historical success; not substituted for final source"
+    },
+    {
+      "source_commit": "fef8fa4a09b242f522e2f4e4ae16919b524e5094",
+      "report": "runtime/launcher-v2-ci-fef8fa4/ci-verification.json",
+      "purpose": "Historical success; not final portable"
+    }
+  ]
+}

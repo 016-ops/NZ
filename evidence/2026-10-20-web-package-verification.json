@@ -1,0 +1,10 @@
+{
+  "source_commit": "138c66e4677fc6475626bcede083f920ba7f15e4",
+  "archive": "nz-web-platform-2026-10-20.tar.gz",
+  "sha256": "9bec06bc99bcd6a086c70b9903a31eb3a7e7361133eb29321fb7fd432581b67a",
+  "bytes": 4241785,
+  "payload_files": 178,
+  "manifest_verified": true,
+  "private_paths_absent": true,
+  "deployed": false
+}

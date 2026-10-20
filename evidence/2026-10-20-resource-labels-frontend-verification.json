@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-20",
+  "scope": "默认页面资源代码展示修正",
+  "checks": {
+    "tests": { "command": "npm --prefix admin test", "files": 6, "passed": 19, "new_cases": 2, "status": "passed" },
+    "build": { "command": "npm --prefix admin run build", "modules": 1721, "status": "passed", "warning": "主块超过500kB的既有体积警告。" },
+    "diff_check": { "command": "git diff --check", "status": "passed" }
+  },
+  "implemented": [
+    "首页移除作为装饰的地图编号。",
+    "榜单、地图白名单、榜奖范围仅显示待确认难度与选项序号，原始编号移入折叠技术详情。",
+    "管理员仓库实例与资源码、商城商品与币种码默认折叠；未知币种名称不猜测。",
+    "共享详情按中文道具名/槽位/状态或待确认提示展示，原始枚举和代码可展开核对。",
+    "select/checkbox原值、API字段、库存实例及命令正文保持原值。"
+  ],
+  "not_verified": ["本证据不代表Windows/WebView实机、SMTP投递或原生游戏实玩通过。", "未部署远端服务。"]
+}

@@ -24,7 +24,6 @@
 
 - 精确原道具图片仍缺4319项，按本轮约定先用有标记的分类示意；逐项清单`docs/assets/item-image-missing.csv`，不宣称原图齐备。
 - 真实SMTP邮箱收件尚未验证；代码和模拟投递测试不能替代实际收件。
-- Windows本轮归档与完整CI的状态待本轮最终证据补充；本机Mac只验证布局/固定桥合同，不能冒称Windows游戏运行通过。
 - 真实军衔、可信原生游玩时长/结算/正式榜单仍沿用首轮原生来源阻塞，不向正式榜灌入合成成绩。
 
 ## 当前阻塞
@@ -41,18 +40,38 @@
 |---|---|---|
 | 完整回归 | 本机隔离MySQL，`evidence/2026-10-20-full-mysql-tests.json` | 619项，605通过，14测试skip及6缺原件suite skip，零fail/error；此轮加载时尚未包含最后“错密码预算”增量 |
 | 最后认证增量 | `evidence/2026-10-20-admin-password-budget-final-tests.json` | 14项全部通过，包含同挑战五次错密码及其他login不消耗挑战 |
+| 最终同源MySQL CI | `138c66e`，[run 39402348358](https://github.com/016-ops/NZ/actions/runs/39402348358)，`evidence/2026-10-20-final-ci-verification.json` | MySQL 8.4.11；620执行、606通过、14测试skip及6缺原件suite skip；零fail/error，703.111秒，含最后错密码预算回归 |
+| 最终同源Windows CI | 同一源码/同一测试run，job 118559893054 | 254执行、253通过、1测试skip及6缺原件suite skip；零fail/error。MySQL中12项Windows-only skip逐ID均在本次Windows通过集合中，差集为空；其他跳过项仍未验 |
 | 反馈/活动/图片 | `evidence/2026-10-20-feedback-presentation-tests.json`及HTTP边界复验 | 35项通过；其中2项增强断言复验通过，不重复计为37项 |
 | Launcher桥 | `evidence/2026-10-20-launcher-v2-tests.json` | 53项工具通过，无数据库或Windows实机声明 |
 | 公共封面桥 | `evidence/2026-10-20-campaign-cover-bridge-tests.json` | 22项相邻工具通过，包含真实PublicClient回环HTTP；与前组有重叠 |
-| 前端 | `npm run build`、`npm test`、专项JSON | 最终17项通过，生产构建通过；完整目录展示JSON有体积提示，图片只按可见卡片懒加载 |
-| 文档 | `outputs/portal-v2-2026-10-20/design-workbooks-verification.json` | 四份Excel导出、模型计数、公式/冻结/筛选校验；历史四本SHA未变 |
+| 前端 | `npm run build`、`npm test`、专项JSON | 最终6文件21项通过，生产构建1721模块通过；补齐注册/找回确认密码，不一致不调用API、确认值不进入后端或本机桥。完整目录展示JSON有体积提示，图片只按可见卡片懒加载 |
+| 文档 | `outputs/portal-v2-2026-10-20/design-workbooks-verification.json` | 四份Excel最终导出，依次8/11/9/12页；模型计数、公式/冻结/筛选校验通过，历史四本SHA未变；同源CI、归档和未验限制已写入最终验收页 |
 | 中文注释 | 本轮新增模块docstring/JSDoc与权限、事务、幂等、图片/令牌边界检查 | 仅本轮改动模块整改，不宣称全项目存量注释完整 |
 
-首轮失败/中断记录单独保留于`2026-10-20-full-mysql-attempts.json`；不把局部中断exit0误计为全量通过。
+早期失败/中断记录单独保留于`2026-10-20-full-mysql-attempts.json`；不把局部中断exit0误计为全量通过。最终验收以`138c66e`两条同源CI为准，不能将跳过项计作通过。
 
 ## 接手与回退
 
 - 本机Web预览`http://127.0.0.1:8876/`，Launcher布局预览`http://127.0.0.1:5174/launcher`。Mac无本机能力时允许看注册表单，提交/启动不绕过验证。
 - 本轮仅迁移原任务隔离演示库`nz_fix_portal_demo`，不触碰用户提供的目标服务器配置。测试账号凭据仍留在忽略的0600文件内，管理员登录说明改为实际邮箱码。
 - 后续部署必须先准备邮件与`NZ_MEDIA_ROOT`；0024已清旧认证秘密，不能直接回退到依赖TOTP的旧版。保留新增表、媒体和已撤销会话状态，详见`docs/WEB_DEPLOYMENT.md`。
-- 最终包摘要、提交基线、Windows CI及截图检查补充在本文后续验证段。
+- 运行源码基线：`138c66e4677fc6475626bcede083f920ba7f15e4`。交付文件提交与运行源码基线分开记录，不把文档提交误写为安装包源码。
+
+## 本机页面验收
+
+- 使用本机隔离演示库实际登录测试玩家，检查仓库中文名称与分类示意、重复签到结果弹窗和独立活动页。没有向正式榜单写入合成成绩。
+- 实际创建测试反馈并上传一张生成的分类示意图，反馈详情显示待处理、消息和鉴权图片。该工单明确标注“本机隔离验收”，不含真实玩家问题或个人截图。
+- 实际输入测试管理员账号和现有密码申请登录码，页面明确显示“管理员邮件服务尚未配置，无法完成认证”，验证码和登录按钮保持关闭；没有用旧TOTP、恢复码或模拟码绕过。截图前清空密码。
+- Web与Launcher注册均可见邮箱、昵称、新密码、确认密码、邮箱验证码。Launcher在Mac无本机能力时只展示表单，提交、登录及游戏启动不能绕过固定桥验证。
+- 官网与Launcher在390×844视口读取`scrollWidth=clientWidth=390`，未发生横向溢出；桌面布局另行核对。临时视口覆盖已恢复。减少动态效果与失焦停用通过源码边界核对，未冒称操作系统减少动态效果端到端实测。
+- 截图目录：`evidence/portal-ui-v2/`；主要文件为`web-home-dark.png`、`web-home-mobile-dark.png`、`launcher-home-dark.png`、`launcher-register-dark.png`、`web-register-dark.png`、`checkin-result-dark.png`、`inventory-dark.png`、`activity-detail-dark.png`、`feedback-private-image-dark.png`与`admin-email-unconfigured-dark.png`。
+
+## 本轮归档
+
+- Web：`outputs/portal-v2-2026-10-20/nz-web-platform-2026-10-20.tar.gz`，4,241,785字节，178个业务文件及`RELEASE.json`。SHA256：`9bec06bc99bcd6a086c70b9903a31eb3a7e7361133eb29321fb7fd432581b67a`。
+- 逐文件摘要、普通文件/相对路径、清单全集、私密路径排除均已核验，见`evidence/2026-10-20-web-package-verification.json`。包标记`WORKING_TREE`说明打包器读取冻结提交的工作目录，不表示部署通过。
+- Windows：`outputs/portal-v2-2026-10-20/NZLauncher-DEV.zip`，26,934,988字节，761个payload及内嵌清单。SHA256：`640f97b8e43ed11e4da71a58353bc4cbae20b3d8671ddd690cb0aa8d1de14628`。运行源码同为`138c66e4677fc6475626bcede083f920ba7f15e4`。
+- Windows流水线[39402348645](https://github.com/016-ops/NZ/actions/runs/39402348645)成功，逐文件大小/摘要、路径与私密边界、清单全集和最终拷贝均通过；启动/退出冒烟耗时2.272秒，API登录未执行。对应脱敏证据`evidence/2026-10-20-launcher-package-verification.json`。GitHub artifact外层ZIP摘要单列，不能当作内层交付ZIP摘要。
+- Windows外置清单保留CI原始CRLF字节；`.gitattributes`对该文件禁用文本换行转换，避免Git检出后的摘要与内嵌清单不一致。
+- Launcher包不含完整游戏客户端，API地址为本机占位配置；SMTP真实收件、原生登录/实玩与干净Windows机器验收独立保留未验状态。

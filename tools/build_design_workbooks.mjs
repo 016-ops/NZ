@@ -13,6 +13,8 @@ import { fileURLToPath, pathToFileURL } from 'node:url'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 // 第二轮导入首轮工作簿再定向修改，旧输出和历史发行归档保持原字节不覆盖。
 const roundV2 = process.argv.includes('--round=portal-v2')
+// 等待最新CI时允许显式预览排版；普通最终导出仍要求证据finalized，预览不作为交付终态。
+const finalPreview = roundV2 && process.argv.includes('--preview-final')
 const outputArgument = process.argv.find(value => value.startsWith('--output-dir='))
 const legacyDir = path.join(root, 'outputs/01a15734-c809-7ff2-8313-f617805a4441')
 const outputDir = path.resolve(root, outputArgument ? outputArgument.slice('--output-dir='.length) : roundV2 ? 'outputs/portal-v2-2026-10-20' : legacyDir)
@@ -26,6 +28,16 @@ const { Workbook, SpreadsheetFile, FileBlob } = await import(pathToFileURL(resol
 const sources = JSON.parse(await fs.readFile(path.join(outputDir, 'design-sources.json'), 'utf8'))
 // 发布记录与业务源码快照分开维护；仅更新部署状态时无需重提模型或重写其他三本。
 const releaseStatus = JSON.parse(await fs.readFile(path.join(root, 'tools/design_release_status.json'), 'utf8'))
+// 最终证据是公开的交付元数据，独立于首轮历史；缺失时保持“待本轮QA”，不默认通过。
+let finalEvidence = null
+if (roundV2) {
+  try {
+    finalEvidence = JSON.parse(await fs.readFile(path.join(outputDir, 'final-evidence.json'), 'utf8'))
+    if (finalEvidence.format !== 'nz-portal-v2-evidence-v1' || !/^[a-f0-9]{40}$/.test(finalEvidence.runtime_commit)) throw new Error('最终证据格式或运行源码提交不合法')
+    if (finalEvidence.deployed !== false) throw new Error('本轮用户决定不部署，最终证据不得声明已部署')
+    if (finalEvidence.finalized !== true && !finalPreview) throw new Error('最终MySQL/Windows包证据尚未齐全，暂不导出最终设计书')
+  } catch (error) { if (error.code !== 'ENOENT') throw error }
+}
 const selectedArgument = process.argv.find(value => value.startsWith('--workbooks='))
 const selectedBooks = selectedArgument ? new Set(selectedArgument.slice('--workbooks='.length).split(',')) : null
 const shouldBuild = name => !selectedBooks || selectedBooks.has(name)
@@ -53,7 +65,7 @@ verification.releaseStatus = releaseStatus
 verification.incrementalRun = selectedBooks ? { workbooks: [...selectedBooks], preservedOtherFiles: true } : null
 // 最终仅复核改变内容的页；未改变页保留此前已经逐张审查的预览，不重复耗时渲染。
 const renderArgument = process.argv.find(value => value.startsWith('--render-only='))
-const v2ChangedSheets = ['设计概览', '表目录', '字段定义', '约束与索引', '外键关系', '迁移与数据保护', '接口概览', 'HTTP路由', '命令权限', '新增请求合同', '既有请求合同', '页面架构', '角色与权限', '业务流程', '交互与状态', '验收清单', '部署总览', '环境配置', '发布与回退步骤', '打包文件清单', '实际归档文件', '交付与阻塞', '第二轮变更', '第二轮接口合同', '第二轮页面流程', '媒体与邮箱部署']
+const v2ChangedSheets = ['设计概览', '表目录', '字段定义', '约束与索引', '外键关系', '迁移与数据保护', '接口概览', 'HTTP路由', '命令权限', '新增请求合同', '既有请求合同', '页面架构', '角色与权限', '业务流程', '交互与状态', '验收清单', '部署总览', '环境配置', '发布与回退步骤', '打包文件清单', '实际归档文件', '交付与阻塞', '第二轮变更', '第二轮接口合同', '第二轮页面流程', '媒体与邮箱部署', '最终验收', '本轮包清单', '本轮归档文件']
 const renderOnly = renderArgument ? new Set(renderArgument.slice('--render-only='.length).split(',')) : roundV2 ? new Set(v2ChangedSheets) : null
 verification.renderMode = renderOnly ? { changedSheets: [...renderOnly] } : 'all'
 let tableCount = 0
@@ -133,7 +145,7 @@ async function finish(book, basename, sheets) {
     }
     if (refreshed) {
       // 发布状态和实际归档摘要位于清单后半段，局部更新时完整呈现这三张说明页。
-      const completePage = ['部署总览', '打包文件清单', '交付与阻塞', '第二轮变更', '第二轮接口合同', '第二轮页面流程', '媒体与邮箱部署'].includes(sheet.name)
+      const completePage = ['部署总览', '打包文件清单', '交付与阻塞', '第二轮变更', '第二轮接口合同', '第二轮页面流程', '媒体与邮箱部署', '最终验收', '本轮包清单'].includes(sheet.name)
       const renderRows = completePage ? sheet.lastRow : Math.min(sheet.lastRow, 13)
       const blob = await book.render({ sheetName: sheet.name, range: `A1:${sheet.lastCol}${renderRows}`, scale: 1, format: 'png' })
       await fs.writeFile(target, new Uint8Array(await blob.arrayBuffer()))
@@ -154,6 +166,79 @@ async function finish(book, basename, sheets) {
   console.log(JSON.stringify({ file: target, sheets: sheets.length, rows: sheets.reduce((sum, sheet) => sum + sheet.rows, 0) }))
 }
 
+/** 对本轮交付包独立重算大小和摘要；只接收输出目录内的文件，不从元数据读取任意私密路径。 */
+async function verifiedFinalPackages(evidence) {
+  const packages = []
+  for (const item of evidence?.packages || []) {
+    if (!['web', 'launcher_inner'].includes(item.kind)) throw new Error('交付包必须明确区分Web归档和Launcher内部ZIP')
+    const target = path.resolve(root, item.file || '')
+    if (!target.startsWith(outputDir + path.sep) || !/^[a-f0-9]{64}$/.test(item.sha256 || '')) throw new Error('本轮包路径或SHA256不合法')
+    if (item.source_commit && item.source_commit !== evidence.runtime_commit) throw new Error('本轮包与冻结运行源码不是同一提交：' + item.file)
+    const bytes = await fs.readFile(target)
+    const sha256 = createHash('sha256').update(bytes).digest('hex')
+    if (bytes.length !== item.bytes || sha256 !== item.sha256) throw new Error('本轮包大小或摘要不匹配：' + item.file)
+    let manifest = null, manifestSha256 = '', manifestSize = 0
+    if (item.manifest_file) {
+      const manifestPath = path.resolve(root, item.manifest_file)
+      if (!manifestPath.startsWith(outputDir + path.sep)) throw new Error('本轮manifest必须位于输出目录中')
+      const manifestBytes = await fs.readFile(manifestPath)
+      manifest = JSON.parse(manifestBytes.toString('utf8'))
+      manifestSha256 = createHash('sha256').update(manifestBytes).digest('hex')
+      manifestSize = manifestBytes.length
+      if (manifest.source_commit && manifest.source_commit !== evidence.runtime_commit) throw new Error('本轮manifest源码提交不一致')
+      if (item.kind === 'web') {
+        if (manifest.credentials_included !== false || manifest.game_server_included !== false) throw new Error('Web包manifest未明确排除私密与游戏服务')
+      } else {
+        // Windows是另一种明确schema，不能套用Web字段，也不因字段缺失而泛化放行。
+        if (manifest.schema_version !== 'nz-launcher-package-v1' || manifest.target !== 'windows-x86_64'
+            || manifest.native_start_available !== false || manifest.service_smoke?.bootstrap_close_passed !== true
+            || manifest.service_smoke?.api_login_executed !== false) throw new Error('Windows平台包manifest或烟测边界不符合本轮交付')
+        if (!['SSH credentials', '.env*', 'runtime', 'databases', 'node_modules', 'Git metadata'].every(value => manifest.excluded?.includes(value))) throw new Error('Windows包未明确列出必要的私密排除边界')
+      }
+      if (!Array.isArray(manifest.files) || manifest.files.length !== item.payload_files) throw new Error('本轮manifest payload计数不一致')
+    }
+    packages.push({ ...item, bytes: bytes.length, sha256, manifest, manifestSha256, manifestSize })
+  }
+  return packages
+}
+
+/** 包装层留在runtime，不作为输出文件读取；只按公开独立验包证据核对层级、大小与摘要。 */
+async function verifiedExternalLayers(evidence) {
+  const layers = []
+  for (const item of evidence?.external_layers || []) {
+    if (item.kind !== 'github_artifact_wrapper' || !/^[a-f0-9]{64}$/.test(item.sha256 || '') || item.source_commit !== evidence.runtime_commit) throw new Error('GitHub包装层证据不合法')
+    const evidencePath = path.resolve(root, item.evidence || '')
+    if (!evidencePath.startsWith(path.join(root, 'evidence') + path.sep)) throw new Error('包装层只引用公开验包记录')
+    const proof = JSON.parse(await fs.readFile(evidencePath, 'utf8'))
+    if (proof.source_commit !== evidence.runtime_commit || proof.wrapper?.sha256 !== item.sha256 || proof.wrapper?.bytes !== item.bytes
+        || proof.checks?.wrapper_digest !== true) throw new Error('包装层与独立验包证据不一致')
+    layers.push(item)
+  }
+  return layers
+}
+
+/** 分层列出实际证据，SMTP、干净Windows和原生玩法限制始终单列，不能被CI成功覆盖。 */
+function finalEvidenceRows(evidence, packages, externalLayers) {
+  if (!evidence) return []
+  const rows = [
+    ['运行源码', evidence.runtime_commit, '已推送并冻结', '运行代码标识独立于后续设计书提交；打包清单逐项核对对应提交。', evidence.source_evidence || 'git rev-parse HEAD'],
+    ['前端检查', `${evidence.frontend.files}个文件 / ${evidence.frontend.tests}项通过；构建${evidence.frontend.modules}模块`, '通过', '类型检查、前端用例及生产构建；不等于Windows/WebView实机。', evidence.frontend.evidence],
+    ['本机浏览器', evidence.ui.summary, '指定流程实检', evidence.ui.limitations, evidence.ui.evidence.join('；')],
+    ['Mac Launcher', '布局与表单预览，无本机capability', '仅布局预览', '未绕过本机桥；不代表原生账号登录、图片桥或完整游戏可运行。', evidence.launcher_preview_evidence],
+    ['管理员申请码', '页面显示“管理员邮件服务尚未配置，无法完成认证”', '失败关闭提示已实检', '没有SMTP投递，也未完成真实管理员邮箱登录；不能用自动测试或演示流程替代收件验收。', evidence.admin_mail_evidence || '本轮本机管理员页面实检'],
+  ]
+  for (const check of evidence.automated || []) rows.push([check.name, check.summary, check.status, check.limitations, check.evidence])
+  for (const item of packages) rows.push([item.label, `${item.bytes} bytes；SHA256 ${item.sha256}`, '摘要复核通过，未部署', item.limitations, item.evidence || item.file])
+  for (const item of externalLayers) rows.push([item.label, `${item.bytes} bytes；SHA256 ${item.sha256}`, '独立验包证据核对，不交付', item.limitations, item.evidence])
+  rows.push(
+    ['真实SMTP', '未完成正式环境真实收件验收', '未验证', '浏览器演示/自动测试中的邮件适配不代表正式SMTP投递。管理员登录和Owner再验证正式启用前必须验证真实收件。', 'revival/mailing.py；docs/WEB_DEPLOYMENT.md'],
+    ['Windows干净机器', '冻结包/CI与独立机器安装验收分开', '未验证', 'WebView2、安装/启动/升级/退出恢复、真实API与签名仍需独立验收。', 'docs/native-launcher.md'],
+    ['原生游戏实玩', '完整客户端、可信结算和多人通关另验', '未验证', '正式成绩入口保持关闭，不将平台功能、CI或布局预览描述为游戏实玩通过。', 'docs/delivery/2026-10-19-code-checkpoint.md'],
+    ['部署决定', '用户暂不部署', '未部署', '包和设计书供审阅；未更新远端服务或启用正式游戏入口。', '本轮用户确认'],
+  )
+  return rows
+}
+
 /** 第二轮在导入的原工作簿上追加/修订；旧原生消息、历史归档和未关联格式不重新生成。 */
 async function buildPortalV2() {
   const names = ['表设计', '游戏服务端接口设计', 'Web端设计书', '部署手册及打包清单']
@@ -161,10 +246,21 @@ async function buildPortalV2() {
   const registry = JSON.parse(await fs.readFile(path.join(root, 'admin/src/lib/item-presentation.json'), 'utf8'))
   const artwork = Object.values(registry.items || {})
   const exactImages = artwork.filter(value => value.image_status === 'exact').length
+  const finalPackages = await verifiedFinalPackages(finalEvidence)
+  const externalLayers = await verifiedExternalLayers(finalEvidence)
+  const finalRows = finalEvidenceRows(finalEvidence, finalPackages, externalLayers)
   verification.asOf = '2026-10-20 America/Los_Angeles'
   verification.currentRound = { name: 'portal-v2', status: '待本轮QA', deployed: false, exactImages, totalItems: artwork.length }
   verification.releaseStatus = { historicalV1: releaseStatus, currentRound: '未部署，未生成本轮发行包，待本轮QA' }
   verification.scopePreservation = []
+  if (finalEvidence) {
+    verification.currentRound.status = finalEvidence.finalized ? '指定验收已记录，正式环境与实玩限制保留' : '仅设计书样式预览，最新MySQL终态待补'
+    verification.runtimeCommit = finalEvidence.runtime_commit
+    verification.finalEvidence = finalEvidence
+    verification.finalPackages = finalPackages.map(({ manifest, ...row }) => ({ ...row, payloadFiles: manifest?.files?.length ?? row.payload_files ?? null }))
+    verification.externalArtifactLayers = externalLayers
+    verification.releaseStatus.currentRound = '本轮包摘要已复核，暂不部署；限制见最终验收'
+  }
   const overviewRows = [
     ['版本与日期', '第二轮设计 v2，2026-10-20', '保留首轮证据与旧发行归档。当前工作树不冒充已部署版本。', '待本轮QA', '本轮用户确认'],
     ['部署决定', '暂不部署，仅本机预览与代码开发', '不连接远端，不把首轮包摘要当作本轮发行证明。', '未部署', '本轮用户确认'],
@@ -195,11 +291,11 @@ async function buildPortalV2() {
     ['认证错误', 'REAUTH_REQUIRED / ADMIN_EMAIL_CODE / MAIL_NOT_CONFIGURED / MAIL_DELIVERY_FAILED', '分别403/403/503/503', '不显示验证码、原始SMTP错误或管理员真实邮箱', '失败不降级TOTP、不启用免码、不自动重放写操作', 'revival/admin_email_auth.py；revival/mailing.py'],
   ]
   const pageRows = [
-    ['01', '玩家注册', '/player与Launcher首页的创建账号', '新注册邮箱、密码、昵称、验证码，成功后自动登录。旧ACTIVE且邮箱verified无角色可补昵称；旧PENDING仍待管理员批准。', '待本轮QA', 'admin/src/components/email-access.tsx'],
+    ['01', '玩家注册', '/player与Launcher首页的创建账号', '新注册邮箱、密码、确认密码、昵称、验证码；确认一致才调用接口，确认值不传后端，成功后自动登录。旧ACTIVE且邮箱verified无角色可补昵称；旧PENDING仍待管理员批准。', '待本轮QA', 'admin/src/components/email-access.tsx'],
     ['02', '管理员认证', '/admin与旧console管理员入口', '密码校验后发送邮箱码，Owner敏感动作独立邮箱再验证弹窗。', '待本轮QA', 'admin/src/components/admin-step-up.tsx'],
     ['03', '玩家商城关闭', '玩家Web、Launcher、legacy console', '移除导航、快捷卡、页面与购买调用；管理员运营保持。', '待本轮QA', 'admin/src/portal-app.tsx；admin/src/App.tsx'],
     ['04', '双人主视觉', '官网与Launcher场景', '艾米、芭比同框二次元，沿用深蓝灰暖金。粉白方案已取消。', '待本轮QA', 'admin/src/blossom.css；admin/public/assets/'],
-    ['05', '中文显示', '玩家道具、状态、错误、后台选择器', '名称与资源键分开，普通界面中文化，技术信息折叠。', '待本轮QA', 'admin/src/components/catalog-item-picker.tsx'],
+    ['05', '中文显示', '玩家道具、状态、错误、后台选择器', '名称与资源键分开；地图ID去装饰，未核实难度只显示待确认选项，币种/槽位/状态技术码折叠，表单值不改写。', '待本轮QA', 'admin/src/components/catalog-item-picker.tsx；admin/src/lib/platform.ts'],
     ['06', '操作反馈', '两端共享提示与结果弹窗', '成功/失败明确，页面刷新不丢回执；幂等失败重试保留键。', '待本轮QA', 'admin/src/components/action-feedback.tsx'],
     ['07', '动态景深', '官网与Launcher公共背景', '限制位移，后台停止；触屏和prefers-reduced-motion静态降级。', '待本轮QA', 'admin/src/components/ambient-backdrop.tsx'],
     ['08', '道具配图', '仓库、奖励、后台资源', '准确图 ' + exactImages + '/' + artwork.length + '，其余分类示意明确标注，不伪装为原图。', '待本轮QA', 'admin/src/lib/item-presentation.json'],
@@ -219,6 +315,30 @@ async function buildPortalV2() {
     ['回退注意', '认证策略迁移不可复活旧秘密', '保留0024/0025和新媒体数据。旧TOTP页面与新邮箱API不能混搭。应用回退需先验证兼容，不恢复旧会话。', '回退计划须在实际发布前演练', 'revival/migrations/0024_email_admin_auth.py'],
     ['本轮验收', '设计书暂记待本轮QA', '新测试、浏览器截图、SMTP真实收件和包摘要由本轮结果补充。保留首轮证据的原日期与范围。', '待本轮QA', 'docs/delivery/2026-10-20-frontend-account-activities-feedback.md'],
   ]
+  if (finalEvidence) {
+    // 当前验收状态只覆盖已有证据；发布和真实邮件、原生玩法限制不会被“通过”字样覆盖。
+    overviewRows[0][3] = '指定验收已记录；未部署'
+    overviewRows[2][3] = '自动测试；真实SMTP未验'
+    overviewRows[3][3] = '自动测试及指定浏览器流程'
+    overviewRows[4][3] = '本机预览；Windows实机未验'
+    overviewRows[5][1] = '本轮证据见最终验收；首轮历史仍保留。'
+    overviewRows[5][2] = '前端、浏览器、MySQL、CI及包分别记录。SMTP、干净Windows与游戏实玩始终未验。'
+    overviewRows[5][3] = '按证据范围分层'
+    const pageStates = {
+      '01': '前端用例及登录实检；真实SMTP注册未验', '02': '自动测试；真实管理员收件未验',
+      '03': '入口/构建与服务端测试', '04': '桌面/手机本机预览', '05': '仓库浏览器实检与显示用例',
+      '06': '签到/重复签到弹窗实检', '07': '本机布局；长期性能未验', '08': '仓库中文分类图实检',
+      '09': '活动详情与预置封面本机预览', '10': '文字工单及鉴权截图提交实检',
+    }
+    pageRows.forEach(row => { row[4] = pageStates[row[0]] })
+    deploymentRows[0][3] = '未部署'
+    deploymentRows.find(row => row[0] === '新依赖')[3] = '本轮包摘要已核对；目标机器安装未验'
+    deploymentRows.find(row => row[0] === 'Launcher限制')[3] = 'CI/冻结包证据见最终验收；干净机器与实玩未验'
+    const qa = deploymentRows.find(row => row[0] === '本轮验收')
+    qa[1] = '指定验证及最终包清单已记录'
+    qa[2] = '前端、真实浏览器、自动后端测试及包摘要分层记录；保留首轮历史。正式SMTP、干净Windows与实玩未验。'
+    qa[3] = '见最终验收、本轮包清单'
+  }
   for (const basename of names) {
     const original = path.join(legacyDir, basename + '.xlsx')
     const originalBytes = await fs.readFile(original)
@@ -257,8 +377,8 @@ async function buildPortalV2() {
       changed.add(sheetName)
     }
     if (basename === '表设计') {
-      patchRows('设计概览', row => row[0] === '文档版本', row => [row[0], '第二轮设计 v2', '2026-10-20 America/Los_Angeles', '向前合并0024/0025；本轮验收待补，未部署'])
-      patchRows('设计概览', row => row[0] === '源码基线', row => [row[0], sources.baseline_commit, '本轮工作树父提交，含尚未提交的修改', '当前模型元数据不等于该提交已包含本轮全部代码。'])
+      patchRows('设计概览', row => row[0] === '文档版本', row => [row[0], '第二轮设计 v2', '2026-10-20 America/Los_Angeles', finalEvidence ? '向前合并0024/0025；指定验收已记录，未部署。' : '向前合并0024/0025；本轮验收待补，未部署'])
+      patchRows('设计概览', row => row[0] === '源码基线', row => [row[0], finalEvidence?.runtime_commit || sources.baseline_commit, finalEvidence ? '冻结运行源码提交，已推送' : '本轮工作树父提交，含尚未提交的修改', finalEvidence ? '设计书后续提交与运行源码分开；原生玩法/正式SMTP限制见最终验收。' : '当前模型元数据不等于该提交已包含本轮全部代码。'])
       patchRows('设计概览', row => row[0] === '模型覆盖', row => [row[0], '当前74个持久模型', row[2], '新增管理员挑战1表、反馈/媒体/展示5表。数量由表目录计算。'])
       patchRows('设计概览', row => row[0] === '字段覆盖', row => [row[0], '当前字段逐行定义', row[2], '本轮新增62个字段；源自模型注册表，非运行库DDL回读。'])
       appendRows('表目录', sources.tables.map(row => [row.table, row.model, row.description, row.field_count, row.constraint_count, row.index_count, row.source]), [0])
@@ -281,7 +401,7 @@ async function buildPortalV2() {
       book.worksheets.getItem('设计概览').getRange('C9').formulas = [["=COUNTA('表目录'!A6:A" + (sources.tables.length + 5) + ')']]
       book.worksheets.getItem('设计概览').getRange('C10').formulas = [["=COUNTA('字段定义'!A6:A" + (sources.fields.length + 5) + ')']]
     } else if (basename === '游戏服务端接口设计') {
-      patchRows('接口概览', row => row[0] === 'HTTP控制面', row => { row[3] = '第二轮账号/反馈/活动展示已接入，待本轮QA；当前不部署。'; return row })
+      patchRows('接口概览', row => row[0] === 'HTTP控制面', row => { row[3] = finalEvidence ? '第二轮接口已接入；分层证据见最终验收，真实SMTP与实玩未验，当前不部署。' : '第二轮账号/反馈/活动展示已接入，待本轮QA；当前不部署。'; return row })
       patchRows('HTTP路由', row => row[1] === '/api/login', row => ['POST', row[1], '管理员邮箱挑战登录', '匿名，先密码后邮箱验证码', 'kind=admin,login,password,challenge_id,code', '内存Bearer会话', '旧TOTP不作为登录验证', 'revival/service.py'])
       patchRows('HTTP路由', row => String(row[1]).includes('/register'), row => ['POST', row[1], '邮箱注册与角色创建', '邮箱验证码，无邀请或人工批准', 'email,password,nickname,challenge_id,code及幂等元数据', 'ACTIVE+verified+character标识；前端继续login', '昵称1至24字符且UTF8不超过48字节', 'revival/service.py'])
       patchRows('HTTP路由', row => row[1] === '/api/player/view', row => { row[4] = 'me/player-inventory/campaigns/campaign-detail/leaderboards/feedback/feedback-detail'; row[6] = '商城视图关闭；玩家仅本人；无管理员通道'; return row })
@@ -307,6 +427,10 @@ async function buildPortalV2() {
       patchRows('验收清单', row => /WEB-01|WEB-03/.test(String(row[0])), row => { row[2] = row[0] === 'WEB-01' ? '无邀请注册自动登录，管理员密码/邮箱挑战，缺角色onboard。' : '管理员运营保持，所有平台玩家购买入口和调用关闭。'; row[3] = '待本轮QA'; return row })
       patchRows('验收清单', row => !['WEB-01', 'WEB-03', 'GAME-01', 'REL-01'].includes(row[0]), row => { row[3] = '首轮记录：' + row[3] + '。当前待本轮QA。'; return row })
       patchRows('验收清单', row => row[0] === 'REL-01', row => { row[3] = '用户本轮决定暂不部署。'; return row })
+      if (finalEvidence) patchRows('验收清单', row => /^WEB-/.test(row[0]), row => {
+        row[3] = ({ 'WEB-01': '前端表单/登录自动测试及玩家登录实检；真实SMTP注册/管理员挑战未验。', 'WEB-02': '本轮自动测试；仓库中文分类图浏览器实检。后台发放/回收未重新进行UI实检。', 'WEB-03': '平台玩家购买入口关闭；服务端测试与前端构建通过。后台商城写操作未重新UI实检。', 'WEB-04': '策略自动测试与中文/待确认难度显示；实际建房仍按原生验收边界。', 'WEB-05': '本机玩家签到与重复签到弹窗实检；普通奖励依据自动测试，未扩大为正式活动到账证明。', 'WEB-06': '排行自动测试与空榜分组；正式可信实玩结算仍未验收。', 'WEB-07': '本机已有采集证据；远端监控部署未实施。', 'WEB-08': `${finalEvidence.frontend.tests}项前端用例与${finalEvidence.frontend.modules}模块构建通过；桌面/390px布局实检。` })[row[0]] || '见最终验收。'
+        return row
+      })
       patchRows('交互与状态', row => /视觉|美术|主题/.test(row.join(' ')), row => { row[2] = '深蓝灰/暖金，艾米芭比双人主视觉，动态景深和减少动画降级。'; return row })
     } else {
       patchRows('部署总览', row => row[0] === '部署对象', row => [row[0], '暂不部署，仅本机预览与代码开发', '用户本轮决定，不执行远端发布', '旧Web包、CI和Windows包保留为首轮历史证据', '本轮用户确认'])
@@ -327,12 +451,33 @@ async function buildPortalV2() {
       patchRows('打包文件清单', row => row[0] === '文档包', row => { row[5] = path.relative(root, outputDir) + '/'; return row })
       patchRows('打包文件清单', row => row[0] === 'Launcher实际归档', row => { row[0] = '首轮历史Launcher归档'; row[4] = '2026-10-19历史包校验。本轮新认证、媒体与页面尚未重新打包验收。'; return row })
       patchRows('打包文件清单', row => row[0] === 'GitHub下载包装层', row => { row[0] = '首轮历史GitHub包装层'; row[4] = '2026-10-19历史artifact包装层，不代表本轮发行包。'; return row })
+      if (finalEvidence) {
+        patchRows('部署总览', row => row[0] === '版本识别', row => [row[0], finalEvidence.runtime_commit, '最终冻结运行源码，已推送；文档后续提交分开。', '本轮Web与Windows包摘要见本轮包清单；未部署。', finalEvidence.source_evidence || 'git rev-parse HEAD'])
+        patchRows('部署总览', row => row[0] === '发布产物SHA', row => [row[0], '见本轮包清单', '对当前文件逐项重算SHA256及大小；首轮摘要仅作历史。', '包校验不等于正式部署、SMTP或干净机器游戏验收。', path.relative(root, path.join(outputDir, 'final-evidence.json'))])
+        patchRows('部署总览', row => row[0] === 'Launcher', row => { row[2] = '本轮CI/冻结包证据见最终验收；Mac仅无capability布局预览。'; row[3] = 'Windows干净安装、真实API/SMTP与游戏实玩分别待验。'; return row })
+        patchRows('交付与阻塞', row => row[0] === 'Web部署', row => [row[0], '当前包已归档，用户决定暂不部署', '未来部署前验证SMTP真实收件与媒体权限。', '包摘要已核对；未更新远端服务。', '本轮包清单；最终验收'])
+        patchRows('交付与阻塞', row => row[0] === 'Windows开发包', row => [row[0], '最终CI/冻结产物见本轮包清单', '干净Windows、正式签名、真实API及实玩未验。', 'CI/包检查与实机验收分开记录。', '最终验收；本轮包清单'])
+      }
     }
     tableCount = 1000
-    const extras = [addTable(book, '第二轮变更', '第二轮变更与验收边界', ['项目', '本轮设计', '行为与边界', '当前状态', '依据'], overviewRows, [25, 74, 95, 22, 80], '2026-10-20。保留首轮历史，当前暂不部署，验收状态待本轮补证据。')]
-    if (basename === '游戏服务端接口设计') extras.push(addTable(book, '第二轮接口合同', '邮箱认证、反馈与活动专题接口', ['业务', '入口', '认证与权限', '请求', '响应或约束', '依据'], interfaceRows, [25, 75, 70, 103, 110, 82], '新增接口与旧冲突字段以本页为准。所有新验收状态均待本轮QA。'))
+    const extras = [addTable(book, '第二轮变更', '第二轮变更与验收边界', ['项目', '本轮设计', '行为与边界', '当前状态', '依据'], overviewRows, [25, 74, 95, 22, 80], finalEvidence ? '2026-10-20。指定验证、当前包与正式环境限制分层记录；暂不部署。' : '2026-10-20。保留首轮历史，当前暂不部署，验收状态待本轮补证据。')]
+    if (finalEvidence) extras.push(addTable(book, '最终验收', '最终证据与未验边界', ['验证层', '结果或产物', '实际状态', '范围与限制', '证据'], finalRows, [29, 108, 32, 125, 112], '运行源码、自动测试、真实页面、包校验与正式环境分别记录；SMTP/干净机器/原生实玩未验。'))
+    if (basename === '游戏服务端接口设计') extras.push(addTable(book, '第二轮接口合同', '邮箱认证、反馈与活动专题接口', ['业务', '入口', '认证与权限', '请求', '响应或约束', '依据'], interfaceRows, [25, 75, 70, 103, 110, 82], finalEvidence ? '新增合同与旧冲突字段以本页为准；验收证据及SMTP/实玩限制见最终验收。' : '新增接口与旧冲突字段以本页为准。所有新验收状态均待本轮QA。'))
     if (basename === 'Web端设计书') extras.push(addTable(book, '第二轮页面流程', '第二轮十项页面与交互', ['编号', '模块', '入口', '设计与行为', '验收状态', '依据'], pageRows, [12, 28, 67, 113, 22, 88], '用户已取消粉白，保留深蓝灰暖金。准确配图数量从当前公开展示目录读取。'))
     if (basename === '部署手册及打包清单') extras.push(addTable(book, '媒体与邮箱部署', '邮箱认证与媒体持久化准备', ['项目', '配置或选择', '要求与操作', '当前状态', '依据'], deploymentRows, [28, 67, 125, 65, 90], '当前不部署。以下是未来发布前置条件，不能解读为已配置或已投递成功。'))
+    if (basename === '部署手册及打包清单' && finalEvidence) {
+      const packageRows = finalPackages.map(item => [item.label, item.file, item.bytes, item.sha256, item.source_commit || finalEvidence.runtime_commit, item.limitations, item.evidence || item.file])
+      packageRows.push(...externalLayers.map(item => [item.label, item.display_name, item.bytes, item.sha256, item.source_commit, item.limitations, item.evidence]))
+      extras.push(addTable(book, '本轮包清单', '本轮最终产物与SHA256', ['产物层', '文件或证据层', '字节数', 'SHA256', '运行源码', '范围与限制', '依据'], packageRows, [30, 90, 18, 80, 53, 116, 110], '交付文件直接重算摘要/大小；不交付的GitHub包装层按独立验包证据核对，不混用内部ZIP哈希。'))
+      const manifestRows = []
+      for (const item of finalPackages) {
+        const note = item.kind === 'web' ? 'Web payload；不含运行凭据或游戏服务' : 'Windows平台payload；不含完整游戏客户端、SSH或开发仓库'
+        manifestRows.push(...(item.manifest?.files || []).map(entry => [item.label, entry.path, entry.bytes, entry.sha256, note, item.manifest_file]))
+        if (item.release) manifestRows.push([item.label, 'RELEASE.json', item.release.bytes, item.release.sha256, '包内源码标识与排除说明；额外1项，不计入payload', item.file])
+        if (item.kind === 'launcher_inner' && item.manifest) manifestRows.push([item.label, 'package-manifest.json', item.manifestSize, item.manifestSha256, '额外manifest；独立证据已核对与sidecar逐字节相同，不计入payload', item.evidence])
+      }
+      if (manifestRows.length) extras.push(addTable(book, '本轮归档文件', '本轮Web与Windows逐文件清单', ['产物', '路径', '字节数', 'SHA256', '说明', '依据'], manifestRows, [30, 105, 18, 80, 92, 100], 'Web 178payload+RELEASE；Windows 761payload+manifest，各按本轮独立校验清单；首轮页继续保留为历史。'))
+    }
     const sheets = []
     const unchanged = []
     await fs.mkdir(path.join(outputDir, 'previews'), { recursive: true })
@@ -353,6 +498,12 @@ async function buildPortalV2() {
     if (basename === '表设计') {
       const preview = await book.render({ sheetName: '字段定义', range: 'A408:J474', scale: 1, format: 'png' })
       await fs.writeFile(path.join(outputDir, 'previews/表设计-新增字段完整区.png'), new Uint8Array(await preview.arrayBuffer()))
+    }
+    if (basename === '部署手册及打包清单' && finalEvidence && finalPackages.some(row => row.kind === 'launcher_inner')) {
+      // 附加首批Windows清单预览，避免长表默认前13行只看到Web文件而漏查另一种manifest布局。
+      const firstWindowsRow = 6 + finalPackages.filter(row => row.kind === 'web').reduce((sum, row) => sum + (row.manifest?.files?.length || 0) + (row.release ? 1 : 0), 0)
+      const preview = await book.render({ sheetName: '本轮归档文件', range: `A${firstWindowsRow}:F${firstWindowsRow + 12}`, scale: 1, format: 'png' })
+      await fs.writeFile(path.join(outputDir, 'previews/部署手册及打包清单-本轮Windows字段区.png'), new Uint8Array(await preview.arrayBuffer()))
     }
   }
   await fs.writeFile(verificationPath, JSON.stringify(verification, null, 2))
