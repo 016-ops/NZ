@@ -119,6 +119,9 @@ def redeem(service, data):
             'profile': row['profile'], 'client_sha256': client_sha, 'created_at': service.clock(), 'expires_at': expires,
             'lease_max_expires_at': lease_max})
         c.update('launch_tickets', Q(digest=row['digest']), {'consumed_at': service.clock()})
+        # 只有成功兑换的 Launcher 身份交接累计登录活动；普通网页登录不产生此资格。
+        from .campaigns import record_launcher_login
+        record_launcher_login(service, c, account['id'], row['id'])
         service._audit(c, account['id'], 'launcher.ticket.redeem', row['id'], identifier(),
                        'independent email handoff', {'protocol': PROTOCOL, 'expires_at': expires})
         return {'protocol': PROTOCOL, 'game_token': game_token, 'launch_id': row['id'], 'expires_at': expires,

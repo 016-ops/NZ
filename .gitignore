@@ -2,6 +2,7 @@ nz/
 upstream/
 repository/
 .venv/
+.zcode/
 __pycache__/
 *.pyc
 runtime/
@@ -19,3 +20,7 @@ launcher/target/
 launcher/bin/
 launcher/gen/
 .pytest_cache/
+# Excel渲染/检查中间件留本机；最终工作簿、发布包及验证摘要进入交付。
+outputs/**/*.inspect.ndjson
+outputs/**/design-sources.json
+outputs/**/previews/

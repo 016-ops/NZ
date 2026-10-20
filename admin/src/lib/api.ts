@@ -40,7 +40,10 @@ export class Api {
     if (this.session) headers.Authorization = `Bearer ${this.session.token}`
     if (data !== undefined) { headers['Content-Type'] = 'application/json'; headers['X-NZ-Request'] = '1' }
     const response = await fetch(path, { headers, cache: 'no-store', method: data === undefined ? 'GET' : 'POST', body: data === undefined ? undefined : JSON.stringify(data) })
-    const result = await response.json()
+    // 反向代理错误页或断开的测试服务可能返回 HTML；统一给出可读错误，不向界面泄漏原始正文。
+    let result: { error?: string; message?: string }
+    try { result = await response.json() }
+    catch { throw new Error('服务暂时无法读取，请检查连接后重试。') }
     if (!response.ok) {
       if (response.status === 401) this.expire()
       throw new Error(`${result.error}: ${result.message}`)

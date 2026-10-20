@@ -70,18 +70,19 @@ function PlayerEmailForm({ api, mode, busy, setBusy, report, signedIn, completed
 }
 
 /** 玩家验证码入口保留邀请审批；管理员继续使用原账号与动态 MFA，找回功能不能重置管理员。 */
-export function EmailAccess({ api, report, signedIn }: {
-  api: Api; report: (value: unknown) => void; signedIn: (session: Session, identity: string) => Promise<void>
+export function EmailAccess({ api, report, signedIn, only }: {
+  api: Api; report: (value: unknown) => void; signedIn: (session: Session, identity: string) => Promise<void>; only?: 'player' | 'admin'
 }) {
-  const [kind, setKind] = useState<'player' | 'admin'>('player')
+  // 专属玩家/管理员入口只显示对应认证表单；旧工作台不传 only，继续保留完整身份切换。
+  const [kind, setKind] = useState<'player' | 'admin'>(only || 'player')
   const [mode, setMode] = useState<Mode>('login')
   // 请求完成前保留同一份表单和提交内容，避免切换身份/用途后由旧响应覆盖当前提示或验证码。
   const [playerBusy, setPlayerBusy] = useState(false)
   return <>
-    <div className="auth-tabs" role="tablist" aria-label="登录身份">
+    {!only && <div className="auth-tabs" role="tablist" aria-label="登录身份">
       <Button role="tab" disabled={playerBusy} aria-selected={kind === 'player'} variant={kind === 'player' ? 'default' : 'ghost'} onClick={() => {setKind('player'); setMode('login')}}>玩家邮箱</Button>
       <Button role="tab" disabled={playerBusy} aria-selected={kind === 'admin'} variant={kind === 'admin' ? 'default' : 'ghost'} onClick={() => setKind('admin')}>管理员</Button>
-    </div>
+    </div>}
     {kind === 'admin' ? <BusinessForm key="admin" title="登录" fields={[
       {name:'login',label:'管理员账号'}, {name:'password',label:'密码',type:'password'}, {name:'otp_code',label:'动态验证码',optional:true},
     ]} report={report} submit={async values => signedIn(await api.request<Session>('/api/login', {...values, kind:'admin'}), values.login)} /> : <>

@@ -475,10 +475,19 @@ class Deployment(Base):
 
     def test_default_profile_refuses_guessed_resources_and_native_host(self):
         # 每个测试已经拥有独立空库；在尚未创建业务数据时重置合成 profile 标记。
-        """验证场景：默认 profile 拒绝未经验证资源与原生节点运行。"""
+        """当前环境允许已冻结兼容钱包/物品，仍拒绝未知/合成资源及未验收原生节点。"""
         DeploymentMetadata.objects.all().delete()
         current=Service()
-        self.assertEqual(current.catalog['currencies'],{});self.assertEqual(current.catalog['maps'],{})
+        self.assertIn('cn2020:GP',current.catalog['currencies'])
+        self.assertIn('cn2020:100001',current.catalog['items'])
+        self.assertNotIn('GP',current.catalog['currencies']);self.assertNotIn('NZ',current.catalog['currencies'])
+        self.assertNotIn('cn2020:unconfirmed-item',current.catalog['items'])
+        self.assertEqual(current.catalog['native_assets']['evidence'],'COMPATIBILITY_INVENTORY_ONLY')
+        self.assertFalse(current.catalog['native_assets']['native_combat_verified'])
+        self.assertEqual(current.catalog['maps'],{})
+        from revival.assets import currency_value
+        for unknown in ('GP','NZ','cn2020:unconfirmed-currency'):
+            with self.subTest(currency=unknown),self.assertRaises(Fault):currency_value(current,unknown,1)
         with self.assertRaises(Fault):test_host_ready(current,'anything')
         with self.assertRaises(Fault):settle(current,'anything',{})
         from adapters.cn_current.profile import ClientProfile,CompatibilityBlocked

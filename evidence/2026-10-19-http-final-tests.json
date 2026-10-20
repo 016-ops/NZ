@@ -1,0 +1,25 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "26.7.0",
+  "tests": 13,
+  "passed": [
+    "tests.test_http.HttpTests.test_bounded_rate_limiter",
+    "tests.test_http.HttpTests.test_csrf_origin_dns_rebinding_and_bad_body",
+    "tests.test_http.HttpTests.test_health_security_headers_and_static_page",
+    "tests.test_http.HttpTests.test_public_bind_and_untrusted_node_results_rejected",
+    "tests.test_http.HttpTests.test_real_http_auth_permissions_command_and_logout",
+    "tests.test_http.HttpTests.test_transfer_encoding_is_rejected_before_wsgi_and_size_boundary_is_exact",
+    "tests.test_node_http.NodeHttpTests.test_native_contract_routes_and_acknowledgement_scope",
+    "tests.test_portal_http.PortalHttpTests.test_configured_https_origin_is_exact_and_cross_origin_remains_rejected",
+    "tests.test_portal_http.PortalHttpTests.test_player_envelope_rejects_admin_view_and_only_reads_own_inventory",
+    "tests.test_portal_http.PortalHttpTests.test_public_portal_contains_exact_seven_maps_without_admin_or_player_data",
+    "tests.test_proxy_address.ProxyAddressTests.test_invalid_proxy_address_is_rejected",
+    "tests.test_proxy_address.ProxyAddressTests.test_trusted_proxy_distinguishes_clients",
+    "tests.test_proxy_address.ProxyAddressTests.test_untrusted_peer_host_or_disabled_setting_ignores_forwarded_header"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 6.171
+}

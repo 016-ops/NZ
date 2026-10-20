@@ -145,11 +145,42 @@ class LauncherController:
     def status(self):
         """只返回界面所需状态，不返回邮箱、服务器地址、账号 ID 或任何凭据。"""
         with self.lock:
+            from tools.launcher_runtime import native_start_status
             return dict(version=VERSION, phase=self.phase, busy=self.busy, error=self.error,
                 authenticated=self.session is not None, nickname=(self.account or {}).get('nickname'),
                 cleanup_pending=self.cleanup_pending, graphics_mode=self.graphics_mode, run=self.output.name if self.output else None,
                 events=list(self.events), game_active=self.busy and self.phase not in (
-                    'LOGGING_IN', 'CONNECTING', 'RECOVERING'), lobby_verified=False)
+                    'LOGGING_IN', 'CONNECTING', 'RECOVERING'), lobby_verified=False, native_start=native_start_status())
+
+    def portal(self, operation, data):
+        """受限玩家业务代理；页面只指定枚举动作，不指定远端路径、账号令牌或管理员命令。"""
+        with self.lock:
+            if self.close_requested.is_set() or self.cleanup_pending or not self.session or self.client is None:
+                raise RuntimeError('LOGIN_REQUIRED')
+            client, session = self.client, self.session
+        if operation == 'view':
+            allowed = {'me', 'player-inventory', 'player-shop', 'campaigns', 'leaderboards', 'portal', 'public-portal', 'public-leaderboards'}
+            if set(data) - {'view', 'query'} or data.get('view') not in allowed or not isinstance(data.get('query', {}), dict):
+                raise ValueError('VIEW_NOT_ALLOWED')
+            query = data.get('query', {})
+            if set(query) - {'limit', 'offset', 'search', 'after_gid', 'revision', 'campaign_id', 'map_id', 'difficulty', 'player_count'}:
+                raise ValueError('QUERY_NOT_ALLOWED')
+            if data['view'] == 'portal':
+                return client.request('/api/public/portal')
+            if data['view'].startswith('public-'):
+                from urllib.parse import urlencode
+                route = '/api/public/' + data['view'][7:]
+                return client.request(route + ('?' + urlencode(query) if query else ''))
+            return client.request('/api/player/view', {'view': data['view'], 'query': query}, session)['data']
+        if operation != 'command' or set(data) != {'action', 'payload', 'metadata'}:
+            raise ValueError('COMMAND_NOT_ALLOWED')
+        if data['action'] not in {'player.shop.quote', 'player.shop.purchase', 'campaign.checkin', 'campaign.claim'}:
+            raise ValueError('COMMAND_NOT_ALLOWED')
+        if (not isinstance(data['payload'], dict) or not isinstance(data['metadata'], dict)
+                or set(data['metadata']) != {'request_id', 'idempotency_key', 'reason'}):
+            raise ValueError('INVALID_COMMAND')
+        payload = dict(data['payload'], **data['metadata'], action=data['action'])
+        return client.request('/api/command', payload, session)
 
     def submit(self, action, data):
         """校验请求后在后台执行；停止仅设置本轮 Event，重复点击不生成第二个任务。"""
@@ -199,7 +230,7 @@ class LauncherController:
                 self._connect()
                 self.update('LOGGING_IN')
                 try:
-                    self.session = self.client.request('/api/player/login', data)['token']
+                    self.session = self.client.request('/api/launcher/login', data)['token']
                 finally:
                     data.clear()
                 current = self.client.request('/api/views/me', token=self.session)
@@ -254,6 +285,8 @@ class LauncherController:
 
     def _run_game(self):
         """固定启动合同：先验证副本和身份，再兑换票据并运行，最终必经配置与凭据清理。"""
+        from tools.launcher_runtime import require_native_client
+        require_native_client()
         from adapters.email_protocol import PROTOCOL
         from tools.native_email_boot import current_dev_player_info, probe
         from tools.native_settings_bridge import NativeSettingsBridge
@@ -365,19 +398,24 @@ def endpoint(request, resource=''):
                 data = json.loads(request.body)
                 if not isinstance(data, dict):
                     raise ValueError('INVALID_REQUEST')
-                controller.submit(action, data)
-                response = JsonResponse({'accepted': True}, status=202)
-            except (ValueError, RuntimeError) as error:
+                if action in ('view', 'command'):
+                    result = controller.portal(action, data)
+                    response = JsonResponse(result, safe=isinstance(result, dict))
+                else:
+                    controller.submit(action, data)
+                    response = JsonResponse({'accepted': True}, status=202)
+            except (ValueError, RuntimeError, LoginError) as error:
                 response = JsonResponse({'error': safe_error(error)}, status=409)
         else:
             response = JsonResponse({'error': 'METHOD_REJECTED'}, status=405)
     elif request.method == 'GET':
-        dist = ROOT/'admin/dist'
+        from tools.launcher_runtime import resource_root
+        dist = resource_root()/'admin/dist'
         if resource in ('', '/'):
             target = dist/'index.html'
         elif resource.startswith('assets/'):
             target = (dist/resource).resolve()
-            if not target.is_relative_to((dist/'assets').resolve()) or target.suffix not in ('.js', '.css', '.woff2'):
+            if not target.is_relative_to((dist/'assets').resolve()) or target.suffix.lower() not in ('.js', '.css', '.woff2', '.png', '.jpg', '.jpeg', '.webp'):
                 return HttpResponse(status=404)
         else:
             return HttpResponse(status=404)

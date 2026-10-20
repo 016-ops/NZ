@@ -886,3 +886,9 @@ TABLE_MODELS = {
     'schema_version': SchemaVersion,
     'deployment_metadata': DeploymentMetadata,
 }
+
+# 新运营模块的模型集中在独立文件；显式导入让 Django 迁移与既有逻辑仓储使用同一模型注册表。
+from .campaign_models import CAMPAIGN_MODELS
+TABLE_MODELS.update(CAMPAIGN_MODELS)
+from .monitor_models import MONITOR_MODELS
+TABLE_MODELS.update(MONITOR_MODELS)

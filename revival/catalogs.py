@@ -13,7 +13,8 @@ NATIVE_MANIFEST_SHA256 = '4316a6fe67f20a5e57d249fb754fac2623b6ceb8c805fb92181241
 @lru_cache(maxsize=1)
 def native_inventory_manifest():
     """加载固定目录并核对整体摘要；版本更新必须新增文件和版本，运行中的快照不随文件变化。"""
-    raw = (Path(__file__).resolve().parents[1] / 'config/cn2020-compat-inventory-v1.json').read_bytes()
+    from .frozen_config import frozen_bytes
+    raw = frozen_bytes(Path(__file__).resolve().parents[1] / 'config/cn2020-compat-inventory-v1.json', NATIVE_MANIFEST_SHA256)
     if hashlib.sha256(raw).hexdigest() != NATIVE_MANIFEST_SHA256:
         raise ValueError('Native inventory manifest fingerprint mismatch')
     result = json.loads(raw)

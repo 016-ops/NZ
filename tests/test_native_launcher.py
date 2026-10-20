@@ -27,6 +27,13 @@ class LauncherTests(unittest.TestCase):
         """每个用例拥有独立控制器、假凭据和请求工厂，不写玩家状态。"""
         self.controller = launcher.LauncherController(Mock())
         self.factory = RequestFactory()
+        # 本组验证控制器的错误/清理逻辑，Win32代码页属于外部依赖；在非Windows主机
+        # 显式模拟它，不能让缺少ctypes.WinDLL掩盖要验证的超时和图形失败路径。
+        # 这不执行真实Windows API，也不构成安装、图形或游戏验收。
+        if not hasattr(launcher.ctypes, 'WinDLL'):
+            codepage = patch.object(launcher.ctypes, 'WinDLL', create=True)
+            codepage.start().return_value.GetACP.return_value = 936
+            self.addCleanup(codepage.stop)
 
     def call(self, action='status', method='get', **headers):
         """调用真实 Django 入口，默认仅提供正确 Host 和本机能力。"""

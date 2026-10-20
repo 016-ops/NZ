@@ -1,0 +1,28 @@
+# 维护服务模板：活动榜奖重试、租约回收与监控保留策略；与Web读取同一current库。
+[Unit]
+Description=NZ Web background maintenance
+After=network-online.target nz-web.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nz-revival
+Group=nz-revival
+WorkingDirectory=/opt/nz-web/current
+Environment=NZ_ENV_FILE=/etc/nz-web/web.env
+Environment=NZ_MAIL_ENV_FILE=/etc/nz-web/mail.env
+Environment=NZ_PROFILE=current
+Environment=NZ_PVE_TEST_PROFILE=0
+Environment=PYTHONDONTWRITEBYTECODE=1
+ExecStart=/opt/nz-web/current/.venv/bin/python /opt/nz-web/current/manage.py maintain
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/nz-web
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

@@ -68,7 +68,10 @@ def main():
         business_matches=[path for path in (root/'tests').glob(args.pattern)
                           if 'tests.'+path.stem not in independent_modules]
         if args.tooling or (selected and not business_matches):
-            suite=unittest.defaultTestLoader.loadTestsFromNames(selected)
+            # 显式指定工具标签时只运行这些独立用例，便于记录本批相关控制器/打包测试。
+            # 默认仍保留原完整工具集合；不能把工具测试报告称为MySQL验证。
+            modules = args.labels if args.tooling and args.labels != ['tests'] else selected
+            suite=unittest.defaultTestLoader.loadTestsFromNames(modules)
         else:
             os.environ.setdefault('DJANGO_SETTINGS_MODULE','nzproject.settings')
             import django

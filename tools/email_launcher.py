@@ -49,8 +49,8 @@ class Client:
             result = connection.getresponse()
             headers_at = time.perf_counter()
             # 全目录账号的本人库存快照可达数MiB；仅这两个已鉴权读入口扩大上限，认证响应仍64KiB。
-            limit = (8 * 1024 * 1024 if path in ('/api/views/me', '/api/game/inventory/get') else
-                     1024 * 1024 if path in ('/api/game/view','/api/game/command') else 65536)
+            limit = (8 * 1024 * 1024 if path in ('/api/views/me', '/api/game/inventory/get', '/api/player/view') else
+                     2 * 1024 * 1024 if path in ('/api/game/view','/api/game/command','/api/command') or path.startswith('/api/public/') else 65536)
             body = result.read(limit + 1)
             body_at = time.perf_counter()
             if len(body) > limit:

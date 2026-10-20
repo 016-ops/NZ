@@ -1,0 +1,23 @@
+# 由管理员登记独立节点后安装；monitor.env保存NZ_MONITOR_TOKEN，权限应为root:nz-revival/0640。
+[Unit]
+Description=NZ host metrics agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=nz-revival
+Group=nz-revival
+WorkingDirectory=/opt/nz-web/current
+EnvironmentFile=/etc/nz-web/monitor.env
+ExecStart=/opt/nz-web/current/.venv/bin/python -m tools.monitor_agent --url ${NZ_MONITOR_URL} --node-id ${NZ_MONITOR_NODE_ID} --interval 15
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target

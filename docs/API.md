@@ -286,3 +286,59 @@ session.sync可选择include_room获得本人房间增量；room.changed/room.le
 初始化失败，仍拒绝宣称可入局。详情见`docs/delivery/2026-10-18-native-channel-rooms.md`。
 
 原生好友决定码补充（2026-10-19）：A307的Result必须为SNS_ADDFRID_AGREE=33537或SNS_ADDFRID_REFUSE=769；SNS_ERR_SUCC=33536不是玩家决定。未知决定返回业务失败且保留申请，连接继续。A308事件通知使用相同专用决定码；持久关系提交、接收事件及传输后确认合同保持不变。API发送端加原生接收端已实机验证，尚不代表双原生客户端通过。
+
+## Launcher / 门户运营平台（2026-10-19）
+
+本节为本批新增合同。普通命令继续走 `POST /api/command`，使用 Bearer、`request_id`、`idempotency_key`、`reason`；权限、幂等回执、资产、审计在既有 MySQL 事务内处理。管理员登录仍要求密码和 MFA。owner、users、resources、auditor 的入口依实际权限显示；审计员只有读权限。所有版本冲突须先刷新，不能自动覆盖其他管理员的修改。
+
+### 门户与受控 Launcher
+
+| 接口 | 身份 / 请求 | 返回与约束 |
+|---|---|---|
+| `GET /api/public/portal` | 匿名 | 首发地图、政策版本、已发布活动和能力状态；`native_gameplay=false`、正式成绩能力仍关闭 |
+| `GET /api/public/campaigns` | 匿名 | 已发布活动，不包含个人进度或未发布草稿 |
+| `GET /api/public/leaderboards` | 匿名；`campaign_id,map_id,difficulty,player_count` | 各地图/难度/实际战斗人数榜；公开成员昵称，不公开账号ID |
+| `POST /api/launcher/login` | 与玩家邮箱登录相同字段 | 专用 Launcher 登录渠道成功记当日登录；Web `/api/player/login` 不累计此奖励 |
+| `POST /api/player/view` | 玩家 Bearer；`{view,query}` | `me,player-inventory,player-shop,campaigns,leaderboards` 固定白名单，统一返回 `{data:...}` |
+| `GET /api/views/<view>` | 已登录的对应身份 | 下述运营视图；查询字符串中的分页和地图数字严格转换，不接受任意模型查询 |
+
+Web `/`、`/player`、`/activities`、`/leaderboards`、`/guide` 提供同源门户，`/admin` 提供管理员工作台。`me` 与用户管理中的 `level=null,level_status=PENDING_NATIVE_SOURCE` 表示尚缺原生军衔来源，不按余额或装备推算等级。
+
+桌面本机新增 `POST /launcher/api/view`、`POST /launcher/api/command`，使用已有随机能力头和精确 Origin。Python 服务保存远程会话；渲染器只传白名单 view/action，不传远程URL、数据库连接或业务 Bearer。可读本人仓库/商城/活动/榜单，命令仅 `player.shop.quote`、`player.shop.purchase`、`campaign.checkin`、`campaign.claim`。专用登录 API 表示服务端渠道分类，不是桌面二进制远程证明。
+
+### 用户、商城与地图
+
+| 命令 / 视图 | 主要字段 | 合同 |
+|---|---|---|
+| `users` / `user`、既有发放/制裁命令 | 既有账号ID、资产变更和制裁字段 | 沿用真实玩家资产、审计和撤销会话；军衔保持待接入状态 |
+| `player-inventory` | `limit,after_gid,revision` | 原生实例分页；revision锁定后继续游标，变化需重新加载，不能把4323目录当作本人已持有 |
+| `asset.remove` | `target_account_id,instance_id,quantity,expected_version` | 管理员删除本人目标账号的准确实例；库存并发版本冲突拒绝，装备/皮肤/吞噬依赖需先解除；过期实例可由管理员清理 |
+| `shop-admin` / `player-shop` | `limit,offset` 等显示过滤 | 返回 `revision,total,items`；玩家只看到启用商品，价格/期限来自冻结目录或已发布覆盖 |
+| `shop.offer.save` | `commodity_id,expected_revision,enabled,sort_order`；可选 `prices,period_hours` | 发布已有商品的运营覆盖；不修改原始目录，价格/期限数组需匹配；全局版本冲突拒绝 |
+| `player.shop.quote` / `player.shop.purchase` | `lines`；购买另含完整 `quote` | 服务端核价；quote含 `shop_revision`，发布变更后旧报价失效，购买与资产/账本原子提交 |
+| `play-policy` | 无 | 返回55张原始房间目录及实际启用状态、合法难度 |
+| `play-policy.save` | `expected_revision,maps:[{map_id,enabled,submodes}]` | Owner发布白名单，省略项关闭。创建/加入/改图/开始均校验最新政策，拒绝时沿既有原生负应答返回警告 |
+
+默认七图：猎场大都会113、黑暗复活节164、丛林魅影191；塔防沙漠神殿141、蔷薇庄园140、空间站168、联盟大厦96。同名联盟大厦160默认关闭，Owner可在合法目录中自行启用。白名单开放仅表示运营允许选择，不能据此认定原生节点或地图已验收。原生商城的静态展示资源保留；实际报价/购买也服从已发布商品策略。
+
+### 活动、榜单与奖励
+
+`campaign.save` 接收 `title,definition`，修改草稿另需 `campaign_id,expected_revision`。definition包括 `starts_at,ends_at,timezone,rewards`；每个奖励具有稳定 `key`、`title`、`type`、道具 `changes`，普通奖励含正整数 `threshold`。五种类型：`CHECKIN_DAYS`、`LAUNCHER_LOGIN_DAYS`、`PLAYTIME_SECONDS`、`CLEAR_COUNT`、`LEADERBOARD`；榜奖另有 `priority,rank_from,rank_to` 与可选 `map_ids,difficulties,player_counts`。道具与期限必须符合服务目录，不能由玩家指定发奖内容。
+
+`campaign.publish/pause/end` 使用 `campaign_id`。已发布规则冻结；草稿不产生玩家权益。`campaign.checkin` 为北京时间/配置时区当日签到，`campaign.claim` 接收 `campaign_id,reward_key`；普通奖励须达标且点击领取，唯一回执防重复发放。网页登录不累计 Launcher 登录天数。
+
+`campaigns` 返回可参与活动与本人进度；`campaign-admin` 返回规则和 `payouts:{pending,failed,succeeded}`。`leaderboards` 按 `campaign_id,map_id,difficulty,player_count` 查询。榜以**地图 × 难度 × 实际战斗人数**分区，猎场1–8人，塔防1–4人；观战席不计入人数，同一成员集合只保留最快一次。通关毫秒升序，平局按结算时间与记录ID稳定排序。猎场要求任务成功，塔防要求击杀boss且成功结算；中途成员变化不入榜。
+
+Owner执行 `leaderboard.finalize` 冻结快照。每名玩家在一个活动中只获得最高优先级一份榜奖；后台 `maintain` 逐人自动发放、失败单独重试，成功目标不重发。榜奖不接受手动claim。奖励读视图用 `delivery=AUTOMATIC/CLAIM`、`delivery_status` 区分领取方式与到账状态。
+
+`POST /api/runtime/results` 的合成合同校验节点令牌、实例/epoch、冻结地图/难度/成员及完整结算字段，成绩与游玩时长只接受服务端证据。当前正式profile明确返回拒绝，只有隔离测试profile可验证该合同；尚未接入可信原生战斗结算，不能用浏览器上报或手工模拟填充正式榜单。
+
+### 服务器监控
+
+Owner命令 `monitor.node.enroll` 接收 `name,platform`、可选阈值，返回只显示一次的 `node_token`；`monitor.node.update` 使用 `node_id,expected_revision,enabled/thresholds`。节点令牌在数据库仅保存摘要；不进入命令回执或审计详情。监控读视图要求 `audit.read`，登记/修改要求Owner。
+
+`POST /api/monitoring/samples` 使用独立节点 Bearer，接收同层字段 `node_id,boot_id,sequence,measured_at,cpu_percent,memory_total,memory_used,rx_bytes,tx_bytes,disks,services`（没有嵌套metrics）。有限数值、时间窗口、序列与载荷哈希严格校验。同序列同载荷回放不重复计数，异载荷冲突；重启/计数器复位的带宽为未知。
+
+`monitoring` 视图返回节点、告警和历史；可传 `node_id,hours`（1–720）。实时ONLINE同时校验采样和收到时间，60秒后为STALE且不显示旧值为健康实时值；短窗口原始样本、24小时内分钟聚合、更长窗口按数据库小时加权聚合。原始数据保留7天、分钟30天，维护任务定时清理离线节点历史。链路占用告警仅在配置 `link_mbps` 时计算。
+
+公网仅在显式 `NZ_PUBLIC_ORIGIN` 后启用精确Host/Origin。使用本机Nginx时另设 `NZ_TRUST_LOOPBACK_PROXY=1`，只在回环peer+精确公网Host下信任校验后的 `X-Real-IP`，用于请求和邮件限流；默认忽略所有转发头。实际Web发布步骤见 `docs/WEB_DEPLOYMENT.md`，服务器配置未提供前不连接或替换既有服务。

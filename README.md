@@ -1,5 +1,7 @@
 # NZ Revival 本地开发与测试交付
 
+2026-10-19运营平台新增：门户、玩家仓库/商城、开服活动、分地图/难度/人数榜单、管理员用户/商城/地图/活动管理及CPU/内存/带宽监控；Launcher复用DreadHunger结构并增加受控平台接口。默认猎场大都会/黑暗复活节/丛林魅影，塔防沙漠神殿/蔷薇庄园/空间站/联盟大厦。开发分支`fix/launcher-portal-admin`从远程`main`建立（远程无master）。本批只部署Web，目标服务器配置待提供；正式战斗成绩和军衔仍待可信原生来源，Windows包仍需Windows构建验收。最新范围与验证见[本批交接](docs/delivery/2026-10-19-launcher-portal-admin.md)，Web发布步骤见[Web手册](docs/WEB_DEPLOYMENT.md)。下文检查点和实机描述按原日期保留。
+
 2026-10-19开发检查点：代码、迁移、Launcher及文档集中保存，最新验证和未完成项见[提交检查点](docs/delivery/2026-10-19-code-checkpoint.md)。指定节点真实开局和全部地图难度验收仍未完成，此检查点不是可玩发行。
 
 **当前日常入口：React + Tauri 桌面 Launcher。** 双击上级目录`启动Launcher.cmd`，使用自己的邮箱账号登录。已连接既有远程MySQL并保留4323项资产；默认兼容显示已验证本机大厅、仓库和商城页面交互，战斗及全目录业务仍待完成。启动、清理和构建说明见[Launcher手册](docs/native-launcher.md)，最新实测见[显示桥交接](docs/delivery/2026-10-16-frame-bridge-experiment.md)，功能范围见[续建台账](docs/delivery/2026-10-16-native-features-development.md)。以下启动轮次为历史记录。

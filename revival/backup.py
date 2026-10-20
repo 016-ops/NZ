@@ -12,6 +12,7 @@ import MySQLdb
 from MySQLdb.cursors import DictCursor
 
 from django.db import connections
+from django.core.serializers.json import DjangoJSONEncoder
 from .db import column_map
 from .models import TABLE_MODELS
 
@@ -23,7 +24,28 @@ def canonical_row(row):
     """
     values = {key: {'binary_base64': base64.b64encode(bytes(value)).decode('ascii')}
               if isinstance(value, (bytes, bytearray, memoryview)) else value for key, value in row.items()}
-    return json.dumps(values, ensure_ascii=False, sort_keys=True, separators=(',', ':'))
+    # DateField 等由ORM和原生驱动都返回日期对象；按Django相同的无损ISO表示参与摘要。
+    return json.dumps(values, ensure_ascii=False, sort_keys=True, separators=(',', ':'), cls=DjangoJSONEncoder)
+
+
+def normalize_restored_row(model, row):
+    """将原生MySQL恢复行转换为与ORM相同的布尔/JSON类型，再逐列做严格内容对账。
+
+    MySQLdb默认把JSON列返回文本，ORM返回dict/list/标量；仅修正表示差异，不丢字段、
+    不跳过JSON内容。JSON格式损坏仍抛错，不能被当作备份验证通过。
+    """
+    result = dict(row)
+    for field in model._meta.concrete_fields:
+        column = field.column
+        if column not in result or result[column] is None:
+            continue
+        kind = field.get_internal_type()
+        if kind == 'BooleanField':
+            result[column] = bool(result[column])
+        elif kind == 'JSONField' and isinstance(result[column], (str, bytes, bytearray)):
+            # 使用字段登记的decoder；不沿用from_db_value遇损坏JSON后退回原文本的宽松行为。
+            result[column] = json.loads(result[column], cls=field.decoder)
+    return result
 
 
 def snapshot(repository):
@@ -90,14 +112,8 @@ def backup(database, destination):
                     for name, model in TABLE_MODELS.items():
                         columns = ','.join(f'`{column}`' for column in column_map(model))
                         cursor.execute(f'SELECT {columns} FROM `{name}`')
-                        # ORM 把 MySQL tinyint(1) 转为 bool，原生游标返回 int；用模型相同转换后再对账。
-                        # 不放宽字段/行内容比较，避免含真实启动票据时出现 false 与 0 的伪差异。
-                        values = cursor.fetchall()
-                        booleans = [field.column for field in model._meta.concrete_fields if field.get_internal_type() == 'BooleanField']
-                        for row in values:
-                            for column in booleans:
-                                if row[column] is not None:
-                                    row[column] = bool(row[column])
+                        # 对账必须使用相同字段类型：包括JSON内容，而不只是tinyint布尔表示。
+                        values = [normalize_restored_row(model, row) for row in cursor.fetchall()]
                         rows = sorted(canonical_row(row) for row in values)
                         restored[name] = {'count':len(rows),'sha256':hashlib.sha256('\n'.join(rows).encode()).hexdigest()}
             if restored != before:

@@ -1,0 +1,14 @@
+{
+  "kind": "MYSQL_TEST_SETUP_FAILURE_NOT_BUSINESS_TEST_RESULT",
+  "command": ".venv/bin/python tools/run_tests.py --labels tests.test_control_plane.Deployment tests.test_backup_encoding --output evidence/2026-10-19-backup-profile-fix-tests.json",
+  "stage": "test_database_migrations",
+  "mysql_error_code": 1419,
+  "safe_reason": "Test database principal cannot create invariant triggers while binary logging is enabled",
+  "tests_executed": 0,
+  "test_database": "nz_unittest",
+  "existing_test_database_recreated_by_noninteractive_runner": true,
+  "test_name_differs_from_current_synthetic_pve_and_selected_business_names": true,
+  "business_database_modified": false,
+  "mysql_global_settings_modified": false,
+  "next_step": "Retried with the verified isolated test principal and nz_fix_platform_tests; see evidence/2026-10-19-backup-profile-fix-tests.json"
+}

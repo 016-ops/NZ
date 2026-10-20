@@ -1,0 +1,248 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "26.7.0",
+  "tests": 72,
+  "passed": [
+    "tests.test_campaigns.CampaignTests.test_checkin_cross_month_uses_activity_day_not_calendar_month",
+    "tests.test_campaigns.CampaignTests.test_concurrent_claims_with_different_request_keys_share_one_ledger_operation",
+    "tests.test_campaigns.CampaignTests.test_draft_does_not_grant_and_published_definition_is_immutable",
+    "tests.test_campaigns.CampaignTests.test_failure_after_asset_mutation_rolls_back_and_can_retry_same_request",
+    "tests.test_campaigns.CampaignTests.test_finalization_freezes_boards_and_selects_only_highest_tier_per_player",
+    "tests.test_campaigns.CampaignTests.test_invalid_rewards_and_same_name_map_variants_are_rejected",
+    "tests.test_campaigns.CampaignTests.test_launcher_login_days_are_only_recorded_by_internal_authorized_hook",
+    "tests.test_campaigns.CampaignTests.test_observers_are_excluded_and_additional_participants_disqualify",
+    "tests.test_campaigns.CampaignTests.test_official_ingest_remains_disabled_and_test_boards_do_not_leak",
+    "tests.test_campaigns.CampaignTests.test_result_rejects_player_tokens_old_epoch_wrong_map_and_impossible_time",
+    "tests.test_campaigns.CampaignTests.test_result_replay_is_idempotent_but_changed_payload_is_conflict",
+    "tests.test_campaigns.CampaignTests.test_role_boundaries_and_public_view_do_not_disclose_personal_progress",
+    "tests.test_campaigns.CampaignTests.test_same_team_best_and_difficulty_count_partitions_and_stable_ties",
+    "tests.test_campaigns.CampaignTests.test_success_boss_and_settlement_gate_ranks_and_gameplay_progress",
+    "tests.test_monitoring.MonitoringTests.test_duplicate_conflict_and_bandwidth_difference",
+    "tests.test_monitoring.MonitoringTests.test_player_cannot_read_or_enroll_and_player_token_cannot_ingest",
+    "tests.test_monitoring.MonitoringTests.test_sequence_reversal_and_nan_are_rejected",
+    "tests.test_monitoring.MonitoringTests.test_stale_counter_reset_and_disabled_node"
+  ],
+  "failures": [],
+  "errors": [
+    {
+      "test": "tests.test_portal_operations.PortalOperationsTests.test_administrator_can_remove_expired_instance_without_relaxing_player_rules",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_portal_operations.py\", line 27, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_portal_operations.PortalOperationsTests.test_administrator_remove_checks_owner_version_and_preserves_dependency_protection",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_portal_operations.py\", line 27, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_portal_operations.PortalOperationsTests.test_default_policy_and_revision_restrict_maps_modes_and_submodes",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_portal_operations.py\", line 27, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_portal_operations.PortalOperationsTests.test_offer_cas_hides_restored_offers_and_does_not_mutate_fixed_catalog",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_portal_operations.py\", line 27, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_portal_operations.PortalOperationsTests.test_period_and_price_shape_rejected_before_revision_is_written",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_portal_operations.py\", line 27, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_portal_operations.PortalOperationsTests.test_player_inventory_ignores_other_account_filter",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_portal_operations.py\", line 27, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_portal_operations.PortalOperationsTests.test_purchase_event_failure_rolls_back_wallet_inventory_and_receipt",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_portal_operations.py\", line 27, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_portal_operations.PortalOperationsTests.test_two_admins_cannot_overwrite_the_same_revision",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_portal_operations.py\", line 27, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_portal_operations.PortalOperationsTests.test_web_purchase_uses_server_price_and_old_quote_is_rejected",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_portal_operations.py\", line 27, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_create_retry_keeps_id_and_assets_and_hides_password",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_game_lease_revoke_releases_and_transfers_without_parent_logout",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_last_fighter_seat_is_atomic_and_bad_password_preserves_room",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_native_bridge_create_list_failure_then_continue_and_allocation",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_native_camp_seats_observer_and_capacity_failure_then_continue",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_native_create_unknown_commit_recovers_same_room_after_restart",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_observer_has_no_reward_eligibility_and_owner_can_reconfigure",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_password_transfer_is_private_and_bound_to_room_identity",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_ready_revision_owner_kick_and_cross_room_reference",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_rename_transfer_native_replies_and_settings_ack",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_resize_reflows_legal_native_seats_and_leaving_revokes_reward",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_room_invitation_delivery_identity_expiry_and_blocking",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_room_receiver_events_ack_only_after_encoded_delivery",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_settings_are_server_validated_and_missing_map_does_not_allocate",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_start_reserves_frozen_instance_but_cannot_fake_native_ready",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_rooms.NativeRoomTests.test_tail_event_fault_rolls_back_whole_creation",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_rooms.py\", line 26, in setUp\n    super().setUp();self.s.catalog=with_native_inventory(self.s.catalog)\n                                   ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_cart_same_material_twice_returns_each_line_and_one_stack",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_checkin_beijing_midnight_boundary",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_checkin_disabled_by_default_and_no_repeat_after_rule_change",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_checkin_native_family_does_not_grant_from_rank_award",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_clan_invitation_transfer_and_old_owner_permission",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_default_rules_validate_all_recipes_without_publishing_checkin",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_draw_failure_restores_exhausted_material_binding",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_fragment_stack_and_draw_confirmation_are_atomic",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_friend_delivery_block_and_unrelated_event_ack",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_game_api_rejects_player_token_and_changed_retry",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_gift_other_session_incremental_sync_and_local_purchase_keeps_all_changes",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_kernel_attachment_parent_persistence_and_cross_account",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_native_clan_identity_queries_and_review_permissions",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_native_friend_decision_matches_live_request_and_preserves_unknown",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_native_friend_groups_preserve_remark_and_blacklist",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_native_selected_pool_persists_and_pending_result_cannot_be_reset",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_native_shop_failure_then_commit_and_incremental_cache",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_native_skin_and_social_packets_use_current_result_domains",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_native_unknown_commit_recovery_survives_bridge_restart",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_native_unsupported_reward_rejected_before_consumption",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_pagination_rejects_mixed_versions_and_old_limit_is_removed",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_purchase_duplicate_instances_no_capacity_and_idempotency",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_purchase_event_failure_rolls_back_money_items_and_receipt",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_selected_pool_rejects_unknown_choice_without_consumption",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_skin_relationship_and_cross_account_rejected",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_swallow_reversible_relation_preserves_gids_and_replays",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_sync_more_than_one_page_does_not_skip_instances",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    },
+    {
+      "test": "tests.test_native_features.NativeFeatureTests.test_workshop_uses_recipe_material_and_keeps_label_weapon",
+      "traceback": "Traceback (most recent call last):\n  File \"/Users/zjh/NZ/tests/test_native_features.py\", line 25, in setUp\n    self.s.catalog = with_native_inventory(self.s.catalog)\n                     ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 27, in with_native_inventory\n    manifest = native_inventory_manifest()\n  File \"/Users/zjh/NZ/revival/catalogs.py\", line 18, in native_inventory_manifest\n    raise ValueError('Native inventory manifest fingerprint mismatch')\nValueError: Native inventory manifest fingerprint mismatch\n"
+    }
+  ],
+  "skipped": [
+    {
+      "test": "tests.test_email_native.EmailNativeTests.test_two_email_accounts_reach_native_proxy_without_shared_identity_or_qq",
+      "reason": "Requires the user-provided validated Windows client; CI cannot claim native acceptance"
+    }
+  ],
+  "exit_code": 1,
+  "seconds": 36.161
+}

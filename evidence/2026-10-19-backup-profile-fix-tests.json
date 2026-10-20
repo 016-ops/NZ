@@ -1,0 +1,16 @@
+{
+  "kind": "MYSQL_AUTOMATED_NOT_RETAIL_LIVE",
+  "mysql_version": "26.7.0",
+  "tests": 4,
+  "passed": [
+    "tests.test_control_plane.Deployment.test_backup_integrity_and_profile_isolation",
+    "tests.test_control_plane.Deployment.test_default_profile_refuses_guessed_resources_and_native_host",
+    "tests.test_backup_encoding.BackupEncodingTests.test_date_binary_and_null_preserve_values_during_canonical_encoding",
+    "tests.test_backup_encoding.BackupEncodingTests.test_json_text_boolean_and_scalar_match_orm_without_ignoring_changed_values"
+  ],
+  "failures": [],
+  "errors": [],
+  "skipped": [],
+  "exit_code": 0,
+  "seconds": 1.656
+}

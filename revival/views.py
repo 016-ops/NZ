@@ -11,7 +11,7 @@ from .assets import preview, settle
 from .rooms import heartbeat, maintain
 from .security import token_hash
 from .service import Fault, Service, identifier
-from .middleware import failure, response
+from .middleware import client_address, failure, response
 
 
 # 只接受 Authorization Bearer 头，不读 Cookie、URL 或本地存储中的令牌。
@@ -41,9 +41,12 @@ def endpoint(request, view=None):
             if path == '/api/launcher/status':
                 from .launcher import capabilities
                 return response(capabilities())
+            if path.startswith('/api/public/'):
+                # 公开页面只读已发布运营内容，不复用管理员会话或返回邮箱、主机、凭据。
+                return response(public_data(service, path.rsplit('/', 1)[-1], request.GET))
             if view is not None:
                 filters = {k: v for k, v in request.GET.items()}
-                for name in ('limit', 'offset'):
+                for name in ('limit', 'offset', 'map_id', 'difficulty', 'player_count', 'hours', 'after_gid', 'revision'):
                     if name in filters:
                         filters[name] = int(filters[name])
                 maintain(service)
@@ -56,20 +59,29 @@ def endpoint(request, view=None):
                 if settings.NZ_EMAIL_VERIFICATION_REQUIRED and ('email' not in data or 'login' in data):
                     raise Fault('EMAIL_REQUIRED', '新用户必须通过验证码注册邮箱账号', 403)
                 result = service.register(data)
-            elif path == '/api/player/login':
+            elif path in ('/api/player/login', '/api/launcher/login'):
                 from .security import normalize_email
                 try:
                     email = normalize_email(data.get('email'))
                 except ValueError:
                     raise Fault('AUTH', 'Invalid credentials', 401)
-                result = service.login(email, data.get('password'), kind='player')
+                result = service.login(email, data.get('password'), kind='player', launcher=path == '/api/launcher/login')
+            elif path == '/api/player/view':
+                # 本机桥客户端要求对象信封；权限仍由网页玩家会话逐请求验证，不接受游戏凭据冒充。
+                allowed = {'me', 'player-inventory', 'player-shop', 'campaigns', 'leaderboards'}
+                if data.get('view') not in allowed or not isinstance(data.get('query', {}), dict):
+                    raise Fault('FORBIDDEN', '玩家读取视图不在允许范围', 403)
+                current = token(request)
+                with service.db.transaction() as c:
+                    service._actor(c, current, 'player')
+                result = {'data': service.query(current, data['view'], **data.get('query', {}))}
             elif path == '/api/player/register':
                 if 'email' not in data or 'login' in data:
                     raise Fault('INVALID', '邮箱注册必须提供 email，不能指定旧登录名')
                 result = service.register(data)
             elif path in ('/api/player/email-code', '/api/player/password-reset', '/api/player/email-verify'):
                 from .email_verification import request_code, recover
-                result = (request_code(service, data, request.META.get('REMOTE_ADDR', 'unknown'))
+                result = (request_code(service, data, client_address(request))
                           if path == '/api/player/email-code' else
                           recover(service, data, verify_only=path == '/api/player/email-verify'))
             elif path in ('/api/launcher/tickets', '/api/launcher/redeem', '/api/game/session', '/api/game/session/renew'):
@@ -106,6 +118,12 @@ def endpoint(request, view=None):
                 result = handler(service, token(request), data)
             elif path == '/api/node/settlement':
                 result = settle(service, token(request), data)
+            elif path == '/api/runtime/results':
+                from .campaigns import ingest
+                result = ingest(service, token(request), data)
+            elif path == '/api/monitoring/samples':
+                from .monitoring import ingest
+                result = ingest(service, token(request), data)
             elif path == '/api/logout':
                 current = token(request)
                 with service.db.transaction() as c:
@@ -128,9 +146,40 @@ def endpoint(request, view=None):
         return response({'error': 'INTERNAL', 'message': 'Request failed; assets remain transactional', 'incident_id': incident}, 500)
 
 
+def public_data(service, name, filters):
+    """门户公开读模型只暴露地图、活动和昵称成绩；无可信来源时保持正式榜为空。"""
+    from .campaigns import view as campaign_view
+    from .portal_operations import filter_play_catalog
+    from .native_rooms import catalog
+    query = dict(filters.items())
+    for key in ('map_id', 'difficulty', 'player_count'):
+        if key in query:
+            query[key] = int(query[key])
+    with service.db.transaction() as c:
+        actor = {'kind': 'public'}
+        if name == 'campaigns':
+            return campaign_view(service, c, actor, 'campaigns', query)
+        if name == 'leaderboards':
+            if not query.get('campaign_id'):
+                return {'entries': [], 'finalized': False, 'test_only': service.test_profile, 'native_results_enabled': False}
+            result = campaign_view(service, c, actor, 'leaderboards', query)
+            result['entries'] = [{k: v for k, v in row.items() if k != 'member_ids'} for row in result['entries']]
+            return result
+        if name != 'portal':
+            raise Fault('NOT_FOUND', '未知公开视图', 404)
+        rules = filter_play_catalog(service, c, catalog())
+        maps = [dict(map_id=r['map_id'], name=r['name'], mode_id=r['mode_id'], submodes=r['submodes'],
+            kind='hunt' if r['mode_id'] == 260 else 'tower_defense', native_loaded=r['native_loaded'],
+            combat_verified=r['combat_verified']) for r in rules['maps'].values()]
+        return {'profile': service.catalog['id'], 'test_profile': service.test_profile, 'maps': maps,
+            'play_policy_revision': rules['play_policy_revision'],
+            'campaigns': campaign_view(service, c, actor, 'campaigns', {}),
+            'capabilities': {'platform': True, 'native_gameplay': False, 'leaderboards': False}}
+
+
 # 只暴露 Vite 构建后的首页和 assets 白名单目录，resolve 检查阻止路径穿越；不直接公开 TypeScript 源码或数据库配置。
 @gzip_page
-def frontend(request, asset=None):
+def frontend(request, asset=None, **route):
     """只压缩公开的构建文件，登录令牌和一次性邀请响应不参与此压缩路径。"""
     if request.method not in ('GET', 'HEAD'):
         return failure(Fault('NOT_FOUND', 'Route not found', 404))

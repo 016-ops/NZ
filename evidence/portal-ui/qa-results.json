@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-19",
+  "timezone": "America/Los_Angeles",
+  "environment": "本机专用隔离 QA 库；http://127.0.0.1:8875；非现有 DEV 或生产",
+  "browser": "macOS Safari，通过 CUA 原生辅助功能与键盘操作",
+  "frontend_checks": {
+    "typescript": "PASS",
+    "vitest": "5/5 PASS",
+    "vite_build": "PASS；按入口懒加载，无 500 kB 单块警告",
+    "chinese_comments": "本轮新组件、共享契约、查询/幂等/权限/期限/快照/时区边界及涉及旧模块已补中文注释；未声称全项目整改"
+  },
+  "ui_checks": [
+    {"name": "管理员登录", "status": "PASS", "evidence": "真实密码与正常 TOTP 登录；未关闭 MFA；凭据未写入证据"},
+    {"name": "玩家详情与中文仓库", "status": "PASS", "evidence": "M4A1【逆战版】正常显示；军衔显示待接入"},
+    {"name": "道具发放与回收", "status": "PASS", "evidence": "预览并发放 AK47-R 后仓库 1→2；通过确认框回收刚发放实例后 2→1"},
+    {"name": "封禁与解封", "status": "PASS", "evidence": "临时封禁 1 小时后通过确认解除；其后同一 QA 玩家真实登录成功"},
+    {"name": "商城搜索与上下架", "status": "PASS", "evidence": "按 200001 搜索；下架保存并重新查询仍为关闭；随后恢复上架"},
+    {"name": "商城改价", "status": "PASS", "evidence": "浏览器提交 12500→12499；独立只读 API 回读确认 12499、enabled=true、revision=4；随后浏览器恢复 12500 并保存"},
+    {"name": "地图开放策略", "status": "PASS", "evidence": "首发 113/164/191/141/140/168/96 启用、160 同名变体关闭；默认策略保存与回读；55 图供 Owner 后续配置"},
+    {"name": "活动草稿创建与编辑", "status": "PASS", "evidence": "创建 UI 验收草稿；回填北京时间、修改名称并保存，页面回读修订名称；保持 DRAFT"},
+    {"name": "玩家签到与普通奖励", "status": "PASS", "evidence": "仅使用预存已发布隔离 fixture：签到 0→1，领取按钮→已领取；真实仓库 1→2，新增史诗道具碎片"},
+    {"name": "先锋榜", "status": "PASS", "evidence": "大都会 1–8 人分组；切换沙漠神殿仅 1–4 人；难度及赛季筛选可用；空榜无虚构成绩"},
+    {"name": "监控缺测与真实趋势", "status": "PASS", "evidence": "首先正确显示 NO_DATA；采集器代理问题修复后 ONLINE，CPU/内存及双向带宽显示真实值，CPU/内存各 4 个真实采样点，8 条真实磁盘记录"},
+    {"name": "Launcher Mac 布局", "status": "PASS_LAYOUT_ONLY", "evidence": "导航轨、顶栏、原创主视觉、底部启动区、设置及诊断均可打开；无本机能力时登录与启动拒绝使用"}
+  ],
+  "not_executed": [
+    "活动发布最终确认被自动审批拒绝：理由为用户要求活动仅保留草稿，未授权发布该 QA 活动；未重试、未绕过，草稿仍未发布",
+    "活动暂停、恢复、结束与封榜未在浏览器提交；不能用后端测试冒充 UI 验收",
+    "监控节点登记及一次性令牌复制仅核对入口与实现，未在浏览器另建凭据",
+    "Windows 独立机器安装、原生登录启动、战斗、多人与结算未在本轮 Safari 测试",
+    "移动端仅实现响应式，未执行移动浏览器实测"
+  ],
+  "screenshots": [
+    "admin-overview.png",
+    "admin-user-inventory.png",
+    "admin-shop-filter.png",
+    "admin-shop-restored.png",
+    "admin-map-policy.png",
+    "admin-monitoring-no-data.png",
+    "admin-monitoring-live.png",
+    "player-home.png",
+    "player-campaign-claimed.png",
+    "player-inventory.png",
+    "player-leaderboard-tower.png",
+    "portal-home.png",
+    "portal-open-maps.png",
+    "launcher-macos-layout-only.png",
+    "launcher-settings-layout-only.png"
+  ]
+}

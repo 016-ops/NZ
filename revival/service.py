@@ -58,11 +58,18 @@ def text_field(value, name, limit=200):
 PERMISSIONS = {
     'owner': {'*'},
     'users': {'user.read', 'user.approve', 'user.reset', 'invite.create', 'session.revoke', 'sanction.create', 'audit.read'},
-    'resources': {'user.read', 'asset.read', 'asset.grant', 'asset.preview', 'audit.read'},
-    'auditor': {'user.read', 'asset.read', 'audit.read'},
+    'resources': {'user.read', 'asset.read', 'asset.grant', 'asset.remove', 'asset.preview', 'audit.read', 'shop.read', 'shop.manage', 'campaign.read', 'campaign.manage'},
+    'auditor': {'user.read', 'asset.read', 'audit.read', 'shop.read', 'campaign.read'},
 }
 
 COMMANDS = {
+    # 运营发布与玩家领取复用统一命令事务；玩家不能借此入口取得管理员权限。
+    'shop.offer.save': 'shop.manage', 'play-policy.save': '*', 'asset.remove': 'asset.remove',
+    'player.shop.quote': 'player', 'player.shop.purchase': 'player',
+    'campaign.save': 'campaign.manage', 'campaign.publish': 'campaign.manage',
+    'campaign.pause': 'campaign.manage', 'campaign.end': 'campaign.manage',
+    'campaign.checkin': 'player', 'campaign.claim': 'player', 'leaderboard.finalize': '*',
+    'monitor.node.enroll': '*', 'monitor.node.update': '*',
     'native.rules.preview': '*', 'native.rules.publish': '*',
     'admin.create': '*', 'admin.update': '*', 'admin.password.reset': '*',
     'admin.mfa.reset': '*', 'admin.recovery.rotate': '*',
@@ -151,7 +158,7 @@ class Service:
         return {'admin_id': admin_id, 'otp_secret': secret, 'recovery_codes': codes}
 
     # 校验独立密码；管理员额外校验未消费的 TOTP 时间步，玩家校验批准状态与有效制裁。会话撤销、席位释放、新会话和审计必须一起提交。
-    def login(self, login, password, *, kind='player', otp_code=None):
+    def login(self, login, password, *, kind='player', otp_code=None, launcher=False):
         """校验独立密码；管理员额外校验未消费的 TOTP 时间步，玩家校验批准状态与有效制裁。会话撤销、席位释放、新会话和审计必须一起提交。"""
         if kind not in ('player', 'admin'):
             raise Fault('INVALID', 'Unknown login kind')
@@ -190,6 +197,10 @@ class Service:
             token = new_token()
             c.insert('sessions', {'token_hash': token_hash(token), 'subject_id': row['id'], 'kind': kind, 'security_version': row['security_version'], 'expires_at': self.clock() + (900 if kind == 'admin' else 3600), 'revoked': 0})
             self._audit(c, row['id'], 'session.login', row['id'], identifier(), 'authenticated login', {'kind': kind})
+            if launcher and kind == 'player':
+                # 专用 Launcher 认证入口成功时才累计登录资格；请求不能用普通 Web 登录的字段自行标记。
+                from .campaigns import record_launcher_login
+                record_launcher_login(self, c, row['id'])
             return {'token': token, 'subject_id': row['id'], 'kind': kind, 'expires_in': 900 if kind == 'admin' else 3600}
 
     # 邀请次数检查、玩家映射分配、账号创建与幂等结果共用部署锁。先检查同键结果，确保响应丢失重试不会再次消耗邀请。
@@ -367,7 +378,16 @@ class Service:
                                               and type(x.get('delta')) is int) > 10000)
             if high_risk and actor['kind'] == 'admin' and actor['role'] == 'owner':
                 self._step_up(c, actor, data)
-            if action.startswith('native.rules.'):
+            if action.startswith('monitor.node.'):
+                from .monitoring import command
+                result = command(self, c, actor, action, data)
+            elif action.startswith(('campaign.', 'leaderboard.')):
+                from .campaigns import command
+                result = command(self, c, actor, action, data)
+            elif action in ('shop.offer.save', 'play-policy.save', 'asset.remove', 'player.shop.quote', 'player.shop.purchase'):
+                from .portal_operations import command
+                result = command(self, c, actor, action, data)
+            elif action.startswith('native.rules.'):
                 from .native_rewards import publish
                 result = publish(self,c,actor,action,data)
             elif action.startswith('admin.'):
@@ -539,6 +559,18 @@ class Service:
     def query(self, token, view, **filters):
         """按视图执行服务端权限检查和有界分页；只暴露旧接口允许的逻辑列，资源/用户管理员只读自己的审计记录。"""
         with self.db.transaction() as c:
+            if view == 'monitoring':
+                from .monitoring import query
+                actor = self._actor(c, token, 'audit.read')
+                return query(self, c, actor, filters)
+            if view in ('campaigns', 'campaign-admin', 'leaderboards'):
+                from .campaigns import view as campaign_view
+                actor = self._actor(c, token, 'campaign.read' if view == 'campaign-admin' else None)
+                return campaign_view(self, c, actor, view, filters)
+            if view in ('shop-admin', 'play-policy', 'player-shop', 'player-inventory'):
+                from .portal_operations import query
+                actor = self._actor(c, token, 'shop.read' if view == 'shop-admin' else 'player' if view.startswith('player-') else None)
+                return query(self, c, actor, view, filters)
             if view == 'native-rules':
                 self._actor(c,token,'*')
                 return list(c.select('native_rule_revisions',order=('namespace','-revision'),limit=200))
@@ -629,8 +661,13 @@ class Service:
         result['email'] = identity['email'] if identity else None
         result['email_verified'] = bool(identity and identity['verified_at'] is not None)
         result['character'] = dict(character) if (character := c.select('characters', Q(account_id=account_id)).fetchone()) else None
+        # 原生资料里的研究值 Level=1 不是可信军衔；与道具等级、鲲等级严格区分。
+        result['level'] = None
+        result['level_status'] = 'PENDING_NATIVE_SOURCE'
         result['wallets'] = [dict(r) for r in c.select('wallets', Q(account_id=account_id), columns=['currency', 'balance', 'version'])]
         result['inventory'] = [dict(r) for r in c.select('inventory', Q(account_id=account_id))]
+        result['item_labels'] = {r['item_key']: self.catalog['items'].get(r['item_key'], {}).get('label', r['item_key'])
+                                 for r in result['inventory']}
         result['equipment'] = [dict(r) for r in c.select('equipment', Q(account_id=account_id), columns=['slot', 'inventory_id'])]
         result['sanctions'] = [dict(r) for r in c.select('sanctions', Q(account_id=account_id))]
         result['room'] = dict(member) if (member := c.select('room_members', Q(account_id=account_id)).fetchone()) else None

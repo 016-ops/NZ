@@ -3,6 +3,7 @@ import json
 import logging
 import threading
 import time
+from ipaddress import ip_address
 from collections import OrderedDict
 
 from django.conf import settings
@@ -10,6 +11,25 @@ from django.http import JsonResponse
 from .service import Fault, identifier
 
 LOG = logging.getLogger('revival.http')
+
+
+def client_address(request):
+    """限流使用真实连接IP；仅受信本机反代、精确公网Host同时成立时读取X-Real-IP。
+
+    Nginx模板覆盖该头，Web监听仍为回环。显式开关避免历史本机入口或直连请求
+    信任任意转发头；规范化IPv4/IPv6后用作有界桶标识，不保存完整代理链。
+    """
+    peer = request.META.get('REMOTE_ADDR', 'unknown')
+    if (settings.NZ_TRUST_LOOPBACK_PROXY and settings.NZ_PUBLIC_HOST
+            and peer in ('127.0.0.1', '::1')
+            and request.META.get('HTTP_HOST') == settings.NZ_PUBLIC_HOST):
+        forwarded = request.META.get('HTTP_X_REAL_IP')
+        if forwarded:
+            try:
+                return str(ip_address(forwarded))
+            except ValueError:
+                raise Fault('INVALID', 'Invalid trusted proxy client address') from None
+    return peer
 
 
 # 单进程回环服务的线程安全限流器；不宣称分布式限流能力。
@@ -70,15 +90,20 @@ class ControlPlaneMiddleware:
         """依次执行 Host/Origin、限流和严格 JSON 校验，再调用 Django 路由；拒绝审计独立追加，所有响应统一安全头。"""
         try:
             hosts = {f'127.0.0.1:{settings.NZ_PORT}', f'localhost:{settings.NZ_PORT}'}
+            if settings.NZ_PUBLIC_HOST:
+                hosts.add(settings.NZ_PUBLIC_HOST)
             if request.META.get('HTTP_HOST') not in hosts:
                 raise Fault('HOST', 'Unexpected Host header', 403)
             origin = request.META.get('HTTP_ORIGIN')
-            if origin and origin not in {'http://' + host for host in hosts}:
+            origins = {f'http://127.0.0.1:{settings.NZ_PORT}', f'http://localhost:{settings.NZ_PORT}'}
+            if settings.NZ_PUBLIC_ORIGIN:
+                origins.add(settings.NZ_PUBLIC_ORIGIN)
+            if origin and origin not in origins:
                 raise Fault('ORIGIN', 'Cross-origin requests are rejected', 403)
             if request.method == 'POST':
-                auth = request.path in ('/api/login', '/api/register', '/api/player/login', '/api/player/register',
+                auth = request.path in ('/api/login', '/api/register', '/api/player/login', '/api/launcher/login', '/api/player/register',
                     '/api/player/email-code', '/api/player/password-reset', '/api/player/email-verify', '/api/launcher/redeem')
-                if not self.limits.allow((request.META.get('REMOTE_ADDR'), request.path), 20 if auth else 120, 300 if auth else 60):
+                if not self.limits.allow((client_address(request), request.path), 20 if auth else 120, 300 if auth else 60):
                     raise Fault('RATE_LIMIT', 'Request limit reached; retry later', 429)
                 if request.content_type != 'application/json' or request.headers.get('X-NZ-Request') != '1':
                     raise Fault('CSRF', 'JSON content type and X-NZ-Request: 1 are required', 403)
@@ -111,5 +136,5 @@ class ControlPlaneMiddleware:
         result['Cache-Control'] = 'no-store'
         result['X-Content-Type-Options'] = 'nosniff'
         result['Referrer-Policy'] = 'no-referrer'
-        result['Content-Security-Policy'] = "default-src 'self'; script-src 'self'; style-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
+        result['Content-Security-Policy'] = "default-src 'self'; script-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'"
         return result

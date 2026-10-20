@@ -9,8 +9,13 @@ import socket
 import sys
 import threading
 
-ROOT = Path(__file__).resolve().parents[1]
-WORKSPACE = ROOT / 'runtime/native-recovery/coherent-2020/nz'
+# 仅PyInstaller发行进程将写入位置迁至当前用户AppData；仓库研究默认路径及SSH入口保持。
+if getattr(sys, 'frozen', False):
+    from tools.launcher_runtime import state_root, workspace_root
+    ROOT, WORKSPACE = state_root(), workspace_root()
+else:
+    ROOT = Path(__file__).resolve().parents[1]
+    WORKSPACE = ROOT / 'runtime/native-recovery/coherent-2020/nz'
 
 
 def pending_recovery(root=ROOT):
@@ -53,7 +58,13 @@ def current_health():
 
 @contextmanager
 def launcher_connection():
-    """桌面启动器始终创建到已登记 DEV 的专属 SSH 通道，不复用来源不明的本机业务端口。"""
+    """研究版创建专属SSH通道；发行版使用明确的公开HTTPS或操作者预建回环连接。"""
+    if getattr(sys, 'frozen', False):
+        # 发行包只连接公开HTTPS或操作者已建立的回环隧道，不寻找研究用SSH密码文件。
+        from tools.launcher_runtime import configured_connection
+        with configured_connection() as client:
+            yield client
+        return
     from tools.dev_remote import connect
     from tools.dev_tunnel import ForwardServer, handler
     from tools.email_launcher import Client

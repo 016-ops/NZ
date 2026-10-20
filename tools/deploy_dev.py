@@ -73,6 +73,9 @@ def main():
         raise ValueError('A complete independent MySQL environment is required')
     # dotenv 单引号转义规则明确，禁止 shell source 解析；只由 python-dotenv 加载。
     environment = '\n'.join(key + "='" + config[key].replace('\\', '\\\\').replace("'", "\\'") + "'" for key in keys)
+    # 新Web域名仅按操作者明确配置注入；未设置时继续只允许原SSH回环来源。
+    if config.get('NZ_PUBLIC_ORIGIN'):
+        environment += "\nNZ_PUBLIC_ORIGIN='"+config['NZ_PUBLIC_ORIGIN'].replace('\\','\\\\').replace("'","\\'")+"'"
     environment += "\nNZ_MYSQL_BIN='/usr/bin'\n"
     client = connect(args.source, root / 'runtime/dev-known-hosts')
     try:

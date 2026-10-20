@@ -52,12 +52,16 @@ class LocalCommand(BaseCommand):
             from revival.rooms import maintain
             from revival.batching import run_batches
             from revival.pve import recover_timeouts
+            from revival.campaigns import drain_awards
+            from revival.monitoring import prune
             try:
                 while True:
                     close_old_connections()
                     maintain(service)
                     run_batches(service)
                     recover_timeouts(service)
+                    drain_awards(service)
+                    prune(service)
                     if options['once']: break
                     time.sleep(5)
             except KeyboardInterrupt:

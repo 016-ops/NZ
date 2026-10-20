@@ -22,7 +22,11 @@ class HttpTests(Base):
 
     def tearDown(self):
         """释放本例服务、连接和临时资源；清理由测试生命周期完成，不影响当前业务库。"""
-        self.server.task_dispatcher.shutdown();self.server.close();self.thread.join(timeout=5)
+        self.server.task_dispatcher.shutdown()
+        # 关闭动作在Waitress事件线程执行，避免主线程关闭仍被select监视的fd造成EBADF。
+        self.server.trigger.pull_trigger(self.server.close)
+        self.thread.join(timeout=5)
+        self.assertFalse(self.thread.is_alive(), 'HTTP测试服务必须在清理后退出')
         self.setting_override.disable()
         super().tearDown()
 
@@ -42,7 +46,8 @@ class HttpTests(Base):
         self.assertEqual(status,200);self.assertFalse(json.loads(data)['retail_compatible'])
         self.assertEqual(headers['Cache-Control'],'no-store');self.assertIn("frame-ancestors 'none'",headers['Content-Security-Policy'])
         status,data,headers=self.request('/')
-        self.assertEqual(status,200);self.assertIn('本地控制台'.encode(),data)
+        # 首页已升级为公共门户；仍检查同一React入口和产品标识，不固定旧管理页标题。
+        self.assertEqual(status,200);self.assertIn('NZ Revival'.encode(),data)
         self.assertEqual(self.request('/../revival/schema.sql')[0],404)
 
     def test_csrf_origin_dns_rebinding_and_bad_body(self):
