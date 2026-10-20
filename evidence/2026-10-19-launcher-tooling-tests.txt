@@ -76,8 +76,10 @@ test_external_https_preserves_operator_proxy_and_forbids_unsafe_url (tests.test_
 公网只允许HTTPS且不能夹带用户信息/参数；代理配置不被采集器静默覆盖。 ... ok
 test_loopback_transport_disables_environment_proxy_and_redirects (tests.test_monitor_agent.MonitorAgentTests.test_loopback_transport_disables_environment_proxy_and_redirects)
 本机HTTP隧道无论NO_PROXY是否存在均直连，同时继续禁止重定向。 ... ok
+test_missing_windows_service_does_not_interrupt_host_sample (tests.test_monitor_agent.MonitorAgentTests.test_missing_windows_service_does_not_interrupt_host_sample)
+模拟Windows服务消失/拒绝访问的psutil异常，仍上报主机数据且仅该服务UNKNOWN。 ... ok
 
 ----------------------------------------------------------------------
-Ran 39 tests in 0.226s
+Ran 40 tests in 0.204s
 
 OK

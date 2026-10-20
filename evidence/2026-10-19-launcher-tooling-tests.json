@@ -1,7 +1,7 @@
 {
   "kind": "INDEPENDENT_TOOLING",
   "mysql_version": null,
-  "tests": 39,
+  "tests": 40,
   "passed": [
     "tests.test_launcher_runtime.LauncherRuntimeTests.test_frozen_resources_and_state_are_separate_and_native_start_is_blocked",
     "tests.test_launcher_runtime.LauncherRuntimeTests.test_https_uses_verified_context_and_keeps_dict_envelope",
@@ -41,11 +41,12 @@
     "tests.test_proxy_address.ProxyAddressTests.test_trusted_proxy_distinguishes_clients",
     "tests.test_proxy_address.ProxyAddressTests.test_untrusted_peer_host_or_disabled_setting_ignores_forwarded_header",
     "tests.test_monitor_agent.MonitorAgentTests.test_external_https_preserves_operator_proxy_and_forbids_unsafe_url",
-    "tests.test_monitor_agent.MonitorAgentTests.test_loopback_transport_disables_environment_proxy_and_redirects"
+    "tests.test_monitor_agent.MonitorAgentTests.test_loopback_transport_disables_environment_proxy_and_redirects",
+    "tests.test_monitor_agent.MonitorAgentTests.test_missing_windows_service_does_not_interrupt_host_sample"
   ],
   "failures": [],
   "errors": [],
   "skipped": [],
   "exit_code": 0,
-  "seconds": 0.226
+  "seconds": 0.204
 }

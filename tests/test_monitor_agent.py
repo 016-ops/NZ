@@ -2,8 +2,9 @@
 import unittest
 from unittest.mock import patch
 import urllib.request
+from types import SimpleNamespace
 
-from tools.monitor_agent import endpoint, transport, NoRedirect
+from tools.monitor_agent import endpoint, transport, sample, NoRedirect
 
 
 class MonitorAgentTests(unittest.TestCase):
@@ -26,3 +27,20 @@ class MonitorAgentTests(unittest.TestCase):
         for value in ('http://external.example', 'https://user@example.test', 'https://example.test/?token=x'):
             with self.subTest(url=value), self.assertRaises(ValueError):
                 endpoint(value)
+
+    def test_missing_windows_service_does_not_interrupt_host_sample(self):
+        """模拟Windows服务消失/拒绝访问的psutil异常，仍上报主机数据且仅该服务UNKNOWN。"""
+        class ServiceReadError(Exception):
+            """人工替身对应psutil.Error，不模拟真实Windows采集成功。"""
+
+        fake = SimpleNamespace(Error=ServiceReadError,
+            virtual_memory=lambda: SimpleNamespace(total=1024, available=512),
+            disk_partitions=lambda all: [],
+            net_io_counters=lambda pernic, nowrap: {'ethernet': SimpleNamespace(bytes_recv=100, bytes_sent=50)},
+            net_if_stats=lambda: {'ethernet': SimpleNamespace(isup=True)},
+            cpu_percent=lambda interval: 5,
+            win_service_get=unittest.mock.Mock(side_effect=ServiceReadError))
+        with patch('tools.monitor_agent.platform.system', return_value='Windows'):
+            data = sample(fake, 'fixture', 'boot', 0, [], ['missing-fixture'])
+        self.assertEqual(data['services'], {'missing-fixture': 'UNKNOWN'})
+        self.assertEqual(data['memory_used'], 512)

@@ -70,7 +70,8 @@ def sample(psutil, node_id, boot_id, sequence, interfaces, service_names):
                 services[name] = 'UP' if result.returncode == 0 else 'DOWN'
             else:
                 services[name] = 'UNKNOWN'
-        except (OSError, ValueError, subprocess.TimeoutExpired):
+        except (OSError, ValueError, subprocess.TimeoutExpired, psutil.Error):
+            # Windows服务不存在或无读取权限会抛psutil.Error；单个服务未知不能终止整机采样。
             services[name] = 'UNKNOWN'
     return {'node_id': node_id, 'boot_id': boot_id, 'sequence': sequence, 'measured_at': int(time.time()),
         'cpu_percent': psutil.cpu_percent(interval=1), 'memory_total': memory.total,

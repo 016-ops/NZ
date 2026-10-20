@@ -72,7 +72,7 @@
 | 扩展回归 | control_plane/operations/native_inventory/room_access/email_verification/http/node_http/backup_encoding | 79/79通过，0跳过；`evidence/2026-10-19-platform-regression-final-tests.json` | 第一轮曾有旧断言及备份缺陷，已修并重跑；清理线程竞争另项最终验证 |
 | HTTP最终复验 | http/node_http/portal_http/proxy_address | 13/13通过，无线程关闭异常；`evidence/2026-10-19-http-final-tests.json` | 公网真实Nginx未部署 |
 | 备份定向 | Deployment + backup_encoding | 4/4通过；`evidence/2026-10-19-backup-profile-fix-tests.json` | 真实线上数据备份待目标配置 |
-| 工具与发布安全 | launcher_runtime/portal_proxy/frozen_config/native_launcher/package_web/public_settings/proxy_address/monitor_agent | 39/39通过；`evidence/2026-10-19-launcher-tooling-tests.json` | 不连接业务库，不代表Windows实机 |
+| 工具与发布安全 | launcher_runtime/portal_proxy/frozen_config/native_launcher/package_web/public_settings/proxy_address/monitor_agent | 40/40通过；`evidence/2026-10-19-launcher-tooling-tests.json` | 不连接业务库，不代表Windows实机 |
 | 前端 | `npm --prefix admin run typecheck`、`npm --prefix admin test`、`npm --prefix admin run build` | 类型通过、5/5测试、Vite构建通过 | 尚无Windows WebView2实机和完整移动端矩阵 |
 | Django/迁移 | `manage.py check`、`makemigrations --check --dry-run`；隔离demo迁移0001–0023 | 系统检查通过、无模型漂移、全迁移通过 | 目标生产MySQL版本与权限待确认 |
 | 已登录UI | Safari + 8875隔离Web | MFA、发放/回收、封禁/解封后登录、商城上下架、白名单保存、草稿新建编辑、签到/领奖到账、1–8/1–4分组均实际操作 | 发布确认点击被自动审批拒绝；详见UI记录 |
