@@ -1,0 +1,23 @@
+{
+  "date": "2026-10-19",
+  "timezone": "America/Los_Angeles",
+  "kind": "AUTHORIZED_GIT_PUSH_PERMISSION_FAILURE",
+  "remote": "https://github.com/016-ops/NZ.git",
+  "branch": "fix/launcher-portal-admin",
+  "attempted_head": "d7b212deba05e873d62b676cceacc935b84813c2",
+  "user_authorized": true,
+  "command": "git push -u origin fix/launcher-portal-admin",
+  "exit_code": 128,
+  "http_status": 403,
+  "sanitized_message": "Permission to 016-ops/NZ.git denied to 016-ops",
+  "remote_branch_exists": false,
+  "read_only_verification": ["git ls-remote exact branch: empty", "public GitHub exact branch ref API: 404"],
+  "credential_helper": "osxkeychain",
+  "github_cli_authenticated": false,
+  "default_ssh_identity_files_present": 0,
+  "credentials_printed": false,
+  "remote_url_changed": false,
+  "deployment_executed": false,
+  "ci_triggered": false,
+  "next_step": "Restore local GitHub repository write authentication, then push the already authorized branch."
+}
